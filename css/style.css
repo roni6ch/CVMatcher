@@ -1,0 +1,308 @@
+* {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	text-decoration: none;
+}
+/* 
+@font-face {
+	font-family: 'alefBold';
+	font-weight: 300; (bold)
+	font-style: normal;
+	src: url('../fonts/Alef-bold.ttf');
+}
+@font-face {
+	font-family: 'alefregular';
+	font-weight: 300; (regular)
+	font-style: normal;
+	src: url('../fonts/Alef-regular.ttf');
+} */
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section, img {
+	display: block;
+}
+
+body {
+	margin: 0 auto !important;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+hr {
+	background: #000;
+	width: 100%;
+	height: 1px;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+input, textarea, select, option {
+	resize: none;
+	outline: none;
+	-webkit-border-radius: 0px;
+	border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-family: 'alefregular';
+	margin: 0px !important;
+}
+
+a {
+	text-decoration: none;
+}
+
+textarea::-webkit-input-placeholder, input::-webkit-input-placeholder {
+	/* WebKit browsers */
+	color: #000;
+	font-size: 15px;
+	outline: 0;
+}
+
+textarea:-moz-placeholder, input:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #000;
+	font-size: 15px;
+	outline: 0;
+}
+
+textarea::-moz-placeholder, input::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
+	color: #000;
+	font-size: 15px;
+	outline: 0;
+}
+
+textarea:-ms-input-placeholder, input:-ms-input-placeholder {
+	/* Internet Explorer 10+ */
+	color: #000;
+	font-size: 15px;
+	outline: 0;
+}
+
+footer {
+	width: 100%;
+	height: 127px;
+	float: right;
+	background: #c0c0c0;
+	float: right;
+}
+
+footer ul {
+	padding: 50px;
+	float: left;
+}
+
+footer ul li {
+	display: inline-block;
+	padding: 0px 15px;
+}
+
+footer ul li a {
+	color: #fff;
+	font-size: 22px;
+	font-weight: 600;
+	padding: 0% !important;
+	color: #fff !important;
+	text-shadow: 1px 1px 0px #283744;
+	font-size: 22px;
+}
+
+footer div {
+	float: right;
+	padding: 50px;
+}
+
+footer div a {
+	margin-left: 10px;
+}
+
+.coverBackground {
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	-o-background-size: cover;
+	background-size: cover !important;
+	width: 580px;
+	height: 430px;
+	left: 0px;
+	float: left;
+}
+
+.flc {
+	clear: both;
+}
+
+.flr {
+	float: right;
+}
+
+.fll {
+	float: left;
+}
+
+.hidden {
+	display: none;
+}
+
+.wrapper {
+	width: 100%;
+	background-repeat: repeat;
+	float: left;
+}
+
+/****************************************************** INDEX - NAV BAR **********************************************/
+
+/*NAV*/
+.navbar {
+	height: 0px;
+	min-height: inherit !important;
+}
+
+.navBar>div:nth-child(1) {
+	padding: 15px;
+	float: left;
+}
+
+.navBar>div:nth-child(2) {
+	margin: 30px 15px;
+	float: right;
+}
+
+.navBarImg {
+	float: right;
+	overflow: hidden;
+	height: 261px;
+	background-image: url("../images/navImg.jpg");
+	width: 100%;
+}
+
+.navBarImg img {
+	max-height: 261px;
+	width: 100%;
+}
+
+.navBarImg li a {
+	font-size: 26px;
+	font-weight: 600;
+	padding: 0% !important;
+	color: #fff !important;
+	text-shadow: 1px 1px 0px #283744;
+}
+
+.navBarImg ul {
+	width: 100%;
+	padding: 210px 0px 0px;
+}
+
+.navBarImg ul li {
+	display: inline-block !important;
+	float: none;
+	margin: 0% 3% !important;
+}
+
+.container-fluid {
+	padding-right: 0px;
+}
+
+/****************************************************** MY JOBS - HTML **********************************************/
+.myjobsWrapper {
+	text-align: center;
+	padding: 63px 50px 25px;
+	color: #606060;
+	width: 100%;
+	float: left;
+}
+
+.myjobsWrapper section {
+	float: left;
+}
+
+.myjobsWrapper>h2 {
+	margin-bottom: 25px !important;
+	text-align: center;
+}
+
+.jobs {
+	margin-bottom: 47px;
+	border: 2px solid #ebebeb;
+	text-align: left;
+	float: left;
+	width: 95%;
+}
+
+.jobs>div:nth-child(1) {
+	height: 50px;
+	background: #ebebeb;
+	padding: 10px 13px;
+}
+
+.jobs>div:nth-child(2) {
+	padding: 10px 13px;
+	width: 94%;
+}
+
+.jobs h5 {
+	color: #606060;
+	font-weight: bold;
+}
+
+.jobs h5:nth-child(3) {
+	margin-top: 20px !important;
+	display: inline-block;
+}
+
+.jobs  p {
+	margin: 20px 0px 10px;
+	color: #000;
+	font-weight: 700;
+}
+
+.jobs img {
+	margin-left: 20px;
+	display: inline-block;
+}
+
+.jobsTools {
+	float: left;
+	background: #1b75bb;
+	width: 5%;
+	height: 100px;
+}
+
+/****************************************************** FAVORITES - HTML **********************************************/
+.favoritesWrapper {
+	text-align: center;
+	padding: 63px 50px 25px;
+	color: #606060;
+	float: left;
+	width: 100%;
+}
+
+.favoritesWrapper>h2 {
+	margin-bottom: 25px !important;
+	text-align: center;
+}
+/****************************************************** MEDIA - MAX 640 **********************************************/
+@media ( max-width :767px) {
+	.navBarImg {
+		display: none;
+	}
+}
