@@ -18,29 +18,12 @@ app.config(function($routeProvider) {
 	})
 });
 
-// background: url("../img/ProfileImg.png") no-repeat;
-/*app.directive('backImg', function() {
- return function(scope, element, attrs) {
- attrs.$observe('backImg', function(value) {
- element.css({
- 'background-image' : 'url(uploads/' + $.trim(value) + ')',
- 'background-size' : 'cover'
- });
- });
- };
- });*/
 /*
  * ********************* myjobs controller ****************
  */
 
 app.controller('myjobsController', function($scope) {
-	console.log("myjobsController");
-	/*$("input").keypress(function(e) {
-		if (e.which == 13 && $(this).hasClass('input') ) {
-			$scope.loginSystem();
-			return false;
-		}
-	});	*/
+	$scope.navigation = "Homepage";
 
 });
 
@@ -48,26 +31,16 @@ app.controller('myjobsController', function($scope) {
  * ********************* readcvs controller ****************
  */
 app.controller('readcvsController', function($scope) {
-	console.log("readcvsController");
-	/*$("input").keypress(function(e) {
-		if (e.which == 13 && $(this).hasClass('input') ) {
-			$scope.loginSystem();
-			return false;
-		}
-	});	*/
+	$scope.navigation = "Homepage > Read CV's";
+	
 
 });
 /*
  * ********************* unreadcvs controller ****************
  */
 app.controller('unreadcvsController', function($scope) {
-	console.log("unreadcvsController");
-	/*$("input").keypress(function(e) {
-		if (e.which == 13 && $(this).hasClass('input') ) {
-			$scope.loginSystem();
-			return false;
-		}
-	});	*/
+	$scope.navigation = "Homepage > Unread CV's";
+	
 
 });
 
@@ -75,12 +48,28 @@ app.controller('unreadcvsController', function($scope) {
  * ********************* favorites controller ****************
  */
 app.controller('favoritesController', function($scope) {
-	console.log("favoritesController");
-	/*$("input").keypress(function(e) {
-		if (e.which == 13 && $(this).hasClass('input') ) {
-			$scope.loginSystem();
-			return false;
-		}
-	});	*/
+	$scope.navigation = "Homepage > Favorites";
+	
 
 });
+
+
+
+//background: url("../img/ProfileImg.png") no-repeat;
+/*app.directive('backImg', function() {
+return function(scope, element, attrs) {
+attrs.$observe('backImg', function(value) {
+element.css({
+'background-image' : 'url(uploads/' + $.trim(value) + ')',
+'background-size' : 'cover'
+});
+});
+};
+});*/
+
+/*$("input").keypress(function(e) {
+	if (e.which == 13 && $(this).hasClass('input') ) {
+		$scope.loginSystem();
+		return false;
+	}
+});	*/

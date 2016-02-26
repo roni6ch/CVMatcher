@@ -1,26 +1,70 @@
-<div class="favoritesWrapper">
-	<h2>Favorites</h2>
+<div ng-controller="favoritesController" class="favoritesWrapper">
+<h3>{{navigation}}</h3>
+	<header>
+		<h2>Favorites</h2>
+	</header>
 
-	<ul class="nav nav-tabs">
-		<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-		<li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
-		<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+	<ul class="nav nav-tabs" ng-init="tab=0">
+		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Industrial
+				Engineering and Managment</a></li>
+		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Software
+				Engineering</a></li>
+		<li ng-class="{active:tab == 2}"><a ng-click="tab = 2">Electrial
+				Engineering</a></li>
+		<li ng-class="{active:tab == 3}"><a ng-click="tab = 3">Mechanical
+				Engineering</a></li>
 	</ul>
 
 	<div class="tab-content">
-		<div id="home" class="tab-pane fade in active">
-			<h3>HOME</h3>
-			<p>Some content.</p>
+		<div ng-show="tab == 0" class="tabsContent fade in active">
+		<!-- Content from here -->
+			<div>
+				<img src="images/stars.png">
+				<h3>Junior Full Stack Developer</h3>
+				<h4>Neta Efrati</h4>
+				<h5>Software Engineer Student</h5>
+			</div>
+			<div>
+				<img src="images/stars.png">
+				<h3>Junior Full Stack Developer</h3>
+				<h4>Neta Efrati</h4>
+				<h5>Software Engineer Student</h5>
+			</div>
+			<div>
+				<img src="images/stars.png">
+				<h3>Junior Full Stack Developer</h3>
+				<h4>Neta Efrati</h4>
+				<h5>Software Engineer Student</h5>
+			</div>
 		</div>
-		<div id="menu1" class="tab-pane fade">
-			<h3>Menu 1</h3>
-			<p>Some content in menu 1.</p>
+		<div ng-show="tab == 1" class="tabsContent fade in active">
+			<div>
+				<img src="images/stars.png">
+				<h3>Senior PHP Developer</h3>
+				<h4>Roni Chabra</h4>
+				<h5>Software Engineer</h5>
+			</div>
+			<div>
+				<img src="images/stars.png">
+				<h3>Senior PHP Developer</h3>
+				<h4>Roni Chabra</h4>
+				<h5>Software Engineer</h5>
+			</div>
+			<div>
+				<img src="images/stars.png">
+				<h3>Senior PHP Developer</h3>
+				<h4>Roni Chabra</h4>
+				<h5>Software Engineer</h5>
+			</div>
 		</div>
-		<div id="menu2" class="tab-pane fade">
-			<h3>Menu 2</h3>
-			<p>Some content in menu 2.</p>
+		<div ng-show="tab == 2" class="tabsContent fade in active">
+			<h3>Electrial</h3>
+			<p>Some content in Electrial.</p>
+		</div>
+		<div ng-show="tab == 3" class="tabsContent fade in active">
+			<h3>Mechanical</h3>
+			<p>Some content in Mechanical.</p>
 		</div>
 	</div>
-
 
 </div>
