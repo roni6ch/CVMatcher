@@ -15,7 +15,7 @@ app.config(function($routeProvider) {
 	}).when('/favorites', {
 		templateUrl : 'favorites.html',
 		controller : 'favoritesController'
-	}).when('/resume/:name', {
+	}).when('/favorites/resume/:name', {
 		templateUrl : 'resume.html',
 		controller : 'resumeController'
 	})
@@ -49,7 +49,6 @@ app.controller('favoritesController', function($scope, $http) {
 		$http.get("json/myjobs.json").success(function() {
 		}).success(function(data, status, headers, config) {
 			$scope.jobs = data
-			console.log(data);
 	    }).error(function(data, status, headers, config) {
 	        alert("myjobs AJAX failed!");
 	    });
@@ -60,7 +59,7 @@ app.controller('favoritesController', function($scope, $http) {
  * ********************* resume controller ****************
  */
 app.controller('resumeController', function($scope, $http,$location) {
-	var path = $location.path().split('/')[2];
+	var path = $location.path().split('/')[3];
 	$http.get("json/resume.json").success(function() {
 	}).success(function(data, status, headers, config) {
 		$scope.user = data[path][0];
@@ -77,12 +76,19 @@ app.directive("compileHtml", function($compile, $location) {
 	return {
 		link : function(scope, element) {
 			var path = $location.path().split('/');
-			if (path[1] != "")
-				path = "<span> > </span><a href='#/" + path[1] + "'>" + path[1]
-						+ "</a>";
-			else
-				path = "";
-			element.html($compile("<a href='#/'>Homepage</a>" + path)(scope));
+			console.log(path);
+			var navigation_path = "";
+			//last_path = save me the real adress to link to anchor
+			var last_path ="";
+			if (path.length > 1 && path[1]!=""){
+				for (var i=1; i<path.length; i++){
+					last_path += "/" + path[i];
+					if (path[i] == "resume")
+						continue;
+					navigation_path+="<span> > </span><a href='#" + last_path + "'>" + path[i] + "</a>";
+				}
+			}
+			element.html($compile("<a href='#/'>Homepage</a>" + navigation_path)(scope));
 		}
 	}
 });

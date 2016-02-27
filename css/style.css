@@ -7,6 +7,7 @@
 	vertical-align: baseline;
 	text-decoration: none;
 }
+
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 
 /* 
@@ -29,11 +30,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 body {
 	margin: 0 auto !important;
-  font-family: "Alef Hebrew",
-               “Helvetica Neue”,
-               Helvetica,
-               Arial,
-               sans-serif;
+	font-family: "Alef Hebrew", “Helvetica Neue”, Helvetica, Arial,
+		sans-serif;
 }
 
 ol, ul {
@@ -179,7 +177,7 @@ footer div a {
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
-	.favoritesWrapper>h3 {
+	.favoritesWrapper>h3, .resumeWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -249,6 +247,10 @@ footer div a {
 	float: left;
 }
 
+.myjobsWrapper section>div {
+	border-radius: 10px;
+}
+
 .myjobsWrapper header h2 {
 	margin-bottom: 25px !important;
 	text-align: center;
@@ -259,7 +261,6 @@ footer div a {
 	border: 2px solid #ebebeb;
 	text-align: left;
 	float: left;
-	width: 95%;
 	max-height: 300px;
 	overflow: hidden;
 }
@@ -311,8 +312,9 @@ footer div a {
 	margin: 20px 0px 40px;
 	text-align: center;
 }
-.jobsTools a i:hover{
-	color:#000;
+
+.jobsTools a i:hover {
+	color: #000;
 }
 
 /****************************************************** Read CV's - HTML **********************************************/
@@ -352,8 +354,14 @@ footer div a {
 	padding: 30px;
 	background: #e6e6e6;
 }
-.tab-content section:hover{opacity:0.8;}
-.tab-content a{    text-decoration: none !important;}
+
+.tab-content section:hover {
+	opacity: 0.8;
+}
+
+.tab-content a {
+	text-decoration: none !important;
+}
 
 .nav-tabs li {
 	cursor: pointer;
@@ -366,8 +374,8 @@ footer div a {
 .nav-tabs li a {
 	color: #1b75bb;
 	margin-right: 0px !important;
-	    padding: 10px 0px !important;
-	    font-size: 15px;
+	padding: 10px 0px !important;
+	font-size: 15px;
 }
 
 .nav-tabs .active a {
@@ -404,10 +412,81 @@ footer div a {
 	float: right;
 	width: 15%;
 }
+
+/****************************************************** RESUME - HTML **********************************************/
+.resumeWrapper {
+	float: left;
+	width: 100%;
+}
+
+.resumeWrapper header h2 {
+	margin-bottom: 25px !important;
+	text-align: center;
+}
+
+.resumeWrapper>div {
+	background: #1b75bb;
+	padding: 20px 0px;
+	width: 25%;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+
+.resumeWrapper>div h3 {
+	font-size: 2.2vw;
+	padding-bottom: 10px;
+}
+
+.resumeWrapper>div h4 {
+	font-size: 1.5vw;
+}
+
+.resumeWrapper>div h3, .resumeWrapper>div h4 {
+	color: #ebebeb;
+}
 /****************************************************** MEDIA - MAX 640 **********************************************/
 @media ( max-width :767px) {
 	.navBarImg {
 		display: none;
 	}
-	.nav-tabs li a{font-size: 10px;}
+	.nav-tabs li a {
+		font-size: 10px;
+	}
+	.resumeWrapper>div {
+		width: 60%;
+	}
+	.resumeWrapper>div h3 {
+		font-size: 6.2vw;
+	}
+	.resumeWrapper>div h4 {
+		font-size: 3.5vw;
+	}
+	.wrapper {
+		padding: 0px;
+	}
+	.myjobsWrapper {
+		padding: 0px 10px 37px;
+	}
+	.myjobsWrapper>h3 {
+		display: none;
+	}
+	footer div {
+		padding: 0px;
+	}
+	footer ul {
+		padding: 0px;
+	}
+	footer ul li {
+		padding: 0px 5px;
+	}
+	footer {
+		height: auto;
+		padding: 10px 10px;
+		position: fixed;
+		bottom: 0;
+	}
+	footer ul li a {
+		font-size: 4vw;
+		line-height: 40px;
+	}
 }

@@ -20,7 +20,7 @@
 			<!-- Content from here -->
 			<article ng-init="getMainJson();limitPost=2" infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.managment | limitTo:limitPost">
-					<a href="#/resume/{{job.name}}"><div class="animated fadeInUp">
+					<a href="#/favorites/resume/{{job.name}}"><div class="animated fadeInUp">
 						<img src="images/stars.png">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
