@@ -76,7 +76,6 @@ app.directive("compileHtml", function($compile, $location) {
 	return {
 		link : function(scope, element) {
 			var path = $location.path().split('/');
-			console.log(path);
 			var navigation_path = "";
 			//last_path = save me the real adress to link to anchor
 			var last_path ="";
