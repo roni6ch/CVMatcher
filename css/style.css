@@ -7,6 +7,8 @@
 	vertical-align: baseline;
 	text-decoration: none;
 }
+@import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
+
 /* 
 @font-face {
 	font-family: 'alefBold';
@@ -27,6 +29,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 body {
 	margin: 0 auto !important;
+  font-family: "Alef Hebrew",
+               “Helvetica Neue”,
+               Helvetica,
+               Arial,
+               sans-serif;
 }
 
 ol, ul {
@@ -62,7 +69,6 @@ input, textarea, select, option {
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
-	font-family: 'alefregular';
 	margin: 0px !important;
 }
 
@@ -346,6 +352,8 @@ footer div a {
 	padding: 30px;
 	background: #e6e6e6;
 }
+.tab-content section:hover{opacity:0.8;}
+.tab-content a{    text-decoration: none !important;}
 
 .nav-tabs li {
 	cursor: pointer;

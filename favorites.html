@@ -1,5 +1,5 @@
 <div class="favoritesWrapper">
-	<h3 compile-favorites>{{navigation}}</h3>
+	<h3 compile-html>{{navigation}}</h3>
 	<header>
 		<h2>Favorites</h2>
 	</header>
@@ -20,12 +20,12 @@
 			<!-- Content from here -->
 			<article ng-init="getMainJson();limitPost=2" infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.managment | limitTo:limitPost">
-					<div class="animated fadeInUp">
+					<a href="#/resume/{{job.name}}"><div class="animated fadeInUp">
 						<img src="images/stars.png">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
-					</div>
+					</div></a>
 				</section>
 			</article>
 		</div>
