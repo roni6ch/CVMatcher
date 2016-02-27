@@ -1,69 +1,65 @@
-<div ng-controller="favoritesController" class="favoritesWrapper">
-<h3>{{navigation}}</h3>
+<div class="favoritesWrapper">
+	<h3 compile-favorites>{{navigation}}</h3>
 	<header>
 		<h2>Favorites</h2>
 	</header>
 
 	<ul class="nav nav-tabs" ng-init="tab=0">
-		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Industrial
-				Engineering and Managment</a></li>
+		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">
+				Managment Engineer</a></li>
 		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Software
-				Engineering</a></li>
+				Engineer</a></li>
 		<li ng-class="{active:tab == 2}"><a ng-click="tab = 2">Electrial
-				Engineering</a></li>
+				Engineer</a></li>
 		<li ng-class="{active:tab == 3}"><a ng-click="tab = 3">Mechanical
-				Engineering</a></li>
+				Engineer</a></li>
 	</ul>
+
 
 	<div class="tab-content">
 		<div ng-show="tab == 0" class="tabsContent fade in active">
-		<!-- Content from here -->
-			<div>
-				<img src="images/stars.png">
-				<h3>Junior Full Stack Developer</h3>
-				<h4>Neta Efrati</h4>
-				<h5>Software Engineer Student</h5>
-			</div>
-			<div>
-				<img src="images/stars.png">
-				<h3>Junior Full Stack Developer</h3>
-				<h4>Neta Efrati</h4>
-				<h5>Software Engineer Student</h5>
-			</div>
-			<div>
-				<img src="images/stars.png">
-				<h3>Junior Full Stack Developer</h3>
-				<h4>Neta Efrati</h4>
-				<h5>Software Engineer Student</h5>
-			</div>
+			<!-- Content from here -->
+			<section ng-repeat="job in jobs.industrial">
+				<div class="animated fadeInUp">
+					<img src="images/stars.png">
+					<h3>{{job.subsector}}</h3>
+					<h4>{{job.name}}</h4>
+					<h5>{{job.sector}}</h5>
+				</div>
+			</section>
 		</div>
 		<div ng-show="tab == 1" class="tabsContent fade in active">
-			<div>
-				<img src="images/stars.png">
-				<h3>Senior PHP Developer</h3>
-				<h4>Roni Chabra</h4>
-				<h5>Software Engineer</h5>
-			</div>
-			<div>
-				<img src="images/stars.png">
-				<h3>Senior PHP Developer</h3>
-				<h4>Roni Chabra</h4>
-				<h5>Software Engineer</h5>
-			</div>
-			<div>
-				<img src="images/stars.png">
-				<h3>Senior PHP Developer</h3>
-				<h4>Roni Chabra</h4>
-				<h5>Software Engineer</h5>
-			</div>
+			<!-- Content from here -->
+			<section ng-repeat="job in jobs.software">
+				<div class="animated fadeInUp">
+					<img src="images/stars.png">
+					<h3>{{job.subsector}}</h3>
+					<h4>{{job.name}}</h4>
+					<h5>{{job.sector}}</h5>
+				</div>
+			</section>
 		</div>
 		<div ng-show="tab == 2" class="tabsContent fade in active">
-			<h3>Electrial</h3>
-			<p>Some content in Electrial.</p>
+			<!-- Content from here -->
+			<section ng-repeat="job in jobs.electrial">
+				<div class="animated fadeInUp">
+					<img src="images/stars.png">
+					<h3>{{job.subsector}}</h3>
+					<h4>{{job.name}}</h4>
+					<h5>{{job.sector}}</h5>
+				</div>
+			</section>
 		</div>
 		<div ng-show="tab == 3" class="tabsContent fade in active">
-			<h3>Mechanical</h3>
-			<p>Some content in Mechanical.</p>
+			<!-- Content from here -->
+			<section ng-repeat="job in jobs.mechanical">
+				<div class="animated fadeInUp">
+					<img src="images/stars.png">
+					<h3>{{job.subsector}}</h3>
+					<h4>{{job.name}}</h4>
+					<h5>{{job.sector}}</h5>
+				</div>
+			</section>
 		</div>
 	</div>
 

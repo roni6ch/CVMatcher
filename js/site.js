@@ -22,35 +22,64 @@ app.config(function($routeProvider) {
  * ********************* myjobs controller ****************
  */
 
-app.controller('myjobsController', function($scope) {
-	$scope.navigation = "Homepage";
-
+app.controller('myjobsController', function($scope,$http) {
 });
 
 /*
  * ********************* readcvs controller ****************
  */
-app.controller('readcvsController', function($scope) {
-	$scope.navigation = "Homepage > Read CV's";
+app.controller('readcvsController', function($scope,$http) {
 	
 
 });
 /*
  * ********************* unreadcvs controller ****************
  */
-app.controller('unreadcvsController', function($scope) {
-	$scope.navigation = "Homepage > Unread CV's";
+app.controller('unreadcvsController', function($scope,$http) {
 	
-
 });
 
 /*
  * ********************* favorites controller ****************
  */
-app.controller('favoritesController', function($scope) {
-	$scope.navigation = "Homepage > Favorites";
-	
+app.controller('favoritesController', function($scope,$http) {
+	$http.get("json/myjobs.json").success( function(response) {
+	      $scope.jobs = response; 
+	   });
 
+});
+
+
+/*
+ * ********************* DIRECTIVES ****************
+ */
+app.directive("compileHome", function($compile){
+    return{
+        link: function(scope, element){
+            element.html($compile("<a href='#'>Homepage</a>")(scope));
+        }
+    }
+});
+app.directive("compileReadCvs", function($compile){
+    return{
+        link: function(scope, element){
+            element.html($compile("<a href='#'>Homepage</a><span> > </span><a href='#'>ReadCv's</a>' ")(scope));
+        }
+    }
+});
+app.directive("compileUnreadCvs", function($compile){
+    return{
+        link: function(scope, element){
+            element.html($compile("<a href='#'>Homepage</a><span> > </span><a href='#'>UnreadCv's</a>' ")(scope));
+        }
+    }
+});
+app.directive("compileFavorites", function($compile){
+    return{
+        link: function(scope, element){
+            element.html($compile("<a href='#'>Homepage</a><span> > </span><a href='#'>Favorites</a>' ")(scope));
+        }
+    }
 });
 
 

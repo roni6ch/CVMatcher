@@ -254,6 +254,8 @@ footer div a {
 	text-align: left;
 	float: left;
 	width: 95%;
+	max-height: 300px;
+	overflow: hidden;
 }
 
 .jobs>div:nth-child(1) {
@@ -264,7 +266,8 @@ footer div a {
 
 .jobs>div:nth-child(2) {
 	padding: 10px 13px;
-	width: 94%;
+	width: 92%;
+	float: left;
 }
 
 .jobs h5 {
@@ -289,10 +292,21 @@ footer div a {
 }
 
 .jobsTools {
-	float: left;
+	float: right;
 	background: #1b75bb;
-	width: 5%;
-	height: 100px;
+	width: 8%;
+	min-height: 300px;
+	height: auto;
+}
+
+.jobsTools a i {
+	color: #fff;
+	width: 100%;
+	margin: 20px 0px 40px;
+	text-align: center;
+}
+.jobsTools a i:hover{
+	color:#000;
 }
 
 /****************************************************** Read CV's - HTML **********************************************/
@@ -344,6 +358,8 @@ footer div a {
 .nav-tabs li a {
 	color: #1b75bb;
 	margin-right: 0px !important;
+	    padding: 10px 0px !important;
+	    font-size: 15px;
 }
 
 .nav-tabs .active a {
@@ -385,4 +401,5 @@ footer div a {
 	.navBarImg {
 		display: none;
 	}
+	.nav-tabs li a{font-size: 10px;}
 }
