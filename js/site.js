@@ -1,6 +1,6 @@
 /** **********************************ANGULAR*************************************** */
 
-var app = angular.module('cvmatcherApp', [ "ngRoute" ]);
+var app = angular.module('cvmatcherApp', [ "ngRoute"  ,'infinite-scroll']);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
@@ -43,9 +43,11 @@ app.controller('unreadcvsController', function($scope,$http) {
  * ********************* favorites controller ****************
  */
 app.controller('favoritesController', function($scope,$http) {
+	$scope.getMainJson = function(){
 	$http.get("json/myjobs.json").success( function(response) {
 	      $scope.jobs = response; 
 	   });
+	}
 
 });
 

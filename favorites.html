@@ -15,51 +15,61 @@
 				Engineer</a></li>
 	</ul>
 
-
 	<div class="tab-content">
 		<div ng-show="tab == 0" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<section ng-repeat="job in jobs.industrial">
-				<div class="animated fadeInUp">
-					<img src="images/stars.png">
-					<h3>{{job.subsector}}</h3>
-					<h4>{{job.name}}</h4>
-					<h5>{{job.sector}}</h5>
-				</div>
-			</section>
+			<article ng-init="getMainJson();limitPost=2" infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
+				<section ng-repeat="job in jobs.managment | limitTo:limitPost">
+					<div class="animated fadeInUp">
+						<img src="images/stars.png">
+						<h3>{{job.subsector}}</h3>
+						<h4>{{job.name}}</h4>
+						<h5>{{job.sector}}</h5>
+					</div>
+				</section>
+			</article>
 		</div>
 		<div ng-show="tab == 1" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<section ng-repeat="job in jobs.software">
-				<div class="animated fadeInUp">
-					<img src="images/stars.png">
-					<h3>{{job.subsector}}</h3>
-					<h4>{{job.name}}</h4>
-					<h5>{{job.sector}}</h5>
-				</div>
-			</section>
+			<article ng-init="getMainJson();limitPost=2"
+				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
+				<section ng-repeat="job in jobs.software | limitTo:limitPost">
+					<div class="animated fadeInUp">
+						<img src="images/stars.png">
+						<h3>{{job.subsector}}</h3>
+						<h4>{{job.name}}</h4>
+						<h5>{{job.sector}}</h5>
+					</div>
+				</section>
+			</article>
 		</div>
 		<div ng-show="tab == 2" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<section ng-repeat="job in jobs.electrial">
-				<div class="animated fadeInUp">
-					<img src="images/stars.png">
-					<h3>{{job.subsector}}</h3>
-					<h4>{{job.name}}</h4>
-					<h5>{{job.sector}}</h5>
-				</div>
-			</section>
+			<article ng-init="getMainJson();limitPost=2"
+				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
+				<section ng-repeat="job in jobs.electrial | limitTo:limitPost">
+					<div class="animated fadeInUp">
+						<img src="images/stars.png">
+						<h3>{{job.subsector}}</h3>
+						<h4>{{job.name}}</h4>
+						<h5>{{job.sector}}</h5>
+					</div>
+				</section>
+			</article>
 		</div>
 		<div ng-show="tab == 3" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<section ng-repeat="job in jobs.mechanical">
-				<div class="animated fadeInUp">
-					<img src="images/stars.png">
-					<h3>{{job.subsector}}</h3>
-					<h4>{{job.name}}</h4>
-					<h5>{{job.sector}}</h5>
-				</div>
-			</section>
+			<article ng-init="getMainJson();limitPost=2"
+				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
+				<section ng-repeat="job in jobs.mechanical | limitTo:limitPost">
+					<div class="animated fadeInUp">
+						<img src="images/stars.png">
+						<h3>{{job.subsector}}</h3>
+						<h4>{{job.name}}</h4>
+						<h5>{{job.sector}}</h5>
+					</div>
+				</section>
+			</article>
 		</div>
 	</div>
 
