@@ -177,12 +177,29 @@ footer div a {
 }
 
 /****************************************************** HTML **********************************************/
+.myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
+	.resumeWrapper, .jobWrapper {
+	float: left;
+	width: 100%;
+}
+
+.unreadcvsWrapper header h2, .readcvsWrapper header h2,
+	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
+	.resumeWrapper header h2 {
+	margin-bottom: 25px !important;
+	text-align: center;
+}
+
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
-	.favoritesWrapper>h3, .resumeWrapper>h3 {
+	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
 	top: 20px;
+}
+
+.highlighted {
+	background: #fffc00;
 }
 /****************************************************** INDEX - NAV BAR **********************************************/
 
@@ -239,31 +256,44 @@ footer div a {
 }
 
 /****************************************************** MY JOBS - HTML **********************************************/
-.myjobsWrapper {
+.myjobsWrapper form {
+	margin: 0 auto;
+	width: 50%;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+.myjobsWrapper form input {
+	width: 80% !important;
 	float: left;
-	width: 100%;
+}
+
+.myjobsWrapper form button {
+	float: left;
+	width: 15%;
+	padding-right: 0px;
+	margin-left: 10px;
+	padding-left: 0px;
 }
 
 .myjobsWrapper section {
 	float: left;
+	width: 100%;
 }
 
 .myjobsWrapper section>div {
 	border-radius: 10px;
 }
 
-.myjobsWrapper header h2 {
-	margin-bottom: 25px !important;
-	text-align: center;
-}
-
 .jobs {
 	margin-bottom: 47px;
 	border: 2px solid #ebebeb;
+	width: 100%;
 	text-align: left;
 	float: left;
 	max-height: 300px;
 	overflow: hidden;
+	text-align: left;
 }
 
 .jobs>div:nth-child(1) {
@@ -276,6 +306,11 @@ footer div a {
 	padding: 10px 13px;
 	width: 92%;
 	float: left;
+}
+
+.jobs>div:nth-child(2) a {
+	float: left;
+	text-decoration: none;
 }
 
 .jobs h5 {
@@ -319,38 +354,10 @@ footer div a {
 }
 
 /****************************************************** Read CV's - HTML **********************************************/
-.readcvsWrapper {
-	float: left;
-	width: 100%;
-}
-
-.readcvsWrapper header h2 {
-	margin-bottom: 25px !important;
-	text-align: center;
-}
 
 /****************************************************** Unread CV's - HTML **********************************************/
-.unreadcvsWrapper {
-	float: left;
-	width: 100%;
-}
-
-.unreadcvsWrapper header h2 {
-	margin-bottom: 25px !important;
-	text-align: center;
-}
 
 /****************************************************** FAVORITES - HTML **********************************************/
-.favoritesWrapper {
-	float: left;
-	width: 100%;
-}
-
-.favoritesWrapper header h2 {
-	margin-bottom: 25px !important;
-	text-align: center;
-}
-
 .tab-content {
 	padding: 30px;
 	background: #e6e6e6;
@@ -415,15 +422,6 @@ footer div a {
 }
 
 /****************************************************** RESUME - HTML **********************************************/
-.resumeWrapper {
-	padding: 0px 10px;
-}
-
-.resumeWrapper header h2 {
-	margin-bottom: 25px !important;
-	text-align: center;
-}
-
 .resumeWrapper>div {
 	background: #1b75bb;
 	padding: 20px 0px;
@@ -507,6 +505,39 @@ footer div a {
 .resumeYears>div h3:nth-child(2) {
 	float: right;
 }
+
+/****************************************************** JOB - HTML **********************************************/
+.jobEdit {
+	margin-bottom: 47px;
+	border: 2px solid #ebebeb;
+	float: left;
+	overflow: hidden;
+	padding: 15px 0px 15px 0px;
+	text-align: left;
+	border-radius: 10px;
+}
+
+.jobEdit div {
+	width: 100% !important;
+	padding: 6px 15px;
+	margin-bottom: 0px !important;
+	float: left;
+}
+
+.editLogo {
+	float: left;
+	width: 100%;
+}
+
+.editLogo+input {
+	width: 70%;
+	float: left;
+}
+
+.editLogo+input+img {
+	float: right;
+}
+
 /****************************************************** MEDIA - MAX 767 **********************************************/
 @media ( max-width :767px) {
 	.navBarImg {
@@ -546,6 +577,15 @@ footer div a {
 	}
 	.resumeYears>div:nth-child(1) {
 		display: none;
+	}
+	.myjobsWrapper form {
+		width: 100%;
+	}
+	.myjobsWrapper form input {
+		width: 70% !important
+	}
+	.myjobsWrapper form button {
+		width: 25%;
 	}
 	footer div {
 		padding: 0px;
@@ -591,7 +631,8 @@ footer div a {
 .timeline:before {
 	top: 0;
 	bottom: 0;
-	z-index: 1; position : absolute;
+	z-index: 1;
+	position: absolute;
 	content: " ";
 	width: 3px;
 	background-color: #000;

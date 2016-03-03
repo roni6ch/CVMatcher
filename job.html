@@ -1,0 +1,64 @@
+<div class="jobWrapper">
+	<h3 compile-html>{{navigation}}</h3>
+	<header>
+		<h2>Job</h2>
+	</header>
+	<form method="post" action="#/jobDetails">
+		<div class="animated fadeInDown jobEdit">
+			<div class="form-group">
+				<label for="usr">Job Name:</label> <input type="text" required
+					class="form-control" id="usr" name="job_name"
+					value="{{jobDetails.job_name}}">
+			</div>
+
+			<div class="form-group">
+				<label for="usr">Address:</label> <input type="text" required
+					class="form-control" id="usr" name="address"
+					value="{{jobDetails.address}}">
+			</div>
+			<div class="form-group">
+				<label for="usr">Sector:</label> <input type="text" required
+					class="form-control" id="usr" name="sector"
+					value="{{jobDetails.sector}}">
+			</div>
+			<div class="form-group">
+				<label for="usr">Sub Sector:</label> <input type="text" required
+					class="form-control" id="usr" name="sub_sector"
+					value="{{jobDetails.sub_sector}}">
+			</div>
+			<div class="form-group">
+				<label for="usr">Name:</label> <input type="text" required
+					class="form-control" id="usr" name="name"
+					value="{{jobDetails.name}}">
+			</div>
+			<div class="form-group">
+				<label for="usr">Scope of Position:</label> <input type="text"
+					required class="form-control" id="usr" name="scope_of_position"
+					value="{{jobDetails.scope_of_position}}">
+			</div>
+			<div class="form-group">
+				<label for="usr">Min Compability:</label> <input type="text"
+					required class="form-control" id="usr" name="compability"
+					value="{{jobDetails.compability}}">
+			</div>
+			<div class="form-group">
+				<label for="usr" class="editLogo">Logo:</label> <input type="file"
+					required class="form-control" id="usr" name="logo"
+					value="{{jobDetails.logo}}"> <img
+					value="{{jobDetails.logo}}" src="{{jobDetails.logo}}">
+			</div>
+			<div class="form-group">
+				<label for="comment">Original Text:</label>
+				<textarea class="form-control" rows="5" name="original_text"
+					id="comment" required>{{jobDetails.original_text}}</textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="comment">Requirementst:</label>
+				<textarea class="form-control" rows="5" id="comment"
+					name="requirements" required>{{jobDetails.requirements[0].name}}</textarea>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+</div>

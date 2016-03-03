@@ -1,0 +1,44 @@
+[ {
+		"_id": "1",
+		"name": "Apple",
+		"logo": "logo",
+		"compability":"80",
+		"address": "Tel-Aviv",
+		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit consectetur adipiscing elit consectetur adipiscing elit.",
+		"job_name": "Junior Full Stack Developering",
+		"sector": "String",
+		"scope_of_position": "String",
+		"academy": [{
+			"academy_name": "String",
+			"degree_name": "String",
+			"degree_type": "String"
+		}],
+		"sub_sector": "String",
+		"formula": 90,
+		"requirements": [{
+			"name": "String",
+			"years": 1986
+		}]
+	}, {
+		"_id": "12",
+		"name": "Apple123",
+		"logo": "logo123",
+		"compability":"90",
+		"address": "Tel-Aviv123",
+		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elitconsectetur adipiscing elit consectetur adipiscing elit.",
+		"job_name": "Junior Full Stack Developer123",
+		"sector": "String123",
+		"scope_of_position": "String123",
+		"academy": [{
+			"academy_name": "String123",
+			"degree_name": "String123",
+			"degree_type": "String123"
+		}],
+		"sub_sector": "String123",
+		"formula": 100,
+		"requirements": [{
+			"name": "String123",
+			"years": 2000
+		}]
+	}
+]

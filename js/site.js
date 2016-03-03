@@ -18,76 +18,146 @@ app.config(function($routeProvider) {
 	}).when('/favorites/resume/:name', {
 		templateUrl : 'resume.html',
 		controller : 'resumeController'
+	}).when('/job/:_id', {
+		templateUrl : 'job.html',
+		controller : 'jobController'
 	})
-});
+}).run(function($rootScope, $http) {
+	//myjobstest.json
+	$http.get("json/myjobstest.json").success(function() {
+	}).success(function(data, status, headers, config) {
+		$rootScope.myjobstest = data;
+	}).error(function(data, status, headers, config) {
+		alert("myjobstest AJAX failed!");
+	});
 
+	//myjobs.json
+	$http.get("json/myjobs.json").success(function() {
+	}).success(function(data, status, headers, config) {
+		$rootScope.jobs = data;
+	}).error(function(data, status, headers, config) {
+		alert("myjobs AJAX failed!");
+	});
+
+});
 /*
  * ********************* myjobs controller ****************
  */
 
-app.controller('myjobsController', function($scope, $http) {
+app.controller('myjobsController', function($scope, $http, $sce, $rootScope) {
+	$scope.getMainJson = function() {
+		$scope.myjobs = $rootScope.myjobstest;
+	}
+
+	$scope.highlight = function(text, search) {
+		if (!search) {
+			return $sce.trustAsHtml(text);
+		}
+		return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'),
+				'<span class="highlighted">$&</span>'));
+	};
 });
 
 /*
  * ********************* readcvs controller ****************
  */
-app.controller('readcvsController', function($scope, $http) {
-
+app.controller('readcvsController', function($scope, $http, $rootScope) {
+	$scope.getMainJson = function() {
+		$scope.jobs = $rootScope.myjobstest;
+	}
 });
 /*
  * ********************* unreadcvs controller ****************
  */
-app.controller('unreadcvsController', function($scope, $http) {
-
+app.controller('unreadcvsController', function($scope, $http, $rootScope) {
+	$scope.getMainJson = function() {
+		$scope.jobs = $rootScope.jobs;
+	}
 });
 
 /*
  * ********************* favorites controller ****************
  */
-app.controller('favoritesController', function($scope, $http) {
+app.controller('favoritesController', function($scope, $http, $rootScope) {
 	$scope.getMainJson = function() {
-		$http.get("json/myjobs.json").success(function() {
-		}).success(function(data, status, headers, config) {
-			$scope.jobs = data
-	    }).error(function(data, status, headers, config) {
-	        alert("myjobs AJAX failed!");
-	    });
+		$scope.jobs = $rootScope.jobs;
 	}
 
 });
 /*
  * ********************* resume controller ****************
  */
-app.controller('resumeController', function($scope, $http,$location) {
+app.controller('resumeController', function($scope, $http, $location) {
 	var path = $location.path().split('/')[3];
 	$http.get("json/resume.json").success(function() {
 	}).success(function(data, status, headers, config) {
 		$scope.user = data[path][0];
-    }).error(function(data, status, headers, config) {
-        alert("users AJAX failed!");
-    });
+	}).error(function(data, status, headers, config) {
+		alert("users AJAX failed!");
+	});
 });
 
+/*
+ * ********************* job controller ****************
+ */
+
+app.controller('jobController', function($scope, $http, $location) {
+	//console.log($location.path().split('/'));
+	$id = $location.path().split('/');
+	$http.get("json/myjobstest.json").success(function() {
+	}).success(function(data, status, headers, config) {
+		angular.forEach(data, function(value, key) {
+			if (value["_id"] == $id[2]) {
+				$scope.jobDetails = value;
+			}
+		});
+	}).error(function(data, status, headers, config) {
+		alert("users AJAX failed!");
+	});
+
+});
 
 /*
  * ********************* DIRECTIVES ****************
  */
-app.directive("compileHtml", function($compile, $location) {
+app.directive("compileHtml", function($compile, $location, $rootScope) {
 	return {
 		link : function(scope, element) {
 			var path = $location.path().split('/');
 			var navigation_path = "";
 			//last_path = save me the real adress to link to anchor
-			var last_path ="";
-			if (path.length > 1 && path[1]!=""){
-				for (var i=1; i<path.length; i++){
+			var last_path = "";
+			if (path.length > 1 && path[1] != "") {
+				for (var i = 1; i < path.length; i++) {
 					last_path += "/" + path[i];
-					if (path[i] == "resume")
+					if (path[i] == "resume" || path[i] == "job")
 						continue;
-					navigation_path+="<span> > </span><a href='#" + last_path + "'>" + path[i] + "</a>";
+					//if the path[i] is a number that came from job page
+					if (!isNaN(path[i])) {
+						//bring the job name by id
+						angular.forEach($rootScope.myjobstest, function(value,
+								key) {
+							if (value["_id"] == path[i]) {
+								path[i] = value["job_name"];
+							}
+						});
+					}
+					navigation_path += "<span> > </span><a href='#" + last_path
+							+ "'>" + path[i] + "</a>";
 				}
 			}
-			element.html($compile("<a href='#/'>Homepage</a>" + navigation_path)(scope));
+			element
+					.html($compile(
+							"<a href='#/'>Homepage</a>" + navigation_path)(
+							scope));
+		}
+	}
+});
+app.directive('focus', function() {
+	return {
+		restrict : 'A',
+		link : function(scope, element) {
+			element[0].focus();
 		}
 	}
 });
