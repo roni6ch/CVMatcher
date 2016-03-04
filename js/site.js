@@ -117,8 +117,6 @@ app.controller('resumeController', function($scope, $http, $location) {
 		alert("users AJAX failed!");
 	});
 
-	
-	
 	//circle animation
 	var circle = new ProgressBar.Circle('#circle-container', {
 		color : '#57b7ee',
@@ -142,12 +140,24 @@ app.controller('resumeController', function($scope, $http, $location) {
 	});
 
 	circle.animate(0.7, function() {
+		circle.animate(0.0, function() {
+			circle.animate(0.7);
+		})
 	})
 	circle2.animate(0.2, function() {
+		circle2.animate(0.0, function() {
+			circle2.animate(0.2);
+		})
 	})
 	circle3.animate(0.5, function() {
+		circle3.animate(0.0, function() {
+			circle3.animate(0.5);
+		})
 	})
 	circle4.animate(0.9, function() {
+		circle4.animate(0.0, function() {
+			circle4.animate(0.9);
+		})
 	})
 
 });

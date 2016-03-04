@@ -620,6 +620,7 @@ footer div a {
 
 .jobSlider label {
 	color: #f6931f;
+	font-size: 18px;
 }
 
 .jobSlider div {
@@ -650,16 +651,35 @@ footer div a {
 		display: none;
 	}
 	.nav-tabs li a {
-		font-size: 10px;
+		font-size: 9px;
+	}
+	.jobs>div>h3 {
+		font-size: 19px;
+		line-height: 30px;
 	}
 	.resumeWrapper>div {
 		width: 100%;
+	}
+	.jobParametersWrapper {
+		padding-bottom: 80px;
 	}
 	.resumeWrapper>div h3 {
 		font-size: 6.2vw;
 	}
 	.resumeWrapper>div h4 {
 		font-size: 3.5vw;
+	}
+	.jobSlider>h3 {
+		font-size: 22px;
+		margin-top: 114px;
+		-webkit-transform: rotate(-90deg);
+		-moz-transform: rotate(-90deg);
+	}
+	.jobSlider label {
+		font-size: 10px;
+	}
+	.jobSlider input {
+		width: 12px;
 	}
 	.wrapper {
 		padding: 0px;
