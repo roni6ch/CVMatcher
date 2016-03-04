@@ -178,20 +178,21 @@ footer div a {
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
-	.resumeWrapper, .jobWrapper {
+	.resumeWrapper, .jobWrapper, .jobParametersWrapper {
 	float: left;
 	width: 100%;
 }
 
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
 	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
-	.resumeWrapper header h2 {
+	.resumeWrapper header h2, .jobParametersWrapper header h2 {
 	margin-bottom: 25px !important;
 	text-align: center;
 }
 
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
-	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3 {
+	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
+	.jobParametersWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -470,7 +471,6 @@ footer div a {
 
 .resumeSkillsBox {
 	margin-bottom: 20px;
-	background: #ebebeb;
 	padding: 10px;
 	border-radius: 10px;
 	margin: 0 auto;
@@ -478,6 +478,8 @@ footer div a {
 	margin-bottom: 20px;
 }
 
+	.resumeSkillsBox > span{    font-weight: bold;
+    font-size: 25px;}
 .resumeSkillsBox h3 {
 	margin-bottom: 10px;
 }
@@ -506,6 +508,39 @@ footer div a {
 	float: right;
 }
 
+#circle-container {
+	z-index: 1;
+	position: relative;
+}
+ #circle-container > h2{   position: absolute;
+    top: 42%;
+    left: 34%;
+    z-index: 10;
+    font-size: 76px;
+ }
+#circle-container2 {
+	width: 90%;
+	z-index: 2;
+	position: absolute;
+	top: 24px;
+	left: 25px;
+}
+
+#circle-container3 {
+	    width: 81%;
+    z-index: 3;
+    position: absolute;
+    top: 46px;
+    left: 47px;
+}
+
+#circle-container4 {
+	width: 73%;
+	z-index: 4;
+	position: absolute;
+	top: 65px;
+	left: 66px;
+}
 /****************************************************** JOB - HTML **********************************************/
 .jobEdit {
 	margin-bottom: 47px;
@@ -538,6 +573,56 @@ footer div a {
 	float: right;
 }
 
+/****************************************************** JOB PARAMETERS - HTML **********************************************/
+.jobParametersWrapper p {
+	color: #606060;
+	font-weight: bold;
+}
+
+.jobSlider {
+	display: inline-block;
+	width: 8%;
+	margin-right: 2%;
+}
+
+.jobSlider>h3 {
+	font-size: 10px;
+	margin-top: 10px;
+}
+
+.jobSlider input {
+	border: 0;
+	color: #f6931f;
+	width: 20px;
+	font-weight: bold;
+}
+
+.jobSlider label {
+	color: #f6931f;
+}
+
+.jobSlider div {
+	height: 200px;
+	width: 100%;
+}
+
+.jobSlider div span {
+	width: 112% !important;
+}
+
+.ui-widget-header {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,4dcfdd+100 */
+	background: rgb(30, 87, 153); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
+		rgba(77, 207, 221, 1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
+		rgba(77, 207, 221, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
+		rgba(77, 207, 221, 1) 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
+		endColorstr='#4dcfdd', GradientType=0); /* IE6-9 */
+}
 /****************************************************** MEDIA - MAX 767 **********************************************/
 @media ( max-width :767px) {
 	.navBarImg {
@@ -562,7 +647,7 @@ footer div a {
 		padding: 0px 10px 37px;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
-		.unreadcvsWrapper>h3, .favoritesWrapper>h3 {
+		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3 {
 		display: none;
 	}
 	.resumeSkillsBox {
