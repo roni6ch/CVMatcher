@@ -478,8 +478,11 @@ footer div a {
 	margin-bottom: 20px;
 }
 
-	.resumeSkillsBox > span{    font-weight: bold;
-    font-size: 25px;}
+.resumeSkillsBox>span {
+	font-weight: bold;
+	font-size: 25px;
+}
+
 .resumeSkillsBox h3 {
 	margin-bottom: 10px;
 }
@@ -512,34 +515,52 @@ footer div a {
 	z-index: 1;
 	position: relative;
 }
- #circle-container > h2{   position: absolute;
-    top: 42%;
-    left: 34%;
-    z-index: 10;
-    font-size: 76px;
- }
+
+#circle-container>h2 {
+	position: absolute;
+	top: 25%;
+	left: 26%;
+	z-index: 10;
+	font-size: 68px;
+	text-align: center;
+	width: 50%;
+	height: 50%;
+	line-height: 3.5;
+	background: #ccc;
+	-moz-border-radius: 70px;
+	-webkit-border-radius: 70px;
+	border-radius: 100%;
+	box-shadow: 4px 14px 64px #50a2e1;
+}
+
 #circle-container2 {
 	width: 90%;
 	z-index: 2;
 	position: absolute;
-	top: 24px;
-	left: 25px;
+	top: 5%;
+	left: 5%;
 }
 
 #circle-container3 {
-	    width: 81%;
-    z-index: 3;
-    position: absolute;
-    top: 46px;
-    left: 47px;
+	width: 90%;
+	z-index: 3;
+	position: absolute;
+	top: 5%;
+	left: 5%;
 }
 
 #circle-container4 {
-	width: 73%;
+	width: 90%;
 	z-index: 4;
 	position: absolute;
-	top: 65px;
-	left: 66px;
+	top: 5%;
+	left: 5%;
+}
+
+.text-muted {
+	color: #57b7ee;
+	font-weight: bold;
+	font-size: 24px;
 }
 /****************************************************** JOB - HTML **********************************************/
 .jobEdit {
@@ -647,11 +668,16 @@ footer div a {
 		padding: 0px 10px 37px;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
-		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3 {
+		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
+		.jobWrapper>h3 {
 		display: none;
 	}
 	.resumeSkillsBox {
 		width: 100%;
+	}
+	#circle-container>h2 {
+		font-size: 8vw;
+		line-height: 5.5;
 	}
 	.resumeDetailsBox {
 		margin-bottom: 130px;
@@ -671,6 +697,9 @@ footer div a {
 	}
 	.myjobsWrapper form button {
 		width: 25%;
+	}
+	.jobSlider div span {
+		width: 133% !important;
 	}
 	footer div {
 		padding: 0px;
@@ -795,7 +824,7 @@ footer div a {
 	top: 16px;
 	left: 50%;
 	margin-left: -25px;
-	background-color: #999999;
+	background-color: #ee5785;
 	z-index: 100;
 	border-top-right-radius: 50%;
 	border-top-left-radius: 50%;

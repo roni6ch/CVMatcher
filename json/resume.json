@@ -3,21 +3,63 @@
 			"name":"Roni Chabra",
 			"sector": "Software Engineer Student",
 			"subsector": "industrial Developer",
-			"years":["2010","2011","2012","2013"],
-			"education":"sdfsdF"
+			"phone":"050-2560005",
+			"mail":"Roni6ch@gmail.com",
+			"linkdin":"LinkedIn",
+			  "requirements": [{
+			        "name": "sdfsdF",
+			        "years": 2010,
+			        "job_type": "asda"
+			    },{
+			        "name": "sd",
+			        "years": 2011,
+			        "job_type": "typeeeddddddeeeee"
+			    },{
+			        "name": "sdfsdfsfddfsdsdf",
+			        "years": 2012,
+			        "job_type": "typeeedddddaaaaaaaaaaaaaaaaaaaeeeee"
+			    }]
 		}],
 		"Neta Efrati": [{
 			"name":"Neta Efrati",
 			"sector": "Software Engineer Student",
 			"subsector": "industrial Developer",
-			"years":["2010","2011"],
-			"education":"sdfsdF"
+			"phone":"050-2560005",
+			"mail":"Roni6ch@gmail.com",
+			"linkdin":"LinkedIn",
+			"requirements": [{
+			        "name": "Mobile Developer",
+			        "years": 2010,
+			        "job_type": "Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis."
+			    },{
+			        "name": "Web Developer",
+			        "years": 2011,
+			        "job_type": "dfdfdsfsdfsdfsd fsdfsdfsdfdsf dsfsdfdsfsdfsdf dsfsdfsdfdsfdsf dsfdsfdsfdsfdf dsfsdfdsfdsfsdf dsfdsfdsfdsfdsf "
+			    },{
+			        "name": "Backend Developer",
+			        "years": 2012,
+			        "job_type": "Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis."
+			    }]
 		}],
 		"Neta": [{
 			"name":"Neta",
 			"sector": "Software Engineer Student",
 			"subsector": "industrial Developer",
-			"years":["2010","2011"],
-			"education":"sdfsdF"
+			"phone":"050-2560005",
+			"mail":"Roni6ch@gmail.com",
+			"linkdin":"LinkedIn",
+			"requirements": [{
+			        "name": "sdfsdF",
+			        "years": 2010,
+			        "job_type": "asda"
+			    },{
+			        "name": "sd",
+			        "years": 2011,
+			        "job_type": "typeeeddddddeeeee"
+			    },{
+			        "name": "sdfsdfsfddfsdsdf",
+			        "years": 2012,
+			        "job_type": "Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra lá , depois divoltis porris, paradis. Paisis, filhis, espiritis santis. Mé faiz elementum girarzis, nisi eros vermeio, in elementis mé pra quem é amistosis quis leo. Manduma pindureta quium dia nois paga. Sapien in monti palavris qui num significa nadis i pareci latim. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis."
+			    }]
 		}]
 }
