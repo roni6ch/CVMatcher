@@ -43,9 +43,12 @@ app.config(function($routeProvider) {
 /*
  * ********************* googleSignIn controller ****************
  */
-
+var user ="";
 app.controller('googleSignInController', function($scope, $http, $sce) {
-	$scope.profileImg = "images/profileImg.png";
+	$scope.userType = function (type){
+		user = type;
+		console.log(user);
+	}
 });
 
 /*
@@ -54,14 +57,14 @@ app.controller('googleSignInController', function($scope, $http, $sce) {
 
 app.controller('myjobsController', function($scope, $http, $sce) {
 
-	if (profile) {
+	if (profile && user) {
 		console.log("ID: " + profile.getId());
 		console.log("Name: " + profile.getName());
 		console.log("Image URL: " + profile.getImageUrl());
 		console.log("Email: " + profile.getEmail());
 		angular.element("#profileImg").attr("src", profile.getImageUrl());
 	} else {
-		// tell user to go back and sign in
+		// please sign in
 	}
 	$scope.getMainJson = function() {
 		// myjobstest.json
