@@ -4,6 +4,9 @@ var app = angular.module('cvmatcherApp', [ "ngRoute", 'infinite-scroll' ]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/', {
+		templateUrl : 'googleSignIn.html',
+		controller : 'googleSignInController'
+	}).when('/myjobs', {
 		templateUrl : 'myjobs.html',
 		controller : 'myjobsController'
 	}).when('/readcvs', {
@@ -26,7 +29,7 @@ app.config(function($routeProvider) {
 		controller : 'jobController'
 	})
 }).run(function($rootScope, $http) {
-	//call rootScope for RenderHTML later
+	// call rootScope for RenderHTML later
 	// myjobstest.json
 	$http.get("json/myjobstest.json").success(function() {
 	}).success(function(data, status, headers, config) {
@@ -36,11 +39,30 @@ app.config(function($routeProvider) {
 	});
 
 });
+
+/*
+ * ********************* googleSignIn controller ****************
+ */
+
+app.controller('googleSignInController', function($scope, $http, $sce) {
+	$scope.profileImg = "images/profileImg.png";
+});
+
 /*
  * ********************* myjobs controller ****************
  */
 
 app.controller('myjobsController', function($scope, $http, $sce) {
+
+	if (profile) {
+		console.log("ID: " + profile.getId());
+		console.log("Name: " + profile.getName());
+		console.log("Image URL: " + profile.getImageUrl());
+		console.log("Email: " + profile.getEmail());
+		angular.element("#profileImg").attr("src", profile.getImageUrl());
+	} else {
+		// tell user to go back and sign in
+	}
 	$scope.getMainJson = function() {
 		// myjobstest.json
 		$http.get("json/myjobstest.json").success(function() {
@@ -117,7 +139,7 @@ app.controller('resumeController', function($scope, $http, $location) {
 		alert("users AJAX failed!");
 	});
 
-	//circle animation
+	// circle animation
 	var circle = new ProgressBar.Circle('#circle-container', {
 		color : '#57b7ee',
 		strokeWidth : 5,
@@ -198,7 +220,7 @@ app.controller('jobController', function($scope, $http, $location) {
 										.val(ui.value);
 							}
 						});
-				//initialize sliders
+				// initialize sliders
 				angular.element("#amount" + $slider_id).val(
 						angular.element("#slider1").slider("value"));
 			})
@@ -256,6 +278,21 @@ app.directive('focus', function() {
 		}
 	}
 });
+
+/*
+ * ********************* JS Functions ****************
+ */
+var profile;
+function onSignIn(googleUser) {
+	// Useful data for your client-side scripts:
+	profile = googleUser.getBasicProfile();
+
+	// The ID token you need to pass to your backend:
+	var id_token = googleUser.getAuthResponse().id_token;
+	// console.log("ID Token: " + id_token);
+	if (profile)
+		location.replace("#/myjobs");
+}
 
 /*
  * $("input").keypress(function(e) { if (e.which == 13 &&
