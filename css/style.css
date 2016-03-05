@@ -183,22 +183,23 @@ footer div a {
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
-	.resumeWrapper, .jobWrapper, .jobParametersWrapper,
-	.googleSignInWrapper {
+	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper
+	.googleSignInWrapper, .jobPageWrapper {
 	float: left;
 	width: 100%;
 }
 
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
 	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
-	.resumeWrapper header h2, .jobParametersWrapper header h2 {
+	.resumeWrapper header h2, .jobParametersWrapper header h2,
+	.searchJobsWrapper header h2, .jobPageWrapper header h2 {
 	margin-bottom: 25px !important;
 	text-align: center;
 }
 
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
 	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
-	.jobParametersWrapper>h3 {
+	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -752,9 +753,14 @@ footer div a {
 	.jobs>div:nth-child(2) {
 		width: 85%;
 	}
+	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
+		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
+		.jobWrapper, .jobPageWrapper {
+		padding: 0px 10px;
+	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
 		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
-		.jobWrapper>h3 {
+		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3 {
 		display: none;
 	}
 	.resumeSkillsBox {
@@ -979,4 +985,115 @@ footer div a {
 
 .timeline-body>p+p {
 	margin-top: 5px;
+}
+
+/************************************************************************************************************************************/
+/****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
+/************************************************************************************************************************************/
+.searchJobsWrapper form input {
+	width: 82% !important;
+	float: left;
+}
+
+.searchJobsWrapper form button {
+	float: right;
+	width: 15%;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.jobsList {
+	margin-top: 80px;
+}
+
+.jobsList ul li {
+	width: 100%;
+	padding: 10px 10px;
+}
+
+.jobsList ul li a {
+	opacity: 0.7;
+}
+
+.jobsList ul li a:hover {
+	opacity: 1;
+}
+
+.jobsList article {
+	width: 60%;
+	float: left;
+}
+
+.jobsList article p {
+	text-align: left;
+	margin-left: 20px;
+}
+
+.jobListLi {
+	float: left;
+}
+
+.jobListLi img {
+	float: left;
+}
+
+.jobListLi a {
+	width: 100%;
+	display: inline-block;
+}
+
+.jobListLi a i {
+	float: right;
+	margin-top: 15px;
+}
+
+/****************************************************** SEARCH JOB - JOBSEEKER - HTML **********************************************/
+.jobPageWrapper header h2 {
+	width: 100%;
+	text-align: left;
+}
+
+.jobPageWrapper p {
+	text-align: left;
+}
+
+.jobPageWrapper h2 {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.jobPageWrapper h4 {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.skills {
+	margin-top: 10px;
+}
+
+.skills li {
+	text-align: left;
+}
+
+.jobPageWrapper>a {
+	color: #000;
+	font-weight: bold;
+	background: #ccc;
+	padding: 14px;
+	border-radius: 17px;
+	opacity: 0.6;
+	text-decoration: none;
+}
+
+.skills+section h2 {
+	float: left;
+	margin-right: 5%;
+}
+
+.skills+section {
+	margin-bottom: 5%;
+}
+
+.jobPageWrapper>a:hover {
+	opacity: 1;
 }

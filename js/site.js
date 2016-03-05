@@ -3,7 +3,9 @@
 var app = angular.module('cvmatcherApp', [ "ngRoute", 'infinite-scroll' ]);
 
 app.config(function($routeProvider) {
-	$routeProvider.when('/', {
+	$routeProvider
+	// employer
+	.when('/', {
 		templateUrl : 'googleSignIn.html',
 		controller : 'googleSignInController'
 	}).when('/myjobs', {
@@ -28,6 +30,20 @@ app.config(function($routeProvider) {
 		templateUrl : 'jobparameters.html',
 		controller : 'jobController'
 	})
+	// job seeker
+	.when('/searchJobs', {
+		templateUrl : 'job_seeker/searchJobs.html',
+		controller : 'jobSeekerSearchJobsController'
+	}).when('/searchJobs/:_id', {
+		templateUrl : 'job_seeker/jobpage.html',
+		controller : 'jobpagebyIDController'
+	}).when('/yourjobs', {
+		templateUrl : 'job_seeker/yourjobs.html',
+		controller : 'yourjobSeekerController'
+	}).when('/matchpage', {
+		templateUrl : 'job_seeker/matchpage.html',
+		controller : 'matchpageController'
+	})
 }).run(function($rootScope, $http) {
 	// call rootScope for RenderHTML later
 	// myjobstest.json
@@ -43,20 +59,148 @@ app.config(function($routeProvider) {
 /*
  * ********************* googleSignIn controller ****************
  */
-var user ="";
+var user;
 app.controller('googleSignInController', function($scope, $http, $sce) {
-	$scope.userType = function (type){
+	$scope.userType = function(type) {
 		user = type;
-		console.log(user);
+	}
+
+});
+
+/*
+ * ********************* JS Functions ****************
+ */
+var profile;
+function onSignIn(googleUser) {
+	// Useful data for your client-side scripts:
+	profile = googleUser.getBasicProfile();
+
+	// The ID token you need to pass to your backend:
+	var id_token = googleUser.getAuthResponse().id_token;
+	// console.log("ID Token: " + id_token);
+	console.log("user: " + user);
+	if (profile && user == 'employer')
+		location.replace("#/myjobs");
+	else if (profile && user == 'jobSeeker')
+		location.replace("#/searchJobs");
+}
+
+/**
+ * ************************************************************Job
+ * Seeker******************************************************
+ */
+
+/*
+ * ********************* jobSeeker Search Jobs Controller ****************
+ */
+app.controller('jobSeekerSearchJobsController', function($scope, $http) {
+	$scope.footer = user;
+	console.log(user);
+	console.log("Search Jobs Controller");
+	$scope.getMainJson = function() {
+		// myjobstest.json
+		$http.get("json/myjobstest.json").success(function() {
+		}).success(function(data, status, headers, config) {
+			$scope.jobSeekerJobs = data;
+		}).error(function(data, status, headers, config) {
+			alert("myjobstest AJAX failed!");
+		});
+	}
+
+});
+
+/*
+ * ********************* job by Search Controller ****************
+ */
+app.controller('jobpagebyIDController', function($scope, $http) {
+	console.log("jobpagebySearch controller");
+	$scope.getMainJson = function() {
+		// myjobstest.json
+		$http.get("json/myjobstest.json").success(function() {
+		}).success(function(data, status, headers, config) {
+			$scope.jobSeekerJobs = data;
+		}).error(function(data, status, headers, config) {
+			alert("myjobstest AJAX failed!");
+		});
 	}
 });
+/*
+ * ********************* yourjobs Seeker Controller ****************
+ */
+
+app.controller('yourjobSeekerController', function($scope, $http) {
+	console.log("yourjobs controller");
+	$scope.getMainJson = function() {
+		// myjobstest.json
+		$http.get("json/myjobstest.json").success(function() {
+		}).success(function(data, status, headers, config) {
+			$scope.jobSeekerJobs = data;
+			// return the current json
+		}).error(function(data, status, headers, config) {
+			alert("myjobstest AJAX failed!");
+		});
+	}
+});
+
+/*
+ * ********************* Match Page Controller ****************
+ */
+app.controller('matchpageController', function($scope, $http) {
+	console.log("Match Page controlle");
+
+	// circle animation
+	var circle = new ProgressBar.Circle('#circle-container', {
+		color : '#57b7ee',
+		strokeWidth : 5,
+		fill : '#e6e6e6'
+	});
+	var circle2 = new ProgressBar.Circle('#circle-container2', {
+		color : '#6c57ee',
+		strokeWidth : 5,
+		fill : '#aaa'
+	});
+	var circle3 = new ProgressBar.Circle('#circle-container3', {
+		color : '#be57ee',
+		strokeWidth : 5,
+		fill : '#e6e6e6'
+	});
+	var circle4 = new ProgressBar.Circle('#circle-container4', {
+		color : '#ee5785',
+		strokeWidth : 5,
+		fill : '#aaa'
+	});
+
+	circle.animate(0.7, function() {
+		circle.animate(0.0, function() {
+			circle.animate(0.7);
+		})
+	})
+	circle2.animate(0.2, function() {
+		circle2.animate(0.0, function() {
+			circle2.animate(0.2);
+		})
+	})
+	circle3.animate(0.5, function() {
+		circle3.animate(0.0, function() {
+			circle3.animate(0.5);
+		})
+	})
+	circle4.animate(0.9, function() {
+		circle4.animate(0.0, function() {
+			circle4.animate(0.9);
+		})
+	})
+});
+
+/** ************************************************************Employer****************************************************** */
 
 /*
  * ********************* myjobs controller ****************
  */
 
 app.controller('myjobsController', function($scope, $http, $sce) {
-
+	$scope.footer = user;
+	console.log(user);
 	if (profile && user) {
 		console.log("ID: " + profile.getId());
 		console.log("Name: " + profile.getName());
@@ -64,7 +208,7 @@ app.controller('myjobsController', function($scope, $http, $sce) {
 		console.log("Email: " + profile.getEmail());
 		angular.element("#profileImg").attr("src", profile.getImageUrl());
 	} else {
-		// please sign in
+		// please sign in - or chek if cookie exist!
 	}
 	$scope.getMainJson = function() {
 		// myjobstest.json
@@ -233,6 +377,16 @@ app.controller('jobController', function($scope, $http, $location) {
 /*
  * ********************* DIRECTIVES ****************
  */
+
+app.directive("compileGoogle", function($compile, $timeout) {
+	return {
+		link : function(scope, element) {
+			element.html($compile('<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>')(scope));
+			$.getScript("js/platform.js");
+		}
+	}
+});
+
 app.directive("compileHtml", function($compile, $location, $rootScope, $http) {
 	return {
 		link : function(scope, element) {
@@ -281,21 +435,6 @@ app.directive('focus', function() {
 		}
 	}
 });
-
-/*
- * ********************* JS Functions ****************
- */
-var profile;
-function onSignIn(googleUser) {
-	// Useful data for your client-side scripts:
-	profile = googleUser.getBasicProfile();
-
-	// The ID token you need to pass to your backend:
-	var id_token = googleUser.getAuthResponse().id_token;
-	// console.log("ID Token: " + id_token);
-	if (profile)
-		location.replace("#/myjobs");
-}
 
 /*
  * $("input").keypress(function(e) { if (e.which == 13 &&

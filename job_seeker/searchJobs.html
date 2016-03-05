@@ -1,0 +1,28 @@
+<div class="searchJobsWrapper" ng-init="getMainJson()">
+	<h3 compile-html>{{navigation}}</h3>
+	<header>
+		<h2>Find your next job</h2>
+	</header>
+
+	<form method="get" action="">
+		<input type="text" placeholder="Find Job" ng-model="searchText"
+			class="form-control" focus="true">
+		<button type="button" class="btn btn-info">Search</button>
+	</form>
+
+	<div class="jobsList">
+		<ul>
+			<li class="jobListLi" ng-repeat="job in jobSeekerJobs"><a
+				href="#/searchJobs/{{job._id}}"> <img
+					src="images/jobSeeker/{{job.logo}}.png">
+					<article>
+						<p>{{job.job_name}}</p>
+						<p>{{job.name}}</p>
+						<p>{{job.address}}, {{job.time_published}}</p>
+					</article> <i class="fa fa-angle-right fa-4x"></i>
+			</a>
+				<hr></li>
+		</ul>
+	</div>
+
+</div>

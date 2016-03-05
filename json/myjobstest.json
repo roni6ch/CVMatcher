@@ -1,7 +1,8 @@
 [ {
 		"_id": "1",
 		"name": "Apple",
-		"logo": "logo",
+		"logo": "apple",
+		"your_job":1,
 		"compability":"80",
 		"address": "Tel-Aviv",
 		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit consectetur adipiscing elit consectetur adipiscing elit.",
@@ -20,9 +21,74 @@
 			"years": 1986
 		}]
 	}, {
-		"_id": "12",
-		"name": "Apple123",
-		"logo": "logo123",
+		"_id": "2",
+		"name": "Intel",
+		"logo": "intel",
+		"your_job":1,
+		"compability":"90",
+		"address": "Tel-Aviv123",
+		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elitconsectetur adipiscing elit consectetur adipiscing elit.",
+		"job_name": "Junior Full Stack Developer123",
+		"sector": "String123",
+		"scope_of_position": "String123",
+		"academy": [{
+			"academy_name": "String123",
+			"degree_name": "String123",
+			"degree_type": "String123"
+		}],
+		"sub_sector": "String123",
+		"formula": 100,
+		"requirements": [{
+			"name": "String123",
+			"years": 2000
+		}]
+	}, {
+		"_id": "3",
+		"name": "Pinterest",
+		"logo": "pinterst",
+		"compability":"90",
+		"address": "Tel-Aviv",
+		"time_published":"Dec 18, 2015",
+		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elitconsectetur adipiscing elit consectetur adipiscing elit.",
+		"job_name": "Junior Full Stack Developer123",
+		"sector": "String123",
+		"scope_of_position": "String123",
+		"academy": [{
+			"academy_name": "String123",
+			"degree_name": "String123",
+			"degree_type": "String123"
+		}],
+		"sub_sector": "String123",
+		"formula": 100,
+		"requirements": [{
+			"name": "String123",
+			"years": 2000
+		}]
+	}, {
+		"_id": "4",
+		"name": "Get Texi",
+		"logo": "gettaxi",
+		"compability":"90",
+		"address": "Tel-Aviv123",
+		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elitconsectetur adipiscing elit consectetur adipiscing elit.",
+		"job_name": "Junior Full Stack Developer123",
+		"sector": "String123",
+		"scope_of_position": "String123",
+		"academy": [{
+			"academy_name": "String123",
+			"degree_name": "String123",
+			"degree_type": "String123"
+		}],
+		"sub_sector": "String123",
+		"formula": 100,
+		"requirements": [{
+			"name": "String123",
+			"years": 2000
+		}]
+	}, {
+		"_id": "5",
+		"name": "Moovit",
+		"logo": "moovit",
 		"compability":"90",
 		"address": "Tel-Aviv123",
 		"original_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elitconsectetur adipiscing elit consectetur adipiscing elit.",
