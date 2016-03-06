@@ -54,6 +54,7 @@ app.config(function($routeProvider) {
 		alert("myjobstest AJAX failed!");
 	});
 
+	$rootScope.userSignInType = "";
 });
 
 /*
@@ -77,13 +78,17 @@ function onSignIn(googleUser) {
 
 	// The ID token you need to pass to your backend:
 	var id_token = googleUser.getAuthResponse().id_token;
-	// console.log("ID Token: " + id_token);
-	console.log("user: " + user);
 	if (profile && user == 'employer')
 		location.replace("#/myjobs");
 	else if (profile && user == 'jobSeeker')
 		location.replace("#/searchJobs");
 }
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
 
 /**
  * ************************************************************Job
@@ -93,10 +98,18 @@ function onSignIn(googleUser) {
 /*
  * ********************* jobSeeker Search Jobs Controller ****************
  */
-app.controller('jobSeekerSearchJobsController', function($scope, $http) {
-	$scope.footer = user;
-	console.log(user);
-	console.log("Search Jobs Controller");
+app.controller('jobSeekerSearchJobsController', function($rootScope,$scope, $http) {
+	$rootScope.userSignInType = user;
+	if (profile && user) {
+		console.log("ID: " + profile.getId());
+		console.log("Name: " + profile.getName());
+		console.log("Image URL: " + profile.getImageUrl());
+		console.log("Email: " + profile.getEmail());
+		angular.element("#profileImg").attr("src", profile.getImageUrl());
+	} else {
+		// please sign in - or chek if cookie exist!
+	}
+	
 	$scope.getMainJson = function() {
 		// myjobstest.json
 		$http.get("json/myjobstest.json").success(function() {
@@ -113,7 +126,6 @@ app.controller('jobSeekerSearchJobsController', function($scope, $http) {
  * ********************* job by Search Controller ****************
  */
 app.controller('jobpagebyIDController', function($scope, $http) {
-	console.log("jobpagebySearch controller");
 	$scope.getMainJson = function() {
 		// myjobstest.json
 		$http.get("json/myjobstest.json").success(function() {
@@ -129,7 +141,6 @@ app.controller('jobpagebyIDController', function($scope, $http) {
  */
 
 app.controller('yourjobSeekerController', function($scope, $http) {
-	console.log("yourjobs controller");
 	$scope.getMainJson = function() {
 		// myjobstest.json
 		$http.get("json/myjobstest.json").success(function() {
@@ -146,7 +157,6 @@ app.controller('yourjobSeekerController', function($scope, $http) {
  * ********************* Match Page Controller ****************
  */
 app.controller('matchpageController', function($scope, $http) {
-	console.log("Match Page controlle");
 
 	// circle animation
 	var circle = new ProgressBar.Circle('#circle-container', {
@@ -198,9 +208,8 @@ app.controller('matchpageController', function($scope, $http) {
  * ********************* myjobs controller ****************
  */
 
-app.controller('myjobsController', function($scope, $http, $sce) {
-	$scope.footer = user;
-	console.log(user);
+app.controller('myjobsController', function($rootScope,$scope, $http, $sce) {
+	$rootScope.userSignInType = user;
 	if (profile && user) {
 		console.log("ID: " + profile.getId());
 		console.log("Name: " + profile.getName());
@@ -280,7 +289,6 @@ app.controller('resumeController', function($scope, $http, $location) {
 	var path = $location.path().split('/')[3];
 	$http.get("json/resume.json").success(function() {
 	}).success(function(data, status, headers, config) {
-		console.log(data);
 		$scope.user = data[path][0];
 	}).error(function(data, status, headers, config) {
 		alert("users AJAX failed!");
@@ -336,7 +344,6 @@ app.controller('resumeController', function($scope, $http, $location) {
  */
 
 app.controller('jobController', function($scope, $http, $location) {
-	// console.log($location.path().split('/'));
 	$id = $location.path().split('/');
 	$http.get("json/myjobstest.json").success(function() {
 	}).success(function(data, status, headers, config) {

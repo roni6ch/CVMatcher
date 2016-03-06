@@ -14,7 +14,7 @@
 		<ul>
 			<li class="jobListLi" ng-repeat="job in jobSeekerJobs"><a
 				href="#/searchJobs/{{job._id}}"> <img
-					src="images/jobSeeker/{{job.logo}}.png">
+					ng-src="images/jobSeeker/{{job.logo}}.png">
 					<article>
 						<p>{{job.job_name}}</p>
 						<p>{{job.name}}</p>

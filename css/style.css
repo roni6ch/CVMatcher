@@ -109,7 +109,7 @@ footer {
 	background: #c0c0c0;
 	float: right;
 	z-index: 10000;
-	box-shadow: 1px 13px 45px #50a2e1;
+	box-shadow: 0px 3px 38px #50a2e1;
 }
 
 footer ul {
@@ -183,8 +183,8 @@ footer div a {
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
-	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper
-	.googleSignInWrapper, .jobPageWrapper {
+	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,
+	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper {
 	float: left;
 	width: 100%;
 }
@@ -192,14 +192,16 @@ footer div a {
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
 	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
 	.resumeWrapper header h2, .jobParametersWrapper header h2,
-	.searchJobsWrapper header h2, .jobPageWrapper header h2 {
+	.searchJobsWrapper header h2, .jobPageWrapper header h2,
+	.matchpageWrapper header h2 {
 	margin-bottom: 25px !important;
 	text-align: center;
 }
 
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
 	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
-	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3 {
+	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3,
+	.matchpageWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -639,6 +641,7 @@ footer div a {
 
 .editLogo+input+img {
 	float: right;
+	width: 40px;
 }
 
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
@@ -649,7 +652,7 @@ footer div a {
 
 .jobSlider {
 	display: inline-block;
-	width: 8%;
+	width: 6%;
 	margin-right: 2%;
 }
 
@@ -755,13 +758,18 @@ footer div a {
 	}
 	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
 		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
-		.jobWrapper, .jobPageWrapper {
-		padding: 0px 10px;
+		.jobWrapper, .jobPageWrapper, .matchpageWrapper {
+		padding: 0px 10px 30px;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
 		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
-		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3 {
+		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3,
+		.matchpageWrapper>h3 {
 		display: none;
+	}
+	.jobPageWrapper>a {
+		float: left;
+		margin-bottom: 70px;
 	}
 	.resumeSkillsBox {
 		width: 100%;
@@ -790,7 +798,7 @@ footer div a {
 		width: 25%;
 	}
 	.jobSlider div span {
-		width: 133% !important;
+		width: 125% !important;
 	}
 	footer div {
 		padding: 0px;
@@ -981,6 +989,8 @@ footer div a {
 
 .timeline-body>p, .timeline-body>ul {
 	margin-bottom: 0;
+	text-align: justify;
+	font-style: italic;
 }
 
 .timeline-body>p+p {
@@ -1047,7 +1057,7 @@ footer div a {
 	margin-top: 15px;
 }
 
-/****************************************************** SEARCH JOB - JOBSEEKER - HTML **********************************************/
+/****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
 	width: 100%;
 	text-align: left;
@@ -1096,4 +1106,27 @@ footer div a {
 
 .jobPageWrapper>a:hover {
 	opacity: 1;
+}
+
+/****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
+.matchResult {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.matchpageWrapper header h2 img {
+	margin: 0 auto;
+}
+
+.matchResult img {
+	margin: 0 auto;
+}
+
+.matchResult>#circle-container {
+	width: 80%;
+	margin: 20px auto;
+}
+
+.prograssBars {
+	margin-top: 30px;
 }
