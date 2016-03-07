@@ -29,7 +29,7 @@
 			<a href="/cvmatcher"><img src="images/logo.png"></a>
 		</div>
 		<div>
-			<a href="/cvmatcher"  onclick="signOut();"><img src="images/profileImg.png" id="profileImg"></a>
+			<a href="/cvmatcher"  onclick="signOut();"><img src="" id="profileImg"></a>
 		</div>
 		<!-- Img -->
 		<div class="navBarImg">
@@ -67,16 +67,17 @@
 		</div>
 		<!-- MOBILE FOOTER -->
 		 <ul ng-if="userSignInType == 'employer'">
-			<li><a href="#/favorites"><i class="fa fa-users"></i>Candidates</a></li>
-			<li><a href="#/yourjobs"><i class="fa fa-suitcase"></i>My
-					Jobs</a></li>
-			<li><a href="#/"><i class="fa fa-cog"></i>Settings</a></li>
+			<li><a href="#/unreadcvs"><i class="fa fa-users"></i>Unread CV'S</a></li>
+			<li><a href="#/readcvs"><i class="fa fa-users"></i>Read CV'S</a></li>
+			<li><a href="#/favorites"><i class="fa fa-star-o"></i>Favorites</a></li>
+			<li><a href="#/myjobs"><i class="fa fa-suitcase"></i>My Jobs</a></li>
 		</ul>
 		
 		<ul ng-if="userSignInType == 'jobSeeker'">
 			<li><a href="#/searchJobs"><i class="fa fa-search fa-2x"></i><p>Search Jobs</p></a></li>
 			<li><a href="#/yourjobs"><i class="fa fa-suitcase fa-2x"></i><p>My Jobs</p></a></li>
-			<li><a href=""><i class="fa fa-cog fa-2x"></i><p>Settings</p></a></li>
+			<li><a href="#/favoriteJobs"><i class="fa fa-star-o"></i>Favorites</a></li>
+			<li><a href="#/mycv"><i class="fa fa-file-text-o"></i>My CV</a></li>
 		</ul>
 		
 	</footer>

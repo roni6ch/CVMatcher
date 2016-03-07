@@ -30,8 +30,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 body {
 	margin: 0 auto !important;
-	font-family: "Alef Hebrew", “Helvetica Neue”, Helvetica, Arial,
-		sans-serif;
+	font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
+		"sans-serif";
 }
 
 ol, ul {
@@ -184,16 +184,17 @@ footer div a {
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
 	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,
-	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper {
-	float: left;
-	width: 100%;
+	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper,
+	.googleSignInWrapper {
+	width: 80%;
+	margin: 0 auto;
 }
 
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
 	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
 	.resumeWrapper header h2, .jobParametersWrapper header h2,
 	.searchJobsWrapper header h2, .jobPageWrapper header h2,
-	.matchpageWrapper header h2 {
+	.matchpageWrapper header h2, .googleSignInWrapper header h2 {
 	margin-bottom: 25px !important;
 	text-align: center;
 }
@@ -201,7 +202,7 @@ footer div a {
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
 	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
 	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3,
-	.matchpageWrapper>h3 {
+	.matchpageWrapper>h3, .googleSignInWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -230,7 +231,12 @@ footer div a {
 	margin-bottom: 20px;
 }
 
-.googleSignInWrapper>div:nth-child(3) {
+.googleSignInWrapper>div:nth-child(2) {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.googleSignInWrapper>div:nth-child(4) {
 	width: 100%;
 	margin-top: 5%;
 	float: left;
@@ -312,11 +318,6 @@ footer div a {
 	display: inline-block;
 }
 
-.myjobsWrapper form input {
-	width: 80% !important;
-	float: left;
-}
-
 .myjobsWrapper form button {
 	float: left;
 	width: 15%;
@@ -335,7 +336,7 @@ footer div a {
 }
 
 .jobs {
-	margin-bottom: 47px;
+	margin-bottom: 20px;
 	border: 2px solid #ebebeb;
 	width: 100%;
 	text-align: left;
@@ -372,10 +373,10 @@ footer div a {
 	display: inline-block;
 }
 
-.jobs  p {
+.jobs p {
 	margin: 20px 0px 10px;
 	color: #000;
-	font-weight: 700;
+	font-size: 22px;
 }
 
 .jobs img {
@@ -570,7 +571,7 @@ footer div a {
 	top: 25%;
 	left: 26%;
 	z-index: 10;
-	font-size: 68px;
+	font-size: 60px;
 	text-align: center;
 	width: 50%;
 	height: 50%;
@@ -691,17 +692,11 @@ footer div a {
 		rgba(77, 207, 221, 1) 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
 		rgba(77, 207, 221, 1) 100%);
-	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799',
-		endColorstr='#4dcfdd', GradientType=0); /* IE6-9 */
 }
 /****************************************************** MEDIA - MAX 767 **********************************************/
 @media ( max-width :767px) {
 	.navBarImg {
 		display: none;
-	}
-	.nav-tabs li a {
-		font-size: 9px;
 	}
 	.jobs {
 		margin-bottom: 12px;
@@ -756,10 +751,28 @@ footer div a {
 	.jobs>div:nth-child(2) {
 		width: 85%;
 	}
+	.jobs p {
+		margin: 10px 0px 10px;
+		color: #000;
+		font-size: 14px;
+	}
+	.nav-tabs li {
+		height: 66px;
+	}
+	.googleSignInWrapper>div>a>img {
+		width: 40%;
+	}
+	.googleSignInWrapper>div>a>h3 {
+		font-size: 20px;
+	}
+	.googleSignInWrapper>div>a {
+		float: none;
+	}
 	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
 		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
 		.jobWrapper, .jobPageWrapper, .matchpageWrapper {
 		padding: 0px 10px 30px;
+		width: 100%;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
 		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
@@ -775,8 +788,7 @@ footer div a {
 		width: 100%;
 	}
 	#circle-container>h2 {
-		font-size: 8vw;
-		line-height: 5.5;
+		font-size: 50px;
 	}
 	.resumeDetailsBox {
 		margin-bottom: 130px;
@@ -790,9 +802,6 @@ footer div a {
 	}
 	.myjobsWrapper form {
 		width: 100%;
-	}
-	.myjobsWrapper form input {
-		width: 70% !important
 	}
 	.myjobsWrapper form button {
 		width: 25%;
@@ -810,17 +819,16 @@ footer div a {
 	footer ul li {
 		padding: 0px;
 		text-align: center;
-		width: 32%;
+		width: 24%;
 	}
 	footer {
 		height: auto;
-		padding: 10px 10px;
 		position: fixed;
 		bottom: 0;
 		border-top: 1px solid #6F6F6F;
 	}
 	footer ul li a {
-		font-size: 4vw;
+		font-size: 3.5vw;
 	}
 	footer ul:nth-child(1) {
 		display: none;
@@ -1002,7 +1010,7 @@ footer div a {
 /************************************************************************************************************************************/
 .searchJobsWrapper form input {
 	width: 82% !important;
-	float: left;
+	margin: 0 auto;
 }
 
 .searchJobsWrapper form button {
@@ -1110,7 +1118,7 @@ footer div a {
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 .matchResult {
-	width: 50%;
+	width: 500px;
 	margin: 0 auto;
 }
 
@@ -1129,4 +1137,14 @@ footer div a {
 
 .prograssBars {
 	margin-top: 30px;
+}
+
+.matchpageWrapper>a {
+	color: #000;
+	font-weight: bold;
+	background: #ccc;
+	padding: 14px;
+	border-radius: 17px;
+	opacity: 0.6;
+	text-decoration: none;
 }

@@ -64,8 +64,12 @@ var user;
 app.controller('googleSignInController', function($scope, $http, $sce) {
 	$scope.userType = function(type) {
 		user = type;
+		if (profile && user == 'employer')
+			location.replace("#/myjobs");
+		else if (profile && user == 'jobSeeker')
+			location.replace("#/searchJobs");
 	}
-
+	
 });
 
 /*
@@ -78,10 +82,6 @@ function onSignIn(googleUser) {
 
 	// The ID token you need to pass to your backend:
 	var id_token = googleUser.getAuthResponse().id_token;
-	if (profile && user == 'employer')
-		location.replace("#/myjobs");
-	else if (profile && user == 'jobSeeker')
-		location.replace("#/searchJobs");
 }
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -388,7 +388,7 @@ app.controller('jobController', function($scope, $http, $location) {
 app.directive("compileGoogle", function($compile, $timeout) {
 	return {
 		link : function(scope, element) {
-			element.html($compile('<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>')(scope));
+			element.html($compile('<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ng-model="googleButton" ng-show="googleButton" ng-click="showUsers=true; googleButton=false"></div>')(scope));
 			$.getScript("js/platform.js");
 		}
 	}
