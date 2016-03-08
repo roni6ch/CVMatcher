@@ -184,7 +184,7 @@ footer div a {
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
 	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,
-	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper,
+	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper , .contactusWrapper ,
 	.googleSignInWrapper {
 	width: 80%;
 	margin: 0 auto;
@@ -194,7 +194,7 @@ footer div a {
 	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
 	.resumeWrapper header h2, .jobParametersWrapper header h2,
 	.searchJobsWrapper header h2, .jobPageWrapper header h2,
-	.matchpageWrapper header h2, .googleSignInWrapper header h2 {
+	.matchpageWrapper header h2, .googleSignInWrapper header h2 ,.aboutWrapper header h2 ,.contactusWrapper header h2{
 	margin-bottom: 25px !important;
 	text-align: center;
 }
@@ -202,7 +202,7 @@ footer div a {
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
 	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
 	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3,
-	.matchpageWrapper>h3, .googleSignInWrapper>h3 {
+	.matchpageWrapper>h3, .googleSignInWrapper>h3 ,.aboutWrapper>h3 ,.contactusWrapper>h3{
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -212,7 +212,8 @@ footer div a {
 .highlighted {
 	background: #fffc00;
 }
-
+ .mobile{display:none;}
+.web{display:block;}
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 .googleSignInWrapper>div>a {
 	width: 50%;
@@ -406,6 +407,18 @@ footer div a {
 /****************************************************** Read CV's - HTML **********************************************/
 
 /****************************************************** Unread CV's - HTML **********************************************/
+#myManagmentJobs,#mySoftwareJobs,#myElectrialJobs,#myMechanicalJobs{position:relative;
+  background: silver;
+  height: 300px;
+  text-align: center;
+  font: 30px/300px Helvetica, Arial, sans-serif;}
+  
+  #myManagmentJobs > section,#mySoftwareJobs > section,#myElectrialJobs > section,#myMechanicalJobs > section{position: absolute; width:100%;}
+   .tabsContent > img{   position: absolute;
+    z-index: 10000;
+    top: 50%;
+    left: 50%;}
+ .tabsContent  > h2{margin-bottom:20px;}
 
 /****************************************************** FAVORITES - HTML **********************************************/
 .tab-content {
@@ -454,7 +467,8 @@ footer div a {
 
 .tabsContent div h3 {
 	font-weight: 800;
-	padding-bottom: 20px;
+	padding-bottom: 20px;    
+	overflow: hidden;
 }
 
 .tabsContent div h4 {
@@ -665,13 +679,13 @@ footer div a {
 .jobSlider input {
 	border: 0;
 	color: #f6931f;
-	width: 20px;
+	width: 40px;
 	font-weight: bold;
 }
 
 .jobSlider label {
 	color: #f6931f;
-	font-size: 18px;
+	font-size: 14px;
 }
 
 .jobSlider div {
@@ -693,8 +707,194 @@ footer div a {
 	background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
 		rgba(77, 207, 221, 1) 100%);
 }
+
+
+/************************************************************************************************************************************/
+/****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
+/************************************************************************************************************************************/
+.searchJobsWrapper form input {
+	width: 82% !important;
+	margin: 0 auto;
+}
+
+.searchJobsWrapper form button {
+	float: right;
+	width: 15%;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.jobsList {
+	margin-top: 80px;
+}
+
+.jobsList ul li {
+	width: 100%;
+	padding: 10px 10px;
+}
+
+.jobsList ul li a {
+	opacity: 0.7;
+}
+
+.jobsList ul li a:hover {
+	opacity: 1;
+}
+
+.jobsList article {
+	width: 60%;
+	float: left;
+}
+
+.jobsList article p {
+	text-align: left;
+	margin-left: 20px;
+}
+
+.jobListLi {
+	float: left;
+}
+
+.jobListLi img {
+	float: left;
+}
+
+.jobListLi a {
+	width: 100%;
+	display: inline-block;
+}
+
+.jobListLi a i {
+	float: right;
+	margin-top: 15px;
+}
+
+/****************************************************** JOB - JOBSEEKER - HTML **********************************************/
+.jobPageWrapper header h2 {
+	width: 100%;
+	text-align: left;
+}
+
+.jobPageWrapper p {
+	text-align: left;
+}
+
+.jobPageWrapper h2 {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.jobPageWrapper h4 {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.skills {
+	margin-top: 10px;
+}
+
+.skills li {
+	text-align: left;
+}
+
+.jobPageWrapper>a {
+	color: #000;
+	font-weight: bold;
+	background: #ccc;
+	padding: 14px;
+	border-radius: 17px;
+	opacity: 0.6;
+	text-decoration: none;
+}
+
+.skills+section h2 {
+	float: left;
+	margin-right: 5%;
+}
+
+.skills+section {
+	margin-bottom: 5%;
+}
+
+.jobPageWrapper>a:hover {
+	opacity: 1;
+}
+
+/****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
+.matchResult {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.matchpageWrapper header h2 img {
+	margin: 0 auto;
+}
+
+.matchResult img {
+	margin: 0 auto;
+}
+
+.matchResult>#circle-container {
+	width: 80%;
+	margin: 20px auto;
+}
+
+.prograssBars {
+	margin-top: 30px;
+}
+
+.matchpageWrapper>a {
+	color: #000;
+	font-weight: bold;
+	background: #ccc;
+	padding: 14px;
+	border-radius: 17px;
+	opacity: 0.6;
+	text-decoration: none;
+}
+
+
+
+
+/****************************************************************************************************************************/
+/****************************************************** ABOUT - HTML ********************************************************/
+/****************************************************************************************************************************/
+
+.aboutWrapper p{    
+	text-align: left;
+    margin-top: 10px;
+    font-size: 16px;
+    }
+    .aboutWrapper h4{ 
+	text-align: left;
+    margin-top: 24px;}
+.aboutWrapper h5{font-size:18px;margin: 30px 0px;
+}
+
+
+
+
+/****************************************************************************************************************************/
+/****************************************************** CONTACT - HTML ********************************************************/
+/****************************************************************************************************************************/
+
+.contactusWrapper div{float:left; border-radius:10px; background: rgb(255, 232, 232);     width: 48%;
+    margin-left: 2%; min-height: 477px;    padding: 30px;    margin-bottom: 1%;}
+.contactusWrapper div h3{        margin-bottom: 40px;}
+.contactusWrapper > div > section{width:100%; margin-bottom:20px;    }
+.contactusWrapper > div > section > i{    width: 100%;
+    text-align: center;}
+.contactusWrapper > div > section > span{text-align: left; font-size: 20px;}
+.contactusWrapper > article{border-radius:10px; background: rgb(255, 232, 232);     width: 98%;
+    margin-left: 2%; min-height: 420px;  clear:both;   padding: 30px;}
+
 /****************************************************** MEDIA - MAX 767 **********************************************/
 @media ( max-width :767px) {
+	 .mobile{display:block;}
+	 .web{display:none;}
+	 .tab-content section:hover {
+    opacity: 1;
+}
 	.navBarImg {
 		display: none;
 	}
@@ -740,7 +940,7 @@ footer div a {
 		font-size: 10px;
 	}
 	.jobSlider input {
-		width: 12px;
+		width: 75%;
 	}
 	.wrapper {
 		padding: 0px;
@@ -770,16 +970,17 @@ footer div a {
 	}
 	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
 		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
-		.jobWrapper, .jobPageWrapper, .matchpageWrapper {
+		.jobWrapper, .jobPageWrapper, .matchpageWrapper ,.aboutWrapper ,.contactusWrapper {
 		padding: 0px 10px 30px;
 		width: 100%;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
 		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
-		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3,
+		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3,.aboutWrapper>h3 ,.contactusWrapper>h3
 		.matchpageWrapper>h3 {
 		display: none;
 	}
+	.tabsContent div{height:300px; margin-bottom:0px;}
 	.jobPageWrapper>a {
 		float: left;
 		margin-bottom: 70px;
@@ -809,6 +1010,8 @@ footer div a {
 	.jobSlider div span {
 		width: 125% !important;
 	}
+	
+	.contactusWrapper div{width:100%; margin-bottom:1%; margin-left:0%;}
 	footer div {
 		padding: 0px;
 		display: none;
@@ -1005,146 +1208,4 @@ footer div a {
 	margin-top: 5px;
 }
 
-/************************************************************************************************************************************/
-/****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
-/************************************************************************************************************************************/
-.searchJobsWrapper form input {
-	width: 82% !important;
-	margin: 0 auto;
-}
 
-.searchJobsWrapper form button {
-	float: right;
-	width: 15%;
-	padding-right: 0px;
-	padding-left: 0px;
-}
-
-.jobsList {
-	margin-top: 80px;
-}
-
-.jobsList ul li {
-	width: 100%;
-	padding: 10px 10px;
-}
-
-.jobsList ul li a {
-	opacity: 0.7;
-}
-
-.jobsList ul li a:hover {
-	opacity: 1;
-}
-
-.jobsList article {
-	width: 60%;
-	float: left;
-}
-
-.jobsList article p {
-	text-align: left;
-	margin-left: 20px;
-}
-
-.jobListLi {
-	float: left;
-}
-
-.jobListLi img {
-	float: left;
-}
-
-.jobListLi a {
-	width: 100%;
-	display: inline-block;
-}
-
-.jobListLi a i {
-	float: right;
-	margin-top: 15px;
-}
-
-/****************************************************** JOB - JOBSEEKER - HTML **********************************************/
-.jobPageWrapper header h2 {
-	width: 100%;
-	text-align: left;
-}
-
-.jobPageWrapper p {
-	text-align: left;
-}
-
-.jobPageWrapper h2 {
-	text-align: left;
-	margin-bottom: 10px;
-}
-
-.jobPageWrapper h4 {
-	text-align: left;
-	margin-bottom: 10px;
-}
-
-.skills {
-	margin-top: 10px;
-}
-
-.skills li {
-	text-align: left;
-}
-
-.jobPageWrapper>a {
-	color: #000;
-	font-weight: bold;
-	background: #ccc;
-	padding: 14px;
-	border-radius: 17px;
-	opacity: 0.6;
-	text-decoration: none;
-}
-
-.skills+section h2 {
-	float: left;
-	margin-right: 5%;
-}
-
-.skills+section {
-	margin-bottom: 5%;
-}
-
-.jobPageWrapper>a:hover {
-	opacity: 1;
-}
-
-/****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
-.matchResult {
-	width: 500px;
-	margin: 0 auto;
-}
-
-.matchpageWrapper header h2 img {
-	margin: 0 auto;
-}
-
-.matchResult img {
-	margin: 0 auto;
-}
-
-.matchResult>#circle-container {
-	width: 80%;
-	margin: 20px auto;
-}
-
-.prograssBars {
-	margin-top: 30px;
-}
-
-.matchpageWrapper>a {
-	color: #000;
-	font-weight: bold;
-	background: #ccc;
-	padding: 14px;
-	border-radius: 17px;
-	opacity: 0.6;
-	text-decoration: none;
-}

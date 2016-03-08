@@ -44,6 +44,15 @@ app.config(function($routeProvider) {
 		templateUrl : 'job_seeker/matchpage.html',
 		controller : 'matchpageController'
 	})
+	// Other
+	.when('/about', {
+		templateUrl : 'about.html'
+	}).when('/contact', {
+		templateUrl : 'contact.html'
+	})
+	
+	
+	
 }).run(function($rootScope, $http) {
 	// call rootScope for RenderHTML later
 	// myjobstest.json
@@ -75,6 +84,8 @@ app.controller('googleSignInController', function($scope, $http, $sce) {
 /*
  * ********************* JS Functions ****************
  */
+
+//google - Sign-In - SignOut
 var profile;
 function onSignIn(googleUser) {
 	// Useful data for your client-side scripts:
@@ -89,6 +100,10 @@ function signOut() {
       console.log('User signed out.');
     });
   }
+
+
+
+
 
 /**
  * ************************************************************Job
@@ -255,7 +270,100 @@ app.controller('readcvsController', function($scope, $http) {
 /*
  * ********************* unreadcvs controller ****************
  */
-app.controller('unreadcvsController', function($scope, $http) {
+app.controller('unreadcvsController', function($scope, $http,$timeout) {
+	
+	//Swipe LEFT-RIGHT
+	var myManagmentJobs = document.getElementById('myManagmentJobs');
+	var mySoftwareJobs = document.getElementById('mySoftwareJobs');
+	var myElectrialJobs = document.getElementById('myElectrialJobs');
+	var myMechanicalJobs = document.getElementById('myMechanicalJobs');
+
+	// create a simple instance
+	// by default, it only adds horizontal recognizers
+	$mmj = new Hammer(myManagmentJobs);
+	$ms = new Hammer(mySoftwareJobs);
+	$me = new Hammer(myElectrialJobs);
+	$mm = new Hammer(myMechanicalJobs);
+	
+	// SWIPE LEFT - Managment
+	$mmj.on("panleft tap press", function(ev) {
+		$slider_id = $("#myJobs > section:last").data("id");
+		$scope.jobs.managment.length -=1;
+		$scope.$apply();
+		$("#myManagmentJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+	});
+	//SWIPE RIGHT - Managment
+	$mmj.on("panright tap press", function(ev) {
+		$slider_id = $("#myJobs > section:last").data("id");
+		$scope.jobs.managment.length -=1;
+		$scope.$apply();
+		$("#myManagmentJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+	});
+	
+	// SWIPE LEFT - Software
+	$ms.on("panleft tap press", function(ev) {
+		$slider_id = $("#mySoftwareJobs > section:last").data("id");
+		$scope.jobs.software.length -=1;
+		$scope.$apply();
+		$("#mySoftwareJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+	});
+	//SWIPE RIGHT - Software
+	$ms.on("panright tap press", function(ev) {
+		$slider_id = $("#mySoftwareJobs > section:last").data("id");
+		$scope.jobs.software.length -=1;
+		$scope.$apply();
+		$("#mySoftwareJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+	});
+	
+	// SWIPE LEFT - Electrial
+	$me.on("panleft tap press", function(ev) {
+		$slider_id = $("#myElectrialJobs > section:last").data("id");
+		$scope.jobs.electrial.length -=1;
+		$scope.$apply();
+		$("#myElectrialJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+	});
+	//SWIPE RIGHT - Electrial
+	$me.on("panright tap press", function(ev) {
+		$slider_id = $("#myElectrialJobs > section:last").data("id");
+		$scope.jobs.electrial.length -=1;
+		$scope.$apply();
+		$("#myElectrialJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+	});
+	
+	// SWIPE LEFT - Mechanical
+	$mm.on("panleft tap press", function(ev) {
+		$slider_id = $("#myMechanicalJobs > section:last").data("id");
+		$scope.jobs.mechanical.length -=1;
+		$scope.$apply();
+		$("#myMechanicalJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+		
+		//TODO: REMOVE FROM DB - AND MOVE TO READ / FAVORITES
+	});
+	//SWIPE RIGHT - Mechanical
+	$mm.on("panright tap press", function(ev) {
+		$slider_id = $("#myMechanicalJobs > section:last").data("id");
+		$scope.jobs.mechanical.length -=1;
+		$scope.$apply();
+		$("#myMechanicalJobs > section[data-id ="+$slider_id+"]").fadeOut(300, function(){ $(this).remove();});
+		
+		//TODO: REMOVE FROM DB - AND MOVE TO READ / FAVORITES
+	});
+
+	//SWIPE ICON
+	$scope.swipeIcon = function(){
+		$timeout(function() {
+			angular.element(".tabsContent > img").fadeOut(1000, function(){ $(this).remove();});
+	    }, 1000);
+	};
+	
+	//SET TO EACH RESUME, Z-INDEX
+	$scope.setZIndex = function(index)
+	  {
+	    return {
+	      'z-index': +index,
+	    }
+	  };
+	
 	$scope.getMainJson = function() {
 		// myjobs.json
 		$http.get("json/myjobs.json").success(function() {
@@ -344,6 +452,9 @@ app.controller('resumeController', function($scope, $http, $location) {
  */
 
 app.controller('jobController', function($scope, $http, $location) {
+	
+	
+	
 	$id = $location.path().split('/');
 	$http.get("json/myjobstest.json").success(function() {
 	}).success(function(data, status, headers, config) {
@@ -356,6 +467,8 @@ app.controller('jobController', function($scope, $http, $location) {
 		alert("users AJAX failed!");
 	});
 
+	
+	
 	// slider
 	angular.element(".jobSlider").each(
 			function() {
@@ -366,17 +479,42 @@ app.controller('jobController', function($scope, $http, $location) {
 							range : "min",
 							min : 0,
 							max : 100,
-							value : 60,
+							value : 20,
 							slide : function(event, ui) {
-								$slider_id_amount = event.target["id"]
-										.split("slider")[1];
-								angular.element("#amount" + $slider_id_amount)
-										.val(ui.value);
+								var oldVal = angular.element("#slider" + $slider_id).slider("value");
+								var newVal = ui.value;
+								var difference = (newVal - oldVal);
+								$slider = $(this).data("slide");
+								for ($i=1;$i<6 ; $i++){
+									if ($i != $slider)
+										{
+										var newNum = angular.element("#slider" + $i).slider("value");
+										if (difference > 0)
+											newNum = newNum - difference/4;
+										else
+											newNum = newNum + difference/4;
+											
+											angular.element("#amount" + $i).val(newNum);
+											angular.element("#slider" + $i).slider(
+													{	min : 0,
+														max : 100,
+														value : newNum
+													}
+											)
+										}
+								}
+								
+								
+								
+								
+								
+								$slider_id_amount = event.target["id"].split("slider")[1];
+								angular.element("#amount" + $slider_id_amount).val(ui.value);
 							}
 						});
 				// initialize sliders
-				angular.element("#amount" + $slider_id).val(
-						angular.element("#slider1").slider("value"));
+				var sliderDoubleVal = 20;
+				angular.element("#amount" + $slider_id).val(sliderDoubleVal);
 			})
 
 });
