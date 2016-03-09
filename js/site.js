@@ -84,6 +84,7 @@ app.controller('googleSignInController', function($scope, $http, $sce) {
 	
 });
 
+
 /*
  * ********************* JS Functions ****************
  */
@@ -639,7 +640,11 @@ app.directive("compileGoogle", function($compile, $timeout) {
 	return {
 		link : function(scope, element) {
 			element.html($compile('<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ng-model="googleButton" ng-show="googleButton" ng-click="showUsers=true; googleButton=false"></div>')(scope));
-			$.getScript("js/platform.js");
+			
+			$timeout(function(){
+				$.getScript("js/platform.js?onload=onLoadCallback");;
+			});
+	
 		}
 	}
 });
