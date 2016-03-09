@@ -3,10 +3,10 @@
 	<header>
 		<h2>Unread CV's</h2>
 	</header>
-	
-	
-	
-	
+
+
+
+
 	<ul class="nav nav-tabs" ng-init="tab=0">
 		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">
 				Managment Engineer</a></li>
@@ -20,13 +20,15 @@
 
 
 	<div class="tab-content mobile">
-		<div ng-show="tab == 0" class="tabsContent fade in active" ng-init="swipeIcon()">
-		<img src="images/swipe.png" class="animated shake" />
+		<div ng-show="tab == 0" class="tabsContent fade in active"
+			ng-init="swipeIcon()">
+			<img src="images/swipe.png" class="animated shake" />
 			<h2>{{jobs.managment.length}} Resume's Left</h2>
 			<article ng-init="getMainJson();" id="myManagmentJobs">
-			<section>:)</section>
-				<section ng-repeat="job in jobs.managment" ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}" >
-						<a href="#/favorites/resume/{{job.name}}"><div>
+				<section>:)</section>
+				<section ng-repeat="job in jobs.managment"
+					ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div>
 							<img src="images/stars.png">
 							<h3>{{job.subsector}}</h3>
 							<h4>{{job.name}}</h4>
@@ -38,9 +40,10 @@
 		<div ng-show="tab == 1" class="tabsContent fade in active">
 			<h2>{{jobs.software.length}} Resume's Left</h2>
 			<article ng-init="getMainJson();" id="mySoftwareJobs">
-			<section>:)</section>
-				<section ng-repeat="job in jobs.software" ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}" >
-						<a href="#/favorites/resume/{{job.name}}"><div>
+				<section>:)</section>
+				<section ng-repeat="job in jobs.software"
+					ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div>
 							<img src="images/stars.png">
 							<h3>{{job.subsector}}</h3>
 							<h4>{{job.name}}</h4>
@@ -52,9 +55,10 @@
 		<div ng-show="tab == 2" class="tabsContent fade in active">
 			<h2>{{jobs.electrial.length}} Resume's Left</h2>
 			<article ng-init="getMainJson();" id="myElectrialJobs">
-			<section>:)</section>
-				<section ng-repeat="job in jobs.electrial" ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}" >
-						<a href="#/favorites/resume/{{job.name}}"><div>
+				<section>:)</section>
+				<section ng-repeat="job in jobs.electrial"
+					ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div>
 							<img src="images/stars.png">
 							<h3>{{job.subsector}}</h3>
 							<h4>{{job.name}}</h4>
@@ -66,9 +70,10 @@
 		<div ng-show="tab == 3" class="tabsContent fade in active">
 			<h2>{{jobs.mechanical.length}} Resume's Left</h2>
 			<article ng-init="getMainJson();" id="myMechanicalJobs">
-			<section>:)</section>
-				<section ng-repeat="job in jobs.mechanical" ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}" >
-						<a href="#/favorites/resume/{{job.name}}"><div>
+				<section>:)</section>
+				<section ng-repeat="job in jobs.mechanical"
+					ng-style="setZIndex($index);" data-id="{{ 'job-' + $index }}">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div>
 							<img src="images/stars.png">
 							<h3>{{job.subsector}}</h3>
 							<h4>{{job.name}}</h4>
@@ -81,14 +86,16 @@
 	<div class="tab-content web">
 		<div ng-show="tab == 0" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<article ng-init="getMainJson();limitPost=2" infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
+			<article ng-init="getMainJson();limitPost=2"
+				infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.managment | limitTo:limitPost">
-					<a href="#/favorites/resume/{{job.name}}"><div class="animated fadeInUp">
-						<img src="images/stars.png">
-						<h3>{{job.subsector}}</h3>
-						<h4>{{job.name}}</h4>
-						<h5>{{job.sector}}</h5>
-					</div></a>
+					<a href="#/unreadcvs/resume/{{job.name}}"><div
+							class="animated fadeInUp">
+							<img src="images/stars.png">
+							<h3>{{job.subsector}}</h3>
+							<h4>{{job.name}}</h4>
+							<h5>{{job.sector}}</h5>
+						</div></a>
 				</section>
 			</article>
 		</div>
@@ -97,12 +104,12 @@
 			<article ng-init="getMainJson();limitPost=2"
 				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.software | limitTo:limitPost">
-					<div class="animated fadeInUp">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div class="animated fadeInUp">
 						<img src="images/stars.png">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
-					</div>
+					</div></a>
 				</section>
 			</article>
 		</div>
@@ -111,12 +118,12 @@
 			<article ng-init="getMainJson();limitPost=2"
 				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.electrial | limitTo:limitPost">
-					<div class="animated fadeInUp">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div class="animated fadeInUp">
 						<img src="images/stars.png">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
-					</div>
+					</div></a>
 				</section>
 			</article>
 		</div>
@@ -125,18 +132,18 @@
 			<article ng-init="getMainJson();limitPost=2"
 				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.mechanical | limitTo:limitPost">
-					<div class="animated fadeInUp">
+					<a href="#/unreadcvs/resume/{{job.name}}"><div class="animated fadeInUp">
 						<img src="images/stars.png">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
-					</div>
+					</div></a>
 				</section>
 			</article>
 		</div>
 	</div>
-	
-	
-	
-	
+
+
+
+
 </div>

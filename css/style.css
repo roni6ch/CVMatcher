@@ -214,6 +214,46 @@ footer div a {
 }
  .mobile{display:none;}
 .web{display:block;}
+
+
+/* STAR RANKING */
+.starRating:not(old){
+  display        : inline-block;
+  width          : 7.5em;
+  height         : 1.3em;
+  overflow       : hidden;
+  vertical-align : bottom;
+}
+
+.starRating:not(old) > input{
+  margin-right : -100%;    float: left;
+  opacity      : 0;
+}
+
+.starRating:not(old) > label{
+  display         : block;
+  float           : right;
+  position        : relative;
+  background      : url('../images/grayStar.png');
+  background-size : contain;
+}
+
+.starRating:not(old) > label:before{
+  content         : '';
+  display         : block;
+  width           : 1.5em;
+  height          : 1.5em;
+  background      : url('../images/yellowStar.png');
+  background-size : contain;
+  opacity         : 0;
+  transition      : opacity 0.2s linear;
+}
+
+.starRating:not(old) > label:hover:before,
+.starRating:not(old) > label:hover ~ label:before,
+.starRating:not(:hover) > :checked ~ label:before{
+  opacity : 1;
+}
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 .googleSignInWrapper>div>a {
 	width: 50%;
@@ -364,6 +404,11 @@ footer div a {
 	text-decoration: none;
 }
 
+.jobs>div:nth-child(2) section{position:relative; width:90px;}
+.jobs>div:nth-child(2) section h5{position:absolute;     top: 38%;
+    left: 32%;
+    font-size: 20px;}
+.jobs>div:nth-child(2) span{float:left;}
 .jobs h5 {
 	color: #606060;
 	font-weight: bold;
@@ -434,6 +479,7 @@ footer div a {
 	text-decoration: none !important;
 }
 
+.tabsContent > article >section{margin-bottom:10px;}
 .nav-tabs li {
 	cursor: pointer;
 	border: 1px solid #ccc;
@@ -486,8 +532,8 @@ footer div a {
 }
 
 /****************************************************** RESUME - HTML **********************************************/
-.resumeWrapper>div {
-	background: #1b75bb;
+#users >div {
+	background: #D0EAFF;
 	padding: 20px 0px;
 	margin: 0 auto 20px;
 	border-radius: 10px;
@@ -626,6 +672,7 @@ footer div a {
 	font-weight: bold;
 	font-size: 24px;
 }
+
 /****************************************************** JOB - HTML **********************************************/
 .jobEdit {
 	margin-bottom: 47px;
@@ -905,14 +952,10 @@ footer div a {
 		font-size: 19px;
 		line-height: 30px;
 	}
-	.jobs h5 {
-		display: none;
-	}
 	.jobs img {
 		display: none;
 	}
 	.jobsTools {
-		min-height: auto;
 		width: 15%;
 	}
 	.jobsTools a i {

@@ -2,313 +2,365 @@
 	"managment": [{
 			"subsector": "industrial Developer",
 			"name": "Neta Efrati",
-			"sector": "Software Engineer Student"
+			"sector": "Software Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":3
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":4
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":2
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		},
 
 		{
 			"subsector": "Angular industrial",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "industrial industrial",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		}
 	],
 	"software": [{

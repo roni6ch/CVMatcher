@@ -4,85 +4,119 @@
 		<h2>Resume</h2>
 	</header>
 
-	<div>
-		<h3>{{user.name}}</h3>
-		<h4>{{user.subsector}}</h4>
-	</div>
+	<input type="hidden" class="starModal btn btn-info btn-lg"
+		data-toggle="modal" data-target="#myModal" />
+	<article id="users">
+		<!-- User Name -->
+		<div>
+			<h3>{{user.name}}</h3>
+			<h4>{{user.subsector}}</h4>
+		</div>
 
-	<section class="resumeSkillsBox">
-		<h3>Software Skills</h3>
-		<span style="color: #57b7ee">C++</span> , <span
-			style="color: #6c57ee;">Jquery</span> , <span style="color: #be57ee">NodeJS</span>
-		, <span style="color: #ee5785">Java</span>
-		<section id="circle-container">
-			<section id="circle-container2">
-				<section id="circle-container3">
-					<section id="circle-container4"></section>
+		<!-- Resume Skills -->
+		<section class="resumeSkillsBox">
+			<h3>Software Skills</h3>
+			<span style="color: #57b7ee">C++</span> , <span
+				style="color: #6c57ee;">Jquery</span> , <span style="color: #be57ee">NodeJS</span>
+			, <span style="color: #ee5785">Java</span>
+			<section id="circle-container">
+				<section id="circle-container2">
+					<section id="circle-container3">
+						<section id="circle-container4"></section>
+					</section>
 				</section>
+				<h2>Skills</h2>
 			</section>
-			<h2>Skills</h2>
+
+
+		</section>
+
+		<!-- TIMELINE -->
+		<section class="resumeYears">
+			<div>
+				<h3>Education</h3>
+				<h3>Employment</h3>
+			</div>
+			<div class="container">
+				<div class="page-header">
+					<h1 id="timeline">Timeline</h1>
+				</div>
+				<!-- section of year -->
+				<ul class="timeline" ng-repeat="details in user.requirements">
+					<!-- section of year -->
+					<!-- <li class="timeline-inverted"> for Employment side -->
+					<li>
+						<div class="timeline-badge">
+							<i class="fa fa-plus"></i>
+						</div>
+						<div class="timeline-panel">
+							<div class="timeline-heading">
+								<h4 class="timeline-title">{{details.name}}</h4>
+								<p>
+									<small class="text-muted">{{details.years}}</small>
+								</p>
+							</div>
+							<div class="timeline-body">
+								<p>{{details.job_type}}</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<!-- TIMELINE END -->
+
+		</section>
+
+		<!-- Resume Details -->
+		<section class="resumeDetailsBox">
+			<h3>Contact Details</h3>
+			<div>
+				<a href="#"><i class="fa fa-phone fa-2x"></i>
+					<h4>{{user.phone}}</h4></a>
+			</div>
+			<div>
+				<a href="#"><i class="fa fa-envelope fa-2x"></i>
+					<h4>{{user.mail}}</h4></a>
+			</div>
+			<div>
+				<a href="#"><i class="fa fa-linkedin-square fa-2x"></i>
+					<h4>{{user.linkdin}}</h4></a>
+			</div>
 		</section>
 
 
-	</section>
+	</article>
 
-	<!-- TIMELINE -->
-	<section class="resumeYears">
-		<div>
-			<h3>Education</h3>
-			<h3>Employment</h3>
-		</div>
-		<div class="container">
-			<div class="page-header">
-				<h1 id="timeline">Timeline</h1>
+
+	<!-- Modal -->
+	<section class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Rate by Stars</h4>
+				</div>
+				<div class="modal-body">
+					<!-- STAR RANK -->
+					<span class="starRating">
+        <input id="rating5" type="radio" name="rating" value="5">
+        <label for="rating5">5</label>
+        <input id="rating4" type="radio" name="rating" value="4">
+        <label for="rating4">4</label>
+        <input id="rating3" type="radio" name="rating" value="3" >
+        <label for="rating3">3</label>
+        <input id="rating2" type="radio" name="rating" value="2">
+        <label for="rating2">2</label>
+        <input id="rating1" type="radio" name="rating" value="1">
+        <label for="rating1">1</label>
+      </span>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
 			</div>
-			<!-- section of year -->
-			<ul class="timeline" ng-repeat="details in user.requirements">
-				<!-- section of year -->
-				<!-- <li class="timeline-inverted"> for Employment side -->
-				<li>
-					<div class="timeline-badge">
-						<i class="fa fa-plus"></i>
-					</div>
-					<div class="timeline-panel">
-						<div class="timeline-heading">
-							<h4 class="timeline-title">{{details.name}}</h4>
-							<p>
-								<small class="text-muted">{{details.years}}</small>
-							</p>
-						</div>
-						<div class="timeline-body">
-							<p>{{details.job_type}}</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-		<!-- TIMELINE END -->
-
-	</section>
-
-
-
-	<section class="resumeDetailsBox">
-		<h3>Contact Details</h3>
-		<div>
-			<a href="#"><i class="fa fa-phone fa-2x"></i>
-				<h4>{{user.phone}}</h4></a>
-		</div>
-		<div>
-			<a href="#"><i class="fa fa-envelope fa-2x"></i>
-				<h4>{{user.mail}}</h4></a>
-		</div>
-		<div>
-			<a href="#"><i class="fa fa-linkedin-square fa-2x"></i>
-				<h4>{{user.linkdin}}</h4></a>
 		</div>
 	</section>
-
-
-
-
-
 
 </div>
