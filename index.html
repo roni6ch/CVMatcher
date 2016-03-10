@@ -21,7 +21,7 @@
 <meta name="google-signin-scope" content="profile email">
 <meta name="google-signin-client_id"
 	content="468789046131-efcprfd4s02r7vo4p0lskk2076b2iho5.apps.googleusercontent.com">
-			 
+
 
 </head>
 <body>
@@ -35,7 +35,7 @@
 		<!-- Img -->
 		<div class="navBarImg">
 			<nav>
-			<!-- Employer NAV -->
+				<!-- Employer NAV -->
 				<ul ng-if="userSignInType == 'employer'">
 					<li><a href="#/myjobs">My jobs</a></li>
 					<li><a href="#/readcvs">Read CV's</a></li>
@@ -53,7 +53,7 @@
 	</div>
 
 	<div class="wrapper">
-	
+
 		<div ng-view></div>
 	</div>
 	<footer>
@@ -68,20 +68,23 @@
 				class="fa fa-phone-square fa-3x"></i></a>
 		</div>
 		<!-- MOBILE FOOTER -->
-		 <ul ng-if="userSignInType == 'employer'">
-			<li><a href="#/unreadcvs"><i class="fa fa-users"></i>Unread CV'S</a></li>
+		<ul ng-if="userSignInType == 'employer'">
+			<li><a href="#/unreadcvs"><i class="fa fa-users"></i>Unread
+					CV'S</a></li>
 			<li><a href="#/readcvs"><i class="fa fa-users"></i>Read CV'S</a></li>
 			<li><a href="#/favorites"><i class="fa fa-star-o"></i>Favorites</a></li>
 			<li><a href="#/myjobs"><i class="fa fa-suitcase"></i>My Jobs</a></li>
 		</ul>
-		
+
 		<ul ng-if="userSignInType == 'jobSeeker'">
-			<li><a href="#/searchJobs"><i class="fa fa-search fa-2x"></i><p>Search Jobs</p></a></li>
-			<li><a href="#/yourjobs"><i class="fa fa-suitcase fa-2x"></i><p>My Jobs</p></a></li>
+			<li><a href="#/searchJobs"><i class="fa fa-search fa-2x"></i>
+				<p>Search Jobs</p></a></li>
+			<li><a href="#/yourjobs"><i class="fa fa-suitcase fa-2x"></i>
+				<p>My Jobs</p></a></li>
 			<li><a href="#/favoriteJobs"><i class="fa fa-star-o"></i>Favorites</a></li>
 			<li><a href="#/mycv"><i class="fa fa-file-text-o"></i>My CV</a></li>
 		</ul>
-		
+
 	</footer>
 	<script src="js/lib/angular/angular.min.js"></script>
 	<script src="js/lib/angular/angular-route.min.js"></script>

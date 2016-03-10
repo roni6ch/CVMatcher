@@ -21,8 +21,12 @@
 				<a href="#/job/{{job._id}}"><p
 						ng-model="searchText.original_text"
 						ng-bind-html="highlight(job.original_text, searchText)">{{job.original_text}}</p>
-					
-					<span>Compability:</span> <section circle  id="{{ 'circle-container-' + $index }}" data-compability="{{job.compability}}"><h5>{{job.compability}}%</h5></section> </a>
+
+					<span>Compability:</span>
+					<section circle id="{{ 'circle-container-' + $index }}"
+						data-compability="{{job.compability}}">
+						<h5>{{job.compability}}%</h5>
+					</section> </a>
 			</div>
 			<div class="jobsTools">
 				<a href="#/job/{{job._id}}"><i class="fa fa-pencil fa-2x"></i></a> <a

@@ -366,79 +366,92 @@
 	"software": [{
 			"subsector": "Junior Full Stack Developer",
 			"name": "Neta Efrati",
-			"sector": "Software Engineer Student"
+			"sector": "Software Engineer Student",
+			"stars":2
 		},
 
 		{
 			"subsector": "Full Stack",
 			"name": "Roni",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":1
 		},
 
 		{
 			"subsector": "Angular",
 			"name": "Neta",
-			"sector": "Engineer Student"
+			"sector": "Engineer Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "HTML + CSS",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":3
 		}
 	],
 	"electrial": [{
 			"subsector": " Developer",
 			"name": "Hello",
-			"sector": "Load from Json"
+			"sector": "Load from Json",
+			"stars":4
 		},
 
 		{
 			"subsector": "asdd",
 			"name": "asdsd",
-			"sector": "asdasd"
+			"sector": "asdasd",
+			"stars":5
 		},
 
 		{
 			"subsector": "asdad",
 			"name": "saNeta",
-			"sector": "asdd Student"
+			"sector": "asdd Student",
+			"stars":5
 		},
 
 		{
 			"subsector": "Hasdda",
 			"name": "Ronissd sd sds ds sdadbra",
-			"sector": "dsds"
+			"sector": "dsds",
+			"stars":4
 		},
 
 		{
 			"subsector": "Hasaaaaaaaaaaaaadda",
 			"name": "Ronisaaaaadbra",
-			"sector": "Soaaaaaaaaaaaaaaaaaasdr"
+			"sector": "Soaaaaaaaaaaaaaaaaaasdr",
+			"stars":3
 		},
 
 		{
 			"subsector": "Haasdassdda",
 			"name": "asdasd",
-			"sector": "Soasasdaddr"
+			"sector": "Soasasdaddr",
+			"stars":5
 		},
 
 		{
 			"subsector": "asdasd",
 			"name": "sadsad",
-			"sector": "Soaasdasdsdr"
+			"sector": "Soaasdasdsdr",
+			"stars":2
 		}
 	],
 	"mechanical": [{
 			"subsector": "Junior Full Stack Developer",
 			"name": "Neta Efrati",
-			"sector": "Software Engineer Student"
+			"sector": "Software Engineer Student",
+			"stars":1
 		},
 
 		{
 			"subsector": "HTML + CSS",
 			"name": "Roni Chabra",
-			"sector": "Software Engineer"
+			"sector": "Software Engineer",
+			"stars":5
 		}
 	]
 }

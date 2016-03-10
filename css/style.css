@@ -184,8 +184,8 @@ footer div a {
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
 	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,
-	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper , .contactusWrapper ,
-	.googleSignInWrapper {
+	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
+	.contactusWrapper, .googleSignInWrapper {
 	width: 80%;
 	margin: 0 auto;
 }
@@ -194,7 +194,8 @@ footer div a {
 	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
 	.resumeWrapper header h2, .jobParametersWrapper header h2,
 	.searchJobsWrapper header h2, .jobPageWrapper header h2,
-	.matchpageWrapper header h2, .googleSignInWrapper header h2 ,.aboutWrapper header h2 ,.contactusWrapper header h2{
+	.matchpageWrapper header h2, .googleSignInWrapper header h2,
+	.aboutWrapper header h2, .contactusWrapper header h2 {
 	margin-bottom: 25px !important;
 	text-align: center;
 }
@@ -202,7 +203,8 @@ footer div a {
 .myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
 	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
 	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3,
-	.matchpageWrapper>h3, .googleSignInWrapper>h3 ,.aboutWrapper>h3 ,.contactusWrapper>h3{
+	.matchpageWrapper>h3, .googleSignInWrapper>h3, .aboutWrapper>h3,
+	.contactusWrapper>h3 {
 	position: absolute;
 	color: #257bbe;
 	font-size: 16px;
@@ -212,47 +214,52 @@ footer div a {
 .highlighted {
 	background: #fffc00;
 }
- .mobile{display:none;}
-.web{display:block;}
 
+.mobile {
+	display: none;
+}
+
+.web {
+	display: block;
+}
 
 /* STAR RANKING */
-.starRating:not(old){
-  display        : inline-block;
-  width          : 7.5em;
-  height         : 1.3em;
-  overflow       : hidden;
-  vertical-align : bottom;
+.starRating:not(old) {
+	display: inline-block;
+	width: 7.5em;
+	height: 1.3em;
+	overflow: hidden;
+	vertical-align: bottom;
 }
 
-.starRating:not(old) > input{
-  margin-right : -100%;    float: left;
-  opacity      : 0;
+.starRating:not(old)>input {
+	margin-right: -100%;
+	float: left;
+	opacity: 0;
 }
 
-.starRating:not(old) > label{
-  display         : block;
-  float           : right;
-  position        : relative;
-  background      : url('../images/grayStar.png');
-  background-size : contain;
+.starRating:not(old)>label {
+	display: block;
+	float: right;
+	position: relative;
+	background: url('../images/grayStar.png');
+	background-size: contain;
 }
 
-.starRating:not(old) > label:before{
-  content         : '';
-  display         : block;
-  width           : 1.5em;
-  height          : 1.5em;
-  background      : url('../images/yellowStar.png');
-  background-size : contain;
-  opacity         : 0;
-  transition      : opacity 0.2s linear;
+.starRating:not(old)>label:before {
+	content: '';
+	display: block;
+	width: 1.5em;
+	height: 1.5em;
+	background: url('../images/yellowStar.png');
+	background-size: contain;
+	opacity: 0;
+	transition: opacity 0.2s linear;
 }
 
-.starRating:not(old) > label:hover:before,
-.starRating:not(old) > label:hover ~ label:before,
-.starRating:not(:hover) > :checked ~ label:before{
-  opacity : 1;
+.starRating:not(old)>label:hover:before, .starRating:not(old)>label:hover 
+	~ label:before, .starRating:not (:hover ) >.checked ~ label:before {
+	opacity: 1;
 }
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 .googleSignInWrapper>div>a {
@@ -404,11 +411,22 @@ footer div a {
 	text-decoration: none;
 }
 
-.jobs>div:nth-child(2) section{position:relative; width:90px;}
-.jobs>div:nth-child(2) section h5{position:absolute;     top: 38%;
-    left: 32%;
-    font-size: 20px;}
-.jobs>div:nth-child(2) span{float:left;}
+.jobs>div:nth-child(2) section {
+	position: relative;
+	width: 90px;
+}
+
+.jobs>div:nth-child(2) section h5 {
+	position: absolute;
+	top: 38%;
+	left: 32%;
+	font-size: 20px;
+}
+
+.jobs>div:nth-child(2) span {
+	float: left;
+}
+
 .jobs h5 {
 	color: #606060;
 	font-weight: bold;
@@ -452,18 +470,30 @@ footer div a {
 /****************************************************** Read CV's - HTML **********************************************/
 
 /****************************************************** Unread CV's - HTML **********************************************/
-#myManagmentJobs,#mySoftwareJobs,#myElectrialJobs,#myMechanicalJobs{position:relative;
-  background: silver;
-  height: 300px;
-  text-align: center;
-  font: 30px/300px Helvetica, Arial, sans-serif;}
-  
-  #myManagmentJobs > section,#mySoftwareJobs > section,#myElectrialJobs > section,#myMechanicalJobs > section{position: absolute; width:100%;}
-   .tabsContent > img{   position: absolute;
-    z-index: 10000;
-    top: 50%;
-    left: 50%;}
- .tabsContent  > h2{margin-bottom:20px;}
+#myManagmentJobs, #mySoftwareJobs, #myElectrialJobs, #myMechanicalJobs {
+	position: relative;
+	background: silver;
+	height: 300px;
+	text-align: center;
+	font: 30px/300px Helvetica, Arial, sans-serif;
+}
+
+#myManagmentJobs>section, #mySoftwareJobs>section, #myElectrialJobs>section,
+	#myMechanicalJobs>section {
+	position: absolute;
+	width: 100%;
+}
+
+.tabsContent>img {
+	position: absolute;
+	z-index: 10000;
+	top: 50%;
+	left: 50%;
+}
+
+.tabsContent>h2 {
+	margin-bottom: 20px;
+}
 
 /****************************************************** FAVORITES - HTML **********************************************/
 .tab-content {
@@ -479,7 +509,11 @@ footer div a {
 	text-decoration: none !important;
 }
 
-.tabsContent > article >section{margin-bottom:10px;}
+.tabsContent>article>section {
+	margin-bottom: 10px;
+	position: relative;
+}
+
 .nav-tabs li {
 	cursor: pointer;
 	border: 1px solid #ccc;
@@ -513,7 +547,7 @@ footer div a {
 
 .tabsContent div h3 {
 	font-weight: 800;
-	padding-bottom: 20px;    
+	padding-bottom: 20px;
 	overflow: hidden;
 }
 
@@ -526,13 +560,16 @@ footer div a {
 	font-weight: 500;
 }
 
-.tabsContent div img {
+.tabsContent .starRating {
 	float: right;
-	width: 15%;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 1;
 }
 
 /****************************************************** RESUME - HTML **********************************************/
-#users >div {
+#users>div {
 	background: #D0EAFF;
 	padding: 20px 0px;
 	margin: 0 auto 20px;
@@ -673,6 +710,10 @@ footer div a {
 	font-size: 24px;
 }
 
+.swipeIcon {
+	display: none;
+}
+
 /****************************************************** JOB - HTML **********************************************/
 .jobEdit {
 	margin-bottom: 47px;
@@ -754,7 +795,6 @@ footer div a {
 	background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
 		rgba(77, 207, 221, 1) 100%);
 }
-
 
 /************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
@@ -900,48 +940,79 @@ footer div a {
 	text-decoration: none;
 }
 
-
-
-
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
 /****************************************************************************************************************************/
-
-.aboutWrapper p{    
+.aboutWrapper p {
 	text-align: left;
-    margin-top: 10px;
-    font-size: 16px;
-    }
-    .aboutWrapper h4{ 
-	text-align: left;
-    margin-top: 24px;}
-.aboutWrapper h5{font-size:18px;margin: 30px 0px;
+	margin-top: 10px;
+	font-size: 16px;
 }
 
+.aboutWrapper h4 {
+	text-align: left;
+	margin-top: 24px;
+}
 
-
+.aboutWrapper h5 {
+	font-size: 18px;
+	margin: 30px 0px;
+}
 
 /****************************************************************************************************************************/
 /****************************************************** CONTACT - HTML ********************************************************/
 /****************************************************************************************************************************/
+.contactusWrapper div {
+	float: left;
+	border-radius: 10px;
+	background: rgb(255, 232, 232);
+	width: 48%;
+	margin-left: 2%;
+	min-height: 477px;
+	padding: 30px;
+	margin-bottom: 1%;
+}
 
-.contactusWrapper div{float:left; border-radius:10px; background: rgb(255, 232, 232);     width: 48%;
-    margin-left: 2%; min-height: 477px;    padding: 30px;    margin-bottom: 1%;}
-.contactusWrapper div h3{        margin-bottom: 40px;}
-.contactusWrapper > div > section{width:100%; margin-bottom:20px;    }
-.contactusWrapper > div > section > i{    width: 100%;
-    text-align: center;}
-.contactusWrapper > div > section > span{text-align: left; font-size: 20px;}
-.contactusWrapper > article{border-radius:10px; background: rgb(255, 232, 232);     width: 98%;
-    margin-left: 2%; min-height: 420px;  clear:both;   padding: 30px;}
+.contactusWrapper div h3 {
+	margin-bottom: 40px;
+}
+
+.contactusWrapper>div>section {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.contactusWrapper>div>section>i {
+	width: 100%;
+	text-align: center;
+}
+
+.contactusWrapper>div>section>span {
+	text-align: left;
+	font-size: 20px;
+}
+
+.contactusWrapper>article {
+	border-radius: 10px;
+	background: rgb(255, 232, 232);
+	width: 98%;
+	margin-left: 2%;
+	min-height: 420px;
+	clear: both;
+	padding: 30px;
+}
 
 /****************************************************** MEDIA - MAX 767 **********************************************/
 @media ( max-width :767px) {
-	 .mobile{display:block;}
-	 .web{display:none;}
-	 .tab-content section:hover {
-    opacity: 1;
-}
+	.mobile {
+		display: block;
+	}
+	.web {
+		display: none;
+	}
+	.tab-content section:hover {
+		opacity: 1;
+	}
 	.navBarImg {
 		display: none;
 	}
@@ -1011,19 +1082,37 @@ footer div a {
 	.googleSignInWrapper>div>a {
 		float: none;
 	}
+	.tabsContent .starRating {
+		bottom: 10px;
+		top: initial;
+	}
 	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
 		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
-		.jobWrapper, .jobPageWrapper, .matchpageWrapper ,.aboutWrapper ,.contactusWrapper {
+		.jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
+		.contactusWrapper {
 		padding: 0px 10px 30px;
 		width: 100%;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
 		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
-		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3,.aboutWrapper>h3 ,.contactusWrapper>h3
+		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3,
+		.aboutWrapper>h3, .contactusWrapper>h3
 		.matchpageWrapper>h3 {
 		display: none;
 	}
-	.tabsContent div{height:300px; margin-bottom:0px;}
+	#myManagmentJobs, #mySoftwareJobs, #myElectrialJobs, #myMechanicalJobs {
+		height: 200px;
+	}
+	.tabsContent div {
+		height: 200px;
+		margin-bottom: 0px;
+	}
+	.swipeIcon {
+		position: absolute;
+		top: 5%;
+		left: 35%;
+		display: block;
+	}
 	.jobPageWrapper>a {
 		float: left;
 		margin-bottom: 70px;
@@ -1053,8 +1142,11 @@ footer div a {
 	.jobSlider div span {
 		width: 125% !important;
 	}
-	
-	.contactusWrapper div{width:100%; margin-bottom:1%; margin-left:0%;}
+	.contactusWrapper div {
+		width: 100%;
+		margin-bottom: 1%;
+		margin-left: 0%;
+	}
 	footer div {
 		padding: 0px;
 		display: none;
@@ -1250,5 +1342,3 @@ footer div a {
 .timeline-body>p+p {
 	margin-top: 5px;
 }
-
-

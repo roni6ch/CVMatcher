@@ -19,29 +19,33 @@
 	<div class="tab-content">
 		<div ng-show="tab == 0" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<article ng-init="getMainJson();limitPost=2" infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
+			<article ng-init="getMainJson();limitPost=2"
+				infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.managment | limitTo:limitPost">
-					<a href="#/favorites/resume/{{job.name}}"><div class="animated fadeInUp">
-						<img src="images/stars.png">
-						
-				<!-- 	<span class="starRating">
-				        <input ng-if="{{job.stars}} == 5 ? checked : ''"  id="rating5" type="radio" name="rating" value="5">
-				        <label for="rating5">5</label>
-				        <input id="rating4" type="radio" name="rating" value="4">
-				        <label for="rating4">4</label>
-				        <input id="rating3" type="radio" name="rating" value="3">
-				        <label for="rating3">3</label>
-				        <input id="rating2" type="radio" name="rating" value="2">
-				        <label for="rating2">2</label>
-				        <input ng-if="{{job.stars}} == 1 ? checked : ''" id="rating1" type="radio" name="rating" value="1" >
-				        <label for="rating1">1</label>
-				     </span>
- -->
 
-						<h3>{{job.subsector}}</h3>
-						<h4>{{job.name}}</h4>
-						<h5>{{job.sector}}</h5>
-					</div></a>
+					<span class="starRating animated pulse"> <input id="rating5"
+						type="radio" name="rating" value="5"
+						ng-class="{{job.stars}} == 5 ? 'checked' : ''"> <label
+						for="rating5">5</label> <input id="rating4" type="radio"
+						name="rating" value="4"
+						ng-class="{{job.stars}} == 4 ? 'checked' : ''"> <label
+						for="rating4">4</label> <input id="rating3" type="radio"
+						name="rating" value="3"
+						ng-class="{{job.stars}} == 3 ? 'checked' : ''"> <label
+						for="rating3">3</label> <input id="rating2" type="radio"
+						name="rating" value="2"
+						ng-class="{{job.stars}} == 2 ? 'checked' : ''"> <label
+						for="rating2">2</label> <input id="rating1" type="radio"
+						name="rating" value="1"
+						ng-class="{{job.stars}} == 1 ? 'checked' : ''"> <label
+						for="rating1">1</label>
+					</span> <a href="#/favorites/resume/{{job.name}}">
+						<div class="animated pulse">
+							<h3>{{job.subsector}}</h3>
+							<h4>{{job.name}}</h4>
+							<h5>{{job.sector}}</h5>
+						</div>
+					</a>
 				</section>
 			</article>
 		</div>
@@ -50,8 +54,25 @@
 			<article ng-init="getMainJson();limitPost=2"
 				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.software | limitTo:limitPost">
-					<div class="animated fadeInUp">
-						<img src="images/stars.png">
+
+					<span class="starRating animated pulse"> <input id="rating5"
+						type="radio" name="rating" value="5"
+						ng-class="{{job.stars}} == 5 ? 'checked' : ''"> <label
+						for="rating5">5</label> <input id="rating4" type="radio"
+						name="rating" value="4"
+						ng-class="{{job.stars}} == 4 ? 'checked' : ''"> <label
+						for="rating4">4</label> <input id="rating3" type="radio"
+						name="rating" value="3"
+						ng-class="{{job.stars}} == 3 ? 'checked' : ''"> <label
+						for="rating3">3</label> <input id="rating2" type="radio"
+						name="rating" value="2"
+						ng-class="{{job.stars}} == 2 ? 'checked' : ''"> <label
+						for="rating2">2</label> <input id="rating1" type="radio"
+						name="rating" value="1"
+						ng-class="{{job.stars}} == 1 ? 'checked' : ''"> <label
+						for="rating1">1</label>
+					</span>
+					<div class="animated pulse">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
@@ -64,8 +85,25 @@
 			<article ng-init="getMainJson();limitPost=2"
 				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.electrial | limitTo:limitPost">
-					<div class="animated fadeInUp">
-						<img src="images/stars.png">
+
+					<span class="starRating animated pulse"> <input id="rating5"
+						type="radio" name="rating" value="5"
+						ng-class="{{job.stars}} == 5 ? 'checked' : ''"> <label
+						for="rating5">5</label> <input id="rating4" type="radio"
+						name="rating" value="4"
+						ng-class="{{job.stars}} == 4 ? 'checked' : ''"> <label
+						for="rating4">4</label> <input id="rating3" type="radio"
+						name="rating" value="3"
+						ng-class="{{job.stars}} == 3 ? 'checked' : ''"> <label
+						for="rating3">3</label> <input id="rating2" type="radio"
+						name="rating" value="2"
+						ng-class="{{job.stars}} == 2 ? 'checked' : ''"> <label
+						for="rating2">2</label> <input id="rating1" type="radio"
+						name="rating" value="1"
+						ng-class="{{job.stars}} == 1 ? 'checked' : ''"> <label
+						for="rating1">1</label>
+					</span>
+					<div class="animated pulse">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
@@ -78,8 +116,25 @@
 			<article ng-init="getMainJson();limitPost=2"
 				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
 				<section ng-repeat="job in jobs.mechanical | limitTo:limitPost">
-					<div class="animated fadeInUp">
-						<img src="images/stars.png">
+
+					<span class="starRating animated pulse"> <input id="rating5"
+						type="radio" name="rating" value="5"
+						ng-class="{{job.stars}} == 5 ? 'checked' : ''"> <label
+						for="rating5">5</label> <input id="rating4" type="radio"
+						name="rating" value="4"
+						ng-class="{{job.stars}} == 4 ? 'checked' : ''"> <label
+						for="rating4">4</label> <input id="rating3" type="radio"
+						name="rating" value="3"
+						ng-class="{{job.stars}} == 3 ? 'checked' : ''"> <label
+						for="rating3">3</label> <input id="rating2" type="radio"
+						name="rating" value="2"
+						ng-class="{{job.stars}} == 2 ? 'checked' : ''"> <label
+						for="rating2">2</label> <input id="rating1" type="radio"
+						name="rating" value="1"
+						ng-class="{{job.stars}} == 1 ? 'checked' : ''"> <label
+						for="rating1">1</label>
+					</span>
+					<div class="animated pulse">
 						<h3>{{job.subsector}}</h3>
 						<h4>{{job.name}}</h4>
 						<h5>{{job.sector}}</h5>
