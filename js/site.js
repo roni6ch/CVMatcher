@@ -11,27 +11,26 @@ app.config(function($routeProvider) {
 	}).when('/myjobs', {
 		templateUrl : 'myjobs.html',
 		controller : 'myjobsController'
-	}).when('/readcvs', {
-		templateUrl : 'readcvs.html',
-		controller : 'readcvsController'
-	}).when('/unreadcvs', {
-		templateUrl : 'unreadcvs.html',
-		controller : 'unreadcvsController'
-	}).when('/unreadcvs/resume/:name', {
+	}).when('/Candidates/:_id', {
+		templateUrl : 'candidates.html',
+		controller : 'candidatesController'
+	}).when('/Candidates/resume/:_id', {
 		templateUrl : 'resume.html',
 		controller : 'resumeController'
-	}).when('/favorites', {
-		templateUrl : 'favorites.html',
-		controller : 'favoritesController'
-	}).when('/favorites/resume/:name', {
+	}).when('/resume/:id', {
 		templateUrl : 'resume.html',
 		controller : 'resumeController'
+	}).when('/Archive', {
+		templateUrl : 'archive.html',
+		controller : 'archiveController'
 	}).when('/job/:_id', {
 		templateUrl : 'job.html',
 		controller : 'jobController'
 	}).when('/jobParameters/:_id', {
 		templateUrl : 'jobparameters.html',
 		controller : 'jobController'
+	}).when('/companyProfile', {
+		templateUrl : 'companyprofile.html'
 	})
 	// job seeker
 	.when('/searchJobs', {
@@ -46,14 +45,16 @@ app.config(function($routeProvider) {
 	}).when('/matchpage', {
 		templateUrl : 'job_seeker/matchpage.html',
 		controller : 'matchpageController'
+	}).when('/Profile', {
+		templateUrl : 'job_seeker/profile.html'
 	})
 	// Other
-	.when('/about', {
+	.when('/About', {
 		templateUrl : 'about.html'
-	}).when('/contact', {
+	}).when('/Contact', {
 		templateUrl : 'contact.html'
 	})
-
+	
 }).run(function($rootScope, $http) {
 	// call rootScope for RenderHTML later
 	// myjobstest.json
@@ -65,6 +66,7 @@ app.config(function($routeProvider) {
 	});
 
 	$rootScope.userSignInType = "";
+	$rootScope.profile = ""; 
 });
 
 /*
@@ -110,9 +112,10 @@ function signOut() {
 /*
  * ********************* jobSeeker Search Jobs Controller ****************
  */
-app.controller('jobSeekerSearchJobsController', function($rootScope, $scope,
+app.controller('jobSeekerSearchJobsController', function($rootScope, $scope,$sce,
 		$http) {
 	$rootScope.userSignInType = user;
+	$rootScope.profile = "#/Profile";
 	if (profile && user) {
 		console.log("ID: " + profile.getId());
 		console.log("Name: " + profile.getName());
@@ -132,6 +135,19 @@ app.controller('jobSeekerSearchJobsController', function($rootScope, $scope,
 			alert("myjobstest AJAX failed!");
 		});
 	}
+
+	
+	$scope.sort = function(sort) {
+		$scope.sortby = sort;
+	}
+	$scope.highlight = function(text, search) {
+		if (!search) {
+			return $sce.trustAsHtml(text);
+		}
+		return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'),
+				'<span class="highlighted">$&</span>'));
+	};
+	
 
 });
 
@@ -164,6 +180,7 @@ app.controller('yourjobSeekerController', function($scope, $http) {
 			alert("myjobstest AJAX failed!");
 		});
 	}
+	
 });
 
 /*
@@ -223,6 +240,7 @@ app.controller('matchpageController', function($scope, $http) {
 
 app.controller('myjobsController', function($rootScope, $scope, $http, $sce) {
 	$rootScope.userSignInType = user;
+	$rootScope.profile = "#/companyProfile";
 	if (profile && user) {
 		console.log("ID: " + profile.getId());
 		console.log("Name: " + profile.getName());
@@ -241,6 +259,9 @@ app.controller('myjobsController', function($rootScope, $scope, $http, $sce) {
 			alert("myjobstest AJAX failed!");
 		});
 	}
+	$scope.sort = function(sort) {
+		$scope.sortby = sort;
+	}
 
 	$scope.highlight = function(text, search) {
 		if (!search) {
@@ -253,9 +274,9 @@ app.controller('myjobsController', function($rootScope, $scope, $http, $sce) {
 });
 
 /*
- * ********************* readcvs controller ****************
+ * ********************* archive controller ****************
  */
-app.controller('readcvsController', function($scope, $http) {
+app.controller('archiveController', function($scope, $http) {
 	$scope.getMainJson = function() {
 		// myjobstest.json
 		$http.get("json/myjobstest.json").success(function() {
@@ -266,154 +287,58 @@ app.controller('readcvsController', function($scope, $http) {
 		});
 	}
 });
+
 /*
- * ********************* unreadcvs controller ****************
+ * ********************* Candidates controller ****************
  */
-app.controller('unreadcvsController', function($scope, $http, $timeout) {
-
-	// Swipe LEFT-RIGHT
-	var myManagmentJobs = document.getElementById('myManagmentJobs');
-	var mySoftwareJobs = document.getElementById('mySoftwareJobs');
-	var myElectrialJobs = document.getElementById('myElectrialJobs');
-	var myMechanicalJobs = document.getElementById('myMechanicalJobs');
-
-	// create a simple instance
-	// by default, it only adds horizontal recognizers
-	$mmj = new Hammer(myManagmentJobs);
-	$ms = new Hammer(mySoftwareJobs);
-	$me = new Hammer(myElectrialJobs);
-	$mm = new Hammer(myMechanicalJobs);
-
-	// SWIPE LEFT - Managment
-	$mmj.on("swipeleft", function(ev) {
-		$swipe_id = $("#myJobs > section:last").data("id");
-		$scope.jobs.managment.length -= 1;
-		$scope.$apply();
-		$("#myManagmentJobs > section[data-id =" + $swipe_id + "]").fadeOut(
-				300, function() {
-					$(this).remove();
-				});
-	});
-	// SWIPE RIGHT - Managment
-	$mmj.on("swiperight", function(ev) {
-		$swipe_id = $("#myJobs > section:last").data("id");
-		$scope.jobs.managment.length -= 1;
-		$scope.$apply();
-		$("#myManagmentJobs > section[data-id =" + $swipe_id + "]").fadeOut(
-				300, function() {
-					$(this).remove();
-				});
-	});
-
-	// SWIPE LEFT - Software
-	$ms.on("swipeleft", function(ev) {
-		$swipe_id = $("#mySoftwareJobs > section:last").data("id");
-		$scope.jobs.software.length -= 1;
-		$scope.$apply();
-		$("#mySoftwareJobs > section[data-id =" + $swipe_id + "]").fadeOut(300,
-				function() {
-					$(this).remove();
-				});
-	});
-	// SWIPE RIGHT - Software
-	$ms.on("swiperight", function(ev) {
-		$swipe_id = $("#mySoftwareJobs > section:last").data("id");
-		$scope.jobs.software.length -= 1;
-		$scope.$apply();
-		$("#mySoftwareJobs > section[data-id =" + $swipe_id + "]").fadeOut(300,
-				function() {
-					$(this).remove();
-				});
-	});
-
-	// SWIPE LEFT - Electrial
-	$me.on("swipeleft", function(ev) {
-		$swipe_id = $("#myElectrialJobs > section:last").data("id");
-		$scope.jobs.electrial.length -= 1;
-		$scope.$apply();
-		$("#myElectrialJobs > section[data-id =" + $swipe_id + "]").fadeOut(
-				300, function() {
-					$(this).remove();
-				});
-	});
-	// SWIPE RIGHT - Electrial
-	$me.on("swiperight", function(ev) {
-		$swipe_id = $("#myElectrialJobs > section:last").data("id");
-		$scope.jobs.electrial.length -= 1;
-		$scope.$apply();
-		$("#myElectrialJobs > section[data-id =" + $swipe_id + "]").fadeOut(
-				300, function() {
-					$(this).remove();
-				});
-	});
-
-	// SWIPE LEFT - Mechanical
-	$mm.on("swipeleft", function(ev) {
-		$swipe_id = $("#myMechanicalJobs > section:last").data("id");
-		$scope.jobs.mechanical.length -= 1;
-		$scope.$apply();
-		$("#myMechanicalJobs > section[data-id =" + $swipe_id + "]").fadeOut(
-				300, function() {
-					$(this).remove();
-				});
-
-		// TODO: REMOVE FROM DB - AND MOVE TO READ / FAVORITES
-	});
-	// SWIPE RIGHT - Mechanical
-	$mm.on("swiperight", function(ev) {
-		$swipe_id = $("#myMechanicalJobs > section:last").data("id");
-		$scope.jobs.mechanical.length -= 1;
-		$scope.$apply();
-		$("#myMechanicalJobs > section[data-id =" + $swipe_id + "]").fadeOut(
-				300, function() {
-					$(this).remove();
-				});
-
-		// TODO: REMOVE FROM DB - AND MOVE TO READ / FAVORITES
-	});
-
-	// SWIPE ICON
-	$scope.swipeIcon = function() {
-		$timeout(function() {
-			angular.element(".tabsContent > img").fadeOut(1000, function() {
-				$(this).remove();
+app.controller('candidatesController',
+		function($scope, $http, $location, $sce) {
+			$id = $location.path().split('/');
+			var candidates = [];
+			$http.get("json/resume.json").success(
+					function(data, status, headers, config) {
+						angular.forEach(data, function(value, key) {
+							candidates.push(data[key][0]);
+						});
+						$scope.candidates = candidates;
+					}).error(function(data, status, headers, config) {
+				alert("resume AJAX failed!");
 			});
-		}, 1000);
-	};
+			$scope.highlight = function(text, search) {
+				if (!search) {
+					return $sce.trustAsHtml(text);
+				}
+				return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'),
+						'<span class="highlighted">$&</span>'));
+			};
 
-	// SET TO EACH RESUME, Z-INDEX
-	$scope.setZIndex = function(index) {
-		return {
-			'z-index' : +index,
-		}
-	};
+			$scope.sort = function(sort) {
+				$scope.sortby = sort;
+			}
 
-	$scope.getMainJson = function() {
-		// myjobs.json
-		$http.get("json/myjobs.json").success(function() {
-		}).success(function(data, status, headers, config) {
-			$scope.jobs = data;
-		}).error(function(data, status, headers, config) {
-			alert("myjobs AJAX failed!");
+			$scope.addCandidateToFavorites = function(index, candidate) {
+				// TODO: SEND TO DB THE CANDIDATE TO FAVORITE / UNFAVORITE
+				if (angular.element("#candidateStar-" + index).hasClass(
+						"fa fa-star fa-2x"))
+					angular.element("#candidateStar-" + index).removeClass(
+							"fa fa-star fa-2x").addClass("fa fa-star-o fa-2x");
+				else
+					angular.element("#candidateStar-" + index).removeClass(
+							"fa fa-star-o fa-2x").addClass("fa fa-star fa-2x");
+			}
+			$scope.addCandidateToLike = function(index, candidate) {
+				// TODO: SEND TO DB THE CANDIDATE TO LIKE / DISLIKE
+				if (angular.element("#candidateLike-" + index).hasClass(
+						"fa-thumbs-o-up"))
+					angular.element("#candidateLike-" + index).removeClass(
+							"fa-thumbs-o-up").addClass("fa-thumbs-up");
+				else
+					angular.element("#candidateLike-" + index).removeClass(
+							"fa-thumbs-up").addClass("fa-thumbs-o-up");
+			}
+
 		});
-	}
-});
 
-/*
- * ********************* favorites controller ****************
- */
-app.controller('favoritesController', function($scope, $http) {
-	$scope.getMainJson = function() {
-		// myjobs.json
-		$http.get("json/myjobs.json").success(function() {
-		}).success(function(data, status, headers, config) {
-			$scope.jobs = data;
-		}).error(function(data, status, headers, config) {
-			alert("myjobs AJAX failed!");
-		});
-	}
-
-});
 /*
  * ********************* resume controller ****************
  */
@@ -422,10 +347,45 @@ app
 				'resumeController',
 				function($scope, $http, $location, $timeout) {
 					var path = $location.path().split('/')[3];
-					// if i came from unreadresume's page
-					if ($location.path().split('/')[1] == "unreadcvs") {
-						// im in unreadCVS page
+					$scope.getUserJson = function() {
+						$http.get("json/resume.json").success(
+								function(data, status, headers, config) {
+									angular.forEach(data, function(value, key) {
+										if (value[0].id == path) {
+											$scope.user = value[0];
+										}
+									});
 
+								}).error(
+								function(data, status, headers, config) {
+									alert("users AJAX failed!");
+								});
+					}
+					
+					$scope.addCandidateToLike = function(candidate) {
+						// TODO: SEND TO DB THE CANDIDATE TO LIKE / DISLIKE
+						if (angular.element("#candidateLike").hasClass(
+								"fa-thumbs-o-up"))
+							angular.element("#candidateLike").removeClass(
+									"fa-thumbs-o-up").addClass("fa-thumbs-up");
+						else
+							angular.element("#candidateLike").removeClass(
+									"fa-thumbs-up").addClass("fa-thumbs-o-up");
+					}
+					$scope.addCandidateToUnLike = function(candidate) {
+						// TODO: SEND TO DB THE CANDIDATE TO LIKE / DISLIKE
+						if (angular.element("#candidateUnLike").hasClass(
+								"fa-thumbs-o-up"))
+							angular.element("#candidateUnLike").removeClass(
+									"fa-thumbs-o-up").addClass("fa-thumbs-up");
+						else
+							angular.element("#candidateUnLike").removeClass(
+									"fa-thumbs-up").addClass("fa-thumbs-o-up");
+					}
+					
+					
+					// if i came from unreadresume's page
+					if ($location.path().split('/')[1] == "Candidates") {
 						var users = document.getElementById('users');
 
 						// create a simple instance
@@ -470,29 +430,7 @@ app
 								$("#users").fadeIn(300)
 							});
 						});
-
-						// SWIPE ICON
-						$scope.swipeIcon = function() {
-							angular
-									.element(".swipeIcon")
-									.append(
-											"<img src='images/swipe.png' class='animated shake' />");
-							$timeout(function() {
-								angular.element(".swipeIcon").fadeOut(1000,
-										function() {
-											$(this).remove();
-										});
-							}, 1000);
-						};
 					}
-
-					$http.get("json/resume.json").success(function() {
-					}).success(function(data, status, headers, config) {
-						$scope.user = data[path][0];
-						console.log(data[path][0].name);
-					}).error(function(data, status, headers, config) {
-						alert("users AJAX failed!");
-					});
 
 					// circle animation
 					var circle = new ProgressBar.Circle('#circle-container', {
@@ -649,8 +587,20 @@ app.directive("compileHtml", function($compile, $location, $rootScope, $http) {
 			if (path.length > 1 && path[1] != "") {
 				for (var i = 1; i < path.length; i++) {
 					last_path += "/" + path[i];
-					if (path[i] == "resume" || path[i] == "job")
+					if (path[i] == "resume" || path[i] == "job"
+							|| path[i] == "Candidates")
 						continue;
+					if (path[i] == "myjobs")
+						path[i] = "My Jobs";
+					else if (path[i] == "favorites")
+						path[i] = "Favorites";
+					else if (path[i] == "companyProfile")
+						path[i] = "Company Profile";
+					else if (path[i] == "searchJobs")
+						path[i] = "Search Jobs";
+					
+
+					
 					// if the path[i] is a number that came from job page
 					if (!isNaN(path[i])) {
 						// bring the job name by id
@@ -678,7 +628,7 @@ app.directive("compileHtml", function($compile, $location, $rootScope, $http) {
 		}
 	}
 });
-//focus on searchBox
+// focus on searchBox
 app.directive('focus', function() {
 	return {
 		restrict : 'A',
@@ -688,12 +638,12 @@ app.directive('focus', function() {
 	}
 });
 
-//compability in myjobs page
+// compability in myjobs page
 app.directive('circle', function($timeout) {
 	return {
 		restrict : 'A',
 		link : function(scope, element, attr) {
-			//COMPABILITY
+			// COMPABILITY
 			$timeout(function() {
 				var circle = new ProgressBar.Circle("#" + attr.id, {
 					color : '#2196F3',

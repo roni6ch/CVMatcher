@@ -1,0 +1,125 @@
+<div class="profileWrapper">
+	<h3 compile-html>{{navigation}}</h3>
+	<header>
+		<h2>Profile</h2>
+	</header>
+
+	<ul class="nav nav-tabs" ng-init="tab=0">
+		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
+				Information</a></li>
+		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Professional
+				Experience</a></li>
+
+	</ul>
+
+	<div class="tab-content userProfile" >
+		<div ng-show="tab == 0" class="tabsContent fade in active">
+			<!-- Content from here -->
+			<form>
+				<h4>Personal Information</h4>
+				<label for="usr">Name:</label> <input type="text" required
+					class="form-control" id="usr" name="name" value=""> <label
+					for="usr">Family:</label> <input type="text" required
+					class="form-control" id="usr" name="family" value=""> <label
+					for="usr">Date of birth:</label> <input type="text" required
+					class="form-control" id="usr" name="birth" value=""> <label
+					for="usr">Address:</label> <input type="text" required
+					class="form-control" id="usr" name="address" value=""> <label
+					for="usr">Phone:</label> <input type="text" required
+					class="form-control" id="usr" name="phone" value="">
+				<h4>Education</h4>
+				<label><input type="radio" name="education"
+					value="university" checked>University</label> <label><input
+					type="radio" name="education" value="college">College</label>
+				<h4>Academy</h4>
+				<label for="usr">Name:</label> <input type="text" required
+					class="form-control" id="usr" name="academy_name" value="">
+
+				<h4>Degree:</h4>
+				<select name="degree_name" class="form-control" id="sel1">
+					<option value="software">Software Engineering</option>
+					<option value="industrial">Industrial Engineering and
+						Management</option>
+					<option value="electrical">Electrical Engineering</option>
+					<option value="mechanical">Mechanical Engineering</option>
+				</select>
+
+				<h4>Type:</h4>
+				<select name="degree_type" class="form-control" id="sel1">
+					<option value="bs">B.S. (Bachelor of Science)</option>
+					<option value="ms">M.S. (Master of Science)</option>
+					<option value="mres">M.Res. (Master of Research)</option>
+				</select> 
+				<h4>Graduate:</h4>
+				<label class="checkbox-inline"><input type="checkbox"
+					name="honors" value="">Graduate with honors</label> <label
+					class="checkbox-inline"><input type="checkbox" name="sat"
+					value="">SAT score above 680</label>
+
+				<h4>Army:</h4>
+
+				<label class="checkbox-inline"><input type="checkbox"
+					name="military" value="">Full military service</label> <label
+					class="checkbox-inline"><input type="checkbox"
+					name="officer" value="">Officer in the army</label>
+
+
+				<h4>High School:</h4>
+
+				<label class="checkbox-inline"><input type="checkbox"
+					name="high_school_honors" value="">High School graduate
+					with honors</label>
+
+				<h4>General:</h4>
+
+				<label class="checkbox-inline"><input type="checkbox"
+					name="experience" value="">Over two years of experience in
+					the field of study</label> <label class="checkbox-inline"><input
+					type="checkbox" name="foreign_languages" value="">Speak
+					foreign languages ​​(except English)</label> <label class="checkbox-inline"><input
+					type="checkbox" name="volunteer" value="">Volunteer work
+					and contribution to society</label> <label class="checkbox-inline"><input
+					type="checkbox" name="volunteer" value="">Past member of
+					the Youth Movement</label>
+			</form>
+		</div>
+		<div ng-show="tab == 1" class="tabsContent fade in active">
+			<!-- Content from here -->
+			<form>
+				<h4>Professional Experience</h4>
+				<label for="usr">Sector:</label> <select name="sector"
+					class="form-control" id="sel1">
+					<option value="software">Software Engineering</option>
+					<option value="industrial">Industrial Engineering and
+						Management</option>
+					<option value="electrical">Electrical Engineering</option>
+					<option value="mechanical">Mechanical Engineering</option>
+				</select> <label for="usr">Candidate type:</label> <select name="candidate"
+					class="form-control" id="sel1">
+					<option value="student">Student</option>
+					<option value="mothers">Mothers</option>
+					<option value="pensioners">Pensioners</option>
+					<option value="academics">Academics with no experience</option>
+					<option value="discharged">Discharged soldiers</option>
+				</select> <h4>Scope of position:</h4> <label><input
+					type="radio" name="scope" value="full" checked>Full time</label> <label><input
+					type="radio" name="scope" value="part">Part time</label> <label><input
+					type="radio" name="scope" value="hours">By hours</label> <h4
+					for="usr">Years of experience:</h4> <select
+					id="experience_years" name="experience_years" class="form-control"
+					id="sel1">
+					<option value="no_experience">0</option>
+					<option value="1_2">1-2</option>
+					<option value="3_4">3-4</option>
+					<option value="5_or_more">5+</option>
+				</select> <h4>Experience:</h4>
+				<textarea class="form-control" rows="5" name="experience"
+					value="Add work experience" id="add" required>{{jobDetails.original_text}}</textarea>
+
+<button type="button" class="btn btn-default">Send</button>
+
+			</form>
+		</div>
+
+
+	</div>
