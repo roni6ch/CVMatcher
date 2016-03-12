@@ -1,17 +1,23 @@
 <div class="resumeWrapper">
 	<h3 compile-html>{{navigation}}</h3>
-	<header>
-		<h2>Resume</h2>
-	</header>
 
-	<div class="swipeIcon" ng-init="swipeIcon()"></div>
 	<input type="hidden" class="starModal btn btn-info btn-lg"
 		data-toggle="modal" data-target="#myModal" />
+		<i id="candidateLike" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLike(user.id)'></i>
+		<i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToUnLike(user.id)'></i>
 	<article id="users">
 		<!-- User Name -->
-		<div>
-			<h3>{{user.name}}</h3>
+		<div ng-init="getUserJson()">
+			<h3>{{user.name}} Resume</h3>
 			<h4>{{user.subsector}}</h4>
+			<!-- STAR RANK -->
+		<!-- 	<span class="starRating animated pulse">
+				 <input id="rating5" type="radio" name="rating" value="5" ng-class="{{user.stars}} == 5 ? 'checked'"><label for="rating5">5</label>
+				 <input id="rating4" type="radio" name="rating" value="4" ng-class="{{user.stars}} == 4 ? 'checked'"><label for="rating4">4</label>
+				 <input id="rating3" type="radio" name="rating" value="3" ng-class="{{user.stars}} == 3 ? 'checked'"><label for="rating3">3</label>
+				 <input id="rating2" type="radio" name="rating" value="2" ng-class="{{user.stars}} == 2 ? 'checked'"><label for="rating2">2</label>
+				 <input id="rating1" type="radio" name="rating" value="1" ng-class="{{user.stars}} == 1 ? 'checked'"><label for="rating1">1</label>
+			</span> -->
 		</div>
 
 		<!-- Resume Skills -->

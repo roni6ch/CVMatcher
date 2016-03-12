@@ -1,0 +1,49 @@
+<div class="myjobsWrapper" ng-init="getMainJson()">
+	<h3 compile-html>{{navigation}}</h3>
+	<header>
+		<h2>Candidates</h2>
+	</header>
+	<form method="get" action="">
+		<input type="text" placeholder="Find Candidate" ng-model="searchText"
+			class="form-control" focus="true">
+	</form>
+	<button type="button" class="btn btn-default"
+		ng-click="sort('-compability')">Sort By Compability</button>
+	<button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+		By Date</button>
+
+	<ul class="nav nav-tabs" ng-init="tab=0">
+		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Unread CV's</a></li>
+		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Liked Cv's</a></li>
+		<li ng-class="{active:tab == 2}"><a ng-click="tab = 2">Unliked CV's</a></li>
+		<li ng-class="{active:tab == 3}"><a ng-click="tab = 3">Favorites</a></li>
+	</ul>
+
+
+	<div class="tabsWrapper">
+	<!-- TODO: change to unreadcvs candidates left... need the json to see how to write it -->
+		<h3>{{candidates.length}} Resume's</h3>
+		<div ng-show="tab == 0" class="fade in active">
+			<!-- jobs sections -->
+			<section
+				ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
+				<div class="candidates animated fadeInUp">
+					<div>
+						<a href=""><i id="candidateStar-{{$index}}" class='fa fa-star-o fa-2x' ng-click='addCandidateToFavorites($index,candidate.id)'></i></a>
+						<a href=""><i id="candidateLike-{{$index}}" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLike($index,candidate.id)'></i></a>
+						<a href="#/Candidates/resume/{{candidate.id}}"><img src="images/logo.png"></a>
+						<h5>{{candidate.subsector}}</h5>
+					</div>
+					<div>
+						<h3>{{candidate.name}}</h3>
+						<a href="#/resume/{{candidate.id}}"><p ng-model="searchText.sector" ng-bind-html="highlight(candidate.sector, searchText)">{{candidate.sector}}</p> 
+							<section circle id="{{ 'circle-container-' + $index }}"
+								data-compability="{{candidate.compability}}">
+								<h5>{{candidate.compability}}%</h5>
+							</section> </a> 
+					</div>
+				</div>
+			</section>
+		</div>
+
+	</div>
