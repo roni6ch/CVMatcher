@@ -7,50 +7,34 @@
 		<input type="text" placeholder="Find Job" ng-model="searchText"
 			class="form-control" focus="true">
 	</form>
-	<button type="button" class="btn btn-default"
-		ng-click="sort('-compability')">Sort By Compability</button>
-	<button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
-		By Date</button>
+	<!-- jobs sections -->
+	<section ng-repeat="job in myjobs | filter:searchText">
+		<div class="jobs animated fadeInDown">
+			<div>
+				<h3 ng-model="searchText.job_name"
+					ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</h3>
+			</div>
+			<div>
+				<h5 ng-model="searchText.address"
+					ng-bind-html="highlight(job.address, searchText)">Address:
+					{{job.address}}</h5>
+				<a href="#/job/{{job._id}}"><p
+						ng-model="searchText.original_text"
+						ng-bind-html="highlight(job.original_text, searchText)">{{job.original_text}}</p>
 
-	<ul class="nav nav-tabs" ng-init="tab=0">
-		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">
-				Managment Engineer</a></li>
-		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Software
-				Engineer</a></li>
-		<li ng-class="{active:tab == 2}"><a ng-click="tab = 2">Electrial
-				Engineer</a></li>
-		<li ng-class="{active:tab == 3}"><a ng-click="tab = 3">Mechanical
-				Engineer</a></li>
-	</ul>
-
-
-	<div class="tabsWrapper">
-		<div ng-show="tab == 0" class="fade in active">
-			<!-- jobs sections -->
-			<section
-				ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
-				<div class="jobs animated fadeInUp">
-					<div>
-						<a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a>
-						<a href="#/jobParameters/{{job._id}}"><i
-							class="fa fa-wrench fa-2x"></i></a> <a href="#/job/{{job._id}}"><i
-							class="fa fa-pencil fa-2x"></i></a> <a href="#/Candidates/{{job._id}}"><img
-							src="images/logo.png"></a>
-
-
-						<h3 ng-model="searchText.job_name"
-							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</h3>
-					</div>
-					<div>
-						<h5>Address: {{job.address}}</h5>
-						<a href="#/job/{{job._id}}"><p>{{job.original_text}}</p> <span>Compability:</span>
-							<section circle id="{{ 'circle-container-' + $index }}"
-								data-compability="{{job.compability}}">
-								<h5>{{job.compability}}%</h5>
-							</section> </a>
-					</div>
-				</div>
-			</section>
+					<span>Compability:</span>
+					<section circle id="{{ 'circle-container-' + $index }}"
+						data-compability="{{job.compability}}">
+						<h5>{{job.compability}}%</h5>
+					</section> </a>
+			</div>
+			<div class="jobsTools">
+				<a href="#/job/{{job._id}}"><i class="fa fa-pencil fa-2x"></i></a> <a
+					href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a>
+				<a href="#/jobParameters/{{job._id}}"><i
+					class="fa fa-wrench fa-2x"></i></a>
+			</div>
 		</div>
+	</section>
 
-	</div>
+</div>

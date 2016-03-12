@@ -1,13 +1,10 @@
 {
 	"Roni": [{
-			"id":1,
 			"name":"Roni Chabra",
 			"sector": "Software Engineer Student",
 			"subsector": "industrial Developer",
 			"phone":"050-2560005",
 			"mail":"Roni6ch@gmail.com",
-			"stars":5,
-			"compability":80,
 			"linkdin":"LinkedIn",
 			  "requirements": [{
 			        "name": "sdfsdF",
@@ -24,14 +21,11 @@
 			    }]
 		}],
 		"Neta Efrati": [{
-			"id":2,
 			"name":"Neta Efrati",
-			"sector": "Engineer Student",
+			"sector": "Software Engineer Student",
 			"subsector": "industrial Developer",
 			"phone":"050-2560005",
-			"stars":3,
 			"mail":"Roni6ch@gmail.com",
-			"compability":50,
 			"linkdin":"LinkedIn",
 			"requirements": [{
 			        "name": "Mobile Developer",
@@ -48,15 +42,12 @@
 			    }]
 		}],
 		"Neta": [{
-		"id":3,
 			"name":"Neta",
 			"sector": "Software Engineer Student",
 			"subsector": "industrial Developer",
 			"phone":"050-2560005",
 			"mail":"Roni6ch@gmail.com",
 			"linkdin":"LinkedIn",
-			"compability":70,
-			"stars":2,
 			"requirements": [{
 			        "name": "sdfsdF",
 			        "years": 2010,

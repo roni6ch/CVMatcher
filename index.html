@@ -30,7 +30,7 @@
 			<a href="/cvmatcher"><img src="images/logo.png"></a>
 		</div>
 		<div>
-			<a ng-href={{profile}}><img src="" id="profileImg"></a>
+			<a href="/cvmatcher"><img src="" id="profileImg"></a>
 		</div>
 		<!-- Img -->
 		<div class="navBarImg">
@@ -38,12 +38,14 @@
 				<!-- Employer NAV -->
 				<ul ng-if="userSignInType == 'employer'">
 					<li><a href="#/myjobs">My jobs</a></li>
-					<li><a href="#/Archive">Archive</a></li>
+					<li><a href="#/readcvs">Read CV's</a></li>
+					<li><a href="#/unreadcvs">Unread CV's</a></li>
+					<li><a href="#/favorites">Favorites</a></li>
 				</ul>
 				<!-- Job Seeker NAV -->
 				<ul ng-if="userSignInType == 'jobSeeker'">
 					<li><a href="#/searchJobs">Search Jobs</a></li>
-					<li><a href="#/yourjobs">My Jobs</a></li>
+					<li><a href="#/yourjobs">Your Jobs</a></li>
 					<li><a href="">Favorite Jobs</a></li>
 				</ul>
 			</nav>
@@ -56,9 +58,9 @@
 	</div>
 	<footer>
 		<ul>
-			<li><a href="#/About">About</a></li>
+			<li><a href="#/about">About</a></li>
 			<li><a href="#/">Settings</a></li>
-			<li><a href="#/Contact">Contact Us</a></li>
+			<li><a href="#/contact">Contact Us</a></li>
 		</ul>
 		<div>
 			<a href="#"><i class="fa fa-facebook-square fa-3x"></i></a> <a
