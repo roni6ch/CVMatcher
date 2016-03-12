@@ -592,8 +592,6 @@ app.directive("compileHtml", function($compile, $location, $rootScope, $http) {
 						continue;
 					if (path[i] == "myjobs")
 						path[i] = "My Jobs";
-					else if (path[i] == "favorites")
-						path[i] = "Favorites";
 					else if (path[i] == "companyProfile")
 						path[i] = "Company Profile";
 					else if (path[i] == "searchJobs")
