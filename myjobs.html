@@ -34,20 +34,26 @@
 						<a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a>
 						<a href="#/jobParameters/{{job._id}}"><i
 							class="fa fa-wrench fa-2x"></i></a> <a href="#/job/{{job._id}}"><i
-							class="fa fa-pencil fa-2x"></i></a> <a href="#/Candidates/{{job._id}}"><img
-							src="images/logo.png"></a>
+							class="fa fa-pencil fa-2x"></i></a> <a
+							href="#/Candidates/{{job._id}}"><img src="images/logo.png"></a>
 
 
 						<h3 ng-model="searchText.job_name"
 							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</h3>
 					</div>
-					<div>
+					<div data-toggle="collapse" data-target="#collepse-{{$index}}">
 						<h5>Address: {{job.address}}</h5>
-						<a href="#/job/{{job._id}}"><p>{{job.original_text}}</p> <span>Compability:</span>
-							<section circle id="{{ 'circle-container-' + $index }}"
-								data-compability="{{job.compability}}">
-								<h5>{{job.compability}}%</h5>
-							</section> </a>
+						<p>{{job.sub_sector}}</p>
+
+						<article id="collepse-{{$index}}" class="collapse">
+							<span>Inforamtion: </span>{{job.original_text}}
+						</article>
+
+						<span>Compability:</span>
+						<section circle id="{{ 'circle-container-' + $index }}"
+							data-compability="{{job.compability}}">
+							<h5>{{job.compability}}%</h5>
+						</section>
 					</div>
 				</div>
 			</section>

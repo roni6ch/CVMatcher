@@ -14,7 +14,7 @@
 			"degree_name": "String",
 			"degree_type": "String"
 		}],
-		"sub_sector": "String",
+		"sub_sector": "Lorem ipsum dolor sit amet, consectetur adipiscing elit consecte",
 		"formula": 90,
 		"requirements": [{
 			"name": "String",

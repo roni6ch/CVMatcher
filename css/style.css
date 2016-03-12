@@ -403,8 +403,6 @@ footer div a {
 	width: 100%;
 	text-align: left;
 	float: left;
-	max-height: 300px;
-	overflow: hidden;
 	text-align: left;
 }
 
@@ -449,6 +447,12 @@ footer div a {
 
 .jobs>div:nth-child(2) span {
 	float: left;
+	font-weight: bold;
+}
+
+.jobs>div:nth-child(2) article {
+	float: left;
+	text-align: justify;
 }
 
 .jobs h5 {
@@ -541,7 +545,7 @@ footer div a {
 	margin-right: 0px !important;
 	padding: 10px 0px !important;
 	height: 100%;
-	font-size: 15px;
+	font-size: 18px;
 }
 
 .nav-tabs .active a {
@@ -667,8 +671,8 @@ footer div a {
 /****************************************************** RESUME - HTML **********************************************/
 #users>div {
 	background: #ebebeb;
-	padding: 20px 0px;
-	margin: 0 auto 20px;
+	padding: 10px 0px;
+	margin: 0 auto 10px;
 	border-radius: 10px;
 }
 
@@ -756,6 +760,8 @@ footer div a {
 #circle-container {
 	z-index: 1;
 	position: relative;
+	width: 80%;
+	margin: 0 auto;
 }
 
 #circle-container>h2 {
@@ -1169,6 +1175,9 @@ footer div a {
 	.tab-content section:hover {
 		opacity: 1;
 	}
+	.nav-tabs li a {
+		font-size: 15px;
+	}
 	.navBarImg {
 		display: none;
 	}
@@ -1311,7 +1320,7 @@ footer div a {
 		width: 100%;
 	}
 	#circle-container>h2 {
-		font-size: 50px;
+		font-size: 10vw;
 	}
 	.resumeDetailsBox {
 		width: 100%;
