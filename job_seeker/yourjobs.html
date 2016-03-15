@@ -1,26 +1,59 @@
 <div class="searchJobsWrapper" ng-init="getMainJson()">
 	<h3 compile-html>{{navigation}}</h3>
 	<header>
-		<h2>Your Jobs</h2>
+		<h2>My Jobs</h2>
 	</header>
 
 	<form method="get" action="">
 		<input type="text" placeholder="Find Job" ng-model="searchText"
 			class="form-control" focus="true">
 	</form>
+	<button type="button" class="btn btn-default"
+		ng-click="sort('-compability')">Sort By Compability</button>
+	<button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+		By Date</button>
 
 	<div class="jobsList">
 		<ul>
-			<li class="jobListLi" ng-repeat="job in jobSeekerJobs"><a
-				href="#/searchJobs/{{job._id}}"> <img
-					src="images/jobSeeker/{{job.logo}}.png">
+			<li class="jobListLi  animated fadeInUp"
+				ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby"><a
+				href="#/yourjobs/{{job._id}}"> <img
+					ng-src="images/jobSeeker/{{job.logo}}.png">
 					<article>
-						<p>{{job.job_name}}</p>
-						<p>{{job.name}}</p>
-						<p>{{job.address}}, {{job.time_published}}</p>
-					</article> <i class="fa fa-angle-right fa-4x"></i>
+						<p ng-model="searchText.job_name"
+							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</p>
+						<p ng-model="searchText.name"
+							ng-bind-html="highlight(job.name, searchText)">{{job.name}}</p>
+						<p ng-model="searchText.address"
+							ng-bind-html="highlight(job.address, searchText)">{{job.address}},
+							{{job.time_published}}</p>
+					</article> <img class="readUnread" ng-src="{{job.readUnread == false ? 'images/unreadV.png' : 'images/readV.png'}}" />
+					
+				<span class="rating animated pulse"> 
+				    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
+					<label for="rating-5" class="rating-star"  ng-if="job.stars<5" ng-style="{'background-position':'0 -16px'}"></label> 
+					<label for="rating-5" class="rating-star"  ng-if="job.stars==5" ng-style="{'background-position':'0 0'}"></label> 
+					<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating"> 
+					<label for="rating-4" class="rating-star"  ng-if="job.stars<4" ng-style="{'background-position':'0 -16px'}"></label> 
+					<label for="rating-4" class="rating-star"  ng-if="job.stars>=4" ng-style="{'background-position':'0 0'}"></label> 
+					<input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
+					<label for="rating-3" class="rating-star"  ng-if="job.stars<3" ng-style="{'background-position':'0 -16px'}"></label> 
+					<label for="rating-3" class="rating-star"  ng-if="job.stars>=3" ng-style="{'background-position':'0 0'}"></label> 
+					<input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
+					<label for="rating-2" class="rating-star"  ng-if="job.stars<2" ng-style="{'background-position':'0 -16px'}"></label> 
+					<label for="rating-2" class="rating-star"  ng-if="job.stars>=2" ng-style="{'background-position':'0 0'}"></label> 
+					<input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
+					<label for="rating-1" class="rating-star"  ng-if="job.stars<1" ng-style="{'background-position':'0 -16px'}"></label> 
+					<label for="rating-1" class="rating-star"  ng-if="job.stars>=1" ng-style="{'background-position':'0 0'}"></label> 
+				</span>
+					
+					<section circle id="{{ 'circle-container-' + $index }}"
+						data-compability="{{job.compability}}">
+						<h5>{{job.compability}}%</h5>
+					</section>
 			</a>
 				<hr></li>
 		</ul>
 	</div>
+
 </div>

@@ -15,19 +15,23 @@
 
 	<div class="jobsList">
 		<ul>
-			<li class="jobListLi  animated fadeInUp" ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby"><a
+			<li class="jobListLi  animated fadeInUp"
+				ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby"><a
 				href="#/searchJobs/{{job._id}}"> <img
 					ng-src="images/jobSeeker/{{job.logo}}.png">
 					<article>
-						<p ng-model="searchText.job_name" ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</p>
-						<p ng-model="searchText.name" ng-bind-html="highlight(job.name, searchText)">{{job.name}}</p>
-						<p ng-model="searchText.address" ng-bind-html="highlight(job.address, searchText)">{{job.address}}, {{job.time_published}}</p>
+						<p ng-model="searchText.job_name"
+							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</p>
+						<p ng-model="searchText.name"
+							ng-bind-html="highlight(job.name, searchText)">{{job.name}}</p>
+						<p ng-model="searchText.address"
+							ng-bind-html="highlight(job.address, searchText)">{{job.address}},
+							{{job.time_published}}</p>
 					</article>
-					 <i class="fa fa-angle-right fa-4x"></i>
-						<section circle id="{{ 'circle-container-' + $index }}"
-							data-compability="{{job.compability}}">
-							<h5>{{job.compability}}%</h5>
-						</section>
+					<section circle id="{{ 'circle-container-' + $index }}"
+						data-compability="{{job.compability}}">
+						<h5>{{job.compability}}%</h5>
+					</section>
 			</a>
 				<hr></li>
 		</ul>

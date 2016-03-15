@@ -1,12 +1,23 @@
-<div class="matchpageWrapper">
+<div class="matchpageWrapper" ng-init="getMainJson()">
+	<h3 compile-html>{{navigation}}</h3>
 	<header>
-		<h2>
-			<img src="images/jobSeeker/Tdown.png">Oops
-		</h2>
+		<h2>Match Page</h2>
 	</header>
 
+	<div class="progress">
+		<div class="progress-bar progress-bar-success" role="progressbar"
+			style="width: 25%">Description</div>
+		<div class="progress-bar progress-bar-warning" role="progressbar"
+			style="width: 25%">Feedback</div>
+		<div role="progressbar" style="width: 25%">Fix CV</div>
+		<div role="progressbar" style="width: 25%">Finish</div>
+	</div>
 	<div class="matchResult">
-		<img class="" src="images/compability.png">
+		<h2>Oops</h2>
+		<img src="images/jobSeeker/Tdown.png">
+		<section id="user-container">
+			<h5></h5>
+		</section>
 		<h3>You did not passed the minimum requirements</h3>
 
 		<span style="color: #57b7ee">C++</span> , <span
@@ -20,6 +31,9 @@
 			</section>
 			<h2>Skills</h2>
 		</section>
+		<div id="formulasAppend"></div>
 	</div>
-	<a href="#/matchpage">Send CV</a>
+</div>
+<a href="" class="btn btn-default">Fix CV</a>
+<a href="" class="btn btn-default">Send CV</a>
 </div>

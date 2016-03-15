@@ -230,43 +230,29 @@ footer div a {
 }
 
 /* STAR RANKING */
-.starRating:not(old) {
-	display: inline-block;
-	width: 7.5em;
-	height: 1.3em;
+.rating {
 	overflow: hidden;
-	vertical-align: bottom;
+	display: inline-block;
 }
 
-.starRating:not(old)>input {
-	margin-right: -100%;
-	float: left;
-	opacity: 0;
+.rating-input {
+	position: absolute;
+	left: 0;
+	top: -50px;
 }
 
-.starRating:not(old)>label {
+.rating-star {
 	display: block;
 	float: right;
-	position: relative;
-	background: url('../images/grayStar.png');
-	background-size: contain;
+	width: 16px;
+	height: 16px;
+	background: url('../images/star.png') 0 -16px;
 }
 
-.starRating:not(old)>label:before {
-	content: '';
-	display: block;
-	width: 1.5em;
-	height: 1.5em;
-	background: url('../images/yellowStar.png');
-	background-size: contain;
-	opacity: 0;
-	transition: opacity 0.2s linear;
+.rating-input:checked ~ .rating-star {
+	background-position: 0 0;
 }
 
-.starRating:not(old)>label:hover:before, .starRating:not(old)>label:hover 
-	 ~ label:before, .starRating:not (:hover ) >.checked ~ label:before {
-	opacity: 1;
-}
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 .googleSignInWrapper>div>a {
 	width: 50%;
@@ -403,8 +389,6 @@ footer div a {
 	width: 100%;
 	text-align: left;
 	float: left;
-	max-height: 300px;
-	overflow: hidden;
 	text-align: left;
 }
 
@@ -449,6 +433,12 @@ footer div a {
 
 .jobs>div:nth-child(2) span {
 	float: left;
+	font-weight: bold;
+}
+
+.jobs>div:nth-child(2) article {
+	float: left;
+	text-align: justify;
 }
 
 .jobs h5 {
@@ -541,7 +531,7 @@ footer div a {
 	margin-right: 0px !important;
 	padding: 10px 0px !important;
 	height: 100%;
-	font-size: 15px;
+	font-size: 18px;
 }
 
 .nav-tabs .active a {
@@ -595,6 +585,10 @@ footer div a {
 	text-align: left;
 }
 
+.candidatesTabs li {
+	height: 44px !important;
+}
+
 .candidates>div:nth-child(1) {
 	height: 40px;
 	background: #B5B5B5;
@@ -603,7 +597,8 @@ footer div a {
 
 .candidates>div:nth-child(1) a {
 	float: right;
-	margin-left: 2%;
+	margin-left: 5px;
+	width: 25px;
 	font-size: 11px;
 }
 
@@ -657,7 +652,11 @@ footer div a {
 }
 
 .candidates img {
-	width: 22%;
+	width: 100%;
+	float: right;
+}
+
+.candidates span {
 	float: right;
 }
 
@@ -667,8 +666,8 @@ footer div a {
 /****************************************************** RESUME - HTML **********************************************/
 #users>div {
 	background: #ebebeb;
-	padding: 20px 0px;
-	margin: 0 auto 20px;
+	padding: 10px 0px;
+	margin: 0 auto 10px;
 	border-radius: 10px;
 }
 
@@ -756,6 +755,8 @@ footer div a {
 #circle-container {
 	z-index: 1;
 	position: relative;
+	width: 80%;
+	margin: 0 auto;
 }
 
 #circle-container>h2 {
@@ -958,7 +959,6 @@ footer div a {
 	position: relative;
 	width: 60px;
 	float: right;
-	right: 40px;
 	top: 15px;
 }
 
@@ -983,6 +983,18 @@ footer div a {
 	margin-top: 15px;
 }
 
+/****************************************************** MY JOBS - JOBSEEKER - HTML **********************************************/
+.readUnread {
+	position: absolute;
+	right: 75px;
+	top: 30px;
+}
+
+.jobListLi span {
+	position: absolute;
+	bottom: 50px;
+	right: 0;
+}
 /****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
 	width: 100%;
@@ -1011,16 +1023,6 @@ footer div a {
 	text-align: justify;
 }
 
-.jobPageWrapper>a {
-	color: #000;
-	font-weight: bold;
-	background: #ccc;
-	padding: 14px;
-	border-radius: 17px;
-	opacity: 0.6;
-	text-decoration: none;
-}
-
 .skills+section h2 {
 	float: left;
 	margin-right: 5%;
@@ -1034,9 +1036,21 @@ footer div a {
 	opacity: 1;
 }
 
+#job-circle-container {
+	width: 15%;
+	position: relative;
+}
+
+#job-circle-container h5 {
+	position: absolute;
+	top: 52%;
+	left: 24%;
+	font-size: 2.5vw;
+}
+
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 .matchResult {
-	width: 500px;
+	width: 80%;
 	margin: 0 auto;
 }
 
@@ -1057,16 +1071,34 @@ footer div a {
 	margin-top: 30px;
 }
 
-.matchpageWrapper>a {
-	color: #000;
-	font-weight: bold;
-	background: #ccc;
-	padding: 14px;
-	border-radius: 17px;
-	opacity: 0.6;
-	text-decoration: none;
+#user-container {
+	width: 20%;
+	position: relative;
+	margin: 0 auto;
 }
 
+#user-container h5 {
+	position: absolute;
+	top: 38%;
+	left: 25%;
+	font-size: 2.5vw;
+}
+
+.matchResult #circle-container {
+	z-index: 1; position : relative;
+	width: 80%;
+	margin: 0 auto;
+	position: relative;
+}
+
+.matchResult #circle-container>svg {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.matchResult #circle-container h2 {
+	font-size: 4.5vw;
+}
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
 /****************************************************************************************************************************/
@@ -1158,7 +1190,55 @@ footer div a {
 .profileWrapper ul li {
 	width: 50% !important;
 }
-/****************************************************** MEDIA - MAX 767 **********************************************/
+
+/****************************************************************************************************************************/
+/****************************************************** MY CV - HTML ********************************************************/
+/****************************************************************************************************************************/
+.mycv {
+	margin-bottom: 47px;
+	border: 2px solid #ebebeb;
+	float: left;
+	overflow: hidden;
+	padding: 15px 0px 15px 0px;
+	text-align: left;
+	border-radius: 10px;
+}
+
+.mycv>div {
+	width: 100% !important;
+	padding: 6px 15px;
+	margin-bottom: 0px !important;
+	float: left;
+}
+
+.experience>section>label:first-child {
+	float: left;
+	width: 100%;
+}
+
+#experience {
+	width: 75%;
+	float: left;
+	margin-top: 10px;
+}
+
+#years {
+	width: 22%;
+	margin-left: 2%;
+	float: right;
+	margin-top: 10px;
+}
+
+.btn-warning {
+	margin-top: 10px;
+	float: left;
+}
+
+/****************************************************************************************************/
+/****************************************************************************************************************************/
+/****************************************************** MEDIA - MAX 767 ********************************************************/
+/****************************************************************************************************************************/
+/****************************************************************************************************/
 @media ( max-width :767px) {
 	.mobile {
 		display: block;
@@ -1169,11 +1249,14 @@ footer div a {
 	.tab-content section:hover {
 		opacity: 1;
 	}
+	.nav-tabs li a {
+		font-size: 15px;
+	}
 	.navBarImg {
 		display: none;
 	}
 	.navBar {
-		padding: 15px;
+		padding: 15px 15px 52px 15px;
 	}
 	.navBar>div:nth-child(1) {
 		padding: 0px;
@@ -1196,6 +1279,25 @@ footer div a {
 		overflow: hidden;
 		width: 66%;
 		font-size: 14px !important;
+	}
+	#user-container h5 {
+		font-size: 5vw;
+	}
+	.matchResult #circle-container h2 {
+		font-size: 10.5vw;
+	}
+	.candidates>div:nth-child(1) {
+		padding: 10px 5px 0px;
+	}
+	.candidates>div:nth-child(1) a {
+		margin-right: 0px;
+		margin-left: 0px;
+		text-align: right
+	}
+	.readUnread {
+		position: absolute;
+		right: 70px;
+		top: 30px;
 	}
 	.jobsList article {
 		width: 45%;
@@ -1276,11 +1378,14 @@ footer div a {
 		bottom: 10px;
 		top: initial;
 	}
+	.matchResult {
+		width: 100%;
+	}
 	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
 		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
 		.jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
 		.companyprofileWrapper, .contactusWrapper, .profileWrapper {
-		padding: 50px 10px 30px;
+		padding: 10px 10px 0px;
 		width: 100%;
 	}
 	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
@@ -1311,7 +1416,7 @@ footer div a {
 		width: 100%;
 	}
 	#circle-container>h2 {
-		font-size: 50px;
+		font-size: 10vw;
 	}
 	.resumeDetailsBox {
 		width: 100%;
@@ -1346,12 +1451,13 @@ footer div a {
 	footer ul li {
 		padding: 0px;
 		text-align: center;
-		width: 24%;
+		width: 32%;
 	}
 	footer {
 		height: auto;
 		position: fixed;
 		bottom: 0;
+		padding: 5px 0px 0px;
 		border-top: 1px solid #6F6F6F;
 	}
 	footer ul li a {
@@ -1368,6 +1474,9 @@ footer div a {
 	footer ul:nth-child(3) a i {
 		width: 100%;
 		text-align: center;
+	}
+	footer ul:nth-child(3) a p {
+		margin: 0px;
 	}
 	/*MEDIA TIMELINE*/
 	.timeline>li>.timeline-panel {

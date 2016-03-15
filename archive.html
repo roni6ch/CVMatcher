@@ -1,84 +1,62 @@
-<div class="readcvsWrapper">
+<div class="myjobsWrapper" ng-init="getMainJson()">
 	<h3 compile-html>{{navigation}}</h3>
 	<header>
 		<h2>Archive</h2>
 	</header>
-
-
+	<form method="get" action="">
+		<input type="text" placeholder="Find Job" ng-model="searchText"
+			class="form-control" focus="true">
+	</form>
+	<button type="button" class="btn btn-default"
+		ng-click="sort('-compability')">Sort By Compability</button>
+	<button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+		By Date</button>
 
 	<ul class="nav nav-tabs" ng-init="tab=0">
-		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">
-				Managment Engineer</a></li>
-		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Software
+		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
 				Engineer</a></li>
+		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">
+				Managment Engineer</a></li>
 		<li ng-class="{active:tab == 2}"><a ng-click="tab = 2">Electrial
 				Engineer</a></li>
 		<li ng-class="{active:tab == 3}"><a ng-click="tab = 3">Mechanical
 				Engineer</a></li>
 	</ul>
 
-	<div class="tab-content">
-		<div ng-show="tab == 0" class="tabsContent fade in active">
-			<!-- Content from here -->
-			<article ng-init="getMainJson();limitPost=2"
-				infinite-scroll="limitPost=limitPost+1" infinite-scroll-distance="2">
-				<section ng-repeat="job in jobs.managment | limitTo:limitPost">
-					<a href="#/favorites/resume/{{job.name}}"><div
-							class="animated fadeInUp">
-							<img src="images/stars.png">
-							<h3>{{job.subsector}}</h3>
-							<h4>{{job.name}}</h4>
-							<h5>{{job.sector}}</h5>
-						</div></a>
-				</section>
-			</article>
-		</div>
-		<div ng-show="tab == 1" class="tabsContent fade in active">
-			<!-- Content from here -->
-			<article ng-init="getMainJson();limitPost=2"
-				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
-				<section ng-repeat="job in jobs.software | limitTo:limitPost">
-					<div class="animated fadeInUp">
-						<img src="images/stars.png">
-						<h3>{{job.subsector}}</h3>
-						<h4>{{job.name}}</h4>
-						<h5>{{job.sector}}</h5>
+
+	<div class="tabsWrapper">
+		<div ng-show="tab == 0" class="fade in active">
+			<!-- jobs sections -->
+			<section
+				ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
+				<div class="jobs animated fadeInUp">
+					<div>
+						<a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a>
+						<a href="#/jobParameters/{{job._id}}"><i
+							class="fa fa-wrench fa-2x"></i></a> <a href="#/job/{{job._id}}"><i
+							class="fa fa-pencil fa-2x"></i></a> <a
+							href="#/Candidates/{{job._id}}"><img src="images/logo.png"></a>
+
+
+						<h3 ng-model="searchText.job_name"
+							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</h3>
 					</div>
-				</section>
-			</article>
-		</div>
-		<div ng-show="tab == 2" class="tabsContent fade in active">
-			<!-- Content from here -->
-			<article ng-init="getMainJson();limitPost=2"
-				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
-				<section ng-repeat="job in jobs.electrial | limitTo:limitPost">
-					<div class="animated fadeInUp">
-						<img src="images/stars.png">
-						<h3>{{job.subsector}}</h3>
-						<h4>{{job.name}}</h4>
-						<h5>{{job.sector}}</h5>
+					<div data-toggle="collapse" data-target="#collepse-{{$index}}">
+						<h5>Address: {{job.address}}</h5>
+						<p>{{job.sub_sector}}</p>
+
+						<article id="collepse-{{$index}}" class="collapse">
+							<span>Inforamtion: </span>{{job.original_text}}
+						</article>
+
+						<span>Compability:</span>
+						<section circle id="{{ 'circle-container-' + $index }}"
+							data-compability="{{job.compability}}">
+							<h5>{{job.compability}}%</h5>
+						</section>
 					</div>
-				</section>
-			</article>
+				</div>
+			</section>
 		</div>
-		<div ng-show="tab == 3" class="tabsContent fade in active">
-			<!-- Content from here -->
-			<article ng-init="getMainJson();limitPost=2"
-				infinite-scroll="limitPost=limitPost+3" infinite-scroll-distance="2">
-				<section ng-repeat="job in jobs.mechanical | limitTo:limitPost">
-					<div class="animated fadeInUp">
-						<img src="images/stars.png">
-						<h3>{{job.subsector}}</h3>
-						<h4>{{job.name}}</h4>
-						<h5>{{job.sector}}</h5>
-					</div>
-				</section>
-			</article>
-		</div>
+
 	</div>
-
-
-
-
-
-</div>

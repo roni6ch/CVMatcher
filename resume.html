@@ -2,22 +2,33 @@
 	<h3 compile-html>{{navigation}}</h3>
 
 	<input type="hidden" class="starModal btn btn-info btn-lg"
-		data-toggle="modal" data-target="#myModal" />
-		<i id="candidateLike" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLike(user.id)'></i>
-		<i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToUnLike(user.id)'></i>
+		data-toggle="modal" data-target="#myModal" /> <i id="candidateLike"
+		class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLike(user.id)'></i>
+	<i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
+		ng-click='addCandidateToUnLike(user.id)'></i>
 	<article id="users">
 		<!-- User Name -->
 		<div ng-init="getUserJson()">
 			<h3>{{user.name}} Resume</h3>
 			<h4>{{user.subsector}}</h4>
 			<!-- STAR RANK -->
-		<!-- 	<span class="starRating animated pulse">
-				 <input id="rating5" type="radio" name="rating" value="5" ng-class="{{user.stars}} == 5 ? 'checked'"><label for="rating5">5</label>
-				 <input id="rating4" type="radio" name="rating" value="4" ng-class="{{user.stars}} == 4 ? 'checked'"><label for="rating4">4</label>
-				 <input id="rating3" type="radio" name="rating" value="3" ng-class="{{user.stars}} == 3 ? 'checked'"><label for="rating3">3</label>
-				 <input id="rating2" type="radio" name="rating" value="2" ng-class="{{user.stars}} == 2 ? 'checked'"><label for="rating2">2</label>
-				 <input id="rating1" type="radio" name="rating" value="1" ng-class="{{user.stars}} == 1 ? 'checked'"><label for="rating1">1</label>
-			</span> -->
+			<span class="rating  animated pulse"> 
+			    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
+				<label for="rating-5" class="rating-star"  ng-if="user.stars<5" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-5" class="rating-star"  ng-if="user.stars==5" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating"> 
+				<label for="rating-4" class="rating-star"  ng-if="user.stars<4" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-4" class="rating-star"  ng-if="user.stars>=4" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
+				<label for="rating-3" class="rating-star"  ng-if="user.stars<3" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-3" class="rating-star"  ng-if="user.stars>=3" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
+				<label for="rating-2" class="rating-star"  ng-if="user.stars<2" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-2" class="rating-star"  ng-if="user.stars>=2" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
+				<label for="rating-1" class="rating-star"  ng-if="user.stars<1" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-1" class="rating-star"  ng-if="user.stars>=1" ng-style="{'background-position':'0 0'}"></label> 
+			</span>
 		</div>
 
 		<!-- Resume Skills -->
@@ -105,15 +116,23 @@
 				</div>
 				<div class="modal-body">
 					<!-- STAR RANK -->
-					<span class="starRating"> <input id="rating5" type="radio"
-						name="rating" value="5"> <label for="rating5">5</label> <input
-						id="rating4" type="radio" name="rating" value="4"> <label
-						for="rating4">4</label> <input id="rating3" type="radio"
-						name="rating" value="3" checked> <label for="rating3">3</label>
-						<input id="rating2" type="radio" name="rating" value="2">
-						<label for="rating2">2</label> <input id="rating1" type="radio"
-						name="rating" value="1"> <label for="rating1">1</label>
-					</span>
+					<span class="rating  animated pulse"> 
+			    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
+				<label for="rating-5" class="rating-star"  ng-if="user.stars<5" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-5" class="rating-star"  ng-if="user.stars==5" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating"> 
+				<label for="rating-4" class="rating-star"  ng-if="user.stars<4" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-4" class="rating-star"  ng-if="user.stars>=4" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
+				<label for="rating-3" class="rating-star"  ng-if="user.stars<3" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-3" class="rating-star"  ng-if="user.stars>=3" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
+				<label for="rating-2" class="rating-star"  ng-if="user.stars<2" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-2" class="rating-star"  ng-if="user.stars>=2" ng-style="{'background-position':'0 0'}"></label> 
+				<input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
+				<label for="rating-1" class="rating-star"  ng-if="user.stars<1" ng-style="{'background-position':'0 -16px'}"></label> 
+				<label for="rating-1" class="rating-star"  ng-if="user.stars>=1" ng-style="{'background-position':'0 0'}"></label> 
+			</span>
 
 				</div>
 				<div class="modal-footer">

@@ -2,13 +2,13 @@
 	<h3 compile-html>{{navigation}}</h3>
 
 	<header>
-		<!-- 
-		<ul class="pBar">
-			<li>Description</li>
-			<li>Feedback</li>
-			<li>Fix CV</li>
-			<li>Finish</li>
-		</ul> -->
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" role="progressbar"
+				style="width: 25%">Description</div>
+			<div role="progressbar" style="width: 25%">Feedback</div>
+			<div role="progressbar" style="width: 25%">Fix CV</div>
+			<div role="progressbar" style="width: 25%">Finish</div>
+		</div>
 		<h2>Job description</h2>
 	</header>
 
@@ -31,7 +31,11 @@
 	</ol>
 	<section>
 		<h2>Minimum match percentage:</h2>
-		<img src="images/compability.png" />
+		<section id="job-circle-container">
+			<h5>{{job.compability}}%</h5>
+		</section>
+
 	</section>
-	<a href="#/matchpage">Check my CV</a>
+	<a ng-href="#/searchJobs/matchpage/{{job._id}}" class="btn btn-default">Check
+		my CV</a>
 </div>
