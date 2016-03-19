@@ -1,0 +1,39 @@
+<div class="jobParametersWrapper" ng-init="initFormulas()">
+    <h3 compile-html>{{navigation}}</h3>
+    <header>
+        <h2>Job Parameters</h2>
+    </header>
+    <p>We have defined default parameters for you.</p>
+
+    <p>You can modify any bar by clicking and dragging it.</p>
+
+    <!--  slider -->
+    <ul id="sliders">
+        <p>Locations</p>
+        <li>
+            <div class="slider"></div>
+			<span class="value" data-id="1">{{formulas["locations"]}}</span>
+        </li>
+        <p>Candidate Type</p>
+        <li>
+            <div class="slider"></div>
+			<span class="value"  data-id="2">{{formulas["candidate_type"]}}</span>
+        </li>
+        <p>Scope of Position</p>
+        <li>
+            <div class="slider"></div>
+			<span class="value"  data-id="3">{{formulas["scope_of_position"]}}</span>
+        </li>
+        <p>Academy</p>
+        <li>
+            <div class="slider"></div>
+			<span class="value"  data-id="4">{{formulas["sub_sector"]}}</span>
+        </li>
+        <p>Requirements</p>
+        <li>
+            <div class="slider"></div>
+			<span class="value"  data-id="5">{{formulas["requirements"]}}</span>
+        </li>
+    </ul>
+
+</div>

@@ -1,16 +1,16 @@
 * {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-	text-decoration: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    text-decoration: none;
 }
 
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 
-/* 
+/*
 @font-face {
 	font-family: 'alefBold';
 	font-weight: 300; (bold)
@@ -24,1214 +24,1195 @@
 	src: url('../fonts/Alef-regular.ttf');
 } */
 article, aside, details, figcaption, figure, footer, header, hgroup,
-	menu, nav, section, img {
-	display: block;
+menu, nav, section, img {
+    display: block;
 }
 
 html {
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	height: 83%;
-	margin: 0 auto !important;
-	font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
-		"sans-serif";
+    height: 83%;
+    margin: 0 auto !important;
+    font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
+    "sans-serif";
 }
 
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 
 hr {
-	background: #000;
-	width: 100%;
-	height: 1px;
+    background: #000;
+    width: 100%;
+    height: 1px;
 }
 
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 input, textarea, select, option {
-	resize: none;
-	outline: none;
-	-webkit-border-radius: 0px;
-	border: 0;
+    resize: none;
+    outline: none;
+    -webkit-border-radius: 0px;
+    border: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
-	margin: 0px;
+    font-weight: normal;
+    margin: 0px;
 }
 
 a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 textarea::-webkit-input-placeholder, input::-webkit-input-placeholder {
-	/* WebKit browsers */
-	color: #000;
-	font-size: 15px;
-	outline: 0;
+    /* WebKit browsers */
+    color: #000;
+    font-size: 15px;
+    outline: 0;
 }
 
 textarea:-moz-placeholder, input:-moz-placeholder {
-	/* Mozilla Firefox 4 to 18 */
-	color: #000;
-	font-size: 15px;
-	outline: 0;
+    /* Mozilla Firefox 4 to 18 */
+    color: #000;
+    font-size: 15px;
+    outline: 0;
 }
 
 textarea::-moz-placeholder, input::-moz-placeholder {
-	/* Mozilla Firefox 19+ */
-	color: #000;
-	font-size: 15px;
-	outline: 0;
+    /* Mozilla Firefox 19+ */
+    color: #000;
+    font-size: 15px;
+    outline: 0;
 }
 
 textarea:-ms-input-placeholder, input:-ms-input-placeholder {
-	/* Internet Explorer 10+ */
-	color: #000;
-	font-size: 15px;
-	outline: 0;
+    /* Internet Explorer 10+ */
+    color: #000;
+    font-size: 15px;
+    outline: 0;
 }
 
 footer {
-	width: 100%;
-	float: right;
-	background: #c0c0c0;
-	padding: 10px;
-	float: right;
-	z-index: 10000;
+    width: 100%;
+    float: right;
+    background: #c0c0c0;
+    padding: 10px;
+    float: right;
+    z-index: 10000;
 }
 
 footer ul {
-	float: left;
+    float: left;
 }
 
 footer ul:nth-child(3) {
-	display: none;
+    display: none;
 }
 
 footer ul li {
-	display: inline-block;
-	padding: 0px 15px;
+    display: inline-block;
+    padding: 0px 15px;
 }
 
 footer ul li a {
-	color: #fff;
-	font-size: 22px;
-	font-weight: 600;
-	padding: 0% !important;
-	color: #fff !important;
-	text-shadow: 1px 1px 0px #283744;
-	font-size: 22px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 0% !important;
+    color: #fff !important;
+    text-shadow: 1px 1px 0px #283744;
+    font-size: 22px;
 }
 
 footer div {
-	float: right;
+    float: right;
 }
 
 footer div a {
-	margin-left: 10px;
+    margin-left: 10px;
 }
 
 .coverBackground {
-	-webkit-background-size: cover !important;
-	-moz-background-size: cover !important;
-	-o-background-size: cover;
-	background-size: cover !important;
-	width: 580px;
-	height: 430px;
-	left: 0px;
-	float: left;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover;
+    background-size: cover !important;
+    width: 580px;
+    height: 430px;
+    left: 0px;
+    float: left;
 }
 
 .flc {
-	clear: both;
+    clear: both;
 }
 
 .flr {
-	float: right;
+    float: right;
 }
 
 .fll {
-	float: left;
+    float: left;
 }
 
 .hidden {
-	display: none;
+    display: none;
 }
 
 .wrapper {
-	position: relative;
-	text-align: center;
-	padding: 63px 50px 22px;
-	color: #606060;
-	float: left;
-	width: 100%;
-	min-height: 100%;
-	margin-bottom: -10px; /*  for the sticky footer */
+    position: relative;
+    text-align: center;
+    padding: 63px 50px 22px;
+    color: #606060;
+    float: left;
+    width: 100%;
+    min-height: 100%;
+    margin-bottom: -10px; /*  for the sticky footer */
 }
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
-	.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,
-	.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
-	.contactusWrapper, .googleSignInWrapper, .companyprofileWrapper,
-	.profileWrapper {
-	width: 60%;
-	margin: 0 auto;
+.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,
+.googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
+.contactusWrapper, .googleSignInWrapper, .companyprofileWrapper,
+.profileWrapper {
+    width: 75%;
+    margin: 0 auto;
 }
 
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
-	.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
-	.resumeWrapper header h2, .jobParametersWrapper header h2,
-	.searchJobsWrapper header h2, .jobPageWrapper header h2,
-	.matchpageWrapper header h2, .googleSignInWrapper header h2,
-	.aboutWrapper header h2, .contactusWrapper header h2,
-	.companyprofileWrapper header h2, .profileWrapper header h2 {
-	margin-bottom: 25px !important;
-	text-align: left;
+.favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
+.resumeWrapper header h2, .jobParametersWrapper header h2,
+.searchJobsWrapper header h2, .jobPageWrapper header h2,
+.matchpageWrapper header h2, .googleSignInWrapper header h2,
+.aboutWrapper header h2, .contactusWrapper header h2,
+.companyprofileWrapper header h2, .profileWrapper header h2 {
+    margin-bottom: 25px !important;
+    text-align: left;
 }
 
-.myjobsWrapper>h3, .readcvsWrapper>h3, .unreadcvsWrapper>h3,
-	.favoritesWrapper>h3, .resumeWrapper>h3, .jobWrapper>h3,
-	.jobParametersWrapper>h3, .searchJobsWrapper>h3, .jobPageWrapper>h3,
-	.matchpageWrapper>h3, .googleSignInWrapper>h3, .aboutWrapper>h3,
-	.companyprofileWrapper>h3, .profileWrapper>h3, .contactusWrapper>h3 {
-	position: absolute;
-	color: #257bbe;
-	font-size: 16px;
-	top: 20px;
+.myjobsWrapper > h3, .readcvsWrapper > h3, .unreadcvsWrapper > h3,
+.favoritesWrapper > h3, .resumeWrapper > h3, .jobWrapper > h3,
+.jobParametersWrapper > h3, .searchJobsWrapper > h3, .jobPageWrapper > h3,
+.matchpageWrapper > h3, .googleSignInWrapper > h3, .aboutWrapper > h3,
+.companyprofileWrapper > h3, .profileWrapper > h3, .contactusWrapper > h3 {
+    position: absolute;
+    color: #257bbe;
+    font-size: 16px;
+    top: 20px;
 }
 
 .highlighted {
-	background: #fffc00;
+    background: #fffc00;
 }
 
 .mobile {
-	display: none;
+    display: none;
 }
 
 .web {
-	display: block;
+    display: block;
 }
 
 /* STAR RANKING */
 .rating {
-	overflow: hidden;
-	display: inline-block;
+    overflow: hidden;
+    display: inline-block;
 }
 
 .rating-input {
-	position: absolute;
-	left: 0;
-	top: -50px;
+    position: absolute;
+    left: 0;
+    top: -50px;
 }
 
 .rating-star {
-	display: block;
-	float: right;
-	width: 16px;
-	height: 16px;
-	background: url('../images/star.png') 0 -16px;
+    display: block;
+    float: right;
+    width: 16px;
+    height: 16px;
+    background: url('../images/star.png') 0 -16px;
 }
 
 .rating-input:checked ~ .rating-star {
-	background-position: 0 0;
+    background-position: 0 0;
 }
 
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
-.googleSignInWrapper>div>a {
-	width: 50%;
-	float: left;
-	opacity: 0.6;
+.googleSignInWrapper > div > a {
+    width: 50%;
+    float: left;
+    opacity: 0.6;
 }
 
-.googleSignInWrapper>div>a:hover, .googleSignInWrapper>div>a:focus {
-	opacity: 1;
-	text-decoration: none;
+.googleSignInWrapper > div > a:hover, .googleSignInWrapper > div > a:focus {
+    opacity: 1;
+    text-decoration: none;
 }
 
-.googleSignInWrapper>div>a>h3 {
-	margin-left: 5%;
-	cursor: pointer;
-	margin-bottom: 20px;
+.googleSignInWrapper > div > a > h3 {
+    margin-left: 5%;
+    cursor: pointer;
+    margin-bottom: 20px;
 }
 
-.googleSignInWrapper>div:nth-child(2) {
-	margin-top: 30px;
-	margin-bottom: 30px;
+.googleSignInWrapper > div:nth-child(2) {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
-.googleSignInWrapper>div:nth-child(4) {
-	width: 100%;
-	margin-top: 5%;
-	float: left;
+.googleSignInWrapper > div:nth-child(4) {
+    width: 100%;
+    margin-top: 5%;
+    float: left;
 }
 
-.googleSignInWrapper>div>a>img {
-	margin-left: 5%;
-	display: inline-block;
-	cursor: pointer;
+.googleSignInWrapper > div > a > img {
+    margin-left: 5%;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .abcRioButton {
-	margin: 0 auto;
+    margin: 0 auto;
 }
+
 /****************************************************** INDEX - NAV BAR **********************************************/
 
 /*NAV*/
 .navbar {
-	height: 0px;
-	min-height: inherit !important;
+    height: 0px;
+    min-height: inherit !important;
 }
 
-.navBar>div:nth-child(1) {
-	padding: 15px;
-	float: left;
-	position: absolute;
+.navBar > div:nth-child(1) {
+    padding: 15px;
+    float: left;
+    position: absolute;
 }
 
-.navBar>div:nth-child(1) img {
-	width: 50%;
+.navBar > div:nth-child(1) img {
+    width: 50%;
 }
 
-.navBar>div:nth-child(2) {
-	margin: 15px;
-	float: right;
-	position: absolute;
-	right: 0px;
+.navBar > div:nth-child(2) {
+    margin: 15px;
+    float: right;
+    position: absolute;
+    right: 0px;
 }
 
-.navBar>div:nth-child(2)>a>img {
-	border-radius: 1000px;
-	float: right;
-	width: 60%;
+.navBar > div:nth-child(2) > a > img {
+    border-radius: 1000px;
+    float: right;
+    width: 60%;
 }
 
 .navBarImg {
-	float: right;
-	overflow: hidden;
-	height: 150px;
-	background-image: url("../images/navImg.jpg");
-	width: 100%;
+    float: right;
+    overflow: hidden;
+    height: 150px;
+    background-image: url("../images/navImg.jpg");
+    width: 100%;
 }
 
 .navBarImg img {
-	max-height: 261px;
-	width: 100%;
+    max-height: 261px;
+    width: 100%;
 }
 
 .navBarImg li a {
-	font-size: 26px;
-	font-weight: 600;
-	padding: 0% !important;
-	color: #fff !important;
-	text-shadow: 1px 1px 0px #283744;
+    font-size: 26px;
+    font-weight: 600;
+    padding: 0% !important;
+    color: #fff !important;
+    text-shadow: 1px 1px 0px #283744;
 }
 
 .navBarImg ul {
-	width: 100%;
-	padding: 100px 0px 0px;
+    width: 100%;
+    padding: 100px 0px 0px;
 }
 
 .navBarImg ul li {
-	display: inline-block !important;
-	float: none;
-	margin: 0% 3% !important;
+    display: inline-block !important;
+    float: none;
+    margin: 0% 3% !important;
 }
 
 .container-fluid {
-	padding-right: 0px;
+    padding-right: 0px;
 }
 
 /****************************************************** MY JOBS - HTML **********************************************/
 .myjobsWrapper form {
-	margin: 0 auto;
-	width: 50%;
-	margin-bottom: 10px;
-	display: inline-block;
+    margin: 0 auto;
+    width: 50%;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .myjobsWrapper form button {
-	float: left;
-	width: 15%;
-	padding-right: 0px;
-	margin-left: 10px;
-	padding-left: 0px;
+    float: left;
+    width: 15%;
+    padding-right: 0px;
+    margin-left: 10px;
+    padding-left: 0px;
 }
 
 .myjobsWrapper section {
-	width: 100%;
-	float: left;
+    width: 100%;
+    float: left;
 }
 
-.myjobsWrapper section>div {
-	border-radius: 10px;
+.myjobsWrapper section > div {
+    border-radius: 10px;
 }
 
 .jobs {
-	margin-top: 20px;
-	border: 2px solid #B5B5B5;
-	width: 100%;
-	text-align: left;
-	float: left;
-	text-align: left;
+    margin-top: 20px;
+    border: 2px solid #B5B5B5;
+    width: 100%;
+    text-align: left;
+    float: left;
+    text-align: left;
 }
 
-.jobs>div:nth-child(1) {
-	height: 40px;
-	background: #B5B5B5;
-	padding: 10px 13px;
+.jobs > div:nth-child(1) {
+    height: 40px;
+    background: #B5B5B5;
+    padding: 10px 13px;
 }
 
-.jobs>div:nth-child(1) a {
-	float: right;
-	margin-left: 2%;
-	font-size: 11px;
+.jobs > div:nth-child(1) a {
+    float: right;
+    margin-left: 2%;
+    font-size: 11px;
 }
 
-.jobs>div:nth-child(1) h3 {
-	font-size: 18px;
+.jobs > div:nth-child(1) h3 {
+    font-size: 18px;
 }
 
-.jobs>div:nth-child(2) {
-	padding: 10px 20px;
-	float: left;
-	width: 100%;
+.jobs > div:nth-child(2) {
+    padding: 10px 20px;
+    float: left;
+    width: 100%;
 }
 
-.jobs>div:nth-child(2) a {
-	text-decoration: none;
+.jobs > div:nth-child(2) a {
+    text-decoration: none;
 }
 
-.jobs>div:nth-child(2) section {
-	position: relative;
-	width: 60px;
-	float: right;
+.jobs > div:nth-child(2) section {
+    position: relative;
+    width: 60px;
+    float: right;
 }
 
-.jobs>div:nth-child(2) section h5 {
-	position: absolute;
-	top: 36%;
-	left: 24%;
-	font-size: 18px;
+.jobs > div:nth-child(2) section h5 {
+    position: absolute;
+    top: 36%;
+    left: 24%;
+    font-size: 18px;
 }
 
-.jobs>div:nth-child(2) span {
-	float: left;
-	font-weight: bold;
+.jobs > div:nth-child(2) span {
+    float: left;
+    font-weight: bold;
 }
 
-.jobs>div:nth-child(2) article {
-	float: left;
-	text-align: justify;
+.jobs > div:nth-child(2) article {
+    float: left;
+    text-align: justify;
 }
 
 .jobs h5 {
-	color: #606060;
-	font-weight: bold;
+    color: #606060;
+    font-weight: bold;
 }
 
 .tabsWrapper {
-	padding: 0px 20px 20px;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-	background: #DCDCDC;
-	float: left;
-	width: 100%;
+    padding: 15px 20px 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #DCDCDC;
+    float: left;
+    width: 100%;
 }
 
-.tabsWrapper>h3 {
-	margin-top: 10px;
+.tabsWrapper > h3 {
+    margin-top: 10px;
 }
 
 .jobs h5:nth-child(3) {
-	margin-top: 20px !important;
-	display: inline-block;
+    margin-top: 20px !important;
+    display: inline-block;
 }
 
 .jobs p {
-	margin: 10px 0px 10px;
-	color: #000;
-	font-size: 16px;
-	text-align: justify;
+    margin: 10px 0px 10px;
+    color: #000;
+    font-size: 16px;
+    text-align: justify;
 }
 
 .jobs img {
-	width: 22%;
-	float: right;
+    width: 22%;
+    float: right;
 }
 
 .jobs img:hover {
-	opacity: 0.6;
+    opacity: 0.6;
 }
 
 .jobsTools {
-	float: right;
-	background: #1b75bb;
-	width: 8%;
-	min-height: 300px;
-	height: auto;
+    float: right;
+    background: #1b75bb;
+    width: 8%;
+    min-height: 300px;
+    height: auto;
 }
 
 .jobsTools a i {
-	color: #fff;
-	width: 100%;
-	margin: 20px 0px 40px;
-	text-align: center;
+    color: #fff;
+    width: 100%;
+    margin: 20px 0px 40px;
+    text-align: center;
 }
 
 .jobsTools a i:hover {
-	color: #000;
+    color: #000;
 }
 
 .tab-content {
-	padding: 30px;
-	background: #e6e6e6;
+    padding: 30px;
+    background: #e6e6e6;
 }
 
-.tab-content section:hover {
-	opacity: 0.8;
-}
 
 .tab-content a {
-	text-decoration: none !important;
+    text-decoration: none !important;
 }
 
-.tabsContent>article>section {
-	margin-bottom: 10px;
-	position: relative;
+.tabsContent > article > section {
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .nav-tabs li {
-	cursor: pointer;
-	border: 1px solid #ccc;
-	width: 25%;
-	height: 66px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    width: 25%;
+    height: 66px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .nav-tabs li a {
-	color: #1b75bb;
-	margin-right: 0px !important;
-	padding: 10px 0px !important;
-	height: 100%;
-	font-size: 18px;
+    color: #1b75bb;
+    margin-right: 0px !important;
+    padding: 10px 0px !important;
+    height: 100%;
+    font-size: 18px;
 }
 
 .nav-tabs .active a {
-	background: #e6e6e6 !important;
+    background: #e6e6e6 !important;
 }
 
-.tabsContent div {
-	background: #1b75bb;
-	padding: 20px 25px;
-	border-radius: 10px;
-	margin-bottom: 40px;
-}
-
-.tabsContent div h3, .tabsContent div h4, .tabsContent div h5 {
-	color: #ebebeb;
-	text-align: left;
-}
 
 .tabsContent div h3 {
-	font-weight: 800;
-	padding-bottom: 20px;
-	overflow: hidden;
+    font-weight: 800;
+    padding-bottom: 20px;
+    overflow: hidden;
 }
 
-.tabsContent div h4 {
-	font-weight: 600;
-	padding-bottom: 16px;
-}
 
 .tabsContent div h5 {
-	font-weight: 500;
+    font-weight: 500;
 }
 
 .tabsContent .starRating {
-	float: right;
-	position: absolute;
-	right: 10px;
-	top: 10px;
-	z-index: 1;
+    float: right;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
 }
 
 /****************************************************** Candidtaes - HTML **********************************************/
 .candidates {
-	margin-top: 20px;
-	border: 2px solid #B5B5B5;
-	width: 100%;
-	text-align: left;
-	float: left;
-	max-height: 300px;
-	overflow: hidden;
-	text-align: left;
+    margin-top: 20px;
+    border: 2px solid #B5B5B5;
+    width: 100%;
+    text-align: left;
+    float: left;
+    max-height: 300px;
+    overflow: hidden;
+    text-align: left;
 }
 
 .candidatesTabs li {
-	height: 44px !important;
+    height: 44px !important;
 }
 
-.candidates>div:nth-child(1) {
-	height: 40px;
-	background: #B5B5B5;
-	padding: 10px 13px;
+.candidates > div:nth-child(1) {
+    height: 40px;
+    background: #B5B5B5;
+    padding: 10px 13px;
 }
 
-.candidates>div:nth-child(1) a {
-	float: right;
-	margin-left: 5px;
-	width: 25px;
-	font-size: 11px;
+.candidates > div:nth-child(1) a {
+    float: right;
+    margin-left: 5px;
+    width: 25px;
+    font-size: 11px;
 }
 
-.candidates>div:nth-child(1) h3 {
-	font-size: 18px;
+.candidates > div:nth-child(1) h3 {
+    font-size: 18px;
 }
 
-.candidates>div:nth-child(2) {
-	padding: 10px 20px;
-	float: left;
-	width: 100%;
+.candidates > div:nth-child(2) {
+    padding: 10px 20px;
+    float: left;
+    width: 100%;
 }
 
-.candidates>div:nth-child(2) a {
-	text-decoration: none;
+.candidates > div:nth-child(2) a {
+    text-decoration: none;
 }
 
-.candidates>div:nth-child(2) section {
-	position: absolute;
-	width: 60px;
-	top: 50px;
-	right: 10px;
+.candidates > div:nth-child(2) section {
+    position: absolute;
+    width: 60px;
+    top: 50px;
+    right: 10px;
 }
 
-.candidates>div:nth-child(2) section h5 {
-	position: absolute;
-	top: 36%;
-	left: 24%;
-	font-size: 18px;
+.candidates > div:nth-child(2) section h5 {
+    position: absolute;
+    top: 36%;
+    left: 24%;
+    font-size: 18px;
 }
 
-.candidates>div:nth-child(2) span {
-	float: left;
+.candidates > div:nth-child(2) span {
+    float: left;
 }
 
 .candidates h5 {
-	color: #606060;
-	font-weight: bold;
-}
-
-.candidates h5:nth-child(3) {
-	margin-top: 20px !important;
-	display: inline-block;
+    color: #606060;
+    font-weight: bold;
 }
 
 .candidates p {
-	margin: 10px 0px 10px;
-	color: #000;
-	font-size: 16px;
-	text-align: justify;
+    margin: 10px 0px 10px;
+    color: #000;
+    font-size: 16px;
+    text-align: justify;
 }
 
 .candidates img {
-	width: 100%;
-	float: right;
+    width: 100%;
+    float: right;
 }
 
 .candidates span {
-	float: right;
+    float: right;
 }
 
 .candidates img:hover {
-	opacity: 0.6;
+    opacity: 0.6;
 }
+
 /****************************************************** RESUME - HTML **********************************************/
-#users>div {
-	background: #ebebeb;
-	padding: 10px 0px;
-	margin: 0 auto 10px;
-	border-radius: 10px;
+#users > div {
+    background: #ebebeb;
+    padding: 10px 0px;
+    margin: 0 auto 10px;
+    border-radius: 10px;
 }
 
-.resumeWrapper>div h3 {
-	font-size: 2.2vw;
-	padding-bottom: 10px;
+.resumeWrapper > div h3 {
+    font-size: 2.2vw;
+    padding-bottom: 10px;
 }
 
-.resumeWrapper>div h4 {
-	font-size: 1.5vw;
+.resumeWrapper > div h4 {
+    font-size: 1.5vw;
 }
 
-.resumeWrapper>div h3, .resumeWrapper>div h4 {
-	color: #ebebeb;
+.resumeWrapper > div h3, .resumeWrapper > div h4 {
+    color: #ebebeb;
 }
 
 .resumeDetailsBox {
-	background: #ebebeb;
-	padding: 10px;
-	margin: 0 auto;
-	border-radius: 10px;
+    background: #ebebeb;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 10px;
 }
 
 .resumeDetailsBox div {
-	width: 30%;
-	display: inline-block;
-	margin-bottom: 20px;
+    width: 30%;
+    display: inline-block;
+    margin-bottom: 20px;
 }
 
 .resumeDetailsBox a {
-	text-decoration: none !important;
-	margin-bottom: 10px;
+    text-decoration: none !important;
+    margin-bottom: 10px;
 }
 
 .resumeDetailsBox h3 {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .resumeDetailsBox h4 {
-	margin-left: 10px;
+    margin-left: 10px;
 }
 
 .resumeSkillsBox {
-	margin-bottom: 20px;
-	padding: 10px;
-	border-radius: 10px;
-	margin: 0 auto;
-	width: 500px;
-	margin-bottom: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 auto;
+    width: 500px;
+    margin-bottom: 20px;
 }
 
-.resumeSkillsBox>span {
-	font-weight: bold;
-	font-size: 25px;
+.resumeSkillsBox > span {
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .resumeSkillsBox h3 {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .resumeSkillsBox img {
-	width: 100%;
+    width: 100%;
 }
 
 .resumeYears {
-	background: #ebebeb;
-	padding: 10px;
-	border-radius: 10px;
-	margin-bottom: 20px;
+    background: #ebebeb;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 
-.resumeYears>div {
-	width: 60%;
-	margin: 0 auto;
+.resumeYears input,.resumeYears textarea{background: none;    width: 100%;}
+.resumeYears > div {
+    width: 60%;
+    margin: 0 auto;
 }
 
-.resumeYears>div h3:nth-child(1) {
-	float: left;
+.resumeYears > div h3:nth-child(1) {
+    float: left;
 }
 
-.resumeYears>div h3:nth-child(2) {
-	float: right;
+.resumeYears > div h3:nth-child(2) {
+    float: right;
 }
 
 #circle-container {
-	z-index: 1;
-	position: relative;
-	width: 80%;
-	margin: 0 auto;
+    z-index: 1;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
 }
 
-#circle-container>h2 {
-	text-shadow: 1px 3px 3px #88b9f1;
-	position: absolute;
-	top: 25%;
-	left: 26%;
-	z-index: 10;
-	font-size: 60px;
-	text-align: center;
-	width: 50%;
-	height: 50%;
-	line-height: 3.5;
-	background: #ccc;
-	-moz-border-radius: 70px;
-	-webkit-border-radius: 70px;
-	border-radius: 100%;
-	box-shadow: 4px 14px 64px #50a2e1;
+#circle-container > h2 {
+    text-shadow: 1px 3px 3px #88b9f1;
+    position: absolute;
+    top: 25%;
+    left: 26%;
+    z-index: 10;
+    font-size: 60px;
+    text-align: center;
+    width: 50%;
+    height: 50%;
+    line-height: 3.5;
+    background: #ccc;
+    -moz-border-radius: 70px;
+    -webkit-border-radius: 70px;
+    border-radius: 100%;
+    box-shadow: 4px 14px 64px #50a2e1;
 }
 
 #circle-container2 {
-	width: 90%;
-	z-index: 2;
-	position: absolute;
-	top: 5%;
-	left: 5%;
+    width: 90%;
+    z-index: 2;
+    position: absolute;
+    top: 5%;
+    left: 5%;
 }
 
 #circle-container3 {
-	width: 90%;
-	z-index: 3;
-	position: absolute;
-	top: 5%;
-	left: 5%;
+    width: 90%;
+    z-index: 3;
+    position: absolute;
+    top: 5%;
+    left: 5%;
 }
 
 #circle-container4 {
-	width: 90%;
-	z-index: 4;
-	position: absolute;
-	top: 5%;
-	left: 5%;
+    width: 90%;
+    z-index: 4;
+    position: absolute;
+    top: 5%;
+    left: 5%;
 }
 
 .text-muted {
-	color: #57b7ee;
-	font-weight: bold;
-	font-size: 24px;
+    color: #57b7ee;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 .swipeIcon {
-	display: none;
+    display: none;
 }
 
 #candidateLike {
-	position: fixed;
-	right: 4%;
-	top: 18%;
-	z-index: 100000000000;
+    position: fixed;
+    right: 4%;
+    top: 18%;
+    z-index: 100000000000;
 }
 
 #candidateUnLike {
-	position: fixed;
-	z-index: 100000000000;
-	left: 4%;
-	-ms-transform: rotate(180deg);
-	-webkit-transform: rotate(180deg);
-	transform: rotate(180deg);
-	top: 18%;
+    position: fixed;
+    z-index: 100000000000;
+    left: 4%;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+    top: 18%;
 }
+
 /****************************************************** JOB - HTML **********************************************/
 .jobEdit {
-	margin-bottom: 47px;
-	border: 2px solid #ebebeb;
-	float: left;
-	overflow: hidden;
-	padding: 15px 0px 15px 0px;
-	text-align: left;
-	border-radius: 10px;
+    margin-bottom: 47px;
+    border: 2px solid #ebebeb;
+    float: left;
+    overflow: hidden;
+    padding: 15px 0px 15px 0px;
+    text-align: left;
+    border-radius: 10px;
 }
 
 .jobEdit div {
-	width: 100% !important;
-	padding: 6px 15px;
-	margin-bottom: 0px !important;
-	float: left;
+    width: 100% !important;
+    padding: 6px 15px;
+    margin-bottom: 0px !important;
+    float: left;
 }
 
 .editLogo {
-	float: left;
-	width: 100%;
+    float: left;
+    width: 100%;
 }
 
-.editLogo+input {
-	width: 70%;
-	float: left;
+.editLogo + input {
+    width: 70%;
+    float: left;
 }
 
-.editLogo+input+img {
-	float: right;
-	width: 40px;
+.editLogo + input + img {
+    float: right;
+    width: 40px;
 }
 
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
-.jobParametersWrapper p {
-	color: #606060;
-	font-weight: bold;
+.jobParametersWrapper > p {
+    color: #606060;
+    font-weight: bold;
 }
 
-.jobSlider {
-	display: inline-block;
-	width: 6%;
-	margin-right: 2%;
+#sliders {
+    position: relative;
 }
 
-.jobSlider>h3 {
-	font-size: 10px;
-	margin-top: 10px;
+#sliders li {
+    width: 10%;
+    margin: 2%;
+    display: inline-block;
+    margin-top: 150px;
 }
 
-.jobSlider input {
-	border: 0;
-	color: #f6931f;
-	width: 40px;
-	font-weight: bold;
+#sliders li div {
+    width: 100%;
+    float: left;
+    margin-left: 2%;
+    margin-bottom: 10px;
 }
 
-.jobSlider label {
-	color: #f6931f;
-	font-size: 14px;
+#sliders p {
+    display: inline-block;
+    transform: rotate(90deg);
+    position: absolute;
+    top: 70px;
 }
 
-.jobSlider div {
-	height: 200px;
-	width: 100%;
-}
-
-.jobSlider div span {
-	width: 112% !important;
+#sliders li div span {
+    width: 120%;
 }
 
 .ui-widget-header {
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,4dcfdd+100 */
-	background: rgb(30, 87, 153); /* Old browsers */
-	background: -moz-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
-		rgba(77, 207, 221, 1) 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
-		rgba(77, 207, 221, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
-		rgba(77, 207, 221, 1) 100%);
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,4dcfdd+100 */
+    background: rgb(30, 87, 153); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
+    rgba(77, 207, 221, 1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
+    rgba(77, 207, 221, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
+    rgba(77, 207, 221, 1) 100%);
 }
 
 /************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
 /************************************************************************************************************************************/
 .searchJobsWrapper form input {
-	margin: 0 auto;
-	margin: 0 auto;
-	float: left;
-	width: 100%;
-	margin-bottom: 10px;
-	display: inline-block;
+    margin: 0 auto;
+    margin: 0 auto;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    display: inline-block;
 }
 
 .searchJobsWrapper form button {
-	float: right;
-	width: 15%;
-	padding-right: 0px;
-	padding-left: 0px;
+    float: right;
+    width: 15%;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .jobsList ul li {
-	width: 100%;
-	padding: 10px 10px;
+    width: 100%;
+    padding: 10px 10px;
 }
 
 .jobsList ul li a {
-	opacity: 0.7;
+    opacity: 0.7;
 }
 
 .jobsList ul li a:hover {
-	opacity: 1;
+    opacity: 1;
 }
 
 .jobsList article {
-	width: 60%;
-	float: left;
+    width: 60%;
+    float: left;
 }
 
 .jobsList article p {
-	text-align: left;
-	margin-left: 20px;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .jobListLi {
-	float: left;
+    float: left;
 }
 
 .jobListLi section {
-	position: relative;
-	width: 60px;
-	float: right;
-	top: 15px;
+    position: relative;
+    width: 60px;
+    float: right;
+    top: 15px;
 }
 
 .jobListLi section h5 {
-	position: absolute;
-	top: 36%;
-	left: 24%;
-	font-size: 18px;
+    position: absolute;
+    top: 36%;
+    left: 24%;
+    font-size: 18px;
 }
 
 .jobListLi img {
-	float: left;
+    float: left;
 }
 
 .jobListLi a {
-	width: 100%;
-	display: inline-block;
+    width: 100%;
+    display: inline-block;
 }
 
 .jobListLi a i {
-	float: right;
-	margin-top: 15px;
+    float: right;
+    margin-top: 15px;
 }
 
 /****************************************************** MY JOBS - JOBSEEKER - HTML **********************************************/
 .readUnread {
-	position: absolute;
-	right: 75px;
-	top: 30px;
+    position: absolute;
+    right: 75px;
+    top: 30px;
 }
 
 .jobListLi span {
-	position: absolute;
-	bottom: 50px;
-	right: 0;
+    position: absolute;
+    bottom: 50px;
+    right: 0;
 }
+
 /****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
-	width: 100%;
-	text-align: left;
+    width: 100%;
+    text-align: left;
 }
 
 .jobPageWrapper p {
-	text-align: justify;
+    text-align: justify;
 }
 
 .jobPageWrapper h2 {
-	text-align: left;
-	margin-bottom: 10px;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 .jobPageWrapper h4 {
-	text-align: left;
-	margin-bottom: 10px;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 .skills {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .skills li {
-	text-align: justify;
+    text-align: justify;
 }
 
-.skills+section h2 {
-	float: left;
-	margin-right: 5%;
+.skills + section h2 {
+    float: left;
+    margin-right: 5%;
 }
 
-.skills+section {
-	margin-bottom: 5%;
+.skills + section {
+    margin-bottom: 5%;
 }
 
-.jobPageWrapper>a:hover {
-	opacity: 1;
+.jobPageWrapper > a:hover {
+    opacity: 1;
 }
 
 #job-circle-container {
-	width: 15%;
-	position: relative;
+    width: 15%;
+    position: relative;
 }
 
 #job-circle-container h5 {
-	position: absolute;
-	top: 52%;
-	left: 24%;
-	font-size: 2.5vw;
+    position: absolute;
+    top: 52%;
+    left: 24%;
+    font-size: 2.5vw;
 }
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 .matchResult {
-	width: 80%;
-	margin: 0 auto;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .matchpageWrapper header h2 img {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
 .matchResult img {
-	margin: 0 auto;
+    margin: 0 auto;
 }
 
-.matchResult>#circle-container {
-	width: 80%;
-	margin: 20px auto;
+.matchResult > #circle-container {
+    width: 80%;
+    margin: 20px auto;
 }
 
 .prograssBars {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 #user-container {
-	width: 20%;
-	position: relative;
-	margin: 0 auto;
+    width: 20%;
+    position: relative;
+    margin: 0 auto;
 }
 
 #user-container h5 {
-	position: absolute;
-	top: 38%;
-	left: 25%;
-	font-size: 2.5vw;
+    position: absolute;
+    top: 38%;
+    left: 25%;
+    font-size: 2.5vw;
 }
 
 .matchResult #circle-container {
-	z-index: 1; position : relative;
-	width: 80%;
-	margin: 0 auto;
-	position: relative;
+    z-index: 1;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
 }
 
-.matchResult #circle-container>svg {
-	margin-bottom: 20px;
-	margin-top: 20px;
+.matchResult #circle-container > svg {
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .matchResult #circle-container h2 {
-	font-size: 4.5vw;
+    font-size: 4.5vw;
 }
+
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
 /****************************************************************************************************************************/
 .aboutWrapper p {
-	text-align: left;
-	margin-top: 10px;
-	font-size: 16px;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 .aboutWrapper h4 {
-	text-align: left;
-	margin-top: 24px;
+    text-align: left;
+    margin-top: 24px;
 }
 
 .aboutWrapper h5 {
-	font-size: 18px;
-	margin: 30px 0px;
+    font-size: 18px;
+    margin: 30px 0px;
 }
 
 /****************************************************************************************************************************/
 /****************************************************** CONTACT - HTML ********************************************************/
 /****************************************************************************************************************************/
 .contactusWrapper div {
-	float: left;
-	border-radius: 10px;
-	background: #c0c0c0;
-	width: 48%;
-	margin-left: 2%;
-	min-height: 477px;
-	padding: 30px;
-	margin-bottom: 1%;
+    float: left;
+    border-radius: 10px;
+    background: #c0c0c0;
+    width: 48%;
+    margin-left: 2%;
+    min-height: 477px;
+    padding: 30px;
+    margin-bottom: 1%;
 }
 
 .contactusWrapper div h3 {
-	margin-bottom: 40px;
+    margin-bottom: 40px;
 }
 
-.contactusWrapper>div>section {
-	width: 100%;
-	margin-bottom: 20px;
+.contactusWrapper > div > section {
+    width: 100%;
+    margin-bottom: 20px;
 }
 
-.contactusWrapper>div>section>i {
-	width: 100%;
-	text-align: center;
+.contactusWrapper > div > section > i {
+    width: 100%;
+    text-align: center;
 }
 
-.contactusWrapper>div>section>span {
-	text-align: left;
-	font-size: 20px;
+.contactusWrapper > div > section > span {
+    text-align: left;
+    font-size: 20px;
 }
 
-.contactusWrapper>article {
-	border-radius: 10px;
-	background: #c0c0c0;
-	width: 98%;
-	margin-left: 2%;
-	min-height: 420px;
-	clear: both;
-	padding: 30px;
+.contactusWrapper > article {
+    border-radius: 10px;
+    background: #c0c0c0;
+    width: 98%;
+    margin-left: 2%;
+    min-height: 420px;
+    clear: both;
+    padding: 30px;
 }
 
 /****************************************************************************************************************************/
 /****************************************************** PROFILE - HTML ********************************************************/
 /****************************************************************************************************************************/
 .userProfile h4 {
-	margin: 10px 0px;
+    margin: 10px 0px;
 }
 
 .userProfile .checkbox-inline, .radio-inline {
-	width: 100%;
+    width: 100%;
 }
 
 .userProfile {
-	text-align: left;
+    text-align: left;
 }
 
 .userProfile label {
-	margin: 0px;
-	margin-top: 5px;
-	margin-left: 0px !important;
+    margin: 0px;
+    margin-top: 5px;
+    margin-left: 0px !important;
 }
 
 .userProfile button {
-	margin: 10px auto;
-	width: 100%;
+    margin: 10px auto;
+    width: 100%;
 }
 
-.profileWrapper ul li {
-	width: 50% !important;
+.profileWrapper > ul li {
+    width: 50% !important;
 }
 
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
 /****************************************************************************************************************************/
 .mycv {
-	margin-bottom: 47px;
-	border: 2px solid #ebebeb;
-	float: left;
-	overflow: hidden;
-	padding: 15px 0px 15px 0px;
-	text-align: left;
-	border-radius: 10px;
+    margin-bottom: 47px;
+    border: 2px solid #ebebeb;
+    float: left;
+    overflow: hidden;
+    padding: 15px 0px 15px 0px;
+    text-align: left;
+    border-radius: 10px;
 }
 
-.mycv>div {
-	width: 100% !important;
-	padding: 6px 15px;
-	margin-bottom: 0px !important;
-	float: left;
+.mycv > div {
+    width: 100% !important;
+    padding: 6px 15px;
+    margin-bottom: 0px !important;
+    float: left;
 }
 
-.experience>section>label:first-child {
-	float: left;
-	width: 100%;
+.experience > section > label:first-child {
+    float: left;
+    width: 100%;
 }
 
 #experience {
-	width: 75%;
-	float: left;
-	margin-top: 10px;
+    width: 75%;
+    float: left;
+    margin-top: 10px;
 }
 
 #years {
-	width: 22%;
-	margin-left: 2%;
-	float: right;
-	margin-top: 10px;
+    width: 22%;
+    margin-left: 2%;
+    float: right;
+    margin-top: 10px;
 }
 
 .btn-warning {
-	margin-top: 10px;
-	float: left;
+    margin-top: 10px;
+    float: left;
 }
 
 /****************************************************************************************************/
@@ -1239,406 +1220,473 @@ footer div a {
 /****************************************************** MEDIA - MAX 767 ********************************************************/
 /****************************************************************************************************************************/
 /****************************************************************************************************/
-@media ( max-width :767px) {
-	.mobile {
-		display: block;
-	}
-	.web {
-		display: none;
-	}
-	.tab-content section:hover {
-		opacity: 1;
-	}
-	.nav-tabs li a {
-		font-size: 15px;
-	}
-	.navBarImg {
-		display: none;
-	}
-	.navBar {
-		padding: 15px 15px 52px 15px;
-	}
-	.navBar>div:nth-child(1) {
-		padding: 0px;
-	}
-	.navBar>div:nth-child(2) {
-		margin: 0px;
-	}
-	.jobs>div>h3 {
-		line-height: 21px;
-		position: absolute;
-		overflow: hidden;
-		width: 66%;
-		font-size: 14px !important;
-	}
-	.candidates h5 {
-		color: #606060;
-		font-weight: bold;
-		line-height: 21px;
-		position: absolute;
-		overflow: hidden;
-		width: 66%;
-		font-size: 14px !important;
-	}
-	#user-container h5 {
-		font-size: 5vw;
-	}
-	.matchResult #circle-container h2 {
-		font-size: 10.5vw;
-	}
-	.candidates>div:nth-child(1) {
-		padding: 10px 5px 0px;
-	}
-	.candidates>div:nth-child(1) a {
-		margin-right: 0px;
-		margin-left: 0px;
-		text-align: right
-	}
-	.readUnread {
-		position: absolute;
-		right: 70px;
-		top: 30px;
-	}
-	.jobsList article {
-		width: 45%;
-		float: left;
-	}
-	.jobListLi a i {
-		display: none;
-	}
-	.jobListLi section {
-		right: 0px;
-	}
-	.jobsTools {
-		width: 15%;
-	}
-	.jobsTools a i {
-		margin: 10px 0px 10px;
-	}
-	.jobs>div:nth-child(1) a i {
-		margin-left: 2px;
-	}
-	.nav-tabs {
-		margin-top: 10px;
-	}
-	.jobs>div:nth-child(1) {
-		padding: 10px 4px;
-	}
-	.tabsWrapper {
-		padding: 0px 5px 0px;
-	}
-	.resumeWrapper>div {
-		width: 100%;
-	}
-	.jobParametersWrapper {
-		padding-bottom: 80px;
-	}
-	.resumeWrapper>div h3 {
-		font-size: 6.2vw;
-	}
-	.resumeWrapper>div h4 {
-		font-size: 3.5vw;
-	}
-	.jobSlider>h3 {
-		font-size: 22px;
-		margin-top: 114px;
-		-webkit-transform: rotate(-90deg);
-		-moz-transform: rotate(-90deg);
-	}
-	.jobSlider label {
-		font-size: 10px;
-	}
-	.jobSlider input {
-		width: 75%;
-	}
-	.wrapper {
-		padding: 0px 0px 70px;
-	}
-	.myjobsWrapper, .resumeWrapper {
-		padding: 0px 10px 80px;
-	}
-	.jobs p {
-		margin: 10px 0px 10px;
-		color: #000;
-		font-size: 14px;
-	}
-	.nav-tabs li {
-		height: 66px;
-	}
-	.googleSignInWrapper>div>a>img {
-		width: 40%;
-	}
-	.googleSignInWrapper>div>a>h3 {
-		font-size: 20px;
-	}
-	.googleSignInWrapper>div>a {
-		float: none;
-	}
-	.tabsContent .starRating {
-		bottom: 10px;
-		top: initial;
-	}
-	.matchResult {
-		width: 100%;
-	}
-	.myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
-		.favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
-		.jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
-		.companyprofileWrapper, .contactusWrapper, .profileWrapper {
-		padding: 10px 10px 0px;
-		width: 100%;
-	}
-	.myjobsWrapper>h3, .resumeWrapper>h3, .readcvsWrapper>h3,
-		.unreadcvsWrapper>h3, .favoritesWrapper>h3, .jobParametersWrapper>h3,
-		.searchJobsWrapper>h3, .jobWrapper>h3, .jobPageWrapper>h3,
-		.aboutWrapper>h3, .contactusWrapper>h3
-		.matchpageWrapper>h3, .companyprofileWrapper>h3, .profileWrapper>h3 {
-		display: none;
-	}
-	#myManagmentJobs, #mySoftwareJobs, #myElectrialJobs, #myMechanicalJobs {
-		height: 200px;
-	}
-	.tabsContent div {
-		height: 200px;
-		margin-bottom: 0px;
-	}
-	.swipeIcon {
-		position: absolute;
-		top: 5%;
-		left: 35%;
-		display: block;
-	}
-	.jobPageWrapper>a {
-		float: left;
-		margin-bottom: 70px;
-	}
-	.resumeSkillsBox {
-		width: 100%;
-	}
-	#circle-container>h2 {
-		font-size: 10vw;
-	}
-	.resumeDetailsBox {
-		width: 100%;
-	}
-	.resumeDetailsBox div {
-		width: 100%;
-	}
-	.resumeYears>div:nth-child(1) {
-		display: none;
-	}
-	.myjobsWrapper form {
-		width: 100%;
-	}
-	.myjobsWrapper form button {
-		width: 25%;
-	}
-	.jobSlider div span {
-		width: 125% !important;
-	}
-	.contactusWrapper div {
-		width: 100%;
-		margin-bottom: 1%;
-		margin-left: 0%;
-	}
-	footer div {
-		padding: 0px;
-		display: none;
-	}
-	footer ul {
-		padding: 0px;
-	}
-	footer ul li {
-		padding: 0px;
-		text-align: center;
-		width: 32%;
-	}
-	footer {
-		height: auto;
-		position: fixed;
-		bottom: 0;
-		padding: 5px 0px 0px;
-		border-top: 1px solid #6F6F6F;
-	}
-	footer ul li a {
-		font-size: 3.5vw;
-	}
-	footer ul:nth-child(1) {
-		display: none;
-	}
-	footer ul:nth-child(3) {
-		display: block;
-		width: 100%;
-		margin: 0 auto;
-	}
-	footer ul:nth-child(3) a i {
-		width: 100%;
-		text-align: center;
-	}
-	footer ul:nth-child(3) a p {
-		margin: 0px;
-	}
-	/*MEDIA TIMELINE*/
-	.timeline>li>.timeline-panel {
-		width: 100% !important;
-		background: #d4d4d4;
-		z-index: 2;
-	}
-	.timeline-inverted, .timeline-badge, .btn-group, .timeline>li>.timeline-panel:after,
-		.timeline>li>.timeline-panel:before {
-		display: none !important;
-	}
+@media ( max-width: 767px) {
+    .mobile {
+        display: block;
+    }
+
+    .web {
+        display: none;
+    }
+
+    .tab-content section:hover {
+        opacity: 1;
+    }
+
+    .nav-tabs li a {
+        font-size: 15px;
+    }
+
+    .navBarImg {
+        display: none;
+    }
+
+    .navBar {
+        padding: 15px 15px 52px 15px;
+    }
+
+    .navBar > div:nth-child(1) {
+        padding: 0px;
+    }
+
+    .navBar > div:nth-child(2) {
+        margin: 0px;
+    }
+
+    .jobs > div > h3 {
+        line-height: 21px;
+        position: absolute;
+        overflow: hidden;
+        width: 66%;
+        font-size: 14px !important;
+    }
+
+    .candidates h5 {
+        color: #606060;
+        font-weight: bold;
+        line-height: 21px;
+        position: absolute;
+        overflow: hidden;
+        width: 66%;
+        font-size: 14px !important;
+    }
+
+    #user-container h5 {
+        font-size: 5vw;
+    }
+
+    .matchResult #circle-container h2 {
+        font-size: 10.5vw;
+    }
+
+    .candidates > div:nth-child(1) {
+        padding: 10px 5px 0px;
+    }
+
+    .candidates > div:nth-child(1) a {
+        margin-right: 0px;
+        margin-left: 0px;
+        text-align: right
+    }
+
+    .readUnread {
+        position: absolute;
+        right: 70px;
+        top: 30px;
+    }
+
+    .jobsList article {
+        width: 45%;
+        float: left;
+    }
+
+    .jobListLi a i {
+        display: none;
+    }
+
+    .jobListLi section {
+        right: 0px;
+    }
+
+    .jobsTools {
+        width: 15%;
+    }
+
+    .jobsTools a i {
+        margin: 10px 0px 10px;
+    }
+
+    .jobs > div:nth-child(1) a i {
+        margin-left: 2px;
+    }
+
+    .nav-tabs {
+        margin-top: 10px;
+    }
+
+    .jobs > div:nth-child(1) {
+        padding: 10px 4px;
+    }
+
+    .tabsWrapper {
+        padding: 0px 5px 0px;
+    }
+
+    .resumeWrapper > div {
+        width: 100%;
+    }
+
+    .jobParametersWrapper {
+        padding-bottom: 80px;
+    }
+
+    .resumeWrapper > div h3 {
+        font-size: 6.2vw;
+    }
+
+    .resumeWrapper > div h4 {
+        font-size: 3.5vw;
+    }
+
+    .jobSlider > h3 {
+        font-size: 22px;
+        margin-top: 114px;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+    }
+
+    .jobSlider label {
+        font-size: 10px;
+    }
+
+    .jobSlider input {
+        width: 75%;
+    }
+
+    .wrapper {
+        padding: 0px 0px 70px;
+    }
+
+    .myjobsWrapper, .resumeWrapper {
+        padding: 0px 10px 80px;
+    }
+
+    .jobs p {
+        margin: 10px 0px 10px;
+        color: #000;
+        font-size: 14px;
+    }
+
+    .nav-tabs li {
+        height: 66px;
+    }
+
+    .googleSignInWrapper > div > a > img {
+        width: 40%;
+    }
+
+    .googleSignInWrapper > div > a > h3 {
+        font-size: 20px;
+    }
+
+    .googleSignInWrapper > div > a {
+        float: none;
+    }
+
+    .tabsContent .starRating {
+        bottom: 10px;
+        top: initial;
+    }
+
+    .matchResult {
+        width: 100%;
+    }
+
+    .myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
+    .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
+    .jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
+    .companyprofileWrapper, .contactusWrapper, .profileWrapper {
+        padding: 10px 10px 0px;
+        width: 100%;
+    }
+
+    .myjobsWrapper > h3, .resumeWrapper > h3, .readcvsWrapper > h3,
+    .unreadcvsWrapper > h3, .favoritesWrapper > h3, .jobParametersWrapper > h3,
+    .searchJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
+    .aboutWrapper > h3, .contactusWrapper > h3
+    .matchpageWrapper > h3, .companyprofileWrapper > h3, .profileWrapper > h3 {
+        display: none;
+    }
+
+    #myManagmentJobs, #mySoftwareJobs, #myElectrialJobs, #myMechanicalJobs {
+        height: 200px;
+    }
+
+    .tabsContent div {
+        height: 200px;
+        margin-bottom: 0px;
+    }
+
+    .swipeIcon {
+        position: absolute;
+        top: 5%;
+        left: 35%;
+        display: block;
+    }
+
+    .jobPageWrapper > a {
+        float: left;
+        margin-bottom: 70px;
+    }
+
+    .resumeSkillsBox {
+        width: 100%;
+    }
+
+    #circle-container > h2 {
+        font-size: 10vw;
+    }
+
+    .resumeDetailsBox {
+        width: 100%;
+    }
+
+    .resumeDetailsBox div {
+        width: 100%;
+    }
+
+    .resumeYears > div:nth-child(1) {
+        display: none;
+    }
+
+    .myjobsWrapper form {
+        width: 100%;
+    }
+
+    .myjobsWrapper form button {
+        width: 25%;
+    }
+
+    .jobSlider div span {
+        width: 125% !important;
+    }
+
+    .contactusWrapper div {
+        width: 100%;
+        margin-bottom: 1%;
+        margin-left: 0%;
+    }
+
+    footer div {
+        padding: 0px;
+        display: none;
+    }
+
+    footer ul {
+        padding: 0px;
+    }
+
+    footer ul li {
+        padding: 0px;
+        text-align: center;
+        width: 32%;
+    }
+
+    footer {
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        padding: 5px 0px 0px;
+        border-top: 1px solid #6F6F6F;
+    }
+
+    footer ul li a {
+        font-size: 3.5vw;
+    }
+
+    footer ul:nth-child(1) {
+        display: none;
+    }
+
+    footer ul:nth-child(3) {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    footer ul:nth-child(3) a i {
+        width: 100%;
+        text-align: center;
+    }
+
+    footer ul:nth-child(3) a p {
+        margin: 0px;
+    }
+
+    /*MEDIA TIMELINE*/
+    .timeline > li > .timeline-panel {
+        width: 100% !important;
+        background: #d4d4d4;
+        z-index: 2;
+    }
+
+    .timeline-inverted, .timeline-badge, .btn-group, .timeline > li > .timeline-panel:after,
+    .timeline > li > .timeline-panel:before {
+        display: none !important;
+    }
 }
+
 /****************************************************** TIMELINE ***************************************************/
 .container {
-	width: 100% !important;
+    width: 100% !important;
 }
 
 .timeline {
-	position: relative;
+    position: relative;
 }
 
 .timeline:before {
-	top: 0;
-	bottom: 0;
-	z-index: 1;
-	position: absolute;
-	content: " ";
-	width: 3px;
-	background-color: #000;
-	left: 50%;
-	margin-left: -1.5px;
-	position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    position: absolute;
+    content: " ";
+    width: 3px;
+    background-color: #000;
+    left: 50%;
+    margin-left: -1.5px;
+    position: absolute;
 }
 
-.timeline>li {
-	margin-bottom: 20px;
-	position: relative;
+.timeline > li {
+    margin-bottom: 20px;
+    position: relative;
 }
 
-.timeline>li:before, .timeline>li:after {
-	content: " ";
-	display: table;
+.timeline > li:before, .timeline > li:after {
+    content: " ";
+    display: table;
 }
 
-.timeline>li:after {
-	clear: both;
+.timeline > li:after {
+    clear: both;
 }
 
-.timeline>li:before, .timeline>li:after {
-	content: " ";
-	display: table;
+.timeline > li:before, .timeline > li:after {
+    content: " ";
+    display: table;
 }
 
-.timeline>li:after {
-	clear: both;
+.timeline > li:after {
+    clear: both;
 }
 
-.timeline>li>.timeline-panel {
-	width: 46%;
-	float: left;
-	border: 1px solid #d4d4d4;
-	border-radius: 2px;
-	padding: 20px;
-	position: relative;
-	-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-	box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+.timeline > li > .timeline-panel {
+    width: 46%;
+    float: left;
+    border: 1px solid #d4d4d4;
+    border-radius: 2px;
+    padding: 20px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
 }
 
-.timeline>li>.timeline-panel:before {
-	position: absolute;
-	top: 26px;
-	right: -15px;
-	display: inline-block;
-	border-top: 15px solid transparent;
-	border-left: 15px solid #ccc;
-	border-right: 0 solid #ccc;
-	border-bottom: 15px solid transparent;
-	content: " ";
+.timeline > li > .timeline-panel:before {
+    position: absolute;
+    top: 26px;
+    right: -15px;
+    display: inline-block;
+    border-top: 15px solid transparent;
+    border-left: 15px solid #ccc;
+    border-right: 0 solid #ccc;
+    border-bottom: 15px solid transparent;
+    content: " ";
 }
 
-.timeline>li>.timeline-panel:after {
-	position: absolute;
-	top: 27px;
-	right: -14px;
-	display: inline-block;
-	border-top: 14px solid transparent;
-	border-left: 14px solid #fff;
-	border-right: 0 solid #fff;
-	border-bottom: 14px solid transparent;
-	content: " ";
+.timeline > li > .timeline-panel:after {
+    position: absolute;
+    top: 27px;
+    right: -14px;
+    display: inline-block;
+    border-top: 14px solid transparent;
+    border-left: 14px solid #fff;
+    border-right: 0 solid #fff;
+    border-bottom: 14px solid transparent;
+    content: " ";
 }
 
-.timeline>li>.timeline-badge {
-	color: #fff;
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
-	font-size: 1.4em;
-	text-align: center;
-	position: absolute;
-	top: 16px;
-	left: 50%;
-	margin-left: -25px;
-	background-color: #ee5785;
-	z-index: 100;
-	border-top-right-radius: 50%;
-	border-top-left-radius: 50%;
-	border-bottom-right-radius: 50%;
-	border-bottom-left-radius: 50%;
+.timeline > li > .timeline-badge {
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    cursor: pointer;
+    font-size: 1.4em;
+    text-align: center;
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    margin-left: -25px;
+    background-color: #ee5785;
+    z-index: 100;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
 }
 
-.timeline>li.timeline-inverted>.timeline-panel {
-	float: right;
+.timeline > li.timeline-inverted > .timeline-panel {
+    float: right;
 }
 
-.timeline>li.timeline-inverted>.timeline-panel:before {
-	border-left-width: 0;
-	border-right-width: 15px;
-	left: -15px;
-	right: auto;
+.timeline > li.timeline-inverted > .timeline-panel:before {
+    border-left-width: 0;
+    border-right-width: 15px;
+    left: -15px;
+    right: auto;
 }
 
-.timeline>li.timeline-inverted>.timeline-panel:after {
-	border-left-width: 0;
-	border-right-width: 14px;
-	left: -14px;
-	right: auto;
+.timeline > li.timeline-inverted > .timeline-panel:after {
+    border-left-width: 0;
+    border-right-width: 14px;
+    left: -14px;
+    right: auto;
 }
 
 .timeline-badge.primary {
-	background-color: #2e6da4 !important;
+    background-color: #2e6da4 !important;
 }
 
 .timeline-badge.success {
-	background-color: #3f903f !important;
+    background-color: #3f903f !important;
 }
 
 .timeline-badge.warning {
-	background-color: #f0ad4e !important;
+    background-color: #f0ad4e !important;
 }
 
 .timeline-badge.danger {
-	background-color: #d9534f !important;
+    background-color: #d9534f !important;
 }
 
 .timeline-badge.info {
-	background-color: #5bc0de !important;
+    background-color: #5bc0de !important;
 }
 
 .timeline-title {
-	margin-top: 0;
-	color: inherit;
+    margin-top: 0;
+    color: inherit;
 }
 
-.timeline-body>p, .timeline-body>ul {
-	margin-bottom: 0;
-	text-align: justify;
-	width: 100%;
-	font-style: italic;
-	overflow: hidden;
+.timeline-body > p, .timeline-body > ul {
+    margin-bottom: 0;
+    text-align: justify;
+    width: 100%;
+    font-style: italic;
+    overflow: hidden;
 }
 
-.timeline-body>p+p {
-	margin-top: 5px;
+.timeline-body > p + p {
+    margin-top: 5px;
 }

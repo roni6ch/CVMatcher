@@ -1,8 +1,8 @@
 {
-    "locations":"60",
+    "locations":"10",
     "candidate_type": "30",
-    "scope_of_position": "80",
-    "academy": "50",
-    "sub_sector": "80",
-    "requirements": "70"
+    "scope_of_position": "20",
+    "academy": "10",
+    "sub_sector": "10",
+    "requirements": "10"
 }

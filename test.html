@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>jQuery Linked UI Sliders Basics</title>
+    <link rel="stylesheet" type="text/css"
+          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.3/themes/south-street/jquery-ui.css"/>
+    <style type="text/css">
+        #sliders {
+            width: 200px;
+        }
+
+        #sliders li {
+            margin-bottom: 10px;
+        }
+
+        #sliders div {
+            margin-bottom: 5px;
+        }
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+
+        $(function() {
+
+        var sliders = $("#sliders .slider");
+
+        sliders.each(function() {
+            var value = parseInt($(this).text(), 10),
+                    availableTotal = 100;
+
+            $(this).empty().slider({
+                value: 0,
+                min: 0,
+                max: 100,
+                range: "max",
+                step: 10,
+                slide: function(event, ui) {
+                    // Update display to current value
+                    $(this).siblings().text(ui.value);
+
+                    // Get current total
+                    var total = 0;
+
+                    sliders.not(this).each(function() {
+                        total += $(this).slider("option", "value");
+                    });
+
+                    // Need to do this because apparently jQ UI
+                    // does not update value until this event completes
+                    total += ui.value;
+
+                    var max = availableTotal - total;
+
+                    // Update each slider
+                    sliders.not(this).each(function() {
+                        var t = $(this),
+                                value = t.slider("option", "value");
+
+                        t.slider("option", "max", max + value)
+                                .siblings().text(value + '/' + (max + value));
+                        t.slider('value', value);
+                    });
+                }
+            });
+        });
+
+            console.log( "ready!" );
+        });
+    </script>
+</head>
+<body>
+<ul id="sliders">
+    <li>
+        <div class="slider"></div>
+        <span class="value">0</span>
+    </li>
+    <li>
+        <div class="slider"></div>
+        <span class="value">0</span>
+    </li>
+    <li>
+        <div class="slider"></div>
+        <span class="value">0</span>
+    </li>
+    <li>
+        <div class="slider"></div>
+        <span class="value">0</span>
+    </li>
+</ul>
+</body>
+</html>

@@ -1,89 +1,94 @@
 <!DOCTYPE html>
 <html ng-app="cvmatcherApp">
 <head>
-<title>CVMatcher</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/jquery-ui.css">
-<link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
+    <title>CVMatcher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"/>
 
-<script src="js/jquery-1.11.1.min.js"></script>
-<script src="js/progressbar.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/jquery.ui.touch-punch.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/hammer.min.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/progressbar.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script type="text/javascript" src="js/jquery.linkedsliders.min.js"></script>
 
 
-<!--  Google+ SignIn -->
-<meta name="google-signin-scope" content="profile email">
-<meta name="google-signin-client_id"
-	content="468789046131-efcprfd4s02r7vo4p0lskk2076b2iho5.apps.googleusercontent.com">
 
+    <!--  Google+ SignIn -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com">
+   <!-- <meta name="google-signin-client_id"
+          content="468789046131-efcprfd4s02r7vo4p0lskk2076b2iho5.apps.googleusercontent.com">-->
 
 </head>
 <body>
-	<div class="navBar">
-		<div>
-			<a href="/cvmatcher"><img src="images/logo.png"></a>
-		</div>
-		<div>
-			<a ng-href={{profile}}><img src="" id="profileImg"></a>
-		</div>
-		<!-- Img -->
-		<div class="navBarImg">
-			<nav>
-				<!-- Employer NAV -->
-				<ul ng-if="userSignInType == 'employer'">
-					<li><a href="#/myjobs">My jobs</a></li>
-					<li><a href="#/Archive">Archive</a></li>
-				</ul>
-				<!-- Job Seeker NAV -->
-				<ul ng-if="userSignInType == 'jobSeeker'">
-					<li><a href="#/searchJobs">Search Jobs</a></li>
-					<li><a href="#/yourjobs">My Jobs</a></li>
-					<li><a href="">Favorite Jobs</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
+<div class="navBar">
+    <div>
+        <a href="#/"><img src="images/logo.png"></a>
+    </div>
+    <div>
+        <a ng-href={{profile}}><img src="" id="profileImg"></a>
+    </div>
+    <!-- Img -->
+    <div class="navBarImg">
+        <nav>
+            <!-- Employer NAV -->
+            <ul ng-if="userSignInType == 'employer'">
+                <li><a href="#/myjobs">My jobs</a></li>
+                <li><a href="#/Archive">Archive</a></li>
+            </ul>
+            <!-- Job Seeker NAV -->
+            <ul ng-if="userSignInType == 'jobSeeker'">
+                <li><a href="#/searchJobs">Search Jobs</a></li>
+                <li><a href="#/yourjobs">My Jobs</a></li>
+                <li><a href="">Favorite Jobs</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
-	<div class="wrapper">
-		<div ng-view></div>
-	</div>
-	<footer>
-		<ul>
-			<li><a href="#/About">About</a></li>
-			<li><a href="#/">Settings</a></li>
-			<li><a href="#/Contact">Contact Us</a></li>
-		</ul>
-		<div>
-			<a href="#"><i class="fa fa-facebook-square fa-3x"></i></a> <a
-				href="#"><i class="fa fa-linkedin-square fa-3x"></i></a> <a href="#"><i
-				class="fa fa-phone-square fa-3x"></i></a>
-		</div>
-		<!-- MOBILE FOOTER -->
-		<ul ng-if="userSignInType == 'employer'">
-			<li><a href="#/myjobs"><i class="fa fa-suitcase"></i>My Jobs</a></li>
-			<li><a href="#/Archive"><i class="fa fa-users"></i>Archive</a></li>
-			<li><a href="#/newJob"><i class="fa fa-users"></i>Add new Job</a></li>
-		</ul>
+<div class="wrapper">
+    <div ng-view></div>
+</div>
+<footer>
+    <ul>
+        <li><a href="#/About">About</a></li>
+        <li><a href="#/">Settings</a></li>
+        <li><a href="#/Contact">Contact Us</a></li>
+    </ul>
+    <div>
+        <a href="#"><i class="fa fa-facebook-square fa-3x"></i></a> <a
+            href="#"><i class="fa fa-linkedin-square fa-3x"></i></a> <a href="#"><i
+            class="fa fa-phone-square fa-3x"></i></a>
+    </div>
+    <!-- MOBILE FOOTER -->
+    <ul ng-if="userSignInType == 'employer'">
+        <li><a href="#/myjobs"><i class="fa fa-suitcase"></i>My Jobs</a></li>
+        <li><a href="#/Archive"><i class="fa fa-users"></i>Archive</a></li>
+        <li><a href="#/About"><i class="fa fa-users"></i>About</a></li>
+    </ul>
 
-		<ul ng-if="userSignInType == 'jobSeeker'">
-			<li><a href="#/searchJobs"><i class="fa fa-search fa-2x"></i>
-				<p>Search Jobs</p></a></li>
-			<li><a href="#/yourjobs"><i class="fa fa-suitcase fa-2x"></i>
-				<p>My Jobs</p></a></li><!-- 
+    <ul ng-if="userSignInType == 'jobSeeker'">
+        <li><a href="#/searchJobs"><i class="fa fa-search fa-2x"></i>
+
+            <p>Search Jobs</p></a></li>
+        <li><a href="#/yourjobs"><i class="fa fa-suitcase fa-2x"></i>
+
+            <p>My Jobs</p></a></li><!--
 			<li><a href="#/favoriteJobs"><i class="fa fa-star-o"></i>Favorites</a></li> -->
-			<li><a href="#/mycv"><i class="fa fa-file-text-o"></i>My Resume</a></li>
-		</ul>
+        <li><a href="#/mycv"><i class="fa fa-file-text-o"></i>My Resume</a></li>
+    </ul>
 
-	</footer>
-	<script src="js/lib/angular/angular.min.js"></script>
-	<script src="js/lib/angular/angular-route.min.js"></script>
-	<script src='js/lib/angular/ng-infinite-scroll.min.js'></script>
-	<script src="js/site.js"></script>
+</footer>
+<script src="js/lib/angular/angular.min.js"></script>
+<script src="js/lib/angular/angular-route.min.js"></script>
+<script src='js/lib/angular/ng-infinite-scroll.min.js'></script>
+<script src="js/site.js"></script>
 </body>
 </html>
