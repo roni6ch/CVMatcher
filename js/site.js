@@ -14,7 +14,10 @@ app.config(function ($routeProvider) {
     }).when('/Candidates/:_id', {
         templateUrl: 'employer/candidates.html',
         controller: 'candidatesController'
-    }).when('/Candidates/:id/resume/:_id', {
+    }).when('/Archive/Candidates/:_id', {
+            templateUrl: 'employer/candidates.html',
+            controller: 'candidatesController'
+        }).when('/Candidates/:id/resume/:_id', {
         templateUrl: 'employer/resume.html',
         controller: 'resumeController'
     }).when('/resume/:id', {
@@ -67,18 +70,82 @@ app.config(function ($routeProvider) {
 }).run(function ($rootScope, $http) {
     $rootScope.userSignInType = "";
     $rootScope.profile = "";
+    $rootScope.userProfileDetails = "";
+
 });
 
 /*
  * ********************* googleSignIn controller ****************
  */
+
 var user;
-app.controller('googleSignInController', function ($scope, $http, $sce) {
+var profile;
+var auth2 = {};
+var helper;
+app.controller('googleSignInController', function ($scope, $http, $sce,$rootScope,$timeout) {
+
+     helper = (function() {
+        return {
+            onSignInCallback: function(authResult) {
+                $('#authResult').html('Auth Result:<br/>');
+                for (var field in authResult) {
+                    $('#authResult').append(' ' + field + ': ' +
+                        authResult[field] + '<br/>');
+                }
+                if (authResult.isSignedIn.get()) {
+                    $('#authOps').show('slow');
+                    $('#gConnect').hide();
+                    helper.profile();
+                } else {
+                    if (authResult['error'] || authResult.currentUser.get().getAuthResponse() == null) {
+                        console.log('There was an error: ' + authResult['error']);
+                    }
+                    $('#authResult').append('Logged out');
+                    $('#authOps').hide('slow');
+                    $('#gConnect').show();
+                }
+
+            },
+            /**
+             * Calls the OAuth2 endpoint to disconnect the app for the user.
+             */
+            disconnect: function() {
+                // Revoke the access token.
+                auth2.disconnect();
+            },
+
+            profile: function(){
+                gapi.client.plus.people.get({
+                    'userId': 'me'
+                }).then(function(res) {
+                    var profile = res.result;
+                    if (profile.emails) {
+                        console.log("email: " + profile["emails"][0].value);
+                    }
+                    console.log("name: " + profile.displayName);
+                    console.log("image : " + profile["image"].url);
+                    console.log("id: " + profile.id);
+                    $rootScope.userProfileDetails = profile;
+                    if (profile) {
+                        angular.element(".googleUsers").css("display","block");
+                    }
+                    else
+                        console.log("no profile yet!");
+
+
+                }, function(err) {
+                    var error = err.result;
+                });
+            }
+        };
+    })();
     $scope.userType = function (type) {
         user = type;
-        if (profile && user == 'employer')
+        if ( user == 'employer') {
             location.replace("#/myjobs");
-        else if (profile && user == 'jobSeeker')
+            $rootScope.userProfileDetails = profile;
+        }
+        else if (user == 'jobSeeker')
             location.replace("#/searchJobs");
     }
 
@@ -88,81 +155,39 @@ app.controller('googleSignInController', function ($scope, $http, $sce) {
  * ********************* JS Functions ****************
  */
 
-// google - Sign-In - SignOut
-var profile;
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    profile = googleUser.getBasicProfile();
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-}
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
-    });
-}
-
-var auth2; // The Sign-In object.
 
 
 /**
- * Calls startAuth after Sign in V2 finishes setting up.
+ * Handler for when the sign-in state changes.
+ *
+ * @param {boolean} isSignedIn The new signed in state.
  */
-var appStart = function () {
-    gapi.load('auth2', initSigninV2);
-};
+var updateSignIn = function() {
+    if (auth2.isSignedIn.get()) {
+        helper.onSignInCallback(gapi.auth2.getAuthInstance());
 
-window.onLoadCallback = function () {
-    appStart();
-}
-
-
-/**
- * Initializes Signin v2 and sets up listeners.
- */
-var initSigninV2 = function () {
-    auth2 = gapi.auth2.init({
-        client_id: '91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com',
-        scope: 'profile'
-    });
-
-    // Sign in the user if they are currently signed in.
-    if (auth2.isSignedIn.get() == true) {
-        console.log("signed in");
-        auth2.signIn();
-
+    }else{
+        helper.onSignInCallback(gapi.auth2.getAuthInstance());
     }
 }
 
-// Google Sign-in (new)
-function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    profile = googleUser.getBasicProfile();
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-
-    var appElement = document.querySelector('[ng-app=cvmatcherApp]');
-    var appScope = angular.element(appElement).scope();
-    var controllerScope = appScope.$$childHead;
-    //console.log(controllerScope.user);
-
-    console.log(controllerScope.showUsers);
-    console.log(controllerScope.googleButton);
-    controllerScope.showUsers = true;
-    controllerScope.googleButton = false;
-    controllerScope.$apply();
-}
-function onSignInFailure() {
-    // Handle sign-in errors
-}
-
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
+/**
+ * This method sets up the sign-in listener after the client library loads.
+ */
+function startApp() {
+    gapi.load('auth2', function() {
+        gapi.client.load('plus','v1').then(function() {
+            gapi.signin2.render('signin-button', {
+                scope: 'https://www.googleapis.com/auth/plus.login',
+                fetch_basic_profile: false });
+            gapi.auth2.init({fetch_basic_profile: false,
+                scope:'https://www.googleapis.com/auth/plus.login'}).then(
+                function (){
+                    auth2 = gapi.auth2.getAuthInstance();
+                    auth2.isSignedIn.listen(updateSignIn);
+                    auth2.then(updateSignIn);
+                });
+        });
     });
 }
 
@@ -176,13 +201,11 @@ function signOut() {
  */
 app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,
                                                           $sce, $http) {
+
+
     $rootScope.userSignInType = user;
     $rootScope.profile = "#/Profile";
     if (profile && user) {
-        console.log("ID: " + profile.getId());
-        console.log("Name: " + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
         angular.element("#profileImg").attr("src", profile.getImageUrl());
     } else {
         // please sign in - or chek if cookie exist!
@@ -216,24 +239,34 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,
 app.controller('jobpagebyIDController', function ($scope, $http, $location) {
     $id = $location.path().split('/');
 
-    $http.get("json/myjobstest.json").success(
-        function (data) {
-            angular.forEach(data, function (value, key) {
-                if (value["_id"] == $id[2]) {
-                    $scope.job = value;
-                    var jobCircle = new ProgressBar.Circle(
-                        '#job-circle-container', {
-                            color: '#ee5785',
-                            strokeWidth: 5,
-                            fill: '#aaa'
-                        });
-                    angular.element("#job-circle-container>h5").html(
-                        value.compability + "%");
-                    jobCircle.animate(value.compability / 100);
 
-                }
-            })
-        });
+    $http({
+        url: 'http://localhost:8000/getJobsBySector',
+        method: "POST",
+        data: { 'google_user_id' : "0","sector":"software engineering" }
+    })
+        .then(function(data) {
+                    angular.forEach(data.data, function (value, key) {
+                        if (value["_id"] == $id[2]) {
+                            $scope.job = value;
+                            var jobCircle = new ProgressBar.Circle(
+                                '#job-circle-container', {
+                                    color: '#ee5785',
+                                    strokeWidth: 5,
+                                    fill: '#aaa'
+                                });
+                            angular.element("#job-circle-container>h5").html(
+                                value.compatibility_level + "%");
+                            jobCircle.animate(value.compatibility_level / 100);
+
+                        }
+                    })
+                $scope.jobSeekerJobs = data.data;
+                console.log(data.data);
+            },
+            function(response) { // optional
+                alert("jobSeekerJobs AJAX failed!");
+            });
 
 });
 /*
@@ -242,14 +275,21 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
 
 app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
     $scope.getMainJson = function () {
-        // myjobstest.json
-        $http.get("json/myjobstest.json").success(function (data) {
-            $scope.jobSeekerJobs = data;
-            console.log(data);
-            // return the current json
-        }).error(function (data) {
-            alert("myjobstest AJAX failed!");
-        });
+
+        $http({
+            url: 'http://localhost:8000/getJobsBySector',
+            method: "POST",
+            data: { 'google_user_id' : "0","sector":"software engineering" }
+        })
+            .then(function(data) {
+                    $scope.jobSeekerJobs = data.data;
+                console.log(data.data);
+                },
+                function(response) { // optional
+                    alert("jobSeekerJobs AJAX failed!");
+                });
+
+
     }
     $scope.sort = function (sort) {
         $scope.sortby = sort;
@@ -437,23 +477,29 @@ app
 app.controller('myjobsController', function ($rootScope, $scope, $http, $sce) {
     $rootScope.userSignInType = user;
     $rootScope.profile = "#/companyProfile";
+    console.log("profile: " + profile);
+    console.log("user: " + user);
+    console.log("rootScope.userProfileDetails: " + $rootScope.userProfileDetails);
     if (profile && user) {
-        console.log("ID: " + profile.getId());
-        console.log("Name: " + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
         angular.element("#profileImg").attr("src", profile.getImageUrl());
     } else {
         // please sign in - or chek if cookie exist!
     }
     $scope.getMainJson = function () {
         // myjobstest.json
-        $http.get("json/myjobstest.json").success(function () {
-        }).success(function (data, status, headers, config) {
-            $scope.myjobs = data;
-        }).error(function (data, status, headers, config) {
-            alert("myjobstest AJAX failed!");
-        });
+        $http({
+            url: 'http://localhost:8000/getJobsBySector',
+            method: "POST",
+            data: { 'google_user_id' : "0","sector":"software engineering" }
+        })
+            .then(function(data) {
+                    $scope.myjobs = data.data;
+                console.log(data.data);
+                },
+                function(response) { // optional
+                    alert("myjobstest AJAX failed!");
+                });
+
     }
     $scope.sort = function (sort) {
         $scope.sortby = sort;
@@ -481,6 +527,9 @@ app.controller('archiveController', function ($scope, $http, $sce) {
         }).error(function (data, status, headers, config) {
             alert("myjobstest AJAX failed!");
         });
+
+
+
     }
     $scope.highlight = function (text, search) {
         if (!search) {
@@ -503,15 +552,25 @@ app.controller('candidatesController',
         $id = $location.path().split('/');
         $scope.jobId = $id[2];
         var candidates = [];
-        $http.get("json/resume.json").success(
-            function (data, status, headers, config) {
-                angular.forEach(data, function (value, key) {
-                    candidates.push(data[key][0]);
+
+        $http({
+            url: 'http://localhost:8000/getUnreadCvsForJob',
+            method: "POST",
+            data: { 'google_user_id' : "0","job_id":$scope.jobId }
+        })
+            .then(function(data) {
+                    angular.forEach(data.data, function (value, key) {
+                        candidates.push(data.data[key][0]);
+                    });
+                    $scope.candidates = data.data;
+                    console.log(data.data);
+                },
+                function(response) { // optional
+                    alert("candidates AJAX failed!");
                 });
-                $scope.candidates = candidates;
-            }).error(function (data, status, headers, config) {
-            alert("resume AJAX failed!");
-        });
+
+
+
         $scope.highlight = function (text, search) {
             if (!search) {
                 return $sce.trustAsHtml(text);
@@ -783,13 +842,15 @@ app
                 link: function (scope, element) {
                     element
                         .html($compile(
-                            '<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" ng-model="googleButton" ng-show="googleButton" ng-click="showUsers=true; googleButton=false"></div>')
+                            '<div id="gConnect"><div id="signin-button"></div></div>')
                         (scope));
-                    $.getScript("js/platform.js?onLoad=");
+                    $.getScript("https://apis.google.com/js/client:platform.js?onload=startApp");
 
                 }
             }
         });
+
+
 
 // Navigation
 app

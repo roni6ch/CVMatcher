@@ -31,18 +31,18 @@
 						<!--<a href=""><i id="candidateStar-{{$index}}"
 							class='fa fa-star-o fa-2x'
 							ng-click='addCandidateToFavorites($index,candidate.id)'></i></a>  --><a
-							href="#/Candidates/{{jobId}}/resume/{{candidate.id}}"><img
+							href="#/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
 							src="./images/logo.png"></a>
-						<h5>{{candidate.subsector}}</h5>
+						<h5>{{candidate.sub_sector[0]}}</h5>
 					</div>
 					<div>
-						<h3>{{candidate.name}}</h3>
-						<a ng-if="tab == 0" href="#/Candidates/{{jobId}}/resume/{{candidate.id}}"><p
+						<h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3>
+						<a ng-if="tab == 0" href="#/Candidates/{{jobId}}/resume/{{candidate._id}}"><p
 								ng-model="searchText.sector"
 								ng-bind-html="highlight(candidate.sector, searchText)">{{candidate.sector}}</p>
 							<section circle id="{{ 'circle-container-' + $index }}"
-								data-compability="{{candidate.compability}}">
-								<h5>{{candidate.compability}}%</h5>
+								data-compability="{{candidate.compatibility_level}}">
+								<h5>{{candidate.compatibility_level}}%</h5>
 							</section> </a>
 					</div>
 				</div>

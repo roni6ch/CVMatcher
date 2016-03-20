@@ -11,18 +11,16 @@
 		ng-click="sort('-compability')">Sort By Compability</button>
 	<button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
 		By Date</button>
-
 	<ul class="nav nav-tabs" ng-init="tab=0">
 	<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
 				Engineer</a></li>
-		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">
+		<li ng-class="{active:tab == 1}"><a href="">
 				Managment Engineer</a></li>
-		<li ng-class="{active:tab == 2}"><a ng-click="tab = 2">Electrial
+		<li ng-class="{active:tab == 2}"><a href="">Electrial
 				Engineer</a></li>
-		<li ng-class="{active:tab == 3}"><a ng-click="tab = 3">Mechanical
+		<li ng-class="{active:tab == 3}"><a href="">Mechanical
 				Engineer</a></li>
 	</ul>
-
 
 	<div class="tabsWrapper">
 		<a href="#/newJob"><input type="button" class="btn btn-default" value="Add new Job"/></a>
@@ -38,22 +36,21 @@
 							class="fa fa-pencil fa-2x"></i></a> <a
 							href="#/Candidates/{{job._id}}"><img src="./images/logo.png"></a>
 
-
-						<h3 ng-model="searchText.job_name"
-							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</h3>
+						<h3 ng-model="searchText.original_text[0]['job_title']"
+							ng-bind-html="highlight(job.original_text[0]['job_title'], searchText)">{{job.original_text[0]["job_title"]}}</h3>
 					</div>
 					<div data-toggle="collapse" data-target="#collepse-{{$index}}">
-						<h5>Address: {{job.address}}</h5>
-						<p>{{job.sub_sector}}</p>
+						<h5>Address: {{job.locations[0]}}</h5> , <h5>Date: {{job.date}}</h5>
+						<p>{{job.original_text[0]["requirements"]}}</p>
 
 						<article id="collepse-{{$index}}" class="collapse">
-							<span>Inforamtion: </span>{{job.original_text}}
+							<span>Inforamtion: </span>{{job.original_text[0]["description"]}}
 						</article>
 
 						<span>Compability:</span>
 						<section circle id="{{ 'circle-container-' + $index }}"
-							data-compability="{{job.compability}}">
-							<h5>{{job.compability}}%</h5>
+							data-compability="{{job.compatibility_level}}">
+							<h5>{{job.compatibility_level}}%</h5>
 						</section>
 					</div>
 				</div>

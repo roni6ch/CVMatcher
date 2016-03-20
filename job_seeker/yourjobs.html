@@ -21,12 +21,12 @@
 					ng-src="images/jobSeeker/{{job.logo}}.png">
 					<article>
 						<p ng-model="searchText.job_name"
-							ng-bind-html="highlight(job.job_name, searchText)">{{job.job_name}}</p>
+							ng-bind-html="highlight(job.academy[0]['degree_name'], searchText)">{{job.academy[0]["degree_name"]}}</p>
 						<p ng-model="searchText.name"
-							ng-bind-html="highlight(job.name, searchText)">{{job.name}}</p>
+							ng-bind-html="highlight(job.original_text[0]['job_title'], searchText)">{{job.original_text[0]["job_title"]}}</p>
 						<p ng-model="searchText.address"
-							ng-bind-html="highlight(job.address, searchText)">{{job.address}},
-							{{job.time_published}}</p>
+							ng-bind-html="highlight(job.locations[0], searchText)">{{job.locations[0]}},
+							{{job.date}}</p>
 					</article> <img class="readUnread" ng-src="{{job.readUnread == false ? 'images/unreadV.png' : 'images/readV.png'}}" />
 					
 				<span class="rating animated pulse"> 
@@ -48,8 +48,8 @@
 				</span>
 					
 					<section circle id="{{ 'circle-container-' + $index }}"
-						data-compability="{{job.compability}}">
-						<h5>{{job.compability}}%</h5>
+						data-compability="{{job.compatibility_level}}">
+						<h5>{{job.compatibility_level}}%</h5>
 					</section>
 			</a>
 				<hr></li>

@@ -467,9 +467,7 @@ footer div a {
 
 .jobs p {
     margin: 10px 0px 10px;
-    color: #000;
     font-size: 16px;
-    text-align: justify;
 }
 
 .jobs img {
@@ -852,7 +850,7 @@ footer div a {
 }
 
 #sliders li {
-    width: 10%;
+    width: 5%;
     margin: 2%;
     display: inline-block;
     margin-top: 150px;
@@ -1258,6 +1256,7 @@ footer div a {
         position: absolute;
         overflow: hidden;
         width: 66%;
+        height: 25px;
         font-size: 14px !important;
     }
 
@@ -1271,6 +1270,7 @@ footer div a {
         font-size: 14px !important;
     }
 
+    #sliders li div span{width:25px;}
     #user-container h5 {
         font-size: 5vw;
     }
@@ -1329,7 +1329,7 @@ footer div a {
     }
 
     .tabsWrapper {
-        padding: 0px 5px 0px;
+        padding: 10px 5px 0px;
     }
 
     .resumeWrapper > div {
@@ -1373,7 +1373,6 @@ footer div a {
 
     .jobs p {
         margin: 10px 0px 10px;
-        color: #000;
         font-size: 14px;
     }
 
@@ -1392,6 +1391,7 @@ footer div a {
     .googleSignInWrapper > div > a {
         float: none;
     }
+    .googleUsers{display:none;}
 
     .tabsContent .starRating {
         bottom: 10px;
