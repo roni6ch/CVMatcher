@@ -13,6 +13,7 @@
     <script src="js/progressbar.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/hammer.min.js"></script>
     <script type="text/javascript" src="js/jquery.linkedsliders.min.js"></script>
@@ -30,10 +31,10 @@
 <body>
 <div class="navBar">
     <div>
-        <a href="#/"><img src="images/logo.png"></a>
+        <a href="" id="logo"><img src="images/logo.png"></a>
     </div>
     <div>
-        <a ng-href={{profile}}><img src="" id="profileImg"></a>
+        <a ng-href={{profile}}><img id="profileImg"></a>
     </div>
     <!-- Img -->
     <div class="navBarImg">
@@ -54,7 +55,8 @@
 </div>
 
 <div class="wrapper">
-    <div ng-view></div>
+    <div ng-view>
+    </div>
 </div>
 <footer>
     <ul>

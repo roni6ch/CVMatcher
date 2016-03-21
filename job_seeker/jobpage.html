@@ -1,41 +1,33 @@
 <div class="jobPageWrapper">
-	<h3 compile-html>{{navigation}}</h3>
+    <h3 compile-html>{{navigation}}</h3>
 
-	<header>
-		<div class="progress">
-			<div class="progress-bar progress-bar-success" role="progressbar"
-				style="width: 25%">Description</div>
-			<div role="progressbar" style="width: 25%">Feedback</div>
-			<div role="progressbar" style="width: 25%">Fix CV</div>
-			<div role="progressbar" style="width: 25%">Finish</div>
-		</div>
-		<h2>Job description</h2>
-	</header>
+    <header>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar"
+                 style="width: 25%">Description
+            </div>
+            <div role="progressbar" style="width: 25%">Feedback</div>
+            <div role="progressbar" style="width: 25%">Fix CV</div>
+            <div role="progressbar" style="width: 25%">Finish</div>
+        </div>
+        <h2>Job description</h2>
+    </header>
 
-	<p>We are looking for an outstanding Junior Full Stack Developer
-		with strong front end orientation to join our top notch team who is
-		developing high performing, modular and pixel perfect web
-		applications.</p>
+    <p>{{jobPage["original_text"][0].description}}</p>
 
-	<h2>Desired Skills and Experience</h2>
-	<h4>What you must have:</h4>
-	<ol class="skills">
-		<li>3+ years' experience developing rich, large-scale web
-			applications.</li>
-		<li>Knowledge of OO programming and design patterns</li>
-		<li>Experience with modern front-end technologies like
-			Angular.js, React or Backbone.</li>
-		<li>Familiar with modern development tools including SASS/LESS,
-			Grunt/Gulp, Bower, Npm.</li>
-		<li>Experience working with RESTful web services and other API's.</li>
-	</ol>
-	<section>
-		<h2>Minimum match percentage:</h2>
-		<section id="job-circle-container">
-			<h5>{{job.compability}}%</h5>
-		</section>
+    <h2>Desired Skills and Experience</h2>
+    <h4>What you must have:</h4>
 
-	</section>
-	<a ng-href="#/searchJobs/matchpage/{{job._id}}" class="btn btn-default">Check
-		my CV</a>
+    <div class="skills">
+        {{jobPage["original_text"][0].requirements}}
+    </div>
+    <section>
+        <h2>Minimum match percentage:</h2>
+        <section id="job-circle-container">
+            <h5>{{job.compability}}%</h5>
+        </section>
+
+    </section>
+    <a ng-href="#/searchJobs/matchpage/{{job._id}}" class="btn btn-default">Check
+        my CV</a>
 </div>

@@ -320,7 +320,6 @@ footer div a {
 .navBar > div:nth-child(2) > a > img {
     border-radius: 1000px;
     float: right;
-    width: 60%;
 }
 
 .navBarImg {
@@ -503,7 +502,6 @@ footer div a {
     background: #e6e6e6;
 }
 
-
 .tab-content a {
     text-decoration: none !important;
 }
@@ -534,13 +532,11 @@ footer div a {
     background: #e6e6e6 !important;
 }
 
-
 .tabsContent div h3 {
     font-weight: 800;
     padding-bottom: 20px;
     overflow: hidden;
 }
-
 
 .tabsContent div h5 {
     font-weight: 500;
@@ -618,6 +614,7 @@ footer div a {
 .candidates h5 {
     color: #606060;
     font-weight: bold;
+    float: left;
 }
 
 .candidates p {
@@ -716,7 +713,11 @@ footer div a {
     margin-bottom: 20px;
 }
 
-.resumeYears input,.resumeYears textarea{background: none;    width: 100%;}
+.resumeYears input, .resumeYears textarea {
+    background: none;
+    width: 100%;
+}
+
 .resumeYears > div {
     width: 60%;
     margin: 0 auto;
@@ -871,7 +872,7 @@ footer div a {
 }
 
 #sliders li div span {
-    width: 120%;
+    width: 120% !important;
 }
 
 .ui-widget-header {
@@ -994,6 +995,7 @@ footer div a {
 
 .skills {
     margin-top: 10px;
+    text-align: left;
 }
 
 .skills li {
@@ -1264,13 +1266,15 @@ footer div a {
         color: #606060;
         font-weight: bold;
         line-height: 21px;
-        position: absolute;
+        float: left;
         overflow: hidden;
-        width: 66%;
         font-size: 14px !important;
     }
 
-    #sliders li div span{width:25px;}
+    #sliders li div span {
+        width: 25px;
+    }
+
     #user-container h5 {
         font-size: 5vw;
     }
@@ -1348,6 +1352,13 @@ footer div a {
         font-size: 3.5vw;
     }
 
+    #job-circle-container h5 {
+        position: absolute;
+        top: 71%;
+        left: 14%;
+        font-size: 21px;
+    }
+
     .jobSlider > h3 {
         font-size: 22px;
         margin-top: 114px;
@@ -1391,7 +1402,10 @@ footer div a {
     .googleSignInWrapper > div > a {
         float: none;
     }
-    .googleUsers{display:none;}
+
+    .googleUsers {
+        display: none;
+    }
 
     .tabsContent .starRating {
         bottom: 10px;
