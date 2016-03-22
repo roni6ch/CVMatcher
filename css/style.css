@@ -839,7 +839,12 @@ footer div a {
     float: right;
     width: 40px;
 }
-
+.pagination{display:block; margin:0px;}
+.pagination + section{float:right; width:20%; position:relative;}
+.pagination + section h5{    position: absolute;
+    top: 39%;
+    font-size: 30px;
+    left: 32%;}
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
     color: #606060;
@@ -849,31 +854,27 @@ footer div a {
 #sliders {
     position: relative;
 }
+#sliders > div{    background: #ccc;
+    padding: 0px 20px;
+    border-radius: 10px;}
 
 #sliders li {
-    width: 5%;
-    margin: 2%;
-    display: inline-block;
-    margin-top: 150px;
+    margin: 1%;
 }
 
 #sliders li div {
     width: 100%;
     float: left;
     margin-left: 2%;
+    height: 20px;
     margin-bottom: 10px;
 }
 
 #sliders p {
-    display: inline-block;
-    transform: rotate(90deg);
-    position: absolute;
-    top: 70px;
-}
 
-#sliders li div span {
-    width: 120% !important;
+    font-size: 20px;
 }
+#sliders span{font-size:24px; font-weight: bold;    height: 32px;}
 
 .ui-widget-header {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,4dcfdd+100 */
@@ -1544,7 +1545,7 @@ footer div a {
         z-index: 2;
     }
 
-    .timeline-inverted, .timeline-badge, .btn-group, .timeline > li > .timeline-panel:after,
+    .timeline-inverted, .timeline-badge, .timeline > li > .timeline-panel:after,
     .timeline > li > .timeline-panel:before {
         display: none !important;
     }

@@ -37,9 +37,11 @@ app.config(function ($routeProvider) {
         templateUrl: 'employer/jobparameters.html',
         controller: 'jobController'
     }).when('/companyProfile', {
-        templateUrl: 'employer/companyprofile.html'
+        templateUrl: 'employer/companyprofile.html',
+        controller: 'companyProfileController'
     }).when('/newJob', {
-            templateUrl: 'employer/job.html'
+            templateUrl: 'employer/job.html',
+            controller: 'newjobController'
         })
         // job seeker
         .when('/searchJobs', {
@@ -236,11 +238,11 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,
 
 
         $http({
-            url: 'http://localhost:8000/jobSeeker/getJobsBySector',
+            url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
             data: {
                 "google_user_id": "0",
-                "sector": "software engineering"
+                "sector": "software engineering","archive": "false"
             }
         })
             .then(function (data) {
@@ -274,7 +276,7 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
 
 
     $http({
-        url: 'http://localhost:8000/jobSeeker/getJobsBySector',
+        url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
         method: "POST",
         data: {'google_user_id': "0", "sector": "software engineering"}
     })
@@ -308,11 +310,12 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
 
 app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
     $scope.getMainJson = function () {
-
+console.log("yourjobSeekerController");
         $http({
-            url: 'http://localhost:8000/jobseeker/getJobsBySector',
+            url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
-            data: {'google_user_id': "0", "sector": "software engineering"}
+            data: {"google_user_id": "0",
+                "sector": "software engineering", "archive": "false"}
         })
             .then(function (data) {
                     $scope.jobSeekerJobs = data.data;
@@ -512,7 +515,7 @@ app.controller('myjobsController', function ($rootScope, $scope, $http, $sce) {
     $rootScope.profile = "#/companyProfile";
     $scope.getMainJson = function () {
         $http({
-            url: 'http://localhost:8000/employer/getJobsBySector',
+            url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
             method: "POST",
             data: {'google_user_id': "0", "sector": "software engineering", "archive": false}
         })
@@ -568,6 +571,25 @@ app.controller('archiveController', function ($scope, $http, $sce) {
 });
 
 /*
+ * ********************* company Profile controller ****************
+ */
+app.controller('companyProfileController',
+    function ($scope, $http, $location, $sce) {
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/getUser',
+            method: "POST",
+            data: {"google_user_id":"1",
+                "user_type":"Employer"}
+        })
+            .then(function (data) {
+                    $scope.companyProfile = data.data;
+                console.log(data.data[0])
+                },
+                function (response) { // optional
+                    console.log("companyProfileController AJAX failed!");
+                });
+    });
+/*
  * ********************* Candidates controller ****************
  */
 app.controller('candidatesController',
@@ -594,9 +616,10 @@ app.controller('candidatesController',
         }
         $scope.likedCvs = function () {
             $http({
-                url: 'http://localhost:8000/employer/getFavoriteCvs',
+                url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
-                data: {'google_user_id': "1", "job_id": "56edd261e4b0fd187fd7acef"}
+                data: {'google_user_id': "1", "job_id": "56edd261e4b0fd187fd7acef",
+                    "current_status":"liked"}
             })
                 .then(function (data) {
                         angular.forEach(data.data, function (value, key) {
@@ -611,7 +634,7 @@ app.controller('candidatesController',
         }
         $scope.unlikeCvs = function () {
             $http({
-                url: 'http://localhost:8000/employer/getRateCvsForJob',
+                url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
                 data: {
                     "google_user_id": "1",
@@ -633,7 +656,7 @@ app.controller('candidatesController',
         $scope.favoritesCvs = function () {
 
             $http({
-                url: 'http://localhost:8000/employer/getFavoriteCvs',
+                url: 'https://cvmatcher.herokuapp.com/employer/getFavoriteCvs',
                 method: "POST",
                 data: {
                     "google_user_id": "1",
@@ -855,59 +878,51 @@ app.controller('resumeController',
     });
 
 /*
+ * ********************* New Job controller ****************
+ */
+
+app.controller('newjobController', function ($scope, $http, $location) {
+
+    $("#geocomplete").geocomplete();
+
+});
+
+/*
  * ********************* job controller ****************
  */
 
 app.controller('jobController', function ($scope, $http, $location) {
     $id = $location.path().split('/');
-
-    /*
-     $http.get("json/myjobstest.json").success(function () {
-     }).success(function (data, status, headers, config) {
-     angular.forEach(data, function (value, key) {
-     if (value["_id"] == $id[2]) {
-     $scope.jobDetails = value;
-     }
-     });
-     }).error(function (data, status, headers, config) {
-     alert("users AJAX failed!");
-     });*/
-
-    $http({
-        url: 'localhost:8000/employer/getFormula',
-        method: "POST",
-        data: {"matching_object_id": "56eddb62e4b0fd187fd7ad5f"}
-    })
-        .then(function (data) {
-                $scope.jobDetails = data.data;
-                console.log(data.data);
-            },
-            function (response) { // optional
-                console.log(response);
-                console.log("jobParametersController AJAX failed!");
-            });
-
-    var tempTotal = 0;
     $scope.initFormulas = function () {
         //sliders
         var sliders = $("#sliders .slider");
-        var formulaJson = ["locations", "candidate_type", "scope_of_position", "academy", "requirements"];
+        var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
         var i = 0;
-        $http.get("json/formulas.json").success(function () {
-        }).success(function (data) {
-            $scope.formulas = data;
+
+        $http({
+            url: 'http://cvmatcher.herokuapp.com/employer/getFormula',
+            method: "POST",
+            data: {"job_id": "56eddb62e4b0fd187fd7ad5f"}
+        }).then(function (data) {
+            console.log(data.data);
+
+
+            $scope.formulas = data.data;
+            var j = 0;
+            var tmpNum = 0;
+            sliders.each(function () {
+                tmpNum += Number(data.data[formulaJson[j++]]);
+            });
+            $scope.totalSum = tmpNum;
             sliders.each(function () {
                 var availableTotal = 100;
                 $(this).empty().slider({
-                    orientation: "vertical",
-                    value: data[formulaJson[i++]],
+                    value: data.data[formulaJson[i++]],
                     min: 0,
                     max: 100,
                     range: "max",
                     step: 10,
                     slide: function (event, ui) {
-
-                        console.log(tempTotal);
                         // Update display to current value
                         $(this).siblings().text(ui.value);
                         var total = 0;
@@ -920,7 +935,6 @@ app.controller('jobController', function ($scope, $http, $location) {
                         // does not update value until this event completes
                         total += ui.value;
                         if (total <= 100) {
-                            tempTotal = total;
                             var max = availableTotal - total;
 
                             // Update each slider
@@ -938,9 +952,7 @@ app.controller('jobController', function ($scope, $http, $location) {
                 });
             });
 
-        }).error(function () {
-            alert("formulas AJAX failed!");
-        });
+        })
     }
 
 });
@@ -998,6 +1010,8 @@ app
                                 path[i] = "My Resume";
                             else if (path[i] == "matchpage")
                                 path[i] = "Match Page";
+                            else if (path[i] == "newJob")
+                                path[i] = "New Job";
                             else if (path[i] == "jobParameters") {
                                 $job_parameters = " Parameters";
                                 continue;
@@ -1135,16 +1149,23 @@ app.directive('focus', function () {
 
 // compability in myjobs page
 app.directive('circle', function ($timeout) {
+
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
+            var circle;
             // COMPABILITY
             $timeout(function () {
-                var circle = new ProgressBar.Circle("#" + attr.id, {
+                 circle = new ProgressBar.Circle("#" + attr.id, {
                     color: '#2196F3',
                     strokeWidth: 10,
                     fill: '#aaa'
                 });
+
+                scope.$watch('compability', function(newValue, oldValue) {
+                    if (newValue)
+                        circle.animate(newValue / 100, function () {})
+                }, true);
 
                 circle.animate(attr.compability / 100, function () {
                 })

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Sortable - Handle empty lists</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+        input {
+            background: none;
+            border: 0;
+            text-align: center;
+            font-size: 21px;
+            margin-top: 30px;
+        }
+
+        DIV.Page {
+            float: left;
+            display: table-cell;
+            padding: 0px;
+            margin: auto;
+            background-color: #FFF;
+            border: 1px solid #999;
+        }
+
+        DIV.Container {
+            margin: 10px;
+            border: 1px dashed #CCC;
+        }
+
+        A.NewItem {
+            display: block;
+            margin: 5px;
+            background-color: #FFF;
+            text-align: center;
+            padding: 25px;
+            color: #AAA;
+            cursor: pointer;
+        }
+
+        A.NewItem:hover {
+            background-color: #E6FFE6;
+            color: #555;
+        }
+
+        DIV.CopyItem {
+            display: none;
+            margin: 5px;
+            background-color: #FFF;
+            text-align: center;
+            padding: 25px;
+            color: #AAA;
+            cursor: pointer;
+        }
+
+        DIV.CopyItemActive {
+            background-color: #CCF8FF;
+            color: #555;
+        }
+
+        DIV.Item {
+            margin: 5px;
+            height: 80px;
+            padding: 0px 50px 0px 0px;
+            border: 1px solid #CCC;
+            background-color: #FCFCFC;
+        }
+
+        DIV.ItemPlaceHolder {
+            margin: 5px;
+            height: 80px;
+            background-color: #FFF4D9;
+        }
+
+        .operators {
+            width: 100%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="operators">
+    <div id="Page" class="Page">
+        <div class="Container">
+            <a id="NewItem" class="NewItem">Click to Add Item </a>
+
+            <div id="CopyItem" class="CopyItem">Drop to Copy Item</div>
+            <div id="Items" class="Items">
+                <div class='Item'><input type="text" value="JAVA"/><select class="form-control" name="years">
+                    <option>0 No-Experience</option>
+                    <option>1-2 Years</option>
+                    <option>3-4 Years</option>
+                    <option>5+ Years</option>
+                </select></div>
+                <div class='Item'><input type="text" value="C++"/><select class="form-control" name="years">
+                    <option>0 No-Experience</option>
+                    <option>1-2 Years</option>
+                    <option>3-4 Years</option>
+                    <option>5+ Years</option>
+                </select></div>
+                <div class='Item'><input type="text" value="HTML"/><select class="form-control" name="years">
+                    <option>0 No-Experience</option>
+                    <option>1-2 Years</option>
+                    <option>3-4 Years</option>
+                    <option>5+ Years</option>
+                </select></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<button id="addmust" class="btn btn-default">Add another Priority Operator</button>
+
+<script>
+    var itemCount = 3;
+    var awaitingCopy = false;
+
+    $(init);
+
+    $("#addmust").click(function () {
+        $('<h3 style="float: left;padding: 0px 10px;">OR</h3><div id="Page2" class="Page"><div class="Container"><a id="NewItem2" class="NewItem">Click to Add Item </a><div id="CopyItem2" class="CopyItem">Drop to Copy Item </div><div id="Items2" class="Items"></div> </div></div>').appendTo((".operators"));
+        $("#addmust").hide();
+    });
+
+    function init() {
+        $("#Items").sortable({
+            revert: true,
+            placeholder: "ItemPlaceHolder",
+            opacity: 0.6,
+            start: StartDrag,
+            stop: StopDrag
+        });
+        $("#Items2").sortable({
+            revert: true,
+            placeholder: "ItemPlaceHolder",
+            opacity: 0.6,
+            start: StartDrag2,
+            stop: StopDrag2
+        });
+
+        $("#CopyItem").droppable({
+            hoverClass: "CopyItemActive",
+            drop: function (event, ui) {
+                awaitingCopy = true;
+            }
+        });
+        $("#CopyItem2").droppable({
+            hoverClass: "CopyItemActive",
+            drop: function (event, ui) {
+                awaitingCopy = true;
+            }
+        });
+
+        $("#NewItem").click(function (e) {
+            console.log("aaaa");
+            e.preventDefault();
+            itemCount++;
+            var element = $("<div class='Item'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select></div>");
+            $("#Items").append(element);
+            element.hide().slideDown(500);
+        });
+        $('body').on('click', '#NewItem2', function (e) {
+            e.preventDefault();
+            itemCount++;
+            var element = $("<div class='Item'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select></div>");
+            $("#Items2").append(element);
+            element.hide().slideDown(500);
+        });
+    }
+
+    function CopyItem(element) {
+        awaitingCopy = false;
+        var clone = element.clone();
+        $("#Items").append(clone);
+        clone.hide().slideDown(500);
+    }
+
+    function StartDrag() {
+        $("#NewItem").hide();
+        $("#CopyItem").show();
+    }
+
+    function StopDrag(event, ui) {
+        if (awaitingCopy) {
+            $(this).sortable('cancel');
+            CopyItem($(ui.item));
+        }
+        $("#NewItem").show();
+        $("#CopyItem").hide();
+    }
+
+    function CopyItem2(element) {
+        awaitingCopy = false;
+        var clone = element.clone();
+        $("#Items2").append(clone);
+        clone.hide().slideDown(500);
+    }
+    function StartDrag2() {
+        $("#NewItem2").hide();
+        $("#CopyItem2").show();
+    }
+
+    function StopDrag2(event, ui) {
+        if (awaitingCopy) {
+            $(this).sortable('cancel');
+            CopyItem2($(ui.item));
+        }
+        $("#NewItem2").show();
+        $("#CopyItem2").hide();
+    }
+
+</script>
+</body>
+</html>

@@ -9,31 +9,41 @@
 
     <!--  slider -->
     <ul id="sliders">
-        <p>Locations</p>
-        <li>
-            <div class="slider"></div>
-			<span class="value" data-id="1">{{formulas["locations"]}}</span>
-        </li>
+        <div>
+            <p>Academy</p>
+            <li>
+                <div class="slider"></div>
+                <span id="sliders1" class="value" data-id="1">{{formulas["academy"]}} / {{100-totalSum+formulas["academy"]}}</span>
+            </li>
+        </div>
+        <div>
         <p>Candidate Type</p>
         <li>
             <div class="slider"></div>
-			<span class="value"  data-id="2">{{formulas["candidate_type"]}}</span>
+			<span class="value"  data-id="2">{{formulas["candidate_type"]}} / {{100-totalSum+formulas["candidate_type"]}}</span>
         </li>
-        <p>Scope of Position</p>
+            </div>
+        <div>
+        <p>Locations</p>
         <li>
             <div class="slider"></div>
-			<span class="value"  data-id="3">{{formulas["scope_of_position"]}}</span>
+			<span class="value"  data-id="3">{{formulas["locations"]}} / {{100-totalSum+formulas["locations"]}}</span>
         </li>
-        <p>Academy</p>
-        <li>
-            <div class="slider"></div>
-			<span class="value"  data-id="4">{{formulas["sub_sector"]}}</span>
-        </li>
+            </div>
+        <div>
         <p>Requirements</p>
         <li>
             <div class="slider"></div>
-			<span class="value"  data-id="5">{{formulas["requirements"]}}</span>
+			<span class="value"  data-id="4">{{formulas["requirements"]}} / {{100-totalSum+formulas["requirements"]}}</span>
         </li>
+            </div>
+        <div>
+        <p>Scope of Position</p>
+        <li>
+            <div class="slider"></div>
+			<span class="value"  data-id="5">{{formulas["scope_of_position"]}} / {{100-totalSum+formulas["scope_of_position"]}}</span>
+        </li>
+            </div>
     </ul>
 
 </div>
