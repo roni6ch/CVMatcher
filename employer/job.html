@@ -6,20 +6,23 @@
     <form method="post" ng-submit="submitForm()">
         <div class="animated fadeInDown jobEdit">
             <div class="form-group">
-                <label>Job Name:</label> <input type="text" ng-model="jobDetails['original_text'][0]['job_title']" placeholder="Please Type job name"
+                <label>Job Name:</label> <input type="text" ng-model="jobDetails['original_text'][0]['job_title']"
+                                                placeholder="Please Type job name"
                                                 class="form-control" name="job_name"
                                                 value="{{jobDetails['original_text'][0]['job_title']}}">
             </div>
 
             <div class="form-group">
-                <label>Location:</label> <input class="form-control" ng-model="jobDetails.locations" id="geocomplete" type="text"
+                <label>Location:</label> <input class="form-control" ng-model="jobDetails.locations" id="geocomplete"
+                                                type="text"
                                                 name="location" value="{{jobDetails['locations']}}"
                                                 placeholder="Type in an address" size="90" autocomplete="on">
             </div>
 
             <div class="form-group">
                 <label>Candidate Type:</label>
-                <select class="selectpicker form-control" ng-model="jobDetails.candidate_type" multiple value="{{jobDetails['candidate_type']}}"
+                <select class="selectpicker form-control" ng-model="jobDetails.candidate_type" multiple
+                        value="{{jobDetails['candidate_type']}}"
                         name="scope_of_position">
                     <option>Students</option>
                     <option>Mothers</option>
@@ -32,7 +35,7 @@
                 <label>Sector:</label> <input type="text" ng-model="jobDetails.sector" value="{{jobDetails.sector}}"
                                               placeholder="Please Type Sector, Example: Software Engineer"
                                               class="form-control" name="sector"
-                                              >
+            >
             </div>
             <div class="form-group">
                 <label>Sub Sector:</label> <input type="text" ng-model="jobDetails.sub_sector"
@@ -50,9 +53,9 @@
                 </select>
             </div>
 
-            <div class="form-group" ng-model="compability" ng-value="compability=jobDetails['compatibility_level']"  >
+            <div class="form-group" ng-model="compability" ng-value="compability=jobDetails['compatibility_level']">
                 <label>Min Compability:</label>
-                <ul class="pagination pagination-lg" >
+                <ul class="pagination pagination-lg">
                     <li><a href="" ng-click="jobDetails['compatibility_level']=10">10</a></li>
                     <li><a href="" ng-click="jobDetails['compatibility_level']=20">20</a></li>
                     <li><a href="" ng-click="jobDetails['compatibility_level']=30">30</a></li>
@@ -73,20 +76,23 @@
 
             <div class="form-group">
                 <label for="comment">Description:</label>
-				<textarea class="form-control" rows="5" name="original_text"  ng-model="jobDetails.original_text[0]['description']" placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
-                          >{{jobDetails.original_text[0]['description']}}</textarea>
+				<textarea class="form-control" rows="5" name="original_text"
+                          ng-model="jobDetails.original_text[0]['description']"
+                          placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
+                >{{jobDetails.original_text[0]['description']}}</textarea>
             </div>
 
             <div class="form-group requirements">
-                <label for="comment" >Requirements:</label>
-				<textarea class="form-control" rows="5" id="comment" ng-model="jobDetails.original_text[0]['requirements']"
+                <label for="comment">Requirements:</label>
+				<textarea class="form-control" rows="5" id="comment"
+                          ng-model="jobDetails.original_text[0]['requirements']"
                           name="requirements">{{jobDetails.original_text[0]['requirements']}}</textarea>
             </div>
 
             <div class="form-group experienceBeforeParse">
-            <input type="button" class="btn btn-warning"
-                   ng-click="parseExperience()" value="Parse my Experience">
-</div>
+                <input type="button" class="btn btn-warning"
+                       ng-click="parseExperience()" value="Parse my Experience">
+            </div>
 
 
             <div class="form-group">
@@ -101,29 +107,29 @@
                                     <label class="radio-inline"><input type="radio" name="optradio">Must</label>
                                     <label class="radio-inline"><input type="radio" name="optradio">Adventage</label>
                                     <select class="form-control" name="years1">
-                                    <option>0 No-Experience</option>
-                                    <option>1-2 Years</option>
-                                    <option>3-4 Years</option>
-                                    <option>5+ Years</option>
-                                </select></div>
+                                        <option>0 No-Experience</option>
+                                        <option>1-2 Years</option>
+                                        <option>3-4 Years</option>
+                                        <option>5+ Years</option>
+                                    </select></div>
                                 <div class='Item'><input type="text" name="lang2" value="C++"/>
                                     <label class="radio-inline"><input type="radio" name="optradio2">Must</label>
                                     <label class="radio-inline"><input type="radio" name="optradio2">Adventage</label>
                                     <select class="form-control" name="years2">
-                                    <option>0 No-Experience</option>
-                                    <option>1-2 Years</option>
-                                    <option>3-4 Years</option>
-                                    <option>5+ Years</option>
-                                </select></div>
+                                        <option>0 No-Experience</option>
+                                        <option>1-2 Years</option>
+                                        <option>3-4 Years</option>
+                                        <option>5+ Years</option>
+                                    </select></div>
                                 <div class='Item'><input type="text" name="lang3" value="HTML"/>
                                     <label class="radio-inline"><input type="radio" name="optradio3">Must</label>
                                     <label class="radio-inline"><input type="radio" name="optradio3">Adventage</label>
                                     <select class="form-control" name="years3">
-                                    <option>0 No-Experience</option>
-                                    <option>1-2 Years</option>
-                                    <option>3-4 Years</option>
-                                    <option>5+ Years</option>
-                                </select></div>
+                                        <option>0 No-Experience</option>
+                                        <option>1-2 Years</option>
+                                        <option>3-4 Years</option>
+                                        <option>5+ Years</option>
+                                    </select></div>
                             </div>
                         </div>
 
@@ -135,10 +141,9 @@
             </div>
 
 
-
             <div ng-include="'employer/jobparameters.html'"></div>
             <div class="form-group">
-        <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
             </div>
         </div>
     </form>

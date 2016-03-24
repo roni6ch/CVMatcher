@@ -13,37 +13,40 @@
             <p>Academy</p>
             <li>
                 <div class="slider"></div>
-                <span id="sliders1" class="value" data-id="1">{{formulas["academy"]}} / {{100-totalSum+formulas["academy"]}}</span>
+                <span id="sliders1" class="value" data-id="1" ng-if='formulas["academy"]'>{{formulas["academy"]}} / {{100-totalSum+formulas["academy"]}}</span>
+                <span id="sliders1" class="value" data-id="1" ng-if='!formulas["academy"]'>0 / 100</span>
             </li>
         </div>
         <div>
             <p>Candidate Type</p>
             <li>
                 <div class="slider"></div>
-                <span class="value" data-id="2">{{formulas["candidate_type"]}} / {{100-totalSum+formulas["candidate_type"]}}</span>
+                <span class="value" data-id="2"  ng-if='formulas["candidate_type"]'>{{formulas["candidate_type"]}} / {{100-totalSum+formulas["candidate_type"]}}</span>
+                <span class="value" data-id="2" ng-if='!formulas["candidate_type"]'>0 / 100</span>
             </li>
         </div>
         <div>
             <p>Locations</p>
             <li>
                 <div class="slider"></div>
-                <span class="value"
-                      data-id="3">{{formulas["locations"]}} / {{100-totalSum+formulas["locations"]}}</span>
+                <span class="value" data-id="3" ng-if='formulas["locations"]'>{{formulas["locations"]}} / {{100-totalSum+formulas["locations"]}}</span>
+                <span class="value" data-id="3" ng-if='!formulas["locations"]'>0 / 100</span>
             </li>
         </div>
         <div>
             <p>Requirements</p>
             <li>
                 <div class="slider"></div>
-                <span class="value"
-                      data-id="4">{{formulas["requirements"]}} / {{100-totalSum+formulas["requirements"]}}</span>
+                <span class="value" data-id="4" ng-if='formulas["requirements"]'>{{formulas["requirements"]}} / {{100-totalSum+formulas["requirements"]}}</span>
+                <span class="value" data-id="4" ng-if='!formulas["requirements"]'>0 / 100</span>
             </li>
         </div>
         <div>
             <p>Scope of Position</p>
             <li>
                 <div class="slider"></div>
-                <span class="value" data-id="5">{{formulas["scope_of_position"]}} / {{100-totalSum+formulas["scope_of_position"]}}</span>
+                <span class="value" data-id="5" ng-if='formulas["scope_of_position"]'>{{formulas["scope_of_position"]}} / {{100-totalSum+formulas["scope_of_position"]}}</span>
+                <span class="value" data-id="5" ng-if='!formulas["scope_of_position"]'>0 / 100</span>
             </li>
         </div>
     </ul>

@@ -13,7 +13,7 @@
         <!-- User Name -->
         <div ng-init="getUserJson()">
             <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
-            <h4>{{user.subsector}}</h4>
+            <h4>{{user['user'].subsector}}</h4>
             <a href=""><i id="candidateStar"
                           class='fa fa-star-o fa-2x'
                           ng-click='addCandidateToFavorites(user.id)'></i></a>

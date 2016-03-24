@@ -1,4 +1,4 @@
-<div class="profileWrapper">
+<div class="profileWrapper" ng-init="getMainJson()">
     <h3 compile-html>{{navigation}}</h3>
     <header>
         <h2>Profile</h2>
@@ -18,15 +18,15 @@
             <form>
                 <h4>Personal Information</h4>
                 <label for="usr">Name:</label> <input type="text" required
-                                                      class="form-control" id="usr" name="name" value=""> <label
+                                                      class="form-control" id="usr" name="name" value="{{jobSeeker['first_name']}}"> <label
                     for="usr">Family:</label> <input type="text" required
-                                                     class="form-control" id="usr" name="family" value=""> <label
+                                                     class="form-control" id="usr" name="family" value="{{jobSeeker['last_name']}}"> <label
                     for="usr">Date of birth:</label> <input type="text" required
-                                                            class="form-control" id="usr" name="birth" value=""> <label
+                                                            class="form-control" id="usr" name="birth" value="{{jobSeeker['birth_date']}}"> <label
                     for="usr">Address:</label> <input type="text" required
-                                                      class="form-control" id="usr" name="address" value=""> <label
+                                                      class="form-control" id="usr" name="address" value="{{jobSeeker['address']}}"> <label
                     for="usr">Phone:</label> <input type="text" required
-                                                    class="form-control" id="usr" name="phone" value="">
+                                                    class="form-control" id="usr" name="phone" value="{{jobSeeker['phone_number']}}">
                 <h4>Education</h4>
                 <label><input type="radio" name="education"
                               value="university" checked>University</label> <label><input

@@ -6,8 +6,7 @@ app.config(function ($routeProvider) {
     $routeProvider
     // employer
         .when('/', {
-            templateUrl: 'googleSignIn.html',
-            controller: 'googleSignInController'
+            templateUrl: 'googleSignIn.html'
         }).when('/usersLogin', {
         templateUrl: 'usersLogin.html',
         controller: 'usersLoginController'
@@ -32,11 +31,8 @@ app.config(function ($routeProvider) {
     }).when('/job/:_id', {
         templateUrl: 'employer/job.html',
         controller: 'jobController'
-    }).when('/jobParameters/:_id', {
-        templateUrl: 'employer/jobparameters.html',
-        controller: 'jobParametersController'
     }).when('/companyProfile', {
-        templateUrl: 'employer/companyprofile.html',
+        templateUrl: 'employer/companyProfile.html',
         controller: 'companyProfileController'
     }).when('/newJob', {
             templateUrl: 'employer/job.html',
@@ -73,166 +69,43 @@ app.config(function ($routeProvider) {
     })
 
 }).run(function ($rootScope, $http) {
-    if ($.cookie('userSignInType'))
-        $rootScope.userSignInType = $.parseJSON($.cookie('userSignInType'));
-    else
-        $rootScope.userSignInType = "";
-    $rootScope.profile = "";
-    $rootScope.userProfileDetails = ""
-
-
-    if ($.cookie('user'))
-        $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
 });
 
-
-/*
- * ********************* googleSign controller ****************
- */
-
-app.controller('googleSignInController', function ($scope, $http, $sce, $rootScope) {
-
-});
 
 /*
  * ********************* usersLogin controller ****************
  */
 
 var user;
-app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope) {
+app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile) {
     $scope.userType = function (type) {
-        $.cookie('userSignInType', JSON.stringify(type));
-        $rootScope.userSignInType = $.parseJSON($.cookie('userSignInType'));
         if (type == 'employer') {
-            location.replace("#/myjobs");
-            $rootScope.userProfileDetails = profile;
-        }
-        else if (type == 'jobSeeker')
-            location.replace("#/searchJobs");
-    }
-
-});
-
-/*
- * ********************* JS Functions ****************
- */
-
-
-$(document).ready(function () {
-
-    $("#logo").click(function () {
-
-        if (window.location.href.indexOf("localhost") > -1)
-            window.location.href = '/cvmatcher/';
-        else
-            window.location.href = 'http://cvmatcher.000space.com';
-    });
-});
-var profile;
-var auth2 = {};
-var helper = (function () {
-    return {
-        onSignInCallback: function (authResult) {
-
-            if (authResult.isSignedIn.get()) {
-                $('#authOps').show('slow');
-                helper.profile();
-            } else {
-                if (authResult['error'] || authResult.currentUser.get().getAuthResponse() == null) {
-                    console.log('There was an error: ' + authResult['error']);
-                }
-                $('#authResult').append('Logged out');
-                $('#authOps').hide('slow');
-                $('#gConnect').show();
-            }
-
-        },
-        /**
-         * Calls the OAuth2 endpoint to disconnect the app for the user.
-         */
-        disconnect: function () {
-            // Revoke the access token.
-            auth2.disconnect();
-        },
-
-        profile: function () {
-            gapi.client.plus.people.get({
-                'userId': 'me'
-            }).then(function (res) {
-                profile = res.result;
-
-                //set coockies of user
-                var user = {
-                    id: profile.id,
-                    name: profile.displayName,
-                    image: profile["image"].url
-                }
-                $.cookie('user', JSON.stringify(user));
-
+            $.cookie('profile', "#/companyProfile");
+            console.log("usersLoginController employer: " + $.cookie('profile'));
+            if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-
-                location.replace("#/usersLogin");
-
-
-            }, function (err) {
-                var error = err.result;
-            });
+            location.replace("#/myjobs");
         }
-    };
-})();
+        else if (type == 'jobSeeker') {
+            $.cookie('profile', "#/Profile");
+            console.log("usersLoginController jobSeeker: " + $.cookie('profile'));
+            if ($.cookie('user'))
+                $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
+            location.replace("#/searchJobs");
+        }
 
-
-/**
- * Handler for when the sign-in state changes.
- *
- * @param {boolean} isSignedIn The new signed in state.
- */
-var updateSignIn = function () {
-    if (auth2.isSignedIn.get()) {
-        helper.onSignInCallback(gapi.auth2.getAuthInstance());
-
-    } else {
-        helper.onSignInCallback(gapi.auth2.getAuthInstance());
     }
-}
+});
 
 /**
- * This method sets up the sign-in listener after the client library loads.
- */
-function startApp() {
-    gapi.load('auth2', function () {
-        gapi.client.load('plus', 'v1').then(function () {
-            gapi.signin2.render('signin-button', {
-                scope: 'https://www.googleapis.com/auth/plus.login',
-                fetch_basic_profile: false
-            });
-            gapi.auth2.init({
-                fetch_basic_profile: false,
-                scope: 'https://www.googleapis.com/auth/plus.login'
-            }).then(
-                function () {
-                    auth2 = gapi.auth2.getAuthInstance();
-                    auth2.isSignedIn.listen(updateSignIn);
-                    auth2.then(updateSignIn);
-                });
-        });
-    });
-}
-
-/**
- * ************************************************************Job
- * Seeker******************************************************
+ * ************************************************************Job-Seeker******************************************************
  */
 
 /*
  * ********************* jobSeeker Search Jobs Controller ****************
  */
-app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,
-                                                          $sce, $http) {
-    $rootScope.profile = "#/Profile";
-
+app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,$sce, $http) {
     $scope.getMainJson = function () {
-
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
@@ -248,9 +121,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,
                 function (response) { // optional
                     console.log("resumeController AJAX failed!");
                 });
-
     }
-
     $scope.sort = function (sort) {
         $scope.sortby = sort;
     }
@@ -264,10 +135,13 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope,
 
 });
 
+
 /*
  * ********************* job by Search Controller ****************
  */
 app.controller('jobpagebyIDController', function ($scope, $http, $location) {
+
+
     $id = $location.path().split('/');
     console.log("jobpagebyIDController");
 
@@ -304,6 +178,8 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
  */
 
 app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
+
+
     $scope.getMainJson = function () {
         console.log("yourjobSeekerController");
         $http({
@@ -324,7 +200,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
     }
 
     $scope.sort = function (sort) {
-            $scope.sortby = sort;
+        $scope.sortby = sort;
     }
     $scope.highlight = function (text, search) {
         if (!search) {
@@ -346,6 +222,27 @@ app
     .controller(
         'seekerProfileControler',
         function ($scope, $http, $compile) {
+
+
+            $scope.getMainJson = function () {
+                console.log("seekerProfileControler");
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/getUser',
+                    method: "POST",
+                    data: {
+                        "google_user_id": "100",
+                        "user_type": "job_seeker"
+                    }
+                })
+                    .then(function (data) {
+                            $scope.jobSeeker = data.data[0];
+                            console.log(data.data[0]);
+                        },
+                        function (response) { // optional
+                            alert("jobSeekerJobs AJAX failed!");
+                        });
+            }
+
 
             var fromExperience = '<label>From<select id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="no_experience">0</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
             var toExperience = '<label>To<select id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="no_experience">0</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
@@ -509,7 +406,7 @@ app
 
 app.controller('myjobsController', function ($rootScope, $scope, $http, $sce) {
 
-    $rootScope.profile = "#/companyProfile";
+
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
@@ -525,7 +422,7 @@ app.controller('myjobsController', function ($rootScope, $scope, $http, $sce) {
                 });
 
     }
-    $scope.sort = function (sort) {
+    $rootScope.sort = function (sort) {
         $scope.sortby = sort;
     }
 
@@ -533,23 +430,23 @@ app.controller('myjobsController', function ($rootScope, $scope, $http, $sce) {
         if (!search) {
             return $sce.trustAsHtml(text);
         }
+        console.log(search);
+        console.log(text);
         return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'),
             '<span class="highlighted">$&</span>'));
     };
 
 });
 
-/*
- * ********************* archive controller ****************
- */
-app.controller('archiveController', function ($scope, $http, $sce) {
-});
+
 
 /*
  * ********************* company Profile controller ****************
  */
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce) {
+
+
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
             method: "POST",
@@ -564,6 +461,20 @@ app.controller('companyProfileController',
                 function (response) { // optional
                     console.log("companyProfileController AJAX failed!");
                 });
+        //uploadPhoto
+        $(function () {
+            $(":file").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+
+        function imageIsLoaded(e) {
+            $('#myImg').attr('src', e.target.result);
+        };
     });
 /*
  * ********************* Candidates controller ****************
@@ -572,7 +483,6 @@ app.controller('candidatesController',
     function ($scope, $http, $location, $sce) {
         $id = $location.path().split('/');
         $scope.jobId = $id[2];
-        var candidates = [];
         $scope.unreadCvs = function () {
             $http({
                 url: 'https://cvmatcher.herokuapp.com/employer/getUnreadCvsForJob',
@@ -580,14 +490,11 @@ app.controller('candidatesController',
                 data: {"google_user_id": "0", "job_id": "56ed4b93e4b0a216f2521c42"}
             })
                 .then(function (data) {
-                        angular.forEach(data.data, function (value, key) {
-                            candidates.push(data.data[key][0]);
-                        });
                         $scope.candidates = data.data;
                         console.log(data.data);
                     },
                     function (response) { // optional
-                        console.log("getUnreadCvsForJob AJAX failed!");
+                        console.log("unreadCvs AJAX failed!");
                     });
         }
         $scope.likedCvs = function () {
@@ -600,14 +507,10 @@ app.controller('candidatesController',
                 }
             })
                 .then(function (data) {
-                        angular.forEach(data.data, function (value, key) {
-                            candidates.push(data.data[key][0]);
-                        });
                         $scope.likeCandidates = data.data;
-                        console.log(data.data);
                     },
                     function (response) { // optional
-                        console.log("getUnreadCvsForJob AJAX failed!");
+                        console.log("likedCvs AJAX failed!");
                     });
         }
         $scope.unlikeCvs = function () {
@@ -621,14 +524,10 @@ app.controller('candidatesController',
                 }
             })
                 .then(function (data) {
-                        angular.forEach(data.data, function (value, key) {
-                            candidates.push(data.data[key][0]);
-                        });
                         $scope.unlikeCandidates = data.data;
-                        console.log(data.data);
                     },
                     function (response) { // optional
-                        console.log("getUnreadCvsForJob AJAX failed!");
+                        console.log("unlikeCvs AJAX failed!");
                     });
         }
         $scope.favoritesCvs = function () {
@@ -642,14 +541,10 @@ app.controller('candidatesController',
                 }
             })
                 .then(function (data) {
-                        angular.forEach(data.data, function (value, key) {
-                            candidates.push(data.data[key][0]);
-                        });
                         $scope.favoritesCandidates = data.data;
-                        console.log(data.data);
                     },
                     function (response) { // optional
-                        console.log("getUnreadCvsForJob AJAX failed!");
+                        console.log("favoritesCvs AJAX failed!");
                     });
         }
 
@@ -844,6 +739,8 @@ app.controller('resumeController',
  */
 
 app.controller('jobController', function ($scope, $http, $location) {
+
+
     $id = $location.path().split('/')[1];
     console.log($id);
     $("#geocomplete").geocomplete();
@@ -903,7 +800,6 @@ app.controller('jobController', function ($scope, $http, $location) {
 
 
     $(".Item").click(function () {
-        console.log($(this)[0].innerHTML);
         $(this).css("background-color", "#ccc");
     });
 
@@ -1012,12 +908,10 @@ app.controller('jobController', function ($scope, $http, $location) {
     });
 
 
-
-
-
     //PARAMETERS
 
     $scope.initFormulas = function () {
+
         //sliders
         var sliders = $("#sliders .slider");
         var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
@@ -1079,19 +973,12 @@ app.controller('jobController', function ($scope, $http, $location) {
             })
         }
         //im in newJob - init parameters
-        else{
+        else {
+
             sliders.each(function () {
-                var availableTotal = 100;
-                $(this).empty().slider({
-                    value: 0,
-                    min: 0,
-                    max: 100,
-                    range: "max",
-                    step: 10,
-                    slide: function (event, ui) {
                         var availableTotal = 100;
-                        $(this).empty().slider({
-                            value: ui.value,
+                        $(this).slider({
+                            value: 0,
                             min: 0,
                             max: 100,
                             range: "max",
@@ -1123,22 +1010,12 @@ app.controller('jobController', function ($scope, $http, $location) {
                                     });
                                 }
                             }
-                        });
-                    }
                 })
             });
         }
     }
 });
 
-/*
- * ********************* job Parameters controller ****************
- */
-
-app.controller('jobParametersController', function ($scope, $http, $location) {
-    console.log('jobParametersController');
-    $id = $location.path().split('/');
-});
 
 /*
  * ********************* DIRECTIVES ****************
@@ -1211,43 +1088,43 @@ app
                                 || path[i - 1] == "Search Jobs") {
 
 
-                                    var pTemp = path[i];
-                                    $http
-                                        .get("json/myjobstest.json")
-                                        .success(
-                                            function (data) {
-                                                // bring the job
-                                                // name by id
-                                                angular
-                                                    .forEach(
-                                                        data,
-                                                        function (value,
-                                                                  key) {
-                                                            if (value["_id"] == pTemp) {
-                                                                path[i] = value["job_name"];
-                                                                navigation_path += "<span> > </span><a href='#"
-                                                                    + last_path
-                                                                    + "'>"
-                                                                    + path[i]
-                                                                    + $job_parameters
-                                                                    + "</a>";
+                                var pTemp = path[i];
+                                $http
+                                    .get("json/myjobstest.json")
+                                    .success(
+                                        function (data) {
+                                            // bring the job
+                                            // name by id
+                                            angular
+                                                .forEach(
+                                                    data,
+                                                    function (value,
+                                                              key) {
+                                                        if (value["_id"] == pTemp) {
+                                                            path[i] = value["job_name"];
+                                                            navigation_path += "<span> > </span><a href='#"
+                                                                + last_path
+                                                                + "'>"
+                                                                + path[i]
+                                                                + $job_parameters
+                                                                + "</a>";
 
-                                                                element
-                                                                    .html($compile(
-                                                                        "<a href='#/'>Homepage</a>"
-                                                                        + navigation_path)
-                                                                    (
-                                                                        scope));
-                                                            }
-                                                        });
-                                            })
-                                        .error(
-                                            function (data,
-                                                      status,
-                                                      headers,
-                                                      config) {
-                                                alert("myjobstest AJAX failed!");
-                                            });
+                                                            element
+                                                                .html($compile(
+                                                                    "<a href='#/'>Homepage</a>"
+                                                                    + navigation_path)
+                                                                (
+                                                                    scope));
+                                                        }
+                                                    });
+                                        })
+                                    .error(
+                                        function (data,
+                                                  status,
+                                                  headers,
+                                                  config) {
+                                            alert("myjobstest AJAX failed!");
+                                        });
 
                             }
                             // if the path[i] is a number that came from
@@ -1360,3 +1237,130 @@ app.directive('circle', function ($timeout) {
         }
     }
 });
+// focus on searchBox
+app.directive('profileimg', function ($compile) {
+    return {
+        replace: true,
+        restrict: 'EA',
+        link: function (scope, element, attr) {
+            //userProfileImg
+            if ($.cookie('user') && $.cookie('profile')) {
+                var cookieImg = $.parseJSON($.cookie('user')).image;
+                var profile = $.cookie('profile');
+                var e = $compile(
+                    '<a ng-href="' + profile + '"><img src="' + cookieImg + '" id="profileImg"></a>')(scope);
+                $compile(angular.element("#profilePage").replaceWith(e))(scope);
+                console.log("profile: " + profile);
+            }
+
+        }
+    }
+});
+
+
+/*
+ * ********************* JS Functions ****************
+ */
+
+
+$(document).ready(function () {
+
+    $("#logo").click(function () {
+
+        if (window.location.href.indexOf("localhost") > -1)
+            window.location.href = '/cvmatcher/';
+        else
+            window.location.href = 'http://cvmatcher.000space.com';
+    });
+});
+var profile;
+var auth2 = {};
+var helper = (function () {
+    return {
+        onSignInCallback: function (authResult) {
+
+            if (authResult.isSignedIn.get()) {
+                $('#authOps').show('slow');
+                helper.profile();
+            } else {
+                if (authResult['error'] || authResult.currentUser.get().getAuthResponse() == null) {
+                    console.log('There was an error: ' + authResult['error']);
+                }
+                $('#authResult').append('Logged out');
+                $('#authOps').hide('slow');
+                $('#gConnect').show();
+            }
+
+        },
+        /**
+         * Calls the OAuth2 endpoint to disconnect the app for the user.
+         */
+        disconnect: function () {
+            // Revoke the access token.
+            auth2.disconnect();
+        },
+
+        profile: function () {
+            gapi.client.plus.people.get({
+                'userId': 'me'
+            }).then(function (res) {
+                profile = res.result;
+
+                //set coockies of user
+                var user = {
+                    id: profile.id,
+                    name: profile.displayName,
+                    image: profile["image"].url
+                }
+                $.cookie('user', JSON.stringify(user));
+                console.log("cookie exist! " + $.parseJSON($.cookie('user')).image);
+
+                $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
+
+                location.replace("#/usersLogin");
+
+
+            }, function (err) {
+                var error = err.result;
+            });
+        }
+    };
+})();
+
+
+/**
+ * Handler for when the sign-in state changes.
+ *
+ * @param {boolean} isSignedIn The new signed in state.
+ */
+var updateSignIn = function () {
+    if (auth2.isSignedIn.get()) {
+        helper.onSignInCallback(gapi.auth2.getAuthInstance());
+
+    } else {
+        helper.onSignInCallback(gapi.auth2.getAuthInstance());
+    }
+}
+
+/**
+ * This method sets up the sign-in listener after the client library loads.
+ */
+function startApp() {
+    gapi.load('auth2', function () {
+        gapi.client.load('plus', 'v1').then(function () {
+            gapi.signin2.render('signin-button', {
+                scope: 'https://www.googleapis.com/auth/plus.login',
+                fetch_basic_profile: false
+            });
+            gapi.auth2.init({
+                fetch_basic_profile: false,
+                scope: 'https://www.googleapis.com/auth/plus.login'
+            }).then(
+                function () {
+                    auth2 = gapi.auth2.getAuthInstance();
+                    auth2.isSignedIn.listen(updateSignIn);
+                    auth2.then(updateSignIn);
+                });
+        });
+    });
+}

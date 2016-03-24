@@ -1,10 +1,12 @@
 <div class="myjobsWrapper" ng-init="getMainJson()">
     <h3 compile-html>{{navigation}}</h3>
+
+    <profileimg></profileimg>
     <header>
         <h2>My Jobs</h2>
     </header>
     <form method="get" action="">
-        <input type="text" placeholder="Find Job" ng-model="searchText"
+        <input type="text" placeholder="Find Job" ng-model="searchText" highlighted data-search="searchText"
                class="form-control">
     </form>
     <button type="button" class="btn btn-default"
