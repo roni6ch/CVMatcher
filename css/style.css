@@ -818,7 +818,7 @@ footer div a {
     border-radius: 10px;
 }
 
-.jobEdit div {
+.jobEdit > div {
     width: 100% !important;
     padding: 6px 15px;
     margin-bottom: 0px !important;
@@ -845,6 +845,88 @@ footer div a {
     top: 39%;
     font-size: 30px;
     left: 32%;}
+
+.operators {
+    width: 100%;
+    float: left;
+}
+.operators input {
+    background: none;
+    border: 0;
+    text-align: center;
+    font-size: 21px;
+    width: 100%;
+    float: left;
+    position: inherit !important;
+    margin-left:0px !important;
+}
+.Item > label{width:inherit;}
+
+#addmust{margin-left: 3%;}
+.operators select {
+    width: 48%;
+    float: left;
+    margin-top: 3px;
+}
+.operators .Page {
+    float: left;
+    display: table-cell;
+    padding: 0px;
+    width: 46%;
+    margin: auto;
+    background-color: #FFF;
+    border: 1px solid #999;
+}
+
+.operators .Container {
+    margin: 10px;
+    border: 1px dashed #CCC;
+}
+
+.operators .NewItem {
+    display: block;
+    margin: 5px;
+    background-color: #FFF;
+    text-align: center;
+    padding: 25px;
+    color: #AAA;
+    cursor: pointer;
+}
+
+.operators .NewItem:hover {
+    background-color: #E6FFE6;
+    color: #555;
+}
+
+.operators .CopyItem {
+    display: none;
+    margin: 5px;
+    background-color: #FFF;
+    text-align: center;
+    padding: 25px;
+    color: #AAA;
+    cursor: pointer;
+}
+
+.operators .CopyItemActive {
+    background-color: #CCF8FF;
+    color: #555;
+}
+
+.operators .Item {
+    margin: 5px;
+    height: 80px;
+    padding: 5px 10px;
+    border: 1px solid #CCC;
+    cursor: pointer;
+    background-color: #FCFCFC;
+}
+
+.operators .ItemPlaceHolder {
+    margin: 5px;
+    height: 80px;
+    background-color: #FFF4D9;
+}
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
     color: #606060;
@@ -854,7 +936,7 @@ footer div a {
 #sliders {
     position: relative;
 }
-#sliders > div{    background: #ccc;
+#sliders > div{
     padding: 0px 20px;
     border-radius: 10px;}
 
@@ -886,6 +968,7 @@ footer div a {
     background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
     rgba(77, 207, 221, 1) 100%);
 }
+
 
 /************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
@@ -1199,9 +1282,9 @@ footer div a {
 }
 
 #experience {
-    width: 75%;
+    width: 83%;
     float: left;
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 #years {

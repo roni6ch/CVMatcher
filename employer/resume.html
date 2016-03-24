@@ -12,7 +12,7 @@
     <article id="users">
         <!-- User Name -->
         <div ng-init="getUserJson()">
-            <h3>{{user.name}} Resume</h3>
+            <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
             <h4>{{user.subsector}}</h4>
             <a href=""><i id="candidateStar"
                           class='fa fa-star-o fa-2x'
@@ -42,7 +42,7 @@
             <div>
                 <h3>Education</h3>
 
-                <h3>Employment</h3>
+                <h3>Experience</h3>
             </div>
             <div class="container">
                 <div class="page-header">
@@ -81,15 +81,15 @@
 
             <div>
                 <a href="#"><i class="fa fa-phone fa-2x"></i>
-                    <h4>{{user.phone}}</h4></a>
+                    <h4>{{user['user'].phone_number}}</h4></a>
             </div>
             <div>
                 <a href="#"><i class="fa fa-envelope fa-2x"></i>
-                    <h4>{{user.mail}}</h4></a>
+                    <h4>{{user['user'].email}}</h4></a>
             </div>
             <div>
                 <a href="#"><i class="fa fa-linkedin-square fa-2x"></i>
-                    <h4>{{user.linkdin}}</h4></a>
+                    <h4>{{user['user'].linkdin}}</h4></a>
             </div>
         </section>
 

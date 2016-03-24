@@ -5,7 +5,7 @@
     </header>
     <form method="get" action="">
         <input type="text" placeholder="Find Job" ng-model="searchText"
-               class="form-control" focus="true">
+               class="form-control">
     </form>
     <button type="button" class="btn btn-default"
             ng-click="sort('-compatibility_level')">Sort By Compability
@@ -16,50 +16,15 @@
     <ul class="nav nav-tabs" ng-init="tab=0">
         <li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
             Engineer</a></li>
-        <li ng-class="{active:tab == 1}"><a href="">
+        <li class="disabled"><a>
             Managment Engineer</a></li>
-        <li ng-class="{active:tab == 2}"><a href="">Electrial
+        <li class="disabled"><a n>Electrial
             Engineer</a></li>
-        <li ng-class="{active:tab == 3}"><a href="">Mechanical
+        <li class="disabled"><a>Mechanical
             Engineer</a></li>
     </ul>
-
     <div class="tabsWrapper">
         <a href="#/newJob"><input type="button" class="btn btn-default" value="Add new Job"/></a>
-
-        <div ng-show="tab == 0" class="fade in active">
-            <!-- jobs sections -->
-            <section
-                    ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
-                <div class="jobs animated fadeInUp">
-                    <div>
-                        <a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a>
-                        <a href="#/jobParameters/{{job._id}}"><i
-                                class="fa fa-wrench fa-2x"></i></a> <a href="#/job/{{job._id}}"><i
-                            class="fa fa-pencil fa-2x"></i></a> <a
-                            href="#/Candidates/{{job._id}}"><img src="./images/logo.png"></a>
-
-                        <h3 ng-model="searchText.original_text[0]['job_title']"
-                            ng-bind-html="highlight(job.original_text[0]['job_title'], searchText)">
-                            {{job.original_text[0]["job_title"]}}</h3>
-                    </div>
-                    <div data-toggle="collapse" data-target="#collepse-{{$index}}">
-                        <h5>Address: {{job.locations[0]}}</h5> , <h5>Date: {{job.date}}</h5>
-
-                        <p>{{job.original_text[0]["requirements"]}}</p>
-
-                        <article id="collepse-{{$index}}" class="collapse">
-                            <span>Inforamtion: </span>{{job.original_text[0]["description"]}}
-                        </article>
-
-                        <span>Compability:</span>
-                        <section circle id="{{ 'circle-container-' + $index }}"
-                                 data-compability="{{job.compatibility_level}}">
-                            <h5>{{job.compatibility_level}}%</h5>
-                        </section>
-                    </div>
-                </div>
-            </section>
-        </div>
-
+        <div ng-include="'employer/myJobsAndArchiveInclude.html'"></div>
     </div>
+</div>
