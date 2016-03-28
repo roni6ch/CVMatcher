@@ -3,29 +3,85 @@
 	<header>
 		<h2>Company Profile</h2>
 	</header>
-	<form>
 
-		<div class="form-group">
-			<label for="usr">Company name:</label> <input type="text" required value="{{companyProfile['name']}}"
-				class="form-control" id="usr" name="address">
-		</div>
-		<div class="form-group">
-			<label for="usr">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}"
-				class="form-control" id="usr" name="address">
-		</div>
-		<div class="form-group">
-			<label for="usr">Address:</label> <input type="text" required value="{{companyProfile['address']}}"
-				class="form-control" id="usr" name="address">
-		</div>
-		<div class="form-group">
-			<label for="usr">Phone number:</label> <input type="text" required value="{{companyProfile['phone']}}"
-				class="form-control" id="usr" name="address">
-		</div>
-		<div class="form-group">
-			<label for="usr" class="editLogo">Logo:</label> <input type="file"
-				required class="form-control" id="usr" name="logo" accept="image/*">
-		</div>
-		<img id="myImg" src="#" alt="your image" style="width: 10%;" />
 
-	</form>
+
+	<ul class="nav nav-tabs" ng-init="tab=0">
+		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
+			Information</a></li>
+		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Company Profile</a></li>
+
+	</ul>
+
+	<div class="tab-content userProfile">
+		<div ng-show="tab == 0" class="tabsContent fade in active">
+			<!-- Content from here -->
+			<form>
+
+				<div class="form-group">
+					<label for="usr">First name:</label> <input type="text" required value="{{employerProfile['first_name']}}" ng-model="employerProfile['first_name']"
+																  class="form-control"  name="address">
+				</div>
+				<div class="form-group">
+					<label for="usr">Last name:</label> <input type="text" required value="{{employerProfile['family_name']}}" ng-model="employerProfile['family_name']"
+																class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="usr">Birth Date:</label> <input type="text" required value="{{employerProfile['birth_date']}}" ng-model="employerProfile['birth_date']"
+															   class="form-control">
+				</div>
+				<div class="form-group">
+					<label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}" ng-model="employerProfile['email']"
+														 class="form-control" >
+				</div>
+				<div class="form-group">
+
+					<label>Address:</label> <input class="form-control"  id="geocomplete" ng-model="employerProfile['address']"
+												   type="text"
+												   name="location" value="{{employerProfile['address']}}"
+												   placeholder="Type in an address" size="90" autocomplete="on">
+				</div>
+				<div class="form-group">
+					<label for="usr">Phone number:</label> <input type="text" required value="{{employerProfile['phone_number']}}" ng-model="employerProfile['phone_number']"
+																  class="form-control" >
+				</div>
+
+				<label for="usr">LinkedIn:</label> <input type="text" required
+														  class="form-control"
+														  value="{{companyProfile.user['linked_in']}}">
+
+				<button type="button" class="btn btn-default" ng-click="submitUserDetails()">Send</button>
+			</form>
+		</div>
+		<div ng-show="tab == 1" class="tabsContent fade in active">
+			<!-- Content from here -->
+			<form>
+
+				<div class="form-group">
+					<label for="usr">Company name:</label> <input type="text" required value="{{companyProfile['name']}}" ng-model="companyProfile['name']"
+																  class="form-control" id="usr" name="address">
+				</div>
+				<div class="form-group">
+					<label for="usr">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}" ng-model="companyProfile['p_c']"
+														 class="form-control" id="usr" name="address">
+				</div>
+				<div class="form-group">
+					<label for="usr">Address:</label> <input type="text" required value="{{companyProfile['address']}}" ng-model="companyProfile['address']"
+															 class="form-control" id="usr" name="address">
+				</div>
+				<div class="form-group">
+					<label for="usr">Phone number:</label> <input type="text" required value="{{companyProfile['phone_number']}}" ng-model="companyProfile['phone_number']"
+																  class="form-control" id="usr" name="address">
+				</div>
+				<div class="form-group">
+					<label for="usr" class="editLogo">Logo:</label> <input type="file"
+																		   required class="form-control" id="usr" name="logo" accept="image/*">
+				</div>
+				<img id="myImg" src="#" alt="your image" style="width: 10%;" />
+
+				<button type="button" class="btn btn-default" ng-click="submitCompanyDetails()">Send</button>
+
+			</form>
+		</div>
+	</div>
 </div>

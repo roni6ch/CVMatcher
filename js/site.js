@@ -78,14 +78,12 @@ app.config(function ($routeProvider) {
 
 }).run(function ($rootScope, $http) {
     //set the header navigation
-    if ($.cookie('userSignInType')) {
+    if ($.cookie('userSignInType'))
         $rootScope.userSignInType = $.cookie('userSignInType');
-    }
 }).filter('highlight', function($sce) {
     return function(text, phrase) {
         if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'),
             '<span class="highlighted">$1</span>')
-
         return $sce.trustAsHtml(text)
     }
 });
@@ -102,19 +100,73 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             $rootScope.userSignInType = "employer";
             $.cookie('userSignInType', "employer");
             $.cookie('profile', "#/companyProfile");
-            console.log("usersLoginController employer: " + $.cookie('profile'));
+            angular.element("#profileImg").parent().attr("href",$.cookie('profile'));
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-            location.replace("#/myjobs");
+
+            if (firstTimeLogIn==true) {
+                //add new user
+                $http({
+                     url: 'https://cvmatcher.herokuapp.com/addUser',
+                     method: "POST",
+                     data: {
+                         "google_user_id": profile.id,
+                         "first_name": profile.name.givenName,
+                         "last_name": profile.name.familyName,
+                         "email": "roni@gmail.com"
+                     }
+                 }).then(function (data) {
+                        console.log(data.data._id);
+                        $rootScope.user_id = data.data._id;
+                    },
+                    function (response) { // optional
+                        console.log("addUser AJAX failed!");
+                    });
+
+                firstTimeLogIn=false;
+                location.replace("#/companyProfile");
+            }
+            else {
+                firstTimeLogIn=false;
+                location.replace("#/myjobs");
+            }
         }
         else if (type == 'jobSeeker') {
             $rootScope.userSignInType = "jobSeeker";
             $.cookie('profile', "#/Profile");
             $.cookie('userSignInType', "jobSeeker");
-            console.log("usersLoginController jobSeeker: " + $.cookie('profile'));
+            angular.element("#profileImg").parent().attr("href",$.cookie('profile'));
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-            location.replace("#/searchJobs");
+
+            if (firstTimeLogIn==true) {
+
+                //add new user
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/addUser',
+                    method: "POST",
+                    data: {
+                        "google_user_id": profile.id,
+                        "first_name": profile.name.givenName,
+                        "last_name": profile.name.familyName,
+                        "email": "roni@gmail.com"
+                    }
+                }).then(function (data) {
+                        console.log(data);
+                        console.log(data._id);
+                        $rootScope.user_id = data.data._id;
+                    },
+                    function (response) { // optional
+                        console.log("addUser AJAX failed!");
+                    });
+
+                firstTimeLogIn=false;
+                location.replace("#/Profile");
+            }
+            else {
+                firstTimeLogIn=false;
+                location.replace("#/searchJobs");
+            }
         }
 
     }
@@ -190,7 +242,7 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
 
 });
 /*
- * ********************* yourjobs Seeker Controller ****************
+ * ********************* MY JOBS - Job Seeker Controller ****************
  */
 
 app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
@@ -229,11 +281,28 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
 app
     .controller(
         'seekerProfileControler',
-        function ($scope, $http, $compile) {
-
+        function ($scope, $http, $compile,$rootScope) {
+            $("#geocomplete").geocomplete();
 
             $scope.getMainJson = function () {
                 console.log("seekerProfileControler");
+
+                    //job seeker Details
+                    $http({
+                        url: 'https://cvmatcher.herokuapp.com/getUser',
+                        method: "POST",
+                        data: {
+                            "user_id":$rootScope.user_id
+                        }
+                    })
+                        .then(function (data) {
+                                $scope.jobSeeker = data.data[0];
+                                console.log(data.data[0]);
+                            },
+                            function (response) { // optional
+                                alert("jobSeekerJobs AJAX failed!");
+                            });
+                //job seeker CV
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                     method: "POST",
@@ -244,7 +313,7 @@ app
                     }
                 })
                     .then(function (data) {
-                            $scope.jobSeeker = data.data[0];
+                            $scope.jobSeekerCV = data.data[0];
                             console.log(data.data[0]);
                         },
                         function (response) { // optional
@@ -274,10 +343,10 @@ app
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
             }
-            $scope.submitUserCV = function () {
+            $scope.submitUserDetails = function () {
                 console.log("send form: ", $scope.jobSeeker);
-                $http({
-                    url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
+               /* $http({
+                    url: 'https://cvmatcher.herokuapp.com/UpdateUser',
                     method: "POST",
                     data: $scope.jobSeeker
                 })
@@ -285,7 +354,20 @@ app
                         },
                         function (response) { // optional
                             alert("jobSeekerJobs send form AJAX failed!");
-                        });
+                        });*/
+            }
+            $scope.submitUserCV = function () {
+                console.log("send form: ", $scope.jobSeekerCV);
+               /* $http({
+                    url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
+                    method: "POST",
+                    data: $scope.jobSeekerCV
+                })
+                    .then(function (data) {
+                        },
+                        function (response) { // optional
+                            alert("jobSeekerJobs send form AJAX failed!");
+                        });*/
             }
 
         });
@@ -444,7 +526,6 @@ app
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http, $sce) {
 
     $id = $location.path().split('/');
-    console.log();
     if ($id[1] == 'myjobs')
         $scope.jobPage = "Candidates";
     else
@@ -483,14 +564,36 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
  * ********************* company Profile controller ****************
  */
 app.controller('companyProfileController',
-    function ($scope, $http, $location, $sce) {
+    function ($scope, $http, $location, $sce,$rootScope) {
+var company = "";
+        $("#geocomplete").geocomplete();
 
 
+
+        //user details
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/getUser',
+            method: "POST",
+            data: {
+                "user_id":$rootScope.user_id
+            }
+        })
+            .then(function (data) {
+                    $scope.employerProfile = data.data[0];
+                    console.log(data.data[0]);
+                    if (data.data[0].company != undefined)
+                        company = data.data[0].company;
+                },
+                function (response) { // optional
+                    console.log("companyProfileController AJAX failed!");
+                });
+
+        //company profile details
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
             method: "POST",
             data: {
-                "company_id": "56e183572117f70d037f5ef0"
+                "company_id": "56f9a6358d5befd036ff90ac"
             }
         })
             .then(function (data) {
@@ -500,6 +603,7 @@ app.controller('companyProfileController',
                 function (response) { // optional
                     console.log("companyProfileController AJAX failed!");
                 });
+
         //uploadPhoto
         $(function () {
             $(":file").change(function () {
@@ -514,6 +618,38 @@ app.controller('companyProfileController',
         function imageIsLoaded(e) {
             $('#myImg').attr('src', e.target.result);
         };
+
+        $scope.submitUserDetails = function () {
+            console.log("send form: ", $scope.employerProfile);
+           /* $http({
+                url: 'https://cvmatcher.herokuapp.com/UpdateUser',
+                method: "POST",
+                data: $scope.employerProfile
+            })
+                .then(function (data) {
+                    },
+                    function (response) { // optional
+                        alert("jobSeekerJobs send form AJAX failed!");
+                    });*/
+        }
+        $scope.submitCompanyDetails = function () {
+            if (company!="")
+                url = 'https://cvmatcher.herokuapp.com/employer/addCompany';
+            else
+                url = 'https://cvmatcher.herokuapp.com/employer/updateCompany';
+            console.log("send form: ", $scope.companyProfile);
+            console.log("url: ", url);
+        /*    $http({
+                url: url,
+                method: "POST",
+                data: $scope.companyProfile
+            })
+                .then(function (data) {
+                    },
+                    function (response) { // optional
+                        alert("jobSeekerJobs send form AJAX failed!");
+                    });*/
+        }
     });
 /*
  * ********************* Candidates controller ****************
@@ -708,7 +844,6 @@ app.controller('resumeController',
                     $scope.user = data.data[0];
                     console.log(data.data[0]);
                     if ($id[1] == "Unread") {
-                        console.log(data.data[0]);
                         $scope.user["stars"] = 0;
                     }
 
@@ -903,7 +1038,6 @@ app.controller('jobController', function ($scope, $http, $location) {
                                     total += Number($(this).slider("option", "value"));
                                 });
 
-                                console.log("total: " + total);
                                 // Need to do this because apparently jQ UI
                                 // does not update value until this event completes
                                 total += ui.value;
@@ -931,7 +1065,6 @@ app.controller('jobController', function ($scope, $http, $location) {
 
     $http.get("json/languages.json").success(function (data) {
         $scope.langs = data;
-        console.log(data);
         //<div class='Item'><input type="text" value=""/><select class="form-control"><h3>Prioroty: </h3></div>
     });
 
@@ -961,7 +1094,6 @@ app.controller('jobController', function ($scope, $http, $location) {
 
 
     $scope.priority = function () {
-        console.log("a");
     }
 
     //click on parse Orange button
@@ -1113,8 +1245,7 @@ app
                 link: function (scope, element) {
                     element
                         .html($compile(
-                            '<div id="gConnect"><div id="signin-button"></div></div>')
-                        (scope));
+                            '<div id="gConnect"><button id="signin-button" data-scope="email"> </button></div>')(scope));
                     $.getScript("https://apis.google.com/js/client:platform.js?onload=startApp");
 
                 }
@@ -1170,10 +1301,8 @@ app
                                 || path[i - 1] == "Candidates"
                                 || path[i - 1] == "Search Jobs") {
 
-
                                 var pTemp = path[i];
-                                console.log(last_path);
-                                if (path[i - 1] == "Candidates" || path[i - 1] == "job") {
+                                if (path[i - 1] == "Candidates" || path[i - 1] == "job"  || path[i - 1] =="Search Jobs") {
                                     $http({
                                         url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
                                         method: "POST",
@@ -1186,7 +1315,7 @@ app
                                         .then(function (data) {
                                             //TODO: BRING THE JOB BY ID SEARCH FOREACH
                                             var myjobsTmp = '', editTmp = '';
-                                            if (path[i - 3] != 'Archive')
+                                            if (path[i - 1] == 'My Jobs')
                                                 myjobsTmp = "<span> > </span><a href='#/myjobs'>My Jobs</a>"
                                             if (path[i - 2] == "job")
                                                 editTmp = "<b>Edit </b>";
@@ -1213,9 +1342,7 @@ app
                             // if the path[i] is a number that came from
                             // Candidates job page to resume page
                             else if (path[i - 1] == "resume") {
-                                console.log("bbb")
                                 var pTemp = path[i];
-                                console.log(pTemp);
                                 $http({
                                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                                     method: "POST",
@@ -1225,7 +1352,6 @@ app
                                         "matching_object_type": "cv"
                                     }
                                 }).then(function (data) {
-                                    console.log(data);
                                     path[i] = data.data[0].user["first_name"];
                                     jobSplitted = navigation_path
                                         .split('<')[3]
@@ -1252,7 +1378,6 @@ app
                             }
                             // check if im in parameters page
                             else {
-                                console.log("aaa")
                                 navigation_path += "<span> > </span><a href='#"
                                     + last_path
                                     + "'>"
@@ -1384,11 +1509,8 @@ var helper = (function () {
                     image: profile["image"].url
                 }
                 $.cookie('user', JSON.stringify(user));
-                console.log("cookie exist! " + $.parseJSON($.cookie('user')).image);
-
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-
-                location.replace("#/usersLogin");
+                    location.replace("#/usersLogin");
 
 
             }, function (err) {
@@ -1404,12 +1526,16 @@ var helper = (function () {
  *
  * @param {boolean} isSignedIn The new signed in state.
  */
+    var firstTimeLogIn = false;
 var updateSignIn = function () {
     if (auth2.isSignedIn.get()) {
-        console.log("user loggen in before");
-
+        if (firstTimeLogIn==true){
+            console.log("first time! so add user!!!");
+        }
+        else
+            console.log("user loggen in before so get user!!!");
     } else {
-        console.log("first time!");
+        firstTimeLogIn = true;
     }
 
     helper.onSignInCallback(gapi.auth2.getAuthInstance());
