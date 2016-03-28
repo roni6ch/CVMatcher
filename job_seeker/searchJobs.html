@@ -25,16 +25,17 @@
                     ng-src="images/jobSeeker/{{job.logo}}.png">
                 <article>
                     <p ng-model="searchText.job_name"
-                       ng-bind-html="highlight(job['scope_of_position'][0], searchText)">
+                       ng-bind-html="job.scope_of_position[0] | highlight:searchText">
                         {{job['scope_of_position'][0]}}</p>
 
                     <p ng-model="searchText.name"
-                       ng-bind-html="highlight(job.original_text[0]['job_title'], searchText)">
-                        {{job.original_text[0]['job_title']}}</p>
+                        ng-bind-html="job.original_text.title | highlight:searchText">
+                        {{job['original_text']['title']}}</p>
 
-                    <p ng-model="searchText.address"
-                       ng-bind-html="highlight(job['locations'][0], searchText)">{{job["locations"][0]}},
-                        {{job.date}}</p>
+                    <p ng-model="searchText.address">
+                        {{job["locations"][0]}},
+                        </p>
+                    <p>{{job.date}}</p>
                 </article>
                 <section circle id="{{ 'circle-container-' + $index }}"
                          data-compability="{{job.compatibility_level}}">

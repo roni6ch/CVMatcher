@@ -6,10 +6,10 @@
     <form method="post" ng-submit="submitForm()">
         <div class="animated fadeInDown jobEdit">
             <div class="form-group">
-                <label>Job Name:</label> <input type="text" ng-model="jobDetails['original_text'][0]['job_title']"
+                <label>Job Name:</label> <input type="text" ng-model="jobDetails['original_text']['title']"
                                                 placeholder="Please Type job name"
                                                 class="form-control" name="job_name"
-                                                value="{{jobDetails['original_text'][0]['job_title']}}">
+                                                value="{{jobDetails['original_text']['title']}}">
             </div>
 
             <div class="form-group">
@@ -21,12 +21,11 @@
 
             <div class="form-group">
                 <label>Candidate Type:</label>
-                <select class="selectpicker form-control" ng-model="jobDetails.candidate_type" multiple
-                        value="{{jobDetails['candidate_type']}}"
+                <select class="selectpicker form-control" multiple="multiple"
                         name="scope_of_position">
-                    <option>Students</option>
-                    <option>Mothers</option>
-                    <option>Masters</option>
+                    <option value="0">Students</option>
+                    <option value="1">Mothers</option>
+                    <option value="2">Masters</option>
                 </select>
             </div>
 
@@ -56,16 +55,26 @@
             <div class="form-group" ng-model="compability" ng-value="compability=jobDetails['compatibility_level']">
                 <label>Min Compability:</label>
                 <ul class="pagination pagination-lg">
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=10">10</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=20">20</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=30">30</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=40">40</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=50">50</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=60">60</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=70">70</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=80">80</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=90">90</a></li>
-                    <li><a href="" ng-click="jobDetails['compatibility_level']=100">100</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 10}"
+                           ng-click="jobDetails['compatibility_level']=10;">10</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 20}"
+                           ng-click="jobDetails['compatibility_level']=20">20</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 30}"
+                           ng-click="jobDetails['compatibility_level']=30">30</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 40}"
+                           ng-click="jobDetails['compatibility_level']=40">40</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 50}"
+                           ng-click="jobDetails['compatibility_level']=50">50</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 60}"
+                           ng-click="jobDetails['compatibility_level']=60">60</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 70}"
+                           ng-click="jobDetails['compatibility_level']=70">70</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 80}"
+                           ng-click="jobDetails['compatibility_level']=80">80</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 90}"
+                           ng-click="jobDetails['compatibility_level']=90">90</a></li>
+                    <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 100}"
+                           ng-click="jobDetails['compatibility_level']=100">100</a></li>
                 </ul>
                 <section circle id="circle-container-0" ng-model="jobDetails.compability"
                          data-compability="{{jobDetails['compatibility_level']}}">
@@ -76,70 +85,114 @@
 
             <div class="form-group">
                 <label for="comment">Description:</label>
-				<textarea class="form-control" rows="5" name="original_text"
-                          ng-model="jobDetails.original_text[0]['description']"
+				<textarea class="form-control" rows="10" name="original_text"
+                          ng-model="jobDetails.original_text['description']"
                           placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
-                >{{jobDetails.original_text[0]['description']}}</textarea>
+                >{{jobDetails.original_text['description']}}</textarea>
             </div>
 
             <div class="form-group requirements">
                 <label for="comment">Requirements:</label>
 				<textarea class="form-control" rows="5" id="comment"
-                          ng-model="jobDetails.original_text[0]['requirements']"
-                          name="requirements">{{jobDetails.original_text[0]['requirements']}}</textarea>
+                          ng-model="jobDetails.original_text['requirements']"
+                          name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
             </div>
 
             <div class="form-group experienceBeforeParse">
                 <input type="button" class="btn btn-warning"
                        ng-click="parseExperience()" value="Parse my Experience">
             </div>
-
-
             <div class="form-group">
                 <section class="operators hidden">
                     <div id="Page" class="Page">
+                        <!--  <div class="Container">
+                              <a id="NewItem" class="NewItem">Click to Add Item </a>
+
+                              <div id="CopyItem" class="CopyItem">Drop to Copy Item</div>
+                              <div id="Items" class="Items">
+
+                                  <div class='Item'><h2>MUST</h2></div>
+                                  <div class='Item'><input type="text" name="lang1" value="JAVA"/>
+
+                                      &lt;!&ndash; <article class="mustOrAdv">
+                                           <div><h3>Must</h3></div>
+                                           <div><h3>Advantage</h3></div>
+                                           <section id="mustOrAdv1" class="toggleAdv"
+                                                    ng-click="mustOrAdv($index=1)"></section>
+                                       </article>&ndash;&gt;
+                                      <select class="form-control" name="years1">
+                                          <option>0 No-Experience</option>
+                                          <option>1-2 Years</option>
+                                          <option>3-4 Years</option>
+                                          <option>5+ Years</option>
+                                      </select>
+                                      &lt;!&ndash;
+                                      <label id="mustOrAdvCheckBox1"><input type="checkbox"/>OR</label>&ndash;&gt;
+                                  </div>
+                                  <div class='Item'><input type="text" name="lang2" value="C++"/>
+
+                                      <select class="form-control" name="years2">
+                                          <option>0 No-Experience</option>
+                                          <option>1-2 Years</option>
+                                          <option>3-4 Years</option>
+                                          <option>5+ Years</option>
+                                      </select>
+                                  </div>
+                                  <div class='Item'><input type="text" name="lang3" value="HTML"/>
+
+                                      <select class="form-control" name="years3">
+                                          <option>0 No-Experience</option>
+                                          <option>1-2 Years</option>
+                                          <option>3-4 Years</option>
+                                          <option>5+ Years</option>
+                                      </select>
+                                  </div>
+                                  <div class='Item'><h2>Advantage</h2></div>
+                                  <div class='Item'><h2>OR</h2></div>
+                              </div>
+                          </div>-->
                         <div class="Container">
                             <a id="NewItem" class="NewItem">Click to Add Item </a>
 
                             <div id="CopyItem" class="CopyItem">Drop to Copy Item</div>
                             <div id="Items" class="Items">
-                                <div class='Item'><input type="text" name="lang1" value="JAVA"/>
-                                    <label class="radio-inline"><input type="radio" name="optradio">Must</label>
-                                    <label class="radio-inline"><input type="radio" name="optradio">Adventage</label>
-                                    <select class="form-control" name="years1">
+                                <div class='Item mustItem'><h2>MUST</h2></div>
+                                <div class='Item' ng-repeat="(lang, priority) in langs"><input type="text"
+                                                                                               value="{{lang}}"/>
+                                    <select class="form-control">
                                         <option>0 No-Experience</option>
                                         <option>1-2 Years</option>
                                         <option>3-4 Years</option>
                                         <option>5+ Years</option>
-                                    </select></div>
-                                <div class='Item'><input type="text" name="lang2" value="C++"/>
-                                    <label class="radio-inline"><input type="radio" name="optradio2">Must</label>
-                                    <label class="radio-inline"><input type="radio" name="optradio2">Adventage</label>
-                                    <select class="form-control" name="years2">
-                                        <option>0 No-Experience</option>
-                                        <option>1-2 Years</option>
-                                        <option>3-4 Years</option>
-                                        <option>5+ Years</option>
-                                    </select></div>
-                                <div class='Item'><input type="text" name="lang3" value="HTML"/>
-                                    <label class="radio-inline"><input type="radio" name="optradio3">Must</label>
-                                    <label class="radio-inline"><input type="radio" name="optradio3">Adventage</label>
-                                    <select class="form-control" name="years3">
-                                        <option>0 No-Experience</option>
-                                        <option>1-2 Years</option>
-                                        <option>3-4 Years</option>
-                                        <option>5+ Years</option>
-                                    </select></div>
+                                    </select>
+                                    <input type="text" class="form-control" ng-change="priority()"
+                                           ng-model="priority[$index]"/>
+
+                                    <h3>Priority: </h3>
+                                </div>
+                                <div class='Item advantageItem'><h2>Advantage</h2></div>
+                                <div class='Item orItem'><h2>OR</h2></div>
+                            </div>
+                            <!--
+                                                        <button id="addOr" class="btn btn-default">Click to add OR</button>-->
+                        </div>
+                        <button id="addmust" class="btn btn-default">Add another Priority Operator</button>
+                    </div>
+                    <h3>OR</h3>
+
+                    <div id="Page2" class="Page hidden">
+                        <div class="Container"><a id="NewItem2" class="NewItem">Click to Add Item </a>
+
+                            <div id="CopyItem2" class="CopyItem">Drop to Copy Item</div>
+                            <div id="Items2" class="Items">
+                                <div class="Item mustItem"><h2>MUST</h2></div>
+                                <div class="Item advantageItem"><h2>Advantage</h2></div>
+                                <div class="Item orItem"><h2>OR</h2></div>
                             </div>
                         </div>
-
-                        <button id="addOr" class="btn btn-default">Click to add OR</button>
                     </div>
-                    <button id="addmust" class="btn btn-default">Add another Priority Operator</button>
-
                 </section>
             </div>
-
 
             <div ng-include="'employer/jobparameters.html'"></div>
             <div class="form-group">

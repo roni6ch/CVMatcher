@@ -4,23 +4,23 @@
             ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
         <div class="jobs animated fadeInUp">
             <div>
-                <a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a>
-                <a href="#/job/{{job._id}}"><i class="fa fa-wrench fa-2x"></i></a>
+                <a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a><!--
+                <a href="#/job/{{job._id}}"><i class="fa fa-wrench fa-2x"></i></a>-->
                 <a href="#/job/{{job._id}}"><i class="fa fa-pencil fa-2x"></i></a>
-                <a href="#/Archive/Candidates/{{job._id}}"><img src="./images/logo.png"></a>
+                <a href="#/{{jobPage}}/{{job._id}}"><img src="./images/logo.png"></a>
 
 
-                <h3 ng-model="searchText.original_text[0]['job_title']"
-                    ng-bind-html="highlight(job.original_text[0]['job_title'], searchText)">
-                    {{job.original_text[0]["job_title"]}}</h3>
+                <h3 ng-model="searchText.original_text['title']"
+                    ng-bind-html="job.original_text['title'] | highlight:searchText">
+                    {{job.original_text["title"]}}</h3>
             </div>
             <div data-toggle="collapse" data-target="#collepse-{{$index}}">
                 <h5>Address: {{job.locations[0]}}</h5> , <h5>Date: {{job.date}}</h5>
 
-                <p>{{job.original_text[0]["requirements"]}}</p>
+                <p>Requirements: {{job.original_text["requirements"]}}</p>
 
                 <article id="collepse-{{$index}}" class="collapse">
-                    <span>Inforamtion: </span>{{job.original_text[0]["description"]}}
+                    <span>Inforamtion: </span>{{job.original_text["description"]}}
                 </article>
 
                 <span>Compability:</span>

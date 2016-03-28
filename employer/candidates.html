@@ -1,4 +1,4 @@
-<div class="myjobsWrapper" ng-init="getMainJson()">
+<div class="myjobsWrapper">
     <h3 compile-html>{{navigation}}</h3>
     <header>
         <h2>Candidates</h2>
@@ -14,8 +14,8 @@
         By Date
     </button>
 
-    <ul class="nav nav-tabs candidatesTabs" ng-init="tab=0">
-        <li ng-class="{active:tab == 0}"><a ng-click="tab = 0; unreadCvs()" ng-init="unreadCvs()">Unread</a></li>
+    <ul class="nav nav-tabs candidatesTabs" ng-init="tab=0; unreadCvs()">
+        <li ng-class="{active:tab == 0}"><a ng-click="tab = 0; unreadCvs()" >Unread</a></li>
         <li ng-class="{active:tab == 1}"><a ng-click="tab = 1; likedCvs()">Liked</a></li>
         <li ng-class="{active:tab == 2}"><a ng-click="tab = 2; unlikeCvs()">Unliked</a></li>
         <li ng-class="{active:tab == 3}"><a ng-click="tab = 3; favoritesCvs()">Favorites</a></li>
@@ -29,19 +29,18 @@
             <section
                     ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp">
-                    <div>
-                        <!--<a href=""><i id="candidateStar-{{$index}}"
-                            class='fa fa-star-o fa-2x'
-                            ng-click='addCandidateToFavorites($index,candidate.id)'></i></a>  --><a
-                            href="#/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
+                    <div><a
+                            href="#/Unread/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logo.png"></a>
                         <h5>{{candidate.sub_sector[0]}}</h5>
                     </div>
                     <div>
-                        <h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3>
-                        <a ng-if="tab == 0" href="#/Candidates/{{jobId}}/resume/{{candidate._id}}"><p
+
+                        <a ng-if="tab == 0" href="#/Candidates/{{jobId}}/resume/{{candidate._id}}">
+                            <h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3><p
                                 ng-model="searchText.sector"
-                                ng-bind-html="highlight(candidate.sector, searchText)">{{candidate.sector}}</p>
+                            ng-bind-html="candidate.sector | highlight:searchText">
+                            {{candidate.sector}} ,{{candidate.academy[0].academy_type}} , {{candidate.academy[0].degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compatibility_level}}">
                                 <h5>{{candidate.compatibility_level}}%</h5>
@@ -92,10 +91,12 @@
 
                     </div>
                     <div>
-                        <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
-                        <a ng-if="tab == 1" href="#/Candidates/{{jobId}}/resume/{{candidate.google_user_id}}"><p
+
+                        <a ng-if="tab == 1" href="#/Candidates/{{jobId}}/resume/{{candidate.google_user_id}}">
+                            <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3><p
                                 ng-model="searchText.sector"
-                                ng-bind-html="highlight(candidate.sector, searchText)">{{candidate.sector}}</p>
+                            ng-bind-html="candidate.sector | highlight:searchText">
+                            {{candidate.sector}} ,{{candidate.academy[0].academy_type}} , {{candidate.academy[0].degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compability}}">
                                 <h5>{{candidate.compability}}%</h5>
@@ -125,10 +126,12 @@
 
                     </div>
                     <div>
-                        <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
-                        <a ng-if="tab == 2" href="#/Candidates/{{jobId}}/resume/{{candidate.google_user_id}}"><p
+
+                        <a ng-if="tab == 2" href="#/Candidates/{{jobId}}/resume/{{candidate.google_user_id}}">
+                            <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3><p
                                 ng-model="searchText.sector"
-                                ng-bind-html="highlight(candidate.sector, searchText)">{{candidate.sector}}</p>
+                            ng-bind-html="candidate.sector | highlight:searchText">
+                            {{candidate.sector}} ,{{candidate.academy[0].academy_type}} , {{candidate.academy[0].degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compatibility_level}}">
                                 <h5>{{candidate.compatibility_level}}%</h5>
@@ -158,10 +161,11 @@
 
                     </div>
                     <div>
-                        <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
-                        <a ng-if="tab == 3" href="#/Candidates/{{jobId}}/resume/{{candidate.google_user_id}}"><p
+
+                        <a ng-if="tab == 3" href="#/Candidates/{{jobId}}/resume/{{candidate.google_user_id}}">
+                            <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3><p
                                 ng-model="searchText.sector"
-                                ng-bind-html="highlight(candidate.sector, searchText)">{{candidate.sector}}</p>
+                            ng-bind-html="candidate.sector | highlight:searchText">{{candidate.sector}} ,{{candidate.academy[0].academy_type}} , {{candidate.academy[0].degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compatibility_level}}">
                                 <h5>{{candidate.compatibility_level}}%</h5>

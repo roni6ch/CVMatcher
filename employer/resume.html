@@ -49,23 +49,23 @@
                     <h1 id="timeline">Timeline</h1>
                 </div>
                 <!-- section of year -->
-                <ul class="timeline" ng-repeat="details in user.requirements">
+                <ul class="timeline">
                     <!-- section of year -->
                     <!-- <li class="timeline-inverted"> for Employment side -->
-                    <li>
+                    <li ng-repeat="timeline in user.original_text['history_timeline']" ng-class="{'timeline-inverted': timeline['type'] == 'experience'}">
                         <div class="timeline-badge">
-                            <i class="fa fa-plus"></i>
+                            <i class="fa fa-file-text-o"></i>
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4 class="timeline-title">{{details.name}}</h4>
+                                <h4 class="timeline-title">{{timeline['type']}}</h4>
 
                                 <p>
-                                    <small class="text-muted">{{details.years}}</small>
+                                    <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}</small>
                                 </p>
                             </div>
                             <div class="timeline-body">
-                                <p>{{details.job_type}}</p>
+                                <p>{{timeline['text']}}</p>
                             </div>
                         </div>
                     </li>
@@ -137,7 +137,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bringNextCandidate()">
+                    <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal" ng-click="bringNextCandidate()">
                         Close
                     </button>
                 </div>

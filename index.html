@@ -18,8 +18,10 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/hammer.min.js"></script>
     <script src="js/jquery.linkedsliders.min.js"></script>
-    <script src="js/location.js?libraries=places"></script>
-    <script src="js/jquery.geocomplete.js"></script>
+    <!-- added the maps.googleapis because it give me no warnings, so the local is locations with warning in the console
+    <script src="js/location.js?libraries=places"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVPuauj0tQuhm28vMic6xjtcvn11CpDNI&libraries=places"></script>
+    <script src="js/jquery.geocomplete.js?key="></script>
     <script src="js/bootstrap-select.min.js"></script>
 
     <!--  Google+ SignIn -->
@@ -47,7 +49,7 @@
             <ul ng-if="userSignInType == 'jobSeeker'">
                 <li><a href="#/searchJobs">Search Jobs</a></li>
                 <li><a href="#/yourjobs">My Jobs</a></li>
-                <li><a href="">Favorite Jobs</a></li>
+                <li><a href="#/Favorites">Favorite Jobs</a></li>
             </ul>
         </nav>
     </div>

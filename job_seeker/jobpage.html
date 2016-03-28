@@ -13,21 +13,21 @@
         <h2>Job description</h2>
     </header>
 
-    <p>{{jobPage["original_text"][0].description}}</p>
+    <p>{{jobDetails["original_text"].description}}</p>
 
     <h2>Desired Skills and Experience</h2>
     <h4>What you must have:</h4>
 
     <div class="skills">
-        {{jobPage["original_text"][0].requirements}}
+        {{jobDetails["original_text"].requirements}}
     </div>
     <section>
         <h2>Minimum match percentage:</h2>
         <section id="job-circle-container">
-            <h5>{{jobPage['compatibility_level']}}%</h5>
+            <h5>{{jobDetails['compatibility_level']}}%</h5>
         </section>
 
     </section>
-    <a ng-href="#/searchJobs/matchpage/{{job}}" class="btn btn-default">Check
+    <a ng-href="#/searchJobs/matchpage/{{jobDetails['_id']}}" class="btn btn-default">Check
         my CV</a>
 </div>

@@ -17,70 +17,104 @@
             <!-- Content from here -->
             <form>
                 <h4>Personal Information</h4>
-                <label for="usr">Name:</label> <input type="text" required
-                                                      class="form-control" id="usr" name="name" value="{{jobSeeker['first_name']}}"> <label
-                    for="usr">Family:</label> <input type="text" required
-                                                     class="form-control" id="usr" name="family" value="{{jobSeeker['last_name']}}"> <label
+                <label for="usr">Name:</label> <input type="text" required ng-model="jobSeeker.user['first_name']"
+                                                      class="form-control" id="usr" name="name"
+                                                      value="{{jobSeeker.user['first_name']}}"> <label
+                    for="usr">Family:</label> <input type="text" required ng-model="jobSeeker.user['last_name']"
+                                                     class="form-control" id="usr" name="family"
+                                                     value="{{jobSeeker.user['last_name']}}"> <label
                     for="usr">Date of birth:</label> <input type="text" required
-                                                            class="form-control" id="usr" name="birth" value="{{jobSeeker['birth_date']}}"> <label
+                                                            class="form-control" id="usr" name="birth"
+                                                            value="{{jobSeeker.user['birth_date']}}"> <label
                     for="usr">Address:</label> <input type="text" required
-                                                      class="form-control" id="usr" name="address" value="{{jobSeeker['address']}}"> <label
+                                                      class="form-control" id="usr" name="address"
+                                                      value="{{jobSeeker.user['address']}}"> <label
                     for="usr">Phone:</label> <input type="text" required
-                                                    class="form-control" id="usr" name="phone" value="{{jobSeeker['phone_number']}}">
+                                                    class="form-control" id="usr" name="phone"
+                                                    value="{{jobSeeker.user['phone_number']}}">
+                <label for="usr">LinkedIn:</label> <input type="text" required
+                                                      class="form-control" id="usr" name="name"
+                                                      value="{{jobSeeker.user['linked_in']}}">
+
+
+
+
                 <h4>Education</h4>
                 <label><input type="radio" name="education"
-                              value="university" checked>University</label> <label><input
-                    type="radio" name="education" value="college">College</label>
-                <h4>Academy</h4>
-                <label for="usr">Name:</label> <input type="text" required
-                                                      class="form-control" id="usr" name="academy_name" value="">
+                              value="university" ng-checked="jobSeeker.academy[0]['academy_type'] == 'University'">University</label>
+                <label><input
+                        type="radio" name="education" value="college"
+                        ng-checked="jobSeeker.academy[0]['academy_type'] == 'college'">College</label>
+
 
                 <h4>Degree:</h4>
                 <select name="degree_name" class="form-control" id="sel1">
-                    <option value="software">Software Engineering</option>
-                    <option value="industrial">Industrial Engineering and
+                    <option ng-selected="jobSeeker.academy[0]['degree_name'] == 'software engineering'">Software
+                        Engineering
+                    </option>
+                    <option ng-selected="jobSeeker.academy[0]['degree_name'] == 'Industrial Engineering and Management'">
+                        Industrial Engineering and
                         Management
                     </option>
-                    <option value="electrical">Electrical Engineering</option>
-                    <option value="mechanical">Mechanical Engineering</option>
+                    <option ng-selected="jobSeeker.academy[0]['degree_name'] == 'Electrical Engineering'">Electrical
+                        Engineering
+                    </option>
+                    <option ng-selected="jobSeeker.academy[0]['degree_name'] == 'Mechanical Engineering'">Mechanical
+                        Engineering
+                    </option>
                 </select>
 
                 <h4>Type:</h4>
                 <select name="degree_type" class="form-control" id="sel1">
-                    <option value="bs">B.S. (Bachelor of Science)</option>
-                    <option value="ms">M.S. (Master of Science)</option>
-                    <option value="mres">M.Res. (Master of Research)</option>
+                    <option ng-selected="jobSeeker.academy[0]['degree_type'][0] == 'bsc'" value="bsc">B.S. (Bachelor of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeeker.academy[0]['degree_type'][0] == 'msc'" value="msc">M.S. (Master of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeeker.academy[0]['degree_type'][0] == 'mres'" value="mres">M.Res. (Master
+                        of Research)
+                    </option>
                 </select>
                 <h4>Graduate:</h4>
                 <label class="checkbox-inline"><input type="checkbox"
+                                                      ng-checked="jobSeeker.personal_properties['degree_graduation_with_honors'] == true"
                                                       name="honors" value="">Graduate with honors</label> <label
                     class="checkbox-inline"><input type="checkbox" name="sat"
+                                                   ng-checked="jobSeeker.personal_properties['psychometric_above_680'] == true"
                                                    value="">SAT score above 680</label>
 
                 <h4>Army:</h4>
 
                 <label class="checkbox-inline"><input type="checkbox"
+                                                      ng-checked="jobSeeker.personal_properties['full_army_service'] == true"
                                                       name="military" value="">Full military service</label> <label
                     class="checkbox-inline"><input type="checkbox"
+                                                   ng-checked="jobSeeker.personal_properties['officer'] == true"
                                                    name="officer" value="">Officer in the army</label>
 
 
                 <h4>High School:</h4>
 
                 <label class="checkbox-inline"><input type="checkbox"
+                                                      ng-checked="jobSeeker.personal_properties['high_school_graduation_with_honors'] == true"
                                                       name="high_school_honors" value="">High School graduate
                     with honors</label>
 
                 <h4>General:</h4>
 
                 <label class="checkbox-inline"><input type="checkbox"
+                                                      ng-checked="jobSeeker.personal_properties['above_two_years_experience'] == true"
                                                       name="experience" value="">Over two years of experience in
                     the field of study</label> <label class="checkbox-inline"><input
+                    ng-checked="jobSeeker.personal_properties['multilingual'] == true"
                     type="checkbox" name="foreign_languages" value="">Speak
                 foreign languages ​​(except English)</label> <label class="checkbox-inline"><input
+                    ng-checked="jobSeeker.personal_properties['volunteering'] == true"
                     type="checkbox" name="volunteer" value="">Volunteer work
                 and contribution to society</label> <label class="checkbox-inline"><input
-                    type="checkbox" name="volunteer" value="">Past member of
+                    ng-checked="jobSeeker.personal_properties['youth_movements'] == true"
+                    type="checkbox" name="movments" value="">Past member of
                 the Youth Movement</label>
             </form>
         </div>
@@ -90,33 +124,38 @@
                 <h4>Professional Experience</h4>
                 <label for="usr">Sector:</label> <select name="sector"
                                                          class="form-control" id="sel1">
-                <option value="software">Software Engineering</option>
-                <option value="industrial">Industrial Engineering and
+                <option ng-selected="jobSeeker.sector == 'software engineering'" value="software">Software Engineering
+                </option>
+                <option ng-selected="jobSeeker.sector == 'Industrial Engineering and Management'" value="industrial">
+                    Industrial Engineering and
                     Management
                 </option>
-                <option value="electrical">Electrical Engineering</option>
-                <option value="mechanical">Mechanical Engineering</option>
+                <option ng-selected="jobSeeker.sector == 'Electrical Engineering'" value="electrical">Electrical
+                    Engineering
+                </option>
+                <option ng-selected="jobSeeker.sector == 'Mechanical Engineering'" value="mechanical">Mechanical
+                    Engineering
+                </option>
             </select> <label for="usr">Candidate type:</label> <select name="candidate"
                                                                        class="form-control" id="sel1">
-                <option value="student">Student</option>
-                <option value="mothers">Mothers</option>
-                <option value="pensioners">Pensioners</option>
-                <option value="academics">Academics with no experience</option>
-                <option value="discharged">Discharged soldiers</option>
+                <option ng-selected="jobSeeker.candidate_type[0] == 'Student'" value="student">Student</option>
+                <option ng-selected="jobSeeker.candidate_type[0] == 'Mothers'" value="mothers">Mothers</option>
+                <option ng-selected="jobSeeker.candidate_type[0] == 'Pensioners'" value="pensioners">Pensioners</option>
+                <option ng-selected="jobSeeker.candidate_type[0] == 'Academics with no experience'" value="academics">
+                    Academics with no experience
+                </option>
+                <option ng-selected="jobSeeker.candidate_type[0] == 'Discharged soldiers'" value="discharged">Discharged
+                    soldiers
+                </option>
             </select>
                 <h4>Scope of position:</h4>
-                <label><input type="radio" name="scope" value="full" checked>Full
-                    time</label> <label><input type="radio" name="scope" value="part">Part
-                time</label> <label><input type="radio" name="scope" value="hours">By
+                <label><input type="radio" name="scope" value="full"
+                              ng-checked="jobSeeker.scope_of_position[0] == 'full'">Full
+                    time</label> <label><input type="radio" name="scope" value="part"
+                                               ng-checked="jobSeeker.scope_of_position[0] == 'part'">Part
+                time</label> <label><input type="radio" name="scope" value="hours"
+                                           ng-checked="jobSeeker.scope_of_position[0] == 'hours'">By
                 hours</label>
-                <h4 for="usr">Years of experience:</h4>
-                <select id="experience_years" name="experience_years"
-                        class="form-control" id="sel1">
-                    <option value="no_experience">0</option>
-                    <option value="1_2">1-2</option>
-                    <option value="3_4">3-4</option>
-                    <option value="5_or_more">5+</option>
-                </select>
                 <!-- TIMELINE -->
                 <section class="resumeYears">
                     <div>
@@ -132,112 +171,50 @@
                         <ul class="timeline">
                             <!-- section of year -->
                             <!-- <li class="timeline-inverted"> for Employment side -->
-                            <li>
-                                <div class="timeline-badge" ng-click="addEducation()">
+                            <li ng-repeat="experience in jobSeeker.original_text.history_timeline" ng-class="{'timeline-inverted' : experience['type'] == 'experience'}">
+
+                                    <div class="timeline-badge"  ng-click="addEducation( experience['type'])">
+
                                     <i class="fa fa-plus"></i>
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title"><input type="text"
-                                                                          placeholder="Education Title"/>
-                                        </h4>
-<label>From
-                                        <select id="experience_years" name="experience_years"
-                                                class="form-control" id="sel1">
-                                            <option value="no_experience">0</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2016">2016</option>
-                                        </select>
-</label>
-                                        <label>To
-                                        <select id="experience_years" name="experience_years"
-                                                class="form-control" id="sel1">
-                                            <option value="no_experience">0</option>
-                                            <option value="2005">2005</option>
-                                            <option value="2006">2006</option>
-                                            <option value="2007">2007</option>
-                                            <option value="2008">2008</option>
-                                            <option value="2009">2009</option>
-                                            <option value="2010">2010</option>
-                                            <option value="2011">2011</option>
-                                            <option value="2012">2012</option>
-                                            <option value="2013">2013</option>
-                                            <option value="2014">2014</option>
-                                            <option value="2015">2015</option>
-                                            <option value="2016">2016</option>
-                                        </select>
-                                        </label>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p>
-
-                                        <div class="form-group">
-                                            <label for="content">Content:</label>
-                                            <textarea class="form-control" rows="3" name="content" id="content"
-                                                      required></textarea>
-                                        </div>
-
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <!-- inverted -->
-
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge" ng-click="addEmployment()">
-                                    <i class="fa fa-plus"></i>
-                                </div>
-                                <div class="timeline-panel">
-                                    <div class="timeline-heading">
-                                        <h4 class="timeline-title"><input type="text"
-                                                                          placeholder="Experience Title"/>
-                                        </h4>
-
                                         <label>From
                                             <select id="experience_years" name="experience_years"
                                                     class="form-control" id="sel1">
                                                 <option value="no_experience">0</option>
-                                                <option value="2005">2005</option>
-                                                <option value="2006">2006</option>
-                                                <option value="2007">2007</option>
-                                                <option value="2008">2008</option>
-                                                <option value="2009">2009</option>
-                                                <option value="2010">2010</option>
-                                                <option value="2011">2011</option>
-                                                <option value="2012">2012</option>
-                                                <option value="2013">2013</option>
-                                                <option value="2014">2014</option>
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
+                                                <option value="2005" ng-selected="experience['start_year'] == '2004'">2004</option>
+                                                <option value="2005" ng-selected="experience['start_year'] == '2005'">2005</option>
+                                                <option value="2006" ng-selected="experience['start_year'] == '2006'">2006</option>
+                                                <option value="2007" ng-selected="experience['start_year'] == '2007'">2007</option>
+                                                <option value="2008" ng-selected="experience['start_year'] == '2008'">2008</option>
+                                                <option value="2009" ng-selected="experience['start_year'] == '2009'">2009</option>
+                                                <option value="2010" ng-selected="experience['start_year'] == '2010'">2010</option>
+                                                <option value="2011" ng-selected="experience['start_year'] == '2011'">2011</option>
+                                                <option value="2012" ng-selected="experience['start_year'] == '2012'">2012</option>
+                                                <option value="2013" ng-selected="experience['start_year'] == '2013'">2013</option>
+                                                <option value="2014" ng-selected="experience['start_year'] == '2014'">2014</option>
+                                                <option value="2015" ng-selected="experience['start_year'] == '2015'">2015</option>
+                                                <option value="2016" ng-selected="experience['start_year'] == '2016'">2016</option>
                                             </select>
                                         </label>
                                         <label>To
                                             <select id="experience_years" name="experience_years"
                                                     class="form-control" id="sel1">
                                                 <option value="no_experience">0</option>
-                                                <option value="2005">2005</option>
-                                                <option value="2006">2006</option>
-                                                <option value="2007">2007</option>
-                                                <option value="2008">2008</option>
-                                                <option value="2009">2009</option>
-                                                <option value="2010">2010</option>
-                                                <option value="2011">2011</option>
-                                                <option value="2012">2012</option>
-                                                <option value="2013">2013</option>
-                                                <option value="2014">2014</option>
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
+                                                <option value="2005" ng-selected="experience['end_year'] == '2004'">2004</option>
+                                                <option value="2005" ng-selected="experience['end_year'] == '2005'">2005</option>
+                                                <option value="2006" ng-selected="experience['end_year'] == '2006'">2006</option>
+                                                <option value="2007" ng-selected="experience['end_year'] == '2007'">2007</option>
+                                                <option value="2008" ng-selected="experience['end_year'] == '2008'">2008</option>
+                                                <option value="2009" ng-selected="experience['end_year'] == '2009'">2009</option>
+                                                <option value="2010" ng-selected="experience['end_year'] == '2010'">2010</option>
+                                                <option value="2011" ng-selected="experience['end_year'] == '2011'">2011</option>
+                                                <option value="2012" ng-selected="experience['end_year'] == '2012'">2012</option>
+                                                <option value="2013" ng-selected="experience['end_year'] == '2013'">2013</option>
+                                                <option value="2014" ng-selected="experience['end_year'] == '2014'">2014</option>
+                                                <option value="2015" ng-selected="experience['end_year'] == '2015'">2015</option>
+                                                <option value="2016" ng-selected="experience['end_year'] == '2016'">2016</option>
                                             </select>
                                         </label>
                                     </div>
@@ -247,7 +224,7 @@
                                         <div class="form-group">
                                             <label for="content">Content:</label>
                                             <textarea class="form-control" rows="3" name="content" id="content"
-                                                      required></textarea>
+                                                      required>{{experience.text}}</textarea>
                                         </div>
 
                                         </p>
@@ -262,9 +239,9 @@
 
                 <section class="parseExperience"></section>
                 <input type="button" class="btn btn-warning"
-                       ng-click="addExperience()" value="Parse My Experience">
+                       ng-click="parseExperience()" value="Parse My Experience">
 
-                <button type="button" class="btn btn-default">Send</button>
+                <button type="button" class="btn btn-default" ng-click="submitUserCV()">Send</button>
 
             </form>
         </div>
