@@ -1,6 +1,6 @@
 <div class="resumeWrapper">
     <h3 compile-html>{{navigation}}</h3>
-
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
     <input type="hidden" class="starModal btn btn-info btn-lg"
            data-toggle="modal" data-target="#myModal"/>
     <input type="hidden" class="leftModal btn btn-info btn-lg"
@@ -14,9 +14,6 @@
         <div ng-init="getUserJson()">
             <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
             <h4>{{user['user'].subsector}}</h4>
-            <a href=""><i id="candidateStar"
-                          class='fa fa-star-o fa-2x'
-                          ng-click='addCandidateToFavorites(user.id)'></i></a>
         </div>
 
         <!-- Resume Skills -->
@@ -148,6 +145,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Description</h4>
+                    <h5 class="modal-title">Please type your Reason</h5>
                 </div>
                 <div class="modal-body">
 

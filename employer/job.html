@@ -3,6 +3,7 @@
     <header>
         <h2>Job</h2>
     </header>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
     <form method="post" ng-submit="submitForm()">
         <div class="animated fadeInDown jobEdit">
             <div class="form-group">
@@ -18,15 +19,44 @@
                                                 name="location" value="{{jobDetails['locations']}}"
                                                 placeholder="Type in an address" size="90" autocomplete="on">
             </div>
+            <div class="form-group">
+                <label>Academy:</label>
+
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-success"
+                           ng-class="{active:jobDetails.academy[0]['academy_type'] == 'university'}">University
+                        <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-primary"
+                           ng-class="{active:jobDetails.academy[0]['academy_type'] == 'college'}">College
+                        <input type="radio" name="options" id="option1" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
+            </div>
+
 
             <div class="form-group">
                 <label>Candidate Type:</label>
-                <select class="selectpicker form-control" multiple="multiple"
-                        name="scope_of_position">
-                    <option value="0">Students</option>
-                    <option value="1">Mothers</option>
-                    <option value="2">Masters</option>
-                </select>
+
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-success" ng-class="{active:jobDetails.candidate_type[0]=='Students'}">Students
+                        <input type="checkbox" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-primary" ng-class="{active:jobDetails.candidate_type[1]=='Mothers'}">Mothers
+                        <input type="checkbox" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-info" ng-class="{active:jobDetails.candidate_type[2]=='Masters'}">Masters
+                        <input type="checkbox" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
             </div>
 
 
@@ -42,15 +72,29 @@
                                                   class="form-control" name="sub_sector"
                                                   value="{{jobDetails.sub_sector}}">
             </div>
+
+
             <div class="form-group">
                 <label>Scope of Position:</label>
-                <select class="selectpicker form-control" ng-model="jobDetails.scope_of_position[0]" multiple
-                        name="scope_of_position">
-                    <option value="full">full</option>
-                    <option value="Weekends">Weekends</option>
-                    <option value="Part Time Job">Part Time Job</option>
-                </select>
+
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-success" ng-class="{active:jobDetails.scope_of_position[0]=='full'}">Full Time
+                        <input type="checkbox" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-primary" ng-class="{active:jobDetails.scope_of_position[1]=='Weekends'}">Weekends
+                        <input type="checkbox" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+
+                    <label class="btn btn-info" ng-class="{active:jobDetails.scope_of_position[2]=='Part Time Job'}">Part
+                        Time<input type="checkbox" autocomplete="off">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                </div>
             </div>
+
 
             <div class="form-group" ng-model="compability" ng-value="compability=jobDetails['compatibility_level']">
                 <label>Min Compability:</label>
@@ -93,7 +137,7 @@
 
             <div class="form-group requirements">
                 <label for="comment">Requirements:</label>
-				<textarea class="form-control" rows="5" id="comment"
+				<textarea class="form-control" rows="5" id="comment" placeholder="Example: 'Must: Java, Advantage: C++'"
                           ng-model="jobDetails.original_text['requirements']"
                           name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
             </div>
@@ -156,7 +200,6 @@
 
                             <div id="CopyItem" class="CopyItem">Drop to Copy Item</div>
                             <div id="Items" class="Items">
-                                <div class='Item mustItem'><h2>MUST</h2></div>
                                 <div class='Item' ng-repeat="(lang, priority) in langs"><input type="text"
                                                                                                value="{{lang}}"/>
                                     <select class="form-control">
@@ -170,6 +213,7 @@
 
                                     <h3>Priority: </h3>
                                 </div>
+                                <div class='Item mustItem'><h2>MUST</h2></div>
                                 <div class='Item advantageItem'><h2>Advantage</h2></div>
                                 <div class='Item orItem'><h2>OR</h2></div>
                             </div>
