@@ -342,7 +342,7 @@ footer div a {
     font-weight: 600;
     padding: 0% !important;
     color: #fff !important;
-    text-shadow: 1px 1px 0px #283744;
+    text-shadow: 3px 3px 2px #283744;
 }
 
 .navBarImg ul {
@@ -756,7 +756,7 @@ footer div a {
 #circle-container,#circle-container1{
      z-index: 1;
      position: relative;
-     width: 35%;
+     width: 45%;
      margin: 0 auto;
  }
 
@@ -770,7 +770,7 @@ footer div a {
     text-align: center;
     width: 50%;
     height: 50%;
-    line-height: 8vw;
+    line-height: 7vw;
     background: #ccc;
     -moz-border-radius: 70px;
     -webkit-border-radius: 70px;
@@ -811,7 +811,15 @@ footer div a {
 .swipeIcon {
     display: none;
 }
-
+#candidateLike{padding: 0px 20px;}
+#candidateUnLike {
+    padding: 0px 20px;
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+#candidateUnLike + h3,#candidateLike + h4{    display: inline-block;}
+/*
 #candidateLike {
     position: fixed;
     right: 4%;
@@ -827,7 +835,7 @@ footer div a {
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
     top: 18%;
-}
+}*/
 
 /****************************************************** JOB - HTML **********************************************/
 .jobEdit {
@@ -1311,6 +1319,7 @@ footer div a {
 
 .profileWrapper .timeline-badge{cursor: pointer;}
 
+.page-header h1{text-align: center;}
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
 /****************************************************************************************************************************/

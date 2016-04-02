@@ -48,151 +48,6 @@
         <div ng-show="tab == 1" class="tabsContent fade in active">
             <!-- Content from here -->
             <form>
-                <div class="form-group">
-                    <label>Academy:</label>
-
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success"
-                               ng-class="{active:jobSeekerCV.academy[0]['academy_type'] == 'University'}">University
-                            <input type="radio" name="options" id="option2" autocomplete="off" chacked>
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                        <label class="btn btn-primary"
-                               ng-class="{active:jobSeekerCV.academy[0]['academy_type'] == 'college'}">College
-                            <input type="radio" name="options" id="option1" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-                    </div>
-                </div>
-
-
-                <h4>Degree:</h4>
-                <select name="degree_name" class="form-control" id="sel1">
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'software engineering'">Software
-                        Engineering
-                    </option>
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Industrial Engineering and Management'">
-                        Industrial Engineering and
-                        Management
-                    </option>
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Electrical Engineering'">Electrical
-                        Engineering
-                    </option>
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Mechanical Engineering'">Mechanical
-                        Engineering
-                    </option>
-                </select>
-                <h4>Degree:</h4>
-                <select   id="test" name="test">
-                    <option value="SelectBoxIt is:" rel="popover" title="SelectBoxIt" data-content="A jQuery Select Box Plugin for Mobile, Tablet, and Desktop" ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'software engineering'">Software
-                        Engineering
-                    </option>
-                    <option value="a jQuery Plugin" rel="popover" title="SelectBoxIt" data-content="a jQuery plugin" ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Industrial Engineering and Management'">
-                        Industrial Engineering and
-                        Management
-                    </option>
-                    <option value="a Select Box Replacement" rel="popover" title="SelectBoxIt" data-content="a SelectBox Replacement"ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Electrical Engineering'">Electrical
-                        Engineering
-                    </option>
-                    <option value="a Stateful UI Widget" rel="popover" title="SelectBoxIt" data-content="a Stateful UI Widget"ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Mechanical Engineering'">Mechanical
-                        Engineering
-                    </option>
-                </select>
-
-
-
-
-                <h4>Type:</h4>
-                <select name="degree_type" class="form-control" id="sel1">
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_type'][0] == 'bsc'" value="bsc">B.S. (Bachelor
-                        of
-                        Science)
-                    </option>
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_type'][0] == 'msc'" value="msc">M.S. (Master of
-                        Science)
-                    </option>
-                    <option ng-selected="jobSeekerCV.academy[0]['degree_type'][0] == 'mres'" value="mres">M.Res. (Master
-                        of Research)
-                    </option>
-                </select>
-
-                <div class="form-group">
-                    <label>Graduate:</label>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success"
-                               ng-class="{active:jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true}">Graduate
-                            with honors
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                        <label class="btn btn-primary"
-                               ng-class="{active:jobSeekerCV.personal_properties['psychometric_above_680'] == true}">SAT
-                            score above 680
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Army:</label>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success"
-                               ng-class="{active:jobSeekerCV.personal_properties['full_army_service'] == true}">Full military service
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                        <label class="btn btn-primary"
-                               ng-class="{active:jobSeekerCV.personal_properties['officer'] == true}">Officer in the army
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>High School:</label>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success"
-                               ng-class="{active:jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true}">High School graduate
-                            with honors
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>General:</label>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success"
-                               ng-class="{active:jobSeekerCV.personal_properties['above_two_years_experience'] == true}">2+ experience in the field of study
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                        <label class="btn btn-primary"
-                               ng-class="{active:jobSeekerCV.personal_properties['multilingual'] == true}">Speak
-                            foreign languages
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-                        <label class="btn btn-info"
-                               ng-class="{active:jobSeekerCV.personal_properties['volunteering'] == true}">Society volunteering
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-
-                        <label class="btn btn-default"
-                               ng-class="{active:jobSeekerCV.personal_properties['youth_movements'] == true}">Past member of the Youth Movement
-                            <input type="checkbox" autocomplete="off">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </label>
-                    </div>
-                </div>
 
                 <h4>Professional Experience</h4>
                 <label for="usr">Sector:</label> <select name="sector"
@@ -224,24 +79,161 @@
                 </option>
             </select>
 
+                <label for="usr">Degree:</label>
+                <select name="degree_name" class="form-control" id="sel1">
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'software engineering'">Software
+                        Engineering
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Industrial Engineering and Management'">
+                        Industrial Engineering and
+                        Management
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Electrical Engineering'">Electrical
+                        Engineering
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_name'] == 'Mechanical Engineering'">Mechanical
+                        Engineering
+                    </option>
+                </select>
+
+
+                <label for="usr">Type:</label>
+                <select name="degree_type" class="form-control" id="sel1">
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_type'][0] == 'bsc'" value="bsc">B.S. (Bachelor
+                        of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_type'][0] == 'msc'" value="msc">M.S. (Master of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy[0]['degree_type'][0] == 'mres'" value="mres">M.Res. (Master
+                        of Research)
+                    </option>
+                </select>
+
+                <div class="form-group">
+                    <label>Academy:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success"
+                               ng-class="{active:jobSeekerCV.academy[0]['academy_type'] == 'University'}">University
+                            <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-primary"
+                               ng-class="{active:jobSeekerCV.academy[0]['academy_type'] == 'college'}">College
+                            <input type="radio" name="options" id="option1" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Graduate:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success"
+                               ng-class="{active:jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true}">Graduate
+                            with honors
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-primary"
+                               ng-class="{active:jobSeekerCV.personal_properties['psychometric_above_680'] == true}">SAT
+                            score above 680
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Army:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success"
+                               ng-class="{active:jobSeekerCV.personal_properties['full_army_service'] == true}">Full
+                            military service
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-primary"
+                               ng-class="{active:jobSeekerCV.personal_properties['officer'] == true}">Officer in the
+                            army
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>High School:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success"
+                               ng-class="{active:jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true}">High
+                            School graduate
+                            with honors
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>General:</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-success"
+                               ng-class="{active:jobSeekerCV.personal_properties['above_two_years_experience'] == true}">2+
+                            experience in the field of study
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-primary"
+                               ng-class="{active:jobSeekerCV.personal_properties['multilingual'] == true}">Speak
+                            foreign languages
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                        <label class="btn btn-info"
+                               ng-class="{active:jobSeekerCV.personal_properties['volunteering'] == true}">Society
+                            volunteering
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['youth_movements'] == true}">Past
+                            member of the Youth Movement
+                            <input type="checkbox" autocomplete="off">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+                </div>
+
+
                 <div class="form-group">
                     <label>Scope of position:</label>
 
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-success"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'full'}">Full Time
-                            <input type="radio" name="options" id="option1" autocomplete="off" chacked>
+                            <input type="checkbox" autocomplete="off">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
                         <label class="btn btn-primary"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'part'}">Part Time
-                            <input type="radio" name="options" id="option2" autocomplete="off">
+                            <input type="checkbox" autocomplete="off">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
                         <label class="btn btn-info"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'hours'}">By Hours
-                            <input type="radio" name="options" id="option3" autocomplete="off">
+                            <input type="checkbox" autocomplete="off">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
                     </div>
@@ -266,7 +258,7 @@
                             <li ng-repeat="experience in jobSeekerCV.original_text.history_timeline"
                                 ng-class="{'timeline-inverted' : experience['type'] == 'experience'}">
 
-                                <div class="timeline-badge" ng-click="addEducation('experience.type')">
+                                <div class="timeline-badge" ng-click="addEducation(experience.type)">
 
                                     <i class="fa fa-plus"></i>
                                 </div>

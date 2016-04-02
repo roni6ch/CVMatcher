@@ -5,15 +5,16 @@
            data-toggle="modal" data-target="#myModal"/>
     <input type="hidden" class="leftModal btn btn-info btn-lg"
            data-toggle="modal" data-target="#leftModal"/>
-    <i id="candidateLike"
-       class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user.id,"like")'></i>
-    <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
-       ng-click='addCandidateToLikeUnlike(user.id,"unlike")'></i>
+
     <article id="users">
         <!-- User Name -->
         <div ng-init="getUserJson()">
+            <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
+               ng-click='addCandidateToLikeUnlike(user.id,"unlike")'></i>
             <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
-            <h4>{{user['user'].subsector}}</h4>
+            <i id="candidateLike"
+               class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user.id,"like")'></i>
+            <h5>{{user.sector}}</h5>
         </div>
 
         <!-- Resume Skills -->
@@ -27,8 +28,6 @@
                 </section>
                 <h2>Skills</h2>
             </section>
-
-
         </section>
 
         <!-- TIMELINE -->

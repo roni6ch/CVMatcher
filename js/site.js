@@ -332,11 +332,11 @@ app
                 })
                     .then(function (data) {
                             $scope.jobSeekerCV = data.data[0];
-                            if (data.length == 0) {
+                            if (data.length == 0 || data == undefined || data == "undefined" || data == null || data == []) {
                                 $scope.addEducation('education');
                                 $scope.addEducation('employment');
                             }
-                            console.log(data.data[0]);
+                            //console.log(data.data[0]);
                         },
                         function (response) { // optional
                             alert("jobSeekerJobs AJAX failed!");
@@ -365,9 +365,10 @@ app
             }
 
             $scope.addEducation = function (type) {
+                console.log("type: " + type);
                 if (type == 'education') {
                     var divTemplate = '<li><div class="timeline-badge" ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading">' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
-
+                    console.log("education");
                 }
                 else {
                     var divTemplate = '<li class="timeline-inverted"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading">' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
@@ -774,7 +775,7 @@ app.controller('resumeController',
             })
                 .then(function (data) {
                         $scope.user = data.data[0];
-
+                        console.log(data.data[0])
                         angular.element(".fa-pulse").hide();
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
@@ -880,30 +881,21 @@ app.controller('resumeController',
             url: 'json/skills.json'
         })
             .then(function (data) {
+                console.log(data);
+                    var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
+                    var fillColors = ['#C1BFBF', '#e6e6e6'];
+                    //Big circle percentages
                     angular.forEach(data.data.formula.requirements.details, function (value, key) {
-                        console.log("name: ", value.name, "grade: ", value.grade);
-                        if ((key + 1) % 2 == 0) {
-                            circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
-                                color: '#ee5785',
-                                strokeWidth: 5,
-                                fill: '#aaa'
-                            });
-                            tmpColor = '#ee5785';
-                        }
-                        else {
-                            circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
-                                color: '#be57ee',
-                                strokeWidth: 5,
-                                fill: '#e6e6e6'
-                            });
-                            tmpColor = '#be57ee';
-                        }
-                        angular.element(".resumeSkillsBox").append("<span style='color:" + tmpColor + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
-
+                        circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
+                            color: colors[key],
+                            strokeWidth: 5,
+                            fill: fillColors[key % 2]
+                        });
+                        angular.element(".resumeSkillsBox").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
                         circle.animate(value.grade / 100, function () {
                         })
-                        console.log(value.grade / 100);
                     });
+                    angular.element(".resumeSkillsBox").append("<h2>Total Skills Grade: "+Math.max(parseInt(data.data.total_grade), 1) +"</h2>")
                 },
                 function (response) { // optional
                     console.log("resumeController AJAX failed!");
@@ -919,6 +911,7 @@ app.controller('jobController', function ($scope, $http, $location) {
     $id = $location.path().split('/')[1];
     $("#geocomplete").geocomplete();
     angular.element('.selectpicker').selectpicker();
+
 
 
     //edit job - get AJAX details
@@ -994,8 +987,9 @@ app.controller('jobController', function ($scope, $http, $location) {
         //im in newJob - init parameters
         else {
 
-            //setTimeout because there is a problem loading js after angular
+            //setTimeout for 1 mil sec because there is a problem loading js after angular
             setTimeout(function () {
+                angular.element(".fa-pulse").hide();
                 var sliders = $("#sliders .slider");
                 sliders.each(function () {
                     var availableTotal = 100;
