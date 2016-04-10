@@ -5,15 +5,15 @@
            data-toggle="modal" data-target="#myModal"/>
     <input type="hidden" class="leftModal btn btn-info btn-lg"
            data-toggle="modal" data-target="#leftModal"/>
-
+<div class="noMoreCandidates">No more Candidates left!</div>
     <article id="users">
         <!-- User Name -->
         <div ng-init="getUserJson()">
             <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
-               ng-click='addCandidateToLikeUnlike(user.id,"unlike")'></i>
+               ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
             <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
             <i id="candidateLike"
-               class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user.id,"like")'></i>
+               class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
             <h5>{{user.sector}}</h5>
         </div>
 
@@ -102,35 +102,25 @@
                     <!-- STAR RANK -->
 					<span class="rating  animated pulse"> 
 			    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
-				<label for="rating-5" class="rating-star" ng-if="user.stars<5"
-                       ng-style="{'background-position':'0 -16px'}"></label>
-				<label for="rating-5" class="rating-star" ng-if="user.stars==5"
-                       ng-style="{'background-position':'0 0'}"></label>
-				<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating"> 
-				<label for="rating-4" class="rating-star" ng-if="user.stars<4"
-                       ng-style="{'background-position':'0 -16px'}"></label>
-				<label for="rating-4" class="rating-star" ng-if="user.stars>=4"
-                       ng-style="{'background-position':'0 0'}"></label>
+				<label for="rating-5" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
+				<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating">
+				<label for="rating-4" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
 				<input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
-				<label for="rating-3" class="rating-star" ng-if="user.stars<3"
-                       ng-style="{'background-position':'0 -16px'}"></label>
-				<label for="rating-3" class="rating-star" ng-if="user.stars>=3"
-                       ng-style="{'background-position':'0 0'}"></label>
+				<label for="rating-3" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
 				<input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
-				<label for="rating-2" class="rating-star" ng-if="user.stars<2"
-                       ng-style="{'background-position':'0 -16px'}"></label>
-				<label for="rating-2" class="rating-star" ng-if="user.stars>=2"
-                       ng-style="{'background-position':'0 0'}"></label>
+				<label for="rating-2" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
 				<input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
-				<label for="rating-1" class="rating-star" ng-if="user.stars<1"
-                       ng-style="{'background-position':'0 -16px'}"></label>
-				<label for="rating-1" class="rating-star" ng-if="user.stars>=1"
-                       ng-style="{'background-position':'0 0'}"></label>
+				<label for="rating-1" class="rating-star"
+                       ng-style="{'background-position':'0 -16'}"></label>
 			</span>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal" ng-click="bringNextCandidate()">
+                    <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal" ng-click="bringNextCandidate('liked',null)">
                         Close
                     </button>
                 </div>
@@ -149,13 +139,13 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-				<textarea class="form-control" rows="5" name="original_text"
+				<textarea class="form-control" rows="5" name="original_text" ng-model="original_text"
                           id="comment" required></textarea>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bringNextCandidate()">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bringNextCandidate('unliked',original_text)">
                         Close
                     </button>
                 </div>

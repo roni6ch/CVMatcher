@@ -47,7 +47,7 @@ hr {
     background: #000;
     width: 100%;
     height: 1px;
-    margin:0px;
+    margin: 0px;
 }
 
 blockquote, q {
@@ -79,7 +79,11 @@ h1, h2, h3, h4, h5, h6 {
 a {
     text-decoration: none;
 }
-.hidden{display:none;}
+
+.hidden {
+    display: none;
+}
+
 textarea::-webkit-input-placeholder, input::-webkit-input-placeholder {
     /* WebKit browsers */
     color: #000;
@@ -185,7 +189,12 @@ footer div a {
     min-height: 100%;
     margin-bottom: -10px; /*  for the sticky footer */
 }
-.fa-pulse{position:absolute; left:50%; top:50%;}
+
+.fa-pulse {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
@@ -203,7 +212,7 @@ footer div a {
 .searchJobsWrapper header h2, .jobPageWrapper header h2,
 .matchpageWrapper header h2, .googleSignInWrapper header h2,
 .aboutWrapper header h2, .contactusWrapper header h2,
-.companyprofileWrapper header h2, .profileWrapper header h2,.candidatesWrapper header h2 {
+.companyprofileWrapper header h2, .profileWrapper header h2, .candidatesWrapper header h2 {
     margin-bottom: 25px !important;
     text-align: left;
 }
@@ -212,7 +221,7 @@ footer div a {
 .favoritesWrapper > h3, .resumeWrapper > h3, .jobWrapper > h3,
 .jobParametersWrapper > h3, .searchJobsWrapper > h3, .jobPageWrapper > h3,
 .matchpageWrapper > h3, .googleSignInWrapper > h3, .aboutWrapper > h3,
-.companyprofileWrapper > h3, .profileWrapper > h3, .contactusWrapper > h3 ,.candidatesWrapper>h3 {
+.companyprofileWrapper > h3, .profileWrapper > h3, .contactusWrapper > h3, .candidatesWrapper > h3 {
     position: absolute;
     color: #257bbe;
     font-size: 16px;
@@ -522,6 +531,7 @@ footer div a {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
+
 .myjobsWrapper .nav-tabs li {
     width: 25%;
 }
@@ -567,6 +577,7 @@ footer div a {
     overflow: hidden;
     text-align: left;
 }
+
 .candidatesWrapper form {
     margin: 0 auto;
     width: 50%;
@@ -574,11 +585,10 @@ footer div a {
     display: inline-block;
 }
 
-
-
 .myjobsWrapper section > div {
     border-radius: 10px;
 }
+
 .candidatesTabs li {
     height: 44px !important;
 }
@@ -607,7 +617,8 @@ footer div a {
 }
 
 .candidates > div:nth-child(2) a {
-    text-decoration: none;float: left;
+    text-decoration: none;
+    float: left;
     width: 100%;
 }
 
@@ -653,6 +664,12 @@ footer div a {
 
 .candidates img:hover {
     opacity: 0.6;
+}
+
+.unlikeCandidates .fa-thumbs-o-up, .likeCandidates .fa-thumbs-o-up {
+    -ms-transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 /****************************************************** RESUME - HTML **********************************************/
@@ -711,7 +728,7 @@ footer div a {
     margin-bottom: 20px;
 }
 
-.resumeSkillsBox  span {
+.resumeSkillsBox span {
     font-weight: bold;
     font-size: 25px;
 }
@@ -753,14 +770,14 @@ footer div a {
     float: right;
 }
 
-#circle-container,#circle-container1{
-     z-index: 1;
-     position: relative;
-     width: 45%;
-     margin: 0 auto;
- }
+#circle-container, #circle-container1 {
+    z-index: 1;
+    position: relative;
+    width: 45%;
+    margin: 0 auto;
+}
 
-#circle-container > h2 , #circle-container1 > h2{
+#circle-container > h2, #circle-container1 > h2 {
     text-shadow: 1px 3px 3px #88b9f1;
     position: absolute;
     top: 25%;
@@ -811,14 +828,32 @@ footer div a {
 .swipeIcon {
     display: none;
 }
-#candidateLike{padding: 0px 20px;}
+
+#candidateLike {
+    padding: 0px 20px;
+}
+
 #candidateUnLike {
     padding: 0px 20px;
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);
     transform: rotate(180deg);
 }
-#candidateUnLike + h3,#candidateLike + h4{    display: inline-block;}
+
+#candidateUnLike + h3, #candidateLike + h4 {
+    display: inline-block;
+}
+
+.noMoreCandidates {
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: #ccc;
+    position: absolute;
+    left: 0;
+    font-size: 30px;
+}
+
 /*
 #candidateLike {
     position: fixed;
@@ -869,20 +904,37 @@ footer div a {
     float: right;
     width: 40px;
 }
-.pagination{display:block; margin:0px;}
-.pagination + section{float:right; width:20%; position:relative;}
-.pagination + section h5{    position: absolute;
+
+.pagination {
+    display: block;
+    margin: 0px;
+}
+
+.pagination + section {
+    float: right;
+    width: 20%;
+    position: relative;
+}
+
+.pagination + section h5 {
+    position: absolute;
     top: 39%;
     font-size: 30px;
-    left: 32%;}
-.paginationSelected{    z-index: 2;
+    left: 32%;
+}
+
+.paginationSelected {
+    z-index: 2;
     color: #23527c !important;
-    background-color: #eee!important;
-    border-color: #ddd!important;}
+    background-color: #eee !important;
+    border-color: #ddd !important;
+}
+
 .operators {
     width: 100%;
     float: left;
 }
+
 .operators input {
     background: none;
     border: 0;
@@ -891,34 +943,87 @@ footer div a {
     width: 100%;
     float: left;
     position: inherit !important;
-    margin-left:0px !important;
+    margin-left: 0px !important;
 }
+
 .operators > h3 {
     float: left;
     padding: 10px 10px;
     display: none;
 }
-.Item > label{    float: left;
-    margin-left: 2%;}
-.Item h2{text-align: center;font-size: 3.5vw;}
-.Item >h3{float:right;}
-.Item >select+input{float:right; width:20%;}
 
-#addmust{    margin: 10px 10px;}
-#addmust + h3{    margin: 10px 0px;}
+.Item > label {
+    float: left;
+    margin-left: 2%;
+}
 
-.mustOrAdv{width: 250px; background:#ccc; height:30px; float: right; position:relative;    border-radius: 10px;    border: 1px solid #000;}
-.mustOrAdv > div{float:left; width: 50%;}
-.mustOrAdv > div h3{text-align: center;    font-size: 20px;
-    line-height: 30px;}
-.mustOrAdv section{background: #000; width:125px; height:30px;   cursor: pointer;   position: absolute; right: 0;    border-radius: 10px;}
-.toggleMust{left:0px;}
-.toggleAdv{right:0px;}
+.Item h2 {
+    text-align: center;
+    font-size: 3.5vw;
+}
+
+.Item > h3 {
+    float: right;
+}
+
+.Item > select + input {
+    float: right;
+    width: 20%;
+}
+
+#addmust {
+    margin: 10px 10px;
+}
+
+#addmust + h3 {
+    margin: 10px 0px;
+}
+
+.mustOrAdv {
+    width: 250px;
+    background: #ccc;
+    height: 30px;
+    float: right;
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid #000;
+}
+
+.mustOrAdv > div {
+    float: left;
+    width: 50%;
+}
+
+.mustOrAdv > div h3 {
+    text-align: center;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.mustOrAdv section {
+    background: #000;
+    width: 125px;
+    height: 30px;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    border-radius: 10px;
+}
+
+.toggleMust {
+    left: 0px;
+}
+
+.toggleAdv {
+    right: 0px;
+}
+
 .operators select {
     width: 20%;
     float: left;
     margin-top: 3px;
 }
+
 .operators .Page {
     float: left;
     display: table-cell;
@@ -976,26 +1081,37 @@ footer div a {
     height: 80px;
     background-color: #FFF4D9;
 }
+
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
     color: #606060;
     font-weight: bold;
 }
+
 .btn span.glyphicon {
     opacity: 0;
 }
+
 .btn.active span.glyphicon {
     opacity: 1;
 }
-.btn-group{width:100%;}
 
-.mustItem,.advantageItem,.orItem{background-color: #ccc;}
+.btn-group {
+    width: 100%;
+}
+
+.mustItem, .advantageItem, .orItem {
+    background-color: #ccc;
+}
+
 #sliders {
     position: relative;
 }
-#sliders > div{
+
+#sliders > div {
     padding: 0px 20px;
-    border-radius: 10px;}
+    border-radius: 10px;
+}
 
 #sliders li {
     margin: 1%;
@@ -1012,7 +1128,12 @@ footer div a {
 
     font-size: 20px;
 }
-#sliders span{font-size:24px; font-weight: bold;    height: 32px;}
+
+#sliders span {
+    font-size: 24px;
+    font-weight: bold;
+    height: 32px;
+}
 
 .ui-widget-header {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,4dcfdd+100 */
@@ -1024,7 +1145,6 @@ footer div a {
     background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
     rgba(77, 207, 221, 1) 100%);
 }
-
 
 /************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
@@ -1106,11 +1226,13 @@ footer div a {
     right: 75px;
     top: 30px;
 }
-.jobListLi   .rating{    position: absolute;
-    top: 44px;}
 
+.jobListLi .rating {
+    position: absolute;
+    top: 44px;
+}
 
-    /****************************************************** JOB - JOBSEEKER - HTML **********************************************/
+/****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
     width: 100%;
     text-align: left;
@@ -1216,9 +1338,14 @@ footer div a {
 .matchResult #circle-container h2 {
     font-size: 4.5vw;
 }
-#formulasAppend{margin:10px 0px;}
 
-.langsMatch > span{    font-weight: bold;}
+#formulasAppend {
+    margin: 10px 0px;
+}
+
+.langsMatch > span {
+    font-weight: bold;
+}
 
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
@@ -1304,6 +1431,7 @@ footer div a {
     margin-top: 5px;
     margin-left: 0px !important;
 }
+
 .userProfile .btn.btn-warning {
     clear: both;
 }
@@ -1317,9 +1445,14 @@ footer div a {
     width: 50% !important;
 }
 
-.profileWrapper .timeline-badge{cursor: pointer;}
+.profileWrapper .timeline-badge {
+    cursor: pointer;
+}
 
-.page-header h1{text-align: center;}
+.page-header h1 {
+    text-align: center;
+}
+
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
 /****************************************************************************************************************************/
@@ -1567,7 +1700,7 @@ footer div a {
     .myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
     .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,
     .jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
-    .companyprofileWrapper, .contactusWrapper, .profileWrapper ,.candidatesWrapper{
+    .companyprofileWrapper, .contactusWrapper, .profileWrapper, .candidatesWrapper {
         padding: 10px 10px 0px;
         width: 100%;
     }
@@ -1576,7 +1709,7 @@ footer div a {
     .unreadcvsWrapper > h3, .favoritesWrapper > h3, .jobParametersWrapper > h3,
     .searchJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
     .aboutWrapper > h3, .contactusWrapper > h3,
-    .matchpageWrapper > h3, .companyprofileWrapper > h3, .profileWrapper > h3,.candidatesWrapper>h3 {
+    .matchpageWrapper > h3, .companyprofileWrapper > h3, .profileWrapper > h3, .candidatesWrapper > h3 {
         display: none;
     }
 
@@ -1604,7 +1737,7 @@ footer div a {
         width: 100%;
     }
 
-    #circle-container > h2,#circle-container1 > h2 {
+    #circle-container > h2, #circle-container1 > h2 {
         font-size: 5vw;
         line-height: 16vw;
     }

@@ -19,7 +19,10 @@ app.config(function ($routeProvider) {
     }).when('/Archive/Candidates/:_id', {
         templateUrl: 'employer/candidates.html',
         controller: 'candidatesController'
-    }).when('/Candidates/:id/resume/:_id', {
+    }).when('/Like/Candidates/:id/resume/:_id', {
+        templateUrl: 'employer/resume.html',
+        controller: 'resumeController'
+    }).when('/UnLike/Candidates/:id/resume/:_id', {
         templateUrl: 'employer/resume.html',
         controller: 'resumeController'
     }).when('/Unread/:id/resume/:_id', {
@@ -78,11 +81,12 @@ app.config(function ($routeProvider) {
 
 }).run(function ($rootScope, $http) {
     //set the header navigation
-    if ($.cookie('userSignInType'))
+    if ($.cookie('userSignInType')) {
         $rootScope.userSignInType = $.cookie('userSignInType');
-    if ($.cookie('userSignInType'))
         $rootScope.user_id = $.cookie('user_id');
-
+    }
+    if ($.cookie('google_id'))
+        $rootScope.google_id = $.cookie('google_id');
 }).filter('highlight', function ($sce) {
     return function (text, phrase) {
         if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
@@ -98,6 +102,10 @@ app.config(function ($routeProvider) {
 
 var user;
 app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile) {
+
+    if (profile)
+        $.cookie('google_id', profile.id);
+
     $scope.userType = function (type) {
         if (type == 'employer') {
             $rootScope.userSignInType = "employer";
@@ -119,8 +127,8 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "email": "roni@gmail.com"
                     }
                 }).then(function (data) {
-                        console.log(data);
-                        $.cookie('user_id', data.data._id);
+                        console.log(data.data[0]._id);
+                        $.cookie('user_id', data.data[0]._id);
                         $rootScope.user_id = data.data._id;
                     },
                     function (response) { // optional
@@ -131,6 +139,21 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                 location.replace("#/companyProfile");
             }
             else {
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/getUser',
+                    method: "POST",
+                    data: {
+                        "user_id": $.cookie('user_id')
+                    }
+                }).then(function (data) {
+                        console.log(data);
+                        $.cookie('user_id', data.data._id);
+                        $rootScope.user_id = data.data._id;
+                    },
+                    function (response) { // optional
+                        console.log("addUser AJAX failed!");
+                    });
+
                 firstTimeLogIn = false;
                 location.replace("#/myjobs");
             }
@@ -157,7 +180,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     }
                 }).then(function (data) {
                         console.log(data);
-                        console.log(data._id);
                         $.cookie('user_id', data.data._id);
                         $rootScope.user_id = data.data._id;
                     },
@@ -190,7 +212,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
             data: {
-                "google_user_id": "0",
+                "google_user_id": $.cookie('google_id'),
                 "sector": "software engineering"
             }
         })
@@ -221,6 +243,7 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
 
 
     $id = $location.path().split('/');
+    console.log($id[2])
     console.log("jobpagebyIDController");
 
 
@@ -228,7 +251,7 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
         url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
         method: "POST",
         data: {
-            "matching_object_id": "56f6ce4ccd4174a02b58818f",
+            "matching_object_id": $id[2],
             "matching_object_type": "job"
         }
     })
@@ -240,6 +263,7 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location) {
                         fill: '#aaa'
                     });
 
+                $.cookie('compatibility_level', data.data[0].compatibility_level);
                 angular.element(".fa-pulse").hide();
                 angular.element("#job-circle-container>h5").html(
                     data.data[0].compatibility_level + "%");
@@ -265,7 +289,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs',
             method: "POST",
             data: {
-                "google_user_id": "104"
+                "google_user_id": $.cookie('google_id')
             }
         })
             .then(function (data) {
@@ -300,7 +324,7 @@ app
         function ($scope, $http, $compile, $rootScope) {
             $("#geocomplete").geocomplete();
             $("[rel='popover']").popover({trigger: "hover", container: "body"});
-
+            var userId;
 
             $scope.getMainJson = function () {
                 console.log("seekerProfileControler");
@@ -316,6 +340,7 @@ app
                     .then(function (data) {
                             $scope.jobSeeker = data.data[0];
                             console.log(data.data[0]);
+                            userId = data.data[0]._id;
                             angular.element(".fa-pulse").hide();
                         },
                         function (response) { // optional
@@ -326,7 +351,7 @@ app
                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                     method: "POST",
                     data: {
-                        "matching_object_id": "56f6ce55cd4174a02b58819c",
+                        "matching_object_id": userId,
                         "matching_object_type": "cv"
                     }
                 })
@@ -378,18 +403,106 @@ app
             }
             $scope.submitUserDetails = function () {
                 console.log("send form: ", $scope.jobSeeker);
-                /* $http({
-                 url: 'https://cvmatcher.herokuapp.com/UpdateUser',
-                 method: "POST",
-                 data: $scope.jobSeeker
-                 })
-                 .then(function (data) {
-                 },
-                 function (response) { // optional
-                 alert("jobSeekerJobs send form AJAX failed!");
-                 });*/
+                    //add more parameters to json
+                    var key = 'birth_date';
+                    var val = $(".birthDay").val();
+                    $scope.jobSeeker[key] = val;
+                    var key = 'address';
+                    var val = $("#geocomplete").val();
+                    $scope.jobSeeker[key] = val;
+                    var key = 'phone_number';
+                    var val = $(".phoneNumber").val();
+                    $scope.jobSeeker[key] = val;
+                    var key = 'linkedin';
+                    var val = $(".linkedin").val();
+                    $scope.jobSeeker[key] = val;
+
+                    console.log("send form: ", $scope.jobSeeker);
+                    $http({
+                        url: 'https://cvmatcher.herokuapp.com/updateUser',
+                        method: "POST",
+                        data: $scope.jobSeeker
+                    })
+                        .then(function (data) {
+                            },
+                            function (response) { // optional
+                                alert("jobSeeker send form AJAX failed!");
+                            });
             }
             $scope.submitUserCV = function () {
+
+                /*var jobSeekerCVsector = [];
+                //scope_of_position
+                $.each($(".jobSeekerCVsector input:checked"), function(){
+                    jobSeekerCVsector.push($(this).val());
+                });*/
+                var key = 'jobSeekerCVsector';
+                var val = $('.jobSeekerCVsector').find(":selected").val();
+
+
+
+//TODO: GET THE JOB SEEKER CV
+                var jobSeekerCV = {
+                    "matching_object_type": "cv",
+                    "date": "01/03/2016",
+                    "personal_properties": {
+                        "university_degree": true,
+                        "degree_graduation_with_honors": true,
+                        "above_two_years_experience": false,
+                        "psychometric_above_680": true,
+                        "multilingual": true,
+                        "volunteering": true,
+                        "full_army_service": true,
+                        "officer": false,
+                        "high_school_graduation_with_honors": true,
+                        "youth_movements": true
+
+                    },
+                    "original_text": {
+                        "title": null,
+                        "description": null,
+                        "requirements": null,
+                        "history_timeline": [
+                            {
+                                "text": "Metro High School Ranana - An outstanding student majoring computer science . GPA 93 test.",
+                                "start_year": "2004",
+                                "end_year": "2006",
+                                "type": "education"
+                            }
+                        ]
+                    },
+                    "sector": "software engineering",
+                    "locations": [
+                        "Raanana", "Haifa", "Tel Aviv"
+                    ],
+                    "candidate_type": ["discharged_soldiers", "no_experience", "mothers", "pensioners"],
+                    "scope_of_position": ["part time", "by hours"],
+                    "academy": {
+                        "academy_type": ["college"],
+                        "degree_name": "software engineering",
+                        "degree_type": ["bsc"]
+                    },
+                    "sub_sector": [],
+                    "formula": null,
+                    "requirements": [{
+                        "combination": [],
+                        "compatibility_level": null,
+                        "status": null,
+                        "favorites": [],
+                        "cvs": [],
+                        "google_user_id": "104",
+                        "archive": false,
+                        "active": true,
+                        "user": "56edc7abe4b0fd187fd7ac33"
+                    }]
+                }
+
+
+
+
+
+
+
                 console.log("send form: ", $scope.jobSeekerCV);
                 /* $http({
                  url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
@@ -438,14 +551,16 @@ app
                             .animate(data.data.total_grade / 100);
 
                         //check if user passed the Match!!!
-                        //TODO: change the 70 number to the job min compability
-                        if (data.data.total_grade < 70) {
+                        if (data.data.total_grade < $.cookie('compatibility_level')) {
+                            console.log($.cookie('compatibility_level'));
                             angular.element(".matchResult > h2").append("Oops");
                             angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");
 
                             angular.element(".matchResult h3").html('You did not passed the minimum requirements');
                         }
                         else {
+
+                            console.log($.cookie('compatibility_level'));
                             angular.element(".matchResult > h2").append("Great!");
                             angular.element(".matchResult > h2 > i").addClass("fa-thumbs-up");
                             angular.element(".matchResult h3").html('Harray!! You Passed The Minimum requirements');
@@ -534,12 +649,15 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         $scope.jobPage = "Candidates";
     else
         $scope.jobPage = "Archive/Candidates";
+
+    console.log($.cookie('google_id'));
+
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
             method: "POST",
             data: {
-                "google_user_id": "0",
+                "google_user_id": $.cookie('google_id'),
                 "sector": "software engineering",
                 "archive": "false"
             }
@@ -566,6 +684,11 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         $scope.sortby = sort;
     }
 
+    $scope.saveJobTitle = function (jobTitle) {
+        console.log(jobTitle);
+        $rootScope.jobTitle = jobTitle;
+    }
+
 
 });
 
@@ -575,7 +698,10 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
  */
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope) {
-        var company = "";
+        var company = false;
+        var companyId;
+        console.log("user_id: " + $.cookie('user_id'));
+        console.log("user_id: " + $rootScope.user_id);
         $("#geocomplete").geocomplete();
 
         //user details
@@ -583,38 +709,44 @@ app.controller('companyProfileController',
             url: 'https://cvmatcher.herokuapp.com/getUser',
             method: "POST",
             data: {
-                "user_id": $rootScope.user_id
+                "user_id": $.cookie('user_id')
             }
         })
             .then(function (data) {
                     $scope.employerProfile = data.data[0];
                     console.log(data.data[0]);
+                    if (data.data[0].company) {
+                        console.log("true");
+                        company = true;
+                        companyId = data.data[0].company;
+                    }
 
                     angular.element(".fa-pulse").hide();
-                    if (data.data[0].hasOwnProperty('company') || data.data[0].company != "undefined")
-                        company = data.data.company;
                 },
                 function (response) { // optional
                     console.log("companyProfileController AJAX failed!");
                 });
-
         //company profile details
-        $http({
-            url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
-            method: "POST",
-            data: {
-                "company_id": "56f9a6358d5befd036ff90ac"
-            }
-        })
-            .then(function (data) {
-                    $scope.companyProfile = data.data;
-                    console.log(data.data);
 
-                    angular.element(".fa-pulse").hide();
-                },
-                function (response) { // optional
-                    console.log("companyProfileController AJAX failed!");
-                });
+
+        if (company) {
+            url = 'https://cvmatcher.herokuapp.com/employer/getCompany';
+            $http({
+                url: url,
+                method: "POST",
+                data: {
+                    "company_id": companyId
+                }
+            })
+                .then(function (data) {
+                        $scope.companyProfile = data.data;
+                        console.log(data.data);
+                        angular.element(".fa-pulse").hide();
+                    },
+                    function (response) { // optional
+                        console.log("companyProfileController AJAX failed!");
+                    });
+        }
 
         //uploadPhoto
         $(function () {
@@ -632,44 +764,66 @@ app.controller('companyProfileController',
         };
 
         $scope.submitUserDetails = function () {
+            //add more parameters to json
+            var key = 'birth_date';
+            var val = $(".birthDay").val();
+            $scope.employerProfile[key] = val;
+            var key = 'address';
+            var val = $("#geocomplete").val();
+            $scope.employerProfile[key] = val;
+            var key = 'phone_number';
+            var val = $(".phoneNumber").val();
+            $scope.employerProfile[key] = val;
+            var key = 'linkedin';
+            var val = $(".linkedin").val();
+            $scope.employerProfile[key] = val;
+
+            //url = 'https://cvmatcher.herokuapp.com/addUser';
             console.log("send form: ", $scope.employerProfile);
-            /* $http({
-             url: 'https://cvmatcher.herokuapp.com/UpdateUser',
-             method: "POST",
-             data: $scope.employerProfile
-             })
-             .then(function (data) {
-             },
-             function (response) { // optional
-             alert("jobSeekerJobs send form AJAX failed!");
-             });*/
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/updateUser',
+                method: "POST",
+                data: $scope.employerProfile
+            })
+                .then(function (data) {
+                    },
+                    function (response) { // optional
+                        alert("jobSeekerJobs send form AJAX failed!");
+                    });
         }
         $scope.submitCompanyDetails = function () {
-            if (company != "")
+            if (!company)
                 url = 'https://cvmatcher.herokuapp.com/employer/addCompany';
             else
                 url = 'https://cvmatcher.herokuapp.com/employer/updateCompany';
+
+            //push to json new key value
+            var key = 'user_id';
+            var val = $.cookie('user_id');
+
+            $scope.companyProfile[key] = val;
+            var key = 'logo';
+            var val = 'logo';
+
+            $scope.companyProfile[key] = val;
             console.log("send form: ", $scope.companyProfile);
-            console.log("url: ", url);
-            /*    $http({
-             url: url,
-             method: "POST",
-             data: $scope.companyProfile
-             })
-             .then(function (data) {
-             },
-             function (response) { // optional
-             alert("jobSeekerJobs send form AJAX failed!");
-             });*/
+            console.log(url);
+            $http({
+                url: url,
+                method: "POST",
+                data: $scope.companyProfile
+            }).then(function () {
+            })
         }
     });
 /*
  * ********************* Candidates controller ****************
  */
 app.controller('candidatesController',
-    function ($scope, $http, $location, $sce) {
+    function ($scope, $http, $location, $sce, $rootScope) {
         $id = $location.path().split('/');
         $scope.jobId = $id[2];
+        console.log($.cookie('google_id'));
         $scope.unreadCvs = function () {
 
             angular.element(".fa-pulse").show();
@@ -678,12 +832,13 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getUnreadCvsForJob',
                 method: "POST",
                 data: {
-                    "google_user_id": "0",
-                    "job_id": "56f6ce4ccd4174a02b58818f"
+                    "google_user_id": $.cookie('google_id'),
+                    "job_id": $scope.jobId
                 }
             })
                 .then(function (data) {
                         $scope.candidates = data.data;
+                        $rootScope.unreadCandidates = data.data;
                         console.log(data.data);
 
                         angular.element(".fa-pulse").hide();
@@ -700,14 +855,15 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
                 data: {
-                    "google_user_id": "0",
-                    "job_id": "56f6ce4ccd4174a02b58818f",
+                    "google_user_id": $.cookie('google_id'),
+                    "job_id": $scope.jobId,
                     "current_status": "liked"
                 }
             })
                 .then(function (data) {
+                        $rootScope.likeCandidates = data.data;
                         $scope.likeCandidates = data.data;
-
+                        console.log(data.data);
                         angular.element(".fa-pulse").hide();
                     },
                     function (response) { // optional
@@ -721,14 +877,15 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
                 data: {
-                    "google_user_id": "0",
-                    "job_id": "56f6ce4ccd4174a02b58818f",
+                    "google_user_id": $.cookie('google_id'),
+                    "job_id": $scope.jobId,
                     "current_status": "unliked"
                 }
             })
                 .then(function (data) {
+                        $rootScope.unlikeCandidates = data.data;
                         $scope.unlikeCandidates = data.data;
-
+                        console.log(data.data);
                         angular.element(".fa-pulse").hide();
                     },
                     function (response) { // optional
@@ -741,15 +898,40 @@ app.controller('candidatesController',
             $scope.sortby = sort;
         }
 
-        $scope.addCandidateToLike = function (index, candidate) {
-            // TODO: SEND TO DB THE CANDIDATE TO LIKE / DISLIKE
+        $scope.addCandidateToLike = function (index, candidate, id) {
             if (angular.element("#candidateLike-" + candidate).hasClass(
-                    "fa-thumbs-o-up"))
+                    "fa-thumbs-o-up")) {
                 angular.element("#candidateLike-" + candidate).removeClass(
                     "fa-thumbs-o-up").addClass("fa-thumbs-up");
-            else
+                $scope.userId = id;
+                $(".starModal").click();
+            }
+            else {
                 angular.element("#candidateLike-" + candidate).removeClass(
                     "fa-thumbs-up").addClass("fa-thumbs-o-up");
+                $scope.userId = id;
+                $(".leftModal").click();
+            }
+
+        }
+        var stars = 0;
+        $scope.rating = function (rateNumber) {
+            stars = rateNumber;
+        }
+        $scope.bringNextCandidate = function (type, description, id) {
+            console.log(id);
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
+                method: "POST",
+                data: {
+                    "matching_object_id": id,
+                    "status": {
+                        "current_status": type,
+                        "stars": stars,
+                        "description": description
+                    }
+                }
+            });
         }
 
     });
@@ -757,19 +939,24 @@ app.controller('candidatesController',
 /*
  * ********************* resume controller ****************
  */
+var candidateId;
 app.controller('resumeController',
-    function ($scope, $http, $location, $timeout) {
-
+    function ($scope, $http, $location, $timeout, $rootScope) {
         $id = $location.path().split('/');
-
         console.log("resumeController");
+        console.log("cv id: " + $id[5]);
+        var id;
+        if ($id[5])
+            id = $id[5];
+        else
+            id = $id[4];
         $scope.getUserJson = function () {
 
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                 method: "POST",
                 data: {
-                    "matching_object_id": "56f6ce55cd4174a02b58819c",
+                    "matching_object_id": id,
                     "matching_object_type": "cv"
                 }
             })
@@ -777,6 +964,7 @@ app.controller('resumeController',
                         $scope.user = data.data[0];
                         console.log(data.data[0])
                         angular.element(".fa-pulse").hide();
+                        console.log($id[1]);
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
                         }
@@ -792,8 +980,8 @@ app.controller('resumeController',
 
 
         $scope.addCandidateToLikeUnlike = function (candidate, likeORunlike) {
-            // TODO: SEND TO DB THE CANDIDATE TO LIKE / DISLIKE
-            if (likeORunlike == 'like') {
+            candidateId = candidate;
+            if (likeORunlike == 'liked') {
                 if (angular.element("#candidateLike")
                         .hasClass("fa-thumbs-o-up"))
                     angular.element("#candidateLike").removeClass(
@@ -803,7 +991,7 @@ app.controller('resumeController',
                         "fa-thumbs-up").addClass("fa-thumbs-o-up");
                 $(".starModal").click();
             }
-            if (likeORunlike == 'unlike') {
+            if (likeORunlike == 'unliked') {
                 if (angular.element("#candidateUnLike").hasClass(
                         "fa-thumbs-o-up"))
                     angular.element("#candidateUnLike").removeClass(
@@ -814,32 +1002,81 @@ app.controller('resumeController',
                 $(".leftModal").click();
             }
         }
-
-        $scope.bringNextCandidate = function () {
+        var candidates;
+        $scope.bringNextCandidate = function (type, description) {
+            var url;
+            if ($id[1] == 'Like') {
+                candidates = $rootScope.likeCandidates;
+                delete candidateslike
+                url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
+            }
+            else if ($id[1] == 'UnLike') {
+                candidates = $rootScope.unlikeCandidates;
+                url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
+            }
+            else {
+                //i came from UnreadCVS
+                candidates = $rootScope.unreadCandidates;
+                url = 'https://cvmatcher.herokuapp.com/employer/rateCV';
+            }
+            //add user to like and rate stars
             $http({
-                url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                url: url,
                 method: "POST",
                 data: {
-                    "matching_object_id": "56f6ce55cd4174a02b58819c",
-                    "matching_object_type": "cv"
-                }
-            })
-                .then(function (data) {
-                    $scope.user = data.data[0];
-                    console.log(data.data[0]);
-                    if ($id[1] == "Unread") {
-                        $scope.user["stars"] = 0;
+                    "matching_object_id": candidateId,
+                    "status": {
+                        "current_status": type,
+                        "stars": $scope.user["stars"],
+                        "description": description
                     }
-
-                    //remove like unlike clicks view
-                    angular.element("#candidateLike").removeClass(
-                        "fa-thumbs-up").addClass("fa-thumbs-o-up");
-                    angular.element("#candidateUnLike").removeClass(
-                        "fa-thumbs-up").addClass("fa-thumbs-o-up")
-                });
-            $("#users").fadeOut(300, function () {
-                $("#users").fadeIn(300);
+                }
             });
+
+            var nextCandidate;
+            angular.forEach(candidates, function (value, key) {
+                if (value._id == candidateId) {
+                    console.log(key);
+                    delete candidates[key];
+                }
+                else
+                    nextCandidate = value._id;
+            })
+            console.log(candidates);
+
+            //bring next candidate
+            if (!nextCandidate) {
+                console.log("no more candidates!");
+                angular.element(".noMoreCandidates").show();
+                angular.element("#users").hide();
+
+            }
+            else {
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                    method: "POST",
+                    data: {
+                        "matching_object_id": nextCandidate,
+                        "matching_object_type": "cv"
+                    }
+                })
+                    .then(function (data) {
+                        $scope.user = data.data[0];
+                        console.log(data.data[0]);
+                        if ($id[1] == "Unread") {
+                            $scope.user["stars"] = 0;
+                        }
+
+                        //remove like unlike clicks view
+                        angular.element("#candidateLike").removeClass(
+                            "fa-thumbs-up").addClass("fa-thumbs-o-up");
+                        angular.element("#candidateUnLike").removeClass(
+                            "fa-thumbs-up").addClass("fa-thumbs-o-up")
+                    });
+                $("#users").fadeOut(300, function () {
+                    $("#users").fadeIn(300);
+                });
+            }
         }
 
         // if i came from Unread page
@@ -881,7 +1118,7 @@ app.controller('resumeController',
             url: 'json/skills.json'
         })
             .then(function (data) {
-                console.log(data);
+                    console.log(data);
                     var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
                     var fillColors = ['#C1BFBF', '#e6e6e6'];
                     //Big circle percentages
@@ -895,7 +1132,7 @@ app.controller('resumeController',
                         circle.animate(value.grade / 100, function () {
                         })
                     });
-                    angular.element(".resumeSkillsBox").append("<h2>Total Skills Grade: "+Math.max(parseInt(data.data.total_grade), 1) +"</h2>")
+                    angular.element(".resumeSkillsBox").append("<h2>Total Skills Grade: " + Math.max(parseInt(data.data.total_grade), 1) + "</h2>")
                 },
                 function (response) { // optional
                     console.log("resumeController AJAX failed!");
@@ -912,8 +1149,7 @@ app.controller('jobController', function ($scope, $http, $location) {
     $("#geocomplete").geocomplete();
     angular.element('.selectpicker').selectpicker();
 
-
-
+    $jobId = $location.path().split('/')[2];
     //edit job - get AJAX details
     $scope.getJobJson = function () {
 
@@ -922,7 +1158,7 @@ app.controller('jobController', function ($scope, $http, $location) {
                 url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                 method: "POST",
                 data: {
-                    "matching_object_id": "56f6ce4ccd4174a02b58818f",
+                    "matching_object_id": $jobId,
                     "matching_object_type": "job"
                 }
             })
@@ -1043,18 +1279,75 @@ app.controller('jobController', function ($scope, $http, $location) {
     $scope.submitForm = function () {
         console.log("posting data....");
         console.log($scope.jobDetails);
-        /*
-         var d = new Date,
-         dformat = [
-         d.getDate(), (d.getMonth() + 1),
-         d.getFullYear()].join('/');
-         console.log(dformat);*/
+
+        var academy = [];
+        //scope_of_position
+        $.each($(".academy input:checked"), function(){
+         academy.push($(this).val());
+        });
+        var scope_of_position = [];
+        //scope_of_position
+        $.each($(".scope_of_position input:checked"), function(){
+            scope_of_position.push($(this).val());
+        });
+        var candidate_type = [];
+        //scope_of_position
+        $.each($(".candidate_type input:checked"), function(){
+            candidate_type.push($(this).val());
+        });
+        console.log(candidate_type);
+
+
+
+        var addNewJob ={
+            "matching_object_type": "job",
+            "google_user_id": $.cookie('google_id'),
+            "date": "",
+            "personal_properties": null,
+            "original_text": {
+                "title":$( ".jobName" ).val(),
+                "description":$( "#description" ).html(),
+                "requirements":$( "#requirements" ).html(),
+                "history_timeline":""
+            },
+            "sector":"software engineering",
+            "locations":$( "#geocomplete" ).val(),
+            "candidate_type":candidate_type,
+            "scope_of_position":scope_of_position,
+            "academy": {
+                "academy_type":academy,
+                "degree_name":"software engineering",
+                "degree_type":"bsc"
+            },
+            "sub_sector":$scope.jobDetails.sub_sector,
+            "formula": {
+                "locations":$( ".locationsSlider" ).text().split("/")[0],
+                "candidate_type":$( ".candidate_typeSlider" ).text().split("/")[0],
+                "scope_of_position":$( ".scope_of_positionSlider" ).text().split("/")[0],
+                "academy":$( ".academySlider" ).text().split("/")[0],
+                "requirements":$( ".requirementsSlider" ).text().split("/")[0]
+            },
+            "requirements": "",
+            "compatibility_level":$scope.compability,
+            "status": null,
+            "favorites": [],
+            "cvs": [],
+            "archive": true,
+            "active": false,
+            "user":$.cookie('user_id')
+
+        }
+
+        console.log(addNewJob);
+
+       // console.log(addNewJob);
         $http({
             url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
             method: "POST",
-            data: $scope.jobDetails
+           // data: $scope.jobDetails
+            data: addNewJob
         })
-            .then(function () {
+            .then(function (data) {
                 },
                 function (response) { // optional
                     alert("jobSeekerJobs send form AJAX failed!");
@@ -1261,43 +1554,32 @@ app
                                 continue;
                             }
 
-                            // TODO: BRING THE JOB NAME TO CANDIDTES
-                            // PAGE
 
                             // if the path[i] is a number that came from
                             // Candidates job page
+                            var likeOrUnlikeTab;
+                            if (path[i - 1] == "Like")
+                                likeOrUnlikeTab = Like;
                             if (path[i - 1] == "My Jobs" || path[i - 1] == "jobParameters" || path[i - 1] == "job"
                                 || path[i - 1] == "Match Page"
                                 || path[i - 1] == "Candidates"
-                                || path[i - 1] == "Search Jobs") {
+                                || path[i - 1] == "Search Jobs" || path[i - 1] == "Like") {
 
                                 var pTemp = path[i];
-                                if (path[i - 1] == "Candidates" || path[i - 1] == "job" || path[i - 1] == "Search Jobs") {
-                                    $http({
-                                        url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
-                                        method: "POST",
-                                        data: {
-                                            "google_user_id": "0",
-                                            "sector": "software engineering",
-                                            "archive": "false"
-                                        }
-                                    })
-                                        .then(function (data) {
+                                if (path[i - 1] == "Candidates" || path[i - 1] == "job" || path[i - 1] == "Search Jobs" || path[i - 1] == "Like") {
+                                    var myjobsTmp = '', editTmp = '';
+                                    if (path[i - 1] == 'My Jobs')
+                                        myjobsTmp = "<span> > </span><a href='#/myjobs'>My Jobs</a>"
+                                    if (path[i - 2] == "job")
+                                        editTmp = "<b>Edit </b>";
 
-                                            var myjobsTmp = '', editTmp = '';
-                                            if (path[i - 1] == 'My Jobs')
-                                                myjobsTmp = "<span> > </span><a href='#/myjobs'>My Jobs</a>"
-                                            if (path[i - 2] == "job")
-                                                editTmp = "<b>Edit </b>";
-
-                                            navigation_path += myjobsTmp + "<span> > </span><a href='#" + last_path + "'>" + editTmp + data.data[0].original_text['title'] + "</a>";
-                                            element
-                                                .html($compile(
-                                                    "<a href='#/usersLogin'>Homepage</a>"
-                                                    + navigation_path)
-                                                (
-                                                    scope));
-                                        })
+                                    navigation_path += myjobsTmp + "<span> > </span><a href='#" + last_path + "'>" + editTmp + $rootScope.jobTitle + likeOrUnlikeTab + "</a>";
+                                    element
+                                        .html($compile(
+                                            "<a href='#/usersLogin'>Homepage</a>"
+                                            + navigation_path)
+                                        (
+                                            scope));
                                 }
                                 else {
                                     var lastPath = last_path.split('/');
@@ -1321,7 +1603,7 @@ app
                                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                                     method: "POST",
                                     data: {
-                                        "matching_object_id": "56f6ce55cd4174a02b58819c",
+                                        "matching_object_id": pTemp,
                                         "matching_object_type": "cv"
                                     }
                                 }).then(function (data) {

@@ -7,7 +7,7 @@
                 <a href="#/jobDelete/{{job._id}}"><i class="fa fa-trash fa-2x"></i></a><!--
                 <a href="#/job/{{job._id}}"><i class="fa fa-wrench fa-2x"></i></a>-->
                 <a href="#/job/{{job._id}}"><i class="fa fa-pencil fa-2x"></i></a>
-                <a href="#/{{jobPage}}/{{job._id}}"><img src="./images/logo.png"></a>
+                <a href="#/{{jobPage}}/{{job._id}}" ng-click="saveJobTitle(job.original_text['title']);"><img src="./images/logo.png"></a>
 
 
                 <h3 ng-model="searchText.original_text['title']"

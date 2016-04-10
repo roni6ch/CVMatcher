@@ -24,7 +24,7 @@
                                                      class="form-control" id="usr" name="family"
                                                      value="{{jobSeeker['last_name']}}"> <label
                     for="usr">Date of birth:</label> <input type="text" required ng-model="jobSeeker['birth_date']"
-                                                            class="form-control" id="usr" name="birth"
+                                                            class="form-control birthDay" id="usr" name="birth"
                                                             value="{{jobSeeker['birth_date']}}">
 
                 <label>Address:</label> <input class="form-control" ng-model="jobSeeker['address']" id="geocomplete"
@@ -35,10 +35,10 @@
 
                 <label
                         for="usr">Phone:</label> <input type="text" required ng-model="jobSeeker['phone_number']"
-                                                        class="form-control" id="usr" name="phone"
+                                                        class="form-control phoneNumber" id="usr" name="phone"
                                                         value="{{jobSeeker['phone_number']}}">
                 <label for="usr">LinkedIn:</label> <input type="text" required ng-model="jobSeeker['linked_in']"
-                                                          class="form-control" id="usr" name="name"
+                                                          class="form-control linkedin" id="usr" name="name"
                                                           value="{{jobSeeker['linked_in']}}">
 
 
@@ -51,7 +51,7 @@
 
                 <h4>Professional Experience</h4>
                 <label for="usr">Sector:</label> <select name="sector"
-                                                         class="form-control" id="sel1">
+                                                         class="form-control jobSeekerCVsector" id="sel1">
                 <option ng-selected="jobSeekerCV.sector == 'software engineering'" value="software">Software Engineering
                 </option>
                 <option ng-selected="jobSeekerCV.sector == 'Industrial Engineering and Management'" value="industrial">

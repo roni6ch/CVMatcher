@@ -17,10 +17,13 @@
 		<div ng-show="tab == 0" class="tabsContent fade in active">
 			<!-- Content from here -->
 			<form>
-
+				<div class="form-group">
+					<label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}" ng-model="employerProfile['personal_id']"
+																class="form-control"  name="id">
+				</div>
 				<div class="form-group">
 					<label for="usr">First name:</label> <input type="text" required value="{{employerProfile['first_name']}}" ng-model="employerProfile['first_name']"
-																  class="form-control"  name="address">
+																  class="form-control"  name="first_name">
 				</div>
 				<div class="form-group">
 					<label for="usr">Last name:</label> <input type="text" required value="{{employerProfile['last_name']}}" ng-model="employerProfile['last_name']"
@@ -30,9 +33,9 @@
 					<label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}" ng-model="employerProfile['email']"
 														   class="form-control" >
 				</div>
-				<div class="form-group">
-					<label for="usr">Birth Date:</label> <input type="text" required value="{{employerProfile['birth_date']}}" ng-model="employerProfile['birth_date']"
-															   class="form-control">
+				<div class="form-group ">
+					<label for="usr">Birth Date:</label> <input type="text" required  value="{{employerProfile['birth_date']}}" ng-model="employerProfile['birth_date']"
+															   class="form-control birthDay">
 				</div>
 				<div class="form-group">
 
@@ -43,12 +46,12 @@
 				</div>
 				<div class="form-group">
 					<label for="usr">Phone number:</label> <input type="text" required value="{{employerProfile['phone_number']}}" ng-model="employerProfile['phone_number']"
-																  class="form-control" >
+																  class="form-control phoneNumber" >
 				</div>
 
 				<label for="usr">LinkedIn:</label> <input type="text" required
-														  class="form-control"
-														  value="{{companyProfile.user['linked_in']}}">
+														  class="form-control linkedin" ng-model="employerProfile['linkedin']"
+														  value="{{companyProfile.user['linkedin']}}">
 
 				<button type="button" class="btn btn-default" ng-click="submitUserDetails()">Send</button>
 			</form>

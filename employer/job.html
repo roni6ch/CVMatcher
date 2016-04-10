@@ -4,12 +4,13 @@
         <h2>Job</h2>
     </header>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
+
     <form method="post" ng-submit="submitForm()">
         <div class="animated fadeInDown jobEdit">
             <div class="form-group">
                 <label>Job Name:</label> <input type="text" ng-model="jobDetails['original_text']['title']"
                                                 placeholder="Please Type job name"
-                                                class="form-control" name="job_name"
+                                                class="form-control jobName" name="job_name"
                                                 value="{{jobDetails['original_text']['title']}}">
             </div>
 
@@ -22,16 +23,16 @@
             <div class="form-group">
                 <label>Academy:</label>
 
-                <div class="btn-group" data-toggle="buttons">
+                <div class="btn-group academy" data-toggle="buttons">
                     <label class="btn btn-success"
                            ng-class="{active:jobDetails.academy[0]['academy_type'] == 'university'}">University
-                        <input type="radio" name="options" id="option2" autocomplete="off" chacked>
+                        <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off" value="university">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
                     <label class="btn btn-primary"
                            ng-class="{active:jobDetails.academy[0]['academy_type'] == 'college'}">College
-                        <input type="radio" name="options" id="option1" autocomplete="off">
+                        <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="college">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                 </div>
@@ -41,31 +42,26 @@
             <div class="form-group">
                 <label>Candidate Type:</label>
 
-                <div class="btn-group" data-toggle="buttons">
+                <div class="btn-group candidate_type" data-toggle="buttons">
                     <label class="btn btn-success" ng-class="{active:jobDetails.candidate_type[0]=='Students'}">Students
-                        <input type="checkbox" autocomplete="off">
+                        <input type="checkbox" autocomplete="off" value="Students">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
                     <label class="btn btn-primary" ng-class="{active:jobDetails.candidate_type[1]=='Mothers'}">Mothers
-                        <input type="checkbox" autocomplete="off">
+                        <input type="checkbox" autocomplete="off" value="Mothers">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
                     <label class="btn btn-info" ng-class="{active:jobDetails.candidate_type[2]=='Masters'}">Masters
-                        <input type="checkbox" autocomplete="off">
+                        <input type="checkbox" autocomplete="off" value="Masters">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                 </div>
             </div>
 
+            <input type="hidden"  value="software engineer" class="form-control">
 
-            <div class="form-group">
-                <label>Sector:</label> <input type="text" ng-model="jobDetails.sector" value="{{jobDetails.sector}}"
-                                              placeholder="Please Type Sector, Example: Software Engineer"
-                                              class="form-control" name="sector"
-            >
-            </div>
             <div class="form-group">
                 <label>Sub Sector:</label> <input type="text" ng-model="jobDetails.sub_sector"
                                                   placeholder="Please Type Sub-Sector, Example: C++ Developer"
@@ -77,19 +73,19 @@
             <div class="form-group">
                 <label>Scope of Position:</label>
 
-                <div class="btn-group" data-toggle="buttons">
+                <div class="btn-group scope_of_position" data-toggle="buttons">
                     <label class="btn btn-success" ng-class="{active:jobDetails.scope_of_position[0]=='full'}">Full Time
-                        <input type="checkbox" autocomplete="off">
+                        <input type="checkbox" autocomplete="off" value="full">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
                     <label class="btn btn-primary" ng-class="{active:jobDetails.scope_of_position[1]=='Weekends'}">Weekends
-                        <input type="checkbox" autocomplete="off">
+                        <input type="checkbox" autocomplete="off" value="Weekends">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
                     <label class="btn btn-info" ng-class="{active:jobDetails.scope_of_position[2]=='Part Time Job'}">Part
-                        Time<input type="checkbox" autocomplete="off">
+                        Time<input type="checkbox" autocomplete="off" value="part">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                 </div>
@@ -128,16 +124,16 @@
             </div>
 
             <div class="form-group">
-                <label for="comment">Description:</label>
-				<textarea class="form-control" rows="10" name="original_text"
+                <label for="description">Description:</label>
+				<textarea class="form-control" rows="10"  id="description" name="original_text"
                           ng-model="jobDetails.original_text['description']"
                           placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
                 >{{jobDetails.original_text['description']}}</textarea>
             </div>
 
             <div class="form-group requirements">
-                <label for="comment">Requirements:</label>
-				<textarea class="form-control" rows="5" id="comment" placeholder="Example: 'Must: Java, Advantage: C++'"
+                <label for="requirements">Requirements:</label>
+				<textarea class="form-control" rows="5" id="requirements" placeholder="Example: 'Must: Java, Advantage: C++'"
                           ng-model="jobDetails.original_text['requirements']"
                           name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
             </div>
