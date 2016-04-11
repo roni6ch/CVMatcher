@@ -20,13 +20,52 @@
                                                 name="location" value="{{jobDetails['locations']}}"
                                                 placeholder="Type in an address" size="90" autocomplete="on">
             </div>
+
+            <div class="form-group">
+                <label> Degree Name:</label>
+                <select name="degree_name" class="form-control degree_name" required>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'software engineering'">Software
+                        Engineering
+                    </option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Industrial Engineering and Management'">
+                        Industrial Engineering and
+                        Management
+                    </option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Electrical Engineering'">Electrical
+                        Engineering
+                    </option>
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Mechanical Engineering'">Mechanical
+                        Engineering
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Degree Type:</label>
+                <select name="degree_type" class="form-control degree_type" required>
+                    <option ng-selected="jobSeekerCV.academy['degree_type'][0] == 'bsc'" value="bsc">B.S. (Bachelor
+                        of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_type'][0] == 'msc'" value="msc">M.S. (Master of
+                        Science)
+                    </option>
+                    <option ng-selected="jobSeekerCV.academy['degree_type'][0] == 'mres'" value="mres">M.Res. (Master
+                        of Research)
+                    </option>
+                </select>
+            </div>
+
+
+
             <div class="form-group">
                 <label>Academy:</label>
 
                 <div class="btn-group academy" data-toggle="buttons">
                     <label class="btn btn-success"
                            ng-class="{active:jobDetails.academy[0]['academy_type'] == 'university'}">University
-                        <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off" value="university">
+                        <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off"
+                               value="university">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
@@ -60,14 +99,14 @@
                 </div>
             </div>
 
-            <input type="hidden"  value="software engineer" class="form-control">
+            <input type="hidden" value="software engineer" class="form-control">
 
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label>Sub Sector:</label> <input type="text" ng-model="jobDetails.sub_sector"
                                                   placeholder="Please Type Sub-Sector, Example: C++ Developer"
                                                   class="form-control" name="sub_sector"
                                                   value="{{jobDetails.sub_sector}}">
-            </div>
+            </div>-->
 
 
             <div class="form-group">
@@ -125,16 +164,22 @@
 
             <div class="form-group">
                 <label for="description">Description:</label>
-				<textarea class="form-control" rows="10"  id="description" name="original_text"
+				<textarea class="form-control" rows="10" id="description" name="original_text"
                           ng-model="jobDetails.original_text['description']"
                           placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
                 >{{jobDetails.original_text['description']}}</textarea>
             </div>
 
             <div class="form-group requirements">
-                <label for="requirements">Requirements:</label>
-				<textarea class="form-control" rows="5" id="requirements" placeholder="Example: 'Must: Java, Advantage: C++'"
-                          ng-model="jobDetails.original_text['requirements']"
+                <label for="requirementsMust">Requirements - Must:</label>
+				<textarea class="form-control" rows="5" id="requirementsMust"
+                          placeholder="Please write your Must Requirements"
+                          name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
+            </div>
+            <div class="form-group requirements">
+                <label for="requirementsAdvantage">Requirements - Advantage:</label>
+				<textarea class="form-control" rows="5" id="requirementsAdvantage"
+                          placeholder="Please write your Advantage Requirements"
                           name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
             </div>
 
@@ -207,7 +252,7 @@
                                     <input type="text" class="form-control" ng-change="priority()"
                                            ng-model="priority[$index]"/>
 
-                                    <h3>Priority: </h3>
+                                    <h3>Percentage: </h3>
                                 </div>
                                 <div class='Item mustItem'><h2>MUST</h2></div>
                                 <div class='Item advantageItem'><h2>Advantage</h2></div>

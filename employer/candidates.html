@@ -37,7 +37,7 @@
                     </div>
                     <div>
 
-                        <a ng-if="tab == 0" href="#/Candidates/{{jobId}}/resume/{{candidate._id}}">
+                        <a ng-if="tab == 0" href="#/Unread/{{jobId}}/resume/{{candidate._id}}">
                             <h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3>
 
                             <p
@@ -72,7 +72,7 @@
                     </div>
                     <div>
 
-                        <a ng-if="tab == 1" href="#/Candidates/{{jobId}}/resume/{{candidate._id}}">
+                        <a ng-if="tab == 1" href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}">
                             <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
 
                             <p
@@ -108,7 +108,7 @@
                     </div>
                     <div>
 
-                        <a ng-if="tab == 2" href="#/Candidates/{{jobId}}/resume/{{candidate._id}}">
+                        <a ng-if="tab == 2" href="#/UnLike/Candidates/{{jobId}}/resume/{{candidate._id}}">
                             <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
 
                             <p
