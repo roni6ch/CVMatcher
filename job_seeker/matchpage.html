@@ -1,4 +1,4 @@
-<div class="matchpageWrapper" ng-init="getMainJson()">
+<div class="matchpageWrapper" ng-init="getMainJson();checkMyCV();">
     <h3 compile-html>{{navigation}}</h3>
     <header>
         <h2>Match Page</h2>
@@ -35,5 +35,24 @@
     </div>
 </div>
 <a href="" class="btn btn-default">Fix CV</a>
-<a href="#/searchJobs" class="btn btn-default" ng-click="sendCV()">Send CV</a>
+<a href="" class="btn btn-default" ng-click="sendCV()" data-toggle="modal" data-target="#sendCVstatus">Send CV</a>
 </div>
+
+
+
+<!-- Modal -->
+<section class="modal fade" id="sendCVstatus" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{status}}</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"  ng-click="exitStatus()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

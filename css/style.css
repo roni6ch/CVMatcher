@@ -193,7 +193,20 @@ footer div a {
 .fa-pulse {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 30%;
+}
+
+.fa-spin {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+}
+.fa-spin2 {
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
 }
 
 /****************************************************** HTML **********************************************/
@@ -666,12 +679,6 @@ footer div a {
     opacity: 0.6;
 }
 
-.unlikeCandidates .fa-thumbs-o-up, .likeCandidates .fa-thumbs-o-up {
-    -ms-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-}
-
 /****************************************************** RESUME - HTML **********************************************/
 #users > div {
     background: #ebebeb;
@@ -1100,7 +1107,7 @@ footer div a {
     width: 100%;
 }
 
-.mustItem, .advantageItem, .orItem {
+.mustItem1, .advantageItem1, .orItem1, .mustItem2, .advantageItem2, .orItem2 {
     background-color: #ccc;
 }
 
@@ -1452,14 +1459,38 @@ footer div a {
 .page-header h1 {
     text-align: center;
 }
-.parserExperienceYearsLabel{width:30%;}
-.parserExperienceYearsLabelAdded{width:30%;}
-.parserExperienceYears{
-    float:right;
+
+.parserExperienceYearsLabel {
+    width: 30%;
 }
-.parserExperienceLanguageAdded{float:left; padding-right:2%; width:30%;}
-.parserExperienceLanguage{float:left; padding-right:2%; width:30%;}
-.parser{width:100%;}
+
+.parserExperienceYearsLabelAdded {
+    width: 30%;
+}
+
+.parserExperienceYears {
+    float: right;
+}
+
+.parserExperienceLanguageAdded {
+    float: left;
+    padding-right: 2%;
+    width: 30%;
+}
+
+.parserExperienceLanguage {
+    float: left;
+    padding-right: 2%;
+    width: 30%;
+}
+
+.parser {
+    width: 100%;
+}
+
+#submitAfterParse {
+    pointer-events: none;
+}
 
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
