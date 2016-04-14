@@ -24,17 +24,17 @@
             <div class="form-group">
                 <label> Degree Name:</label>
                 <select name="degree_name" class="form-control degree_name" required>
-                    <option ng-selected="jobDetails.academy['degree_name'] == 'software engineering'">Software
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'software engineering'" value="software engineering">Software
                         Engineering
                     </option>
-                    <option ng-selected="jobDetails.academy['degree_name'] == 'Industrial Engineering and Management'">
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Industrial Engineering and Management'" value="Industrial Engineering and Management">
                         Industrial Engineering and
                         Management
                     </option>
-                    <option ng-selected="jobDetails.academy['degree_name'] == 'Electrical Engineering'">Electrical
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Electrical Engineering'" value="Electrical Engineering">Electrical
                         Engineering
                     </option>
-                    <option ng-selected="jobDetails.academy['degree_name'] == 'Mechanical Engineering'">Mechanical
+                    <option ng-selected="jobDetails.academy['degree_name'] == 'Mechanical Engineering'" value="Mechanical Engineering">Mechanical
                         Engineering
                     </option>
                 </select>
@@ -43,25 +43,23 @@
 
             <div class="form-group">
                 <label>Degree Type:</label>
-
-                <div class="btn-group academy degree_type" data-toggle="buttons" required>
+                <div class="btn-group degree_type" data-toggle="buttons" required>
                     <label class="btn btn-success"
-                           ng-class="{active:jobSeekerCV.academy['degree_type'][0] == 'bsc'}">B.S. (Bachelor
+                           ng-class="{active:jobDetails.academy['degree_type'][0] == 'bsc' || jobDetails.academy['degree_type'][1] == 'bsc' || jobDetails.academy['degree_type'][2] == 'bsc'}">B.S. (Bachelor
                         of
                         Science)
                         <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off"
                                value="bsc">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
-
                     <label class="btn btn-primary"
-                           ng-class="{active:jobSeekerCV.academy['degree_type'][0] == 'msc'}">M.S. (Master of
+                           ng-class="{active:jobDetails.academy['degree_type'][0] == 'msc' || jobDetails.academy['degree_type'][1] == 'msc' || jobDetails.academy['degree_type'][2] == 'msc'}">M.S. (Master of
                         Science)
                         <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="msc">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                     <label class="btn btn-info"
-                           ng-class="{active:jobSeekerCV.academy['degree_type'][0] == 'mres'}">M.Res. (Master
+                           ng-class="{active:jobDetails.academy['degree_type'][0] == 'mres' || jobDetails.academy['degree_type'][1] == 'mres' || jobDetails.academy['degree_type'][2] == 'mres'}">M.Res. (Master
                         of Research)
                         <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="mres">
                         <span class="glyphicon glyphicon-ok"></span>
@@ -75,14 +73,13 @@
 
                 <div class="btn-group academy" data-toggle="buttons" required>
                     <label class="btn btn-success"
-                           ng-class="{active:jobDetails.academy[0]['academy_type'] == 'university'}">University
-                        <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off"
-                               value="university">
+                           ng-class="{active:jobDetails.academy['academy_type'][0] == 'university' || jobDetails.academy['academy_type'][1] == 'university'}">University
+                        <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off" value="university">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
                     <label class="btn btn-primary"
-                           ng-class="{active:jobDetails.academy[0]['academy_type'] == 'college'}">College
+                           ng-class="{active:jobDetails.academy['academy_type'][0] == 'college' || jobDetails.academy['academy_type'][1] == 'college'}">College
                         <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="college">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
@@ -94,17 +91,17 @@
                 <label>Candidate Type:</label>
 
                 <div class="btn-group candidate_type" data-toggle="buttons" required>
-                    <label class="btn btn-success" ng-class="{active:jobDetails.candidate_type[0]=='Students'}">Students
+                    <label class="btn btn-success" ng-class="{active:jobDetails.candidate_type[0]=='Students' || jobDetails.candidate_type[1]=='Students' || jobDetails.candidate_type[2]=='Students'}">Students
                         <input type="checkbox" autocomplete="off" value="Students">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-primary" ng-class="{active:jobDetails.candidate_type[1]=='Mothers'}">Mothers
+                    <label class="btn btn-primary" ng-class="{active:jobDetails.candidate_type[0]=='Mothers' || jobDetails.candidate_type[1]=='Mothers' || jobDetails.candidate_type[2]=='Mothers'}">Mothers
                         <input type="checkbox" autocomplete="off" value="Mothers">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-info" ng-class="{active:jobDetails.candidate_type[2]=='Masters'}">Masters
+                    <label class="btn btn-info" ng-class="{active:jobDetails.candidate_type[0]=='Masters' || jobDetails.candidate_type[1]=='Masters' || jobDetails.candidate_type[2]=='Masters'}">Masters
                         <input type="checkbox" autocomplete="off" value="Masters">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
@@ -125,17 +122,17 @@
                 <label>Scope of Position:</label>
 
                 <div class="btn-group scope_of_position" data-toggle="buttons" required>
-                    <label class="btn btn-success" ng-class="{active:jobDetails.scope_of_position[0]=='full'}">Full Time
+                    <label class="btn btn-success" ng-class="{active:jobDetails.scope_of_position[0]=='full' || jobDetails.scope_of_position[1]=='full' || jobDetails.scope_of_position[2]=='full'}">Full Time
                         <input type="checkbox" autocomplete="off" value="full">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-primary" ng-class="{active:jobDetails.scope_of_position[1]=='Weekends'}">Weekends
+                    <label class="btn btn-primary" ng-class="{active:jobDetails.scope_of_position[0]=='Weekends' || jobDetails.scope_of_position[1]=='Weekends' || jobDetails.scope_of_position[2]=='Weekends'}">Weekends
                         <input type="checkbox" autocomplete="off" value="Weekends">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-info" ng-class="{active:jobDetails.scope_of_position[2]=='Part Time Job'}">Part
+                    <label class="btn btn-info" ng-class="{active:jobDetails.scope_of_position[0]=='part' || jobDetails.scope_of_position[1]=='part' || jobDetails.scope_of_position[2]=='part'}">Part
                         Time<input type="checkbox" autocomplete="off" value="part">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
@@ -186,13 +183,13 @@
                 <label for="requirementsMust">Requirements - Must:</label>
 				<textarea class="form-control" rows="5" id="requirementsMust" required
                           placeholder="Please write your Must Requirements"
-                          name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
+                          name="requirements">{{jobDetails.original_text['requirements'].split("|||")[0]}}</textarea>
             </div>
             <div class="form-group requirements">
                 <label for="requirementsAdvantage">Requirements - Advantage:</label>
 				<textarea class="form-control" rows="5" id="requirementsAdvantage"
                           placeholder="Please write your Advantage Requirements"
-                          name="requirements">{{jobDetails.original_text['requirements']}}</textarea>
+                          name="requirements">{{jobDetails.original_text['requirements'].split("|||")[1]}}</textarea>
             </div>
 
             <div class="form-group experienceBeforeParse">
@@ -262,7 +259,7 @@
                                         <option>3-4 Years</option>
                                         <option>5+ Years</option>
                                     </select>
-                                    <input type="text" class="form-control" ng-change="priority()"
+                                    <input type="text" class="form-control" ng-change="priority()" value="0"
                                            ng-model="priority[$index]"/>
 
                                     <h3>Percentage: </h3>

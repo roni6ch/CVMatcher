@@ -124,18 +124,18 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "email": "roni@gmail.com"
                     }
                 }).then(function (data) {
-                        console.log(data.data[0]._id);
-                        $.cookie('user_id', data.data[0]._id);
+                        $.cookie('user_id', data.data._id);
                         $rootScope.user_id = data.data._id;
+                        location.replace("#/companyProfile");
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
+                        location.replace("#/companyProfile");
                     });
 
-                firstTimeLogIn = false;
-                location.replace("#/companyProfile");
             }
             else {
+
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
@@ -143,16 +143,20 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "user_id": $.cookie('user_id')
                     }
                 }).then(function (data) {
-                        $.cookie('user_id', data.data[0]._id);
-                        $rootScope.user_id = data.data[0]._id;
+                        if (data) {
+                            $.cookie('user_id', data.data[0]._id);
+                            $rootScope.user_id = data.data[0]._id;
+                            location.replace("#/myjobs");
+                        }
                     },
                     function (response) { // optional
-                        console.log("addUser AJAX failed!");
+                        console.log("getUser AJAX failed!");
+                        location.replace("#/myjobs");
                     });
 
-                firstTimeLogIn = false;
-                location.replace("#/myjobs");
             }
+
+            firstTimeLogIn = false;
         }
         else if (type == 'jobSeeker') {
             $rootScope.userSignInType = "jobSeeker";
@@ -175,15 +179,15 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "email": "roni@gmail.com"
                     }
                 }).then(function (data) {
-                        $.cookie('user_id', data.data[0]._id);
-                        $rootScope.user_id = data.data[0]._id;
+                        $.cookie('user_id', data.data._id);
+                        $rootScope.user_id = data.data._id;
+                        firstTimeLogIn = false;
+                        location.replace("#/Profile");
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
                     });
 
-                firstTimeLogIn = false;
-                location.replace("#/Profile");
             }
             else {
                 $http({
@@ -197,7 +201,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         console.log(data);
                         $.cookie('user_id', data.data[0]._id);
                         $rootScope.user_id = data.data[0]._id;
-
                         firstTimeLogIn = false;
                         location.replace("#/searchJobs");
                     },
@@ -355,7 +358,6 @@ app
                             alert("jobSeekerJobs AJAX failed!");
                         });
 
-
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/getIdOfCV',
                     method: "POST",
@@ -363,28 +365,30 @@ app
                         "user_id": $rootScope.user_id
                     }
                 }).then(function (data) {
-                    cvId = data.data[0]._id;
+                    if (data) {
+                        cvId = data.data._id;
 
-                    //job seeker CV
-                    $http({
-                        url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
-                        method: "POST",
-                        data: {
-                            "matching_object_id": cvId,
-                            "matching_object_type": "cv"
-                        }
-                    })
-                        .then(function (data) {
-                                console.log(data);
-                                $scope.jobSeekerCV = data.data[0];
-                                /*if (data.length == 0 || data == undefined || data == "undefined" || data == null || data == []) {
-                                 $scope.addEducation('education');
-                                 $scope.addEducation('employment');
-                                 }*/
-                            },
-                            function (response) { // optional
-                                alert("jobSeekerJobs AJAX failed!");
-                            });
+                        //job seeker CV
+                        $http({
+                            url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                            method: "POST",
+                            data: {
+                                "matching_object_id": cvId,
+                                "matching_object_type": "cv"
+                            }
+                        })
+                            .then(function (data) {
+                                    console.log(data);
+                                    $scope.jobSeekerCV = data.data[0];
+                                    /*if (data.length == 0 || data == undefined || data == "undefined" || data == null || data == []) {
+                                     $scope.addEducation('education');
+                                     $scope.addEducation('employment');
+                                     }*/
+                                },
+                                function (response) { // optional
+                                    alert("jobSeekerJobs AJAX failed!");
+                                });
+                    }
                 });
 
 
@@ -630,9 +634,11 @@ app
     .controller(
         'matchpageController',
         function ($scope, $http, $location, $rootScope, $timeout) {
-
+            $jobId = $location.path().split('/')[3];
             var compabilitJobSeeker;
             $scope.checkMyCV = function () {
+                console.log($rootScope.user_id);
+                console.log($jobId);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/getIdOfCV',
                     method: "POST",
@@ -640,78 +646,80 @@ app
                         "user_id": $rootScope.user_id
                     }
                 }).then(function (data) {
-                    $http({
-                        url: 'https://cvmatcher.herokuapp.com/jobSeeker/checkCV',
-                        method: "POST",
-                        data: {
-                            "cv_id": data.data[data.data.length - 1]._id,
-                            "job_id": "5707d5b4335b0c9425255e6e"
-                        }
-                    })
-                        .then(function (data) {
-                                console.log("data: ", data.data);
-                                var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
-                                var fillColors = ['#C1BFBF', '#e6e6e6'];
-                                //Big circle percentages
-                                angular.forEach(data.data.formula.requirements.details, function (value, key) {
-                                    circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
-                                        color: colors[key],
-                                        strokeWidth: 5,
-                                        fill: fillColors[key % 2]
+                    if (data.data.length > 0) {
+                        console.log(data);
+                        $http({
+                            url: 'https://cvmatcher.herokuapp.com/jobSeeker/checkCV',
+                            method: "POST",
+                            data: {
+                                "cv_id": data.data[0]._id,
+                                "job_id": $jobId
+                            }
+                        })
+                            .then(function (data) {
+                                    console.log("data: ", data.data);
+                                    var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
+                                    var fillColors = ['#C1BFBF', '#e6e6e6'];
+                                    //Big circle percentages
+                                    angular.forEach(data.data.formula.requirements.details, function (value, key) {
+                                        circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
+                                            color: colors[key],
+                                            strokeWidth: 5,
+                                            fill: fillColors[key % 2]
+                                        });
+                                        angular.element(".langsMatch").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
+                                        compabilitJobSeeker = value.grade;
+                                        circle.animate(value.grade / 100, function () {
+                                        })
                                     });
-                                    angular.element(".langsMatch").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
-                                    compabilitJobSeeker = value.grade;
-                                    circle.animate(value.grade / 100, function () {
-                                    })
-                                });
-                                angular.element(".fa-pulse").hide();
-                                //user percentage
-                                var userCircle = new ProgressBar.Circle(
-                                    '#user-container',
-                                    {
-                                        color: '#ee5785',
-                                        strokeWidth: 5,
-                                        fill: '#aaa'
-                                    });
-                                angular
-                                    .element(
-                                        "#user-container>h5")
-                                    .html(Math.max(parseInt(data.data.total_grade), 1)
-                                        + "%");
-                                userCircle
-                                    .animate(data.data.total_grade / 100);
-                                //check if user passed the Match!!!
-                                if (data.data.total_grade < $.cookie('compatibility_level')) {
-                                    angular.element(".matchResult > h2").append("Oops");
-                                    angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");
+                                    angular.element(".fa-pulse").hide();
+                                    //user percentage
+                                    var userCircle = new ProgressBar.Circle(
+                                        '#user-container',
+                                        {
+                                            color: '#ee5785',
+                                            strokeWidth: 5,
+                                            fill: '#aaa'
+                                        });
+                                    angular
+                                        .element(
+                                            "#user-container>h5")
+                                        .html(Math.max(parseInt(data.data.total_grade), 1)
+                                            + "%");
+                                    userCircle
+                                        .animate(data.data.total_grade / 100);
+                                    //check if user passed the Match!!!
+                                    if (data.data.total_grade < $.cookie('compatibility_level')) {
+                                        angular.element(".matchResult > h2").append("Oops");
+                                        angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");
 
-                                    angular.element(".matchResult h3").html('You did not passed the minimum requirements');
-                                }
-                                else {
-                                    angular.element(".matchResult > h2").append("Great!");
-                                    angular.element(".matchResult > h2 > i").addClass("fa-thumbs-up");
-                                    angular.element(".matchResult h3").html('Harray!! You Passed The Minimum requirements');
-                                }
-
-                                angular.forEach(data.data.formula, function (value, key) {
-                                    if (key == 'requirements') {
-                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                            value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
+                                        angular.element(".matchResult h3").html('You did not passed the minimum requirements');
                                     }
-                                    else
-                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                            value + '%">' + key + ' ' + value + '%</div></div>');
+                                    else {
+                                        angular.element(".matchResult > h2").append("Great!");
+                                        angular.element(".matchResult > h2 > i").addClass("fa-thumbs-up");
+                                        angular.element(".matchResult h3").html('Harray!! You Passed The Minimum requirements');
+                                    }
+
+                                    angular.forEach(data.data.formula, function (value, key) {
+                                        if (key == 'requirements') {
+                                            angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                                value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
+                                        }
+                                        else
+                                            angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                                value + '%">' + key + ' ' + value + '%</div></div>');
+                                    });
+                                },
+                                function (response) { // optional
+                                    alert("checkCV AJAX failed!");
                                 });
-                            },
-                            function (response) { // optional
-                                alert("checkCV AJAX failed!");
-                            });
+                    }
                 })
             }
 
 
             $scope.sendCV = function () {
-                $job_id = $location.path().split('/')[3];
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/getIdOfCV',
                     method: "POST",
@@ -724,8 +732,8 @@ app
                         method: "POST",
                         data: {
                             "compatibility_level": compabilitJobSeeker,
-                            "job_id": $job_id,
-                            "cv_id": data.data[data.data.length - 1]._id
+                            "job_id": $jobId,
+                            "cv_id": data.data[0]._id
                         }
                     }).then(function (data) {
                         console.log(data);
@@ -774,7 +782,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     else
         $scope.jobPage = "Archive/Candidates";
 
-
+    var jobsArr = [];
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
@@ -788,7 +796,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             .then(function (data) {
                     $scope.myjobs = data.data;
                     console.log(data.data);
-
+                    jobsArr = data.data;
                     angular.element(".fa-pulse").hide();
 
                     //fix date string
@@ -812,6 +820,28 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     }
 
 
+    $scope.deleteJob = function (jobId) {
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/deleteMatchingObject',
+            method: "POST",
+            data: {
+                "matching_object_id": jobId
+            }
+        })
+            .then(function () {
+                    jobsArr = jobsArr.filter(function (obj) {
+                        console.log(obj);
+                        return obj._id !== jobId;
+                    });
+                    console.log(jobsArr);
+                    $scope.myjobs = jobsArr;
+                },
+                function (response) { // optional
+                    console.log("deleteMatchingObject AJAX failed!");
+                });
+    }
+
+
 });
 
 
@@ -824,6 +854,7 @@ app.controller('companyProfileController',
         var companyId;
         $("#geocomplete").geocomplete();
 
+        console.log($rootScope.user_id);
         //user details
         $http({
             url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -833,39 +864,41 @@ app.controller('companyProfileController',
             }
         })
             .then(function (data) {
-                    $scope.employerProfile = data.data[0];
-                    console.log(data.data[0]);
-                    if (data.data[0].company) {
-                        company = true;
-                        companyId = data.data[0].company;
-                    }
+                    if (data) {
+                        $scope.employerProfile = data.data[0];
+                        console.log(data.data[0]);
+                        if (data.data[0].company) {
+                            company = true;
+                            companyId = data.data[0].company;
+                            if (company) {
+                                url = 'https://cvmatcher.herokuapp.com/employer/getCompany';
+                                $http({
+                                    url: url,
+                                    method: "POST",
+                                    data: {
+                                        "company_id": companyId
+                                    }
+                                })
+                                    .then(function (data) {
+                                            $scope.companyProfile = data.data[0];
+                                            console.log(data.data);
+                                            angular.element(".fa-pulse").hide();
+                                        },
+                                        function (response) { // optional
+                                            console.log("companyProfileController AJAX failed!");
+                                        });
+                            }
+                        }
 
-                    angular.element(".fa-pulse").hide();
+                        angular.element(".fa-pulse").hide();
+                    }
                 },
                 function (response) { // optional
+                    angular.element(".fa-pulse").hide();
                     console.log("companyProfileController AJAX failed!");
                 });
         //company profile details
 
-
-        if (company) {
-            url = 'https://cvmatcher.herokuapp.com/employer/getCompany';
-            $http({
-                url: url,
-                method: "POST",
-                data: {
-                    "company_id": companyId
-                }
-            })
-                .then(function (data) {
-                        $scope.companyProfile = data.data;
-                        console.log(data.data);
-                        angular.element(".fa-pulse").hide();
-                    },
-                    function (response) { // optional
-                        console.log("companyProfileController AJAX failed!");
-                    });
-        }
 
         //uploadPhoto
         $(function () {
@@ -911,27 +944,45 @@ app.controller('companyProfileController',
                     });
         }
         $scope.submitCompanyDetails = function () {
-            if (!company)
-                url = 'https://cvmatcher.herokuapp.com/employer/addCompany';
-            else
-                url = 'https://cvmatcher.herokuapp.com/employer/updateCompany';
+            if (!company) {
+                //push to json new key value
+                var key = 'user_id';
+                var val = $.cookie('user_id');
 
-            //push to json new key value
-            var key = 'user_id';
-            var val = $.cookie('user_id');
+                $scope.companyProfile[key] = val;
+                var key = 'logo';
+                var val = 'logo';
 
-            $scope.companyProfile[key] = val;
-            var key = 'logo';
-            var val = 'logo';
+                $scope.companyProfile[key] = val;
+                console.log("send form: ", $scope.companyProfile);
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/employer/addCompany',
+                    method: "POST",
+                    data: $scope.companyProfile
+                }).then(function () {
+                })
+            }
+            else {
+                //push to json new key value
+                var key = '_id';
+                var val = $.cookie('user_id');
 
-            $scope.companyProfile[key] = val;
-            console.log("send form: ", $scope.companyProfile);
-            $http({
-                url: url,
-                method: "POST",
-                data: $scope.companyProfile
-            }).then(function () {
-            })
+                $scope.companyProfile[key] = val;
+                var key = '_id';
+                console.log($scope.employerProfile['company']);
+                var val = $scope.employerProfile['company'];
+
+                $scope.companyProfile[key] = val;
+                console.log("send form: ", $scope.companyProfile);
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/employer/updateCompany',
+                    method: "POST",
+                    data: $scope.companyProfile
+                }).then(function () {
+                })
+            }
+
+
         }
     });
 /*
@@ -1249,7 +1300,7 @@ app.controller('resumeController',
  * ********************* Job controller ****************
  */
 
-app.controller('jobController', function ($scope, $http, $location) {
+app.controller('jobController', function ($scope, $http, $location, $timeout) {
     $id = $location.path().split('/')[1];
     $("#geocomplete").geocomplete();
     angular.element('.selectpicker').selectpicker();
@@ -1257,6 +1308,7 @@ app.controller('jobController', function ($scope, $http, $location) {
     $jobId = $location.path().split('/')[2];
     //edit job - get AJAX details
     $scope.getJobJson = function () {
+
 
         if ($id == 'job') {
             $http({
@@ -1269,8 +1321,7 @@ app.controller('jobController', function ($scope, $http, $location) {
             })
                 .then(function (data) {
                     $scope.jobDetails = data.data[0];
-                    console.log(data.data[0]);
-
+                    $scope.parseExperience();
                     angular.element(".fa-pulse").hide();
 
 
@@ -1380,6 +1431,12 @@ app.controller('jobController', function ($scope, $http, $location) {
      });*/
 
 
+    $scope.exitStatus = function () {
+        //if user clickd ok then move to search jobs page - need to wait to close modal
+        $timeout(function () {
+            window.location.href = '/cvmatcher/#/myjobs';
+        }, 1000);
+    }
     //send form
     $scope.submitForm = function () {
         var academy = [];
@@ -1407,12 +1464,15 @@ app.controller('jobController', function ($scope, $http, $location) {
         var requirements = [];
         //requerment- MUST
         var combination = [];
-        $('.mItem').each(function (idx, value) {
+        $('#Items .mItem').each(function (idx, value) {
             var name = $(value).find("input:nth-child(1)").val();
             var years = $(value).find("select").val().split(" ")[0];
 
             var mode = "must";
             var percentage = $(value).find("input:nth-child(3)").val();
+            console.log(percentage);
+            if (!percentage)
+                percentage = "0";
             combination.push({
                 "name": name,
                 "years": years,
@@ -1420,11 +1480,14 @@ app.controller('jobController', function ($scope, $http, $location) {
                 "percentage": percentage
             })
         })
-        $('.aItem').each(function (idx, value) {
+        //requerment- ADVANTAGE
+        $('#Items .aItem').each(function (idx, value) {
             var name = $(value).find("input:nth-child(1)").val();
             var years = $(value).find("select").val().split(" ")[0];
             var mode = "adv";
             var percentage = $(value).find("input:nth-child(3)").val();
+            if (!percentage)
+                percentage = "0";
             combination.push({
                 "name": name,
                 "years": years,
@@ -1432,11 +1495,13 @@ app.controller('jobController', function ($scope, $http, $location) {
                 "percentage": percentage
             })
         })
-        $('.orItem1 > div').each(function (idx, value) {
+        $('#Items .orItem1 > div').each(function (idx, value) {
             var name = $(value).find("input:nth-child(1)").val();
             var years = $(value).find("select").val().split(" ")[0];
             var mode = "or";
             var percentage = $(value).find("input:nth-child(3)").val();
+            if (!percentage)
+                percentage = "0";
             combination.push({
                 "name": name,
                 "years": years,
@@ -1445,14 +1510,17 @@ app.controller('jobController', function ($scope, $http, $location) {
             })
         })
         requirements.push({"combination": combination});
-        //requerment- ADVANTAGE
+
+        //second requerments
         var combination2 = [];
-        $('.mItem').each(function (idx, value) {
+        $('#Items2 .mItem').each(function (idx, value) {
             var name = $(value).find("input:nth-child(1)").val();
             var years = $(value).find("select").val().split(" ")[0];
 
             var mode = "must";
             var percentage = $(value).find("input:nth-child(3)").val();
+            if (!percentage)
+                percentage = "0";
             combination2.push({
                 "name": name,
                 "years": years,
@@ -1460,11 +1528,13 @@ app.controller('jobController', function ($scope, $http, $location) {
                 "percentage": percentage
             })
         })
-        $('.aItem').each(function (idx, value) {
+        $('#Items2 .aItem').each(function (idx, value) {
             var name = $(value).find("input:nth-child(1)").val();
             var years = $(value).find("select").val().split(" ")[0];
             var mode = "adv";
             var percentage = $(value).find("input:nth-child(3)").val();
+            if (!percentage)
+                percentage = "0";
             combination2.push({
                 "name": name,
                 "years": years,
@@ -1472,11 +1542,13 @@ app.controller('jobController', function ($scope, $http, $location) {
                 "percentage": percentage
             })
         })
-        $('.orItem2  > div').each(function (idx, value) {
+        $('#Items2 .oItem').each(function (idx, value) {
             var name = $(value).find("input:nth-child(1)").val();
             var years = $(value).find("select").val().split(" ")[0];
             var mode = "or";
             var percentage = $(value).find("input:nth-child(3)").val();
+            if (!percentage)
+                percentage = "0";
             combination2.push({
                 "name": name,
                 "years": years,
@@ -1535,12 +1607,12 @@ app.controller('jobController', function ($scope, $http, $location) {
             data: addNewJob
         })
             .then(function (data) {
-                if (data!=null)
-                    $scope.status ="Job Send Succesfuly";
+                    if (data != null)
+                        $scope.status = "Job Send Succesfuly";
                 },
                 function (response) { // optional
-                    $scope.status ="Job did not send";
-                    alert("jobSeekerJobs send form AJAX failed!");
+                    $scope.status = "Job did not send";
+                    console.log("addMatchingObject send form AJAX failed!");
                 });
         //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
     };
@@ -1551,8 +1623,6 @@ app.controller('jobController', function ($scope, $http, $location) {
 
     //click on parse Orange button
     $scope.parseExperience = function () {
-
-
 
 
         var parseExpereince;
@@ -1576,24 +1646,22 @@ app.controller('jobController', function ($scope, $http, $location) {
                         data: parseExpereince
                     })
                         .then(function (data1) {
-                                console.log(data1);
-                            if (data1.data.length > 0) {
-                                angular.forEach(data1.data, function (value, key) {
-                                    var element = $("<div class='Item mItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
-                                    $(".mustItem1").after(element);
+                                if (data1.data.length > 0) {
+                                    angular.forEach(data1.data, function (value, key) {
+                                        var element = $("<div class='Item mItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
+                                        $(".mustItem1").after(element);
+                                        angular.element(".fa-spin").hide();
+                                        angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                    });
+                                }
+                                else {
                                     angular.element(".fa-spin").hide();
-                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                                });
-                            }
-                            else{
-                                angular.element(".fa-spin").hide();
 
-                                angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                            }
+                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                }
                             },
                             function (response) { // optional
 
-                                console.log(response);
                                 angular.element(".fa-spin").hide();
                                 alert("findIfKeyWordsExistsJOB AJAX failed!");
                             });
@@ -1609,7 +1677,6 @@ app.controller('jobController', function ($scope, $http, $location) {
                         data: parseExpereince
                     })
                         .then(function (data2) {
-                                console.log(data2);
                                 angular.forEach(data2.data, function (value, key) {
                                     var element = $("<div class='Item aItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select></div>");
                                     $(".advantageItem1").after(element);
@@ -1659,7 +1726,7 @@ app.controller('jobController', function ($scope, $http, $location) {
     });
 
     angular.element('body').on('click', '#NewItem2', function () {
-        var element = $("<div class='Item'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
+        var element = $("<div class='Item NewItem2'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
         $("#Items2").append(element);
         element.hide().slideDown(500);
     });
@@ -1726,6 +1793,26 @@ app.controller('jobController', function ($scope, $http, $location) {
         }
 
         function StopDrag(event, ui) {
+            var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
+            var val = $(this).find("input").val();
+
+
+            if (prevClass == 'mustItem1') {
+                ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
+                ui.item[0].innerHTML = element;
+            }
+            else if (prevClass == 'advantageItem1') {
+                ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                ui.item[0].innerHTML = element;
+
+            }
+            else if (prevClass == 'orItem1') {
+                ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                ui.item[0].innerHTML = element;
+            }
             if (awaitingCopy) {
                 $(this).sortable('cancel');
                 CopyItem($(ui.item));
@@ -1750,6 +1837,28 @@ app.controller('jobController', function ($scope, $http, $location) {
         }
 
         function StopDrag2(event, ui) {
+            var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
+            var val = $(this).find("input").val();
+
+            console.log(val);
+
+            if (prevClass == 'mustItem2') {
+                ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
+                ui.item[0].innerHTML = element;
+            }
+            else if (prevClass == 'advantageItem2') {
+                ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                ui.item[0].innerHTML = element;
+
+            }
+            else if (prevClass == 'orItem2') {
+                ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                ui.item[0].innerHTML = element;
+            }
+
             if (awaitingCopy) {
                 $(this).sortable('cancel');
                 CopyItem2($(ui.item));
@@ -1983,7 +2092,6 @@ app.directive('profileimg', function ($compile) {
 
 
 $(document).ready(function () {
-
     $("#logo").click(function () {
 
         if (window.location.href.indexOf("localhost") > -1)
