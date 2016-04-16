@@ -17,7 +17,7 @@
             <!-- Content from here -->
             <form>
                 <h4>Personal Information</h4>
-                <label for="usr">ID:</label> <input type="text" required ng-model="jobSeeker['personal_id']"
+                <label for="usr">ID:</label> <input type="text" required="true" ng-model="jobSeeker['personal_id']"
                                                       class="form-control" id="usr" name="name" required
                                                       value="{{jobSeeker['personal_id']}}">
                 <label for="usr">Name:</label> <input type="text" required ng-model="jobSeeker['first_name']"
@@ -259,6 +259,114 @@
                         <ul class="timeline">
                             <li ng-repeat="experience in jobSeekerCV.original_text.history_timeline"
                                 ng-class="{'timeline-inverted' : experience['type'] == 'experience'}">
+                                <div class="timeline-badge" ng-click="addEducation(experience.type)">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <label>From
+                                            <select id="experience_years" name="experience_years"
+                                                    class="form-control" id="sel1">
+                                                <option value="0">0</option>
+                                                <option value="2005" ng-selected="experience['start_year'] == '2004'">
+                                                    2004
+                                                </option>
+                                                <option value="2005" ng-selected="experience['start_year'] == '2005'">
+                                                    2005
+                                                </option>
+                                                <option value="2006" ng-selected="experience['start_year'] == '2006'">
+                                                    2006
+                                                </option>
+                                                <option value="2007" ng-selected="experience['start_year'] == '2007'">
+                                                    2007
+                                                </option>
+                                                <option value="2008" ng-selected="experience['start_year'] == '2008'">
+                                                    2008
+                                                </option>
+                                                <option value="2009" ng-selected="experience['start_year'] == '2009'">
+                                                    2009
+                                                </option>
+                                                <option value="2010" ng-selected="experience['start_year'] == '2010'">
+                                                    2010
+                                                </option>
+                                                <option value="2011" ng-selected="experience['start_year'] == '2011'">
+                                                    2011
+                                                </option>
+                                                <option value="2012" ng-selected="experience['start_year'] == '2012'">
+                                                    2012
+                                                </option>
+                                                <option value="2013" ng-selected="experience['start_year'] == '2013'">
+                                                    2013
+                                                </option>
+                                                <option value="2014" ng-selected="experience['start_year'] == '2014'">
+                                                    2014
+                                                </option>
+                                                <option value="2015" ng-selected="experience['start_year'] == '2015'">
+                                                    2015
+                                                </option>
+                                                <option value="2016" ng-selected="experience['start_year'] == '2016'">
+                                                    2016
+                                                </option>
+                                            </select>
+                                        </label>
+                                        <label>To
+                                            <select id="experience_years" name="experience_years"
+                                                    class="form-control" id="sel1">
+                                                <option value="0">0</option>
+                                                <option value="2005" ng-selected="experience['end_year'] == '2004'">
+                                                    2004
+                                                </option>
+                                                <option value="2005" ng-selected="experience['end_year'] == '2005'">
+                                                    2005
+                                                </option>
+                                                <option value="2006" ng-selected="experience['end_year'] == '2006'">
+                                                    2006
+                                                </option>
+                                                <option value="2007" ng-selected="experience['end_year'] == '2007'">
+                                                    2007
+                                                </option>
+                                                <option value="2008" ng-selected="experience['end_year'] == '2008'">
+                                                    2008
+                                                </option>
+                                                <option value="2009" ng-selected="experience['end_year'] == '2009'">
+                                                    2009
+                                                </option>
+                                                <option value="2010" ng-selected="experience['end_year'] == '2010'">
+                                                    2010
+                                                </option>
+                                                <option value="2011" ng-selected="experience['end_year'] == '2011'">
+                                                    2011
+                                                </option>
+                                                <option value="2012" ng-selected="experience['end_year'] == '2012'">
+                                                    2012
+                                                </option>
+                                                <option value="2013" ng-selected="experience['end_year'] == '2013'">
+                                                    2013
+                                                </option>
+                                                <option value="2014" ng-selected="experience['end_year'] == '2014'">
+                                                    2014
+                                                </option>
+                                                <option value="2015" ng-selected="experience['end_year'] == '2015'">
+                                                    2015
+                                                </option>
+                                                <option value="2016" ng-selected="experience['end_year'] == '2016'">
+                                                    2016
+                                                </option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>
+
+                                        <div class="form-group">
+                                            <label for="content">Content:</label>
+                                            <textarea class="form-control" rows="3" name="content" id="content"
+                                                      required>{{experience.text}}</textarea>
+                                        </div>
+
+                                        </p>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>

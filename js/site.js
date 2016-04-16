@@ -98,7 +98,7 @@ app.config(function ($routeProvider) {
  */
 
 var user;
-app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile) {
+app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile,$timeout) {
 
     if (profile)
         $.cookie('google_id', profile.id);
@@ -121,12 +121,20 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "google_user_id": profile.id,
                         "first_name": profile.name.givenName,
                         "last_name": profile.name.familyName,
-                        "email": "roni@gmail.com"
+                        "email": profile.emails[0].value
                     }
                 }).then(function (data) {
+                            console.log(data);
+                    if ($.isArray(data.data)) {
+                        $.cookie('user_id', data.data[0]._id);
+                        $rootScope.user_id = data.data[0]._id;
+                    }
+                    else{
                         $.cookie('user_id', data.data._id);
                         $rootScope.user_id = data.data._id;
-                        location.replace("#/companyProfile");
+                    }
+                            location.replace("#/companyProfile");
+
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
@@ -144,9 +152,17 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     }
                 }).then(function (data) {
                         if (data) {
-                            $.cookie('user_id', data.data[0]._id);
-                            $rootScope.user_id = data.data[0]._id;
-                            location.replace("#/myjobs");
+                            if ($.isArray(data.data)) {
+                                $.cookie('user_id', data.data[0]._id);
+                                $rootScope.user_id = data.data[0]._id;
+                            }
+                            else{
+                                $.cookie('user_id', data.data._id);
+                                $rootScope.user_id = data.data._id;
+                            }
+
+                                location.replace("#/myjobs");
+
                         }
                     },
                     function (response) { // optional
@@ -176,13 +192,23 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "google_user_id": profile.id,
                         "first_name": profile.name.givenName,
                         "last_name": profile.name.familyName,
-                        "email": "roni@gmail.com"
+                        "email": profile.emails[0].value
                     }
                 }).then(function (data) {
-                        $.cookie('user_id', data.data._id);
-                        $rootScope.user_id = data.data._id;
                         firstTimeLogIn = false;
-                        location.replace("#/Profile");
+
+                        if ($.isArray(data.data)) {
+                            $.cookie('user_id', data.data[0]._id);
+                            $rootScope.user_id = data.data[0]._id;
+                        }
+                        else{
+                            $.cookie('user_id', data.data._id);
+                            $rootScope.user_id = data.data._id;
+                        }
+
+
+                            location.replace("#/Profile");
+
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
@@ -197,12 +223,19 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "user_id": $.cookie('user_id')
                     }
                 }).then(function (data) {
-                        console.log(data.data[0]._id);
-                        console.log(data);
-                        $.cookie('user_id', data.data[0]._id);
-                        $rootScope.user_id = data.data[0]._id;
                         firstTimeLogIn = false;
-                        location.replace("#/searchJobs");
+
+                        if ($.isArray(data.data)) {
+                            $.cookie('user_id', data.data[0]._id);
+                            $rootScope.user_id = data.data[0]._id;
+                        }
+                        else{
+                            $.cookie('user_id', data.data._id);
+                            $rootScope.user_id = data.data._id;
+                        }
+
+
+                            location.replace("#/searchJobs");
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
@@ -226,7 +259,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
             data: {
-                "google_user_id": $.cookie('google_id'),
+                "user_id": $.cookie('user_id'),
                 "sector": "software engineering"
             }
         })
@@ -295,16 +328,16 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location, $roo
 
 app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
 
-
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs',
             method: "POST",
             data: {
-                "google_user_id": $.cookie('google_id')
+                "user_id": $.cookie('user_id')
             }
         })
             .then(function (data) {
+                console.log(data);
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();
@@ -365,8 +398,14 @@ app
                         "user_id": $rootScope.user_id
                     }
                 }).then(function (data) {
+                    console.log(data);
                     if (data) {
-                        cvId = data.data._id;
+                        if ($.isArray(data.data)) {
+                            cvId = data.data[0]._id;
+                        }
+                        else{
+                            cvId = data.data._id;
+                        }
 
                         //job seeker CV
                         $http({
@@ -637,8 +676,6 @@ app
             $jobId = $location.path().split('/')[3];
             var compabilitJobSeeker;
             $scope.checkMyCV = function () {
-                console.log($rootScope.user_id);
-                console.log($jobId);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/getIdOfCV',
                     method: "POST",
@@ -727,11 +764,12 @@ app
                         "user_id": $rootScope.user_id
                     }
                 }).then(function (data) {
+                    console.log(data.data[0]._id);
+                    console.log($jobId);
                     $http({
                         url: 'https://cvmatcher.herokuapp.com/jobSeeker/addCvToJob',
                         method: "POST",
                         data: {
-                            "compatibility_level": compabilitJobSeeker,
                             "job_id": $jobId,
                             "cv_id": data.data[0]._id
                         }
@@ -763,8 +801,27 @@ app
     .controller(
         'favoritesController',
         function ($scope, $http) {
-
             angular.element(".fa-pulse").hide();
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs',
+                method: "POST",
+                data: {
+                    "user_id": $.cookie('user_id')
+                }
+            })
+                .then(function (data) {
+                    console.log(data);
+                    $scope.jobSeekerJobs = data.data;
+                    console.log(data.data);
+                    angular.element(".fa-pulse").hide();
+                    //fix date string
+                    angular.forEach(data.data, function (value, key) {
+                        data.data[key].date = value.date.split("T")[0];
+                    })
+                    },
+                    function (response) { // optional
+                        console.log("myjobsController AJAX failed!");
+                    });
         });
 
 
@@ -855,6 +912,7 @@ app.controller('companyProfileController',
         $("#geocomplete").geocomplete();
 
         console.log($rootScope.user_id);
+        console.log($.cookie('user_id'));
         //user details
         $http({
             url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -1086,6 +1144,11 @@ app.controller('candidatesController',
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
         }
+
+        $scope.hire = function(cvId){
+            console.log(cvId);
+        }
+
         $scope.bringNextCandidate = function (type, description, id) {
             $http({
                 url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
@@ -1301,14 +1364,15 @@ app.controller('resumeController',
  */
 
 app.controller('jobController', function ($scope, $http, $location, $timeout) {
+
     $id = $location.path().split('/')[1];
     $("#geocomplete").geocomplete();
     angular.element('.selectpicker').selectpicker();
 
     $jobId = $location.path().split('/')[2];
+    var sumSliders = 0;
     //edit job - get AJAX details
     $scope.getJobJson = function () {
-
 
         if ($id == 'job') {
             $http({
@@ -1356,6 +1420,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                                 // Need to do this because apparently jQ UI
                                 // does not update value until this event completes
                                 total += ui.value;
+                                sumSliders = total;
                                 if (total <= 100) {
                                     var max = availableTotal - total;
 
@@ -1403,6 +1468,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                             // Need to do this because apparently jQ UI
                             // does not update value until this event completes
                             total += ui.value;
+                            sumSliders = total;
                             if (total <= 100) {
                                 var max = availableTotal - total;
 
@@ -1433,188 +1499,199 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
     $scope.exitStatus = function () {
         //if user clickd ok then move to search jobs page - need to wait to close modal
-        $timeout(function () {
-            window.location.href = '/cvmatcher/#/myjobs';
-        }, 1000);
+        if(sumSliders == 100) {
+            $timeout(function () {
+                window.location.href = '/cvmatcher/#/myjobs';
+            }, 1000);
+        }
+        else{
+            $scope.status = "";
+        }
     }
     //send form
     $scope.submitForm = function () {
-        var academy = [];
-        //scope_of_position
-        $.each($(".academy input:checked"), function () {
-            academy.push($(this).val());
-        });
-        var degree_type = [];
-        //scope_of_position
-        $.each($(".degree_type input:checked"), function () {
-            degree_type.push($(this).val());
-        });
-        var scope_of_position = [];
-        //scope_of_position
-        $.each($(".scope_of_position input:checked"), function () {
-            scope_of_position.push($(this).val());
-        });
-        var candidate_type = [];
-        //scope_of_position
-        $.each($(".candidate_type input:checked"), function () {
-            candidate_type.push($(this).val());
-        });
+        console.log($scope.compability);
+        if (sumSliders == 100) {
+            var academy = [];
+            //scope_of_position
+            $.each($(".academy input:checked"), function () {
+                academy.push($(this).val());
+            });
+            var degree_type = [];
+            //scope_of_position
+            $.each($(".degree_type input:checked"), function () {
+                degree_type.push($(this).val());
+            });
+            var scope_of_position = [];
+            //scope_of_position
+            $.each($(".scope_of_position input:checked"), function () {
+                scope_of_position.push($(this).val());
+            });
+            var candidate_type = [];
+            //scope_of_position
+            $.each($(".candidate_type input:checked"), function () {
+                candidate_type.push($(this).val());
+            });
 
 
-        var requirements = [];
-        //requerment- MUST
-        var combination = [];
-        $('#Items .mItem').each(function (idx, value) {
-            var name = $(value).find("input:nth-child(1)").val();
-            var years = $(value).find("select").val().split(" ")[0];
+            var requirements = [];
+            //requerment- MUST
+            var combination = [];
+            $('#Items .mItem').each(function (idx, value) {
+                var name = $(value).find("input:nth-child(1)").val();
+                var years = $(value).find("select").val().split(" ")[0];
 
-            var mode = "must";
-            var percentage = $(value).find("input:nth-child(3)").val();
-            console.log(percentage);
-            if (!percentage)
-                percentage = "0";
-            combination.push({
-                "name": name,
-                "years": years,
-                "mode": mode,
-                "percentage": percentage
+                var mode = "must";
+                var percentage = $(value).find("input:nth-child(3)").val();
+                console.log(percentage);
+                if (!percentage)
+                    percentage = "0";
+                combination.push({
+                    "name": name,
+                    "years": years,
+                    "mode": mode,
+                    "percentage": percentage
+                })
             })
-        })
-        //requerment- ADVANTAGE
-        $('#Items .aItem').each(function (idx, value) {
-            var name = $(value).find("input:nth-child(1)").val();
-            var years = $(value).find("select").val().split(" ")[0];
-            var mode = "adv";
-            var percentage = $(value).find("input:nth-child(3)").val();
-            if (!percentage)
-                percentage = "0";
-            combination.push({
-                "name": name,
-                "years": years,
-                "mode": mode,
-                "percentage": percentage
+            //requerment- ADVANTAGE
+            $('#Items .aItem').each(function (idx, value) {
+                var name = $(value).find("input:nth-child(1)").val();
+                var years = $(value).find("select").val().split(" ")[0];
+                var mode = "adv";
+                var percentage = $(value).find("input:nth-child(3)").val();
+                if (!percentage)
+                    percentage = "0";
+                combination.push({
+                    "name": name,
+                    "years": years,
+                    "mode": mode,
+                    "percentage": percentage
+                })
             })
-        })
-        $('#Items .orItem1 > div').each(function (idx, value) {
-            var name = $(value).find("input:nth-child(1)").val();
-            var years = $(value).find("select").val().split(" ")[0];
-            var mode = "or";
-            var percentage = $(value).find("input:nth-child(3)").val();
-            if (!percentage)
-                percentage = "0";
-            combination.push({
-                "name": name,
-                "years": years,
-                "mode": mode,
-                "percentage": percentage
+            $('#Items .oItem').each(function (idx, value) {
+                var name = $(value).find("input:nth-child(1)").val();
+                var years = $(value).find("select").val().split(" ")[0];
+                var mode = "or";
+                var percentage = $(value).find("input:nth-child(3)").val();
+                if (!percentage)
+                    percentage = "0";
+                combination.push({
+                    "name": name,
+                    "years": years,
+                    "mode": mode,
+                    "percentage": percentage
+                })
             })
-        })
-        requirements.push({"combination": combination});
+            requirements.push({"combination": combination});
 
-        //second requerments
-        var combination2 = [];
-        $('#Items2 .mItem').each(function (idx, value) {
-            var name = $(value).find("input:nth-child(1)").val();
-            var years = $(value).find("select").val().split(" ")[0];
+            //second requerments
+            var combination2 = [];
+            $('#Items2 .mItem').each(function (idx, value) {
+                var name = $(value).find("input:nth-child(1)").val();
+                var years = $(value).find("select").val().split(" ")[0];
 
-            var mode = "must";
-            var percentage = $(value).find("input:nth-child(3)").val();
-            if (!percentage)
-                percentage = "0";
-            combination2.push({
-                "name": name,
-                "years": years,
-                "mode": mode,
-                "percentage": percentage
+                var mode = "must";
+                var percentage = $(value).find("input:nth-child(3)").val();
+                if (!percentage)
+                    percentage = "0";
+                combination2.push({
+                    "name": name,
+                    "years": years,
+                    "mode": mode,
+                    "percentage": percentage
+                })
             })
-        })
-        $('#Items2 .aItem').each(function (idx, value) {
-            var name = $(value).find("input:nth-child(1)").val();
-            var years = $(value).find("select").val().split(" ")[0];
-            var mode = "adv";
-            var percentage = $(value).find("input:nth-child(3)").val();
-            if (!percentage)
-                percentage = "0";
-            combination2.push({
-                "name": name,
-                "years": years,
-                "mode": mode,
-                "percentage": percentage
+            $('#Items2 .aItem').each(function (idx, value) {
+                var name = $(value).find("input:nth-child(1)").val();
+                var years = $(value).find("select").val().split(" ")[0];
+                var mode = "adv";
+                var percentage = $(value).find("input:nth-child(3)").val();
+                if (!percentage)
+                    percentage = "0";
+                combination2.push({
+                    "name": name,
+                    "years": years,
+                    "mode": mode,
+                    "percentage": percentage
+                })
             })
-        })
-        $('#Items2 .oItem').each(function (idx, value) {
-            var name = $(value).find("input:nth-child(1)").val();
-            var years = $(value).find("select").val().split(" ")[0];
-            var mode = "or";
-            var percentage = $(value).find("input:nth-child(3)").val();
-            if (!percentage)
-                percentage = "0";
-            combination2.push({
-                "name": name,
-                "years": years,
-                "mode": mode,
-                "percentage": percentage
+            $('#Items2 .oItem').each(function (idx, value) {
+                var name = $(value).find("input:nth-child(1)").val();
+                var years = $(value).find("select").val().split(" ")[0];
+                var mode = "or";
+                var percentage = $(value).find("input:nth-child(3)").val();
+                if (!percentage)
+                    percentage = "0";
+                combination2.push({
+                    "name": name,
+                    "years": years,
+                    "mode": mode,
+                    "percentage": percentage
+                })
             })
-        })
 
-        requirements.push({"combination": combination2});
+            requirements.push({"combination": combination2});
 
 
-        var addNewJob = {
-            "matching_object_type": "job",
-            "google_user_id": $.cookie('google_id'),
-            "date": new Date(),
-            "personal_properties": null,
-            "original_text": {
-                "title": $(".jobName").val(),
-                "description": $("#description").html(),
-                "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val(),
-                "history_timeline": []
-            },
-            "sector": "software engineering",
-            "locations": $("#geocomplete").val(),
-            "candidate_type": candidate_type,
-            "scope_of_position": scope_of_position,
-            "academy": {
-                "academy_type": academy,
-                "degree_name": $(".degree_name :selected").val(),
-                "degree_type": degree_type
-            },
-            "sub_sector": [],
-            "formula": {
-                "locations": $(".locationsSlider").text().split("/")[0],
-                "candidate_type": $(".candidate_typeSlider").text().split("/")[0],
-                "scope_of_position": $(".scope_of_positionSlider").text().split("/")[0],
-                "academy": $(".academySlider").text().split("/")[0],
-                "requirements": $(".requirementsSlider").text().split("/")[0]
-            },
-            "requirements": requirements,
-            "compatibility_level": $scope.compability,
-            "status": null,
-            "favorites": [],
-            "cvs": [],
-            "archive": true,
-            "active": false,
-            "user": $.cookie('user_id')
-
-        }
-
-        console.log(addNewJob);
-
-        $http({
-            url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
-            method: "POST",
-            data: addNewJob
-        })
-            .then(function (data) {
-                    if (data != null)
-                        $scope.status = "Job Send Succesfuly";
+            var addNewJob = {
+                "matching_object_type": "job",
+                "google_user_id": $.cookie('google_id'),
+                "date": new Date(),
+                "personal_properties": null,
+                "original_text": {
+                    "title": $(".jobName").val(),
+                    "description": $("#description").html(),
+                    "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val(),
+                    "history_timeline": []
                 },
-                function (response) { // optional
-                    $scope.status = "Job did not send";
-                    console.log("addMatchingObject send form AJAX failed!");
-                });
-        //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
+                "sector": "software engineering",
+                "locations": $("#geocomplete").val(),
+                "candidate_type": candidate_type,
+                "scope_of_position": scope_of_position,
+                "academy": {
+                    "academy_type": academy,
+                    "degree_name": $(".degree_name :selected").val(),
+                    "degree_type": degree_type
+                },
+                "sub_sector": [],
+                "formula": {
+                    "locations": $(".locationsSlider").text().split("/")[0],
+                    "candidate_type": $(".candidate_typeSlider").text().split("/")[0],
+                    "scope_of_position": $(".scope_of_positionSlider").text().split("/")[0],
+                    "academy": $(".academySlider").text().split("/")[0],
+                    "requirements": $(".requirementsSlider").text().split("/")[0]
+                },
+                "requirements": requirements,
+                "compatibility_level": $scope.compability,
+                "status": null,
+                "favorites": [],
+                "cvs": [],
+                "archive": true,
+                "active": false,
+                "user": $.cookie('user_id')
+
+            }
+
+            console.log(addNewJob);
+
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
+                method: "POST",
+                data: addNewJob
+            })
+                .then(function (data) {
+                        if (data != null)
+                            $scope.status = "Job Send Succesfuly";
+                    },
+                    function (response) { // optional
+                        $scope.status = "Job did not send";
+                        console.log("addMatchingObject send form AJAX failed!");
+                    });
+            //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
+        }
+        else{
+            $scope.status = "Please SUM the sliders to 100";
+        }
     };
 
 
@@ -1648,7 +1725,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                         .then(function (data1) {
                                 if (data1.data.length > 0) {
                                     angular.forEach(data1.data, function (value, key) {
-                                        var element = $("<div class='Item mItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
+                                        var element = $("<div class='Item mItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
                                         $(".mustItem1").after(element);
                                         angular.element(".fa-spin").hide();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -1678,7 +1755,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     })
                         .then(function (data2) {
                                 angular.forEach(data2.data, function (value, key) {
-                                    var element = $("<div class='Item aItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select></div>");
+                                    var element = $("<div class='Item aItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>");
                                     $(".advantageItem1").after(element);
                                     angular.element(".fa-spin").hide();
 
@@ -1720,13 +1797,13 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
 
     angular.element("#NewItem").click(function () {
-        var element = $("<div class='Item'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
+        var element = $("<div class='Item'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
         $("#Items").append(element);
         element.hide().slideDown(500);
     });
 
     angular.element('body').on('click', '#NewItem2', function () {
-        var element = $("<div class='Item NewItem2'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
+        var element = $("<div class='Item NewItem2'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
         $("#Items2").append(element);
         element.hide().slideDown(500);
     });
@@ -1799,18 +1876,18 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
             if (prevClass == 'mustItem1') {
                 ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
                 ui.item[0].innerHTML = element;
             }
             else if (prevClass == 'advantageItem1') {
                 ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
                 ui.item[0].innerHTML = element;
 
             }
             else if (prevClass == 'orItem1') {
                 ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
                 ui.item[0].innerHTML = element;
             }
             if (awaitingCopy) {
@@ -1844,18 +1921,18 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
             if (prevClass == 'mustItem2') {
                 ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
                 ui.item[0].innerHTML = element;
             }
             else if (prevClass == 'advantageItem2') {
                 ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
                 ui.item[0].innerHTML = element;
 
             }
             else if (prevClass == 'orItem2') {
                 ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0 No-Experience</option><option>1-2 Years</option><option>3-4 Years</option><option>5+ Years</option></select>';
+                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
                 ui.item[0].innerHTML = element;
             }
 
@@ -2092,6 +2169,7 @@ app.directive('profileimg', function ($compile) {
 
 
 $(document).ready(function () {
+
     $("#logo").click(function () {
 
         if (window.location.href.indexOf("localhost") > -1)
@@ -2179,12 +2257,12 @@ function startApp() {
     gapi.load('auth2', function () {
         gapi.client.load('plus', 'v1').then(function () {
             gapi.signin2.render('signin-button', {
-                scope: 'https://www.googleapis.com/auth/plus.login',
+                scope: 'https://www.googleapis.com/auth/userinfo.email',
                 fetch_basic_profile: false
             });
             gapi.auth2.init({
                 fetch_basic_profile: false,
-                scope: 'https://www.googleapis.com/auth/plus.login'
+                scope: 'https://www.googleapis.com/auth/userinfo.email'
             }).then(
                 function () {
                     auth2 = gapi.auth2.getAuthInstance();

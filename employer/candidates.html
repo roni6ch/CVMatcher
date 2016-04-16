@@ -30,6 +30,7 @@
             <section
                     ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp">
+
                     <div><a
                             href="#/Unread/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logo.png"></a>
@@ -61,12 +62,13 @@
             <section
                     ng-repeat="candidate in likeCandidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp likeCandidates">
-                    <div><a
-                            href=""><i id="candidateLike-{{candidate.google_user_id}}"
-                                       class='fa fa-thumbs-up fa-2x'
+
+
+                    <div><a href=""><i id="candidateLike-{{candidate.google_user_id}}"  class='fa fa-thumbs-up fa-2x'
                                        ng-click='addCandidateToLike($index,candidate.google_user_id,candidate._id)'></i></a> <a
                             href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
-                            src="./images/logoSmall.png"></a>
+                            src="./images/logoSmall.png"></a><a href="" ng-click='hire(candidate._id)'><img
+                            src="./images/handshake1.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
 
                     </div>

@@ -8,17 +8,17 @@
     <form method="post">
         <div class="animated fadeInDown jobEdit">
             <div class="form-group">
-                <label>Job Name:</label> <input type="text" ng-model="jobDetails['original_text']['title']" required
-                                                placeholder="Please Type job name"
-                                                class="form-control jobName" name="job_name"
-                                                value="{{jobDetails['original_text']['title']}}">
+                <label for="jobName">Job Name:</label> <input type="text" ng-model="jobDetails['original_text']['title']"
+                                                placeholder="Please Type job name" id="jobName"
+                                                class="form-control jobName" name="job_name" required="true"
+                                                value="{{jobDetails['original_text']['title']}}" />
             </div>
 
             <div class="form-group">
                 <label>Location:</label> <input class="form-control" ng-model="jobDetails.locations" id="geocomplete" required
                                                 type="text"
                                                 name="location" value="{{jobDetails['locations']}}"
-                                                placeholder="Type in an address" size="90" autocomplete="on">
+                                                placeholder="Type in an address" size="90" autocomplete="on" />
             </div>
 
             <div class="form-group">
@@ -48,20 +48,20 @@
                            ng-class="{active:jobDetails.academy['degree_type'][0] == 'bsc' || jobDetails.academy['degree_type'][1] == 'bsc' || jobDetails.academy['degree_type'][2] == 'bsc'}">B.S. (Bachelor
                         of
                         Science)
-                        <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off"
+                        <input type="checkbox" name="academyOptions"  autocomplete="off"
                                value="bsc">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                     <label class="btn btn-primary"
                            ng-class="{active:jobDetails.academy['degree_type'][0] == 'msc' || jobDetails.academy['degree_type'][1] == 'msc' || jobDetails.academy['degree_type'][2] == 'msc'}">M.S. (Master of
                         Science)
-                        <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="msc">
+                        <input type="checkbox" name="academyOptions"  autocomplete="off" value="msc">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                     <label class="btn btn-info"
                            ng-class="{active:jobDetails.academy['degree_type'][0] == 'mres' || jobDetails.academy['degree_type'][1] == 'mres' || jobDetails.academy['degree_type'][2] == 'mres'}">M.Res. (Master
                         of Research)
-                        <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="mres">
+                        <input type="checkbox" name="academyOptions"  autocomplete="off" value="mres">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                 </div>
@@ -140,7 +140,7 @@
             </div>
 
 
-            <div class="form-group" ng-model="compability" ng-value="compability=jobDetails['compatibility_level']">
+            <div class="form-group" ng-model="compability" ng-value="compability=jobDetails['compatibility_level'] || '0'">
                 <label>Min Compability:</label>
                 <ul class="pagination pagination-lg">
                     <li><a href="" ng-class="{paginationSelected: jobDetails.compatibility_level == 10}"
@@ -254,10 +254,10 @@
                                 <div class='Item' ng-repeat="(lang, priority) in langs"><input type="text"
                                                                                                value="{{lang}}"/>
                                     <select class="form-control">
-                                        <option>0 No-Experience</option>
-                                        <option>1-2 Years</option>
-                                        <option>3-4 Years</option>
-                                        <option>5+ Years</option>
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>3</option>
+                                        <option>5</option>
                                     </select>
                                     <input type="text" class="form-control" ng-change="priority()" value="0"
                                            ng-model="priority[$index]"/>
@@ -291,6 +291,7 @@
 
             <div ng-include="'employer/jobparameters.html'"></div>
             <div class="form-group">
+               <!-- <button type="button" id="submitAfterParse" class="btn btn-warning disabled"  data-toggle="modal" data-target="#sendJob" ng-click="submitForm()"  >Send</button> -->
                 <button type="button" id="submitAfterParse" class="btn btn-warning disabled"  data-toggle="modal" data-target="#sendJob" ng-click="submitForm()"  >Send</button>
             </div>
         </div>

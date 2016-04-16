@@ -7,7 +7,8 @@
                 <a href="" ng-click="deleteJob(job._id)"><i class="fa fa-trash fa-2x"></i></a><!--
                 <a href="#/job/{{job._id}}"><i class="fa fa-wrench fa-2x"></i></a>-->
                 <a href="#/job/{{job._id}}"><i class="fa fa-pencil fa-2x"></i></a>
-                <a href="#/{{jobPage}}/{{job._id}}" ng-click="saveJobTitle(job.original_text['title']);"><img src="./images/logo.png"></a>
+                <a href="#/{{jobPage}}/{{job._id}}" ng-click="saveJobTitle(job.original_text['title']);"><img
+                        src="./images/logo.png"></a>
 
 
                 <h3 ng-model="searchText.original_text['title']"
@@ -17,8 +18,11 @@
             <div data-toggle="collapse" data-target="#collepse-{{$index}}">
                 <h5>Address: {{job.locations[0]}}</h5> , <h5>Date: {{job.date}}</h5>
 
-                <p>Requirements: {{job.original_text["requirements"]}}</p>
+                <h5>Requirements:</h5>
 
+                <p>{{job.original_text["requirements"].split("|||")[0]}}</p>
+
+                <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
                 <article id="collepse-{{$index}}" class="collapse">
                     <span>Inforamtion: </span>{{job.original_text["description"]}}
                 </article>
