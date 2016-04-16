@@ -1865,7 +1865,7 @@ footer div a {
 
     .timeline-inverted, .timeline-badge, .timeline > li > .timeline-panel:after,
     .timeline > li > .timeline-panel:before {
-        display: none !important;
+        /*display: none !important;*/
     }
 }
 

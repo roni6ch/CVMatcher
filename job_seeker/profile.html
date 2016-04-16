@@ -55,7 +55,9 @@
                 <h4>Professional Experience</h4>
                 <label for="usr">Sector:</label> <select name="sector" required
                                                          class="form-control jobSeekerCVsector" id="sel1">
-                <option ng-selected="jobSeekerCV.sector == 'software engineering'" value="software">Software Engineering
+                <option ng-selected="jobSeekerCV.sector == ''" value="">
+                </option>
+                <option ng-selected="jobSeekerCV.sector == 'software'" value="software">Software Engineering
                 </option>
                 <option ng-selected="jobSeekerCV.sector == 'Industrial Engineering and Management'" value="industrial">
                     Industrial Engineering and
@@ -121,13 +123,13 @@
 
                     <div class="btn-group jobSeekerCVAcademy" required data-toggle="buttons">
                         <label class="btn btn-success" ng-init="University=false" ng-click="University=true"
-                               ng-class="{active:jobSeekerCV.academy[0]['academy_type'] == 'University'}">University
+                               ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'University'}">University
                             <input type="checkbox" name="options" id="option2" autocomplete="off" value="University">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
                         <label class="btn btn-primary"
-                               ng-class="{active:jobSeekerCV.academy[0]['academy_type'] == 'college'}">College
+                               ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'College'}">College
                             <input type="checkbox" name="options" id="option1" autocomplete="off" value="College">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
@@ -379,10 +381,27 @@
                 <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
                        ng-click="addMoreExperience()" value="+">
 
-                <button type="button" id="submitAfterParse" class="btn btn-default disabled" ng-click="submitUserCV()">Send</button>
+                <button type="button" id="submitAfterParse" class="btn btn-default disabled" data-toggle="modal" data-target="#myModal" ng-click="submitUserCV()">Send</button>
 
             </form>
         </div>
     </div>
 
 </div>
+
+<!-- Modal -->
+<section class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Resume Sent Succesfully</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

@@ -556,6 +556,7 @@ app
                     data: $scope.jobSeeker
                 })
                     .then(function (data) {
+                        $scope.tab = 1;
                         },
                         function (response) { // optional
                             alert("jobSeeker send form AJAX failed!");
@@ -651,6 +652,7 @@ app
                     data: jobSeekerCV
                 })
                     .then(function (data) {
+                        console.log(data);
                         },
                         function (response) { // optional
                             alert("jobSeekerJobs send form AJAX failed!");
@@ -1501,7 +1503,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
         //if user clickd ok then move to search jobs page - need to wait to close modal
         if(sumSliders == 100) {
             $timeout(function () {
-                window.location.href = '/cvmatcher/#/myjobs';
+               // window.location.href = '/cvmatcher/#/myjobs';
             }, 1000);
         }
         else{
@@ -1510,7 +1512,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
     }
     //send form
     $scope.submitForm = function () {
-        console.log($scope.compability);
         if (sumSliders == 100) {
             var academy = [];
             //scope_of_position
@@ -1543,7 +1544,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
                 var mode = "must";
                 var percentage = $(value).find("input:nth-child(3)").val();
-                console.log(percentage);
                 if (!percentage)
                     percentage = "0";
                 combination.push({
@@ -1672,7 +1672,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
             }
 
-            console.log(addNewJob);
+            console.log(addNewJob.requirements);
 
             $http({
                 url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
@@ -1917,7 +1917,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
             var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
             var val = $(this).find("input").val();
 
-            console.log(val);
 
             if (prevClass == 'mustItem2') {
                 ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
