@@ -1078,6 +1078,7 @@ footer div a {
 
 .operators .Item {
     margin: 5px;
+    cursor: pointer;
     height: 80px;
     padding: 5px 10px;
     border: 1px solid #CCC;

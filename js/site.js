@@ -98,7 +98,7 @@ app.config(function ($routeProvider) {
  */
 
 var user;
-app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile,$timeout) {
+app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile, $timeout) {
 
     if (profile)
         $.cookie('google_id', profile.id);
@@ -124,16 +124,16 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "email": profile.emails[0].value
                     }
                 }).then(function (data) {
-                            console.log(data);
-                    if ($.isArray(data.data)) {
-                        $.cookie('user_id', data.data[0]._id);
-                        $rootScope.user_id = data.data[0]._id;
-                    }
-                    else{
-                        $.cookie('user_id', data.data._id);
-                        $rootScope.user_id = data.data._id;
-                    }
-                            location.replace("#/companyProfile");
+                        console.log(data);
+                        if ($.isArray(data.data)) {
+                            $.cookie('user_id', data.data[0]._id);
+                            $rootScope.user_id = data.data[0]._id;
+                        }
+                        else {
+                            $.cookie('user_id', data.data._id);
+                            $rootScope.user_id = data.data._id;
+                        }
+                        location.replace("#/companyProfile");
 
                     },
                     function (response) { // optional
@@ -156,12 +156,12 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                                 $.cookie('user_id', data.data[0]._id);
                                 $rootScope.user_id = data.data[0]._id;
                             }
-                            else{
+                            else {
                                 $.cookie('user_id', data.data._id);
                                 $rootScope.user_id = data.data._id;
                             }
 
-                                location.replace("#/myjobs");
+                            location.replace("#/myjobs");
 
                         }
                     },
@@ -201,13 +201,13 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $.cookie('user_id', data.data[0]._id);
                             $rootScope.user_id = data.data[0]._id;
                         }
-                        else{
+                        else {
                             $.cookie('user_id', data.data._id);
                             $rootScope.user_id = data.data._id;
                         }
 
 
-                            location.replace("#/Profile");
+                        location.replace("#/Profile");
 
                     },
                     function (response) { // optional
@@ -229,13 +229,13 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $.cookie('user_id', data.data[0]._id);
                             $rootScope.user_id = data.data[0]._id;
                         }
-                        else{
+                        else {
                             $.cookie('user_id', data.data._id);
                             $rootScope.user_id = data.data._id;
                         }
 
 
-                            location.replace("#/searchJobs");
+                        location.replace("#/searchJobs");
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
@@ -337,7 +337,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
             }
         })
             .then(function (data) {
-                console.log(data);
+                    console.log(data);
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();
@@ -403,7 +403,7 @@ app
                         if ($.isArray(data.data)) {
                             cvId = data.data[0]._id;
                         }
-                        else{
+                        else {
                             cvId = data.data._id;
                         }
 
@@ -556,7 +556,7 @@ app
                     data: $scope.jobSeeker
                 })
                     .then(function (data) {
-                        $scope.tab = 1;
+                            $scope.tab = 1;
                         },
                         function (response) { // optional
                             alert("jobSeeker send form AJAX failed!");
@@ -652,7 +652,7 @@ app
                     data: jobSeekerCV
                 })
                     .then(function (data) {
-                        console.log(data);
+                            console.log(data);
                         },
                         function (response) { // optional
                             alert("jobSeekerJobs send form AJAX failed!");
@@ -700,6 +700,7 @@ app
                                     var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
                                     var fillColors = ['#C1BFBF', '#e6e6e6'];
                                     //Big circle percentages
+                                console.log(data.data.formula.requirements.details);
                                     angular.forEach(data.data.formula.requirements.details, function (value, key) {
                                         circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
                                             color: colors[key],
@@ -783,7 +784,10 @@ app
                         else {
                             $scope.status = "Problem send resume"
                         }
-                    });
+                    }), function (response) { // optional
+                            console.log(response);
+                            console.log("addCvToJob AJAX failed!");
+                        };
                 });
 
             }
@@ -812,14 +816,14 @@ app
                 }
             })
                 .then(function (data) {
-                    console.log(data);
-                    $scope.jobSeekerJobs = data.data;
-                    console.log(data.data);
-                    angular.element(".fa-pulse").hide();
-                    //fix date string
-                    angular.forEach(data.data, function (value, key) {
-                        data.data[key].date = value.date.split("T")[0];
-                    })
+                        console.log(data);
+                        $scope.jobSeekerJobs = data.data;
+                        console.log(data.data);
+                        angular.element(".fa-pulse").hide();
+                        //fix date string
+                        angular.forEach(data.data, function (value, key) {
+                            data.data[key].date = value.date.split("T")[0];
+                        })
                     },
                     function (response) { // optional
                         console.log("myjobsController AJAX failed!");
@@ -847,7 +851,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
             method: "POST",
             data: {
-                "google_user_id": $.cookie('google_id'),
+                "user_id": $.cookie('user_id'),
                 "sector": "software engineering",
                 "archive": "false"
             }
@@ -1060,7 +1064,7 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getUnreadCvsForJob',
                 method: "POST",
                 data: {
-                    "google_user_id": $.cookie('google_id'),
+                    "user_id": $.cookie('user_id'),
                     "job_id": $scope.jobId
                 }
             })
@@ -1083,7 +1087,7 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
                 data: {
-                    "google_user_id": $.cookie('google_id'),
+                    "user_id": $.cookie('user_id'),
                     "job_id": $scope.jobId,
                     "current_status": "liked"
                 }
@@ -1105,7 +1109,7 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
                 data: {
-                    "google_user_id": $.cookie('google_id'),
+                    "user_id": $.cookie('user_id'),
                     "job_id": $scope.jobId,
                     "current_status": "unliked"
                 }
@@ -1147,7 +1151,7 @@ app.controller('candidatesController',
             stars = rateNumber;
         }
 
-        $scope.hire = function(cvId){
+        $scope.hire = function (cvId) {
             console.log(cvId);
         }
 
@@ -1273,11 +1277,12 @@ app.controller('resumeController',
                 url: url,
                 method: "POST",
                 data: {
-                    "matching_object_id": candidateId,
+                    "cv_id": candidateId,
                     "status": {
                         "current_status": type,
                         "stars": $scope.user["stars"],
-                        "description": description
+                        "description": description,
+                        "timestamp": new Date
                     }
                 }
             });
@@ -1501,12 +1506,12 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
     $scope.exitStatus = function () {
         //if user clickd ok then move to search jobs page - need to wait to close modal
-        if(sumSliders == 100) {
+        if (sumSliders == 100) {
             $timeout(function () {
-               // window.location.href = '/cvmatcher/#/myjobs';
+                 window.location.href = '/cvmatcher/#/myjobs';
             }, 1000);
         }
-        else{
+        else {
             $scope.status = "";
         }
     }
@@ -1586,7 +1591,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
             //second requerments
             var combination2 = [];
-            $('#Items2 .mItem').each(function (idx, value) {
+            $('#Items2 .mItem2').each(function (idx, value) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
 
@@ -1601,7 +1606,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     "percentage": percentage
                 })
             })
-            $('#Items2 .aItem').each(function (idx, value) {
+            $('#Items2 .aItem2').each(function (idx, value) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
                 var mode = "adv";
@@ -1615,7 +1620,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     "percentage": percentage
                 })
             })
-            $('#Items2 .oItem').each(function (idx, value) {
+            $('#Items2 .oItem2').each(function (idx, value) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
                 var mode = "or";
@@ -1630,7 +1635,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                 })
             })
 
-            requirements.push({"combination": combination2});
+            if (combination2.length > 0) {
+                requirements.push({"combination": combination2});
+            }
 
 
             var addNewJob = {
@@ -1672,7 +1679,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
             }
 
-            console.log(addNewJob.requirements);
+            console.log(addNewJob);
 
             $http({
                 url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
@@ -1689,7 +1696,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     });
             //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
         }
-        else{
+        else {
             $scope.status = "Please SUM the sliders to 100";
         }
     };
@@ -1725,7 +1732,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                         .then(function (data1) {
                                 if (data1.data.length > 0) {
                                     angular.forEach(data1.data, function (value, key) {
-                                        var element = $("<div class='Item mItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
+                                        var element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
                                         $(".mustItem1").after(element);
                                         angular.element(".fa-spin").hide();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -1782,13 +1789,140 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
     }
 
-    $("#addOr").click(function () {
-        $('').appendTo((".operators"));
-        $("#addOr").hide();
-    });
 
 
-    angular.element("#addmust").click(function () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var itemCount = 0;
+    var awaitingCopy = false;
+
+    $(init);
+
+    function init() {
+        $("#Items").sortable({
+            revert: true,
+            placeholder: "ItemPlaceHolder",
+            opacity: 0.6,
+            start: StartDrag,
+            stop: StopDrag
+        });
+        $("#Items2").sortable({
+            revert: true,
+            placeholder: "ItemPlaceHolder",
+            opacity: 0.6,
+            start: StartDrag,
+            stop: StopDrag
+        });
+
+
+        $("#NewItem").click(function(e) {
+            e.preventDefault();
+            itemCount++;
+            var input = '<input type="text" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
+
+            var element = $("<div class='Item newItem oItem' id='itemCount"+itemCount+"'>" + input + "</div>");
+            $("#Items").append(element);
+            element.hide().slideDown(500);
+        });
+        $("#NewItem2").click(function(e) {
+            e.preventDefault();
+            itemCount++;
+            var input = '<input type="text" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
+
+            var element = $("<div class='Item newItem oItem2' id='itemCount"+itemCount+"'>" + input + "</div>");
+            $("#Items2").append(element);
+            element.hide().slideDown(500);
+        });
+
+    }
+
+
+    function StartDrag() {
+        $("#NewItem").hide();
+        $("#CopyItem").show();
+    }
+
+    function StopDrag(event, ui) {
+        if (awaitingCopy) {
+            $(this).sortable('cancel');
+            CopyItem($(ui.item));
+        }
+        $("#NewItem").show();
+        $("#CopyItem").hide();
+
+
+        var element = '<input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
+        var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
+        var prevClassAfterClass = ui.item[0].previousElementSibling.className.split(" ")[2];
+
+        console.log(prevClass);
+        if (prevClass == 'mustItem1' || prevClassAfterClass == 'mItem' || prevClass == 'mItem') {
+            console.log(ui.item[0]);/*
+            if (ui.item[0].innerHTML.indexOf("Percentage") == -1)
+                ui.item[0].innerHTML += element;*/
+            ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
+        }
+        else if (prevClass == 'advantageItem1' || prevClassAfterClass == 'aItem' || prevClass == 'aItem') {
+            if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
+                console.log(ui.item[0].innerHTML);
+                var text = ui.item[0].innerHTML.toString();
+                text = text.substring(0, text.length-element.length);
+                ui.item[0].innerHTML = text;
+            }
+            ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
+        }
+        else if (prevClass == 'orItem1' || prevClassAfterClass == 'oItem'  || prevClass == 'oItem') {
+            if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
+                var text = ui.item[0].innerHTML.toString();
+                text = text.substring(0, text.length-element.length);
+                ui.item[0].innerHTML = text;
+            }
+            ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
+        }
+
+        //second operations - OR
+
+        else if(prevClass == 'mustItem2' || prevClassAfterClass == 'mItem2'  || prevClass == 'mItem2'){
+            ui.item.addClass("mItem2").removeClass("aItem2").removeClass("oItem2");
+            console.log(ui.item[0]);/*
+            if (ui.item[0].innerHTML.indexOf("Percentage") == -1)
+                ui.item[0].innerHTML += element;*/
+        }
+        else if(prevClass == 'advantageItem2' || prevClassAfterClass == 'aItem2' || prevClass == 'aItem2'){
+            ui.item.removeClass("mItem2").addClass("aItem2").removeClass("oItem2");
+            if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
+                console.log(ui.item[0].innerHTML);
+                var text = ui.item[0].innerHTML.toString();
+                text = text.substring(0, text.length-element.length);
+                ui.item[0].innerHTML = text;
+            }
+        }
+        else if(prevClass == 'orItem2 ' || prevClassAfterClass == 'oItem2' || prevClass == 'oItem2'){
+            ui.item.removeClass("mItem2").removeClass("aItem2").addClass("oItem2");
+            if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
+                var text = ui.item[0].innerHTML.toString();
+                text = text.substring(0, text.length-element.length);
+                ui.item[0].innerHTML = text;
+            }
+        }
+
+    }
+
+
+
+    /* ADD ANOTHER OPERATOR */
+    $("#addmust").click(function () {
         $('').appendTo((".operators"));
         angular.element("#Page2").removeClass("hidden");
         angular.element(".operators > h3").show();
@@ -1796,154 +1930,14 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
     });
 
 
-    angular.element("#NewItem").click(function () {
-        var element = $("<div class='Item'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
-        $("#Items").append(element);
-        element.hide().slideDown(500);
-    });
-
-    angular.element('body').on('click', '#NewItem2', function () {
-        var element = $("<div class='Item NewItem2'><input type='text' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
-        $("#Items2").append(element);
-        element.hide().slideDown(500);
-    });
 
 
-    $scope.mustOrAdv = function (index) {
-        if (angular.element("#mustOrAdv" + index).hasClass("toggleAdv")) {
-            angular.element("#mustOrAdv" + index).removeClass("toggleAdv");
-            angular.element("#mustOrAdv" + index).addClass("toggleMust");
-            angular.element("#mustOrAdvCheckBox" + index).hide();
-        }
-        else {
-            angular.element("#mustOrAdv" + index).removeClass("toggleMust");
-            angular.element("#mustOrAdv" + index).addClass("toggleAdv");
-            angular.element("#mustOrAdvCheckBox" + index).show();
-        }
-    }
 
 
-    var itemCount = 3;
-    var awaitingCopy = false;
-    init();
-    function init() {
-        angular.element("#Items").sortable({
-            revert: true,
-            placeholder: "ItemPlaceHolder",
-            opacity: 0.6,
-            start: StartDrag,
-            stop: StopDrag
-        });
-        angular.element("#Items2").sortable({
-            revert: true,
-            placeholder: "ItemPlaceHolder",
-            opacity: 0.6,
-            start: StartDrag2,
-            stop: StopDrag2
-        });
-
-        angular.element("#CopyItem").droppable({
-            hoverClass: "CopyItemActive",
-            drop: function (event, ui) {
-                awaitingCopy = true;
-            }
-        });
-        angular.element("#CopyItem2").droppable({
-            hoverClass: "CopyItemActive",
-            drop: function (event, ui) {
-                awaitingCopy = true;
-            }
-        });
-        function CopyItem(element) {
-            if (element.hasClass("mustItem1") || element.hasClass("advantageItem1") || element.hasClass("orItem1")) {
-                return;
-            }
-            awaitingCopy = false;
-            var clone = element.clone();
-            $("#Items").append(clone);
-            clone.hide().slideDown(500);
-        }
-
-        function StartDrag() {
-            $("#NewItem").hide();
-            $("#CopyItem").show();
-        }
-
-        function StopDrag(event, ui) {
-            var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
-            var val = $(this).find("input").val();
 
 
-            if (prevClass == 'mustItem1') {
-                ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
-                ui.item[0].innerHTML = element;
-            }
-            else if (prevClass == 'advantageItem1') {
-                ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
-                ui.item[0].innerHTML = element;
-
-            }
-            else if (prevClass == 'orItem1') {
-                ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
-                ui.item[0].innerHTML = element;
-            }
-            if (awaitingCopy) {
-                $(this).sortable('cancel');
-                CopyItem($(ui.item));
-            }
-            $("#NewItem").show();
-            $("#CopyItem").hide();
-        }
-
-        function CopyItem2(element) {
-            if (element.hasClass("mustItem2") || element.hasClass("advantageItem2") || element.hasClass("orItem2")) {
-                return;
-            }
-            awaitingCopy = false;
-            var clone = element.clone();
-            $("#Items2").append(clone);
-            clone.hide().slideDown(500);
-        }
-
-        function StartDrag2() {
-            $("#NewItem2").hide();
-            $("#CopyItem2").show();
-        }
-
-        function StopDrag2(event, ui) {
-            var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
-            var val = $(this).find("input").val();
 
 
-            if (prevClass == 'mustItem2') {
-                ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
-                ui.item[0].innerHTML = element;
-            }
-            else if (prevClass == 'advantageItem2') {
-                ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
-                ui.item[0].innerHTML = element;
-
-            }
-            else if (prevClass == 'orItem2') {
-                ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
-                var element = '<input type="text" value="' + val + '" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
-                ui.item[0].innerHTML = element;
-            }
-
-            if (awaitingCopy) {
-                $(this).sortable('cancel');
-                CopyItem2($(ui.item));
-            }
-            $("#NewItem2").show();
-            $("#CopyItem2").hide();
-        }
-
-    }
 
 });
 
