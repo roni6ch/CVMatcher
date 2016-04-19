@@ -90,19 +90,27 @@
             <div class="form-group">
                 <label>Candidate Type:</label>
 
-                <div class="btn-group candidate_type" data-toggle="buttons" required>
-                    <label class="btn btn-success" ng-class="{active:jobDetails.candidate_type[0]=='Students' || jobDetails.candidate_type[1]=='Students' || jobDetails.candidate_type[2]=='Students'}">Students
-                        <input type="checkbox" autocomplete="off" value="Students">
+                <div class="btn-group candidate_type" data-toggle="buttons" required ng-init="jobDetails.candidate_type = ct">
+                    <label class="btn btn-success" ng-class="{active:ct[0]=='student' || ct[1]=='student' || ct[2]=='student' || ct[3]=='student' || ct[4]=='student'}">Students
+                        <input type="checkbox" autocomplete="off" value="student">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-primary" ng-class="{active:jobDetails.candidate_type[0]=='Mothers' || jobDetails.candidate_type[1]=='Mothers' || jobDetails.candidate_type[2]=='Mothers'}">Mothers
-                        <input type="checkbox" autocomplete="off" value="Mothers">
+                    <label class="btn btn-primary" ng-class="{active:ct[0]=='mothers' || ct[1]=='mothers' || ct[2]=='mothers' || ct[3]=='mothers' || ct[4]=='mothers'}">Mothers
+                        <input type="checkbox" autocomplete="off" value="mothers">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-info" ng-class="{active:jobDetails.candidate_type[0]=='Masters' || jobDetails.candidate_type[1]=='Masters' || jobDetails.candidate_type[2]=='Masters'}">Masters
-                        <input type="checkbox" autocomplete="off" value="Masters">
+                    <label class="btn btn-info" ng-class="{active:ct[0]=='masters' || ct[1]=='masters' || ct[2]=='masters' || ct[3]=='masters' || ct[4]=='masters'}">Masters
+                        <input type="checkbox" autocomplete="off" value="masters">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                    <label class="btn btn-success" ng-class="{active:ct[0]=='pensioners' || ct[1]=='pensioners' || ct[2]=='pensioners' || ct[3]=='pensioners' || ct[4]=='pensioners'}">Pensioners
+                        <input type="checkbox" autocomplete="off" value="Pensioners">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </label>
+                    <label class="btn btn-primary" ng-class="{active:ct[0]=='graduate' || ct[1]=='graduate' || ct[2]=='graduate' || ct[3]=='graduate' || ct[4]=='graduate'}">Graduate
+                        <input type="checkbox" autocomplete="off" value="Graduate">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
                 </div>

@@ -69,20 +69,14 @@
                 <option ng-selected="jobSeekerCV.sector == 'Mechanical Engineering'" value="mechanical">Mechanical
                     Engineering
                 </option>
-            </select> <label for="usr">Candidate type:</label> <select name="candidate" required
+            </select> <label for="usr">Candidate type:</label> <select name="candidate" required ng-init="jobSeekerCV.candidate_type == ct"
                                                                        class="form-control jobSeekerCVCandidateType"
                                                                        id="sel1">
-                <option ng-selected="jobSeekerCV.candidate_type[0] == 'Student'" value="student">Student</option>
-                <option ng-selected="jobSeekerCV.candidate_type[0] == 'Mothers'" value="mothers">Mothers</option>
-                <option ng-selected="jobSeekerCV.candidate_type[0] == 'Pensioners'" value="pensioners">Pensioners
-                </option>
-                <option ng-selected="jobSeekerCV.candidate_type[0] == 'Academics with no experience'" value="academics">
-                    Academics with no experience
-                </option>
-                <option ng-selected="jobSeekerCV.candidate_type[0] == 'Discharged soldiers'" value="discharged">
-                    Discharged
-                    soldiers
-                </option>
+                <option ng-selected="ct[0] == 'student'" value="student">Student</option>
+                <option ng-selected="ct[0] == 'mothers'" value="mothers">Mothers</option>
+                <option ng-selected="ct[0] == 'masters'" value="masters">Masters</option>
+                <option ng-selected="ct[0] == 'pensioners'" value="pensioners">Pensioners</option>
+                <option ng-selected="ct[0] == 'graduate'" value="graduate">Graduate</option>
             </select>
 
                 <label for="usr">Degree:</label>

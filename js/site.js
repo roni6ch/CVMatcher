@@ -273,6 +273,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     });
                 },
                 function (response) { // optional
+                    angular.element(".fa-pulse").hide();
                     console.log("resumeController AJAX failed!");
                 });
     }
@@ -388,6 +389,7 @@ app
                             angular.element(".fa-pulse").hide();
                         },
                         function (response) { // optional
+                            angular.element(".fa-pulse").hide();
                             alert("jobSeekerJobs AJAX failed!");
                         });
 
@@ -417,6 +419,7 @@ app
                             }
                         })
                             .then(function (data) {
+                                    angular.element(".fa-pulse").hide();
                                     console.log(data);
                                     $scope.jobSeekerCV = data.data[0];
                                     /*if (data.length == 0 || data == undefined || data == "undefined" || data == null || data == []) {
@@ -425,6 +428,7 @@ app
                                      }*/
                                 },
                                 function (response) { // optional
+                                    angular.element(".fa-pulse").hide();
                                     alert("jobSeekerJobs AJAX failed!");
                                 });
                     }
@@ -846,6 +850,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         $scope.jobPage = "Archive/Candidates";
 
     var jobsArr = [];
+    console.log($.cookie('user_id'));
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
@@ -853,7 +858,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             data: {
                 "user_id": $.cookie('user_id'),
                 "sector": "software engineering",
-                "archive": "false"
+                "archive": false
             }
         })
             .then(function (data) {
@@ -870,6 +875,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 
                 },
                 function (response) { // optional
+                    angular.element(".fa-pulse").hide();
                     console.log("myjobsController AJAX failed!");
                 });
 
