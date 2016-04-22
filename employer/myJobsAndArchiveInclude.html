@@ -4,8 +4,9 @@
             ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
         <div class="jobs animated fadeInUp">
             <div>
-                <a href="" ng-click="deleteJob(job._id)"><i class="fa fa-trash fa-2x"></i></a><!--
-                <a href="#/job/{{job._id}}"><i class="fa fa-wrench fa-2x"></i></a>-->
+
+                <a href="" ng-if="jobPage == 'Archive'" ng-click="revive(job._id)"><i class="fa fa-recycle fa-2x" ></i></a>
+                <a href="" ng-if="jobPage == 'myJobs'" ng-click="deleteJob(job._id)"><i class="fa fa-trash fa-2x"></i></a>
                 <a href="#/job/{{job._id}}"><i class="fa fa-pencil fa-2x"></i></a>
                 <a href="#/{{jobPage}}/{{job._id}}" ng-click="saveJobTitle(job.original_text['title']);"><img
                         src="./images/logo.png"></a>

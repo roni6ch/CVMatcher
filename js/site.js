@@ -429,10 +429,14 @@ app
                                 },
                                 function (response) { // optional
                                     angular.element(".fa-pulse").hide();
-                                    alert("jobSeekerJobs AJAX failed!");
+                                    console.log("jobSeekerJobs AJAX failed!");
                                 });
                     }
-                });
+                },
+                    function (response) { // optional
+                        angular.element(".fa-pulse").hide();
+                        console.log("getIdOfCV AJAX failed!" , response);
+                    });
 
 
                 $scope.addEducation('education');
@@ -473,8 +477,8 @@ app
                         type = 'education';
                     history_timeline.push({
                         "text": text,
-                        "start_year": startdate,
-                        "end_year": enddate,
+                        "start_year": parseInt(startdate),
+                        "end_year": parseInt(enddate),
                         "type": type
                     });
                 });
@@ -572,9 +576,7 @@ app
                 $('.parser').each(function (i, obj) {
                     combination.push({
                         "name": $(this).find('label:nth-child(1) input').val(),
-                        "years": $(this).find('label:nth-child(2) input').val(),
-                        "mode": null,
-                        "percentage": null
+                        "years": parseInt($(this).find('label:nth-child(2) input').val())
                     })
                 });
                 console.log(combination);
@@ -616,32 +618,20 @@ app
 
                     },
                     "original_text": {
-                        "title": null,
-                        "description": null,
-                        "requirements": null,
                         "history_timeline": history_timeline
                     },
                     "sector": $('.jobSeekerCVsector').find(":selected").val(),
-                    "locations": $('#geocomplete').val(),
-                    "candidate_type": $('.jobSeekerCVCandidateType').find(":selected").val(),
+                    "locations": [$('#geocomplete').val()],
+                    "candidate_type": [$('.jobSeekerCVCandidateType').find(":selected").val()],
                     "scope_of_position": jobSeekerCVScopeOfPosition,
                     "academy": {
                         "academy_type": jobSeekerCVAcademy,
-                        "degree_name": "software engineering",
-                        "degree_type": $('.degree_type').find(":selected").val()
+                        "degree_name": $.trim($('.degree_name').find(":selected").val()),
+                        "degree_type": [$('.degree_type').find(":selected").val()]
                     },
-                    "sub_sector": [],
-                    "formula": null,
                     "requirements": [{
                         "combination": combination
                     }],
-                    "compatibility_level": null,
-                    "status": null,
-                    "favorites": [],
-                    "cvs": [],
-                    "google_user_id": $rootScope.google_id,
-                    "archive": false,
-                    "active": true,
                     "user": $rootScope.user_id
                 }
 
@@ -842,15 +832,18 @@ app
  */
 
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http, $sce) {
-
+    var archive;
     $id = $location.path().split('/');
-    if ($id[1] == 'myjobs')
-        $scope.jobPage = "Candidates";
-    else
-        $scope.jobPage = "Archive/Candidates";
-
-    var jobsArr = [];
-    console.log($.cookie('user_id'));
+    if ($id[1] == 'myjobs') {
+        archive = false;
+        $scope.jobPage = "myJobs"
+    }
+    else {
+        archive = true;
+        $scope.jobPage = "Archive"
+    }
+        var jobsArr = [];
+    console.log($id[1]);
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
@@ -858,7 +851,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             data: {
                 "user_id": $.cookie('user_id'),
                 "sector": "software engineering",
-                "archive": false
+                "archive": archive
             }
         })
             .then(function (data) {
@@ -909,6 +902,29 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
                     console.log("deleteMatchingObject AJAX failed!");
                 });
     }
+
+    $scope.revive = function (jobId) {
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/reviveMatchingObject',
+            method: "POST",
+            data: {
+                "matching_object_id": jobId
+            }
+        })
+            .then(function () {
+                    jobsArr = jobsArr.filter(function (obj) {
+                        console.log(obj);
+                        return obj._id !== jobId;
+                    });
+                    console.log(jobsArr);
+                    $scope.myjobs = jobsArr;
+                },
+                function (response) { // optional
+                    console.log("deleteMatchingObject AJAX failed!");
+                });
+    }
+
+
 
 
 });
@@ -1166,11 +1182,12 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
                 method: "POST",
                 data: {
-                    "matching_object_id": id,
+                    "cv_id": id,
                     "status": {
                         "current_status": type,
                         "stars": stars,
-                        "description": description
+                        "description": description,
+                        "timestamp": new Date
                     }
                 }
             });
@@ -1514,7 +1531,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
         //if user clickd ok then move to search jobs page - need to wait to close modal
         if (sumSliders == 100) {
             $timeout(function () {
-                 window.location.href = '/cvmatcher/#/myjobs';
+             //    window.location.href = '/cvmatcher/#/myjobs';
             }, 1000);
         }
         else {
@@ -1559,9 +1576,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     percentage = "0";
                 combination.push({
                     "name": name,
-                    "years": years,
+                    "years": parseInt(years),
                     "mode": mode,
-                    "percentage": percentage
+                    "percentage": parseInt(percentage)
                 })
             })
             //requerment- ADVANTAGE
@@ -1569,28 +1586,20 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
                 var mode = "adv";
-                var percentage = $(value).find("input:nth-child(3)").val();
-                if (!percentage)
-                    percentage = "0";
                 combination.push({
                     "name": name,
-                    "years": years,
-                    "mode": mode,
-                    "percentage": percentage
+                    "years": parseInt(years),
+                    "mode": mode
                 })
             })
             $('#Items .oItem').each(function (idx, value) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
                 var mode = "or";
-                var percentage = $(value).find("input:nth-child(3)").val();
-                if (!percentage)
-                    percentage = "0";
                 combination.push({
                     "name": name,
-                    "years": years,
-                    "mode": mode,
-                    "percentage": percentage
+                    "years": parseInt(years),
+                    "mode": mode
                 })
             })
             requirements.push({"combination": combination});
@@ -1607,37 +1616,29 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     percentage = "0";
                 combination2.push({
                     "name": name,
-                    "years": years,
+                    "years": parseInt(years),
                     "mode": mode,
-                    "percentage": percentage
+                    "percentage": parseInt(percentage)
                 })
             })
             $('#Items2 .aItem2').each(function (idx, value) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
                 var mode = "adv";
-                var percentage = $(value).find("input:nth-child(3)").val();
-                if (!percentage)
-                    percentage = "0";
                 combination2.push({
                     "name": name,
-                    "years": years,
-                    "mode": mode,
-                    "percentage": percentage
+                    "years": parseInt(years),
+                    "mode": mode
                 })
             })
             $('#Items2 .oItem2').each(function (idx, value) {
                 var name = $(value).find("input:nth-child(1)").val();
                 var years = $(value).find("select").val().split(" ")[0];
                 var mode = "or";
-                var percentage = $(value).find("input:nth-child(3)").val();
-                if (!percentage)
-                    percentage = "0";
                 combination2.push({
                     "name": name,
-                    "years": years,
-                    "mode": mode,
-                    "percentage": percentage
+                    "years": parseInt(years),
+                    "mode": mode
                 })
             })
 
@@ -1648,17 +1649,14 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
 
             var addNewJob = {
                 "matching_object_type": "job",
-                "google_user_id": $.cookie('google_id'),
                 "date": new Date(),
-                "personal_properties": null,
                 "original_text": {
                     "title": $(".jobName").val(),
                     "description": $("#description").html(),
-                    "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val(),
-                    "history_timeline": []
+                    "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
                 },
-                "sector": "software engineering",
-                "locations": $("#geocomplete").val(),
+                "sector": $(".sector :selected").val(),
+                "locations": [$("#geocomplete").val()],
                 "candidate_type": candidate_type,
                 "scope_of_position": scope_of_position,
                 "academy": {
@@ -1666,21 +1664,15 @@ app.controller('jobController', function ($scope, $http, $location, $timeout) {
                     "degree_name": $(".degree_name :selected").val(),
                     "degree_type": degree_type
                 },
-                "sub_sector": [],
                 "formula": {
-                    "locations": $(".locationsSlider").text().split("/")[0],
-                    "candidate_type": $(".candidate_typeSlider").text().split("/")[0],
-                    "scope_of_position": $(".scope_of_positionSlider").text().split("/")[0],
-                    "academy": $(".academySlider").text().split("/")[0],
-                    "requirements": $(".requirementsSlider").text().split("/")[0]
+                    "locations": parseInt($(".locationsSlider").text().split("/")[0]),
+                    "candidate_type":  parseInt($(".candidate_typeSlider").text().split("/")[0]),
+                    "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
+                    "academy": parseInt($(".academySlider").text().split("/")[0]),
+                    "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
                 },
                 "requirements": requirements,
                 "compatibility_level": $scope.compability,
-                "status": null,
-                "favorites": [],
-                "cvs": [],
-                "archive": true,
-                "active": false,
                 "user": $.cookie('user_id')
 
             }
