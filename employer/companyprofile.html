@@ -18,34 +18,34 @@
 			<!-- Content from here -->
 			<form>
 				<div class="form-group">
-					<label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}" ng-model="employerProfile['personal_id']"
-																class="form-control"  name="id">
+					<label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
+																class="form-control personalId"  name="id">
 				</div>
 				<div class="form-group">
-					<label for="usr">First name:</label> <input type="text" required value="{{employerProfile['first_name']}}" ng-model="employerProfile['first_name']"
-																  class="form-control"  name="first_name">
+					<label for="usr">First name:</label> <input type="text" required value="{{employerProfile['first_name']}}"
+																  class="form-control firstName"  name="first_name">
 				</div>
 				<div class="form-group">
-					<label for="usr">Last name:</label> <input type="text" required value="{{employerProfile['last_name']}}" ng-model="employerProfile['last_name']"
-																class="form-control">
+					<label for="usr">Last name:</label> <input type="text" required value="{{employerProfile['last_name']}}"
+																class="form-control lastName">
 				</div>
 				<div class="form-group">
-					<label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}" ng-model="employerProfile['email']"
-														   class="form-control" >
+					<label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}"
+														   class="form-control email" >
 				</div>
 				<div class="form-group ">
-					<label for="usr">Birth Date:</label> <input type="text" required  value="{{employerProfile['birth_date']}}" ng-model="employerProfile['birth_date']"
+					<label for="usr">Birth Date:</label> <input type="text" required  value="{{employerProfile['birth_date']}}"
 															   class="form-control birthDay">
 				</div>
 				<div class="form-group">
 
-					<label>Address:</label> <input class="form-control"  id="geocomplete" ng-model="employerProfile['address']"
+					<label>Address:</label> <input class="form-control"  id="geocomplete"
 												   type="text"
 												   name="location" value="{{employerProfile['address']}}"
 												   placeholder="Type in an address" size="90" autocomplete="on">
 				</div>
 				<div class="form-group">
-					<label for="usr">Phone number:</label> <input type="text" required value="{{employerProfile['phone_number']}}" ng-model="employerProfile['phone_number']"
+					<label for="usr">Phone number:</label> <input type="text" required value="{{employerProfile['phone_number']}}"
 																  class="form-control phoneNumber" >
 				</div>
 
@@ -53,7 +53,7 @@
 														  class="form-control linkedin" ng-model="employerProfile['linkedin']"
 														  value="{{companyProfile.user['linkedin']}}">
 
-				<button type="button" class="btn btn-default" ng-click="submitUserDetails()">Send</button>
+				<button type="button" class="btn btn-default" ng-click="submitUserDetails()" data-toggle="modal" data-target="#update">Send</button>
 			</form>
 		</div>
 		<div ng-show="tab == 1" class="tabsContent fade in active">
@@ -61,32 +61,59 @@
 			<form>
 
 				<div class="form-group">
-					<label for="usr">Company name:</label> <input type="text" required value="{{companyProfile['name']}}" ng-model="companyProfile['name']"
-																  class="form-control" id="usr" name="address">
+					<label for="usr">Company name:</label> <input type="text" required value="{{companyProfile['name']}}"
+																  class="form-control companyName" id="usr" name="address">
 				</div>
 				<div class="form-group">
-					<label for="usr">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}" ng-model="companyProfile['p_c']"
-														 class="form-control" id="usr" name="address">
+					<label for="usr">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}"
+														 class="form-control companyPC" id="usr" name="address">
 				</div>
 				<div class="form-group">
-					<label>Address:</label> <input class="form-control"  id="geocomplete2" ng-model="employerProfile['address']"
+					<label>Address:</label> <input class="form-control"  id="geocomplete2"
 												   type="text"
 												   name="address" value="{{employerProfile['address']}}"
 												   placeholder="Type in an address" size="90" autocomplete="on">
 				</div>
 				<div class="form-group">
-					<label for="usr">Phone number:</label> <input type="text" required value="{{companyProfile['phone_number']}}" ng-model="companyProfile['phone_number']"
-																  class="form-control" id="usr" name="address">
+					<label for="usr">Phone number:</label> <input type="text" required value="{{companyProfile['phone_number']}}"
+																  class="form-control companyPhoneNumber" id="usr" name="address">
 				</div>
 				<div class="form-group">
-					<label for="usr" class="editLogo">Logo:</label> <input type="file"
-																		   required class="form-control" id="usr" name="logo" accept="image/*">
+					<label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control" value="{{companyProfile['logo']}}" required placeholder="please type Company name"><input type="button" ng-click="logo(word)" class ="btn btn-default" value="Search Logo!" />
 				</div>
-				<img id="myImg" src="#" alt="your image" style="width: 10%;" />
+				<div class="companyLogo" ng-if="companyProfile['logo']" ><img ng-src={{companyProfile['logo']}} /></div>
+				<div ng-repeat="logo in logos">
+					<div data-toggle="buttons" class="logos">
+						<label class="btn btn-default"  ng-click="newLogo()">
+							<input type="radio" name="logos">
+							<span class="glyphicon glyphicon-ok"></span>
+							<img ng-src={{logo}} />
+						</label>
+					</div>
+				</div>
 
-				<button type="button" class="btn btn-default" ng-click="submitCompanyDetails()">Send</button>
+				<button type="button" class="btn btn-default" ng-click="submitCompanyDetails()" data-toggle="modal" data-target="#update">Send</button>
 
 			</form>
 		</div>
 	</div>
 </div>
+
+
+
+<!-- Modal -->
+<section class="modal fade" id="update" role="dialog">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<h4 class="modal-title">{{status}}</h4>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					Close
+				</button>
+			</div>
+		</div>
+	</div>
+</section>

@@ -20,7 +20,7 @@
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby"><a
                     href="#/yourjobs/{{job._id}}"> <img
-                    ng-src="images/jobSeeker/{{job.logo}}.png">
+                    ng-src="{{job.user.company.logo}}">
                 <article>
                     <p ng-model="searchText.job_name"
                        ng-bind-html="job.academy[0]['degree_name'] | highlight:searchText">

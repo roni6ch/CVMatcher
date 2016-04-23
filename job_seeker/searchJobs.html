@@ -20,9 +20,10 @@
     <div class="jobsList">
         <ul>
             <li class="jobListLi  animated fadeInUp"
-                ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby"><a
+                ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby">
+                <a
                     href="#/searchJobs/{{job._id}}"> <img
-                    ng-src="images/jobSeeker/{{job.logo}}.png">
+                    ng-src="{{job.user.company.logo}}">
                 <article>
                     <p ng-model="searchText.job_name"
                        ng-bind-html="job.scope_of_position[0] | highlight:searchText">

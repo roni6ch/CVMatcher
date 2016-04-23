@@ -903,14 +903,17 @@ footer div a {
 }
 
 .editLogo + input {
-    width: 70%;
+    width: 80%;
     float: left;
 }
 
-.editLogo + input + img {
-    float: right;
-    width: 40px;
+.editLogo + input + input {
+    width: 20%;
 }
+.companyLogo img{margin: 0 auto;
+    border: 1px solid #000;}
+.logos{float:left;     margin-right: 1%;}
+.logos img{width:100px; height:100px;}
 
 .pagination {
     display: block;
@@ -1219,6 +1222,7 @@ footer div a {
 
 .jobListLi img {
     float: left;
+    width:100px;
 }
 
 .jobListLi a {

@@ -981,96 +981,101 @@ app.controller('companyProfileController',
                     console.log("companyProfileController AJAX failed!");
                 });
         //company profile details
-
-
-        //uploadPhoto
-        $(function () {
-            $(":file").change(function () {
-                if (this.files && this.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = imageIsLoaded;
-                    reader.readAsDataURL(this.files[0]);
-                }
+        var logo = '';
+        $scope.newLogo = function () {
+            logo = $(this).find("img").prevObject[0].logo;
+            $.each($(".logos label"), function () {
+                $(this).removeClass('active');
             });
-        });
+        }
+        $scope.logo = function (word) {
 
-        function imageIsLoaded(e) {
-            $('#myImg').attr('src', e.target.result);
-        };
+            $http({
+                url: "https://cvmatcher.herokuapp.com/getLogoImages",
+                method: "POST",
+                data: {"word": word}
+            }).then(function (data) {
+                $scope.logos = data.data;
+            })
+        }
+
 
         $scope.submitUserDetails = function () {
-            //add more parameters to json
-            var key = 'birth_date';
-            var val = $(".birthDay").val();
-            $scope.employerProfile[key] = val;
-            var key = 'address';
-            var val = $("#geocomplete").val();
-            $scope.employerProfile[key] = val;
-            var key = 'phone_number';
-            var val = $(".phoneNumber").val();
-            $scope.employerProfile[key] = val;
-            var key = 'linkedin';
-            var val = $(".linkedin").val();
-            $scope.employerProfile[key] = val;
+            if (logo == '')
+                logo = $(".companyLogo > img").attr("src");
+            var userJson = {
+                "_id": $.cookie('user_id'),
+                "personal_id": $(".personalId").val(),
+                "first_name": $(".firstName").val(),
+                "last_name": $(".lastName").val(),
+                "birth_date": $(".birthDay").val(),
+                "address": $("#geocomplete").val(),
+                "email": $(".email").val(),
+                "phone_number": $(".phoneNumber").val(),
+                "linkedin":$(".linkedin").val()
+            }
 
-            //url = 'https://cvmatcher.herokuapp.com/addUser';
-            console.log("send form: ", $scope.employerProfile);
+            console.log(userJson);
             $http({
                 url: 'https://cvmatcher.herokuapp.com/updateUser',
                 method: "POST",
-                data: $scope.employerProfile
+                data: userJson
             })
                 .then(function (data) {
+                        $scope.status = "User Updated Succesfully!"
                     },
                     function (response) { // optional
-                        alert("jobSeekerJobs send form AJAX failed!");
+                        $scope.status = "Error User Update!"
                     });
         }
         $scope.submitCompanyDetails = function () {
+            $scope.status = '';
             if (!company) {
-                //push to json new key value
-                var key = 'user_id';
-                var val = $.cookie('user_id');
-                $scope.companyProfile[key] = val;
-                var key = 'logo';
-                var val = 'logo';
-                $scope.companyProfile[key] = val;
 
-                var key = 'address';
-                var val = $("#geocomplete2").val();
-                $scope.companyProfile[key] = val;
+                var companyJson = {
+                    "user_id": $.cookie('user_id'),
+                    "name": $(".companyName").val(),
+                    "logo": logo,
+                    "p_c":$(".companyPC").val(),
+                    "address": $("#geocomplete2").val(),
+                    "phone_number": $(".companyPhoneNumber").val()
+                }
 
-                console.log("send form: ", $scope.companyProfile);
+                console.log("send form: ", companyJson);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/employer/addCompany',
                     method: "POST",
-                    data: $scope.companyProfile
+                    data: companyJson
                 }).then(function (data) {
+                    $scope.status = "Company Updated Succesfully!"
                     console.log(data);
-                })
+                },
+                    function (response) { // optional
+                        $scope.status = "Error Company Update!"
+                    });
             }
             else {
                 //push to json new key value
-                var key = '_id';
-                var val = $.cookie('user_id');
-                $scope.companyProfile[key] = val;
 
-                var key = 'address';
-                var val = $("#geocomplete2").val();
-                $scope.employerProfile[key] = val;
-
-                var key = 'company';
-                console.log($scope.employerProfile['company']);
-                var val = $scope.employerProfile['company'];
-
-                $scope.companyProfile[key] = val;
-                console.log("send form: ", $scope.companyProfile);
+                var companyJson = {
+                    "_id": $scope.employerProfile['company'],
+                    "name": $(".companyName").val(),
+                    "logo": logo,
+                    "p_c":$(".companyPC").val(),
+                    "address": $("#geocomplete2").val(),
+                    "phone_number": $(".companyPhoneNumber").val()
+                }
+                console.log("send form: ", companyJson);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/employer/updateCompany',
                     method: "POST",
-                    data: $scope.companyProfile
+                    data: companyJson
                 }).then(function () {
-                })
+                    $scope.status = "Company Updated Succesfully!"
+                },
+                    function (response) { // optional
+                        $scope.status = "Error Company Update!"
+                    });
             }
 
 
@@ -1425,9 +1430,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     console.log(data.data[0]);
                     $scope.jobDetails = data.data[0];
 
-                    $.each(data.data[0].requirements[0].combination, function (key,val) {
+                    $.each(data.data[0].requirements[0].combination, function (key, val) {
                         if (val.percentage) {
-                            sumPrioroty+=val.percentage;
+                            sumPrioroty += val.percentage;
                             combinationForJob.push({
                                 'name': val.name,
                                 'mode': val.mode,
@@ -1436,7 +1441,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             });
                         }
                         else
-                            combinationForJob.push({'name':val.name,'mode':val.mode,'years':val.years});
+                            combinationForJob.push({'name': val.name, 'mode': val.mode, 'years': val.years});
                     });
                     $scope.parseExperience();
                     angular.element(".fa-pulse").hide();
@@ -1562,8 +1567,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
     }
     //send form
     $scope.submitForm = function () {
-        $scope.status ='';
-        if (sumSliders == 100 && sumPrioroty==100 && $("#Page2").hasClass("hidden") == true || sumSliders == 100 && sumPrioroty == 100 && sumPrioroty2 == 100 && $("#Page2").hasClass("hidden") == false ) {
+        $scope.status = '';
+        if (sumSliders == 100 && sumPrioroty == 100 && $("#Page2").hasClass("hidden") == true || sumSliders == 100 && sumPrioroty == 100 && sumPrioroty2 == 100 && $("#Page2").hasClass("hidden") == false) {
 
 
             var academy = [];
@@ -1732,7 +1737,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
     };
 
 
-
     var prNum = 0;
     //click on parse Orange button
     $scope.parseExperience = function () {
@@ -1757,7 +1761,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         data: parseExpereince
                     })
                         .then(function (data1) {
-                                 var years;
+                                var years;
                                 var prioroty;
                                 var percentage;
                                 if (data1.data.length > 0) {
@@ -1860,14 +1864,14 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                     if (currentVal < input.attr('max')) {
                         input.val(currentVal + 10).change();
-                            sumPrioroty += 10;
+                        sumPrioroty += 10;
                     }
                     if (parseInt(input.val()) == input.attr('max')) {
                         $(this).attr('disabled', true);
                     }
 
                 }
-                else if(type == 'plus' && sumPrioroty2 < 100 && className == 'center2'){
+                else if (type == 'plus' && sumPrioroty2 < 100 && className == 'center2') {
                     if (currentVal < input.attr('max')) {
                         input.val(currentVal + 10).change();
                         sumPrioroty2 += 10;
@@ -1876,7 +1880,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         $(this).attr('disabled', true);
                     }
                 }
-                    } else {
+            } else {
                 input.val(0);
             }
             $('.input-number').focusin(function () {
@@ -1920,7 +1924,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         if (className == 'center1')
                             sumPrioroty -= 10;
                         else
-                            sumPrioroty2 -=10;
+                            sumPrioroty2 -= 10;
                     }
                     if (parseInt(input.val()) == 0) {
                         $(this).attr('disabled', true);
