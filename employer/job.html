@@ -28,7 +28,8 @@
             <div class="form-group">
                 <label>Sector:</label>
                 <select name="sector" class="form-control sector" required>
-                    <option ng-selected="jobDetails.sector == 'software'" value="software engineering">Software
+                    <option></option>
+                    <option ng-selected="jobDetails.sector == 'software engineering'" value="software engineering">Software
                         Engineering
                     </option>
                     <option disabled>
@@ -47,6 +48,7 @@
             <div class="form-group">
                 <label> Degree Name:</label>
                 <select name="degree_name" class="form-control degree_name" required>
+                    <option></option>
                     <option ng-selected="jobDetails.academy['degree_name'] == 'software engineering'"
                             value="software engineering">Software
                         Engineering
@@ -248,7 +250,6 @@
                        ng-click="parseExperience()" value="Parse my Experience">
             </div>
             <i class="fa fa-refresh fa-spin fa-spin2 fa-3x fa-fw margin-bottom"></i>
-
             <div class="form-group">
                 <section class="operators hidden">
                     <div id="Page" class="Page">
@@ -311,14 +312,13 @@
                                         <option>3</option>
                                         <option>5</option>
                                     </select>
-                                    <input type="text" class="form-control" ng-change="priority()" value="0"
-                                           ng-model="priority[$index]"/>
 
                                     <h3>Percentage: </h3>
                                 </div>
-                                <div class='Item mustItem1'><h2>MUST</h2></div>
-                                <div class='Item advantageItem1'><h2>Advantage</h2></div>
-                                <div class='Item orItem1'><h2>OR</h2></div>
+
+                                <div class='Item mustItem1' ><h2>MUST</h2></div>
+                                <div class='Item advantageItem1' ><h2>Advantage</h2></div>
+                                <div class='Item orItem1' ><h2>OR</h2></div>
                             </div>
                             <!--
                                                         <button id="addOr" class="btn btn-default">Click to add OR</button>-->
@@ -333,9 +333,9 @@
 
                             <div id="CopyItem2" class="CopyItem">Drag into the Operators</div>
                             <div id="Items2" class="Items">
-                                <div class="Item mustItem2"><h2>MUST</h2></div>
-                                <div class="Item advantageItem2"><h2>Advantage</h2></div>
-                                <div class="Item orItem2"><h2>OR</h2></div>
+                                <div class="Item mustItem2" ><h2>MUST</h2></div>
+                                <div class="Item advantageItem2" ><h2>Advantage</h2></div>
+                                <div class="Item orItem2" ><h2>OR</h2></div>
                             </div>
                         </div>
                     </div>

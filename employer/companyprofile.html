@@ -69,8 +69,10 @@
 														 class="form-control" id="usr" name="address">
 				</div>
 				<div class="form-group">
-					<label for="usr">Address:</label> <input type="text" required value="{{companyProfile['address']}}" ng-model="companyProfile['address']"
-															 class="form-control" id="usr" name="address">
+					<label>Address:</label> <input class="form-control"  id="geocomplete2" ng-model="employerProfile['address']"
+												   type="text"
+												   name="address" value="{{employerProfile['address']}}"
+												   placeholder="Type in an address" size="90" autocomplete="on">
 				</div>
 				<div class="form-group">
 					<label for="usr">Phone number:</label> <input type="text" required value="{{companyProfile['phone_number']}}" ng-model="companyProfile['phone_number']"

@@ -1,231 +1,107 @@
 <style>
-    DIV.Page
-    {
-        display: inline-block;
-        padding: 0px;
-        width: 600px;
-        min-height: 400px;
-        margin: auto;
-        background-color: #FFF;
-        border: 1px solid #999;
-    }
+    .center {
+        width: 150px;
+        margin: 40px auto;
 
-    DIV.Container
-    {
-        margin: 10px;
-        border: 1px dashed #CCC;
     }
-
-    A.NewItem
-    {
-        display: block;
-        margin: 5px;
-        background-color: #FFF;
-        text-align: center;
-        padding: 25px;
-        color: #AAA;
-        cursor: pointer;
-    }
-
-    A.NewItem:hover
-    {
-        background-color: #E6FFE6;
-        color: #555;
-    }
-
-    DIV.CopyItem
-    {
-        display: none;
-        margin: 5px;
-        background-color: #FFF;
-        text-align: center;
-        padding: 25px;
-        color: #AAA;
-        cursor: pointer;
-    }
-
-    DIV.CopyItemActive
-    {
-        background-color:#CCF8FF;
-        color:#555;
-    }
-
-    .Item
-    {
-        margin: 5px;
-        height: 80px;
-        border:1px solid #CCC;
-        background-color: #fff;
-    }
-
-    DIV.ItemPlaceHolder
-    {
-        margin: 5px;
-        height: 80px;
-        background-color: #FFF4D9;
-    }
-
-
-</style>
-<style>
-
-    .operator{background: #ccc;}
-    .operators input , .Page input {
-        background: none;
-        border: 0;
-        text-align: center;
-        font-size: 21px;
-        width: 100%;
-        float: left;
-        position: inherit !important;
-        margin-left: 0px !important;
-    }
-    .btn-default:hover , .Page input:hover {
-        color: #333;
-        background-color: #e6e6e6;
-        border-color: #adadad;
-    }
-
-    .operators .Item {
-        margin: 5px;
-        height: 80px;
-        padding: 5px 10px;
-        border: 1px solid #CCC;
-    }
-    .Item h2{    text-align: center;
-        font-size: 3.5vw;}
-    .operators select{width: 30%;
-        float: left;
-        margin-top: 3px;}
-    .form-control {
-        display: block;
-        width: 100%;
-        height: 34px;
-        padding: 6px 12px;
-        font-size: 14px;
-        line-height: 1.42857143;
-        color: #555;
-        background-color: #fff;
-        background-image: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    }
-    .Item > h3 {
-        float: right;
-    }
-    .Item > select + input {
-        float: right;
-        width: 20%;
-    }
-    #addmust {
-        margin: 10px 10px;
-        -webkit-appearance: button;
-        cursor: pointer;
-    }
-
 </style>
 
-<script src="js/jquery-1.11.1.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-select.min.css">
+<link rel="stylesheet" href="css/animate.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" media="all" href="css/style.css"/>
 
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/progressbar.min.js"></script>
+<script src="js/jquery.ui.touch-punch.min.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
-    var itemCount = 3;
-    var awaitingCopy = false;
-
-    $(init);
-
-    function init() {
-        $("#Items").sortable({
-            revert: true,
-            placeholder: "ItemPlaceHolder",
-            opacity: 0.6,
-            start: StartDrag,
-            stop: StopDrag
-        });
 
 
-        $("#NewItem").click(function(e) {
+    $(document).ready(function () {
+        $('.addnew').click(function (e) {
             e.preventDefault();
-            itemCount++;
-            var input = '<input type="text" placeholder="Please type Language"><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
-
-            var element = $("<div class='Item' id='itemCount"+itemCount+"'>" + input + "</div>");
-            $("#Items").append(element);
-            element.hide().slideDown(500);
+            $(".input-group").clone().appendTo( ".center" );
         });
-    }
 
-    function CopyItem(element) {
-        awaitingCopy = false;
-        var clone = element.clone();
-        $("#Items").append(clone);
-        clone.hide().slideDown(500);
-    }
+        //plugin bootstrap minus and plus
+        //http://jsfiddle.net/laelitenetwork/puJ6G/
+        $('.btn-number').click(function (e) {
+            e.preventDefault();
 
-    function StartDrag() {
-        $("#NewItem").hide();
-        $("#CopyItem").show();
-    }
+            fieldName = $(this).attr('data-field');
+            type = $(this).attr('data-type');
+            var input = $("input[name='" + fieldName + "']");
+            var currentVal = parseInt(input.val());
+            if (!isNaN(currentVal)) {
+                if (type == 'minus') {
 
-    function StopDrag(event, ui) {
-        if (awaitingCopy) {
-            $(this).sortable('cancel');
-            CopyItem($(ui.item));
-        }
-        $("#NewItem").show();
-        $("#CopyItem").hide();
-    }
+                    if (currentVal > input.attr('min')) {
+                        input.val(currentVal - 10).change();
+                    }
+                    if (parseInt(input.val()) == 0) {
+                        $(this).attr('disabled', true);
+                    }
 
+                } else if (type == 'plus') {
 
+                    if (currentVal < input.attr('max')) {
+                        input.val(currentVal + 10).change();
+                    }
+                    if (parseInt(input.val()) == input.attr('max')) {
+                        $(this).attr('disabled', true);
+                    }
 
-
-    /* ADD ANOTHER OPERATOR */
-    $("#addmust").click(function () {
-        $('').appendTo((".operators"));
-        angular.element("#Page2").removeClass("hidden");
-        angular.element(".operators > h3").show();
-        $("#addmust").hide();
-    });
-
-    /* SEND */
-    $("#send").click(function () {
-        angular.forEach("#Items ", function (value, key) {
-            var element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select><input type='text' class='form-control' value='0'/><h3>Percentage: </h3></div>");
-            $(".mustItem1").after(element);
-            angular.element(".fa-spin").hide();
-            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                }
+            } else {
+                input.val(0);
+            }
         });
-    });
+        $('.input-number').focusin(function () {
+            $(this).data('oldValue', $(this).val());
+        });
+        $('.input-number').change(function () {
 
+            minValue = parseInt($(this).attr('min'));
+            maxValue = parseInt($(this).attr('max'));
+            valueCurrent = parseInt($(this).val());
+
+            name = $(this).attr('name');
+            if (valueCurrent >= minValue) {
+                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                $(this).val($(this).data('oldValue'));
+            }
+            if (valueCurrent <= maxValue) {
+                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+            } else {
+                $(this).val($(this).data('oldValue'));
+            }
+
+
+        });
+
+    });
 </script>
-
-<script src="js/lib/angular/angular.min.js"></script>
-<div id="Page" class="Page">
-    <div class="Container">
-        <div id="Items" class="Items operators">
-            <div class='Item mItem1 operator'><h2>MUST</h2></div>
-            <div class='Item aItem1 operator'><h2>Advantage</h2></div>
-            <div class='Item oItem1 operator'><h2>OR</h2></div>
-        </div>
-        <a id="NewItem" class="NewItem">Click to Add Item </a>
+<div class="center">
+    <div class="input-group">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]">
+                  <i class="fa fa-minus" aria-hidden="true"></i>
+              </button>
+          </span>
+        <input type="text" name="quant[2]" class="form-control input-number" disabled value="0" min="0" max="100">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+              </button>
+          </span>
     </div>
-    <input type="button" id="addmust" class="btn btn-default" value="Add another Priority Operator">
 
-<!--
-    <div id="Page2" class="Page hidden">
-        <div class="Container"><a id="NewItem2" class="NewItem">Click to Add Item </a>
-
-            <div id="CopyItem2" class="CopyItem">Drop to Copy Item</div>
-            <div id="Items2" class="Items">
-                <div class="Item mustItem2"><h2>MUST</h2></div>
-                <div class="Item advantageItem2"><h2>Advantage</h2></div>
-                <div class="Item orItem2"><h2>OR</h2></div>
-            </div>
-        </div>
-    </div>-->
+    <button type="button" value="Add new!" class="btn btn-info btn-number addnew">Add new!!!</button>
 </div>
-<input type="button" id="send" class="btn btn-default" value="Send">

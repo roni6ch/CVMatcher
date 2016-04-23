@@ -943,6 +943,8 @@ footer div a {
 }
 
 .operators input {
+
+    color: #23527c;
     background: none;
     border: 0;
     text-align: center;
@@ -1026,7 +1028,7 @@ footer div a {
 }
 
 .operators select {
-    width: 30%;
+    width: 11%;
     float: left;
     margin-top: 3px;
 }
@@ -1110,6 +1112,7 @@ footer div a {
 
 .mustItem1, .advantageItem1, .orItem1, .mustItem2, .advantageItem2, .orItem2 {
     background-color: #ccc;
+    pointer-events: none;
 }
 
 #sliders {
