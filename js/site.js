@@ -1415,65 +1415,112 @@ app.controller('resumeController',
 
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile) {
 
-    $id = $location.path().split('/')[1];
-    $("#geocomplete").geocomplete();
-    angular.element('.selectpicker').selectpicker();
+        $id = $location.path().split('/')[1];
+        $("#geocomplete").geocomplete();
+        angular.element('.selectpicker').selectpicker();
 
-    $jobId = $location.path().split('/')[2];
-    var sumSliders = 0;
-    var combinationForJob = [];
-    var sumPrioroty = 0;
-    var sumPrioroty2 = 0;
-    //edit job - get AJAX details
-    $scope.getJobJson = function () {
+        $jobId = $location.path().split('/')[2];
+        var sumSliders = 0;
+        var combinationForJob = [];
+        var sumPrioroty = 0;
+        var sumPrioroty2 = 0;
+        //edit job - get AJAX details
+        $scope.getJobJson = function () {
 
-        if ($id == 'job') {
-            $http({
-                url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
-                method: "POST",
-                data: {
-                    "matching_object_id": $jobId,
-                    "matching_object_type": "job"
-                }
-            })
-                .then(function (data) {
-                    console.log(data.data[0]);
-                    $scope.jobDetails = data.data[0];
+            if ($id == 'job') {
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                    method: "POST",
+                    data: {
+                        "matching_object_id": $jobId,
+                        "matching_object_type": "job"
+                    }
+                })
+                    .then(function (data) {
+                        console.log(data.data[0]);
+                        $scope.jobDetails = data.data[0];
 
-                    $.each(data.data[0].requirements[0].combination, function (key, val) {
-                        if (val.percentage) {
-                            sumPrioroty += val.percentage;
-                            combinationForJob.push({
-                                'name': val.name,
-                                'mode': val.mode,
-                                'years': val.years,
-                                'percentage': val.percentage
+                        $.each(data.data[0].requirements[0].combination, function (key, val) {
+                            if (val.percentage) {
+                                sumPrioroty += val.percentage;
+                                combinationForJob.push({
+                                    'name': val.name,
+                                    'mode': val.mode,
+                                    'years': val.years,
+                                    'percentage': val.percentage
+                                });
+                            }
+                            else
+                                combinationForJob.push({'name': val.name, 'mode': val.mode, 'years': val.years});
+                        });
+                        $scope.parseExperience();
+
+                        angular.element(".fa-pulse").hide();
+
+
+                        //SLIDERS
+                        var sliders = $("#sliders .slider");
+                        var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
+                        var i = 0;
+                        $scope.formula = data.data[0].formula;
+                        var j = 0;
+                        var tmpNum = 0;
+                        sliders.each(function () {
+                            tmpNum += Number(data.data[0].formula[formulaJson[j++]]);
+                        });
+                        $scope.totalSum = tmpNum;
+                        sumSliders = 100;
+                        sliders.each(function () {
+                            var availableTotal = 100;
+                            $(this).empty().slider({
+                                value: data.data[0].formula[formulaJson[i++]],
+                                min: 0,
+                                max: 100,
+                                range: "min",
+                                step: 10,
+                                slide: function (event, ui) {
+                                    // Update display to current value
+                                    $(this).siblings().text(ui.value);
+                                    var total = 0;
+
+                                    sliders.not(this).each(function () {
+                                        total += Number($(this).slider("option", "value"));
+                                    });
+
+                                    // Need to do this because apparently jQ UI
+                                    // does not update value until this event completes
+                                    total += ui.value;
+                                    sumSliders = total;
+                                    if (total <= 100) {
+                                        var max = availableTotal - total;
+
+                                        // Update each slider
+                                        sliders.not(this).each(function () {
+                                            var t = $(this),
+                                                value = t.slider("option", "value");
+                                            var sum = +Number(+max + +value);
+                                            t.slider("option", "max", sum)
+                                                .siblings().text(value + '/' + sum);
+                                            t.slider('value', value);
+                                        });
+                                    }
+                                }
                             });
-                        }
-                        else
-                            combinationForJob.push({'name': val.name, 'mode': val.mode, 'years': val.years});
-                    });
-                    $scope.parseExperience();
+                        });
 
+                    });
+            }
+            //im in newJob - init parameters
+            else {
+
+                //setTimeout for 1 mil sec because there is a problem loading js after angular
+                setTimeout(function () {
                     angular.element(".fa-pulse").hide();
-
-
-                    //SLIDERS
                     var sliders = $("#sliders .slider");
-                    var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
-                    var i = 0;
-                    $scope.formula = data.data[0].formula;
-                    var j = 0;
-                    var tmpNum = 0;
-                    sliders.each(function () {
-                        tmpNum += Number(data.data[0].formula[formulaJson[j++]]);
-                    });
-                    $scope.totalSum = tmpNum;
-                    sumSliders = 100;
                     sliders.each(function () {
                         var availableTotal = 100;
-                        $(this).empty().slider({
-                            value: data.data[0].formula[formulaJson[i++]],
+                        $(this).slider({
+                            value: 0,
                             min: 0,
                             max: 100,
                             range: "min",
@@ -1499,368 +1546,334 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                         var t = $(this),
                                             value = t.slider("option", "value");
                                         var sum = +Number(+max + +value);
+
                                         t.slider("option", "max", sum)
                                             .siblings().text(value + '/' + sum);
                                         t.slider('value', value);
                                     });
                                 }
                             }
-                        });
-                    });
-
-                });
+                        })
+                    })
+                }, 100);
+            }
         }
-        //im in newJob - init parameters
-        else {
 
-            //setTimeout for 1 mil sec because there is a problem loading js after angular
-            setTimeout(function () {
-                angular.element(".fa-pulse").hide();
-                var sliders = $("#sliders .slider");
-                sliders.each(function () {
-                    var availableTotal = 100;
-                    $(this).slider({
-                        value: 0,
-                        min: 0,
-                        max: 100,
-                        range: "min",
-                        step: 10,
-                        slide: function (event, ui) {
-                            // Update display to current value
-                            $(this).siblings().text(ui.value);
-                            var total = 0;
+        /*
+         $http.get("json/languages.json").success(function (data) {
+         $scope.langs = data;
+         //<div class='Item'><input type="text" value=""/><select class="form-control"><h3>Prioroty: </h3></div>
+         });*/
 
-                            sliders.not(this).each(function () {
-                                total += Number($(this).slider("option", "value"));
-                            });
 
-                            // Need to do this because apparently jQ UI
-                            // does not update value until this event completes
-                            total += ui.value;
-                            sumSliders = total;
-                            if (total <= 100) {
-                                var max = availableTotal - total;
+        $scope.exitStatus = function () {
+            //if user clickd ok then move to search jobs page - need to wait to close modal
+            if (sumSliders == 100) {
+                $timeout(function () {
+                    //    window.location.href = '/cvmatcher/#/myjobs';
+                }, 1000);
+            }
+            else {
+                $scope.status = "";
+            }
+        }
+        //send form
+        $scope.submitForm = function () {
+            $scope.status = 'Please wait';
+            if (sumSliders == 100 && sumPrioroty == 100 && $("#Page2").hasClass("hidden") == true || sumSliders == 100 && sumPrioroty == 100 && sumPrioroty2 == 100 && $("#Page2").hasClass("hidden") == false) {
 
-                                // Update each slider
-                                sliders.not(this).each(function () {
-                                    var t = $(this),
-                                        value = t.slider("option", "value");
-                                    var sum = +Number(+max + +value);
 
-                                    t.slider("option", "max", sum)
-                                        .siblings().text(value + '/' + sum);
-                                    t.slider('value', value);
-                                });
-                            }
-                        }
+                var academy = [];
+                //scope_of_position
+                $.each($(".academy input:checked"), function () {
+                    academy.push($(this).val());
+                });
+                var degree_type = [];
+                //scope_of_position
+                $.each($(".degree_type input:checked"), function () {
+                    degree_type.push($(this).val());
+                });
+                var scope_of_position = [];
+                //scope_of_position
+                $.each($(".scope_of_position input:checked"), function () {
+                    scope_of_position.push($(this).val());
+                });
+                var candidate_type = [];
+                //scope_of_position
+                $.each($(".candidate_type input:checked"), function () {
+                    candidate_type.push($(this).val());
+                });
+
+
+                var requirements = [];
+                //requerment- MUST
+                var combination = [];
+                $('#Items .mItem').each(function (idx, value) {
+                    var name = $(value).find("input:nth-child(1)").val();
+                    var years = $(value).find("select").val().split(" ")[0];
+
+                    var mode = "must";
+                    var percentage = $(value).find(".center1").val();
+                    if (!percentage)
+                        percentage = "0";
+                    combination.push({
+                        "name": name,
+                        "years": parseInt(years),
+                        "mode": mode,
+                        "percentage": parseInt(percentage)
                     })
                 })
-            }, 100);
-        }
-    }
-
-    /*
-     $http.get("json/languages.json").success(function (data) {
-     $scope.langs = data;
-     //<div class='Item'><input type="text" value=""/><select class="form-control"><h3>Prioroty: </h3></div>
-     });*/
-
-
-    $scope.exitStatus = function () {
-        //if user clickd ok then move to search jobs page - need to wait to close modal
-        if (sumSliders == 100) {
-            $timeout(function () {
-                //    window.location.href = '/cvmatcher/#/myjobs';
-            }, 1000);
-        }
-        else {
-            $scope.status = "";
-        }
-    }
-    //send form
-    $scope.submitForm = function () {
-        $scope.status = '';
-        if (sumSliders == 100 && sumPrioroty == 100 && $("#Page2").hasClass("hidden") == true || sumSliders == 100 && sumPrioroty == 100 && sumPrioroty2 == 100 && $("#Page2").hasClass("hidden") == false) {
-
-
-            var academy = [];
-            //scope_of_position
-            $.each($(".academy input:checked"), function () {
-                academy.push($(this).val());
-            });
-            var degree_type = [];
-            //scope_of_position
-            $.each($(".degree_type input:checked"), function () {
-                degree_type.push($(this).val());
-            });
-            var scope_of_position = [];
-            //scope_of_position
-            $.each($(".scope_of_position input:checked"), function () {
-                scope_of_position.push($(this).val());
-            });
-            var candidate_type = [];
-            //scope_of_position
-            $.each($(".candidate_type input:checked"), function () {
-                candidate_type.push($(this).val());
-            });
-
-
-            var requirements = [];
-            //requerment- MUST
-            var combination = [];
-            $('#Items .mItem').each(function (idx, value) {
-                var name = $(value).find("input:nth-child(1)").val();
-                var years = $(value).find("select").val().split(" ")[0];
-
-                var mode = "must";
-                var percentage = $(value).find(".center1").val();
-                if (!percentage)
-                    percentage = "0";
-                combination.push({
-                    "name": name,
-                    "years": parseInt(years),
-                    "mode": mode,
-                    "percentage": parseInt(percentage)
+                //requerment- ADVANTAGE
+                $('#Items .aItem').each(function (idx, value) {
+                    var name = $(value).find("input:nth-child(1)").val();
+                    var years = $(value).find("select").val().split(" ")[0];
+                    var mode = "adv";
+                    combination.push({
+                        "name": name,
+                        "years": parseInt(years),
+                        "mode": mode
+                    })
                 })
-            })
-            //requerment- ADVANTAGE
-            $('#Items .aItem').each(function (idx, value) {
-                var name = $(value).find("input:nth-child(1)").val();
-                var years = $(value).find("select").val().split(" ")[0];
-                var mode = "adv";
-                combination.push({
-                    "name": name,
-                    "years": parseInt(years),
-                    "mode": mode
+                $('#Items .oItem').each(function (idx, value) {
+                    var name = $(value).find("input:nth-child(1)").val();
+                    var years = $(value).find("select").val().split(" ")[0];
+                    var mode = "or";
+                    combination.push({
+                        "name": name,
+                        "years": parseInt(years),
+                        "mode": mode
+                    })
                 })
-            })
-            $('#Items .oItem').each(function (idx, value) {
-                var name = $(value).find("input:nth-child(1)").val();
-                var years = $(value).find("select").val().split(" ")[0];
-                var mode = "or";
-                combination.push({
-                    "name": name,
-                    "years": parseInt(years),
-                    "mode": mode
-                })
-            })
-            requirements.push({"combination": combination});
+                requirements.push({"combination": combination});
 
-            //second requerments
-            var combination2 = [];
-            $('#Items2 .mItem2').each(function (idx, value) {
-                var name = $(value).find("input:nth-child(1)").val();
-                var years = $(value).find("select").val().split(" ")[0];
+                //second requerments
+                var combination2 = [];
+                $('#Items2 .mItem2').each(function (idx, value) {
+                    var name = $(value).find("input:nth-child(1)").val();
+                    var years = $(value).find("select").val().split(" ")[0];
 
-                var mode = "must";
-                var percentage = $(value).find(".center2").val();
-                if (!percentage)
-                    percentage = "0";
-                combination2.push({
-                    "name": name,
-                    "years": parseInt(years),
-                    "mode": mode,
-                    "percentage": parseInt(percentage)
+                    var mode = "must";
+                    var percentage = $(value).find(".center2").val();
+                    if (!percentage)
+                        percentage = "0";
+                    combination2.push({
+                        "name": name,
+                        "years": parseInt(years),
+                        "mode": mode,
+                        "percentage": parseInt(percentage)
+                    })
                 })
-            })
-            $('#Items2 .aItem2').each(function (idx, value) {
-                var name = $(value).find("input:nth-child(1)").val();
-                var years = $(value).find("select").val().split(" ")[0];
-                var mode = "adv";
-                combination2.push({
-                    "name": name,
-                    "years": parseInt(years),
-                    "mode": mode
+                $('#Items2 .aItem2').each(function (idx, value) {
+                    var name = $(value).find("input:nth-child(1)").val();
+                    var years = $(value).find("select").val().split(" ")[0];
+                    var mode = "adv";
+                    combination2.push({
+                        "name": name,
+                        "years": parseInt(years),
+                        "mode": mode
+                    })
                 })
-            })
-            $('#Items2 .oItem2').each(function (idx, value) {
-                var name = $(value).find("input:nth-child(1)").val();
-                var years = $(value).find("select").val().split(" ")[0];
-                var mode = "or";
-                combination2.push({
-                    "name": name,
-                    "years": parseInt(years),
-                    "mode": mode
+                $('#Items2 .oItem2').each(function (idx, value) {
+                    var name = $(value).find("input:nth-child(1)").val();
+                    var years = $(value).find("select").val().split(" ")[0];
+                    var mode = "or";
+                    combination2.push({
+                        "name": name,
+                        "years": parseInt(years),
+                        "mode": mode
+                    })
                 })
-            })
 
-            if (combination2.length > 0) {
-                requirements.push({"combination": combination2});
+                if (combination2.length > 0) {
+                    requirements.push({"combination": combination2});
+                }
+
+
+                var addNewJob = {
+                    "matching_object_type": "job",
+                    "date": new Date(),
+                    "original_text": {
+                        "title": $(".jobName").val(),
+                        "description": $("#description").html(),
+                        "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
+                    },
+                    "sector": $(".sector :selected").val(),
+                    "locations": [$("#geocomplete").val()],
+                    "candidate_type": candidate_type,
+                    "scope_of_position": scope_of_position,
+                    "academy": {
+                        "academy_type": academy,
+                        "degree_name": $(".degree_name :selected").val(),
+                        "degree_type": degree_type
+                    },
+                    "formula": {
+                        "locations": parseInt($(".locationsSlider").text().split("/")[0]),
+                        "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
+                        "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
+                        "academy": parseInt($(".academySlider").text().split("/")[0]),
+                        "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
+                    },
+                    "requirements": requirements,
+                    "compatibility_level": $scope.compability,
+                    "user": $.cookie('user_id')
+
+                }
+
+                console.log(addNewJob);
+
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
+                    method: "POST",
+                    data: addNewJob
+                })
+                    .then(function (data) {
+                            if (data != null)
+                                $scope.status = "Job Send Succesfuly";
+                        },
+                        function (response) { // optional
+                            $scope.status = "Job did not send";
+                            console.log("addMatchingObject send form AJAX failed!");
+                        });
+                //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
+            }
+            if (sumSliders != 100) {
+                $scope.status = "Please SUM the sliders to 100";
+            }
+            if (sumPrioroty != 100 && $("#Page2").hasClass("hidden") == true) {
+                $scope.status = "Please SUM Prioroty to 100";
+            }
+            if (sumPrioroty != 100 && sumPrioroty2 != 100 && $("#Page2").hasClass("hidden") == false) {
+                $scope.status = "Please SUM All Prioroty to 100";
             }
 
+        };
 
-            var addNewJob = {
-                "matching_object_type": "job",
-                "date": new Date(),
-                "original_text": {
-                    "title": $(".jobName").val(),
-                    "description": $("#description").html(),
-                    "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
-                },
-                "sector": $(".sector :selected").val(),
-                "locations": [$("#geocomplete").val()],
-                "candidate_type": candidate_type,
-                "scope_of_position": scope_of_position,
-                "academy": {
-                    "academy_type": academy,
-                    "degree_name": $(".degree_name :selected").val(),
-                    "degree_type": degree_type
-                },
-                "formula": {
-                    "locations": parseInt($(".locationsSlider").text().split("/")[0]),
-                    "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
-                    "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
-                    "academy": parseInt($(".academySlider").text().split("/")[0]),
-                    "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
-                },
-                "requirements": requirements,
-                "compatibility_level": $scope.compability,
-                "user": $.cookie('user_id')
 
-            }
+        var prNum = 0;
 
-            console.log(addNewJob);
-
+        //click on parse Orange button
+        $scope.parseExperience = function () {
+            var parseExpereince;
             $http({
-                url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
+                url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
                 method: "POST",
-                data: addNewJob
+                data: {"sector": "software engineering"}
             })
                 .then(function (data) {
-                        if (data != null)
-                            $scope.status = "Job Send Succesfuly";
-                    },
-                    function (response) { // optional
-                        $scope.status = "Job did not send";
-                        console.log("addMatchingObject send form AJAX failed!");
-                    });
-            //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
-        }
-        if (sumSliders != 100) {
-            $scope.status = "Please SUM the sliders to 100";
-        }
-        if (sumPrioroty != 100 && $("#Page2").hasClass("hidden") == true) {
-            $scope.status = "Please SUM Prioroty to 100";
-        }
-        if (sumPrioroty != 100 && sumPrioroty2 != 100 && $("#Page2").hasClass("hidden") == false) {
-            $scope.status = "Please SUM All Prioroty to 100";
-        }
-
-    };
+                        parseExpereince = {
+                            "text": $("#requirementsMust").val(),
+                            "words": data.data
+                        };
+                        angular.element(".fa-spin").show();
 
 
-    var prNum = 0;
-    //click on parse Orange button
-    $scope.parseExperience = function () {
-        var parseExpereince;
-        $http({
-            url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
-            method: "POST",
-            data: {"sector": "software engineering"}
-        })
-            .then(function (data) {
-                parseExpereince = {
-                    "text": $("#requirementsMust").val(),
-                    "words": data.data
-                };
-                angular.element(".fa-spin").show();
+                        //Requerments Must
+                        if ($id == 'job') {
+                            angular.forEach(combinationForJob, function (value1, key1) {
+                                years = value1.years;
+                                percentage = value1.percentage;
+                                if (value1.mode == 'must') {
+                                    prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="' + percentage + '" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
+                                    element = $("<div class='Item mItem'><input type='text'  value='" + value1.name + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='select" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
+                                    $(".mustItem1").after(element);
+                                    $('#select' + key1).find('option:contains("' + years + '")').attr("selected", true);
+                                }
+                                prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="' + percentage + '" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
 
+                                if (value1.mode == 'adv') {
+                                    element = $("<div class='Item aItem'><input type='text'  value='" + value1.name + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='selectAdv" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select></div>");
+                                    $(".advantageItem1").after(element);
+                                    $('#selectAdv' + key1).find('option:contains("' + years + '")').attr("selected", true);
+                                }
 
-                //Requerments Must
-                $http({
-                    url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
-                    method: "POST",
-                    data: parseExpereince
-                })
-                    .then(function (data1) {
-                            var years = 0;
-                            var prioroty;
-                            var element;
-                            var percentage;
-                            if (data1.data.length > 0) {
-                                console.log(combinationForJob);
-                                angular.forEach(data1.data, function (value, key) {
-                                    if (combinationForJob.length > 0) {
-                                        angular.forEach(combinationForJob, function (value1, key1) {
-                                            if (value1.name == value && value1.mode == 'must') {
-                                                years = value1.years;
-                                                percentage = value1.percentage;
-                                                prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="' + percentage + '" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
-                                                element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='select" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
-                                                $(".mustItem1").after(element);
-                                                $('#select' + key1).find('option:contains("' + years + '")').attr("selected", true);
-                                            }
-                                        });
-                                    }
-                                    else {
-                                        prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
-                                        element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='select2" + key + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
-                                        $(".mustItem1").after(element);
-                                        $('#select2' + key).find('option:contains("' + years + '")').attr("selected", true);
-                                    }
-                                    prNum++;
-                                    angular.element(".fa-spin").hide();
-                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                                });
-                            }
-                            else {
+                                if (value1.mode == 'or') {
+                                    element = $("<div class='Item aItem'><input type='text'  value='" + value1.name + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='selectOr" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select></div>");
+                                    $(".orItem1").after(element);
+                                    $('#selectOr' + key1).find('option:contains("' + years + '")').attr("selected", true);
+                                }
+
+                                prNum++;
+
                                 angular.element(".fa-spin").hide();
                                 angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                            }
-                        },
-                        function (response) { // optional
-
-                            angular.element(".fa-spin").hide();
-                            console.log("findIfKeyWordsExistsJOB AJAX failed!");
-                        });
-
-                //Requerments Advantage
-                parseExpereince = {
-                    "text": $("#requirementsAdvantage").val(),
-                    "words": data.data
-                };
-                $http({
-                    url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
-                    method: "POST",
-                    data: parseExpereince
-                })
-                    .then(function (data2) {
-                            angular.forEach(data2.data, function (value, key) {
-                                    var years = 0;
-                                    var element ='';
-                                    if (combinationForJob.length > 0)
-                                        angular.forEach(combinationForJob, function (val1, key1) {
-                                            if (val1.name == value && val1.mode == 'adv') {
-                                                years = val1.years;
-                                                element = $("<div class='Item aItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='selectAdv" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select></div>");
-                                            }
-                                             $(".advantageItem1").after(element);
-                                            $('#selectAdv' + key1).find('option:contains("' + years + '")').attr("selected", true);
+                            })
+                        }
+                        else {
+                            $http({
+                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                method: "POST",
+                                data: parseExpereince
+                            })
+                                .then(function (data1) {
+                                        var years = 0;
+                                        var prioroty;
+                                        var element;
+                                        var percentage;
+                                        if (data1.data.length > 0) {
+                                            angular.forEach(data1.data, function (value, key) {
+                                                prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
+                                                element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='select2" + key + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
+                                                $(".mustItem1").after(element);
+                                                $('#select2' + key).find('option:contains("' + years + '")').attr("selected", true);
+                                                prNum++;
+                                                angular.element(".fa-spin").hide();
+                                                angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                            });
+                                        }
+                                        else {
                                             angular.element(".fa-spin").hide();
-
                                             angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                        }
+                                    },
+                                    function (response) { // optional
+
+                                        angular.element(".fa-spin").hide();
+                                        console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                    });
+
+                        //Requerments Advantage
+
+                            parseExpereince = {
+                                "text": $("#requirementsAdvantage").val(),
+                                "words": data.data
+                            };
+                            $http({
+                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                method: "POST",
+                                data: parseExpereince
+                            })
+                                .then(function (data2) {
+                                        angular.forEach(data2.data, function (value, key) {
+                                            var years = 0;
+                                            var element = '';
+                                            element = $("<div class='Item aItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='selectAdv" + key + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select></div>");
+                                            $(".advantageItem1").after(element);
+                                            $('#selectAdv' + key).find('option:contains("' + years + '")').attr("selected", true);
+                                            angular.element(".fa-spin").hide();
+                                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+
                                         });
-                            });
-                                },
-                                function (response) { // optional
-                                    angular.element(".fa-spin").hide();
-                                    console.log("findIfKeyWordsExistsJOB AJAX failed!");
-                                });
+                                    },
+                                    function (response) { // optional
+                                        angular.element(".fa-spin").hide();
+                                        console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                    });
+
+                        }
+
+                    },
+                    function (response) { // optional
+                        console.log("getKeyWordsBySector AJAX failed!");
+                    });
 
 
-                        },
-                        function (response) { // optional
-                            console.log("getKeyWordsBySector AJAX failed!");
-                        });
+            angular.element(".operators").removeClass("hidden");
+            angular.element(".experienceBeforeParse").addClass(
+                "hidden");
+            angular.element(".requirements").addClass(
+                "hidden");
 
-
-                angular.element(".operators").removeClass("hidden");
-                angular.element(".experienceBeforeParse").addClass(
-                    "hidden");
-                angular.element(".requirements").addClass(
-                    "hidden");
-
-            }
+        }
 
 
         var itemCount = 0;
@@ -2110,7 +2123,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
     }
-    );
+);
 
 /*
  * ********************* DIRECTIVES ****************
