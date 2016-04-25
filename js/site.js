@@ -183,6 +183,10 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
             if (firstTimeLogIn == true) {
 
+                if (profile.name.givenName == '')
+                    userName = '';
+                if (profile.name.familyName == '')
+                    familyName = '';
                 //add new user
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/addUser',
@@ -420,7 +424,15 @@ app
                                 .then(function (data) {
                                         angular.element(".fa-pulse").hide();
                                         console.log(data);
+
                                         $scope.jobSeekerCV = data.data[0];
+
+
+                                        if (!data) {
+
+                                            $scope.addEducation('education');
+                                            $scope.addEducation('employment');
+                                        }
                                         /*if (data.length == 0 || data == undefined || data == "undefined" || data == null || data == []) {
                                          $scope.addEducation('education');
                                          $scope.addEducation('employment');
@@ -437,9 +449,6 @@ app
                         console.log("getIdOfCV AJAX failed!", response);
                     });
 
-
-                $scope.addEducation('education');
-                $scope.addEducation('employment');
 
             }
 
@@ -583,13 +592,14 @@ app
 
                 var jobSeekerCVScopeOfPosition = [];
                 //scope_of_position
+
                 $.each($(".jobSeekerCVScopeOfPosition input:checked"), function () {
                     jobSeekerCVScopeOfPosition.push($(this).val());
                 });
+
                 /*var key = 'scope_of_position';
                  var val = $('.scope_of_position').find(":selected").val();*/
                 var jobSeekerCVAcademy = [];
-                //scope_of_position
                 $.each($(".jobSeekerCVAcademy input:checked"), function () {
                     jobSeekerCVAcademy.push($(this).val());
                 });
@@ -1012,7 +1022,7 @@ app.controller('companyProfileController',
                 "address": $("#geocomplete").val(),
                 "email": $(".email").val(),
                 "phone_number": $(".phoneNumber").val(),
-                "linkedin":$(".linkedin").val()
+                "linkedin": $(".linkedin").val()
             }
 
             console.log(userJson);
@@ -1036,7 +1046,7 @@ app.controller('companyProfileController',
                     "user_id": $.cookie('user_id'),
                     "name": $(".companyName").val(),
                     "logo": logo,
-                    "p_c":$(".companyPC").val(),
+                    "p_c": $(".companyPC").val(),
                     "address": $("#geocomplete2").val(),
                     "phone_number": $(".companyPhoneNumber").val()
                 }
@@ -1047,9 +1057,9 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function (data) {
-                    $scope.status = "Company Updated Succesfully!"
-                    console.log(data);
-                },
+                        $scope.status = "Company Updated Succesfully!"
+                        console.log(data);
+                    },
                     function (response) { // optional
                         $scope.status = "Error Company Update!"
                     });
@@ -1061,7 +1071,7 @@ app.controller('companyProfileController',
                     "_id": $scope.employerProfile['company'],
                     "name": $(".companyName").val(),
                     "logo": logo,
-                    "p_c":$(".companyPC").val(),
+                    "p_c": $(".companyPC").val(),
                     "address": $("#geocomplete2").val(),
                     "phone_number": $(".companyPhoneNumber").val()
                 }
@@ -1071,8 +1081,8 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function () {
-                    $scope.status = "Company Updated Succesfully!"
-                },
+                        $scope.status = "Company Updated Succesfully!"
+                    },
                     function (response) { // optional
                         $scope.status = "Error Company Update!"
                     });
@@ -1444,6 +1454,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             combinationForJob.push({'name': val.name, 'mode': val.mode, 'years': val.years});
                     });
                     $scope.parseExperience();
+
                     angular.element(".fa-pulse").hide();
 
 
@@ -1458,6 +1469,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         tmpNum += Number(data.data[0].formula[formulaJson[j++]]);
                     });
                     $scope.totalSum = tmpNum;
+                    sumSliders = 100;
                     sliders.each(function () {
                         var availableTotal = 100;
                         $(this).empty().slider({
@@ -1479,7 +1491,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 // does not update value until this event completes
                                 total += ui.value;
                                 sumSliders = total;
-                                if (total <= 200) {
+                                if (total <= 100) {
                                     var max = availableTotal - total;
 
                                     // Update each slider
@@ -1747,142 +1759,202 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             data: {"sector": "software engineering"}
         })
             .then(function (data) {
-                    parseExpereince = {
-                        "text": $("#requirementsMust").val(),
-                        "words": data.data
-                    };
-                    angular.element(".fa-spin").show();
+                parseExpereince = {
+                    "text": $("#requirementsMust").val(),
+                    "words": data.data
+                };
+                angular.element(".fa-spin").show();
 
 
-                    //Requerments Must
-                    $http({
-                        url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
-                        method: "POST",
-                        data: parseExpereince
-                    })
-                        .then(function (data1) {
-                                var years;
-                                var prioroty;
-                                var percentage;
-                                if (data1.data.length > 0) {
-                                    console.log(combinationForJob);
-                                    angular.forEach(data1.data, function (value, key) {
-                                        console.log(value);
-                                        //check if i came from edit job page
-                                        if (combinationForJob.length > 0) {
-                                            angular.forEach(combinationForJob, function (value1, key1) {
-                                                if (value1.name == value) {
-                                                    years = value1.years;
-                                                    percentage = value1.percentage;
-                                                    console.log(percentage);
-                                                    prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="' + percentage + '" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
-
-                                                }
-                                            });
-                                        }
-                                        else
-                                            prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
-
-                                        var element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
-                                        prNum++;
-                                        $timeout(function () {
-                                            $(".mustItem1").after(element);
-                                        }, 100);
-                                        angular.element(".fa-spin").hide();
-                                        angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                                    });
-                                }
-                                else {
+                //Requerments Must
+                $http({
+                    url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                    method: "POST",
+                    data: parseExpereince
+                })
+                    .then(function (data1) {
+                            var years = 0;
+                            var prioroty;
+                            var element;
+                            var percentage;
+                            if (data1.data.length > 0) {
+                                console.log(combinationForJob);
+                                angular.forEach(data1.data, function (value, key) {
+                                    if (combinationForJob.length > 0) {
+                                        angular.forEach(combinationForJob, function (value1, key1) {
+                                            if (value1.name == value && value1.mode == 'must') {
+                                                years = value1.years;
+                                                percentage = value1.percentage;
+                                                prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="' + percentage + '" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
+                                                element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='select" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
+                                                $(".mustItem1").after(element);
+                                                $('#select' + key1).find('option:contains("' + years + '")').attr("selected", true);
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        prioroty = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button" class="btn btn-success btn-number plusButton" data-type="plus" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div>';
+                                        element = $("<div class='Item mItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='select2" + key + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select>" + prioroty + " <h3>Percentage: </h3></div>");
+                                        $(".mustItem1").after(element);
+                                        $('#select2' + key).find('option:contains("' + years + '")').attr("selected", true);
+                                    }
+                                    prNum++;
                                     angular.element(".fa-spin").hide();
-                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                                }
-                            },
-                            function (response) { // optional
-
-                                angular.element(".fa-spin").hide();
-                                alert("findIfKeyWordsExistsJOB AJAX failed!");
-                            });
-
-                    //Requerments Advantage
-                    parseExpereince = {
-                        "text": $("#requirementsAdvantage").val(),
-                        "words": data.data
-                    };
-                    $http({
-                        url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
-                        method: "POST",
-                        data: parseExpereince
-                    })
-                        .then(function (data2) {
-                                angular.forEach(data2.data, function (value, key) {
-                                    var element = $("<div class='Item aItem'><input type='text' value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select class='form-control' name='years'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>");
-                                    $(".advantageItem1").after(element);
-                                    angular.element(".fa-spin").hide();
-
                                     angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
                                 });
-                            },
-                            function (response) { // optional
+                            }
+                            else {
                                 angular.element(".fa-spin").hide();
-                                alert("findIfKeyWordsExistsJOB AJAX failed!");
+                                angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                            }
+                        },
+                        function (response) { // optional
+
+                            angular.element(".fa-spin").hide();
+                            console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                        });
+
+                //Requerments Advantage
+                parseExpereince = {
+                    "text": $("#requirementsAdvantage").val(),
+                    "words": data.data
+                };
+                $http({
+                    url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                    method: "POST",
+                    data: parseExpereince
+                })
+                    .then(function (data2) {
+                            angular.forEach(data2.data, function (value, key) {
+                                    var years = 0;
+                                    var element ='';
+                                    if (combinationForJob.length > 0)
+                                        angular.forEach(combinationForJob, function (val1, key1) {
+                                            if (val1.name == value && val1.mode == 'adv') {
+                                                years = val1.years;
+                                                element = $("<div class='Item aItem'><input type='text'  value='" + value + "' placeHolder='Please type Language'/><h3 style='float:left;'>Years:</h3><select id='selectAdv" + key1 + "' class='form-control' name='years'><option val='0'>0</option><option val='1'>1</option><option val='2'>2</option><option val='3'>3</option><option val='4'>4</option><option val='5'>5</option></select></div>");
+                                            }
+                                             $(".advantageItem1").after(element);
+                                            $('#selectAdv' + key1).find('option:contains("' + years + '")').attr("selected", true);
+                                            angular.element(".fa-spin").hide();
+
+                                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                        });
                             });
+                                },
+                                function (response) { // optional
+                                    angular.element(".fa-spin").hide();
+                                    console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                });
 
 
-                },
-                function (response) { // optional
-                    alert("getKeyWordsBySector AJAX failed!");
-                });
+                        },
+                        function (response) { // optional
+                            console.log("getKeyWordsBySector AJAX failed!");
+                        });
 
 
-        angular.element(".operators").removeClass("hidden");
-        angular.element(".experienceBeforeParse").addClass(
-            "hidden");
-        angular.element(".requirements").addClass(
-            "hidden");
+                angular.element(".operators").removeClass("hidden");
+                angular.element(".experienceBeforeParse").addClass(
+                    "hidden");
+                angular.element(".requirements").addClass(
+                    "hidden");
 
-    }
-
-
-    var itemCount = 0;
-    var awaitingCopy = false;
-
-    $(init);
-
-    //click Plus Button
-
-
-    $(function () {
-        $(document).on("click", ".plusButton", function () {
-            fieldName = $(this).attr('data-field');
-            type = $(this).attr('data-type');
-            var className = $(this).parent().parent().find(".input-number")[0].className.split(" ")[2];
-            var dataPrNum = $(this).parent().parent().find("." + className + ".input-number").attr('data-pr-num');
-            var input = $("input[data-pr-num='" + dataPrNum + "']");
-            var currentVal = parseInt(input.val());
-            if (!isNaN(currentVal)) {
-                if (type == 'plus' && sumPrioroty < 100 && className == 'center1') {
-
-                    if (currentVal < input.attr('max')) {
-                        input.val(currentVal + 10).change();
-                        sumPrioroty += 10;
-                    }
-                    if (parseInt(input.val()) == input.attr('max')) {
-                        $(this).attr('disabled', true);
-                    }
-
-                }
-                else if (type == 'plus' && sumPrioroty2 < 100 && className == 'center2') {
-                    if (currentVal < input.attr('max')) {
-                        input.val(currentVal + 10).change();
-                        sumPrioroty2 += 10;
-                    }
-                    if (parseInt(input.val()) == input.attr('max')) {
-                        $(this).attr('disabled', true);
-                    }
-                }
-            } else {
-                input.val(0);
             }
+
+
+        var itemCount = 0;
+        var awaitingCopy = false;
+
+        $(init);
+
+        //click Plus Button
+
+
+        $(function () {
+            $(document).on("click", ".plusButton", function () {
+                fieldName = $(this).attr('data-field');
+                type = $(this).attr('data-type');
+                var className = $(this).parent().parent().find(".input-number")[0].className.split(" ")[2];
+                var dataPrNum = $(this).parent().parent().find("." + className + ".input-number").attr('data-pr-num');
+                var input = $("input[data-pr-num='" + dataPrNum + "']");
+                var currentVal = parseInt(input.val());
+                if (!isNaN(currentVal)) {
+                    if (type == 'plus' && sumPrioroty < 100 && className == 'center1') {
+
+                        if (currentVal < input.attr('max')) {
+                            input.val(currentVal + 10).change();
+                            sumPrioroty += 10;
+                        }
+                        if (parseInt(input.val()) == input.attr('max')) {
+                            $(this).attr('disabled', true);
+                        }
+
+                    }
+                    else if (type == 'plus' && sumPrioroty2 < 100 && className == 'center2') {
+                        if (currentVal < input.attr('max')) {
+                            input.val(currentVal + 10).change();
+                            sumPrioroty2 += 10;
+                        }
+                        if (parseInt(input.val()) == input.attr('max')) {
+                            $(this).attr('disabled', true);
+                        }
+                    }
+                } else {
+                    input.val(0);
+                }
+                $('.input-number').focusin(function () {
+                    $(this).data('oldValue', $(this).val());
+                });
+                $('.input-number').change(function () {
+
+                    minValue = parseInt($(this).attr('min'));
+                    maxValue = parseInt($(this).attr('max'));
+                    valueCurrent = parseInt($(this).val());
+
+                    name = $(this).attr('name');
+                    if (valueCurrent >= minValue) {
+                        $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
+                    } else {
+                        $(this).val($(this).data('oldValue'));
+                    }
+                    if (valueCurrent <= maxValue) {
+                        $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
+                    } else {
+                        $(this).val($(this).data('oldValue'));
+                    }
+
+
+                });
+            });
+            //click Minus Button
+            $(document).on("click", ".minusButton", function () {
+                fieldName = $(this).attr('data-field');
+                type = $(this).attr('data-type');
+                var className = $(this).parent().parent().find(".input-number")[0].className.split(" ")[2];
+                var dataPrNum = $(this).parent().parent().find("." + className + ".input-number").attr('data-pr-num');
+                var input = $("input[data-pr-num='" + dataPrNum + "']");
+
+                var currentVal = parseInt(input.val());
+                if (!isNaN(currentVal)) {
+                    if (type == 'minus') {
+
+                        if (currentVal > input.attr('min')) {
+                            input.val(currentVal - 10).change();
+                            if (className == 'center1')
+                                sumPrioroty -= 10;
+                            else
+                                sumPrioroty2 -= 10;
+                        }
+                        if (parseInt(input.val()) == 0) {
+                            $(this).attr('disabled', true);
+                        }
+
+                    }
+                } else {
+                    input.val(0);
+                }
+            });
             $('.input-number').focusin(function () {
                 $(this).data('oldValue', $(this).val());
             });
@@ -1907,189 +1979,138 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
             });
         });
-        //click Minus Button
-        $(document).on("click", ".minusButton", function () {
-            fieldName = $(this).attr('data-field');
-            type = $(this).attr('data-type');
-            var className = $(this).parent().parent().find(".input-number")[0].className.split(" ")[2];
-            var dataPrNum = $(this).parent().parent().find("." + className + ".input-number").attr('data-pr-num');
-            var input = $("input[data-pr-num='" + dataPrNum + "']");
-
-            var currentVal = parseInt(input.val());
-            if (!isNaN(currentVal)) {
-                if (type == 'minus') {
-
-                    if (currentVal > input.attr('min')) {
-                        input.val(currentVal - 10).change();
-                        if (className == 'center1')
-                            sumPrioroty -= 10;
-                        else
-                            sumPrioroty2 -= 10;
-                    }
-                    if (parseInt(input.val()) == 0) {
-                        $(this).attr('disabled', true);
-                    }
-
-                }
-            } else {
-                input.val(0);
-            }
-        });
-        $('.input-number').focusin(function () {
-            $(this).data('oldValue', $(this).val());
-        });
-        $('.input-number').change(function () {
-
-            minValue = parseInt($(this).attr('min'));
-            maxValue = parseInt($(this).attr('max'));
-            valueCurrent = parseInt($(this).val());
-
-            name = $(this).attr('name');
-            if (valueCurrent >= minValue) {
-                $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
-            } else {
-                $(this).val($(this).data('oldValue'));
-            }
-            if (valueCurrent <= maxValue) {
-                $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
-            } else {
-                $(this).val($(this).data('oldValue'));
-            }
 
 
-        });
-    });
+        function init() {
+            $("#Items").sortable({
+                revert: true,
+                placeholder: "ItemPlaceHolder",
+                opacity: 0.6,
+                start: StartDrag,
+                stop: StopDrag
+            });
+            $("#Items2").sortable({
+                revert: true,
+                placeholder: "ItemPlaceHolder",
+                opacity: 0.6,
+                start: StartDrag,
+                stop: StopDrag
+            });
 
 
-    function init() {
-        $("#Items").sortable({
-            revert: true,
-            placeholder: "ItemPlaceHolder",
-            opacity: 0.6,
-            start: StartDrag,
-            stop: StopDrag
-        });
-        $("#Items2").sortable({
-            revert: true,
-            placeholder: "ItemPlaceHolder",
-            opacity: 0.6,
-            start: StartDrag,
-            stop: StopDrag
-        });
+            $("#NewItem").click(function (e) {
+                e.preventDefault();
+                itemCount++;
+                var input = '<input type="text" placeholder="Please type Language"><h3 style="float:left;">Years:</h3><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
 
+                var element = $("<div class='Item newItem oItem' id='itemCount" + itemCount + "'>" + input + "</div>");
+                $("#Items").append(element);
+                element.hide().slideDown(500);
+            });
+            $("#NewItem2").click(function (e) {
+                e.preventDefault();
+                itemCount++;
+                var input = '<input type="text" placeholder="Please type Language"><h3 style="float:left;">Years:</h3><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
 
-        $("#NewItem").click(function (e) {
-            e.preventDefault();
-            itemCount++;
-            var input = '<input type="text" placeholder="Please type Language"><h3 style="float:left;">Years:</h3><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
+                var element = $("<div class='Item newItem oItem2' id='itemCount" + itemCount + "'>" + input + "</div>");
+                $("#Items2").append(element);
+                element.hide().slideDown(500);
+            });
 
-            var element = $("<div class='Item newItem oItem' id='itemCount" + itemCount + "'>" + input + "</div>");
-            $("#Items").append(element);
-            element.hide().slideDown(500);
-        });
-        $("#NewItem2").click(function (e) {
-            e.preventDefault();
-            itemCount++;
-            var input = '<input type="text" placeholder="Please type Language"><h3 style="float:left;">Years:</h3><select class="form-control" name="years"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>';
-
-            var element = $("<div class='Item newItem oItem2' id='itemCount" + itemCount + "'>" + input + "</div>");
-            $("#Items2").append(element);
-            element.hide().slideDown(500);
-        });
-
-    }
-
-    function StartDrag() {
-
-        $("#NewItem").hide();
-        $("#CopyItem").show();
-    }
-
-    function StopDrag(event, ui) {
-        if (awaitingCopy) {
-            $(this).sortable('cancel');
-            CopyItem($(ui.item));
         }
-        $("#NewItem").show();
-        $("#CopyItem").hide();
 
+        function StartDrag() {
 
-        var element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"   class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
-        prNum++;
-        // var element = '<input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
-        var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
-        var prevClassAfterClass = ui.item[0].previousElementSibling.className.split(" ")[2];
-
-        if (prevClass == 'mustItem1' || prevClassAfterClass == 'mItem' || prevClass == 'mItem') {
-            console.log(ui.item[0]);
-            if (ui.item[0].innerHTML.indexOf("center") == -1)
-                ui.item[0].innerHTML += element;
-            ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
+            $("#NewItem").hide();
+            $("#CopyItem").show();
         }
-        else if (prevClass == 'advantageItem1' || prevClassAfterClass == 'aItem' || prevClass == 'aItem') {
-            if (ui.item[0].innerHTML.indexOf("center") != -1) {
+
+        function StopDrag(event, ui) {
+            if (awaitingCopy) {
+                $(this).sortable('cancel');
+                CopyItem($(ui.item));
+            }
+            $("#NewItem").show();
+            $("#CopyItem").hide();
+
+
+            var element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center1" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"   class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
+            prNum++;
+            // var element = '<input type="text" class="form-control" value="0"><h3>Percentage: </h3>';
+            var prevClass = ui.item[0].previousElementSibling.className.split(" ")[1];
+            var prevClassAfterClass = ui.item[0].previousElementSibling.className.split(" ")[2];
+
+            if (prevClass == 'mustItem1' || prevClassAfterClass == 'mItem' || prevClass == 'mItem') {
                 console.log(ui.item[0]);
-                var text = ui.item[0].innerHTML.toString();
-                text = text.substring(0, text.length - element.length);
-                ui.item[0].innerHTML = text;
+                if (ui.item[0].innerHTML.indexOf("center") == -1)
+                    ui.item[0].innerHTML += element;
+                ui.item.addClass("mItem").removeClass("aItem").removeClass("oItem");
             }
-            ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
-        }
-        else if (prevClass == 'orItem1' || prevClassAfterClass == 'oItem' || prevClass == 'oItem') {
-            if (ui.item[0].innerHTML.indexOf("center") != -1) {
-                var text = ui.item[0].innerHTML.toString();
-                text = text.substring(0, text.length - element.length);
-                ui.item[0].innerHTML = text;
+            else if (prevClass == 'advantageItem1' || prevClassAfterClass == 'aItem' || prevClass == 'aItem') {
+                if (ui.item[0].innerHTML.indexOf("center") != -1) {
+                    console.log(ui.item[0]);
+                    var text = ui.item[0].innerHTML.toString();
+                    text = text.substring(0, text.length - element.length);
+                    ui.item[0].innerHTML = text;
+                }
+                ui.item.removeClass("mItem").addClass("aItem").removeClass("oItem");
             }
-            ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
-        }
-
-        //second operations - OR
-
-        else if (prevClass == 'mustItem2' || prevClassAfterClass == 'mItem2' || prevClass == 'mItem2') {
-            element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center2" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"  class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
-
-            ui.item.addClass("mItem2").removeClass("aItem2").removeClass("oItem2");
-            if (ui.item[0].innerHTML.indexOf("center") == -1)
-                ui.item[0].innerHTML += element;
-            /*
-             if (ui.item[0].innerHTML.indexOf("Percentage") == -1)
-             ui.item[0].innerHTML += element;*/
-        }
-        else if (prevClass == 'advantageItem2' || prevClassAfterClass == 'aItem2' || prevClass == 'aItem2') {
-            element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center2" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"  class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
-
-            ui.item.removeClass("mItem2").addClass("aItem2").removeClass("oItem2");
-            if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
-                var text = ui.item[0].innerHTML.toString();
-                text = text.substring(0, text.length - element.length);
-                ui.item[0].innerHTML = text;
+            else if (prevClass == 'orItem1' || prevClassAfterClass == 'oItem' || prevClass == 'oItem') {
+                if (ui.item[0].innerHTML.indexOf("center") != -1) {
+                    var text = ui.item[0].innerHTML.toString();
+                    text = text.substring(0, text.length - element.length);
+                    ui.item[0].innerHTML = text;
+                }
+                ui.item.removeClass("mItem").removeClass("aItem").addClass("oItem");
             }
-        }
-        else if (prevClass == 'orItem2 ' || prevClassAfterClass == 'oItem2' || prevClass == 'oItem2') {
-            element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center2" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"  class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
 
-            ui.item.removeClass("mItem2").removeClass("aItem2").addClass("oItem2");
-            if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
-                var text = ui.item[0].innerHTML.toString();
-                text = text.substring(0, text.length - element.length);
-                ui.item[0].innerHTML = text;
+            //second operations - OR
+
+            else if (prevClass == 'mustItem2' || prevClassAfterClass == 'mItem2' || prevClass == 'mItem2') {
+                element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center2" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"  class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
+
+                ui.item.addClass("mItem2").removeClass("aItem2").removeClass("oItem2");
+                if (ui.item[0].innerHTML.indexOf("center") == -1)
+                    ui.item[0].innerHTML += element;
+                /*
+                 if (ui.item[0].innerHTML.indexOf("Percentage") == -1)
+                 ui.item[0].innerHTML += element;*/
             }
+            else if (prevClass == 'advantageItem2' || prevClassAfterClass == 'aItem2' || prevClass == 'aItem2') {
+                element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center2" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"  class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
+
+                ui.item.removeClass("mItem2").addClass("aItem2").removeClass("oItem2");
+                if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
+                    var text = ui.item[0].innerHTML.toString();
+                    text = text.substring(0, text.length - element.length);
+                    ui.item[0].innerHTML = text;
+                }
+            }
+            else if (prevClass == 'orItem2 ' || prevClassAfterClass == 'oItem2' || prevClass == 'oItem2') {
+                element = '<div><div class="input-group" style="float: right; width: 15%;"><span class="input-group-btn"><button type="button" class="btn btn-danger btn-number minusButton" data-type="minus" data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i> </button></span> <input type="text" name="quant[2]" data-pr-num="' + prNum + '" class="form-control input-number center2" disabled value="0" min="0" max="100"> <span class="input-group-btn"> <button type="button"  class="btn btn-success btn-number plusButton" data-type="plus"  ng-click="plusButton()" data-field="quant[2]"> <i class="fa fa-plus" aria-hidden="true"></i></button></span></div></div><h3>Percentage: </h3>';
+
+                ui.item.removeClass("mItem2").removeClass("aItem2").addClass("oItem2");
+                if (ui.item[0].innerHTML.indexOf("Percentage") != -1) {
+                    var text = ui.item[0].innerHTML.toString();
+                    text = text.substring(0, text.length - element.length);
+                    ui.item[0].innerHTML = text;
+                }
+            }
+
         }
+
+
+        /* ADD ANOTHER OPERATOR */
+        $("#addmust").click(function () {
+            $('').appendTo((".operators"));
+            angular.element("#Page2").removeClass("hidden");
+            angular.element(".operators > h3").show();
+            $("#addmust").hide();
+        });
+
 
     }
-
-
-    /* ADD ANOTHER OPERATOR */
-    $("#addmust").click(function () {
-        $('').appendTo((".operators"));
-        angular.element("#Page2").removeClass("hidden");
-        angular.element(".operators > h3").show();
-        $("#addmust").hide();
-    });
-
-
-});
+    );
 
 /*
  * ********************* DIRECTIVES ****************
