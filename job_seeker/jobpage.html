@@ -1,5 +1,5 @@
 <div class="jobPageWrapper">
-    <h3 compile-html>{{navigation}}</h3>
+    <h3 class="navigation"></h3>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
     <header>
         <div class="progress">
@@ -28,6 +28,6 @@
         </section>
 
     </section>
-    <a ng-href="#/searchJobs/matchpage/{{jobDetails['_id']}}"  class="btn btn-default">Check
+    <a ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{jobDetails['_id']}}/matchpage"  class="btn btn-default">Check
         my CV</a>
 </div>

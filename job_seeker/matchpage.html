@@ -1,5 +1,5 @@
 <div class="matchpageWrapper" ng-init="getMainJson();checkMyCV();">
-    <h3 compile-html>{{navigation}}</h3>
+    <h3 class="navigation"></h3>
     <header>
         <h2>Match Page</h2>
     </header>
@@ -35,7 +35,7 @@
     </div>
 </div>
 <a href="" class="btn btn-default">Fix CV</a>
-<a href="" class="btn btn-default" ng-click="sendCV()" data-toggle="modal" data-target="#sendCVstatus">Send CV</a>
+<a href="" ng-if="sendcv" class="btn btn-default" ng-click="sendCV()" data-toggle="modal" data-target="#sendCVstatus">Send CV</a>
 </div>
 
 

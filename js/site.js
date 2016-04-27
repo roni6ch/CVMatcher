@@ -57,7 +57,7 @@ app.config(function ($routeProvider) {
     }).when('/yourjobs', {
         templateUrl: 'job_seeker/yourjobs.html',
         controller: 'yourjobSeekerController'
-    }).when('/searchJobs/matchpage/:_id', {
+    }).when('/searchJobs/:_id/matchpage', {
         templateUrl: 'job_seeker/matchpage.html',
         controller: 'matchpageController'
     }).when('/Profile', {
@@ -241,7 +241,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         location.replace("#/searchJobs");
                     },
                     function (response) { // optional
-                        console.log("addUser AJAX failed!");
+                        console.log("getUser AJAX failed!");
                     });
             }
         }
@@ -256,7 +256,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 /*
  * ********************* jobSeeker Search Jobs Controller ****************
  */
-app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http) {
+app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http, $compile) {
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
@@ -270,6 +270,11 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();
+
+                    //navigation in site
+                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>"
+                    $(".navigation")[0].innerHTML = navigation;
+
                     //fix date string
                     angular.forEach(data.data, function (value, key) {
                         data.data[key].date = value.date.split("T")[0];
@@ -305,6 +310,7 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location, $roo
         }
     })
         .then(function (data) {
+                $rootScope.stringPathUrl = data.data[0].original_text.title;
                 var jobCircle = new ProgressBar.Circle(
                     '#job-circle-container', {
                         color: '#ee5785',
@@ -312,6 +318,19 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location, $roo
                         fill: '#aaa'
                     });
 
+                //navigation in site
+                console.log($id[1]);
+                if ($id[1] == 'yourjobs'){
+                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a><span> > </span><a href='#/searchJobs/" + data.data[0]._id + "'>" + data.data[0].original_text.title + "</a>"
+                    $scope.page = 'yourjobs';
+                }
+                   else {
+                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + data.data[0]._id + "'>" + data.data[0].original_text.title + "</a>"
+                    $scope.page = 'searchjobs';
+                }
+                $(".navigation")[0].innerHTML = navigation;
+
+                $.cookie('jobTitle', data.data[0].original_text.title);
                 $.cookie('compatibility_level', data.data[0].compatibility_level);
                 angular.element(".fa-pulse").hide();
                 angular.element("#job-circle-container>h5").html(
@@ -341,6 +360,10 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
             }
         })
             .then(function (data) {
+                    //navigation in site
+                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>"
+                    $(".navigation")[0].innerHTML = navigation;
+
                     console.log(data);
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
@@ -386,6 +409,10 @@ app
                     }
                 })
                     .then(function (data) {
+                            //navigation in site
+                            var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>"
+                            $(".navigation")[0].innerHTML = navigation;
+
                             $scope.jobSeeker = data.data[0];
                             console.log(data.data[0]);
                             //userId = data.data[0]._id;
@@ -678,7 +705,7 @@ app
     .controller(
         'matchpageController',
         function ($scope, $http, $location, $rootScope, $timeout) {
-            $jobId = $location.path().split('/')[3];
+            $jobId = $location.path().split('/')[2];
             var compabilitJobSeeker;
             $scope.checkMyCV = function () {
                 $http({
@@ -699,6 +726,10 @@ app
                             }
                         })
                             .then(function (data) {
+                                    //navigation in site
+                                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + $jobId + "'>" + $.cookie('jobTitle') + "</a><span> > </span><a href='#/searchJobs/" + $jobId + "/matchpage'>Match Page</a>"
+                                    $(".navigation")[0].innerHTML = navigation;
+
                                     console.log("data: ", data.data);
                                     var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
                                     var fillColors = ['#C1BFBF', '#e6e6e6'];
@@ -735,13 +766,14 @@ app
                                     if (data.data.total_grade < $.cookie('compatibility_level')) {
                                         angular.element(".matchResult > h2").append("Oops");
                                         angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");
-
                                         angular.element(".matchResult h3").html('You did not passed the minimum requirements');
+                                        $scope.sendcv = false;
                                     }
                                     else {
                                         angular.element(".matchResult > h2").append("Great!");
                                         angular.element(".matchResult > h2 > i").addClass("fa-thumbs-up");
                                         angular.element(".matchResult h3").html('Harray!! You Passed The Minimum requirements');
+                                        $scope.sendcv = true;
                                     }
 
                                     angular.forEach(data.data.formula, function (value, key) {
@@ -819,6 +851,8 @@ app
                 }
             })
                 .then(function (data) {
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>"
+                        $(".navigation")[0].innerHTML = navigation;
                         console.log(data);
                         $scope.jobSeekerJobs = data.data;
                         console.log(data.data);
@@ -846,10 +880,16 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     if ($id[1] == 'myjobs') {
         archive = false;
         $scope.jobPage = "myJobs"
+
+        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a>"
+        $(".navigation")[0].innerHTML = navigation;
     }
     else {
         archive = true;
-        $scope.jobPage = "Archive"
+        $scope.jobPage = "Archive";
+
+        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Archive'>Deleted</a>"
+        $(".navigation")[0].innerHTML = navigation;
     }
     var jobsArr = [];
     console.log($id[1]);
@@ -864,6 +904,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             }
         })
             .then(function (data) {
+                    console.log(data.data);
                     $scope.myjobs = data.data;
                     console.log(data.data);
                     jobsArr = data.data;
@@ -887,7 +928,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     }
 
     $scope.saveJobTitle = function (jobTitle) {
-        $rootScope.jobTitle = jobTitle;
+        $.cookie('jobTitle', jobTitle);
     }
 
 
@@ -958,6 +999,8 @@ app.controller('companyProfileController',
         })
             .then(function (data) {
                     if (data) {
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/companyProfile'>Company Profile</a>"
+                        $(".navigation")[0].innerHTML = navigation;
                         $scope.employerProfile = data.data[0];
                         console.log(data.data[0]);
                         if (data.data[0].company) {
@@ -1111,6 +1154,8 @@ app.controller('candidatesController',
                 }
             })
                 .then(function (data) {
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + $.cookie('jobTitle') + "</a>"
+                        $(".navigation")[0].innerHTML = navigation;
                         $scope.candidates = data.data;
                         $rootScope.unreadCandidates = data.data;
                         console.log(data.data);
@@ -1240,6 +1285,8 @@ app.controller('resumeController',
                 }
             })
                 .then(function (data) {
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                        $(".navigation")[0].innerHTML = navigation;
                         $scope.user = data.data[0];
                         console.log(data.data[0])
                         angular.element(".fa-pulse").hide();
@@ -1437,6 +1484,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 })
                     .then(function (data) {
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>"
+                        $(".navigation")[0].innerHTML = navigation;
+
                         console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
 
@@ -1512,6 +1562,10 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             }
             //im in newJob - init parameters
             else {
+
+                var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
+                $(".navigation")[0].innerHTML = navigation;
+
 
                 //setTimeout for 1 mil sec because there is a problem loading js after angular
                 setTimeout(function () {
@@ -1831,7 +1885,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                         console.log("findIfKeyWordsExistsJOB AJAX failed!");
                                     });
 
-                        //Requerments Advantage
+                            //Requerments Advantage
 
                             parseExpereince = {
                                 "text": $("#requirementsAdvantage").val(),
@@ -2150,132 +2204,35 @@ app
 app
     .directive(
         "compileHtml",
-        function ($compile, $location, $rootScope, $http) {
+        function ($compile, $location, $rootScope, $http, $timeout) {
             return {
-                link: function (scope, element) {
+                link: function (scope, element, attr) {
                     var path = $location.path().split('/');
-                    var navigation_path = "";
-                    // last_path = save me the real adress to link to
-                    // anchor
-                    var last_path = "";
-                    var job_parameters = "";
-                    if (path.length > 1 && path[1] != "") {
-                        for (var i = 1; i < path.length; i++) {
-                            last_path += "/" + path[i];
-                            if (path[i] == "resume" || path[i] == "job"
-                                || path[i] == "Candidates")
-                                continue;
-                            if (path[i] == "myjobs")
-                                path[i] = "My Jobs";
-                            else if (path[i] == "companyProfile")
-                                path[i] = "Company Profile";
-                            else if (path[i] == "searchJobs")
-                                path[i] = "Search Jobs";
-                            else if (path[i] == "yourjobs")
-                                path[i] = "My Jobs";
-                            else if (path[i] == "mycv")
-                                path[i] = "My Resume";
-                            else if (path[i] == "matchpage")
-                                path[i] = "Match Page";
-                            else if (path[i] == "newJob")
-                                path[i] = "New Job";
-                            else if (path[i] == "jobParameters") {
-                                job_parameters = " Parameters";
-                                continue;
-                            }
+                    var lastPath = '';
+                    console.log(path);
 
+                    var navigation_path = '';
+                    for (var i = 1; i < path.length; i++) {
+                        //check if sting url is number
+                        if (!isNaN(parseInt(path[i]))) {
+                            var currPath = path[i];
+                            var lastPathI = path[i - 1];
+                            $timeout(function () {
+                                var title = attr.cell;
+                                navigation_path = "<span> > </span><a href='#/" + lastPathI + '/' + currPath + "'>" + title + "</a>";
+                                lastPath += navigation_path;
+                            }, 1000)
 
-                            // if the path[i] is a number that came from
-                            // Candidates job page
-                            var likeOrUnlikeTab;
-                            if (path[i - 1] == "Like")
-                                likeOrUnlikeTab = Like;
-                            if (path[i - 1] == "My Jobs" || path[i - 1] == "jobParameters" || path[i - 1] == "job"
-                                || path[i - 1] == "Match Page"
-                                || path[i - 1] == "Candidates"
-                                || path[i - 1] == "Search Jobs" || path[i - 1] == "Like") {
-
-                                var pTemp = path[i];
-                                if (path[i - 1] == "Candidates" || path[i - 1] == "job" || path[i - 1] == "Search Jobs" || path[i - 1] == "Like") {
-                                    var myjobsTmp = '', editTmp = '';
-                                    if (path[i - 1] == 'My Jobs')
-                                        myjobsTmp = "<span> > </span><a href='#/myjobs'>My Jobs</a>"
-                                    if (path[i - 2] == "job")
-                                        editTmp = "<b>Edit </b>";
-
-                                    navigation_path += myjobsTmp + "<span> > </span><a href='#" + last_path + "'>" + editTmp + $rootScope.jobTitle + likeOrUnlikeTab + "</a>";
-                                    element
-                                        .html($compile(
-                                            "<a href='#/usersLogin'>Homepage</a>"
-                                            + navigation_path)
-                                        (
-                                            scope));
-                                }
-                                else {
-                                    var lastPath = last_path.split('/');
-                                    if (!isNaN(path[i])) {
-                                        navigation_path += "<span> > </span><a href='#" + last_path + "'>" + path[i] + job_parameters + "</a>";
-                                        element
-                                            .html($compile(
-                                                "<a href='#/usersLogin'>Homepage</a>"
-                                                + navigation_path)
-                                            (
-                                                scope));
-                                    }
-                                }
-
-                            }
-                            // if the path[i] is a number that came from
-                            // Candidates job page to resume page
-                            else if (path[i - 1] == "resume") {
-                                var pTemp = path[i];
-                                $http({
-                                    url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
-                                    method: "POST",
-                                    data: {
-                                        "matching_object_id": pTemp,
-                                        "matching_object_type": "cv"
-                                    }
-                                }).then(function (data) {
-                                    path[i] = data.data[0].user["first_name"];
-                                    jobSplitted = navigation_path
-                                        .split('<')[3]
-                                        .split('>')[1];
-                                    navigation_path = "<span> > </span><a href='#/Candidates/"
-                                        + path[i - 3]
-                                        + "'>"
-                                        + jobSplitted
-                                        + "</a> > <a href='#/Candidates/"
-                                        + path[i - 3]
-                                        + "/resume/"
-                                        + pTemp
-                                        + "'>"
-                                        + path[i]
-                                        + "</a>";
-
-                                    element
-                                        .html($compile(
-                                            "<a href='#/usersLogin'>Homepage</a>"
-                                            + navigation_path)
-                                        (
-                                            scope));
-                                })
-                            }
-                            // check if im in parameters page
-                            else {
-                                navigation_path += "<span> > </span><a href='#"
-                                    + last_path
-                                    + "'>"
-                                    + path[i]
-                                    + job_parameters + "</a>";
-
-                                element.html($compile(
-                                    "<a href='#/usersLogin'>Homepage</a>"
-                                    + navigation_path)(
-                                    scope));
-                            }
+                        }
+                        else {
+                            navigation_path = "<span> > </span><a href='#/" + path[i] + "'>" + path[i] + "</a>";
+                            lastPath += navigation_path;
                         }
                     }
+                    $timeout(function () {
+                        element.html($compile("<a href='#/usersLogin'>Homepage</a>" + lastPath)(scope));
+                    }, 2000)
+
                 }
             }
         });
