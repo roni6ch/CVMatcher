@@ -1449,7 +1449,10 @@ footer div a {
 }
 
 .userProfile .btn.btn-warning {
-    clear: both;
+    float: none;
+    margin-left: 38%;
+    margin-right: 38%;
+    width: 24%;
 }
 
 .userProfile button {
@@ -1494,7 +1497,10 @@ footer div a {
 }
 
 .parser {
-    width: 100%;
+    float: none;
+    margin-left: 38%;
+    margin-right: 38%;
+    width: 40%;
 }
 
 #submitAfterParse {

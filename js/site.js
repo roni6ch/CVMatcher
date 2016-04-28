@@ -320,11 +320,11 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location, $roo
 
                 //navigation in site
                 console.log($id[1]);
-                if ($id[1] == 'yourjobs'){
+                if ($id[1] == 'yourjobs') {
                     var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a><span> > </span><a href='#/searchJobs/" + data.data[0]._id + "'>" + data.data[0].original_text.title + "</a>"
                     $scope.page = 'yourjobs';
                 }
-                   else {
+                else {
                     var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + data.data[0]._id + "'>" + data.data[0].original_text.title + "</a>"
                     $scope.page = 'searchjobs';
                 }
@@ -393,10 +393,11 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
 app
     .controller(
         'seekerProfileControler',
-        function ($scope, $http, $compile, $rootScope) {
+        function ($scope, $http, $compile, $rootScope, $timeout) {
             $("#geocomplete").geocomplete();
             $("[rel='popover']").popover({trigger: "hover", container: "body"});
             var cvId;
+            var cvJson = false;
 
             $scope.getMainJson = function () {
 
@@ -453,22 +454,29 @@ app
                                         console.log(data);
 
                                         $scope.jobSeekerCV = data.data[0];
-
-
+                                        cvJson = true;
                                         if (!data) {
-
                                             $scope.addEducation('education');
                                             $scope.addEducation('employment');
                                         }
-                                        /*if (data.length == 0 || data == undefined || data == "undefined" || data == null || data == []) {
-                                         $scope.addEducation('education');
-                                         $scope.addEducation('employment');
-                                         }*/
+                                        if (cvJson) {
+                                            angular.forEach($scope.jobSeekerCV.requirements[0].combination, function (value, key) {
+                                                var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
+                                                angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
+                                                    ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
+                                            });
+                                            angular
+                                                .element(".parseExperienceButton").hide();
+                                            angular
+                                                .element(".parseExperiencePlusButton").removeClass("hidden");
+                                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                        }
                                     },
                                     function (response) { // optional
                                         angular.element(".fa-pulse").hide();
                                         console.log("jobSeekerJobs AJAX failed!");
-                                    });
+                                    }
+                                );
                         }
                     },
                     function (response) { // optional
@@ -487,6 +495,11 @@ app
             }
             var history_timeline = [];
             $scope.parseMyExperience = function () {
+                parseExpereince = {
+                    "expereince": []
+                };
+                if (cvJson)
+                    $(".parseExperience").html("");
                 angular.element(".fa-spin").show();
                 //scope_of_position
                 $.each($(".timeline .timeline-inverted"), function (key, val) {
@@ -518,42 +531,42 @@ app
                     });
                 });
 
-                $http({
-                    url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
-                    method: "POST",
-                    data: {"sector": "software engineering"}
-                })
-                    .then(function (data) {
-                            parseExpereince.words = data.data;
+                    $http({
+                        url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
+                        method: "POST",
+                        data: {"sector": "software engineering"}
+                    })
+                        .then(function (data) {
+                                parseExpereince.words = data.data;
 
-                            $http({
-                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsCV",
-                                method: "POST",
-                                data: parseExpereince
-                            })
-                                .then(function (data) {
-                                        console.log(data)
-                                        angular.forEach(data.data, function (value, key) {
-                                            var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
-                                            angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
-                                                ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
+                                $http({
+                                    url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsCV",
+                                    method: "POST",
+                                    data: parseExpereince
+                                })
+                                    .then(function (data) {
+                                            console.log(data)
+                                            angular.forEach(data.data, function (value, key) {
+                                                var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
+                                                angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
+                                                    ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
+                                            });
+                                            angular.element(".fa-spin").hide();
+                                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+
+                                        },
+                                        function (response) { // optional
+                                            alert("findIfKeyWordsExistsCV AJAX failed!");
                                         });
-                                        angular.element(".fa-spin").hide();
-                                        angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                            },
+                            function (response) { // optional
+                                alert("getKeyWordsBySector AJAX failed!");
+                            });
 
-                                    },
-                                    function (response) { // optional
-                                        alert("findIfKeyWordsExistsCV AJAX failed!");
-                                    });
-                        },
-                        function (response) { // optional
-                            alert("getKeyWordsBySector AJAX failed!");
-                        });
-
-                angular
-                    .element(".parseExperienceButton").hide();
-                angular
-                    .element(".parseExperiencePlusButton").removeClass("hidden");
+                    angular
+                        .element(".parseExperienceButton").hide();
+                    angular
+                        .element(".parseExperiencePlusButton").removeClass("hidden");
 
             }
             $scope.addMoreExperience = function () {
@@ -576,6 +589,13 @@ app
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
+
+                if (cvJson) {
+                    angular
+                        .element(".parseExperienceButton").show();
+                    angular
+                        .element(".parseExperiencePlusButton").addClass("hidden");
+                }
             }
             $scope.submitUserDetails = function () {
                 //add more parameters to json
@@ -637,52 +657,94 @@ app
                     jobSeekerCVHistoryTimeLine.push($(this).val());
                 });
 
-                var jobSeekerCV = {
-                    "matching_object_type": "cv",
-                    "date": new Date(),
-                    "personal_properties": {
-                        "university_degree": $scope.University,
-                        "degree_graduation_with_honors": $scope.honors,
-                        "above_two_years_experience": $scope.experience,
-                        "psychometric_above_680": $scope.score,
-                        "multilingual": $scope.foreign,
-                        "volunteering": $scope.volunteering,
-                        "full_army_service": $scope.military,
-                        "officer": $scope.Officer,
-                        "high_school_graduation_with_honors": $scope.graduate,
-                        "youth_movements": $scope.Youth
+                if (cvJson) {
+                    url = "https://cvmatcher.herokuapp.com/updateMatchingObject";
+                    var jobSeekerCV = {
+                        "_id": $scope.jobSeekerCV._id,
+                        "matching_object_type": "cv",
+                        "date": new Date(),
+                        "personal_properties": {
+                            "_id": $scope.jobSeekerCV.personal_properties._id,
+                            "university_degree": $scope.University,
+                            "degree_graduation_with_honors": $scope.honors,
+                            "above_two_years_experience": $scope.experience,
+                            "psychometric_above_680": $scope.score,
+                            "multilingual": $scope.foreign,
+                            "volunteering": $scope.volunteering,
+                            "full_army_service": $scope.military,
+                            "officer": $scope.Officer,
+                            "high_school_graduation_with_honors": $scope.graduate,
+                            "youth_movements": $scope.Youth
 
-                    },
-                    "original_text": {
-                        "history_timeline": history_timeline
-                    },
-                    "sector": $('.jobSeekerCVsector').find(":selected").val(),
-                    "locations": [$('#geocomplete').val()],
-                    "candidate_type": [$('.jobSeekerCVCandidateType').find(":selected").val()],
-                    "scope_of_position": jobSeekerCVScopeOfPosition,
-                    "academy": {
-                        "academy_type": jobSeekerCVAcademy,
-                        "degree_name": $.trim($('.degree_name').find(":selected").val()),
-                        "degree_type": [$('.degree_type').find(":selected").val()]
-                    },
-                    "requirements": [{
-                        "combination": combination
-                    }],
-                    "user": $rootScope.user_id
+                        },
+                        "original_text": {
+                            "_id": $scope.jobSeekerCV.original_text._id,
+                            "history_timeline": history_timeline
+                        },
+                        "sector": $('.jobSeekerCVsector').find(":selected").val(),
+                        "locations": [$('#geocomplete').val()],
+                        "candidate_type": [$('.jobSeekerCVCandidateType').find(":selected").val()],
+                        "scope_of_position": jobSeekerCVScopeOfPosition,
+                        "academy": {
+                            "_id": $scope.jobSeekerCV.academy._id,
+                            "academy_type": jobSeekerCVAcademy,
+                            "degree_name": $.trim($('.degree_name').find(":selected").val()),
+                            "degree_type": [$('.degree_type').find(":selected").val()]
+                        },
+                        "requirements": [{
+                            "combination": combination
+                        }],
+                        "user": $rootScope.user_id
+                    }
+                }
+                else {
+                    url = "https://cvmatcher.herokuapp.com/addMatchingObject";
+                    var jobSeekerCV = {
+                        "matching_object_type": "cv",
+                        "date": new Date(),
+                        "personal_properties": {
+                            "university_degree": $scope.University,
+                            "degree_graduation_with_honors": $scope.honors,
+                            "above_two_years_experience": $scope.experience,
+                            "psychometric_above_680": $scope.score,
+                            "multilingual": $scope.foreign,
+                            "volunteering": $scope.volunteering,
+                            "full_army_service": $scope.military,
+                            "officer": $scope.Officer,
+                            "high_school_graduation_with_honors": $scope.graduate,
+                            "youth_movements": $scope.Youth
+
+                        },
+                        "original_text": {
+                            "history_timeline": history_timeline
+                        },
+                        "sector": $('.jobSeekerCVsector').find(":selected").val(),
+                        "locations": [$('#geocomplete').val()],
+                        "candidate_type": [$('.jobSeekerCVCandidateType').find(":selected").val()],
+                        "scope_of_position": jobSeekerCVScopeOfPosition,
+                        "academy": {
+                            "academy_type": jobSeekerCVAcademy,
+                            "degree_name": $.trim($('.degree_name').find(":selected").val()),
+                            "degree_type": [$('.degree_type').find(":selected").val()]
+                        },
+                        "requirements": [{
+                            "combination": combination
+                        }],
+                        "user": $rootScope.user_id
+                    }
                 }
 
 
                 console.log("send form: ", jobSeekerCV);
                 /* if ($scope.jobSeekerCV == "undefined" || $scope.jobSeekerCV == null) {*/
                 //if i got data then do update, else do add
-                url = "https://cvmatcher.herokuapp.com/addMatchingObject";
+
                 $http({
                     url: url,
                     method: "POST",
                     data: jobSeekerCV
                 })
                     .then(function (data) {
-                            console.log(data);
                         },
                         function (response) { // optional
                             alert("jobSeekerJobs send form AJAX failed!");
@@ -1475,6 +1537,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.getJobJson = function () {
 
             if ($id == 'job') {
+                //url for later to submit!
+                url = 'https://cvmatcher.herokuapp.com/updateMatchingObject';
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                     method: "POST",
@@ -1562,7 +1626,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             }
             //im in newJob - init parameters
             else {
-
+                url = 'https://cvmatcher.herokuapp.com/addMatchingObject';
                 var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
                 $(".navigation")[0].innerHTML = navigation;
 
@@ -1633,6 +1697,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         }
         //send form
         $scope.submitForm = function () {
+            console.log(url);
             $scope.status = 'Please wait';
             if (sumSliders == 100 && sumPrioroty == 100 && $("#Page2").hasClass("hidden") == true || sumSliders == 100 && sumPrioroty == 100 && sumPrioroty2 == 100 && $("#Page2").hasClass("hidden") == false) {
 
@@ -1743,42 +1808,78 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
 
 
-                var addNewJob = {
-                    "matching_object_type": "job",
-                    "date": new Date(),
-                    "original_text": {
-                        "title": $(".jobName").val(),
-                        "description": $("#description").html(),
-                        "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
-                    },
-                    "sector": $(".sector :selected").val(),
-                    "locations": [$("#geocomplete").val()],
-                    "candidate_type": candidate_type,
-                    "scope_of_position": scope_of_position,
-                    "academy": {
-                        "academy_type": academy,
-                        "degree_name": $(".degree_name :selected").val(),
-                        "degree_type": degree_type
-                    },
-                    "formula": {
-                        "locations": parseInt($(".locationsSlider").text().split("/")[0]),
-                        "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
-                        "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
-                        "academy": parseInt($(".academySlider").text().split("/")[0]),
-                        "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
-                    },
-                    "requirements": requirements,
-                    "compatibility_level": $scope.compability,
-                    "user": $.cookie('user_id')
+                if ($id == 'job') {
+                    var job = {
+                        "_id": $jobId,
+                        "matching_object_type": "job",
+                        "original_text": {
+                            "_id": $scope.jobDetails.original_text._id,
+                            "title": $(".jobName").val(),
+                            "description": $("#description").html(),
+                            "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
+                        },
+                        "sector": $(".sector :selected").val(),
+                        "locations": [$("#geocomplete").val()],
+                        "candidate_type": candidate_type,
+                        "scope_of_position": scope_of_position,
+                        "academy": {
+                            "_id": $scope.jobDetails.academy._id,
+                            "academy_type": academy,
+                            "degree_name": $(".degree_name :selected").val(),
+                            "degree_type": degree_type
+                        },
+                        "formula": {
+                            "_id": $scope.jobDetails.formula._id,
+                            "locations": parseInt($(".locationsSlider").text().split("/")[0]),
+                            "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
+                            "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
+                            "academy": parseInt($(".academySlider").text().split("/")[0]),
+                            "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
+                        },
+                        "requirements": requirements,
+                        "compatibility_level": $scope.compability,
+                        "user": $.cookie('user_id')
 
+                    }
+                }
+                else {
+                    var job = {
+                        "matching_object_type": "job",
+                        "date": new Date(),
+                        "original_text": {
+                            "title": $(".jobName").val(),
+                            "description": $("#description").html(),
+                            "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
+                        },
+                        "sector": $(".sector :selected").val(),
+                        "locations": [$("#geocomplete").val()],
+                        "candidate_type": candidate_type,
+                        "scope_of_position": scope_of_position,
+                        "academy": {
+                            "academy_type": academy,
+                            "degree_name": $(".degree_name :selected").val(),
+                            "degree_type": degree_type
+                        },
+                        "formula": {
+                            "locations": parseInt($(".locationsSlider").text().split("/")[0]),
+                            "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
+                            "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
+                            "academy": parseInt($(".academySlider").text().split("/")[0]),
+                            "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
+                        },
+                        "requirements": requirements,
+                        "compatibility_level": $scope.compability,
+                        "user": $.cookie('user_id')
+
+                    }
                 }
 
-                console.log(addNewJob);
+                console.log(job);
 
                 $http({
-                    url: 'https://cvmatcher.herokuapp.com/addMatchingObject',
+                    url: url,
                     method: "POST",
-                    data: addNewJob
+                    data: job
                 })
                     .then(function (data) {
                             if (data != null)
@@ -2200,42 +2301,6 @@ app
         });
 
 
-// Navigation
-app
-    .directive(
-        "compileHtml",
-        function ($compile, $location, $rootScope, $http, $timeout) {
-            return {
-                link: function (scope, element, attr) {
-                    var path = $location.path().split('/');
-                    var lastPath = '';
-                    console.log(path);
-
-                    var navigation_path = '';
-                    for (var i = 1; i < path.length; i++) {
-                        //check if sting url is number
-                        if (!isNaN(parseInt(path[i]))) {
-                            var currPath = path[i];
-                            var lastPathI = path[i - 1];
-                            $timeout(function () {
-                                var title = attr.cell;
-                                navigation_path = "<span> > </span><a href='#/" + lastPathI + '/' + currPath + "'>" + title + "</a>";
-                                lastPath += navigation_path;
-                            }, 1000)
-
-                        }
-                        else {
-                            navigation_path = "<span> > </span><a href='#/" + path[i] + "'>" + path[i] + "</a>";
-                            lastPath += navigation_path;
-                        }
-                    }
-                    $timeout(function () {
-                        element.html($compile("<a href='#/usersLogin'>Homepage</a>" + lastPath)(scope));
-                    }, 2000)
-
-                }
-            }
-        });
 // focus on searchBox
 app.directive('focus', function () {
     return {
