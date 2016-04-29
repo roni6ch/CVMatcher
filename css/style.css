@@ -315,6 +315,9 @@ footer div a {
 .abcRioButton {
     margin: 0 auto;
 }
+.popover-content a{    width: 100%;
+    display: inline-block;
+    text-align: center;}
 
 /****************************************************** INDEX - NAV BAR **********************************************/
 
@@ -910,8 +913,7 @@ footer div a {
 .editLogo + input + input {
     width: 20%;
 }
-.companyLogo img{margin: 0 auto;
-    border: 1px solid #000;}
+.companyLogo img{margin: 0 auto;}
 .logos{float:left;     margin-right: 1%;}
 .logos img{width:100px; height:100px;}
 
@@ -1222,7 +1224,7 @@ footer div a {
 
 .jobListLi img {
     float: left;
-    width:100px;
+    width:50px;
 }
 
 .jobListLi a {
@@ -1238,14 +1240,20 @@ footer div a {
 /****************************************************** MY JOBS - JOBSEEKER - HTML **********************************************/
 .readUnread {
     position: absolute;
-    right: 75px;
+    right: 113px;
     top: 30px;
 }
 
 .jobListLi .rating {
     position: absolute;
     top: 44px;
+    float: right;
 }
+.fa-heart-o,.fa-heart{    position: absolute;
+    right: 75px;
+    z-index: 2;
+    cursor: pointer;
+    top: 36px;}
 
 /****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
@@ -1497,15 +1505,16 @@ footer div a {
 }
 
 .parser {
-    float: none;
+    float: left;
     margin-left: 38%;
-    margin-right: 38%;
     width: 40%;
 }
-
+.removeContentCV{float:right;
+    cursor: pointer;}
 #submitAfterParse {
     pointer-events: none;
 }
+.birthDay{text-align: left;}
 
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/

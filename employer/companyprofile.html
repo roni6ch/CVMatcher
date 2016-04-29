@@ -34,7 +34,7 @@
 														   class="form-control email" >
 				</div>
 				<div class="form-group ">
-					<label for="usr">Birth Date:</label> <input type="text" required  value="{{employerProfile['birth_date']}}"
+					<label for="usr">Birth Date:</label> <input type="date" required  value="{{employerProfile['birth_date']}}"
 															   class="form-control birthDay">
 				</div>
 				<div class="form-group">
@@ -58,20 +58,20 @@
 		</div>
 		<div ng-show="tab == 1" class="tabsContent fade in active">
 			<!-- Content from here -->
-			<form>
+			<form ng-submit="submitCompanyDetails()" >
 
 				<div class="form-group">
-					<label for="usr">Company name:</label> <input type="text" required value="{{companyProfile['name']}}"
-																  class="form-control companyName" id="usr" name="address">
+					<label for="companyName">Company name:</label> <input type="text" required value="{{companyProfile['name']}}"
+																  class="form-control companyName" id="companyName" name="address">
 				</div>
 				<div class="form-group">
-					<label for="usr">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}"
-														 class="form-control companyPC" id="usr" name="address">
+					<label for="companypc">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}"
+														 class="form-control companyPC" id="companypc" name="address">
 				</div>
 				<div class="form-group">
 					<label>Address:</label> <input class="form-control"  id="geocomplete2"
-												   type="text"
-												   name="address" value="{{employerProfile['address']}}"
+												   type="text" required
+												   name="address" value="{{companyProfile['address']}}"
 												   placeholder="Type in an address" size="90" autocomplete="on">
 				</div>
 				<div class="form-group">
@@ -79,7 +79,7 @@
 																  class="form-control companyPhoneNumber" id="usr" name="address">
 				</div>
 				<div class="form-group">
-					<label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control" value="{{companyProfile['logo']}}" required placeholder="please type Company name"><input type="button" ng-click="logo(word)" class ="btn btn-default" value="Search Logo!" />
+					<label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control" value="{{companyProfile['logo']}}"  placeholder="please type Company name"><input type="button" ng-click="logo(word)" class ="btn btn-default" value="Search Logo!" />
 				</div>
 				<div class="companyLogo" ng-if="companyProfile['logo']" ><img ng-src={{companyProfile['logo']}} /></div>
 				<div ng-repeat="logo in logos">
@@ -92,7 +92,7 @@
 					</div>
 				</div>
 
-				<button type="button" class="btn btn-default" ng-click="submitCompanyDetails()" data-toggle="modal" data-target="#update">Send</button>
+				<button type="submit" class="btn btn-default" >Send</button>
 
 			</form>
 		</div>

@@ -1,20 +1,45 @@
-<html>
+<html ng-app="cvmatcherApp">
 <head>
-    <title>my site</title>
-    <head>
-<body>
-<script>
-    (function() {
-        var cx = '014729439929650913195:-rz0drla294';
-        var gcse = document.createElement('script');
-        gcse.type = 'text/javascript';
-        gcse.async = true;
-        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                '//cse.google.com/cse.js?cx=' + cx;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(gcse, s);
-    })();
-</script>
-<gcse:searchresults-only></gcse:searchresults-only>
-</body>
+    <title>CVMatcher</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" media="all" href="css/style.css"/>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/progressbar.min.js"></script>
+    <script src="js/jquery.ui.touch-punch.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/hammer.min.js"></script>
+    <script src="js/jquery.linkedsliders.min.js"></script>
+    <!-- added the maps.googleapis because it give me no warnings, so the local is locations with warning in the console
+    <script src="js/location.js?libraries=places"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVPuauj0tQuhm28vMic6xjtcvn11CpDNI&libraries=places"></script>
+    <script src="js/jquery.geocomplete.js?key="></script>
+    <script src="js/bootstrap-select.min.js"></script>
+
+    <!--  Google+ SignIn -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com">
+</head>
+<p id='container'>
+    <button class='btn btn-primary btn-large' data-popover="true" data-html=true data-content="<a href='http://www.wojt.eu' target='blank' >click me, I'll try not to disappear</a>">hover here</button>
+</p>
 </html>
+<script>
+
+    $('body').popover({ selector: '[data-popover]', trigger: 'click hover', placement: 'auto', delay: {show: 50, hide: 400}});
+
+</script>
+<style>
+    #container {
+        text-align: center;
+        margin: 8em 3em;
+    }
+</style>

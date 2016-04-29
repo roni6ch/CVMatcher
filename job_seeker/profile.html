@@ -15,7 +15,7 @@
     <div class="tab-content userProfile">
         <div ng-show="tab == 0" class="tabsContent fade in active">
             <!-- Content from here -->
-            <form>
+            <form ng-submit="submitUserDetails()">
                 <h4>Personal Information</h4>
                 <label for="usr">ID:</label> <input type="text" ng-model="jobSeeker['personal_id']"
                                                     class="form-control" id="usr" name="name" required
@@ -26,7 +26,7 @@
                     for="usr">Family:</label> <input type="text" required ng-model="jobSeeker['last_name']"
                                                      class="form-control" id="usr" name="family"
                                                      value="{{jobSeeker['last_name']}}"> <label
-                    for="usr">Date of birth:</label> <input type="text" required ng-model="jobSeeker['birth_date']"
+                    for="usr">Date of birth:</label> <input type="date" required
                                                             class="form-control birthDay" id="usr" name="birth" required
                                                             value="{{jobSeeker['birth_date']}}">
 
@@ -40,17 +40,17 @@
                         for="usr">Phone:</label> <input type="text" required ng-model="jobSeeker['phone_number']"
                                                         class="form-control phoneNumber" id="usr" name="phone"
                                                         value="{{jobSeeker['phone_number']}}">
-                <label for="usr">LinkedIn:</label> <input type="text" required ng-model="jobSeeker['linkedin']"
+                <label for="usr">LinkedIn:</label> <input type="text" ng-model="jobSeeker['linkedin']"
                                                           class="form-control linkedin" id="usr" name="name"
                                                           value="{{jobSeeker['linkedin']}}">
 
 
-                <button type="button" class="btn btn-default" ng-click="submitUserDetails()">Send</button>
+                <button type="submit" class="btn btn-default">Send</button>
             </form>
         </div>
         <div ng-show="tab == 1" class="tabsContent fade in active">
             <!-- Content from here -->
-            <form>
+            <form ng-submit="submitUserCV()">
 
                 <h4>Professional Experience</h4>
                 <label for="usr">Sector:</label> <select name="sector" required
@@ -60,14 +60,14 @@
                 <option ng-selected="jobSeekerCV.sector == 'software engineering'" value="software engineering">Software
                     Engineering
                 </option>
-                <option ng-selected="jobSeekerCV.sector == 'Industrial Engineering and Management'" value="industrial">
+                <option ng-selected="jobSeekerCV.sector == 'industrial'" value="industrial">
                     Industrial Engineering and
                     Management
                 </option>
-                <option ng-selected="jobSeekerCV.sector == 'Electrical Engineering'" value="electrical">Electrical
+                <option ng-selected="jobSeekerCV.sector == 'electrical'" value="electrical">Electrical
                     Engineering
                 </option>
-                <option ng-selected="jobSeekerCV.sector == 'Mechanical Engineering'" value="mechanical">Mechanical
+                <option ng-selected="jobSeekerCV.sector == 'mechanical'" value="mechanical">Mechanical
                     Engineering
                 </option>
             </select> <label for="usr">Candidate type:</label> <select name="candidate" required
@@ -124,13 +124,13 @@
                     <div class="btn-group jobSeekerCVAcademy" required data-toggle="buttons">
                         <label class="btn btn-success"  ng-init="University=false" ng-click="University=true"
                                ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'university'}">University
-                            <input type="checkbox" name="options" id="option2" autocomplete="off" value="university" ng-checked="jobSeekerCV.academy['academy_type'][0] == 'university'">
+                            <input type="radio" name="options" id="option2" autocomplete="off" value="university" ng-checked="jobSeekerCV.academy['academy_type'][0] == 'university'">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
                         <label class="btn btn-primary"
                                ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'college'}">College
-                            <input type="checkbox" name="options" id="option1" autocomplete="off" value="college" ng-checked="jobSeekerCV.academy['academy_type'][0] == 'college'">
+                            <input type="radio" name="options" id="option1" autocomplete="off" value="college" ng-checked="jobSeekerCV.academy['academy_type'][0] == 'college'">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
                     </div>
@@ -226,8 +226,8 @@
                 <div class="form-group">
                     <label>Scope of position:</label>
 
-                    <div class="btn-group jobSeekerCVScopeOfPosition" data-toggle="buttons" required>
-                        <label class="btn btn-success " value="full"
+                    <div class="btn-group jobSeekerCVScopeOfPosition" data-toggle="buttons" name="scope_of_position" required>
+                        <label class="btn btn-success" value="full"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'full' || jobSeekerCV.scope_of_position[1] == 'full' || jobSeekerCV.scope_of_position[2] == 'full'}">Full
                             Time
                             <input type="checkbox" autocomplete="off" value="full" ng-checked="jobSeekerCV.scope_of_position[0] == 'full' || jobSeekerCV.scope_of_position[1] == 'full' || jobSeekerCV.scope_of_position[2] == 'full'">
@@ -269,11 +269,12 @@
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
+                                        <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV($index)"></i>
                                         <label>From
                                             <select id="experience_years" name="experience_years"
                                                     class="form-control" id="sel1">
-                                                <option value="0">0</option>
-                                                <option value="2005" ng-selected="experience['start_year'] == '2004'">
+                                                <option  value="2000">0</option>
+                                                <option  value="2004" ng-selected="experience['start_year'] == '2004'">
                                                     2004
                                                 </option>
                                                 <option value="2005" ng-selected="experience['start_year'] == '2005'">
@@ -317,7 +318,7 @@
                                         <label>To
                                             <select id="experience_years" name="experience_years"
                                                     class="form-control" id="sel1">
-                                                <option value="0">0</option>
+                                                <option value="2000">0</option>
                                                 <option value="2005" ng-selected="experience['end_year'] == '2004'">
                                                     2004
                                                 </option>
@@ -366,7 +367,7 @@
                                         <div class="form-group">
                                             <label for="content">Content:</label>
                                             <textarea class="form-control" rows="3" name="content" id="content"
-                                                      required>{{experience.text}}</textarea>
+                                                        ng-model="experience.text"  ng-change="changeContent(content)" required>{{experience.text}}</textarea>
                                         </div>
 
                                         </p>
@@ -385,8 +386,7 @@
                 <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
                        ng-click="addMoreExperience()" value="+">
 
-                <button type="button" id="submitAfterParse" class="btn btn-default disabled" data-toggle="modal"
-                        data-target="#myModal" ng-click="submitUserCV()">Send
+                <button type="submit" id="submitAfterParse" class="btn btn-default disabled">Send
                 </button>
 
             </form>
@@ -401,7 +401,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Resume Sent Succesfully</h4>
+                <h4 class="modal-title">{{status}}</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
