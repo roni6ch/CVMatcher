@@ -262,7 +262,7 @@
                         </div>
                         <!-- section of year -->
                         <ul class="timeline">
-                            <li ng-repeat="experience in jobSeekerCV.original_text.history_timeline"
+                            <li ng-repeat="experience in jobSeekerCV.original_text.history_timeline" id="cvLi{{$index}}"
                                 ng-class="{'timeline-inverted' : experience['type'] == 'experience'}">
                                 <div class="timeline-badge" ng-click="addEducation(experience.type)">
                                     <i class="fa fa-plus"></i>

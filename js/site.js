@@ -428,6 +428,7 @@ app
                             if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                                 var currentId = data.data[0].current_cv;
                                 $.cookie('current_cv', currentId);
+                                console.log($.cookie('current_cv'));
                                 $http({
                                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                                     method: "POST",
@@ -442,9 +443,10 @@ app
 
                                             $scope.jobSeekerCV = data.data[0];
                                             cvJson = true;
-                                            /*$scope.addEducation('education');
-                                             $scope.addEducation('employment');
-                                             */
+                                        if ($scope.jobSeekerCV.original_text.history_timeline.length == 0) {
+                                            $scope.addEducation('education');
+                                            $scope.addEducation('employment');
+                                        }
                                             if (cvJson) {
                                                 if ($scope.jobSeekerCV.requirements[0].combination.length > 0)
                                                     angular.forEach($scope.jobSeekerCV.requirements[0].combination, function (value, key) {
@@ -461,7 +463,7 @@ app
                                         },
                                         function (response) { // optional
                                             angular.element(".fa-pulse").hide();
-                                            console.log("jobSeekerJobs AJAX failed!");
+                                            console.log("jobSeekerCv AJAX failed!");
                                         }
                                     );
                             } else {
@@ -481,12 +483,14 @@ app
             }
 
             $scope.removeContentCV = function(index){
-                console.log(index);
                 $scope.changeContent();
-                $scope.jobSeekerCV.original_text.history_timeline.html("");
+
+                angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
+                $("#cvLi" + index).remove();
             }
             $scope.changeContent = function () {
 
+                angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
                 angular
                     .element(".parseExperienceButton").show();
                 angular
@@ -503,7 +507,7 @@ app
             var parseExpereince = {
                 "expereince": []
             }
-            var history_timeline = [];
+            history_timeline = [];
             $scope.parseMyExperience = function () {
                 parseExpereince = {
                     "expereince": []
@@ -514,8 +518,11 @@ app
                 angular.element(".fa-spin").show();
                 $.each($(".timeline .timeline-inverted"), function (key, val) {
                     var text = $(this).find('.timeline-body textarea').val();
-                    var startdate = $(this).find('.timeline-heading label:nth-child(1) select').val();
-                    var enddate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                    var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                    var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                    console.log(startdate);
+                    console.log(enddate);
+
                     parseExpereince.expereince.push({
                         "text": text,
                         "startdate": startdate,
@@ -524,10 +531,11 @@ app
                 });
 
                 var type;
+                history_timeline = [];
                 $.each($(".timeline li"), function (key, val) {
                     var text = $(this).find('.timeline-body textarea').val();
-                    var startdate = $(this).find('.timeline-heading label:nth-child(1) select').val();
-                    var enddate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                    var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                    var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
                     if ($(this).hasClass("timeline-inverted"))
                         type = 'experience';
                     else
@@ -589,12 +597,14 @@ app
             }
 
             $scope.addEducation = function (type) {
+                var indx = $(".timeline li").length;
+                indx++;
                 if (type == 'education') {
-                    var divTemplate = '<li><div class="timeline-badge" ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading">' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    var divTemplate = '<li><div class="timeline-badge" id="cvLi'+indx+'" ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV('+indx+')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
 
                 }
                 else {
-                    var divTemplate = '<li class="timeline-inverted"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading">' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    var divTemplate = '<li class="timeline-inverted" id="cvLi'+indx+'"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV('+indx+')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
@@ -1744,22 +1754,45 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 $.each($(".academy input:checked"), function () {
                     academy.push($(this).val());
                 });
+                if (academy.length == 0)
+                {
+                    $('#sendJob').modal('show');
+                    $scope.status = "Please fill Academy";
+                    return;
+                }
                 var degree_type = [];
                 //scope_of_position
                 $.each($(".degree_type input:checked"), function () {
                     degree_type.push($(this).val());
                 });
+                if (degree_type.length == 0)
+                {
+                    $('#sendJob').modal('show');
+                    $scope.status = "Please fill Degree Type";
+                    return;
+                }
                 var scope_of_position = [];
                 //scope_of_position
                 $.each($(".scope_of_position input:checked"), function () {
                     scope_of_position.push($(this).val());
                 });
+                if (scope_of_position.length == 0)
+                {
+                    $('#sendJob').modal('show');
+                    $scope.status = "Please fill Scope of Position";
+                    return;
+                }
                 var candidate_type = [];
                 //scope_of_position
                 $.each($(".candidate_type input:checked"), function () {
                     candidate_type.push($(this).val());
                 });
-
+                if (candidate_type.length == 0)
+                {
+                    $('#sendJob').modal('show');
+                    $scope.status = "Please fill Candidate Type";
+                    return;
+                }
 
                 var requirements = [];
                 //requerment- MUST
@@ -1853,7 +1886,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "_id": $scope.jobDetails.original_text._id,
                             "title": $(".jobName").val(),
                             "description": $("#description").html(),
-                            "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
+                            "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
                         "locations": [$("#geocomplete").val()],
@@ -1920,6 +1953,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 })
                     .then(function (data) {
                             if (data != null)
+                                console.log(data);
+                                $('#sendJob').modal('show');
                                 $scope.status = "Job Send Succesfuly";
                         },
                         function (response) { // optional
