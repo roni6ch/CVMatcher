@@ -48,13 +48,7 @@ app.config(function ($routeProvider) {
         .when('/searchJobs', {
             templateUrl: 'job_seeker/searchJobs.html',
             controller: 'jobSeekerSearchJobsController'
-        }).when('/searchJobs/:_id', {
-        templateUrl: 'job_seeker/jobpage.html',
-        controller: 'jobpagebyIDController'
-    }).when('/yourjobs/:_id', {
-        templateUrl: 'job_seeker/jobpage.html',
-        controller: 'jobpagebyIDController'
-    }).when('/yourjobs', {
+        }).when('/yourjobs', {
         templateUrl: 'job_seeker/yourjobs.html',
         controller: 'yourjobSeekerController'
     }).when('/searchJobs/:_id/matchpage', {
@@ -64,8 +58,8 @@ app.config(function ($routeProvider) {
         templateUrl: 'job_seeker/profile.html',
         controller: 'seekerProfileControler'
     }).when('/Favorites', {
-            templateUrl: 'job_seeker/favorites.html',
-            controller: 'favoritesController'
+            templateUrl: 'job_seeker/yourjobs.html',
+            controller: 'yourjobSeekerController'
         })
 
 
@@ -297,7 +291,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 /*
  * ********************* job page by ID Controller ****************
  */
-app.controller('jobpagebyIDController', function ($scope, $http, $location, $rootScope) {
+/*app.controller('jobpagebyIDController', function ($scope, $http, $location, $rootScope) {
 
 
     $id = $location.path().split('/');
@@ -342,20 +336,33 @@ app.controller('jobpagebyIDController', function ($scope, $http, $location, $roo
                 console.log(data.data[0]);
             },
             function (response) { // optional
-                alert("jobSeekerJobs AJAX failed!");
+                console.log("jobSeekerJobs AJAX failed!");
             });
 
 
-});
+});*/
 /*
  * ********************* MY JOBS - Job Seeker Controller ****************
  */
 
-app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
-
+app.controller('yourjobSeekerController', function ($scope, $http, $sce,$location) {
+var url;
+var path = $location.path().split('/')[1];
+    var navigation;
     $scope.getMainJson = function () {
+        if (path == 'Favorites'){
+            url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
+
+             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>"
+
+        }
+        else{
+            url = 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs';
+
+             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>"
+        }
         $http({
-            url: 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs',
+            url: url,
             method: "POST",
             data: {
                 "user_id": $.cookie('user_id')
@@ -363,28 +370,63 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce) {
         })
             .then(function (data) {
                     //navigation in site
-                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>"
                     $(".navigation")[0].innerHTML = navigation;
 
                     $scope.jobSeekerJobs = data.data[0].jobs;
-                    console.log(data.data[0].jobs);
-                    angular.element(".fa-pulse").hide();
+                    console.log(data);
+
                     //fix date string
                     if (data.data[0].jobs.length > 0) {
                         angular.forEach(data.data[0].jobs, function (value, key) {
-                            console.log(value.job);
+                            var currcent_status = value.cv.status.current_status;
+
+                            angular.element(".fa-pulse").hide();
+                            console.log(currcent_status);
                             data.data[0].jobs[key].job.date = value.job.date.split("T")[0];
                         });
                     }
                 },
                 function (response) { // optional
-                    alert("jobSeekerJobs AJAX failed!");
+                    console.log("jobSeekerJobs AJAX failed!");
                 });
     }
 
-    $scope.favoriteJob = function (id) {
-        $(".fa-heart-o").addClass("fa-heart").removeClass("fa-heart-o");
-        //TODO move id to favorites
+    $scope.favoriteJob = function (id,indx) {
+        var favorite;
+        if ($("#fav"+indx).hasClass("fa-heart-o")){
+            $(".fa-heart-o").addClass("fa-heart").removeClass("fa-heart-o");
+            favorite=true;
+        }
+        else{
+            $(".fa-heart").addClass("fa-heart-o").removeClass("fa-heart");
+            favorite=false;
+        }
+
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/jobSeeker/updateFavoriteJob',
+            method: "POST",
+            data: {
+                "user_id": $.cookie('user_id'),
+                "job_id": id,
+                "favorite": favorite
+            }
+        })
+            .then(function (data) {
+                if (path == 'Favorites') {
+                    var jobsArr = $scope.jobSeekerJobs;
+                    jobsArr = jobsArr.filter(function (obj) {
+                        console.log(obj);
+                        return obj.job._id !== id;
+                    });
+                    $scope.jobSeekerJobs = jobsArr;
+                }
+                },
+                function (response) { // optional
+                    console.log("updateFavoriteJob AJAX failed!");
+                });
+
+
+
     }
 
     $scope.sort = function (sort) {
@@ -573,11 +615,11 @@ app
 
                                     },
                                     function (response) { // optional
-                                        alert("findIfKeyWordsExistsCV AJAX failed!");
+                                        console.log("findIfKeyWordsExistsCV AJAX failed!");
                                     });
                         },
                         function (response) { // optional
-                            alert("getKeyWordsBySector AJAX failed!");
+                            console.log("getKeyWordsBySector AJAX failed!");
                         });
 
                 angular
@@ -642,7 +684,7 @@ app
                             $scope.tab = 1;
                         },
                         function (response) { // optional
-                            alert("jobSeeker send form AJAX failed!");
+                            console.log("jobSeeker send form AJAX failed!");
                         });
             }
             var combination;

@@ -21,8 +21,9 @@
         <ul>
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby">
-                <a
-                    href="#/searchJobs/{{job._id}}"> <img
+                <div data-toggle="collapse" data-target="#collepse-{{$index}}">
+                <a href="">
+                    <img
                     ng-src="{{job.user.company.logo}}">
                 <article>
                     <p ng-model="searchText.job_name"
@@ -43,7 +44,22 @@
                     <h5>{{job.compatibility_level}}%</h5>
                 </section>
             </a>
+                    <article id="collepse-{{$index}}" class="collapse ">
+                        <p>Description: {{job["original_text"].description}}</p>
+                        <div class="skills">
+                            Requirements:
+                            <p>{{job.original_text["requirements"].split("|||")[0]}}</p>
+
+                            <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
+                        </div>
+                        <section>
+
+                        </section>
+                        <a ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage"  class="btn btn-default">Check
+                            my CV</a>
+                    </article>
                 <hr>
+                    </div>
             </li>
         </ul>
     </div>

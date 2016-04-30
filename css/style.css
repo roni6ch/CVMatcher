@@ -1184,6 +1184,7 @@ footer div a {
 .jobsList ul li {
     width: 100%;
     padding: 10px 10px;
+    overflow:hidden;
 }
 
 .jobsList ul li a {
@@ -1194,9 +1195,10 @@ footer div a {
     opacity: 1;
 }
 
+
 .jobsList article {
-    width: 60%;
     float: left;
+    text-align: left;
 }
 
 .jobsList article p {
@@ -1207,12 +1209,15 @@ footer div a {
 .jobListLi {
     float: left;
 }
-
-.jobListLi section {
+.jobListLi > a > div{    width: 100%;
     position: relative;
+    min-height: 100px;}
+.jobListLi section {
+    position: absolute;
     width: 60px;
     float: right;
-    top: 15px;
+    top: 23px;
+    right: 0;
 }
 
 .jobListLi section h5 {
@@ -1247,7 +1252,7 @@ footer div a {
 .jobListLi .rating {
     position: absolute;
     top: 44px;
-    float: right;
+    right:20%;
 }
 .fa-heart-o,.fa-heart{    position: absolute;
     right: 75px;
