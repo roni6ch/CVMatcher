@@ -352,14 +352,13 @@ var path = $location.path().split('/')[1];
     $scope.getMainJson = function () {
         if (path == 'Favorites'){
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
-
-             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>"
-
+             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>";
+            $scope.title = "Favorites Jobs";
         }
         else{
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs';
-
-             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>"
+            $scope.title = "My Jobs";
+             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>";
         }
         $http({
             url: url,
@@ -371,20 +370,27 @@ var path = $location.path().split('/')[1];
             .then(function (data) {
                     //navigation in site
                     $(".navigation")[0].innerHTML = navigation;
+                    console.log(data.data);
+                if (data.data.length > 0) {
 
+                    angular.element(".fa-pulse").hide();
                     $scope.jobSeekerJobs = data.data[0].jobs;
-                    console.log(data);
+
 
                     //fix date string
                     if (data.data[0].jobs.length > 0) {
                         angular.forEach(data.data[0].jobs, function (value, key) {
                             var currcent_status = value.cv.status.current_status;
 
-                            angular.element(".fa-pulse").hide();
                             console.log(currcent_status);
                             data.data[0].jobs[key].job.date = value.job.date.split("T")[0];
+                            console.log(data.data[0].jobs[key].job.date);
                         });
                     }
+                }else{
+                    //no jobs
+                    angular.element(".fa-pulse").hide();
+                }
                 },
                 function (response) { // optional
                     console.log("jobSeekerJobs AJAX failed!");
@@ -394,11 +400,11 @@ var path = $location.path().split('/')[1];
     $scope.favoriteJob = function (id,indx) {
         var favorite;
         if ($("#fav"+indx).hasClass("fa-heart-o")){
-            $(".fa-heart-o").addClass("fa-heart").removeClass("fa-heart-o");
+            $("#fav"+indx).addClass("fa-heart").removeClass("fa-heart-o");
             favorite=true;
         }
         else{
-            $(".fa-heart").addClass("fa-heart-o").removeClass("fa-heart");
+            $("#fav"+indx).addClass("fa-heart-o").removeClass("fa-heart");
             favorite=false;
         }
 

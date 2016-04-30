@@ -1,7 +1,7 @@
 <div class="searchJobsWrapper" ng-init="getMainJson();sort('-date');">
     <h3 class="navigation"></h3>
     <header>
-        <h2>My Jobs</h2>
+        <h2>{{title}}</h2>
     </header>
 
     <form method="get" action="">
@@ -9,7 +9,7 @@
                class="form-control">
     </form>
     <button type="button" class="btn btn-default"
-            ng-click="sort('-compatibility_level')">Sort By Compability
+            ng-click="sort('-job.compatibility_level')">Sort By Compability
     </button>
     <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
         By Date
