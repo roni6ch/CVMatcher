@@ -1,3 +1,4 @@
+
 <div class="jobWrapper" ng-init="getJobJson()">
     <h3 class="navigation"></h3>
     <header>
@@ -263,98 +264,204 @@
                        ng-click="parseExperience()" value="Parse my Experience">
             </div>
             <i class="fa fa-refresh fa-spin fa-spin2 fa-3x fa-fw margin-bottom"></i>
-            <div class="form-group">
-                <section class="operators hidden">
-                    <div id="Page" class="Page">
-                        <!--  <div class="Container">
-                              <a id="NewItem" class="NewItem">Click to Add Item </a>
 
-                              <div id="CopyItem" class="CopyItem">Drop to Copy Item</div>
-                              <div id="Items" class="Items">
 
-                                  <div class='Item'><h2>MUST</h2></div>
-                                  <div class='Item'><input type="text" name="lang1" value="JAVA"/>
 
-                                      &lt;!&ndash; <article class="mustOrAdv">
-                                           <div><h3>Must</h3></div>
-                                           <div><h3>Advantage</h3></div>
-                                           <section id="mustOrAdv1" class="toggleAdv"
-                                                    ng-click="mustOrAdv($index=1)"></section>
-                                       </article>&ndash;&gt;
-                                      <select class="form-control" name="years1">
-                                          <option>0 No-Experience</option>
-                                          <option>1-2 Years</option>
-                                          <option>3-4 Years</option>
-                                          <option>5+ Years</option>
-                                      </select>
-                                      &lt;!&ndash;
-                                      <label id="mustOrAdvCheckBox1"><input type="checkbox"/>OR</label>&ndash;&gt;
-                                  </div>
-                                  <div class='Item'><input type="text" name="lang2" value="C++"/>
 
-                                      <select class="form-control" name="years2">
-                                          <option>0 No-Experience</option>
-                                          <option>1-2 Years</option>
-                                          <option>3-4 Years</option>
-                                          <option>5+ Years</option>
-                                      </select>
-                                  </div>
-                                  <div class='Item'><input type="text" name="lang3" value="HTML"/>
+            <!-- FROM HERE - REQUERMENTS -->
 
-                                      <select class="form-control" name="years3">
-                                          <option>0 No-Experience</option>
-                                          <option>1-2 Years</option>
-                                          <option>3-4 Years</option>
-                                          <option>5+ Years</option>
-                                      </select>
-                                  </div>
-                                  <div class='Item'><h2>Advantage</h2></div>
-                                  <div class='Item'><h2>OR</h2></div>
-                              </div>
-                          </div>-->
-                        <div class="Container">
-                            <a id="NewItem" class="NewItem">Click to Add Item </a>
+            <div class='contentWrapper ng-cloak requirementsWrapper'>
+                <div class='content'>
+                    <div class="row-fluid">
+                        <ul class="thumbnails">
+                            <article><h1>Must</h1>
+                                <li class="span3">
+                                    <div class="thumbnail must" data-drop="true" ng-model='list1'
+                                         data-jqyoui-options="optionsList1"
+                                         jqyoui-droppable="{multiple:true}">
+                                        <div class="caption">
+                                            <div class="btn btn-info btn-draggable" ng-repeat="item in list1"
+                                                 ng-show="item.name"
+                                                 data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                                                 ng-model="list1"
+                                                 jqyoui-draggable="{index: {{$index}},animate:true}">
+                                                <i class="fa fa-times" aria-hidden="true"
+                                                   ng-click="removeLang(item.langId,'must')"></i>
+                                                <input data-lang-name="{{item.langId}}" ng-model="item.name" droppable-must
+                                                       ng-change="changeLangeName(item.langId)" class="langsName" type="text"
+                                                       value="{{item.name}}">
 
-                            <div id="CopyItem" class="CopyItem">Drag into the Operators</div>
-                            <div id="Items" class="Items">
-                                <div class='Item' ng-repeat="(lang, priority) in langs"><input type="text"
-                                                                                               value="{{lang}}"/>
-                                    <select class="form-control">
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>3</option>
-                                        <option>5</option>
-                                    </select>
+                                                <h3 style="    font-size: 10px; line-height: 0px;">Percentage: </h3>
 
-                                    <h3>Percentage: </h3>
-                                </div>
+                                                <div class="input-group">
+                             <span class="input-group-btn"><button ng-click="minusButton(item.langId)"
+                                                                   type="button"
+                                                                   class="btn btn-danger btn-number minusButton"
+                                                                   data-type="minus"
+                                                                   data-field="quant[2]"><i class="fa fa-minus"
+                                                                                            aria-hidden="true"></i>
+                             </button></span>
 
-                                <div class='Item mustItem1' ><h2>MUST</h2></div>
-                                <div class='Item advantageItem1' ><h2>Advantage</h2></div>
-                                <div class='Item orItem1' ><h2>OR</h2></div>
-                            </div>
-                            <!--
-                                                        <button id="addOr" class="btn btn-default">Click to add OR</button>-->
-                        </div>
-                        <input type="button" id="addmust" class="btn btn-default"
-                               value="Add another Priority Operator"/>
+                                                    <input type="text" name="quant[2]" data-pr-num="{{item.langId}}"
+
+                                                           class="form-control input-number center1" disabled
+                                                           value="{{item.percentage}}"
+                                                           min="0" max="100">
+
+                        <span class="input-group-btn"> <button type="button"
+                                                               class="btn btn-success btn-number plusButton"
+                                                               data-type="plus"
+                                                               ng-click="plusButton(item.langId)"
+                                                               data-field="quant[2]"><i
+                                class="fa fa-plus" aria-hidden="true"></i></button></span>
+
+
+                                                </div>
+                                                <div style="margin-top:5px;">
+                                                    <select class="form-control" data-select="{{item.langId}}"
+                                                            style="width: 100%;" ng-model="years"
+                                                            ng-change="changeYears(item.langId)">
+                                                        <option value="0" ng-selected="item.years == 0">0 Exerience</option>
+                                                        <option value="1" ng-selected="item.years == 1">1 years</option>
+                                                        <option value="2" ng-selected="item.years == 2">2 years</option>
+                                                        <option value="3" ng-selected="item.years == 3">3 years</option>
+                                                        <option value="4" ng-selected="item.years == 4">4 years</option>
+                                                        <option value="5" ng-selected="item.years == 5">5 years</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </article>
+                            <article>
+                                <h1>Adv</h1>
+
+                                <li class="span3" >
+                                    <div class="thumbnail" data-drop="true" ng-model='list2'
+                                         data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list2])'}"
+                                         jqyoui-droppable="{multiple:true}">
+                                        <div class="caption">
+                                            <div class="btn btn-info btn-draggable" ng-repeat="item in list2"
+                                                 ng-show="item.name"
+                                                 data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                                                 ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                                <i class="fa fa-times" aria-hidden="true"
+                                                   ng-click="removeLang(item.langId,'adv')"></i>
+                                                <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
+                                                       droppable-adv
+                                                       ng-change="changeLangeName(item.langId)" class="langsName"
+                                                       value="{{item.name}}">
+
+                                                <div style="margin-top:5px;">
+                                                    <select class="form-control" style="    width: 100%;"
+                                                            data-select="{{item.langId}}" ng-model="years"
+                                                            ng-change="changeYears(item.langId)">
+                                                        <option value="0" ng-selected="item.years == 0">0 Exerience</option>
+                                                        <option value="1" ng-selected="item.years == 1">1 years</option>
+                                                        <option value="2" ng-selected="item.years == 2">2 years</option>
+                                                        <option value="3" ng-selected="item.years == 3">3 years</option>
+                                                        <option value="4" ng-selected="item.years == 4">4 years</option>
+                                                        <option value="5" ng-selected="item.years == 5">5 years</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </article>
+                            <article>
+                                <h1>Or</h1>
+
+                                <li class="span3">
+                                    <div class="thumbnail" data-drop="true" ng-model='list3'
+                                         data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list3])'}"
+                                         jqyoui-droppable="{multiple:true}">
+                                        <div class="caption">
+                                            <div class="btn btn-info btn-draggable" ng-repeat="item in list3"
+                                                 ng-show="item.name"
+                                                 data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                                                 ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">
+                                                <i class="fa fa-times" aria-hidden="true"
+                                                   ng-click="removeLang(item.langId,'or')"></i>
+                                                <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
+                                                       droppable-or
+                                                       ng-change="changeLangeName(item.langId)" class="langsName"
+                                                       value="{{item.name}}">
+
+                                                <div style="margin-top:5px;">
+                                                    <select class="form-control" style="    width: 100%;"
+                                                            data-select="{{item.langId}}" ng-model="years"
+                                                            ng-change="changeYears(item.langId)">
+                                                        <option value="0" ng-selected="item.years == 0">0 Exerience</option>
+                                                        <option value="1" ng-selected="item.years == 1">1 years</option>
+                                                        <option value="2" ng-selected="item.years == 2">2 years</option>
+                                                        <option value="3" ng-selected="item.years == 3">3 years</option>
+                                                        <option value="4" ng-selected="item.years == 4">4 years</option>
+                                                        <option value="5" ng-selected="item.years == 5">5 years</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </article>
+                        </ul>
                     </div>
-                    <h3>OR</h3>
+                </div>
+            </div>
+            <!--BOTTOM PARSING-->
+            <div class="navbar-inner">
+                <div class="container form-inline" style="text-align: center;">
+                    <div class="btn btn-droppable" ng-repeat="item in langs" data-drop="true" ng-model='langs'
+                         data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=langs])'}"
+                         jqyoui-droppable="{index: {{$index}}}">
 
-                    <div id="Page2" class="Page hidden">
-                        <div class="Container"><a id="NewItem2" class="NewItem">Click to Add Item </a>
 
-                            <div id="CopyItem2" class="CopyItem">Drag into the Operators</div>
-                            <div id="Items2" class="Items">
-                                <div class="Item mustItem2" ><h2>MUST</h2></div>
-                                <div class="Item advantageItem2" ><h2>Advantage</h2></div>
-                                <div class="Item orItem2" ><h2>OR</h2></div>
+                        <div class="btn btn-info btn-draggable" ng-repeat="item in langs"
+                             ng-show="item.name"
+                             data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
+                             ng-model="langs"
+                             jqyoui-draggable="{index: {{$index}},animate:true}">
+
+
+                            <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
+                                   droppable-or
+                                   ng-change="changeLangeName(item.langId)" class="langsName"
+                                   value="{{item.name}}">
+
+                            <div style="margin-top:5px;">
+                                <select class="form-control" style="    width: 100%;"
+                                        data-select="{{item.langId}}" ng-model="years"
+                                        ng-change="changeYears(item.langId)">
+                                    <option value="0" ng-selected="item.years == 0">0 Exerience</option>
+                                    <option value="1" ng-selected="item.years == 1">1 years</option>
+                                    <option value="2" ng-selected="item.years == 2">2 years</option>
+                                    <option value="3" ng-selected="item.years == 3">3 years</option>
+                                    <option value="4" ng-selected="item.years == 4">4 years</option>
+                                    <option value="5" ng-selected="item.years == 5">5 years</option>
+                                </select>
                             </div>
+
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
 
+            <div class="form-group">
+                <input type="button" class="btn btn-warning"
+                       ng-click="addDynamicLang()" value="Add another LANGUAGE!">
+                <input type="button" class="btn btn-warning"
+                       ng-click="saveCombination()" value="Save">
+                <input type="button" class="btn btn-warning"
+                       ng-click="addDynamicCombination()" value="Save and Create another Combination">
+            </div>
+
+
+            <!-- TILL HERE - REQUERMENTS -->
             <div ng-include="'employer/jobparameters.html'"></div>
             <div class="form-group">
                 <!-- <button type="button" id="submitAfterParse" class="btn btn-warning disabled"  data-toggle="modal" data-target="#sendJob" ng-click="submitForm()"  >Send</button> -->
@@ -382,3 +489,49 @@
         </div>
     </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+<style>
+    .thumbnail {
+        min-height: 100px !important;
+        width: 210px;
+    }
+    .thumbnail .caption{padding:0px;}
+
+    .btn-droppable {
+        width: 180px;
+        padding-left: 4px;
+        margin-right: 5px !important;
+    }
+
+
+    article {
+        float: left;    width: 31%;
+        margin-right: 1%;
+    }
+    .input-group{    margin-top: 10px;}
+
+    .btn {
+        margin: 0px 2px 10px;
+    }
+
+    .langsName {
+        width: 90%;
+        font-size: 26px;
+        margin-bottom: 10px;
+        text-align: center;
+        background: none !important;
+        border: 0 !important;
+        display: block;
+    }
+
+
+</style>

@@ -48,7 +48,7 @@
                                 {{candidate.academy.degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compatibility_level}}">
-                                <h5>{{candidate.compatibility_level}}%</h5>
+                                <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
                             </section>
                         </a>
                     </div>
@@ -64,8 +64,8 @@
                 <div class="candidates animated fadeInUp likeCandidates">
 
 
-                    <div><a href=""><i id="candidateLike-{{candidate.google_user_id}}"  class='fa fa-thumbs-up fa-2x'
-                                       ng-click='addCandidateToLike($index,candidate.google_user_id,candidate._id)'></i></a> <a
+                    <div><i id="candidateLike-{{candidate._id}}"  class='fa fa-thumbs-o-up fa-2x like'
+                                       ng-click='addCandidateToLike(candidate._id)'></i> <a
                             href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a><a href="" ng-click='hire(candidate._id)'><img
                             src="./images/handshake1.png"></a>
@@ -84,7 +84,7 @@
                                 {{candidate.academy.degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compatibility_level}}">
-                                <h5>{{candidate.compatibility_level}}%</h5>
+                                <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
                             </section>
                         </a>
                     </div>
@@ -97,11 +97,9 @@
             <section
                     ng-repeat="candidate in unlikeCandidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp unlikeCandidates">
-                    <div>
-                        <a
-                                href=""><i id="candidateLike-{{candidate.google_user_id}}"
-                                           class='fa fa-thumbs-o-up fa-2x'
-                                           ng-click='addCandidateToLike($index,candidate.google_user_id,candidate._id)'></i></a> <a
+                    <div><i id="candidateLike-{{candidate._id}}"
+                                           class='fa fa-thumbs-o-up fa-2x unlike'
+                                           ng-click='addCandidateToLike(candidate._id)'></i> <a
                             href="#/UnLike/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a>
 
@@ -120,7 +118,7 @@
                                 {{candidate.academy.degree_type[0]}} </p>
                             <section circle id="{{ 'circle-container-' + $index }}"
                                      data-compability="{{candidate.compatibility_level}}">
-                                <h5>{{candidate.compatibility_level}}%</h5>
+                                <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
                             </section>
                         </a>
                     </div>

@@ -55,7 +55,7 @@
                         <section>
 
                         </section>
-                        <a ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage"  class="btn btn-default">Check
+                        <a ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
                             my CV</a>
                     </article>
                 <hr>

@@ -32,7 +32,7 @@
                 <span>Compability:</span>
                 <section circle id="{{ 'circle-container-' + $index }}"
                          data-compability="{{job.compatibility_level}}">
-                    <h5>{{job.compatibility_level}}%</h5>
+                    <h5>{{job.compatibility_level.toFixed(0)}}%</h5>
                 </section>
             </div>
         </div>
