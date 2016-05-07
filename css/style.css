@@ -1096,6 +1096,7 @@ footer div a {
     height: 80px;
     background-color: #FFF4D9;
 }
+.langs{width:15%;}
 
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
@@ -1321,6 +1322,7 @@ footer div a {
 }
 .fa-times{
     cursor: pointer;}
+
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 .matchResult {

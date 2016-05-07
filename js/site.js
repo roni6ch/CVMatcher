@@ -6,7 +6,8 @@ app.config(function ($routeProvider) {
     $routeProvider
     // employer
         .when('/', {
-            templateUrl: 'googleSignIn.html'
+            templateUrl: 'googleSignIn.html',
+            controller: 'googleSignInController'
         }).when('/usersLogin', {
         templateUrl: 'usersLogin.html',
         controller: 'usersLoginController'
@@ -76,6 +77,7 @@ app.config(function ($routeProvider) {
 }).run(function ($rootScope, $http) {
     //set the header navigation
     if ($.cookie('userSignInType')) {
+        $rootScope.userSignInType = $.cookie('userSignInType');
         $rootScope.user_id = $.cookie('user_id');
     }
 }).filter('highlight', function ($sce) {
@@ -86,6 +88,14 @@ app.config(function ($routeProvider) {
     }
 });
 
+
+/*
+ * ********************* googleSignIn controller ****************
+ */
+
+app.controller('googleSignInController', function ($rootScope) {
+    $rootScope.userSignInType = '';
+});
 
 /*
  * ********************* usersLogin controller ****************
@@ -388,16 +398,16 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>";
             data = {
                 "user_id": $.cookie('user_id'),
-                "active":true
+                "active": true
             }
         }
-        else if (path == 'deleted'){
+        else if (path == 'deleted') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs';
             $scope.title = "Deleted Jobs";
             $scope.page = 'deleted';
             data = {
                 "user_id": $.cookie('user_id'),
-                "active":false
+                "active": false
             }
             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/deleted'>Deleted Jobs</a>";
         }
@@ -434,7 +444,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                 });
     }
 
-    $scope.removeReviveJob = function(id,bool){
+    $scope.removeReviveJob = function (id, bool) {
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/updateActivityJob',
             method: "POST",
@@ -1698,8 +1708,6 @@ app.controller('resumeController',
  * ********************* Job controller ****************
  */
 
-var totalPriorotySum = 0;
-var requirements = [], combination = [];
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
 
         $(".requirementsWrapper").hide();
@@ -1710,10 +1718,28 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $jobId = $location.path().split('/')[2];
         var sumSliders = 0;
         var combinationForJob = [];
-        var sumPrioroty = 0;
-        var sumPrioroty2 = 0;
+        var json = [];
+        var languages = [];
+        var langId = 0;
+        var newLang = [];
+        $rootScope.langs = [];
+        $rootScope.list1 = [];
+        $rootScope.list2 = [];
+        $rootScope.list3 = [];
+
+        var requirements = [];
+        var combination = [];
+        var tempMustLangs = [];
+        var tempAdvLangs = [];
+        var tempOrLangs = [];
+        var totalPriorotySum = 0;
+        var combinationsLength = 0;
+        var combinationLengthAfterEdit = 0;
+        var savedCurrentCombination = false;
         //edit job - get AJAX details
         $scope.getJobJson = function () {
+            $(".fa-arrow-right").hide();
+            $(".fa-arrow-left").hide();
 
             if ($id == 'job') {
                 //url for later to submit!
@@ -1733,26 +1759,70 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
 
-                        $.each(data.data[0].requirements, function (key, val) {
-                            console.log(val);
-                            if (val.percentage) {
+                        combinationsLength = data.data[0].requirements.length -1;
+                        combinationLengthAfterEdit = data.data[0].requirements.length;
+                        if (combinationsLength > 1)
+                            $(".fa-arrow-right").show();
+                        var i = 0;
+                        if (data.data[0].requirements.length > 0) {
+                            if (i < data.data[0].requirements.length)
+                                $.each(data.data[0].requirements, function (k, v) {
+                                    i++;
+                                    var combination = [];
+                                    $.each(v.combination, function (key, val) {
+                                        if (val.mode == 'must') {
+                                            totalPriorotySum += parseInt(val.percentage);
+                                            tempMustLangs.push({
+                                                'langId': langId++,
+                                                'name': val.name,
+                                                'mode': val.mode,
+                                                'years': val.years,
+                                                'percentage': val.percentage,
+                                                'drag': true
+                                            });
+                                        }
+                                        else if (val.mode == 'adv') {
+                                            tempAdvLangs.push({
+                                                'langId': langId++,
+                                                'name': val.name,
+                                                'mode': val.mode,
+                                                'years': val.years,
+                                                'percentage': val.percentage,
+                                                'drag': true
+                                            });
+                                        }
+                                        else {
+                                            tempOrLangs.push({
+                                                'langId': langId++,
+                                                'name': val.name,
+                                                'mode': val.mode,
+                                                'years': val.years,
+                                                'percentage': val.percentage,
+                                                'drag': true
+                                            });
+                                        }
+                                        combination.push(val);
+                                    });
+                                    var must;
+                                    if (i == 1) {
+                                        $rootScope.list1 = tempMustLangs;
+                                        $rootScope.list2 = tempAdvLangs;
+                                        $rootScope.list3 = tempOrLangs;
 
-                                sumPrioroty += val.percentage;
+                                    }
+                                    tempMustLangs = [];
+                                    tempAdvLangs = [];
+                                    tempOrLangs = [];
 
-                                combinationForJob.push({
-                                    'name': val.name,
-                                    'mode': val.mode,
-                                    'years': val.years,
-                                    'percentage': val.percentage
+                                    requirements.push({'combination': combination});
+                                    combination = [];
+
                                 });
-                            }
-                            else
-                                combinationForJob.push({'name': val.name, 'mode': val.mode, 'years': val.years});
-                        });
-                        $scope.parseExperience();
 
+                            $scope.parseExperience();
+
+                        }
                         angular.element(".fa-pulse").hide();
-
 
                         //SLIDERS
                         var sliders = $("#sliders .slider");
@@ -1875,6 +1945,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.parseExperience = function () {
 
             var parseExpereince;
+            var parseExpereinceAdv;
             $http({
                 url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
                 method: "POST",
@@ -1885,11 +1956,16 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "text": $("#requirementsMust").val(),
                             "words": data.data
                         };
+                        parseExpereinceAdv = {
+                            "text": $("#requirementsAdvantage").val(),
+                            "words": data.data
+                        };
                         angular.element(".fa-spin").show();
 
 
                         //Requerments Must
                         if ($id == 'job') {
+
                             $(".requirementsWrapper").show();
                             angular.element(".fa-spin").hide();
                             angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -1901,15 +1977,54 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 data: parseExpereince
                             })
                                 .then(function (data1) {
-                                    console.log(parseExpereince);
-                                        $(".requirementsWrapper").show();
                                         angular.element(".fa-spin").hide();
+                                        $(".requirementsWrapper").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
                                         console.log(data1);
+                                        tempMustLangs = [];
+                                        $.each(data1.data, function (key, val) {
+                                            tempMustLangs.push({
+                                                'langId': langId++,
+                                                'name': val,
+                                                'percentage': "0",
+                                                'mode': "must",
+                                                'years': 0,
+                                                'drag': true
+                                            });
+                                        });
+                                        $rootScope.list1 = tempMustLangs;
                                     },
                                     function (response) {
-
                                         angular.element(".fa-spin").hide();
+                                        console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                    });
+
+
+                            //adv
+                            $http({
+                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                method: "POST",
+                                data: parseExpereinceAdv
+                            })
+                                .then(function (data1) {
+                                        angular.element(".fa-spin").hide();
+                                        $(".requirementsWrapper").show();
+                                        angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                        console.log(data1);
+                                        tempAdvLangs = [];
+                                        $.each(data1.data, function (key, val) {
+                                            tempAdvLangs.push({
+                                                'langId': langId++,
+                                                'name': val,
+                                                'percentage': "0",
+                                                'mode': "adv",
+                                                'years': 0,
+                                                'drag': true
+                                            });
+                                        });
+                                        $rootScope.list2 = tempAdvLangs;
+                                    },
+                                    function (response) {
                                         console.log("findIfKeyWordsExistsJOB AJAX failed!");
                                     });
 
@@ -1931,12 +2046,30 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
         //send form
         $scope.submitForm = function () {
-            console.log("a");
-            console.log(sumSliders);
-            console.log(totalPriorotySum);
             $scope.status = 'Please wait';
             if (sumSliders == 100 && totalPriorotySum == 100) {
+                console.log(requirements);
+                if (savedCurrentCombination == false) {
+                    //requerments
+                    combination = [];
+                    if ($rootScope.list1.length > 0) {
+                        $.each($rootScope.list1, function (key, val) {
+                            combination.push(val);
+                        });
+                    }
+                    if ($rootScope.list2.length > 0) {
+                        $.each($rootScope.list2, function (key, val) {
+                            combination.push(val);
+                        });
+                    }
+                    if ($rootScope.list3.length > 0) {
+                        $.each($rootScope.list3, function (key, val) {
+                            combination.push(val);
+                        });
+                    }
+                    requirements.push({'combination': combination});
 
+                }
                 var academy = [];
                 //scope_of_position
                 $.each($(".academy input:checked"), function () {
@@ -2053,8 +2186,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 })
                     .then(function (data) {
                             if (data != null)
-                                console.log(data);
-                            $('#sendJob').modal('show');
+                                $('#sendJob').modal('show');
                             $scope.status = "Job Send Succesfuly";
                         },
                         function (response) { // optional
@@ -2078,106 +2210,166 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
         /***    FROM HERE THE REQUERMENTS   ***/
-        var languages = [];
-        var langId = 0;
-        var ready = false;
 
-        var json = [{
-            "name": "c++",
-            'percentage': 40,
-            'mode': "must",
-            'years': 3
-        }, {
-            "name": "java",
-            'percentage': 50,
-            'mode': "must",
-            'years': 4
-        }/*, {
-         "name": "php",
-         'percentage': "10",
-         'mode': "must",
-         'years': 0
-         }*/
-        ]
-        $.each(json, function (key, val) {
-            languages.push({
-                'langId': langId++,
-                'name': val.name,
-                'percentage': val.percentage,
-                'mode': val.mode,
-                'years': val.years,
-                'drag': true
-            });
-            totalPriorotySum += parseInt(val.percentage);
-        });
-
-        var tempMustLangs = languages;
-        tempMustLangs = tempMustLangs.filter(function (obj) {
-            return obj.mode == "must";
-        });
-        var tempAdvLangs = languages;
-        tempAdvLangs = tempAdvLangs.filter(function (obj) {
-            return obj.mode == "adv";
-        });
-        var tempOrLangs = languages;
-        tempOrLangs = tempOrLangs.filter(function (obj) {
-            return obj.mode == "or";
-        });
-
-        $rootScope.list1 = tempMustLangs;
-        $rootScope.list2 = tempAdvLangs;
-        $rootScope.list3 = tempOrLangs;
-
-
-        $scope.saveCombination = function () {
-            if ($rootScope.list1.length > 0) {
-                $.each($rootScope.list1, function (key, val) {
-                    combination.push(val);
-                });
-            }
-            if ($rootScope.list2.length > 0) {
-                $.each($rootScope.list2, function (key, val) {
-                    combination.push(val);
-                });
-            }
-            if ($rootScope.list3.length > 0) {
-                $.each($rootScope.list3, function (key, val) {
-                    combination.push(val);
-                });
-            }
-            requirements.push({'combination': combination});
-            console.log(requirements);
-            combination = [];
-        }
+        var nextCombinationKey = 0;
         //ADD COMBINATION
         $scope.addDynamicCombination = function () {
-            if ($rootScope.list1.length > 0) {
-                $.each($rootScope.list1, function (key, val) {
-                    combination.push(val);
-                });
+            combinationLengthAfterEdit++;
+            $(".fa-arrow-right").hide();
+            if (totalPriorotySum == 100 && $rootScope.list1.length > 0) {
+                nextCombinationKey++;
+                combinationsLength++;
+                $(".fa-arrow-left").show();
+                if ($rootScope.list1 != 'undefined') {
+                    $.each($rootScope.list1, function (key, val) {
+                        combination.push(val);
+                    });
+                }
+                if ($rootScope.list2 != 'undefined') {
+                    $.each($rootScope.list2, function (key, val) {
+                        combination.push(val);
+                    });
+                }
+
+                if ($rootScope.list3 != 'undefined') {
+                    $.each($rootScope.list3, function (key, val) {
+                        combination.push(val);
+                    });
+                }
+                $rootScope.list1 = [];
+                $rootScope.list2 = [];
+                $rootScope.list3 = [];
+                $rootScope.langs = [];
+                requirements.push({'combination': combination});
+                //$scope.jobDetails = requirements;
+                combination = [];
+                console.log(requirements);
+                totalPriorotySum = 0;
+                $scope.addDynamicLang();
             }
-            if ($rootScope.list2.length > 0) {
-                $.each($rootScope.list2, function (key, val) {
-                    combination.push(val);
-                });
+            else if ($rootScope.list1.length == 0) {
+                $('#sendJob').modal('show');
+                $scope.status = "Please add Must Language";
             }
-            if ($rootScope.list3.length > 0) {
-                $.each($rootScope.list3, function (key, val) {
-                    combination.push(val);
-                });
+            else if (totalPriorotySum != 100) {
+                $('#sendJob').modal('show');
+                $scope.status = "Please SUM Prioroty to 100";
             }
+        }
+
+        $scope.nextCombination = function (val) {
+            if (val == 'right') {
+                savedCurrentCombination = true;
+                nextCombinationKey++;
+                console.log(nextCombinationKey);
+                console.log(combinationsLength);
+                if (nextCombinationKey < combinationsLength  && nextCombinationKey != combinationsLength) {
+                    $(".fa-arrow-right").show();
+                    $(".fa-arrow-left").show();
+                }
+                else {
+                    $(".fa-arrow-right").hide();
+                    $(".fa-arrow-left").show();
+                }
+            }
+            else {
+                nextCombinationKey--;
+                console.log(nextCombinationKey);
+                console.log(combinationsLength);
+                console.log(savedCurrentCombination);
+                if (nextCombinationKey < combinationsLength && nextCombinationKey != 0) {
+                    $(".fa-arrow-right").show();
+                    $(".fa-arrow-left").show();
+
+
+                }
+                else {
+                    $(".fa-arrow-right").show();
+                    $(".fa-arrow-left").hide();
+                }
+
+
+                // if left save current lists
+                if (totalPriorotySum == 100 && $rootScope.list1.length > 0 && savedCurrentCombination == false) {
+                    savedCurrentCombination = true;
+                    combination = [];
+                    if ($rootScope.list1 != 'undefined') {
+                        $.each($rootScope.list1, function (key, val) {
+                            combination.push(val);
+                        });
+                    }
+                    if ($rootScope.list2 != 'undefined') {
+                        $.each($rootScope.list2, function (key, val) {
+                            combination.push(val);
+                        });
+                    }
+
+                    if ($rootScope.list3 != 'undefined') {
+                        $.each($rootScope.list3, function (key, val) {
+                            combination.push(val);
+                        });
+                    }
+
+                    requirements.push({'combination': combination});
+                    combination = [];
+
+                }
+            }
+            console.log(requirements);
+            console.log(nextCombinationKey);
+
             $rootScope.list1 = [];
             $rootScope.list2 = [];
             $rootScope.list3 = [];
             $rootScope.langs = [];
-            requirements.push({'combination': combination});
-            combination = [];
-            console.log(requirements);
-        }
+            tempMustLangs = [];
+            tempAdvLangs = [];
+            tempOrLangs = [];
+            totalPriorotySum = 0;
 
+            $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                if (val.mode == 'must') {
+                    totalPriorotySum += parseInt(val.percentage);
+                    tempMustLangs.push({
+                        'langId': langId++,
+                        'name': val.name,
+                        'mode': val.mode,
+                        'years': val.years,
+                        'percentage': val.percentage,
+                        'drag': true
+                    });
+                }
+                else if (val.mode == 'adv') {
+                    tempAdvLangs.push({
+                        'langId': langId++,
+                        'name': val.name,
+                        'mode': val.mode,
+                        'years': val.years,
+                        'percentage': val.percentage,
+                        'drag': true
+                    });
+                }
+                else if (val.mode == 'or') {
+                    tempOrLangs.push({
+                        'langId': langId++,
+                        'name': val.name,
+                        'mode': val.mode,
+                        'years': val.years,
+                        'percentage': val.percentage,
+                        'drag': true
+                    });
+                }
+            });
+
+            $rootScope.list1 = tempMustLangs;
+            $rootScope.list2 = tempAdvLangs;
+            $rootScope.list3 = tempOrLangs;
+
+
+        }
         //ADD LANG
         $scope.addDynamicLang = function () {
-            var newLang = [];
+            newLang = [];
             newLang.push({
                 'langId': langId++,
                 'name': "Language",
@@ -2192,6 +2384,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.removeLang = function (id, sectType) {
             if (sectType == 'must') {
                 $rootScope.list1 = $rootScope.list1.filter(function (obj) {
+                    if (obj.langId == id) {
+                        totalPriorotySum -= parseInt(obj.percentage);
+                    }
                     return obj.langId != id;
                 });
             }
@@ -2209,22 +2404,26 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         }
         //NAMES
         $scope.changeLangeName = function (id) {
-            $.each($rootScope.list1, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.list2, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.list3, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            if ($rootScope.langs.length > 0)
+            if ($rootScope.list1 != 'undefined')
+                $.each($rootScope.list1, function (key, val) {
+                    if (val.langId == id) {
+                        val.name = $("input[data-lang-name='" + id + "']").val();
+                    }
+                });
+            if ($rootScope.list2 != 'undefined')
+                $.each($rootScope.list2, function (key, val) {
+                    if (val.langId == id) {
+                        val.name = $("input[data-lang-name='" + id + "']").val();
+                    }
+                });
+
+            if ($rootScope.list3 != 'undefined')
+                $.each($rootScope.list3, function (key, val) {
+                    if (val.langId == id) {
+                        val.name = $("input[data-lang-name='" + id + "']").val();
+                    }
+                });
+            if ($rootScope.langs != 'undefined')
                 $.each($rootScope.langs, function (key, val) {
                     if (val.langId == id) {
                         val.name = $("input[data-lang-name='" + id + "']").val();
@@ -2248,6 +2447,12 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     val.years = $("select[data-select='" + id + "']").val();
                 }
             });
+            if ($rootScope.langs.length > 0)
+                $.each($rootScope.langs, function (key, val) {
+                    if (val.langId == id) {
+                        val.years = $("select[data-select='" + id + "']").val();
+                    }
+                })
         }
         //PLUS
         $scope.plusButton = function (id) {
@@ -2267,6 +2472,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         }
         //MINUS
         $scope.minusButton = function (id) {
+
+            console.log(parseInt(totalPriorotySum));
+
             if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0) {
                 $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) - 10);
                 totalPriorotySum -= 10;
@@ -2521,14 +2729,14 @@ var updateSignIn = function () {
         if (firstTimeLogIn == true) {
             console.log("first time! so add user!!!");
         }
-        else if(firstTimeLogInJobSeeker == true){
+        else if (firstTimeLogInJobSeeker == true) {
             console.log("first time! so add user!!!");
         }
         else
             console.log("user loggen in before so get user!!!");
     } else {
         firstTimeLogIn = true;
-        firstTimeLogInJobSeeker=true;
+        firstTimeLogInJobSeeker = true;
     }
 
     helper.onSignInCallback(gapi.auth2.getAuthInstance());

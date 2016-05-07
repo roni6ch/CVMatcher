@@ -416,20 +416,16 @@
             <!--BOTTOM PARSING-->
             <div class="navbar-inner">
                 <div class="container form-inline" style="text-align: center;">
-                    <div class="btn btn-droppable" ng-repeat="item in langs" data-drop="true" ng-model='langs'
-                         data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=langs])'}"
-                         jqyoui-droppable="{index: {{$index}}}">
 
 
-                        <div class="btn btn-info btn-draggable" ng-repeat="item in langs"
+                        <div class="btn btn-info btn-draggable langs" ng-repeat="item in langs"
                              ng-show="item.name"
                              data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                             ng-model="langs"
-                             jqyoui-draggable="{index: {{$index}},animate:true}">
+                             ng-model="langs" jqyoui-draggable="{index: {{$index}},animate:true}">
+
 
 
                             <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
-                                   droppable-or
                                    ng-change="changeLangeName(item.langId)" class="langsName"
                                    value="{{item.name}}">
 
@@ -446,18 +442,19 @@
                                 </select>
                             </div>
 
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <input type="button" class="btn btn-warning"
-                       ng-click="addDynamicLang()" value="Add another LANGUAGE!">
+                       ng-click="addDynamicLang()" value="Add another LANGUAGE!"><!--
                 <input type="button" class="btn btn-warning"
-                       ng-click="saveCombination()" value="Save">
+                       ng-click="saveCombination()" value="Save">-->
                 <input type="button" class="btn btn-warning"
                        ng-click="addDynamicCombination()" value="Save and Create another Combination">
+                <i class="fa fa-arrow-right fa-3x" ng-click="nextCombination('right')" style="float:right; cursor: pointer;" aria-hidden="true"></i>
+                <i class="fa fa-arrow-left fa-3x" ng-click="nextCombination('left')" style="float:right; cursor: pointer;" aria-hidden="true"></i>
             </div>
 
 
