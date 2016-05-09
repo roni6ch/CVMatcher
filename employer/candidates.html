@@ -20,6 +20,7 @@
         <li ng-class="{active:tab == 0}"><a ng-click="tab = 0; unreadCvs()">Unread</a></li>
         <li ng-class="{active:tab == 1}"><a ng-click="tab = 1; likedCvs()">Liked</a></li>
         <li ng-class="{active:tab == 2}"><a ng-click="tab = 2; unlikeCvs()">Unliked</a></li>
+        <li ng-class="{active:tab == 3}"><a ng-click="tab = 3; Hired()">Hired</a></li>
     </ul>
 
 
@@ -64,8 +65,8 @@
                 <div class="candidates animated fadeInUp likeCandidates">
 
 
-                    <div><i id="candidateLike-{{candidate._id}}"  class='fa fa-thumbs-o-up fa-2x like'
-                                       ng-click='addCandidateToLike(candidate._id)'></i> <a
+                    <div><i id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
+                            ng-click='addCandidateToLike(candidate._id)'></i> <a
                             href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a><a href="" ng-click='hire(candidate._id)'><img
                             src="./images/handshake1.png"></a>
@@ -98,8 +99,8 @@
                     ng-repeat="candidate in unlikeCandidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp unlikeCandidates">
                     <div><i id="candidateLike-{{candidate._id}}"
-                                           class='fa fa-thumbs-o-up fa-2x unlike'
-                                           ng-click='addCandidateToLike(candidate._id)'></i> <a
+                            class='fa fa-thumbs-o-up fa-2x unlike'
+                            ng-click='addCandidateToLike(candidate._id)'></i> <a
                             href="#/UnLike/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a>
 
@@ -121,6 +122,33 @@
                                 <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
                             </section>
                         </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div ng-show="tab == 3" class="fade in active">
+            <h3>{{hiredCandidates.length}} Hired Resume's</h3>
+            <!-- jobs sections -->
+            <section
+                    ng-repeat="candidate in hiredCandidates | filter:searchText | orderBy:sortby">
+                <div class="candidates animated fadeInUp hiredCandidates">
+                    <div>
+                        <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
+
+                    </div>
+                    <div>
+
+                        <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
+
+                        <p
+                                ng-model="searchText.sector"
+                                ng-bind-html="candidate.sector | highlight:searchText">
+                            {{candidate.sector}} ,{{candidate.academy.academy_type[0]}} ,
+                            {{candidate.academy.degree_type[0]}} </p>
+                        <section circle id="{{ 'circle-container-' + $index }}"
+                                 data-compability="{{candidate.compatibility_level}}">
+                            <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
+                        </section>
                     </div>
                 </div>
             </section>
@@ -165,7 +193,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal" ng-click="bringNextCandidate('liked',null,userId)">
+                <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal"
+                        ng-click="bringNextCandidate('liked',null,userId)">
                     Close
                 </button>
             </div>
@@ -190,7 +219,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bringNextCandidate('unliked',original_text,userId)">
+                <button type="button" class="btn btn-default" data-dismiss="modal"
+                        ng-click="bringNextCandidate('unliked',original_text,userId)">
                     Close
                 </button>
             </div>

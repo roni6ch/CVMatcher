@@ -542,7 +542,7 @@ footer div a {
 .nav-tabs li {
     cursor: pointer;
     border: 1px solid #ccc;
-    width: 33.3%;
+    width: 25%;
     height: 66px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -916,6 +916,8 @@ footer div a {
 .companyLogo img{margin: 0 auto;}
 .logos{float:left;     margin-right: 1%;}
 .logos img{width:100px; height:100px;}
+.companies{float:left;     margin-right: 1%;}
+.companies img{width:100px; height:100px;}
 
 .pagination {
     display: block;

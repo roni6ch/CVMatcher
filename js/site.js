@@ -1201,7 +1201,10 @@ app.controller('companyProfileController',
         var tabType = '';
         $("#geocomplete").geocomplete();
         $("#geocomplete2").geocomplete();
-
+        $scope.chooseCompanyModal = false;
+        $scope.passForCompany = '';
+        $scope.changePassword = false;
+        $scope.password = false;
         //user details
         $http({
             url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -1219,7 +1222,7 @@ app.controller('companyProfileController',
                         if (data.data[0].company) {
                             company = true;
                             companyId = data.data[0].company;
-                            if (company) {
+                            if (companyId) {
                                 url = 'https://cvmatcher.herokuapp.com/employer/getCompany';
                                 $http({
                                     url: url,
@@ -1230,15 +1233,17 @@ app.controller('companyProfileController',
                                 })
                                     .then(function (data) {
                                             $scope.companyProfile = data.data[0];
-                                            console.log(data.data);
+                                            console.log("company: ", data.data[0]);
                                             angular.element(".fa-pulse").hide();
                                         },
                                         function (response) { // optional
                                             console.log("companyProfileController AJAX failed!");
                                         });
                             }
-                        }
 
+                        }
+                        else
+                            $scope.password = true;
                         angular.element(".fa-pulse").hide();
                     }
                 },
@@ -1311,6 +1316,7 @@ app.controller('companyProfileController',
                     "logo": logo,
                     "p_c": $(".companyPC").val(),
                     "address": $("#geocomplete2").val(),
+                    "password": $(".passwordCompany").val(),
                     "phone_number": $(".companyPhoneNumber").val()
                 }
 
@@ -1353,12 +1359,92 @@ app.controller('companyProfileController',
                     function (response) { // optional
                         $scope.status = "Error Company Update!"
                     });
+
+                //send new password
+                if ($scope.changePassword == true) {
+                    console.log($scope.employerProfile['company']);
+                    console.log($(".passwordCompany").val());
+                    console.log($(".newPasswordCompany").val());
+                    $http({
+                        url: 'https://cvmatcher.herokuapp.com/employer/changeCompanyPassword',
+                        method: "POST",
+                        data: {
+                            "company_id": $scope.employerProfile['company'],
+                            "old_password": $(".passwordCompany").val(),
+                            "new_password": $(".newPasswordCompany").val()
+                        }
+                    }).then(function () {
+                            $('#update').modal('show');
+                            $scope.status = "Company Updated Succesfully!"
+                        },
+                        function (response) { // optional
+                            $scope.status = "Wrong Password!"
+                        });
+                }
+
+
             }
 
 
         }
+
+
+        $scope.changePassword = function () {
+
+            $scope.changePassword = true;
+        }
+
+
+        $scope.getCompanies = function () {
+            $scope.chooseCompanyModal = false;
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/employer/getCompanies',
+                method: "GET"
+            }).then(function (data) {
+                    console.log(data);
+                    $scope.companies = data.data;
+                },
+                function (response) { // optional
+                    $scope.status = "Error get Companies!"
+                });
+        }
+        var companyId;
+        $scope.checkCompany = function (id) {
+            console.log(id);
+            companyId = id;
+            $scope.chooseCompanyModal = true;
+            $('#update').modal('show');
+            $scope.status = "Password";
+            //remove the v check mark from other buttons
+            logo = $(this).find("img").prevObject[0].logo;
+            $.each($(".companies label"), function () {
+                $(this).removeClass('active');
+            });
+        }
+        $scope.sendPassword = function () {
+            var pass = $scope.passForCompany;
+            console.log("companyId: " + companyId);
+            console.log("user_id: " + $.cookie('user_id'));
+            console.log("passForCompany: " + pass);
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/employer/addToExistingCompany',
+                method: "POST",
+                data: {
+                    "user_id": $.cookie('user_id'),
+                    "company_id": companyId,
+                    "password": pass
+                }
+            }).then(function (data) {
+                    console.log(data);
+
+
+                },
+                function (response) { // optional
+                    $scope.status = "Error  sendPassword!"
+                });
+        }
         $scope.closeModal = function () {
-            console.log(tabType);
+            $scope.chooseCompanyModal = false;
             $timeout(function () {
                 if (tabType == 'company')
                     window.location.href = '#/myjobs';
@@ -1442,6 +1528,28 @@ app.controller('candidatesController',
                         console.log("unlikeCvs AJAX failed!");
                     });
         }
+        $scope.Hired = function () {
+            angular.element(".fa-pulse").show();
+            $scope.hiredCandidates = '';
+            console.log($scope.jobId);
+            console.log($.cookie('user_id'));
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/employer/getHiredCvs',
+                method: "POST",
+                data: {
+                    "user_id": $.cookie('user_id'),
+                    "job_id": $scope.jobId
+                }
+            })
+                .then(function (data) {
+                        console.log(data.data);
+                        $scope.hiredCandidates = data.data;
+                        angular.element(".fa-pulse").hide();
+                    },
+                    function (response) { // optional
+                        console.log("Hired AJAX failed!");
+                    });
+        }
 
 
         $scope.sort = function (sort) {
@@ -1484,6 +1592,26 @@ app.controller('candidatesController',
 
         $scope.hire = function (cvId) {
             console.log(cvId);
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/employer/hireToJob',
+                method: "POST",
+                data: {
+                    "user_id": $.cookie('user_id'),
+                    "cv_id": cvId
+                }
+            })
+                .then(function (data) {
+                        //remove from list filter
+                        var canArr = $rootScope.likeCandidates;
+                        canArr = canArr.filter(function (obj) {
+                            return obj._id != cvId;
+                        });
+                        $rootScope.likeCandidates = canArr;
+
+                    },
+                    function (response) { // optional
+                        console.log("Hired AJAX failed!");
+                    });
         }
 
         $scope.bringNextCandidate = function (type, description, id) {
@@ -1759,7 +1887,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
 
-                        combinationsLength = data.data[0].requirements.length -1;
+                        combinationsLength = data.data[0].requirements.length - 1;
                         combinationLengthAfterEdit = data.data[0].requirements.length;
                         if (combinationsLength > 1)
                             $(".fa-arrow-right").show();
@@ -2263,7 +2391,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 nextCombinationKey++;
                 console.log(nextCombinationKey);
                 console.log(combinationsLength);
-                if (nextCombinationKey < combinationsLength  && nextCombinationKey != combinationsLength) {
+                if (nextCombinationKey < combinationsLength && nextCombinationKey != combinationsLength) {
                     $(".fa-arrow-right").show();
                     $(".fa-arrow-left").show();
                 }

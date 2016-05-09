@@ -1,119 +1,176 @@
 <div class="companyprofileWrapper">
-	<h3 class="navigation"></h3>
-	<header>
-		<h2>Company Profile</h2>
-	</header>
-	<i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <h3 class="navigation"></h3>
+    <header>
+        <h2>Company Profile</h2>
+    </header>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
 
 
-	<ul class="nav nav-tabs" ng-init="tab=0">
-		<li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
-			Information</a></li>
-		<li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Company Profile</a></li>
+    <ul class="nav nav-tabs" ng-init="tab=0">
+        <li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
+            Information</a></li>
+        <li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Company Profile</a></li>
 
-	</ul>
+    </ul>
 
-	<div class="tab-content userProfile">
-		<div ng-show="tab == 0" class="tabsContent fade in active" >
-			<!-- Content from here -->
-			<form>
-				<div class="form-group">
-					<label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
-																class="form-control personalId"  name="id">
-				</div>
-				<div class="form-group">
-					<label for="usr">First name:</label> <input type="text" required value="{{employerProfile['first_name']}}"
-																  class="form-control firstName"  name="first_name">
-				</div>
-				<div class="form-group">
-					<label for="usr">Last name:</label> <input type="text" required value="{{employerProfile['last_name']}}"
-																class="form-control lastName">
-				</div>
-				<div class="form-group">
-					<label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}"
-														   class="form-control email" >
-				</div>
-				<div class="form-group ">
-					<label for="usr">Birth Date:</label> <input type="date" required  value="{{employerProfile['birth_date']}}"
-															   class="form-control birthDay">
-				</div>
-				<div class="form-group">
+    <div class="tab-content userProfile" style="    float: left; width: 100%;">
+        <div ng-show="tab == 0" class="tabsContent fade in active">
+            <!-- Content from here -->
+            <form>
+                <div class="form-group">
+                    <label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
+                                                        class="form-control personalId" name="id">
+                </div>
+                <div class="form-group">
+                    <label for="usr">First name:</label> <input type="text" required
+                                                                value="{{employerProfile['first_name']}}"
+                                                                class="form-control firstName" name="first_name">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Last name:</label> <input type="text" required
+                                                               value="{{employerProfile['last_name']}}"
+                                                               class="form-control lastName">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}"
+                                                           class="form-control email">
+                </div>
+                <div class="form-group ">
+                    <label for="usr">Birth Date:</label> <input type="date" required
+                                                                value="{{employerProfile['birth_date']}}"
+                                                                class="form-control birthDay">
+                </div>
+                <div class="form-group">
 
-					<label>Address:</label> <input class="form-control"  id="geocomplete"
-												   type="text"
-												   name="location" value="{{employerProfile['address']}}"
-												   placeholder="Type in an address" size="90" autocomplete="on">
-				</div>
-				<div class="form-group">
-					<label for="usr">Phone number:</label> <input type="text" required value="{{employerProfile['phone_number']}}"
-																  class="form-control phoneNumber" >
-				</div>
+                    <label>Address:</label> <input class="form-control" id="geocomplete"
+                                                   type="text"
+                                                   name="location" value="{{employerProfile['address']}}"
+                                                   placeholder="Type in an address" size="90" autocomplete="on">
+                </div>
+                <div class="form-group">
+                    <label for="usr">Phone number:</label> <input type="text" required
+                                                                  value="{{employerProfile['phone_number']}}"
+                                                                  class="form-control phoneNumber">
+                </div>
 
-				<label for="usr">LinkedIn:</label> <input type="text" required
-														  class="form-control linkedin" ng-model="employerProfile['linkedin']"
-														  value="{{companyProfile.user['linkedin']}}">
+                <label for="usr">LinkedIn:</label> <input type="text" required
+                                                          class="form-control linkedin"
+                                                          ng-model="employerProfile['linkedin']"
+                                                          value="{{companyProfile.user['linkedin']}}">
 
-				<button type="button" class="btn btn-default" ng-click="submitUserDetails()" data-toggle="modal" data-target="#update">Send</button>
-			</form>
-		</div>
-		<div ng-show="tab == 1" class="tabsContent fade in active" >
-			<!-- Content from here -->
-			<form ng-submit="submitCompanyDetails()" >
+                <button type="button" class="btn btn-default" ng-click="submitUserDetails()" data-toggle="modal"
+                        data-target="#update">Send
+                </button>
+            </form>
+        </div>
+        <div ng-show="tab == 1" class="tabsContent fade in active">
+            <ul class="nav nav-tabs" ng-init="t=0">
+                <li ng-class="{active:t == 0}"><a ng-click="t = 0">Company</a></li>
+                <li ng-class="{active:t == 1}"><a ng-click="t = 1; getCompanies();">Choose existing Company</a></li>
+            </ul>
 
-				<div class="form-group">
-					<label for="companyName">Company name:</label> <input type="text" required value="{{companyProfile['name']}}"
-																  class="form-control companyName" id="companyName" name="address">
-				</div>
-				<div class="form-group">
-					<label for="companypc">P.C:</label> <input type="text" required value="{{companyProfile['p_c']}}"
-														 class="form-control companyPC" id="companypc" name="address">
-				</div>
-				<div class="form-group">
-					<label>Address:</label> <input class="form-control"  id="geocomplete2"
-												   type="text" required
-												   name="address" value="{{companyProfile['address']}}"
-												   placeholder="Type in an address" size="90" autocomplete="on">
-				</div>
-				<div class="form-group">
-					<label for="usr">Phone number:</label> <input type="text" required value="{{companyProfile['phone_number']}}"
-																  class="form-control companyPhoneNumber" id="usr" name="address">
-				</div>
-				<div class="form-group">
-					<label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control" value="{{companyProfile['logo']}}"  placeholder="please type Company name"><input type="button" ng-click="logo(word)" class ="btn btn-default" value="Search Logo!" />
-				</div>
-				<div class="companyLogo" ng-if="companyProfile['logo']" ><img ng-src={{companyProfile['logo']}} /></div>
-				<div ng-repeat="logo in logos">
-					<div data-toggle="buttons" class="logos">
-						<label class="btn btn-default"  ng-click="newLogo()">
-							<input type="radio" name="logos">
-							<span class="glyphicon glyphicon-ok"></span>
-							<img ng-src={{logo}} />
-						</label>
-					</div>
-				</div>
+            <div class="tab-content">
+                <div ng-show="t == 0" class="tabsContent fade in active">
 
-				<button type="submit" class="btn btn-default" >Send</button>
+                    <!-- Content from here -->
+                    <form ng-submit="submitCompanyDetails()">
 
-			</form>
-		</div>
-	</div>
-</div>
+                        <div class="form-group">
+                            <label for="companyName">Company name:</label> <input type="text" required
+                                                                                  value="{{companyProfile['name']}}"
+                                                                                  class="form-control companyName"
+                                                                                  id="companyName" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="companypc">P.C:</label> <input type="text" required
+                                                                       value="{{companyProfile['p_c']}}"
+                                                                       class="form-control companyPC" id="companypc"
+                                                                       name="address">
+                        </div>
+                        <div class="form-group">
+                            <label>Address:</label> <input class="form-control" id="geocomplete2"
+                                                           type="text" required
+                                                           name="address" value="{{companyProfile['address']}}"
+                                                           placeholder="Type in an address" size="90" autocomplete="on">
+                        </div>
+                        <div class="form-group">
+                            <label for="usr">Phone number:</label> <input type="text" required
+                                                                          value="{{companyProfile['phone_number']}}"
+                                                                          class="form-control companyPhoneNumber"
+                                                                          id="usr" name="address">
+                        </div>
 
 
 
-<!-- Modal -->
-<section class="modal fade" id="update" role="dialog">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<h4 class="modal-title">{{status}}</h4>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">
-					Close
-				</button>
-			</div>
-		</div>
-	</div>
-</section>
+                        <input type="button" class="btn btn-default" ng-click="changePassword()" value="Change Password" />
+
+                        <div class="form-group" ng-show="password == true || changePassword == true">
+                            <label for="usr">Company Password:</label> <input type="password"  maxlength="5" class="form-control passwordCompany"  value="{{companyProfile['password'].substr(0,5)}}">
+                        </div>
+
+
+                        <div class="form-group" ng-show="changePassword == true">
+                            <label for="usr">Change to New Password:</label> <input type="password"  maxlength="5" class="form-control newPasswordCompany" value="">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control"  value="{{companyProfile['logo']}}"  placeholder="please type Company name"><input
+                                type="button" ng-click="logo(word)" class="btn btn-default" value="Search Logo!"/>
+                        </div>
+
+
+
+
+                        <div class="companyLogo" ng-if="companyProfile['logo']"><img ng-src={{companyProfile['logo']}}/>
+                        </div>
+                        <div ng-repeat="logo in logos">
+                            <div data-toggle="buttons" class="logos">
+                                <label class="btn btn-default" ng-click="newLogo()">
+                                    <input type="radio" name="logos">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    <img ng-src={{logo}}/>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Send</button>
+
+                    </form>
+                </div>
+                <div class="tab-content" >
+                    <div ng-show="t == 1" class="tabsContent fade in active" >
+                        <div ng-repeat="c in companies">
+                            <div data-toggle="buttons" class="companies">
+                                <label class="btn btn-default" ng-click="checkCompany(c._id)">
+                                    <input type="radio" name="companies">
+                                    <span class="glyphicon glyphicon-ok"></span>
+                                    <img ng-src={{c.logo}}/>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <section class="modal fade" id="update" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4 class="modal-title">{{status}}</h4>
+                    <input ng-show="chooseCompanyModal == true" type="text" placeholder="Please write password: " ng-model="passForCompany"/>
+                </div>
+                <div class="modal-footer">
+                    <button ng-show="chooseCompanyModal == true"  type="button" class="btn btn-default" data-dismiss="modal" ng-click="sendPassword()">
+                        Send
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
