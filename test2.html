@@ -1,559 +1,993 @@
-<!DOCTYPE html>
-<html ng-app="drag-and-drop">
-<head lang="en">
-    <meta charset="utf-8">
-    <title>Drag & Drop: Multiple listsr</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css"
-          rel="stylesheet" type="text/css"/>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css" rel="stylesheet"><!--
-    <script src="angular-dragdrop.min.js"></script>
-    <script src="app.js"></script>-->
-    <style>
-        .thumbnail {
-            min-height: 300px !important;
-        }
-
-        .btn-droppable {
-            width: 180px;
-            padding-left: 4px;
-            margin-right: 5px !important;
-            height: 126px;
-        }
-
-        .btn-draggable {
-            width: 160px;
-        }
-
-        article {
-            width: 33%;
-            float: left;
-        }
-
-        .row-fluid .span3 {
-            width: 75%;
-        }
-
-        .btn {
-            margin: 0px 0px 10px;
-        }
-
-        .langsName {
-            width: 90%;
-            text-align: center;
-            background: none !important;
-            border: 0 !important;
-        }
-
-    </style>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-</head>
-<body>
-<div ng-controller="oneCtrl">
-    <div class='contentWrapper ng-cloak'>
-        <div class='content'>
-            <div class="row-fluid">
-                <ul class="thumbnails">
-                    <article><h1>Must</h1>
-                        <li class="span3" style='margin-left:10px;'>
-                            <div class="thumbnail" data-drop="true" ng-model='list1' data-jqyoui-options="optionsList1"
-                                 jqyoui-droppable="{multiple:true}">
-                                <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list1"
-                                         ng-show="item.name"
-                                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                                         ng-model="list1" jqyoui-draggable="{index: {{$index}},animate:true}">
-                                        <input data-lang-name="{{item.langId}}" ng-model="item.name"
-                                               ng-change="changeLangeName(item.langId)" class="langsName" type="text"
-                                               value="{{item.name}}">
-
-                                        <h3 style="    font-size: 10px; line-height: 0px;">Percentage: </h3>
-
-                                        <div class="input-group">
-                             <span class="input-group-btn"><button ng-click="minusButton(item.langId)"
-                                                                   type="button"
-                                                                   class="btn btn-danger btn-number minusButton"
-                                                                   data-type="minus"
-                                                                   data-field="quant[2]"><i class="fa fa-minus"
-                                                                                            aria-hidden="true"></i>
-                             </button></span>
-
-                                            <input type="text" name="quant[2]" data-pr-num="{{item.langId}}"
-                                                   style="    width: 28px;"
-                                                   class="form-control input-number center1" disabled
-                                                   value="{{item.percentage}}"
-                                                   min="0" max="100">
-
-                        <span class="input-group-btn"> <button type="button"
-                                                               class="btn btn-success btn-number plusButton"
-                                                               data-type="plus"
-                                                               ng-click="plusButton(item.langId)"
-                                                               data-field="quant[2]"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button></span>
-
-
-                                        </div>
-                                        <div style="margin-top:5px;">
-                                            <select class="form-control" data-select="{{item.langId}}"
-                                                    style="width: 100%;" ng-model="years"
-                                                    ng-change="changeYears(item.langId)">
-                                                <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                                                <option value="1" ng-selected="item.years == 1">1 years</option>
-                                                <option value="2" ng-selected="item.years == 2">2 years</option>
-                                                <option value="3" ng-selected="item.years == 3">3 years</option>
-                                                <option value="4" ng-selected="item.years == 4">4 years</option>
-                                                <option value="5" ng-selected="item.years == 5">5 years</option>
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </article>
-                    <article>
-                        <h1>Adv</h1>
-
-                        <li class="span3" style='margin-left:10px;'>
-                            <div class="thumbnail" data-drop="true" ng-model='list2'
-                                 data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list2])'}"
-                                 jqyoui-droppable="{multiple:true}">
-                                <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list2"
-                                         ng-show="item.name"
-                                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                                         ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">
-                                        <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
-                                               ng-change="changeLangeName(item.langId)" class="langsName"
-                                               value="{{item.name}}">
-
-                                        <div style="margin-top:5px;">
-                                            <select class="form-control" style="    width: 100%;"
-                                                    data-select="{{item.langId}}" ng-model="years"
-                                                    ng-change="changeYears(item.langId)">
-                                                <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                                                <option value="1" ng-selected="item.years == 1">1 years</option>
-                                                <option value="2" ng-selected="item.years == 2">2 years</option>
-                                                <option value="3" ng-selected="item.years == 3">3 years</option>
-                                                <option value="4" ng-selected="item.years == 4">4 years</option>
-                                                <option value="5" ng-selected="item.years == 5">5 years</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </article>
-                    <article>
-                        <h1>Or</h1>
-
-                        <li class="span3" style='margin-left:10px;'>
-                            <div class="thumbnail" data-drop="true" ng-model='list3'
-                                 data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list3])'}"
-                                 jqyoui-droppable="{multiple:true}">
-                                <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list3"
-                                         ng-show="item.name"
-                                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                                         ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">
-                                        <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
-                                               ng-change="changeLangeName(item.langId)" class="langsName"
-                                               value="{{item.name}}">
-
-                                        <div style="margin-top:5px;">
-                                            <select class="form-control" style="    width: 100%;"
-                                                    data-select="{{item.langId}}" ng-model="years"
-                                                    ng-change="changeYears(item.langId)">
-                                                <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                                                <option value="1" ng-selected="item.years == 1">1 years</option>
-                                                <option value="2" ng-selected="item.years == 2">2 years</option>
-                                                <option value="3" ng-selected="item.years == 3">3 years</option>
-                                                <option value="4" ng-selected="item.years == 4">4 years</option>
-                                                <option value="5" ng-selected="item.years == 5">5 years</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </article>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--BOTTOM PARSING-->
-    <div class="navbar-inner">
-        <div class="container form-inline" style="text-align: center;">
-            <div class="btn btn-droppable" ng-repeat="item in langs" data-drop="true" ng-model='langs'
-                 data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=langs])'}"
-                 jqyoui-droppable="{index: {{$index}}}">
-                <div class="btn btn-info btn-draggable" data-drag="{{item.drag}}"
-                     data-jqyoui-options="{revert: 'invalid'}" ng-model="langs"
-                     jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" ng-hide="!item.name">
-                    {{item.name}}
-
-
-                    <h3 style="    font-size: 10px; line-height: 0px;">Percentage: </h3>
-
-                    <div class="input-group">
-                             <span class="input-group-btn"><button
-                                     type="button" class="btn btn-danger btn-number minusButton" data-type="minus"
-                                     data-field="quant[2]"><i class="fa fa-minus" aria-hidden="true"></i>
-                             </button></span>
-
-                        <input type="text" name="quant[2]" data-pr-num="{{item.langId}}" style="    width: 28px;"
-                               class="form-control input-number center1" disabled value="{{item.percentage}}"
-                               min="0" max="100">
-
-                        <span class="input-group-btn"> <button type="button"
-                                                               class="btn btn-success btn-number plusButton"
-                                                               data-type="plus"
-                                                               ng-click="plusButton()"
-                                                               data-field="quant[2]"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button></span>
-
-
-                    </div>
-                    <div style="margin-top:5px;">
-                        <select class="form-control" style="    width: 100%;">
-                            <option value="0">Exerience</option>
-                            <option value="0" ng-selected="item.years == 0">0 years</option>
-                            <option value="1" ng-selected="item.years == 1">1 years</option>
-                            <option value="2" ng-selected="item.years == 2">2 years</option>
-                            <option value="3" ng-selected="item.years == 3">3 years</option>
-                            <option value="4" ng-selected="item.years == 4">4 years</option>
-                            <option value="5" ng-selected="item.years == 5">5 years</option>
-                        </select>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-</div>
-<button ng-click="add()">Add another LANGUAGE!</button>
-</body>
-</html>
-
 <script>
 
-    var App = angular.module('drag-and-drop', ['ngDragDrop']);
+    var requirements = [];
+    var nextCombinationKey = 0;
+    var langId = 0;
+    var totalPriorotySum = 0;
+    var newLangClicked = false;
+    app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
 
-    App.controller('oneCtrl', function ($scope, $timeout) {
-        var languages = [];
-        var langId = 0;
+                $(".requirementsWrapper").hide();
+                $id = $location.path().split('/')[1];
+                $("#geocomplete").geocomplete();
+                angular.element('.selectpicker').selectpicker();
 
-        var totalPriorotySum = 0;
-        var json = [{
-            "name": "c++",
-            'percentage': "40",
-            'mode': "must",
-            'years': 3
-        }, {
-            "name": "java",
-            'percentage': "60",
-            'mode': "must",
-            'years': 4
-        }, {
-            "name": "php",
-            'percentage': "0",
-            'mode': "adv",
-            'years': 0
-        }
-        ]
-        $.each(json, function (key, val) {
-            languages.push({
-                'langId': langId++,
-                'name': val.name,
-                'percentage': val.percentage,
-                'mode': val.mode,
-                'years': val.years,
-                'drag': true
-            });
+                $jobId = $location.path().split('/')[2];
+                var sumSliders = 0;
+                var combinationForJob = [];
+                var json = [];
+                var languages = [];
+                var newLang = [];
+                $rootScope.langs = [];
+                $rootScope.list1 = [];
+                $rootScope.list2 = [];
+                $rootScope.list3 = [];
 
-            totalPriorotySum += parseInt(val.percentage);
+                var combination = [];
+                var tempMustLangs = [];
+                var tempAdvLangs = [];
+                var tempOrLangs = [];
+                var combinationsLength = 0;
+                var combinationLengthAfterEdit = 0;
+                var savedCurrentCombination = false;
+                var editJob = false;
+                //edit job - get AJAX details
+                $scope.getJobJson = function () {
+                    $(".fa-arrow-right").hide();
+                    $(".fa-arrow-left").hide();
 
-        });
-
-        var tempMustLangs = languages;
-        tempMustLangs = tempMustLangs.filter(function (obj) {
-            return obj.mode == "must";
-        });
-        var tempAdvLangs = languages;
-        tempAdvLangs = tempAdvLangs.filter(function (obj) {
-            return obj.mode == "adv";
-        });
-        var tempOrLangs = languages;
-        tempOrLangs = tempOrLangs.filter(function (obj) {
-            return obj.mode == "or";
-        });
-
-        $scope.langs = languages;
-        $scope.list1 = tempMustLangs;
-        $scope.list2 = tempAdvLangs;
-        $scope.list3 = tempOrLangs;
-
-        $.each($scope.list1, function (key, val) {
-            if (val.mode == "must") {
-                $scope.langs.splice(key, 1);
-            }
-        });
-        $.each($scope.list2, function (key, val) {
-            if (val.mode == "adv") {
-                $scope.langs.splice(key, 1);
-            }
-        });
-        $.each($scope.list3, function (key, val) {
-            if (val.mode == "or") {
-                $scope.langs.splice(key, 1);
-            }
-        });
-
-
-        //ADD
-        $scope.add = function(){
-
-        }
-        //NAMES
-        $scope.changeLangeName = function (id) {
-            $.each($scope.list1, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($scope.list2, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($scope.list3, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-        }
-        //YEARS
-        $scope.changeYears = function (id) {
-            $.each($scope.list1, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-            $.each($scope.list2, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-            $.each($scope.list3, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-        }
-
-        //PLUS
-        $scope.plusButton = function (id) {
-            if ($("input[data-pr-num='" + id + "']").val() < 100 && totalPriorotySum < 100) {
-                $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) + 10);
-                totalPriorotySum += 10;
-                $(".minusButton").attr('disabled', false);
-
-                $.each($scope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.percentage = parseInt(val.percentage) + 10;
-                    }
-                });
-
-                console.log($scope.list1);
-            }
-            else
-                $("input[data-pr-num='" + id + "']").parent().find(".plusButton").attr('disabled', true);
-        }
-        //MINUS
-        $scope.minusButton = function (id) {
-            if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0) {
-                $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) - 10);
-                totalPriorotySum -= 10;
-                $(".plusButton").attr('disabled', false);
-                $.each($scope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.percentage = parseInt(val.percentage) - 10;
-                    }
-                });
-            }
-            else
-                $("input[data-pr-num='" + id + "']").parent().find(".minusButton").attr('disabled', true);
-        }
-
-        // Limit items to be dropped in list1
-        /*    $scope.optionsList1 = {
-         accept: function (dragEl) {
-         if ($scope.list1.length >= 2) {
-         return false;
-         } else {
-         return true;
-         }
-         }
-         };*/
-    });
-
-    !function (e, t, a, n) {
-        "use strict";
-        var i = t.module("ngDragDrop", []).service("ngDragDropService", ["$timeout", "$parse", "$q", function (r, l, o) {
-            this.draggableScope = null, this.droppableScope = null, a("head").prepend('<style type="text/css">@charset "UTF-8";.angular-dragdrop-hide{display: none !important;}</style>'), this.callEventCallback = function (e, t, n, i) {
-                function r(t) {
-
-                    var n = -1 !== t.indexOf("(") ? t.indexOf("(") : t.length, i = -1 !== t.lastIndexOf(")") ? t.lastIndexOf(")") : t.length, r = t.substring(n + 1, i), o = -1 !== t.indexOf(".") ? t.substr(0, t.indexOf(".")) : null;
-                    return o = e[o] && "function" == typeof e[o].constructor ? o : null, {
-                        callback: t.substring(o && o.length + 1 || 0, n),
-                        args: a.map(r && r.split(",") || [], function (t) {
-                            return [l(t)(e)]
-                        }),
-                        constructor: o
-                    }
-                }
-
-                if (t) {
-                    var o = r(t), s = o.callback, d = o.constructor, p = [n, i].concat(o.args);
-                    return (e[s] || e[d][s]).apply(e, p)
-                }
-            }, this.invokeDrop = function (e, l, s, d) {
-                var p, c, u, g = "", f = "", b = {}, h = {}, v = null, y = {}, x = {}, m = null, D = this.droppableScope, q = this.draggableScope, j = null, k = [];
-                g = e.ngattr("ng-model"), f = l.ngattr("ng-model"), p = q.$eval(g), c = D.$eval(f), m = l.find("[jqyoui-draggable]:last,[data-jqyoui-draggable]:last"), h = D.$eval(l.attr("jqyoui-droppable") || l.attr("data-jqyoui-droppable")) || [], b = q.$eval(e.attr("jqyoui-draggable") || e.attr("data-jqyoui-draggable")) || [], b.index = this.fixIndex(q, b, p), h.index = this.fixIndex(D, h, c), v = t.isArray(p) ? b.index : null, y = t.isArray(p) ? p[v] : p, b.deepCopy && (y = t.copy(y)), x = t.isArray(c) && h && h.index !== n ? c[h.index] : t.isArray(c) ? {} : c, h.deepCopy && (x = t.copy(x)), b.beforeDrop && k.push(this.callEventCallback(q, b.beforeDrop, s, d)), o.all(k).then(t.bind(this, function () {
-                    if (b.insertInline && g === f) {
-                        if (b.index > h.index) {
-                            u = p[b.index];
-                            for (var n = b.index; n > h.index; n--)c[n] = t.copy(c[n - 1]), c[n - 1] = {}, c[n][b.direction] = "left";
-                            c[h.index] = u
-                        } else {
-                            u = p[b.index];
-                            for (var n = b.index; n < h.index; n++)c[n] = t.copy(c[n + 1]), c[n + 1] = {}, c[n][b.direction] = "right";
-                            c[h.index] = u
-                        }
-                        this.callEventCallback(D, h.onDrop, s, d)
-                    } else b.animate === !0 ? (j = e.clone(), j.css({position: "absolute"}).css(e.offset()), a("body").append(j), e.addClass("angular-dragdrop-hide"), this.move(j, m.length > 0 ? m : l, null, "fast", h, function () {
-                        j.remove()
-                    }), this.move(m.length > 0 && !h.multiple ? m : [], e.parent("[jqyoui-droppable],[data-jqyoui-droppable]"), i.startXY, "fast", h, t.bind(this, function () {
-                        r(t.bind(this, function () {
-                            e.css({
-                                position: "relative",
-                                left: "",
-                                top: ""
-                            }).removeClass("angular-dragdrop-hide"), m.css({
-                                position: "relative",
-                                left: "",
-                                top: "",
-                                display: "none" === m.css("display") ? "" : m.css("display")
-                            }), this.mutateDraggable(q, h, b, g, f, x, e), this.mutateDroppable(D, h, b, f, y, v), this.callEventCallback(D, h.onDrop, s, d)
-                        }))
-                    }))) : r(t.bind(this, function () {
-                        this.mutateDraggable(q, h, b, g, f, x, e), this.mutateDroppable(D, h, b, f, y, v), this.callEventCallback(D, h.onDrop, s, d)
-                    }))
-                }))["finally"](t.bind(this, function () {
-                    this.restore(e)
-                }))
-            }, this.move = function (t, a, i, r, l, o) {
-
-                if (0 === t.length)return o && e.setTimeout(function () {
-                    o()
-                }, 300), !1;
-                var s = t.css("z-index"), d = t[l.containment || "offset"](), p = a.css("display"), c = a.hasClass("ng-hide");
-                null === i && a.length > 0 && ((a.attr("jqyoui-draggable") || a.attr("data-jqyoui-draggable")) !== n && a.ngattr("ng-model") !== n && a.is(":visible") && l && l.multiple ? (i = a[l.containment || "offset"](), l.stack === !1 ? i.left += a.outerWidth(!0) : i.top += a.outerHeight(!0)) : (c && a.removeClass("ng-hide"), i = a.css({
-                    visibility: "hidden",
-                    display: "block"
-                })[l.containment || "offset"](), a.css({visibility: "", display: p}))), t.css({
-                    position: "absolute",
-                    "z-index": 9999
-                }).css(d).animate(i, r, function () {
-                    c && a.addClass("ng-hide"), t.css("z-index", s), o && o()
-                })
-            }, this.mutateDroppable = function (e, a, n, i, r, o) {
-                var s = e.$eval(i);
-                e.dndDragItem = r, t.isArray(s) ? (a && a.index >= 0 ? s[a.index] = r : s.push(r), n && n.placeholder === !0 && (s[s.length - 1].jqyoui_pos = o)) : (l(i + " = dndDragItem")(e), n && n.placeholder === !0 && (s.jqyoui_pos = o))
-            }, this.mutateDraggable = function (e, a, i, r, o, s, d) {
-                var p = t.equals(s, {}) || !s, c = e.$eval(r);
-                e.dndDropItem = s, i && i.placeholder ? "keep" != i.placeholder && (t.isArray(c) && i.index !== n ? c[i.index] = s : l(r + " = dndDropItem")(e)) : t.isArray(c) ? p ? i && i.placeholder !== !0 && "keep" !== i.placeholder && c.splice(i.index, 1) : c[i.index] = s : (l(r + " = dndDropItem")(e), e.$parent && l(r + " = dndDropItem")(e.$parent)), this.restore(d)
-            }, this.restore = function (e) {
-                e.css({"z-index": "", left: "", top: ""})
-            }, this.fixIndex = function (e, a, i) {
-                if (a.applyFilter && t.isArray(i) && i.length > 0) {
-                    var r = e[a.applyFilter](), l = r[a.index], o = n;
-                    return i.forEach(function (e, a) {
-                        t.equals(e, l) && (o = a)
-                    }), o
-                }
-                return a.index
-            }
-        }]).directive("jqyouiDraggable", ["ngDragDropService", function (e) {
-            return {
-                require: "?jqyouiDroppable", restrict: "A", link: function (n, r, l) {
-                    var o, s, d, p, c = a(r), u = function (r) {
-                        r ? (o = n.$eval(c.attr("jqyoui-draggable") || c.attr("data-jqyoui-draggable")) || {}, s = n.$eval(l.jqyouiOptions) || {}, c.draggable({disabled: !1}).draggable(s).draggable({
-                            start: function (t, r) {
-                                e.draggableScope = n, d = a(s.helper ? r.helper : this).css("z-index"), a(s.helper ? r.helper : this).css("z-index", 9999), i.startXY = a(this)[o.containment || "offset"](), e.callEventCallback(n, o.onStart, t, r)
-                            }, stop: function (t, i) {
-                                a(s.helper ? i.helper : this).css("z-index", d), e.callEventCallback(n, o.onStop, t, i)
-                            }, drag: function (t, a) {
-                                e.callEventCallback(n, o.onDrag, t, a)
+                    if ($id == 'job') {
+                        requirements = [];
+                        //url for later to submit!
+                        url = 'https://cvmatcher.herokuapp.com/updateMatchingObject';
+                        $http({
+                            url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                            method: "POST",
+                            data: {
+                                "matching_object_id": $jobId,
+                                "matching_object_type": "job"
                             }
-                        })) : c.draggable({disabled: !0}), p && t.isDefined(r) && (t.equals(l.drag, "true") || t.equals(l.drag, "false")) && (p(), p = null)
-                    };
-                    p = n.$watch(function () {
-                        return n.$eval(l.drag)
-                    }, u), u(), c.on("$destroy", function () {
-                        c.draggable({disabled: !0}).draggable("destroy")
-                    })
-                }
-            }
-        }]).directive("jqyouiDroppable", ["ngDragDropService", "$q", function (e, n) {
-            return {
-                restrict: "A", priority: 1, link: function (i, r, l) {
-                    var o, s, d = a(r), p = function (r) {
-                        r ? (o = i.$eval(a(d).attr("jqyoui-droppable") || a(d).attr("data-jqyoui-droppable")) || {}, d.droppable({disabled: !1}).droppable(i.$eval(l.jqyouiOptions) || {}).droppable({
-                            over: function (t, a) {
-                                e.callEventCallback(i, o.onOver, t, a)
-                            }, out: function (t, a) {
-                                e.callEventCallback(i, o.onOut, t, a)
-                            }, drop: function (r, s) {
-                                var d = null;
-                                d = o.beforeDrop ? e.callEventCallback(i, o.beforeDrop, r, s) : function () {
-                                    var e = n.defer();
-                                    return e.resolve(), e.promise
-                                }(), d.then(t.bind(this, function () {
-                                    a(s.draggable).ngattr("ng-model") && l.ngModel ? (e.droppableScope = i, e.invokeDrop(a(s.draggable), a(this), r, s)) : e.callEventCallback(i, o.onDrop, r, s)
-                                }), function () {
-                                    s.draggable.css({left: "", top: ""})
+                        })
+                                .then(function (data) {
+                                    var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>"
+                                    $(".navigation")[0].innerHTML = navigation;
+
+                                    console.log(data.data[0]);
+                                    $scope.jobDetails = data.data[0];
+
+                                    editJob = true;
+
+                                    combinationsLength = data.data[0].requirements.length - 1;
+                                    combinationLengthAfterEdit = data.data[0].requirements.length;
+                                    if (combinationsLength > 1)
+                                        $(".fa-arrow-right").show();
+                                    var i = 0;
+
+                                    totalPriorotySum = 100;
+                                    if (data.data[0].requirements.length > 0) {
+                                        $.each(data.data[0].requirements, function (k, v) {
+                                            i++;
+                                            var combination = [];
+                                            $.each(v.combination, function (key, val) {
+                                                if (i == 1)
+                                                    if (val.mode == 'must') {
+                                                        tempMustLangs.push({
+                                                            'langId': langId++,
+                                                            'name': val.name,
+                                                            'mode': val.mode,
+                                                            'years': parseInt(val.years),
+                                                            'percentage': parseInt(val.percentage),
+                                                            'drag': true
+                                                        });
+
+                                                        combination.push(tempMustLangs[0]);
+                                                    }
+                                                    else if (val.mode == 'adv') {
+                                                        tempAdvLangs.push({
+                                                            'langId': langId++,
+                                                            'name': val.name,
+                                                            'mode': val.mode,
+                                                            'years': parseInt(val.years),
+                                                            'percentage': parseInt(val.percentage),
+                                                            'drag': true
+                                                        });
+                                                        combination.push(tempAdvLangs[0]);
+                                                    }
+                                                    else {
+                                                        tempOrLangs.push({
+                                                            'langId': langId++,
+                                                            'name': val.name,
+                                                            'mode': val.mode,
+                                                            'years': parseInt(val.years),
+                                                            'percentage': parseInt(val.percentage),
+                                                            'drag': true
+                                                        });
+                                                        combination.push(tempOrLangs[0]);
+                                                    }
+
+                                            });
+                                            if (i == 1) {
+                                                $rootScope.list1 = tempMustLangs;
+                                                $rootScope.list2 = tempAdvLangs;
+                                                $rootScope.list3 = tempOrLangs;
+
+                                            }
+
+                                            tempMustLangs = [];
+                                            tempAdvLangs = [];
+                                            tempOrLangs = [];
+
+                                            requirements.push({'combination': combination});
+
+                                            combination = [];
+
+
+                                        });
+                                        $scope.parseExperience();
+
+                                    }
+                                    angular.element(".fa-pulse").hide();
+
+
+                                    //SLIDERS
+                                    var sliders = $("#sliders .slider");
+                                    var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
+                                    var i = 0;
+                                    $scope.formula = data.data[0].formula;
+                                    var j = 0;
+                                    var tmpNum = 0;
+                                    sliders.each(function () {
+                                        tmpNum += Number(data.data[0].formula[formulaJson[j++]]);
+                                    });
+                                    $scope.totalSum = tmpNum;
+                                    sumSliders = 100;
+                                    sliders.each(function () {
+                                        var availableTotal = 100;
+                                        $(this).empty().slider({
+                                            value: data.data[0].formula[formulaJson[i++]],
+                                            min: 0,
+                                            max: 100,
+                                            range: "min",
+                                            step: 10,
+                                            slide: function (event, ui) {
+                                                // Update display to current value
+                                                $(this).siblings().text(ui.value);
+                                                var total = 0;
+
+                                                sliders.not(this).each(function () {
+                                                    total += Number($(this).slider("option", "value"));
+                                                });
+
+                                                // Need to do this because apparently jQ UI
+                                                // does not update value until this event completes
+                                                total += ui.value;
+                                                sumSliders = total;
+                                                if (total <= 100) {
+                                                    var max = availableTotal - total;
+
+                                                    // Update each slider
+                                                    sliders.not(this).each(function () {
+                                                        var t = $(this),
+                                                                value = t.slider("option", "value");
+                                                        var sum = +Number(+max + +value);
+                                                        t.slider("option", "max", sum)
+                                                                .siblings().text(value + '/' + sum);
+                                                        t.slider('value', value);
+                                                    });
+                                                }
+                                            }
+                                        });
+                                    });
+
+                                });
+                    }
+                    //im in newJob - init parameters
+                    else {
+                        url = 'https://cvmatcher.herokuapp.com/addMatchingObject';
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
+                        $(".navigation")[0].innerHTML = navigation;
+
+                        editJob = true;
+                        //setTimeout for 1 mil sec because there is a problem loading js after angular
+                        setTimeout(function () {
+                            angular.element(".fa-pulse").hide();
+                            var sliders = $("#sliders .slider");
+                            sliders.each(function () {
+                                var availableTotal = 100;
+                                $(this).slider({
+                                    value: 0,
+                                    min: 0,
+                                    max: 100,
+                                    range: "min",
+                                    step: 10,
+                                    slide: function (event, ui) {
+                                        // Update display to current value
+                                        $(this).siblings().text(ui.value);
+                                        var total = 0;
+
+                                        sliders.not(this).each(function () {
+                                            total += Number($(this).slider("option", "value"));
+                                        });
+
+                                        // Need to do this because apparently jQ UI
+                                        // does not update value until this event completes
+                                        total += ui.value;
+                                        sumSliders = total;
+                                        if (total <= 100) {
+                                            var max = availableTotal - total;
+
+                                            // Update each slider
+                                            sliders.not(this).each(function () {
+                                                var t = $(this),
+                                                        value = t.slider("option", "value");
+                                                var sum = +Number(+max + +value);
+
+                                                t.slider("option", "max", sum)
+                                                        .siblings().text(value + '/' + sum);
+                                                t.slider('value', value);
+                                            });
+                                        }
+                                    }
                                 })
-                            }
-                        })) : d.droppable({disabled: !0}), s && t.isDefined(r) && (t.equals(l.drop, "true") || t.equals(l.drop, "false")) && (s(), s = null)
-                    };
-                    s = i.$watch(function () {
-                        return i.$eval(l.drop)
-                    }, p), p(), d.on("$destroy", function () {
+                            })
+                        }, 100);
+                    }
+                }
 
-                        d.droppable({disabled: !0}).droppable("destroy")
+                $scope.exitStatus = function () {
+                    //if user clickd ok then move to search jobs page - need to wait to close modal
+                    if (sumSliders == 100) {
+                        $timeout(function () {
+                            //    window.location.href = '/cvmatcher/#/myjobs';
+                        }, 1000);
+                    }
+                    else {
+                        $scope.status = "";
+                    }
+                }
+
+                //click on parse Orange button
+                $scope.parseExperience = function () {
+
+                    var parseExpereince;
+                    var parseExpereinceAdv;
+                    $http({
+                        url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
+                        method: "POST",
+                        data: {"sector": "software engineering"}
+                    })
+                            .then(function (data) {
+                                        parseExpereince = {
+                                            "text": $("#requirementsMust").val(),
+                                            "words": data.data
+                                        };
+                                        parseExpereinceAdv = {
+                                            "text": $("#requirementsAdvantage").val(),
+                                            "words": data.data
+                                        };
+                                        angular.element(".fa-spin").show();
+                                        var tempMust, tempAdv;
+
+                                        //Requerments Must
+                                        if ($id == 'job') {
+
+
+                                            $(".requirementsWrapper").show();
+                                            angular.element(".fa-spin").hide();
+                                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                        }
+                                        else {
+                                            $http({
+                                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                                method: "POST",
+                                                data: parseExpereince
+                                            })
+                                                    .then(function (data1) {
+                                                                angular.element(".fa-spin").hide();
+                                                                $(".requirementsWrapper").show();
+                                                                angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                                                tempMustLangs = [];
+                                                                $.each(data1.data, function (key, val) {
+                                                                    tempMust = {
+                                                                        'langId': langId++,
+                                                                        'name': val,
+                                                                        'percentage': 0,
+                                                                        'mode': "must",
+                                                                        'years': 0,
+                                                                        'drag': true
+                                                                    }
+                                                                    tempMustLangs.push(tempMust);
+                                                                });
+                                                                $rootScope.list1 = tempMustLangs;
+
+                                                                combination = [];
+                                                                if (tempMustLangs.length > 0)
+                                                                    combination.push(tempMust);
+
+                                                                //adv
+                                                                $http({
+                                                                    url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                                                    method: "POST",
+                                                                    data: parseExpereinceAdv
+                                                                })
+                                                                        .then(function (data1) {
+                                                                                    angular.element(".fa-spin").hide();
+                                                                                    $(".requirementsWrapper").show();
+                                                                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                                                                    tempAdvLangs = [];
+                                                                                    $.each(data1.data, function (key, val) {
+                                                                                        tempAdv = {
+                                                                                            'langId': langId++,
+                                                                                            'name': val,
+                                                                                            'percentage': 0,
+                                                                                            'mode': "adv",
+                                                                                            'years': 0,
+                                                                                            'drag': true
+                                                                                        }
+
+                                                                                        tempAdvLangs.push(tempAdv);
+                                                                                    });
+
+                                                                                    $rootScope.list2 = tempAdvLangs;
+                                                                                    if (tempAdvLangs.length > 0)
+                                                                                        combination.push(tempAdv);
+
+                                                                                },
+                                                                                function (response) {
+                                                                                    console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                                                                });
+
+
+                                                                requirements.push({'combination': combination});
+                                                                console.log(requirements);
+
+
+                                                            },
+                                                            function (response) {
+                                                                angular.element(".fa-spin").hide();
+                                                                console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                                            });
+
+
+                                        }
+
+                                    },
+                                    function (response) { // optional
+                                        console.log("getKeyWordsBySector AJAX failed!");
+                                    });
+
+
+                    angular.element(".operators").removeClass("hidden");
+                    angular.element(".experienceBeforeParse").addClass(
+                            "hidden");
+                    angular.element(".requirements").addClass(
+                            "hidden");
+
+                }
+
+                //send form
+                $scope.submitForm = function () {
+                    $scope.status = 'Please wait';
+                    if (sumSliders == 100 && totalPriorotySum == 100) {/*
+                     if (savedCurrentCombination == false && editJob == false) {
+
+
+
+                     }*/
+                        /*
+                         if ($id != 'job') {
+                         //requerments
+                         combination = [];
+                         if ($rootScope.list1.length > 0) {
+                         $.each($rootScope.list1, function (key, val) {
+                         combination.push(val);
+                         });
+                         }
+                         if ($rootScope.list2.length > 0) {
+                         $.each($rootScope.list2, function (key, val) {
+                         combination.push(val);
+                         });
+                         }
+                         if ($rootScope.list3.length > 0) {
+                         $.each($rootScope.list3, function (key, val) {
+                         combination.push(val);
+                         });
+                         }
+                         requirements.push({'combination': combination});
+                         }*/
+                        var academy = [];
+                        //scope_of_position
+                        $.each($(".academy input:checked"), function () {
+                            academy.push($(this).val());
+                        });
+                        if (academy.length == 0) {
+                            $('#sendJob').modal('show');
+                            $scope.status = "Please fill Academy";
+                            return;
+                        }
+                        var degree_type = [];
+                        //scope_of_position
+                        $.each($(".degree_type input:checked"), function () {
+                            degree_type.push($(this).val());
+                        });
+                        if (degree_type.length == 0) {
+                            $('#sendJob').modal('show');
+                            $scope.status = "Please fill Degree Type";
+                            return;
+                        }
+                        var scope_of_position = [];
+                        //scope_of_position
+                        $.each($(".scope_of_position input:checked"), function () {
+                            scope_of_position.push($(this).val());
+                        });
+                        if (scope_of_position.length == 0) {
+                            $('#sendJob').modal('show');
+                            $scope.status = "Please fill Scope of Position";
+                            return;
+                        }
+                        var candidate_type = [];
+                        //scope_of_position
+                        $.each($(".candidate_type input:checked"), function () {
+                            candidate_type.push($(this).val());
+                        });
+                        if (candidate_type.length == 0) {
+                            $('#sendJob').modal('show');
+                            $scope.status = "Please fill Candidate Type";
+                            return;
+                        }
+
+                        if ($id == 'job') {
+                            var job = {
+                                "_id": $jobId,
+                                "matching_object_type": "job",
+                                "original_text": {
+                                    "_id": $scope.jobDetails.original_text._id,
+                                    "title": $(".jobName").val(),
+                                    "description": $("#description").html(),
+                                    "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
+                                },
+                                "sector": $(".sector :selected").val(),
+                                "locations": [$("#geocomplete").val()],
+                                "candidate_type": candidate_type,
+                                "scope_of_position": scope_of_position,
+                                "academy": {
+                                    "_id": $scope.jobDetails.academy._id,
+                                    "academy_type": academy,
+                                    "degree_name": $(".degree_name :selected").val(),
+                                    "degree_type": degree_type
+                                },
+                                "formula": {
+                                    "_id": $scope.jobDetails.formula._id,
+                                    "locations": parseInt($(".locationsSlider").text().split("/")[0]),
+                                    "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
+                                    "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
+                                    "academy": parseInt($(".academySlider").text().split("/")[0]),
+                                    "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
+                                },
+                                "requirements": requirements,
+                                "compatibility_level": $scope.compability,
+                                "user": $.cookie('user_id')
+
+                            }
+                        }
+                        else {
+                            var job = {
+                                "matching_object_type": "job",
+                                "date": new Date(),
+                                "original_text": {
+                                    "title": $(".jobName").val(),
+                                    "description": $("#description").html(),
+                                    "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
+                                },
+                                "sector": $(".sector :selected").val(),
+                                "locations": [$("#geocomplete").val()],
+                                "candidate_type": candidate_type,
+                                "scope_of_position": scope_of_position,
+                                "academy": {
+                                    "academy_type": academy,
+                                    "degree_name": $(".degree_name :selected").val(),
+                                    "degree_type": degree_type
+                                },
+                                "formula": {
+                                    "locations": parseInt($(".locationsSlider").text().split("/")[0]),
+                                    "candidate_type": parseInt($(".candidate_typeSlider").text().split("/")[0]),
+                                    "scope_of_position": parseInt($(".scope_of_positionSlider").text().split("/")[0]),
+                                    "academy": parseInt($(".academySlider").text().split("/")[0]),
+                                    "requirements": parseInt($(".requirementsSlider").text().split("/")[0])
+                                },
+                                "requirements": requirements,
+                                "compatibility_level": $scope.compability,
+                                "user": $.cookie('user_id')
+
+                            }
+                        }
+
+                        console.log(job);
+
+                        $http({
+                            url: url,
+                            method: "POST",
+                            data: job
+                        })
+                                .then(function (data) {
+                                            if (data != null)
+                                                $('#sendJob').modal('show');
+                                            $scope.status = "Job Send Succesfuly";
+                                        },
+                                        function (response) { // optional
+                                            $scope.status = "Job did not send";
+                                            console.log("addMatchingObject send form AJAX failed!");
+                                        });
+                        //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
+                    }
+                    if (sumSliders != 100) {
+
+                        console.log("b");
+                        $('#sendJob').modal('show');
+                        $scope.status = "Please SUM the sliders to 100";
+                    }
+                    if (totalPriorotySum != 100) {
+                        console.log("c");
+                        $('#sendJob').modal('show');
+                        $scope.status = "Please SUM Prioroty to 100";
+                    }
+                };
+
+
+                /***    FROM HERE THE REQUERMENTS   ***/
+
+                    //ADD COMBINATION
+                $scope.addDynamicCombination = function () {
+                    combinationLengthAfterEdit++;
+                    $(".fa-arrow-right").hide();
+                    if (totalPriorotySum == 100 && $rootScope.list1.length > 0) {
+                        nextCombinationKey++;
+                        combinationsLength++;
+                        $(".fa-arrow-left").show();
+                        if ($rootScope.list1 != 'undefined') {
+                            $.each($rootScope.list1, function (key, val) {
+                                combination.push(val);
+                            });
+                        }
+                        if ($rootScope.list2 != 'undefined') {
+                            $.each($rootScope.list2, function (key, val) {
+                                combination.push(val);
+                            });
+                        }
+
+                        if ($rootScope.list3 != 'undefined') {
+                            $.each($rootScope.list3, function (key, val) {
+                                combination.push(val);
+                            });
+                        }
+                        $rootScope.list1 = [];
+                        $rootScope.list2 = [];
+                        $rootScope.list3 = [];
+                        $rootScope.langs = [];
+                        requirements.push({'combination': combination});
+                        //$scope.jobDetails = requirements;
+                        combination = [];
+                        console.log(requirements);
+                        totalPriorotySum = 0;
+                        $scope.addDynamicLang();
+                    }
+                    else if ($rootScope.list1.length == 0) {
+                        $('#sendJob').modal('show');
+                        $scope.status = "Please add Must Language";
+                    }
+                    else if (totalPriorotySum != 100) {
+                        $('#sendJob').modal('show');
+                        $scope.status = "Please SUM Prioroty to 100";
+                    }
+                }
+
+                $scope.nextCombination = function (val) {
+                    console.log(totalPriorotySum);
+                    if (totalPriorotySum != 100) {
+                        $('#sendJob').modal('show');
+                        $scope.status = "Please sum Must Prioroty to 100";
+                        return;
+                    }
+                    if (val == 'right') {
+                        savedCurrentCombination = true;
+                        nextCombinationKey++;
+                        if (nextCombinationKey < combinationsLength && nextCombinationKey != combinationsLength) {
+                            $(".fa-arrow-right").show();
+                            $(".fa-arrow-left").show();
+                        }
+                        else {
+                            $(".fa-arrow-right").hide();
+                            $(".fa-arrow-left").show();
+                        }
+                    }
+                    else {
+                        nextCombinationKey--;
+                        if (nextCombinationKey < combinationsLength && nextCombinationKey != 0) {
+                            $(".fa-arrow-right").show();
+                            $(".fa-arrow-left").show();
+
+
+                        }
+                        else {
+                            $(".fa-arrow-right").show();
+                            $(".fa-arrow-left").hide();
+                        }
+
+
+                        // if left save current lists
+                        /*if (totalPriorotySum == 100 && $rootScope.list1.length > 0 && savedCurrentCombination == false) {
+                         savedCurrentCombination = true;
+                         combination = [];
+                         if ($rootScope.list1 != 'undefined') {
+                         $.each($rootScope.list1, function (key, val) {
+                         combination.push(val);
+                         });
+                         }
+                         if ($rootScope.list2 != 'undefined') {
+                         $.each($rootScope.list2, function (key, val) {
+                         combination.push(val);
+                         });
+                         }
+
+                         if ($rootScope.list3 != 'undefined') {
+                         $.each($rootScope.list3, function (key, val) {
+                         combination.push(val);
+                         });
+                         }
+
+                         requirements.push({'combination': combination});
+                         combination = [];
+
+                         }*/
+                    }
+
+                    $rootScope.list1 = [];
+                    $rootScope.list2 = [];
+                    $rootScope.list3 = [];
+                    $rootScope.langs = [];
+                    tempMustLangs = [];
+                    tempAdvLangs = [];
+                    tempOrLangs = [];
+                    totalPriorotySum = 0;
+                    console.log(requirements[nextCombinationKey].combination);
+                    $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                        if (val.mode == 'must') {
+                            totalPriorotySum += parseInt(val.percentage);
+                            tempMustLangs.push({
+                                'langId': val.langId,
+                                'name': val.name,
+                                'mode': val.mode,
+                                'years': val.years,
+                                'percentage': val.percentage,
+                                'drag': true
+                            });
+                        }
+                        else if (val.mode == 'adv') {
+                            tempAdvLangs.push({
+                                'langId': val.langId,
+                                'name': val.name,
+                                'mode': val.mode,
+                                'years': val.years,
+                                'percentage': val.percentage,
+                                'drag': true
+                            });
+                        }
+                        else if (val.mode == 'or') {
+                            tempOrLangs.push({
+                                'langId': val.langId,
+                                'name': val.name,
+                                'mode': val.mode,
+                                'years': val.years,
+                                'percentage': val.percentage,
+                                'drag': true
+                            });
+                        }
+                    });
+
+                    $rootScope.list1 = tempMustLangs;
+                    $rootScope.list2 = tempAdvLangs;
+                    $rootScope.list3 = tempOrLangs;
+
+
+                    console.log(requirements);
+                }
+                //ADD LANG
+                $scope.addDynamicLang = function () {
+                    newLang = [];
+                    newLang.push({
+                        'langId': langId,
+                        'name': "Language",
+                        'percentage': 0,
+                        'mode': "langs",
+                        'years': 0,
+                        'drag': true
+                    });
+                    $rootScope.langs = newLang;
+                    newLangClicked = true;
+                }
+                //REMOVE LANG
+                $scope.removeLang = function (id, sectType) {
+
+
+                    if (sectType == 'must') {
+                        $rootScope.list1 = $rootScope.list1.filter(function (obj) {
+                            if (obj.langId == id) {
+                                totalPriorotySum -= parseInt(obj.percentage);
+                            }
+                            return obj.langId != id;
+                        });
+                    }
+                    if (sectType == 'adv') {
+                        $rootScope.list2 = $rootScope.list2.filter(function (obj) {
+                            return obj.langId != id;
+                        });
+                    }
+                    if (sectType == 'or') {
+                        $rootScope.list3 = $rootScope.list3.filter(function (obj) {
+                            return obj.langId != id;
+                        });
+                    }
+                    /*console.log(requirements);
+
+                     $.each(requirements, function (key, val) {
+                     $.each(val.combination, function (k, v) {
+                     if (v.langId == id){
+                     console.log(requirements[key].combination);
+                     requirements[key].combination.splice(k,1);
+                     }
+                     });
+                     });
+                     console.log(requirements);*/
+                }
+                //NAMES
+                $scope.changeLangeName = function (id) {
+                    $.each(requirements, function (key, val) {
+                        $.each(val.combination, function (k, v) {
+                            if (v.langId == id) {
+                                v.name = $("input[data-lang-name='" + id + "']").val();
+                            }
+                        });
+                    });
+
+                    if ($rootScope.list1 != 'undefined')
+                        $.each($rootScope.list1, function (key, val) {
+                            if (val.langId == id) {
+                                val.name = $("input[data-lang-name='" + id + "']").val();
+                            }
+                        });
+                    if ($rootScope.list2 != 'undefined')
+                        $.each($rootScope.list2, function (key, val) {
+                            if (val.langId == id) {
+                                val.name = $("input[data-lang-name='" + id + "']").val();
+                            }
+                        });
+
+                    if ($rootScope.list3 != 'undefined')
+                        $.each($rootScope.list3, function (key, val) {
+                            if (val.langId == id) {
+                                val.name = $("input[data-lang-name='" + id + "']").val();
+                            }
+                        });
+                    if ($rootScope.langs != 'undefined')
+                        $.each($rootScope.langs, function (key, val) {
+                            if (val.langId == id) {
+                                val.name = $("input[data-lang-name='" + id + "']").val();
+                            }
+                        });
+                }
+                //YEARS
+                $scope.changeYears = function (id) {
+
+                    $.each(requirements, function (key, val) {
+                        $.each(val.combination, function (k, v) {
+                            if (v.langId == id) {
+                                v.years = $("select[data-select='" + id + "']").val();
+                            }
+                        });
+                    });
+
+
+                    $.each($rootScope.list1, function (key, val) {
+                        if (val.langId == id) {
+                            val.years = $("select[data-select='" + id + "']").val();
+                        }
+                    });
+                    $.each($rootScope.list2, function (key, val) {
+                        if (val.langId == id) {
+                            val.years = $("select[data-select='" + id + "']").val();
+                        }
+                    });
+                    $.each($rootScope.list3, function (key, val) {
+                        if (val.langId == id) {
+                            val.years = $("select[data-select='" + id + "']").val();
+                        }
+                    });
+                    if ($rootScope.langs.length > 0)
+                        $.each($rootScope.langs, function (key, val) {
+                            if (val.langId == id) {
+                                val.years = $("select[data-select='" + id + "']").val();
+                            }
+                        })
+                }
+                //PLUS
+                $scope.plusButton = function (id) {
+                    if ($("input[data-pr-num='" + id + "']").val() < 100 && totalPriorotySum < 100) {
+                        $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) + 10);
+                        totalPriorotySum += 10;
+                        $(".minusButton").attr('disabled', false);
+
+                        $.each(requirements, function (key, val) {
+                            $.each(val.combination, function (k, v) {
+                                if (v.langId == id) {
+                                    v.percentage = v.percentage + 10;
+                                }
+                            });
+                        });
+                        console.log(requirements);
+
+                        /* $.each($rootScope.list1, function (key, val) {
+                         if (val.langId == id) {
+                         val.percentage = parseInt(val.percentage) + 10;
+                         }
+                         });*/
+                    }
+                }
+                //MINUS
+                $scope.minusButton = function (id) {
+
+
+                    if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0) {
+                        $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) - 10);
+                        totalPriorotySum -= 10;
+                        $(".plusButton").attr('disabled', false);
+
+                        $.each(requirements, function (key, val) {
+                            $.each(val.combination, function (k, v) {
+                                if (v.langId == id) {
+                                    v.percentage = v.percentage - 10;
+                                }
+                            });
+                        });
+                        console.log(requirements);
+
+
+                        /* $.each($rootScope.list1, function (key, val) {
+                         if (val.langId == id) {
+                         val.percentage = parseInt(val.percentage) - 10;
+                         }
+                         });*/
+
+
+                    }
+
+                }
+
+
+            }
+    ).directive('droppableMust', function ($rootScope) {
+        return {
+            scope: {},
+            link: function (scope, element, attr) {
+                var id = attr.langName;
+                totalPriorotySum = 0;
+
+                $rootScope.list1.push({
+                    'langId': id,
+                    'name': 'a',
+                    'mode': "must",
+                    'years': 0,
+                    'percentage': 0,
+                    'drag': true
+                });
+                $.each($rootScope.list1, function (key, val) {
+                    if (val.langId == id) {
+                        val.mode = "must";
+                    }
+                    else{
+                        totalPriorotySum += parseInt(val.percentage);
+                    }
+                });
+
+                //drag into must from langs
+                if (attr.class == 'langsName' && newLangClicked == true) {
+                    newLangClicked = false;
+
+                    requirements[nextCombinationKey].combination.push({
+                        'langId': langId++,
+                        'name': attr.value,
+                        'mode': "must",
+                        'years': 0,
+                        'percentage': 0,
+                        'drag': true
                     })
                 }
+                console.log(totalPriorotySum);
+
+
             }
-        }]);
-        a.fn.ngattr = function (e) {
-            var t = this[0];
-
-            if (t.getAttribute(e) != 'list1')
-                console.log(t);
-            return t.getAttribute(e) || t.getAttribute("data-" + e)
         }
-    }(window, window.angular, window.jQuery);
+    }).directive('droppableAdv', function ($rootScope) {
+        return {
+            scope: {},
+            link: function (scope, element, attr) {
 
-    //TODO: CHANGE PERCANTAGE TO 100 WHEN DRAG
-    //ADD ANOTHER DYNAMIC PROIROTIES
-    //ADD ANOTHER DYNC LANG
+                var id = attr.langName;
+                totalPriorotySum = 0;
+                $.each($rootScope.list2, function (key, val) {
+                    if (val.langId == id) {
+                        val.mode = "adv";
+                        val.percentage = 0;
+                    }
+                });
+
+                $.each($rootScope.list1, function (key, val) {
+                    totalPriorotySum += parseInt(val.percentage);
+                })
+
+                if (attr.class == 'langsName' && newLangClicked == true) {
+                    newLangClicked = false;
+                    requirements[nextCombinationKey].combination.push({
+                        'langId': langId++,
+                        'name': attr.value,
+                        'mode': "adv",
+                        'years': 0,
+                        'percentage': 0,
+                        'drag': true
+                    })
+                }
+                console.log(totalPriorotySum);
+            }
+        }
+    }).directive('droppableOr', function ($rootScope) {
+        return {
+            scope: {},
+            link: function (scope, element, attr) {
+                var id = attr.langName;
+
+                totalPriorotySum = 0;
+                $.each($rootScope.list3, function (key, val) {
+                    if (val.langId == id) {
+
+                        totalPriorotySum -= val.percentage;
+                        val.mode = "or";
+                        val.percentage = 0;
+                    }
+                });
+                $.each($rootScope.list1, function (key, val) {
+                    totalPriorotySum += parseInt(val.percentage);
+                })
+
+                $.each(requirements, function (key, val) {
+                    $.each(val.combination, function (k, v) {
+                        if (v.langId == id) {
+                            v.mode = "or";
+                            v.percentage = 0;
+                        }
+                    });
+                });
+                if (attr.class == 'langsName' && newLangClicked == true) {
+                    newLangClicked = false;
+                    requirements[nextCombinationKey].combination.push({
+                        'langId': langId++,
+                        'name': attr.value,
+                        'mode': "or",
+                        'years': 0,
+                        'percentage': 0,
+                        'drag': true
+                    })
+                }
+                /*else {
+                 $.each(requirements, function (key, val) {
+                 $.each(val.combination, function (k, v) {
+                 if (v.langId == id) {
+                 requirements[nextCombinationKey].combination[k].mode = "or";
+                 requirements[nextCombinationKey].combination[k].percentage = 0;
+                 }
+                 });
+                 });
+                 }*/
+            }
+        }
+    })
+
 </script>
-
-
