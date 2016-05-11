@@ -1836,6 +1836,11 @@ app.controller('resumeController',
  * ********************* Job controller ****************
  */
 
+var requirements = [];
+var nextCombinationKey = 0;
+var langId = 0;
+var totalPriorotySum = 0;
+var newLangClicked = false;
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
 
         $(".requirementsWrapper").hide();
@@ -1848,28 +1853,27 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         var combinationForJob = [];
         var json = [];
         var languages = [];
-        var langId = 0;
         var newLang = [];
         $rootScope.langs = [];
         $rootScope.list1 = [];
         $rootScope.list2 = [];
         $rootScope.list3 = [];
 
-        var requirements = [];
         var combination = [];
         var tempMustLangs = [];
         var tempAdvLangs = [];
         var tempOrLangs = [];
-        var totalPriorotySum = 0;
         var combinationsLength = 0;
         var combinationLengthAfterEdit = 0;
         var savedCurrentCombination = false;
+        var editJob = false;
         //edit job - get AJAX details
         $scope.getJobJson = function () {
             $(".fa-arrow-right").hide();
             $(".fa-arrow-left").hide();
 
             if ($id == 'job') {
+                requirements = [];
                 //url for later to submit!
                 url = 'https://cvmatcher.herokuapp.com/updateMatchingObject';
                 $http({
@@ -1887,70 +1891,79 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
 
+                        editJob = true;
+
                         combinationsLength = data.data[0].requirements.length - 1;
                         combinationLengthAfterEdit = data.data[0].requirements.length;
                         if (combinationsLength > 1)
                             $(".fa-arrow-right").show();
                         var i = 0;
+
+                        totalPriorotySum = 100;
                         if (data.data[0].requirements.length > 0) {
-                            if (i < data.data[0].requirements.length)
-                                $.each(data.data[0].requirements, function (k, v) {
-                                    i++;
-                                    var combination = [];
-                                    $.each(v.combination, function (key, val) {
+                            $.each(data.data[0].requirements, function (k, v) {
+                                i++;
+                                var combination = [];
+                                $.each(v.combination, function (key, val) {
                                         if (val.mode == 'must') {
-                                            totalPriorotySum += parseInt(val.percentage);
                                             tempMustLangs.push({
                                                 'langId': langId++,
                                                 'name': val.name,
                                                 'mode': val.mode,
-                                                'years': val.years,
-                                                'percentage': val.percentage,
+                                                'years': parseInt(val.years),
+                                                'percentage': parseInt(val.percentage),
                                                 'drag': true
                                             });
+
+                                            combination.push(tempMustLangs[0]);
                                         }
                                         else if (val.mode == 'adv') {
                                             tempAdvLangs.push({
                                                 'langId': langId++,
                                                 'name': val.name,
                                                 'mode': val.mode,
-                                                'years': val.years,
-                                                'percentage': val.percentage,
+                                                'years': parseInt(val.years),
+                                                'percentage': parseInt(val.percentage),
                                                 'drag': true
                                             });
+                                            combination.push(tempAdvLangs[0]);
                                         }
                                         else {
                                             tempOrLangs.push({
                                                 'langId': langId++,
                                                 'name': val.name,
                                                 'mode': val.mode,
-                                                'years': val.years,
-                                                'percentage': val.percentage,
+                                                'years': parseInt(val.years),
+                                                'percentage': parseInt(val.percentage),
                                                 'drag': true
                                             });
+                                            combination.push(tempOrLangs[0]);
                                         }
-                                        combination.push(val);
-                                    });
-                                    var must;
-                                    if (i == 1) {
-                                        $rootScope.list1 = tempMustLangs;
-                                        $rootScope.list2 = tempAdvLangs;
-                                        $rootScope.list3 = tempOrLangs;
-
-                                    }
-                                    tempMustLangs = [];
-                                    tempAdvLangs = [];
-                                    tempOrLangs = [];
-
-                                    requirements.push({'combination': combination});
-                                    combination = [];
 
                                 });
+                                if (i == 1) {
+                                    $rootScope.list1 = tempMustLangs;
+                                    $rootScope.list2 = tempAdvLangs;
+                                    $rootScope.list3 = tempOrLangs;
 
+                                }
+
+                                tempMustLangs = [];
+                                tempAdvLangs = [];
+                                tempOrLangs = [];
+
+                                requirements.push({'combination': combination});
+
+                                combination = [];
+
+
+                            });
                             $scope.parseExperience();
+                            console.log("requirements: " , requirements)
 
                         }
                         angular.element(".fa-pulse").hide();
+
 
                         //SLIDERS
                         var sliders = $("#sliders .slider");
@@ -2010,7 +2023,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
                 $(".navigation")[0].innerHTML = navigation;
 
-
+                editJob = true;
                 //setTimeout for 1 mil sec because there is a problem loading js after angular
                 setTimeout(function () {
                     angular.element(".fa-pulse").hide();
@@ -2089,10 +2102,12 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "words": data.data
                         };
                         angular.element(".fa-spin").show();
-
+                        var tempMust, tempAdv;
 
                         //Requerments Must
                         if ($id == 'job') {
+
+                            totalPriorotySum = 100;
 
                             $(".requirementsWrapper").show();
                             angular.element(".fa-spin").hide();
@@ -2105,56 +2120,71 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 data: parseExpereince
                             })
                                 .then(function (data1) {
+
+                                        combination = [];
                                         angular.element(".fa-spin").hide();
                                         $(".requirementsWrapper").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                                        console.log(data1);
                                         tempMustLangs = [];
                                         $.each(data1.data, function (key, val) {
-                                            tempMustLangs.push({
+                                            tempMust = {
                                                 'langId': langId++,
                                                 'name': val,
-                                                'percentage': "0",
+                                                'percentage': 0,
                                                 'mode': "must",
                                                 'years': 0,
                                                 'drag': true
-                                            });
+                                            }
+                                            tempMustLangs.push(tempMust);
+                                            combination.push(tempMust);
                                         });
                                         $rootScope.list1 = tempMustLangs;
+
+
+                                        //adv
+                                        $http({
+                                            url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                            method: "POST",
+                                            data: parseExpereinceAdv
+                                        })
+                                            .then(function (data1) {
+
+                                                    angular.element(".fa-spin").hide();
+                                                    $(".requirementsWrapper").show();
+                                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                                    tempAdvLangs = [];
+                                                    $.each(data1.data, function (key, val) {
+                                                        tempAdv = {
+                                                            'langId': langId++,
+                                                            'name': val,
+                                                            'percentage': 0,
+                                                            'mode': "adv",
+                                                            'years': 0,
+                                                            'drag': true
+                                                        }
+
+                                                        tempAdvLangs.push(tempAdv);
+                                                        combination.push(tempAdv);
+                                                    });
+
+                                                    $rootScope.list2 = tempAdvLangs;
+
+                                                },
+                                                function (response) {
+                                                    console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                                });
+
+
+                                        requirements.push({'combination': combination});
+                                        console.log(requirements);
+
+
                                     },
                                     function (response) {
                                         angular.element(".fa-spin").hide();
                                         console.log("findIfKeyWordsExistsJOB AJAX failed!");
                                     });
 
-
-                            //adv
-                            $http({
-                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
-                                method: "POST",
-                                data: parseExpereinceAdv
-                            })
-                                .then(function (data1) {
-                                        angular.element(".fa-spin").hide();
-                                        $(".requirementsWrapper").show();
-                                        angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
-                                        console.log(data1);
-                                        tempAdvLangs = [];
-                                        $.each(data1.data, function (key, val) {
-                                            tempAdvLangs.push({
-                                                'langId': langId++,
-                                                'name': val,
-                                                'percentage': "0",
-                                                'mode': "adv",
-                                                'years': 0,
-                                                'drag': true
-                                            });
-                                        });
-                                        $rootScope.list2 = tempAdvLangs;
-                                    },
-                                    function (response) {
-                                        console.log("findIfKeyWordsExistsJOB AJAX failed!");
-                                    });
 
                         }
 
@@ -2176,28 +2206,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.submitForm = function () {
             $scope.status = 'Please wait';
             if (sumSliders == 100 && totalPriorotySum == 100) {
-                console.log(requirements);
-                if (savedCurrentCombination == false) {
-                    //requerments
-                    combination = [];
-                    if ($rootScope.list1.length > 0) {
-                        $.each($rootScope.list1, function (key, val) {
-                            combination.push(val);
-                        });
-                    }
-                    if ($rootScope.list2.length > 0) {
-                        $.each($rootScope.list2, function (key, val) {
-                            combination.push(val);
-                        });
-                    }
-                    if ($rootScope.list3.length > 0) {
-                        $.each($rootScope.list3, function (key, val) {
-                            combination.push(val);
-                        });
-                    }
-                    requirements.push({'combination': combination});
-
-                }
                 var academy = [];
                 //scope_of_position
                 $.each($(".academy input:checked"), function () {
@@ -2339,8 +2347,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
         /***    FROM HERE THE REQUERMENTS   ***/
 
-        var nextCombinationKey = 0;
-        //ADD COMBINATION
+            //ADD COMBINATION
         $scope.addDynamicCombination = function () {
             combinationLengthAfterEdit++;
             $(".fa-arrow-right").hide();
@@ -2348,29 +2355,29 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 nextCombinationKey++;
                 combinationsLength++;
                 $(".fa-arrow-left").show();
-                if ($rootScope.list1 != 'undefined') {
-                    $.each($rootScope.list1, function (key, val) {
-                        combination.push(val);
-                    });
-                }
-                if ($rootScope.list2 != 'undefined') {
-                    $.each($rootScope.list2, function (key, val) {
-                        combination.push(val);
-                    });
-                }
+                /*if ($rootScope.list1 != 'undefined') {
+                 $.each($rootScope.list1, function (key, val) {
+                 combination.push(val);
+                 });
+                 }
+                 if ($rootScope.list2 != 'undefined') {
+                 $.each($rootScope.list2, function (key, val) {
+                 combination.push(val);
+                 });
+                 }
 
-                if ($rootScope.list3 != 'undefined') {
-                    $.each($rootScope.list3, function (key, val) {
-                        combination.push(val);
-                    });
-                }
+                 if ($rootScope.list3 != 'undefined') {
+                 $.each($rootScope.list3, function (key, val) {
+                 combination.push(val);
+                 });
+                 }*/
                 $rootScope.list1 = [];
                 $rootScope.list2 = [];
                 $rootScope.list3 = [];
                 $rootScope.langs = [];
+                combination = [];
                 requirements.push({'combination': combination});
                 //$scope.jobDetails = requirements;
-                combination = [];
                 console.log(requirements);
                 totalPriorotySum = 0;
                 $scope.addDynamicLang();
@@ -2386,11 +2393,15 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         }
 
         $scope.nextCombination = function (val) {
+            console.log(totalPriorotySum);
+            if (totalPriorotySum != 100) {
+                $('#sendJob').modal('show');
+                $scope.status = "Please sum Must Prioroty to 100";
+                return;
+            }
             if (val == 'right') {
                 savedCurrentCombination = true;
                 nextCombinationKey++;
-                console.log(nextCombinationKey);
-                console.log(combinationsLength);
                 if (nextCombinationKey < combinationsLength && nextCombinationKey != combinationsLength) {
                     $(".fa-arrow-right").show();
                     $(".fa-arrow-left").show();
@@ -2402,9 +2413,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             }
             else {
                 nextCombinationKey--;
-                console.log(nextCombinationKey);
-                console.log(combinationsLength);
-                console.log(savedCurrentCombination);
                 if (nextCombinationKey < combinationsLength && nextCombinationKey != 0) {
                     $(".fa-arrow-right").show();
                     $(".fa-arrow-left").show();
@@ -2415,36 +2423,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     $(".fa-arrow-right").show();
                     $(".fa-arrow-left").hide();
                 }
-
-
-                // if left save current lists
-                if (totalPriorotySum == 100 && $rootScope.list1.length > 0 && savedCurrentCombination == false) {
-                    savedCurrentCombination = true;
-                    combination = [];
-                    if ($rootScope.list1 != 'undefined') {
-                        $.each($rootScope.list1, function (key, val) {
-                            combination.push(val);
-                        });
-                    }
-                    if ($rootScope.list2 != 'undefined') {
-                        $.each($rootScope.list2, function (key, val) {
-                            combination.push(val);
-                        });
-                    }
-
-                    if ($rootScope.list3 != 'undefined') {
-                        $.each($rootScope.list3, function (key, val) {
-                            combination.push(val);
-                        });
-                    }
-
-                    requirements.push({'combination': combination});
-                    combination = [];
-
-                }
             }
-            console.log(requirements);
-            console.log(nextCombinationKey);
 
             $rootScope.list1 = [];
             $rootScope.list2 = [];
@@ -2454,12 +2433,13 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             tempAdvLangs = [];
             tempOrLangs = [];
             totalPriorotySum = 0;
-
+            console.log(nextCombinationKey);
+            console.log(requirements[nextCombinationKey].combination);
             $.each(requirements[nextCombinationKey].combination, function (key, val) {
                 if (val.mode == 'must') {
                     totalPriorotySum += parseInt(val.percentage);
                     tempMustLangs.push({
-                        'langId': langId++,
+                        'langId': val.langId,
                         'name': val.name,
                         'mode': val.mode,
                         'years': val.years,
@@ -2469,7 +2449,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
                 else if (val.mode == 'adv') {
                     tempAdvLangs.push({
-                        'langId': langId++,
+                        'langId': val.langId,
                         'name': val.name,
                         'mode': val.mode,
                         'years': val.years,
@@ -2479,7 +2459,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
                 else if (val.mode == 'or') {
                     tempOrLangs.push({
-                        'langId': langId++,
+                        'langId': val.langId,
                         'name': val.name,
                         'mode': val.mode,
                         'years': val.years,
@@ -2494,22 +2474,26 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             $rootScope.list3 = tempOrLangs;
 
 
+            console.log(requirements);
         }
         //ADD LANG
         $scope.addDynamicLang = function () {
             newLang = [];
             newLang.push({
-                'langId': langId++,
+                'langId': langId,
                 'name': "Language",
-                'percentage': "0",
-                'mode': "or",
+                'percentage': 0,
+                'mode': "langs",
                 'years': 0,
                 'drag': true
             });
             $rootScope.langs = newLang;
+            newLangClicked = true;
         }
         //REMOVE LANG
         $scope.removeLang = function (id, sectType) {
+
+
             if (sectType == 'must') {
                 $rootScope.list1 = $rootScope.list1.filter(function (obj) {
                     if (obj.langId == id) {
@@ -2528,10 +2512,28 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     return obj.langId != id;
                 });
             }
+            /*console.log(requirements);
 
+             $.each(requirements, function (key, val) {
+             $.each(val.combination, function (k, v) {
+             if (v.langId == id){
+             console.log(requirements[key].combination);
+             requirements[key].combination.splice(k,1);
+             }
+             });
+             });
+             console.log(requirements);*/
         }
         //NAMES
         $scope.changeLangeName = function (id) {
+            $.each(requirements, function (key, val) {
+                $.each(val.combination, function (k, v) {
+                    if (v.langId == id) {
+                        v.name = $("input[data-lang-name='" + id + "']").val();
+                    }
+                });
+            });
+
             if ($rootScope.list1 != 'undefined')
                 $.each($rootScope.list1, function (key, val) {
                     if (val.langId == id) {
@@ -2560,6 +2562,16 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         }
         //YEARS
         $scope.changeYears = function (id) {
+
+            $.each(requirements, function (key, val) {
+                $.each(val.combination, function (k, v) {
+                    if (v.langId == id) {
+                        v.years = $("select[data-select='" + id + "']").val();
+                    }
+                });
+            });
+
+
             $.each($rootScope.list1, function (key, val) {
                 if (val.langId == id) {
                     val.years = $("select[data-select='" + id + "']").val();
@@ -2589,32 +2601,51 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 totalPriorotySum += 10;
                 $(".minusButton").attr('disabled', false);
 
-                $.each($rootScope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.percentage = parseInt(val.percentage) + 10;
-                    }
+                $.each(requirements, function (key, val) {
+                    $.each(val.combination, function (k, v) {
+                        console.log("v.langId : " + v.langId);
+                        if (v.langId == id) {
+                            v.percentage = v.percentage + 10;
+                        }
+                    });
                 });
+                console.log(requirements);
+
+                /* $.each($rootScope.list1, function (key, val) {
+                 if (val.langId == id) {
+                 val.percentage = parseInt(val.percentage) + 10;
+                 }
+                 });*/
             }
-            // else
-            //   $("input[data-pr-num='" + id + "']").parent().find(".plusButton").attr('disabled', true);
         }
         //MINUS
         $scope.minusButton = function (id) {
 
-            console.log(parseInt(totalPriorotySum));
 
             if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0) {
                 $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) - 10);
                 totalPriorotySum -= 10;
                 $(".plusButton").attr('disabled', false);
-                $.each($rootScope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.percentage = parseInt(val.percentage) - 10;
-                    }
+
+                $.each(requirements, function (key, val) {
+                    $.each(val.combination, function (k, v) {
+                        if (v.langId == id) {
+                            v.percentage = v.percentage - 10;
+                        }
+                    });
                 });
+                console.log(requirements);
+
+
+                /* $.each($rootScope.list1, function (key, val) {
+                 if (val.langId == id) {
+                 val.percentage = parseInt(val.percentage) - 10;
+                 }
+                 });*/
+
+
             }
-            // else
-            //    $("input[data-pr-num='" + id + "']").parent().find(".minusButton").attr('disabled', true);
+
         }
 
 
@@ -2624,29 +2655,117 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         scope: {},
         link: function (scope, element, attr) {
             var id = attr.langName;
+            totalPriorotySum = 0;
+
+
             $.each($rootScope.list1, function (key, val) {
                 if (val.langId == id) {
                     val.mode = "must";
                 }
+            })
+
+            $.each($rootScope.list2, function (key, val) {
+                if (val.langId == id) {
+                    val.mode = "must";
+                }
+            })
+            $.each($rootScope.list3, function (key, val) {
+                if (val.langId == id) {
+                    val.mode = "must";
+                }
+            })
+
+
+            $.each(requirements, function (key, val) {
+                $.each(val.combination, function (k, v) {
+                    if (v.langId == id) {
+                        v.mode = "must";
+                    }
+                });
             });
+
+            $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                if (val.mode == 'must')
+                    totalPriorotySum += parseInt(val.percentage);
+            });
+
+
+            //drag into must from langs
+            if (attr.class == 'langsName' && newLangClicked == true) {
+                newLangClicked = false;
+
+                requirements[nextCombinationKey].combination.push({
+                    'langId': langId++,
+                    'name': attr.value,
+                    'mode': "must",
+                    'years': 0,
+                    'percentage': 0,
+                    'drag': true
+                })
+            }
+            console.log(totalPriorotySum);
+
+
         }
     }
 }).directive('droppableAdv', function ($rootScope) {
     return {
         scope: {},
         link: function (scope, element, attr) {
+
             var id = attr.langName;
+            totalPriorotySum = 0;
+
+            $.each($rootScope.list1, function (key, val) {
+                if (val.langId == id) {
+                    val.mode = "adv";
+                    val.percentage = 0;
+                }
+            })
+
             $.each($rootScope.list2, function (key, val) {
                 if (val.langId == id) {
                     val.mode = "adv";
-                    val.percentage = "0";
+                    val.percentage = 0;
                 }
-            });
-            totalPriorotySum = 0;
-            $.each($(".must > .caption > div > .input-group > input"), function () {
-                totalPriorotySum += parseInt($(this).val());
+            })
+            $.each($rootScope.list3, function (key, val) {
+                if (val.langId == id) {
+                    val.mode = "adv";
+                    val.percentage = 0;
+                }
+            })
+
+
+            $.each(requirements, function (key, val) {
+                $.each(val.combination, function (k, v) {
+                    if (v.langId == id) {
+                        v.mode = "adv";
+                        v.percentage = 0;
+                    }
+                });
             });
 
+            $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                if (val.mode == 'must') {
+                    totalPriorotySum += parseInt(val.percentage);
+                    console.log(val);
+                }
+            });
+
+
+            if (attr.class == 'langsName' && newLangClicked == true) {
+                newLangClicked = false;
+                requirements[nextCombinationKey].combination.push({
+                    'langId': langId++,
+                    'name': attr.value,
+                    'mode': "adv",
+                    'years': 0,
+                    'percentage': 0,
+                    'drag': true
+                })
+            }
+            console.log(totalPriorotySum);
         }
     }
 }).directive('droppableOr', function ($rootScope) {
@@ -2654,16 +2773,54 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         scope: {},
         link: function (scope, element, attr) {
             var id = attr.langName;
+            totalPriorotySum = 0;
+
+
+            $.each($rootScope.list1, function (key, val) {
+                if (val.langId == id) {
+                    val.mode = "or";
+                }
+            })
+
+            $.each($rootScope.list2, function (key, val) {
+                if (val.langId == id) {
+                    val.mode = "or";
+                    val.percentage = 0;
+                }
+            })
             $.each($rootScope.list3, function (key, val) {
                 if (val.langId == id) {
                     val.mode = "or";
-                    val.percentage = "0";
+                    val.percentage = 0;
                 }
+            })
+
+
+            $.each(requirements, function (key, val) {
+                $.each(val.combination, function (k, v) {
+                    if (v.langId == id) {
+                        v.mode = "or";
+                        v.percentage = 0;
+                    }
+                });
             });
-            totalPriorotySum = 0;
-            $.each($(".must > .caption > div > .input-group > input"), function () {
-                totalPriorotySum += parseInt($(this).val());
+            $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                if (val.mode == 'must')
+                    totalPriorotySum += parseInt(val.percentage);
             });
+
+
+            if (attr.class == 'langsName' && newLangClicked == true) {
+                newLangClicked = false;
+                requirements[nextCombinationKey].combination.push({
+                    'langId': langId++,
+                    'name': attr.value,
+                    'mode': "or",
+                    'years': 0,
+                    'percentage': 0,
+                    'drag': true
+                })
+            }
         }
     }
 })
@@ -2769,7 +2926,7 @@ function logout(out) {
     if (window.location.href.indexOf("localhost") > -1)
         window.location.href = '/cvmatcher/';
     else
-        window.location.href = 'http://cvmatcher.000space.com';
+        window.location.href = 'http://cvmatcher.esy.es';
 }
 
 $(document).ready(function () {
@@ -2790,7 +2947,7 @@ $(document).ready(function () {
         if (window.location.href.indexOf("localhost") > -1)
             window.location.href = '/cvmatcher/';
         else
-            window.location.href = 'http://cvmatcher.000space.com';
+            window.location.href = 'http://cvmatcher.esy.es';
     });
 });
 var profile;
