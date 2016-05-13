@@ -297,10 +297,10 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>"
                     $(".navigation")[0].innerHTML = navigation;
 
-                    //fix date string
                     angular.forEach(data.data, function (value, key) {
-                        data.data[key].date = value.date.split("T")[0];
+                        data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
                     });
+
                 },
                 function (response) { // optional
                     angular.element(".fa-pulse").hide();
@@ -423,17 +423,17 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                     if (data.data.length > 0) {
 
                         angular.element(".fa-pulse").hide();
-                        $scope.jobSeekerJobs = data.data[0].jobs;
 
 
                         //fix date string
                         if (data.data[0].jobs.length > 0) {
                             angular.forEach(data.data[0].jobs, function (value, key) {
                                 var currcent_status = value.cv.status.current_status;
-
-                                data.data[0].jobs[key].job.date = value.job.date.split("T")[0];
+                                data.data[0].jobs[key].job.date = value.job.date.split("T")[0] + ' | ' + value.job.date.split("T")[1].split(".")[0];
                             });
+                            $scope.jobSeekerJobs = data.data[0].jobs;
                         }
+
                     } else {
                         //no jobs
                         angular.element(".fa-pulse").hide();
@@ -518,7 +518,9 @@ app
             $("[rel='popover']").popover({trigger: "hover", container: "body"});
             var cvId;
             var cvJson = false;
+            var closeModal = false;
 
+            var indx = 2;
             $scope.getMainJson = function () {
 
                 //job seeker Details
@@ -561,6 +563,7 @@ app
                                             if (cvJson) {
                                                 if ($scope.jobSeekerCV.requirements[0].combination.length > 0)
                                                     angular.forEach($scope.jobSeekerCV.requirements[0].combination, function (value, key) {
+                                                        indx = $(".timeline li").length + 1;
                                                         var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
                                                         angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
                                                             ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
@@ -595,7 +598,7 @@ app
 
             $scope.removeContentCV = function (index) {
                 $scope.changeContent();
-
+                indx++;
                 angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
                 $("#cvLi" + index).remove();
             }
@@ -608,12 +611,15 @@ app
                     .element(".parseExperiencePlusButton").addClass("hidden");
 
             }
-            $scope.selectYear = function (startYear) {
-                console.log(startYear);
+            $scope.selectFromYear = function (selected) {
+                console.log(selected);
+                $scope.selectFrom = selected;
             }
 
-            var fromExperience = '<label>From<select id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2000">0</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
-            var toExperience = '<label>To<select id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2000">0</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+            // var fromExperience = '<label>From<select  id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+            var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')"  id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+            //  var toExperience = '<label>To<select   id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004" >2004</option><option value="2005" >2005</option><option value="2006">2006</option><option value="2007" >2007</option><option value="2008">2008</option><option value="2009" >2009</option><option value="2010" >2010</option><option value="2011" >2011</option><option value="2012" >2012</option><option value="2013" >2013</option><option value="2014">2014</option><option value="2015" >2015</option><option value="2016" >2016</option></select></label>';
+            var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '"   id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004"  ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
 
             var parseExpereince = {
                 "expereince": []
@@ -631,6 +637,12 @@ app
                     var text = $(this).find('.timeline-body textarea').val();
                     var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
                     var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+
+                    if (startdate > enddate) {
+                        $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                        $('#myModal').modal('show');
+                        return;
+                    }
                     console.log(startdate);
                     console.log(enddate);
 
@@ -647,6 +659,14 @@ app
                     var text = $(this).find('.timeline-body textarea').val();
                     var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
                     var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+
+                    if (startdate > enddate) {
+                        $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                        $('#myModal').modal('show');
+                        return;
+                    }
+
+
                     if ($(this).hasClass("timeline-inverted"))
                         type = 'experience';
                     else
@@ -698,9 +718,7 @@ app
 
             }
             $scope.addMoreExperience = function () {
-
                 var yearsExperience = '<label class="parserExperienceYearsLabelAdded">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value=""></label>';
-
                 angular
                     .element(".parseExperience")
                     .append('<div class="parser"><label class="parserExperienceLanguageAdded">Language<input type="text" required class="form-control " id="experience" name="experience"' +
@@ -708,14 +726,17 @@ app
             }
 
             $scope.addEducation = function (type) {
-                var indx = $(".timeline li").length;
+                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')"  id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '"   id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004"  ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
+
                 indx++;
+                console.log(indx);
                 if (type == 'education') {
-                    var divTemplate = '<li><div class="timeline-badge" id="cvLi' + indx + '" ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    var divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
 
                 }
                 else {
-                    var divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    var divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
@@ -728,6 +749,7 @@ app
                 }
             }
             $scope.submitUserDetails = function () {
+
                 //add more parameters to json
                 var key = 'birth_date';
                 var val = $(".birthDay").val();
@@ -757,6 +779,7 @@ app
                             console.log("jobSeeker send form AJAX failed!");
                         });
             }
+
             var combination;
             $scope.submitUserCV = function () {
                 combination = [];
@@ -890,18 +913,21 @@ app
                     .then(function (data) {
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
-
+                            closeModal = true;
                         },
                         function (response) { // optional
                             console.log("jobSeekerJobs send form AJAX failed!");
                         });
-                /*}
-                 else {
-                 window.location.href = '/cvmatcher/#/searchJobs'
-                 url = "https://cvmatcher.herokuapp.com/updateMatchingObject";
-                 }*/
 
 
+            }
+            $scope.exitStatus = function () {
+                console.log(closeModal);
+                //if user clickd ok then move to search jobs page - need to wait to close modal
+                if (closeModal == true)
+                    $timeout(function () {
+                        window.location.href = '/cvmatcher/#/searchJobs';
+                    }, 1000);
             }
 
         });
@@ -1125,7 +1151,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 
                     //fix date string
                     angular.forEach(data.data, function (value, key) {
-                        data.data[key].date = value.date.split("T")[0];
+                        data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
                     });
 
 
@@ -1260,7 +1286,6 @@ app.controller('companyProfileController',
             });
         }
         $scope.logo = function (word) {
-
             $http({
                 url: "https://cvmatcher.herokuapp.com/getLogoImages",
                 method: "POST",
@@ -1272,6 +1297,8 @@ app.controller('companyProfileController',
 
 
         $scope.submitUserDetails = function () {
+
+            tabType = 'profile';
             var userJson = {
                 "_id": $.cookie('user_id'),
                 "personal_id": $(".personalId").val(),
@@ -1306,10 +1333,8 @@ app.controller('companyProfileController',
             if (logo == undefined)
                 logo = 'http://www.megaicons.net/static/img/icons_sizes/53/135/256/default-icon-icon.png';
 
-            tabType = 'profile';
             $scope.status = '';
             if (!company) {
-
                 var companyJson = {
                     "user_id": $.cookie('user_id'),
                     "name": $(".companyName").val(),
@@ -1329,6 +1354,8 @@ app.controller('companyProfileController',
                         $('#update').modal('show');
                         $scope.status = "Company Updated Succesfully!"
                         console.log(data);
+
+                        tabType = 'company';
                     },
                     function (response) { // optional
                         $scope.status = "Error Company Update!"
@@ -1346,13 +1373,14 @@ app.controller('companyProfileController',
                     "phone_number": $(".companyPhoneNumber").val()
                 }
 
-                tabType = 'company';
                 console.log("send form: ", companyJson);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/employer/updateCompany',
                     method: "POST",
                     data: companyJson
                 }).then(function () {
+
+                        tabType = 'company';
                         $('#update').modal('show');
                         $scope.status = "Company Updated Succesfully!"
                     },
@@ -1604,6 +1632,8 @@ app.controller('candidatesController',
                         //remove from list filter
                         var canArr = $rootScope.likeCandidates;
                         canArr = canArr.filter(function (obj) {
+                            console.log(obj._id);
+                            console.log(cvId);
                             return obj._id != cvId;
                         });
                         $rootScope.likeCandidates = canArr;
@@ -1666,8 +1696,7 @@ app.controller('resumeController',
                             $scope.user["stars"] = 0;
                         }
 
-
-                        if (data.data[0].formula.matching_requirements > 0) {
+                        if (data.data[0].formula.matching_requirements.grade > 0) {
                             //circle
                             var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
                             var fillColors = ['#C1BFBF', '#e6e6e6'];
@@ -1841,8 +1870,13 @@ var nextCombinationKey = 0;
 var langId = 0;
 var totalPriorotySum = 0;
 var newLangClicked = false;
+var combinationDeleted = false;
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
-
+        totalPriorotySum = 0;
+        nextCombinationKey = 0;
+        langId = 0;
+        newLangClicked = false;
+        requirements = [];
         $(".requirementsWrapper").hide();
         $id = $location.path().split('/')[1];
         $("#geocomplete").geocomplete();
@@ -1867,6 +1901,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         var combinationLengthAfterEdit = 0;
         var savedCurrentCombination = false;
         var editJob = false;
+        var sendForm = false;
         //edit job - get AJAX details
         $scope.getJobJson = function () {
             $(".fa-arrow-right").hide();
@@ -1900,45 +1935,50 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         var i = 0;
 
                         totalPriorotySum = 100;
+
+                        if (data.data[0].requirements.length > 1) {
+                            $(".fa-arrow-right").show();
+                        }
+
                         if (data.data[0].requirements.length > 0) {
                             $.each(data.data[0].requirements, function (k, v) {
                                 i++;
                                 var combination = [];
                                 $.each(v.combination, function (key, val) {
-                                        if (val.mode == 'must') {
-                                            tempMustLangs.push({
-                                                'langId': langId++,
-                                                'name': val.name,
-                                                'mode': val.mode,
-                                                'years': parseInt(val.years),
-                                                'percentage': parseInt(val.percentage),
-                                                'drag': true
-                                            });
+                                    if (val.mode == 'must') {
+                                        tempMustLangs.push({
+                                            'langId': langId++,
+                                            'name': val.name,
+                                            'mode': val.mode,
+                                            'years': parseInt(val.years),
+                                            'percentage': parseInt(val.percentage),
+                                            'drag': true
+                                        });
 
-                                            combination.push(tempMustLangs[0]);
-                                        }
-                                        else if (val.mode == 'adv') {
-                                            tempAdvLangs.push({
-                                                'langId': langId++,
-                                                'name': val.name,
-                                                'mode': val.mode,
-                                                'years': parseInt(val.years),
-                                                'percentage': parseInt(val.percentage),
-                                                'drag': true
-                                            });
-                                            combination.push(tempAdvLangs[0]);
-                                        }
-                                        else {
-                                            tempOrLangs.push({
-                                                'langId': langId++,
-                                                'name': val.name,
-                                                'mode': val.mode,
-                                                'years': parseInt(val.years),
-                                                'percentage': parseInt(val.percentage),
-                                                'drag': true
-                                            });
-                                            combination.push(tempOrLangs[0]);
-                                        }
+                                        combination.push(tempMustLangs[0]);
+                                    }
+                                    else if (val.mode == 'adv') {
+                                        tempAdvLangs.push({
+                                            'langId': langId++,
+                                            'name': val.name,
+                                            'mode': val.mode,
+                                            'years': parseInt(val.years),
+                                            'percentage': parseInt(val.percentage),
+                                            'drag': true
+                                        });
+                                        combination.push(tempAdvLangs[0]);
+                                    }
+                                    else {
+                                        tempOrLangs.push({
+                                            'langId': langId++,
+                                            'name': val.name,
+                                            'mode': val.mode,
+                                            'years': parseInt(val.years),
+                                            'percentage': parseInt(val.percentage),
+                                            'drag': true
+                                        });
+                                        combination.push(tempOrLangs[0]);
+                                    }
 
                                 });
                                 if (i == 1) {
@@ -1959,7 +1999,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                             });
                             $scope.parseExperience();
-                            console.log("requirements: " , requirements)
+                            console.log("requirements: ", requirements)
 
                         }
                         angular.element(".fa-pulse").hide();
@@ -2072,9 +2112,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
-            if (sumSliders == 100) {
+            if (sumSliders == 100 && sendForm == true) {
                 $timeout(function () {
-                    //    window.location.href = '/cvmatcher/#/myjobs';
+                    //window.location.href = '/cvmatcher/#/myjobs';
                 }, 1000);
             }
             else {
@@ -2324,6 +2364,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             if (data != null)
                                 $('#sendJob').modal('show');
                             $scope.status = "Job Send Succesfuly";
+                            sendForm = true;
                         },
                         function (response) { // optional
                             $scope.status = "Job did not send";
@@ -2433,8 +2474,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             tempAdvLangs = [];
             tempOrLangs = [];
             totalPriorotySum = 0;
-            console.log(nextCombinationKey);
-            console.log(requirements[nextCombinationKey].combination);
             $.each(requirements[nextCombinationKey].combination, function (key, val) {
                 if (val.mode == 'must') {
                     totalPriorotySum += parseInt(val.percentage);
@@ -2493,12 +2532,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         //REMOVE LANG
         $scope.removeLang = function (id, sectType) {
 
-
             if (sectType == 'must') {
                 $rootScope.list1 = $rootScope.list1.filter(function (obj) {
-                    if (obj.langId == id) {
-                        totalPriorotySum -= parseInt(obj.percentage);
-                    }
                     return obj.langId != id;
                 });
             }
@@ -2512,17 +2547,103 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     return obj.langId != id;
                 });
             }
-            /*console.log(requirements);
+            console.log(requirements);
 
-             $.each(requirements, function (key, val) {
-             $.each(val.combination, function (k, v) {
-             if (v.langId == id){
-             console.log(requirements[key].combination);
-             requirements[key].combination.splice(k,1);
-             }
-             });
-             });
-             console.log(requirements);*/
+            $.each(requirements, function (key, val) {
+                $.each(val.combination, function (k, v) {
+                    if (v.langId == id) {
+                        totalPriorotySum -= parseInt(v.percentage);
+                        val.combination.splice(k, 1);
+                        return false;
+                    }
+
+                });
+                /*
+                 if (val.combination.length == 0){
+                 combinationDeleted = true;
+                 requirements.splice(key, 1);
+                 console.log(requirements);
+                 return false;
+
+                 }*/
+
+            });
+            console.log("totalPriorotySum: " + totalPriorotySum);
+            console.log(requirements);
+        }
+
+        $scope.removeCombination = function () {
+            console.log("combinationsLength: " + combinationsLength);
+            $.each(requirements, function (key, val) {
+                if (nextCombinationKey == key) {
+                    requirements.splice(key, 1);
+                    combinationDeleted = true;
+                    combinationsLength--;
+                    return false;
+                }
+            });
+
+            if (combinationDeleted == true) {
+                combinationDeleted = false;
+                $rootScope.list1 = [];
+                $rootScope.list2 = [];
+                $rootScope.list3 = [];
+                $rootScope.langs = [];
+                tempMustLangs = [];
+                tempAdvLangs = [];
+                tempOrLangs = [];
+                totalPriorotySum = 0;
+                if (combinationsLength == 0) {
+                    $(".fa-arrow-right").hide();
+                    $(".fa-arrow-left").hide();
+                }
+                if (combinationsLength > 0) {
+                    $(".fa-arrow-left").show();
+                    $(".fa-arrow-right").hide();
+                }
+                if (combinationsLength >= 0) {
+                    console.log(combinationsLength);
+                    nextCombinationKey = combinationsLength;
+                    $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                        if (val.mode == 'must') {
+                            totalPriorotySum += parseInt(val.percentage);
+                            tempMustLangs.push({
+                                'langId': val.langId,
+                                'name': val.name,
+                                'mode': val.mode,
+                                'years': val.years,
+                                'percentage': val.percentage,
+                                'drag': true
+                            });
+                        }
+                        else if (val.mode == 'adv') {
+                            tempAdvLangs.push({
+                                'langId': val.langId,
+                                'name': val.name,
+                                'mode': val.mode,
+                                'years': val.years,
+                                'percentage': val.percentage,
+                                'drag': true
+                            });
+                        }
+                        else if (val.mode == 'or') {
+                            tempOrLangs.push({
+                                'langId': val.langId,
+                                'name': val.name,
+                                'mode': val.mode,
+                                'years': val.years,
+                                'percentage': val.percentage,
+                                'drag': true
+                            });
+                        }
+                    });
+
+                    $rootScope.list1 = tempMustLangs;
+                    $rootScope.list2 = tempAdvLangs;
+                    $rootScope.list3 = tempOrLangs;
+                }
+            }
+            console.log(requirements);
         }
         //NAMES
         $scope.changeLangeName = function (id) {
@@ -2566,7 +2687,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             $.each(requirements, function (key, val) {
                 $.each(val.combination, function (k, v) {
                     if (v.langId == id) {
-                        v.years = $("select[data-select='" + id + "']").val();
+                        v.years = parseInt($("select[data-select='" + id + "']").val());
                     }
                 });
             });
@@ -2603,7 +2724,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                 $.each(requirements, function (key, val) {
                     $.each(val.combination, function (k, v) {
-                        console.log("v.langId : " + v.langId);
                         if (v.langId == id) {
                             v.percentage = v.percentage + 10;
                         }
@@ -2684,14 +2804,24 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
             });
 
-            $.each(requirements[nextCombinationKey].combination, function (key, val) {
-                if (val.mode == 'must')
-                    totalPriorotySum += parseInt(val.percentage);
-            });
+            console.log("nextCombinationKey: " + nextCombinationKey);
+            console.log("requirements[nextCombinationKey]: ", requirements);
+            if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
+                $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                    if (val.mode == 'must')
+                        totalPriorotySum += parseInt(val.percentage);
+                });
+            }
+            else if (requirements.length == 0) {
+                combination = [];
+                requirements.push({'combination': combination});
+            }
 
+            //requeire if i want to return the 'combinationDeleted' to original position
+            combinationDeleted = false;
 
             //drag into must from langs
-            if (attr.class == 'langsName' && newLangClicked == true) {
+            if (attr.class == 'langsName' && newLangClicked == true && requirements.length > 0) {
                 newLangClicked = false;
 
                 requirements[nextCombinationKey].combination.push({
@@ -2703,7 +2833,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     'drag': true
                 })
             }
-            console.log(totalPriorotySum);
+            console.log("totalPriorotySum: " + totalPriorotySum);
 
 
         }
@@ -2745,16 +2875,27 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 });
             });
+            /*
+             $.each(requirements[nextCombinationKey].combination, function (key, val) {
+             if (val.mode == 'must') {
+             totalPriorotySum += parseInt(val.percentage);
+             console.log(val);
+             }
+             });*/
 
-            $.each(requirements[nextCombinationKey].combination, function (key, val) {
-                if (val.mode == 'must') {
-                    totalPriorotySum += parseInt(val.percentage);
-                    console.log(val);
-                }
-            });
+            if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
+                $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                    if (val.mode == 'must')
+                        totalPriorotySum += parseInt(val.percentage);
+                });
+            }
+            else if (requirements.length == 0) {
+                combination = [];
+                requirements.push({'combination': combination});
+            }
 
 
-            if (attr.class == 'langsName' && newLangClicked == true) {
+            if (attr.class == 'langsName' && newLangClicked == true && requirements.length > 0) {
                 newLangClicked = false;
                 requirements[nextCombinationKey].combination.push({
                     'langId': langId++,
@@ -2804,13 +2945,24 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 });
             });
-            $.each(requirements[nextCombinationKey].combination, function (key, val) {
-                if (val.mode == 'must')
-                    totalPriorotySum += parseInt(val.percentage);
-            });
+            /* $.each(requirements[nextCombinationKey].combination, function (key, val) {
+             if (val.mode == 'must')
+             totalPriorotySum += parseInt(val.percentage);
+             });*/
 
 
-            if (attr.class == 'langsName' && newLangClicked == true) {
+            if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
+                $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                    if (val.mode == 'must')
+                        totalPriorotySum += parseInt(val.percentage);
+                });
+            }
+            else if (requirements.length == 0) {
+                combination = [];
+                requirements.push({'combination': combination});
+            }
+
+            if (attr.class == 'langsName' && newLangClicked == true && requirements.length > 0) {
                 newLangClicked = false;
                 requirements[nextCombinationKey].combination.push({
                     'langId': langId++,

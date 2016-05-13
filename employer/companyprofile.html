@@ -16,7 +16,7 @@
     <div class="tab-content userProfile" style="    float: left; width: 100%;">
         <div ng-show="tab == 0" class="tabsContent fade in active">
             <!-- Content from here -->
-            <form>
+            <form ng-submit="submitUserDetails()">
                 <div class="form-group">
                     <label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
                                                         class="form-control personalId" name="id">
@@ -43,7 +43,7 @@
                 <div class="form-group">
 
                     <label>Address:</label> <input class="form-control" id="geocomplete"
-                                                   type="text"
+                                                   type="text" required
                                                    name="location" value="{{employerProfile['address']}}"
                                                    placeholder="Type in an address" size="90" autocomplete="on">
                 </div>
@@ -53,13 +53,12 @@
                                                                   class="form-control phoneNumber">
                 </div>
 
-                <label for="usr">LinkedIn:</label> <input type="text" required
+                <label for="usr">LinkedIn:</label> <input type="text"
                                                           class="form-control linkedin"
                                                           ng-model="employerProfile['linkedin']"
                                                           value="{{companyProfile.user['linkedin']}}">
 
-                <button type="button" class="btn btn-default" ng-click="submitUserDetails()" data-toggle="modal"
-                        data-target="#update">Send
+                <button type="submit" class="btn btn-default">Send
                 </button>
             </form>
         </div>
@@ -73,19 +72,19 @@
                 <div ng-show="t == 0" class="tabsContent fade in active">
 
                     <!-- Content from here -->
-                    <form ng-submit="submitCompanyDetails()">
+                    <form ng-submit="submitCompanyDetails()" >
 
                         <div class="form-group">
                             <label for="companyName">Company name:</label> <input type="text" required
                                                                                   value="{{companyProfile['name']}}"
                                                                                   class="form-control companyName"
-                                                                                  id="companyName" name="address">
+                                                                                  id="companyName" name="name">
                         </div>
                         <div class="form-group">
                             <label for="companypc">P.C:</label> <input type="text" required
                                                                        value="{{companyProfile['p_c']}}"
                                                                        class="form-control companyPC" id="companypc"
-                                                                       name="address">
+                                                                       name="pc">
                         </div>
                         <div class="form-group">
                             <label>Address:</label> <input class="form-control" id="geocomplete2"
@@ -105,30 +104,32 @@
                         <input type="button" class="btn btn-default" ng-click="changePassword()" value="Change Password" />
 
                         <div class="form-group" ng-show="password == true || changePassword == true">
-                            <label for="usr">Company Password:</label> <input type="password"  maxlength="5" class="form-control passwordCompany"  value="{{companyProfile['password'].substr(0,5)}}">
+                            <label for="usr">Company Password:</label> <input type="password"  maxlength="5"  class="form-control passwordCompany"  value="{{companyProfile['password'].substr(0,5)}}">
                         </div>
 
 
                         <div class="form-group" ng-show="changePassword == true">
-                            <label for="usr">Change to New Password:</label> <input type="password"  maxlength="5" class="form-control newPasswordCompany" value="">
+                            <label for="usr">Change to New Password:</label> <input type="password" maxlength="5" class="form-control newPasswordCompany" value="">
                         </div>
 
                         <div class="form-group">
-                            <label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control"  value="{{companyProfile['logo']}}"  placeholder="please type Company name"><input
+                            <label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control" name="logo" value="{{companyProfile['logo']}}"  placeholder="please type Company name"><input
                                 type="button" ng-click="logo(word)" class="btn btn-default" value="Search Logo!"/>
                         </div>
 
 
 
 
-                        <div class="companyLogo" ng-if="companyProfile['logo']"><img ng-src={{companyProfile['logo']}}/>
+                        <div class="companyLogo" ng-if="companyProfile['logo']">
+                            <img ng-src={{companyProfile['logo']}}>
                         </div>
+
                         <div ng-repeat="logo in logos">
                             <div data-toggle="buttons" class="logos">
-                                <label class="btn btn-default" ng-click="newLogo()">
+                                <label class="btn btn-default" ng-click="newLogo()" name='newLogo'>
                                     <input type="radio" name="logos">
                                     <span class="glyphicon glyphicon-ok"></span>
-                                    <img ng-src={{logo}}/>
+                                    <img ng-src={{logo}}>
                                 </label>
                             </div>
                         </div>
@@ -137,6 +138,7 @@
 
                     </form>
                 </div>
+                <!-- Existing compenies -->
                 <div class="tab-content" >
                     <div ng-show="t == 1" class="tabsContent fade in active" >
                         <div ng-repeat="c in companies">
@@ -144,7 +146,7 @@
                                 <label class="btn btn-default" ng-click="checkCompany(c._id)">
                                     <input type="radio" name="companies">
                                     <span class="glyphicon glyphicon-ok"></span>
-                                    <img ng-src={{c.logo}}/>
+                                    <img ng-src={{c.logo}}>
                                 </label>
                             </div>
                         </div>

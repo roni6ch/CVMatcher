@@ -23,7 +23,7 @@
 
                     <i class="fa fa-times" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'" ng-click="removeReviveJob(jobSJ._id,false)"></i>
                     <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'" ng-click="removeReviveJob(jobSJ._id,true)"></i>
-                <i class="fa fa-3x" id="fav{{$index}}" ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}' ng-click="favoriteJob(jobSJ._id,$index)"></i>
+                <i class="fa fa-3x" id="fav{{$index}}" ng-show="page!='deleted'" ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}' ng-click="favoriteJob(jobSJ._id,$index)"></i>
                 <a
                     href="">
                     <div><img
