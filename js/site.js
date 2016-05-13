@@ -837,7 +837,7 @@ app
                             "multilingual": $scope.foreign,
                             "volunteering": $scope.volunteering,
                             "full_army_service": $scope.military,
-                            "officer": $scope.Officer,
+                            "officer_in_the_military": $scope.Officer,
                             "high_school_graduation_with_honors": $scope.graduate,
                             "youth_movements": $scope.Youth
 
@@ -876,7 +876,7 @@ app
                             "multilingual": $scope.foreign,
                             "volunteering": $scope.volunteering,
                             "full_army_service": $scope.military,
-                            "officer": $scope.Officer,
+                            "officer_in_the_military": $scope.Officer,
                             "high_school_graduation_with_honors": $scope.graduate,
                             "youth_movements": $scope.Youth
 
@@ -1065,6 +1065,7 @@ app
                 };
 
             }
+
             $scope.exitStatus = function () {
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 $timeout(function () {
@@ -1655,7 +1656,9 @@ app.controller('candidatesController',
                         "stars": stars,
                         "description": description,
                         "timestamp": new Date
-                    }
+                    },
+                    "user_id": $.cookie('user_id')
+
                 }
             });
         }
@@ -1778,7 +1781,8 @@ app.controller('resumeController',
                         "stars": $scope.user["stars"],
                         "description": description,
                         "timestamp": new Date
-                    }
+                    },
+                    "user_id":$.cookie('user_id')
                 }
             });
 
