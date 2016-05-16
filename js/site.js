@@ -913,7 +913,10 @@ app
                     .then(function (data) {
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
+                        console.log("data: " ,data);
                             closeModal = true;
+                            var currentId = data.data.current_cv;
+                            $.cookie('current_cv', currentId);
                         },
                         function (response) { // optional
                             console.log("jobSeekerJobs send form AJAX failed!");
@@ -1016,15 +1019,15 @@ app
                                     $scope.sendcv = true;
                                 }
 
-                                angular.forEach(data.data.formula, function (value, key) {
-                                    if (key == 'requirements') {
-                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                            value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
-                                    }
-                                    else
-                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                            value + '%">' + key + ' ' + value + '%</div></div>');
-                                });
+                                    angular.forEach(data.data.formula, function (value, key) {
+                                        if (key == 'requirements') {
+                                            angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                                value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
+                                        }
+                                        else
+                                            angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                                value + '%">' + key + ' ' + value + '%</div></div>');
+                                    });
                             }
                             else {
                                 angular.element(".fa-pulse").hide();
@@ -1043,7 +1046,6 @@ app
 
 
             $scope.sendCV = function () {
-
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/addCvToJob',
                     method: "POST",
@@ -1699,6 +1701,19 @@ app.controller('resumeController',
                             $scope.user["stars"] = 0;
                         }
 
+                        angular.forEach(data.data[0].formula, function (value, key) {
+                            if (key =='__v' || key == '_id')
+                                return;
+                            if (key == 'matching_requirements' && value.grade > 0) {
+                                angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                    value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
+                            }
+                            else if(value > 0)
+                                angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                    value + '%">' + key + ' ' + value + '%</div></div>');
+                        });
+
+
                         if (data.data[0].formula.matching_requirements.grade > 0) {
                             //circle
                             var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
@@ -2113,6 +2128,18 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }, 100);
             }
         }
+
+
+    // Limit items to be dropped in list1
+    $scope.optionsList3 = {
+        accept: function(dragEl) {
+            if ($scope.list3.length >= 2) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    };
 
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
