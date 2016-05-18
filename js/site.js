@@ -7,63 +7,189 @@ app.config(function ($routeProvider) {
     // employer
         .when('/', {
             templateUrl: 'googleSignIn.html',
-            controller: 'googleSignInController'
+            controller: 'googleSignInController',
+            resolve: {
+                resolvedVal: function ($location) {
+                    if ($.cookie('google_id')) {
+                        $location.path('/usersLogin');
+                    }
+                }
+            }
         }).when('/usersLogin', {
         templateUrl: 'usersLogin.html',
         controller: 'usersLoginController'
     }).when('/myjobs', {
         templateUrl: 'employer/myjobs.html',
-        controller: 'myjobsController'
+        controller: 'myjobsController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Candidates/:_id', {
         templateUrl: 'employer/candidates.html',
-        controller: 'candidatesController'
+        controller: 'candidatesController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Archive/Candidates/:_id', {
         templateUrl: 'employer/candidates.html',
-        controller: 'candidatesController'
+        controller: 'candidatesController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Like/Candidates/:id/resume/:_id', {
         templateUrl: 'employer/resume.html',
-        controller: 'resumeController'
+        controller: 'resumeController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/UnLike/Candidates/:id/resume/:_id', {
         templateUrl: 'employer/resume.html',
-        controller: 'resumeController'
+        controller: 'resumeController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Unread/:id/resume/:_id', {
         templateUrl: 'employer/resume.html',
-        controller: 'resumeController'
+        controller: 'resumeController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/resume/:id', {
         templateUrl: 'employer/resume.html',
-        controller: 'resumeController'
+        controller: 'resumeController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Archive', {
         templateUrl: 'employer/archive.html',
-        controller: 'myjobsController'
+        controller: 'myjobsController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/job/:_id', {
         templateUrl: 'employer/job.html',
-        controller: 'jobController'
+        controller: 'jobController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/companyProfile', {
         templateUrl: 'employer/companyProfile.html',
-        controller: 'companyProfileController'
+        controller: 'companyProfileController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/newJob', {
             templateUrl: 'employer/job.html',
-            controller: 'jobController'
+            controller: 'jobController',
+            resolve: {
+                resolvedVal: function ($location) {
+                    if (!$.cookie('user_id')) {
+                        $location.path('/');
+                    }
+                }
+            }
         })
         // job seeker
         .when('/searchJobs', {
             templateUrl: 'job_seeker/searchJobs.html',
-            controller: 'jobSeekerSearchJobsController'
+            controller: 'jobSeekerSearchJobsController',
+            resolve: {
+                resolvedVal: function ($location) {
+                    if (!$.cookie('user_id')) {
+                        $location.path('/');
+                    }
+                }
+            }
         }).when('/yourjobs', {
         templateUrl: 'job_seeker/yourjobs.html',
-        controller: 'yourjobSeekerController'
+        controller: 'yourjobSeekerController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/deleted', {
         templateUrl: 'job_seeker/yourjobs.html',
-        controller: 'yourjobSeekerController'
+        controller: 'yourjobSeekerController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/searchJobs/:_id/matchpage', {
         templateUrl: 'job_seeker/matchpage.html',
-        controller: 'matchpageController'
+        controller: 'matchpageController',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Profile', {
         templateUrl: 'job_seeker/profile.html',
-        controller: 'seekerProfileControler'
+        controller: 'seekerProfileControler',
+        resolve: {
+            resolvedVal: function ($location) {
+                if (!$.cookie('user_id')) {
+                    $location.path('/');
+                }
+            }
+        }
     }).when('/Favorites', {
             templateUrl: 'job_seeker/yourjobs.html',
-            controller: 'yourjobSeekerController'
+            controller: 'yourjobSeekerController',
+            resolve: {
+                resolvedVal: function ($location) {
+                    if (!$.cookie('user_id')) {
+                        $location.path('/');
+                    }
+                }
+            }
         })
 
 
@@ -72,7 +198,10 @@ app.config(function ($routeProvider) {
             templateUrl: 'about.html'
         }).when('/Contact', {
         templateUrl: 'contact.html'
-    })
+    }).
+    otherwise({
+        redirectTo: '/'
+    });
 
 }).run(function ($rootScope, $http) {
     //set the header navigation
@@ -146,7 +275,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         "email": profile.emails[0].value
                     }
                 }).then(function (data) {
-
                         firstTimeLogIn = false;
                         if ($.isArray(data.data)) {
                             $.cookie('user_id', data.data[0]._id);
@@ -913,7 +1041,7 @@ app
                     .then(function (data) {
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
-                        console.log("data: " ,data);
+                            console.log("data: ", data);
                             closeModal = true;
                             var currentId = data.data.current_cv;
                             $.cookie('current_cv', currentId);
@@ -1019,15 +1147,15 @@ app
                                     $scope.sendcv = true;
                                 }
 
-                                    angular.forEach(data.data.formula, function (value, key) {
-                                        if (key == 'requirements') {
-                                            angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                                value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
-                                        }
-                                        else
-                                            angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                                value + '%">' + key + ' ' + value + '%</div></div>');
-                                    });
+                                angular.forEach(data.data.formula, function (value, key) {
+                                    if (key == 'requirements') {
+                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                            value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
+                                    }
+                                    else
+                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
+                                            value + '%">' + key + ' ' + value + '%</div></div>');
+                                });
                             }
                             else {
                                 angular.element(".fa-pulse").hide();
@@ -1119,8 +1247,19 @@ app
  */
 
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http, $sce) {
+
+
+    $scope.company = company;
     var archive;
     $id = $location.path().split('/');
+    if (!$.cookie('company')) {
+        $(".newJob").css("pointer-events", "none");
+        $(".newJob > input").css("text-decoration", "line-through");
+    }
+    else {
+        $(".newJob").css("pointer-events", "auto");
+        $(".newJob > input").css("text-decoration", "none");
+    }
     if ($id[1] == 'myjobs') {
         archive = false;
         $scope.jobPage = "myJobs"
@@ -1223,9 +1362,9 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 /*
  * ********************* company Profile controller ****************
  */
+var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
-        var company = false;
         var companyId;
         var tabType = '';
         $("#geocomplete").geocomplete();
@@ -1354,6 +1493,7 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function (data) {
+                        $.cookie('company', true);
                         $('#update').modal('show');
                         $scope.status = "Company Updated Succesfully!"
                         console.log(data);
@@ -1382,10 +1522,13 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function () {
+                        $.cookie('company', true);
+
 
                         tabType = 'company';
                         $('#update').modal('show');
                         $scope.status = "Company Updated Succesfully!"
+
                     },
                     function (response) { // optional
                         $scope.status = "Error Company Update!"
@@ -1674,6 +1817,8 @@ var candidateId;
 app.controller('resumeController',
     function ($scope, $http, $location, $timeout, $rootScope) {
         $id = $location.path().split('/');
+
+        $("#predictAppend").hide();
         // circle animation
         var circle, tmpColor;
         var id;
@@ -1702,38 +1847,44 @@ app.controller('resumeController',
                         }
 
                         angular.forEach(data.data[0].formula, function (value, key) {
-                            if (key =='__v' || key == '_id')
+                            if (key == '__v' || key == '_id')
                                 return;
                             if (key == 'matching_requirements' && value.grade > 0) {
                                 angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
                                     value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
                             }
-                            else if(value > 0)
+                            else if (value > 0)
                                 angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
                                     value + '%">' + key + ' ' + value + '%</div></div>');
                         });
 
+                        if (data.data[0].predict_result) {
+                            $("#predictAppend").show();
+                        }
+                        if (data.data[0].formula)
+                            if (data.data[0].formula.matching_requirements.grade > 0) {
+                                //circle
+                                var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
+                                var fillColors = ['#C1BFBF', '#e6e6e6'];
+                                //Big circle percentages
+                                angular.forEach(data.data[0].formula.matching_requirements.details, function (value, key) {
+                                    circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
+                                        color: colors[key],
+                                        strokeWidth: 5,
+                                        fill: fillColors[key % 2]
+                                    });
+                                    //angular.element(".resumeSkillsBox").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
+                                    angular.element(".resumeSkillsBox").append('<div class="[ btn-group ]"><label for="fancy-checkbox-default" class="[ btn btn-default ]" style="color:' + colors[key] + '; float: none; cursor: auto;">' + value.name + ' </label> <label for="fancy-checkbox-default" class="[ btn btn-default active ]" style="color:' + colors[key] + ';float: none; cursor: auto;"> ' + Math.max(parseInt(value.grade), 1) + '% </label></div>');
 
-                        if (data.data[0].formula.matching_requirements.grade > 0) {
-                            //circle
-                            var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
-                            var fillColors = ['#C1BFBF', '#e6e6e6'];
-                            //Big circle percentages
-                            angular.forEach(data.data[0].formula.matching_requirements.details, function (value, key) {
-                                circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
-                                    color: colors[key],
-                                    strokeWidth: 5,
-                                    fill: fillColors[key % 2]
+
+                                    circle.animate(value.grade / 100, function () {
+                                    })
                                 });
-                                angular.element(".resumeSkillsBox").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
-                                circle.animate(value.grade / 100, function () {
-                                })
-                            });
-                            angular.element(".resumeSkillsBox").append("<h2>Total Skills Grade: " + Math.max(parseInt(data.data[0].formula.matching_requirements.grade), 1) + "</h2>")
-                        }
-                        else {
-                            $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
-                        }
+                                angular.element(".resumeSkillsBox").append("<h2>Total Skills Grade: " + Math.max(parseInt(data.data[0].formula.matching_requirements.grade), 1) + "</h2>")
+                            }
+                            else {
+                                $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
+                            }
                     },
                     function (response) { // optional
                         console.log("resumeController AJAX failed!");
@@ -1797,7 +1948,7 @@ app.controller('resumeController',
                         "description": description,
                         "timestamp": new Date
                     },
-                    "user_id":$.cookie('user_id')
+                    "user_id": $.cookie('user_id')
                 }
             });
 
@@ -2130,16 +2281,16 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         }
 
 
-    // Limit items to be dropped in list1
-    $scope.optionsList3 = {
-        accept: function(dragEl) {
-            if ($scope.list3.length >= 2) {
-                return false;
-            } else {
-                return true;
+        // Limit items to be dropped in list1
+        $scope.optionsList3 = {
+            accept: function (dragEl) {
+                if ($scope.list3.length >= 2) {
+                    return false;
+                } else {
+                    return true;
+                }
             }
-        }
-    };
+        };
 
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
@@ -3112,7 +3263,21 @@ function logout(out) {
         window.location.href = 'http://cvmatcher.esy.es';
 }
 
+
 $(document).ready(function () {
+
+    $(".navbar-toggle").on("click", function () {
+        $(this).toggleClass("active");
+        if ($(this).hasClass('active')) {
+            $(".navbar-collapse").fadeIn();
+        }
+        else {
+            $(".navbar-collapse").fadeOut();
+
+        }
+    });
+
+
     $('html:not(".navbar")').click(function (e) {
         if (e.target.id != 'profileImg') {
             $('[data-popover]').popover('hide');

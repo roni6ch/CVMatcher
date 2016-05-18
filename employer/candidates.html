@@ -1,23 +1,27 @@
+<div class="candidatesImgCover"></div>
+
 <div class="candidatesWrapper">
     <h3 class="navigation"></h3>
-    <header>
-        <h2>Candidates</h2>
-    </header>
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
 
-    <form method="get" action="">
-        <input type="text" placeholder="Find Candidate" ng-model="searchText"
-               class="form-control">
-    </form>
-    <button type="button" class="btn btn-default"
-            ng-click="sort('-compability')">Sort By Compability
-    </button>
-    <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
-        By Date
-    </button>
+    <div class="myJobsBox">
+        <header>
+            <h2>Candidates</h2>
+        </header>
+        <i class="fa fa-spinner fa-pulse fa-5x"></i>
 
-    <ul class="nav nav-tabs candidatesTabs" ng-init="tab=0; unreadCvs()">
-        <li ng-class="{active:tab == 0}"><a ng-click="tab = 0; unreadCvs()">Unread</a></li>
+        <form method="get" action="">
+            <input type="text" placeholder="Find Candidate" ng-model="searchText"
+                   class="form-control">
+        </form>
+        <button type="button" class="btn btn-default"
+                ng-click="sort('-compability')">Sort By Compability
+        </button>
+        <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+            By Date
+        </button>
+    </div>
+    <ul class="engineering" class="nav nav-tabs candidatesTabs" ng-init="tab=0; unreadCvs()">
+        <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0; unreadCvs()">Unread</a></li>
         <li ng-class="{active:tab == 1}"><a ng-click="tab = 1; likedCvs()">Liked</a></li>
         <li ng-class="{active:tab == 2}"><a ng-click="tab = 2; unlikeCvs()">Unliked</a></li>
         <li ng-class="{active:tab == 3}"><a ng-click="tab = 3; Hired()">Hired</a></li>
@@ -173,23 +177,23 @@
             </div>
             <div class="modal-body">
                 <!-- STAR RANK -->
-					<span class="rating  animated pulse">
-			    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
-				<label for="rating-5" class="rating-star"
+                    <span class="rating  animated pulse">
+                <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
+                <label for="rating-5" class="rating-star"
                        ng-style="{'background-position':'0 -16'}"></label>
-				<input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating">
-				<label for="rating-4" class="rating-star"
+                <input type="radio" class="rating-input" id="rating-4" ng-click="rating(4)" name="rating">
+                <label for="rating-4" class="rating-star"
                        ng-style="{'background-position':'0 -16'}"></label>
-				<input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
-				<label for="rating-3" class="rating-star"
+                <input type="radio" class="rating-input" id="rating-3" ng-click="rating(3)" name="rating">
+                <label for="rating-3" class="rating-star"
                        ng-style="{'background-position':'0 -16'}"></label>
-				<input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
-				<label for="rating-2" class="rating-star"
+                <input type="radio" class="rating-input" id="rating-2" ng-click="rating(2)" name="rating">
+                <label for="rating-2" class="rating-star"
                        ng-style="{'background-position':'0 -16'}"></label>
-				<input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
-				<label for="rating-1" class="rating-star"
+                <input type="radio" class="rating-input" id="rating-1" ng-click="rating(1)" name="rating">
+                <label for="rating-1" class="rating-star"
                        ng-style="{'background-position':'0 -16'}"></label>
-			</span>
+            </span>
 
             </div>
             <div class="modal-footer">
@@ -213,7 +217,7 @@
             <div class="modal-body">
 
                 <div class="form-group">
-				<textarea class="form-control" rows="5" name="original_text" ng-model="original_text"
+                <textarea class="form-control" rows="5" name="original_text" ng-model="original_text"
                           id="comment" required></textarea>
                 </div>
 

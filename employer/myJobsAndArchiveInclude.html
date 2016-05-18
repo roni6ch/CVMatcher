@@ -13,12 +13,13 @@
                 <a ng-if="job.cvs.length > 0" href="#/Candidates/{{job._id}}" ng-click="saveJobTitle(job.original_text['title']);"><img
                         src="./images/logo.png"></a>
 
-                <h3 ng-model="searchText.original_text['title']"
+                <h3 class="title" ng-model="searchText.original_text['title']"
                     ng-bind-html="job.original_text['title'] | highlight:searchText">
                     {{job.original_text["title"]}}</h3>
+
             </div>
             <div data-toggle="collapse" data-target="#collepse-{{$index}}">
-                <h5>Address: {{job.locations[0]}}</h5> , <h5>Date: {{job.date}}</h5>
+                <h5>Address: {{job.locations[0]}}</h5><h5>Date: {{job.date}}</h5>
 
                 <h5>Requirements:</h5>
 

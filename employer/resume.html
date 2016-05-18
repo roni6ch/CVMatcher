@@ -68,6 +68,22 @@
 
         </section>
         <div id="formulasAppend"></div>
+
+        <div id="predictAppend">
+            <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+                <div class="flipper">
+                    <div class="front">
+                        Hover here to see user predicted result
+                    </div>
+                    <div class="back">
+                        <h2>{{user['predict_result']}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         <!-- Resume Details -->
         <section class="resumeDetailsBox">
             <h3>Contact Details</h3>

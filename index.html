@@ -19,6 +19,9 @@
     <script src="js/hammer.min.js"></script>
     <script src="js/jquery.linkedsliders.min.js"></script>
 
+    <!--[if !IE]><!--><script src="js/pushwoosh-web-notifications.js"></script><!--<![endif]-->
+    <!--[if !IE]><!--><link rel="manifest" href="js/manifest.json"><!--<![endif]-->
+
 
 
     <!-- added the maps.googleapis because it give me no warnings, so the local is locations with warning in the console
@@ -33,6 +36,39 @@
           content="91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com">
 </head>
 <body>
+<!-- HAMBURGER -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul ng-if="userSignInType == 'employer'">
+            <li><a href="#/myjobs">My jobs</a></li>
+            <li><a href="#/Archive">Deleted</a></li>
+            <li><a href="#/companyProfile">Company Profile</a></li>
+            <li><a href="#/About"><i class="fa fa-users"></i>About</a></li>
+            <li><a href='' onclick=logout('logout')>Log Out</a></li>
+            <li><a href='' onclick=logout('signout')>Sign Out</a></li>
+        </ul>
+        <!-- Job Seeker NAV -->
+        <ul ng-if="userSignInType == 'jobSeeker'">
+            <li><a href="#/searchJobs">Search Jobs</a></li>
+            <li><a href="#/yourjobs">My Jobs</a></li>
+            <li><a href="#/Favorites">Favorite Jobs</a></li>
+            <li><a href="#/deleted">Deleted Jobs</a></li>
+            <li><a href="#/About"><i class="fa fa-users"></i>About</a></li>
+            <li><a href='' onclick=logout('logout')>Log Out</a></li>
+            <li><a href='' onclick=logout('signout')>Sign Out</a></li>
+        </ul>
+        </div>
+    </div>
+</div>
+<!-- HAMBURGER END HERE -->
+
 <div class="navBar">
     <div>
         <a href="" id="logo"><img src="images/logo.png"></a>

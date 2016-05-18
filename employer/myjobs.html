@@ -1,7 +1,23 @@
+<!-- natalie -->
+<div class="myJobsImgCover"></div>
+<!-- <div class="navBar"> -->
+
+<!-- <div>
+    <a href="" id="logo"><img src="images/logo.png"></a>
+</div> -->
+<!--  -->
+
 <div class="myjobsWrapper" ng-init="getMainJson();sort('-date');">
     <h3 class="navigation"></h3>
 
     <profileimg></profileimg>
+
+<!-- natalie -->
+    <div class="myJobsBox">
+        <a class="newJob" href="#/newJob">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <input type="button"  value="Add new Job"/>
+        </a>
     <header>
         <h2>My Jobs</h2>
     </header>
@@ -16,8 +32,10 @@
     <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
         By Date
     </button>
-    <ul class="nav nav-tabs" ng-init="tab=0">
-        <li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
+    </div> 
+
+    <ul class="engineering" class="nav nav-tabs" ng-init="tab=0">
+        <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
             Engineer</a></li>
         <li class="disabled"><a>
             Managment Engineer</a></li>
@@ -26,8 +44,10 @@
         <li class="disabled"><a>Mechanical
             Engineer</a></li>
     </ul>
+    
     <div class="tabsWrapper">
-        <a href="#/newJob"><input type="button" class="btn btn-default" value="Add new Job"/></a>
+      <!--   <a href="#/newJob"><input type="button" class="btn btn-default" value="Add new Job"/></a> -->
         <div ng-include="'employer/myJobsAndArchiveInclude.html'"></div>
     </div>
 </div>
+<!-- </div> -->
