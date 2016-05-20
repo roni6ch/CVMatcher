@@ -208,12 +208,15 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
     });
 
-}).run(function ($rootScope, $http,$location) {
+}).run(function ($rootScope, $http,$location,$timeout) {
     //set the header navigation
     if ($.cookie('userSignInType')) {
         $rootScope.userSignInType = $.cookie('userSignInType');
         $rootScope.user_id = $.cookie('user_id');
     }
+    $timeout(function () {
+        console.clear();
+    }, 2000);
 
 
 }).filter('highlight', function ($sce) {
@@ -242,6 +245,7 @@ app.controller('googleSignInController', function ($rootScope) {
 
 var user;
 app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile, $timeout) {
+
     $("#profileImg").attr("src", "");
     $rootScope.userSignInType = "";
     if (profile)
@@ -251,7 +255,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
     $scope.userType = function (type) {
         if (type == 'employer') {
-            $rootScope.userSignInType = "employer";
             $.cookie('userSignInType', "employer");
             $.cookie('profile', "#/companyProfile");
             angular.element("#profileImg").parent().attr("href", $.cookie('profile'));
@@ -337,7 +340,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
         }
         else if (type == 'jobSeeker') {
-            $rootScope.userSignInType = "jobSeeker";
             $.cookie('profile', "#/Profile");
             $.cookie('userSignInType', "jobSeeker");
             angular.element("#profileImg").parent().attr("href", $.cookie('profile'));
@@ -417,6 +419,12 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
  * ********************* jobSeeker Search Jobs Controller ****************
  */
 app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http, $compile) {
+
+    $rootScope.userSignInType = "jobSeeker";
+    $scope.cvExist = false;
+    if ($.cookie('current_cv')){
+        $scope.cvExist = true;
+    }
     $scope.getMainJson = function () {
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
@@ -657,6 +665,8 @@ app
     .controller(
         'seekerProfileControler',
         function ($scope, $http, $compile, $rootScope, $timeout) {
+
+            $rootScope.userSignInType = "jobSeeker";
             $("#geocomplete").geocomplete();
             $("[rel='popover']").popover({trigger: "hover", container: "body"});
             var cvId;
@@ -958,11 +968,40 @@ app
                     $('#myModal').modal('show');
                     return;
                 }
+/*
 
                 var jobSeekerCVHistoryTimeLine = [];
                 //history_timeline
                 $.each($(".timeline-panel textarea"), function () {
                     jobSeekerCVHistoryTimeLine.push($(this).val());
+                });
+                console.log("jobSeekerCVHistoryTimeLine: ",jobSeekerCVHistoryTimeLine);
+*/
+
+                var type;
+                history_timeline = [];
+                $.each($(".timeline li"), function (key, val) {
+                    var text = $(this).find('.timeline-body textarea').val();
+                    var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                    var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+
+                    if (startdate > enddate) {
+                        $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                        $('#myModal').modal('show');
+                        return;
+                    }
+
+
+                    if ($(this).hasClass("timeline-inverted"))
+                        type = 'experience';
+                    else
+                        type = 'education';
+                    history_timeline.push({
+                        "text": text,
+                        "start_year": parseInt(startdate),
+                        "end_year": parseInt(enddate),
+                        "type": type
+                    });
                 });
 
                 if (cvJson) {
@@ -1129,8 +1168,8 @@ app
                                 }
                                 else {
                                     $("#circle-container1 > h2").html("");
-                                    $scope.status = 'there is no data for your skills - Please update your CV!';
-                                    $('#sendCVstatus').modal('show');
+                                    //$scope.status = 'the languges';
+                                   // $('#sendCVstatus').modal('show');
                                 }
                                 angular.element(".fa-pulse").hide();
                                 //user percentage
@@ -1264,6 +1303,7 @@ app
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http, $sce) {
 
 
+    $rootScope.userSignInType = "employer";
     $scope.company = company;
     var archive;
     $id = $location.path().split('/');
@@ -1380,6 +1420,8 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
+
+        $rootScope.userSignInType = "employer";
         var companyId;
         var tabType = '';
         $("#geocomplete").geocomplete();
@@ -3280,6 +3322,7 @@ function logout(out) {
 
 
 window.onload = function() {
+
     pushwoosh.subscribeAtStart();
 };
 

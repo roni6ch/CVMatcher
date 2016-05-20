@@ -60,7 +60,8 @@
                         <section>
 
                         </section>
-                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
+                        <p  class="redError" ng-if="cvExist == false">There is no cv in your profile - Please Update!</p>
+                        <a class="checkMyCVButton" ng-show="cvExist == true" ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
                             my CV</a>
                     </article>
                 <!-- <hr> -->

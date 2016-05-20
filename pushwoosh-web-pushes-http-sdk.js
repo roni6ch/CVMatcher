@@ -1,5 +1,5 @@
 var pushwoosh = {
-    PUSHWOOSH_APPLICATION_CODE: "D6ED0-4BC89",
+    PUSHWOOSH_APPLICATION_CODE: "C6CEE-FFEC9",
     PUSHWOOSH_APPLICATION_CODE_GET_PARAMETER: 'pw_application_code',
     init: function (applicationCode) {
         this.PUSHWOOSH_APPLICATION_CODE = applicationCode;
@@ -50,6 +50,7 @@ var pushwoosh = {
             var URL = 'https://' + this.PUSHWOOSH_APPLICATION_CODE + '.chrome.pushwoosh.com/';
 
             var pwSubscribeWindow = window.open(URL, '_blank', 'width=' + windowWidth + ',height=' + windowHeight + ',resizable=yes,scrollbars=yes,status=yes,left=' + windowLeft + ',top=' + windowRight);
+
         }
     },
     getQueryVariable: function (variable) {

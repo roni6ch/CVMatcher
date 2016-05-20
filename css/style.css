@@ -204,6 +204,8 @@ footer div a {
     display: none;
 }
 
+.redError{color:#F00; font-weight: bold; font-size:25px;}
+
 .wrapper {
 
     /******************************/
