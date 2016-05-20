@@ -1,5 +1,10 @@
 /** **********************************ANGULAR*************************************** */
+//AIzaSyDbNxVCOmQ3bLIwnjY8SUt5ldaUYRD4jm4
 
+//API KEY FOR PUSH WOOSH
+
+    //91422993149
+    //gsm
 var app = angular.module('cvmatcherApp', ["ngRoute", "infinite-scroll", 'ngDragDrop']);
 
 app.config(function ($routeProvider) {
@@ -203,12 +208,14 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
     });
 
-}).run(function ($rootScope, $http) {
+}).run(function ($rootScope, $http,$location) {
     //set the header navigation
     if ($.cookie('userSignInType')) {
         $rootScope.userSignInType = $.cookie('userSignInType');
         $rootScope.user_id = $.cookie('user_id');
     }
+
+
 }).filter('highlight', function ($sce) {
     return function (text, phrase) {
         if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
@@ -224,6 +231,9 @@ app.config(function ($routeProvider) {
 
 app.controller('googleSignInController', function ($rootScope) {
     $rootScope.userSignInType = '';
+
+    $.cookie('employerFirstSignIn','true');
+    $.cookie('jobSeekerFirstSignIn','true');
 });
 
 /*
@@ -238,6 +248,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
         $.cookie('google_id', profile.id);
     var familyName;
     var givenName;
+
     $scope.userType = function (type) {
         if (type == 'employer') {
             $rootScope.userSignInType = "employer";
@@ -246,8 +257,8 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             angular.element("#profileImg").parent().attr("href", $.cookie('profile'));
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-
-            if (firstTimeLogIn == true) {
+            if ($.cookie('employerFirstSignIn') === 'true') {
+                $.cookie('employerFirstSignIn','false');
                 //add new user
                 console.log("givenName: " + profile.name.givenName);
                 console.log("familyName: " + profile.name.familyName);
@@ -294,7 +305,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
             }
             else {
-
+                console.log("bbb");
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
@@ -332,9 +343,8 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             angular.element("#profileImg").parent().attr("href", $.cookie('profile'));
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-
-            if (firstTimeLogInJobSeeker == true) {
-
+            if ($.cookie('jobSeekerFirstSignIn') === 'true') {
+                $.cookie('jobSeekerFirstSignIn','false');
                 if (profile.name.givenName == '')
                     userName = '';
                 if (profile.name.familyName == '')
@@ -417,18 +427,23 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             }
         })
             .then(function (data) {
-                    $scope.jobSeekerJobs = data.data;
-                    console.log(data.data);
                     angular.element(".fa-pulse").hide();
-
                     //navigation in site
                     var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>"
                     $(".navigation")[0].innerHTML = navigation;
+                  /*  if (data.data[0].jobs != 'undefined')
+                console.log(data.data[0].jobs);
+                    if (data.data.jobs.length > 0) {*/
+                        $scope.jobSeekerJobs = data.data;
+                        console.log(data.data);
+                        angular.element(".fa-pulse").hide();
 
-                    angular.forEach(data.data, function (value, key) {
-                        data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
-                    });
 
+                        angular.forEach(data.data, function (value, key) {
+                            data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
+                        });
+/*
+                    }*/
                 },
                 function (response) { // optional
                     angular.element(".fa-pulse").hide();
@@ -3264,7 +3279,13 @@ function logout(out) {
 }
 
 
+window.onload = function() {
+    pushwoosh.subscribeAtStart();
+};
+
 $(document).ready(function () {
+
+
 
     $(".navbar-toggle").on("click", function () {
         $(this).toggleClass("active");
@@ -3290,13 +3311,7 @@ $(document).ready(function () {
         placement: 'auto',
         delay: {show: 200, hide: 400}
     });
-    $("#logo").click(function () {
 
-        if (window.location.href.indexOf("localhost") > -1)
-            window.location.href = '/cvmatcher/';
-        else
-            window.location.href = 'http://cvmatcher.esy.es';
-    });
 });
 var profile;
 var auth2 = {};
@@ -3360,10 +3375,10 @@ var firstTimeLogInJobSeeker = false;
 var updateSignIn = function () {
     if (auth2.isSignedIn.get()) {
         if (firstTimeLogIn == true) {
-            console.log("first time! so add user!!!");
+            console.log("first time! so add user 1!!!");
         }
         else if (firstTimeLogInJobSeeker == true) {
-            console.log("first time! so add user!!!");
+            console.log("first time! so add user 2!!!");
         }
         else
             console.log("user loggen in before so get user!!!");
@@ -3397,3 +3412,4 @@ function startApp() {
         });
     });
 }
+

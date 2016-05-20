@@ -19,8 +19,9 @@
     <script src="js/hammer.min.js"></script>
     <script src="js/jquery.linkedsliders.min.js"></script>
 
-    <!--[if !IE]><!--><script src="js/pushwoosh-web-notifications.js"></script><!--<![endif]-->
-    <!--[if !IE]><!--><link rel="manifest" href="js/manifest.json"><!--<![endif]-->
+    <!--[if !IE]><!-->
+    <script src="pushwoosh-web-pushes-http-sdk.js?pw_application_code=D6ED0-4BC89"></script>
+    <!--<![endif]-->
 
 
 
@@ -71,7 +72,7 @@
 
 <div class="navBar">
     <div>
-        <a href="" id="logo"><img src="images/logo.png"></a>
+        <a ng-href="#/usersLogin" id="logo"><img src="images/logo.png"></a>
     </div>
     <div  data-popover="true" data-html=true data-content="<a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>">
         <profileimg id="profilePage"></profileimg>

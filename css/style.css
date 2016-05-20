@@ -14,27 +14,27 @@
 @font-face {
     font-family: 'alefBold';
     font-weight: 300; (bold)
-    font-style: normal;
+font-style: normal;
     src: url('../fonts/Alef-bold.ttf');
 }
 @font-face {
     font-family: 'alefregular';
     font-weight: 300; (regular)
-    font-style: normal;
+font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
-} 
+}
 
 /******************************/
 /*natalie*/
 @font-face {
     font-family: 'almoni-dl-aaa-bold';
     src: url('../fonts/almoni-dl-aaa-bold.otf');
-} 
+}
 
 @font-face {
     font-family: 'almoni-dl-aaa-light';
     src: url('../fonts/almoni-dl-aaa-light.otf');
-} 
+}
 
 @font-face {
     font-family: 'almoni-dl-aaa-regular';
@@ -206,9 +206,9 @@ footer div a {
 
 .wrapper {
 
-/******************************/
-/*natalie*/
- background-color: #231f20;
+    /******************************/
+    /*natalie*/
+    background-color: #231f20;
     position: relative;
     text-align: center;
     color: #606060;
@@ -216,16 +216,16 @@ footer div a {
     width: 100%;
     min-height: 100vh;
     margin-bottom: -10px; /*  for the sticky footer */
-/******************************/
+    /******************************/
 
-  /*  position: relative;
-    text-align: center;
-    padding: 63px 50px 22px;
-    color: #606060;
-    float: left;
-    width: 100%;
-    min-height: 100%;
-    margin-bottom: -10px;*/ /*  for the sticky footer */
+    /*  position: relative;
+      text-align: center;
+      padding: 63px 50px 22px;
+      color: #606060;
+      float: left;
+      width: 100%;
+      min-height: 100%;
+      margin-bottom: -10px;*/ /*  for the sticky footer */
 }
 
 .fa-pulse {
@@ -312,46 +312,38 @@ footer div a {
     background: url('../images/star.png') 0 -16px;
 }
 
-
-/*  HAMBURGER   */
-
 .rating-input:checked ~ .rating-star {
     background-position: 0 0;
 }
 
+
 .navbar-toggle .icon-bar:nth-of-type(2) {
     top: 1px;
 }
-
 .navbar-toggle .icon-bar:nth-of-type(3) {
     top: 2px;
 }
-
 .navbar-toggle .icon-bar {
     position: relative;
     transition: all 500ms ease-in-out;
 }
-
 .navbar-toggle.active .icon-bar:nth-of-type(1) {
     top: 6px;
     transform: rotate(45deg);
 }
-
 .navbar-toggle.active .icon-bar:nth-of-type(2) {
     background-color: transparent;
 }
-
 .navbar-toggle.active .icon-bar:nth-of-type(3) {
     top: -6px;
     transform: rotate(-45deg);
 }
 .navbar-collapse > ul{background:#000;}
 .navbar-collapse ul li{font-family: almoni-dl-aaa-regular;
-display: table;
-margin: 0 auto;
-font-size: 30px;
-font-weight: bold;}
-
+    display: table;
+    margin: 0 auto;
+    font-size: 30px;
+    font-weight: bold;}
 /*  HAMBURGER END HERE  */
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
@@ -365,10 +357,10 @@ font-weight: bold;}
 }
 
 .googleSignInImg{
-   position: absolute;
-   top: 4%;
-   height: 98%;
-   width: 100%;
+    position: absolute;
+    top: 4%;
+    height: 98%;
+    width: 100%;
 }
 
 .googleSignInBox{
@@ -432,8 +424,8 @@ font-weight: bold;}
 }
 
 .googleSignInWrapper > div:nth-child(2) {
-  /*  margin-top: 30px;
-    margin-bottom: 30px;*/
+    /*  margin-top: 30px;
+      margin-bottom: 30px;*/
 }
 
 .googleSignInWrapper > div:nth-child(4) {
@@ -473,12 +465,14 @@ font-weight: bold;}
 .navBar > div:nth-child(1) {
     /*******************/
     /*natalie*/
-    padding-left: 2%;
+    /* padding-left: 2%; */
     /*******************/
-    padding-top: 37px;
-    float: left;
+    /* padding-top: 37px; */
+    /* float: left; */
     position: absolute;
     z-index: 11;
+    left: 26px;
+    top: 36px;
 }
 
 .navBar > div:nth-child(1) img {
@@ -487,10 +481,11 @@ font-weight: bold;}
 }
 
 .navBar > div:nth-child(2) {
-    margin: 15px;
-    float: right;
+    /* margin: 15px; */
+    /* float: right; */
     position: absolute;
-    right: 56px;
+    right: 60px;
+    top: 12px;
     z-index: 11;
 }
 
@@ -506,7 +501,7 @@ font-weight: bold;}
 
 .navBarImg {
 
-    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 72%;position: absolute;margin: 0 auto;top: 8%;left: 13%;   
+    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 72%;position: absolute;margin: 0 auto;top: 48px;left: 13%;
     /*********//* float: right;
     overflow: hidden;
     height: 150px;*//*background-image: url("../images/navImg.jpg");*//*width: 100%;*/z-index: 1;}
@@ -564,10 +559,10 @@ font-weight: bold;}
 }*/
 
 .title{
-font-size: 22px;
+    font-size: 22px;
 }
 
-svg{
+.myjobsWrapper svg{
     overflow: hidden;
     position: absolute;
     bottom: -62px;
@@ -577,7 +572,7 @@ svg{
     margin: 0 auto;
     background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent;
 }
 
 .line{
@@ -643,18 +638,18 @@ svg{
 }
 
 .engineering:first-child{
- color: red; 
+    color: red;
 }
 
 a {
-     color: #fff;
-     text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 
 a:focus, a:hover {
-   text-decoration: none;
-   color:#BDBDBD;
+    text-decoration: none;
+    color:#BDBDBD;
 }
 
 .engineering li{
@@ -678,8 +673,8 @@ a:focus, a:hover {
     margin: 0 auto;
     background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    }
+    -webkit-text-fill-color: transparent;
+}
 
 .myjobsWrapper header h2{
     position: absolute;
@@ -807,7 +802,7 @@ a:focus, a:hover {
     float: left;
     width: 100%;
     /*natalie*/
-    background-color: #231f20; 
+    background-color: #231f20;
     /*********/
 }
 
@@ -863,12 +858,12 @@ a:focus, a:hover {
 
 .tabsWrapper {
     /*natalie*/
-   /* padding: 15px 20px 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background: #DCDCDC;
-    float: left;
-    width: 100%;*/
+    /* padding: 15px 20px 20px;
+     border-bottom-left-radius: 10px;
+     border-bottom-right-radius: 10px;
+     background: #DCDCDC;
+     float: left;
+     width: 100%;*/
 }
 
 .tabsWrapper > h3 {
@@ -1336,52 +1331,6 @@ a:focus, a:hover {
     font-size: 30px;
 }
 
-
-/*  CARD PREDICT    */
-#predictAppend{
-    height: 100px;
-}
-.flip-container {
-    perspective: 1000;
-}
-/* flip the pane when hovered */
-.flip-container:hover .flipper, .flip-container.hover .flipper {
-    transform: rotateY(180deg);
-}
-
-.flip-container, .front, .back {
-    width: 100%;
-    height: 100px;
-}
-
-/* flip speed goes here */
-.flipper {
-    transition: 0.6s;
-    transform-style: preserve-3d;
-
-    position: relative;
-}
-
-/* hide back of pane during swap */
-.front, .back {
-    backface-visibility: hidden;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* front pane, placed above back */
-.front {
-    z-index: 2;
-    /* for firefox 31 */
-    transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {
-    transform: rotateY(180deg);
-}
 /*
 #candidateLike {
     position: fixed;
@@ -1444,14 +1393,13 @@ a:focus, a:hover {
 .companyLogo img{margin: 0 auto;}
 .logos{float:left;     margin-right: 1%;}
 .logos img{width:100px; height:100px;}
-		
-.companies {		
-    float: left;		
-    margin-right: 1%;		
-}		
-.companies img {		
-    width: 100px;		
-    height: 100px;		
+.companies {
+    float: left;
+    margin-right: 1%;
+}
+.companies img {
+    width: 100px;
+    height: 100px;
 }
 .pagination {
     display: block;
@@ -1633,10 +1581,9 @@ a:focus, a:hover {
     background-color: #FFF4D9;
 }
 .langs{width:15%;}
-	.removeCombination {		
-    float: right;		
+.removeCombination {
+    float: right;
 }
-
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
     color: #606060;
@@ -1733,6 +1680,25 @@ a:focus, a:hover {
     color: white;
 
 }
+
+
+.checkMyCVButton{
+    /* color: #fff; */
+    width: 44% !important;
+    float: left;
+    text-align: center;
+    margin: 40px;
+    margin-left: 0;
+    border: 2px solid #fff;
+}
+
+.visibleText{
+    float: left;
+    /* width: 32% !important; */
+    /* margin-left: 0px; */
+    margin-top: 0px !important;
+    padding-top: 10px;
+}
 /*********/
 .searchJobsWrapper form input {
     margin: 0 auto;
@@ -1754,13 +1720,26 @@ a:focus, a:hover {
 }
 
 .jobsList ul li {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px 10px;
     overflow:hidden;
+    margin-top: 38px;
+    width: 95%;
+    padding: 6px;
+    /* background-color: #231f20; */
+    border: 10px solid#231f20;
+    text-align: left;
+    float: left;
+    text-align: left;
+    font-family: almoni-dl-aaa-regular;
+    color: white;
+    margin-bottom: 50px;
 }
 
 .jobsList ul li a {
-    opacity: 0.7;
+    /* opacity: 0.7; */
+    padding: 0px;
+    background-color: #231f20;
 }
 
 .jobsList ul li a:hover {
@@ -1770,12 +1749,22 @@ a:focus, a:hover {
 
 .jobsList article {
     float: left;
-    text-align: left;
+    /* text-align: right; */
+    padding-left: 29px;
+    width: 100%;
+    background-color: #231f20;
+    margin-top: -7px;
+    padding-left: 180px;
+    font-size: 134%;
+    padding-right: 40px;
 }
 
 .jobsList article p {
     text-align: left;
-    margin-left: 20px;
+    padding-top: 1px;
+    /* text-align: center; */
+    padding-bottom: 18px;
+    /* float: left; */
 }
 
 .jobListLi {
@@ -1786,27 +1775,30 @@ a:focus, a:hover {
     min-height: 100px;}
 .jobListLi section {
     position: absolute;
-    width: 60px;
-    float: right;
-    top: 23px;
-    right: 0;
+    width: 90px;
+    /* float: right; */
+    bottom: -76px;
+    right: 41%;
 }
 
 .jobListLi section h5 {
     position: absolute;
     top: 36%;
-    left: 24%;
+    left: 38%;
     font-size: 18px;
 }
 
 .jobListLi img {
-    float: left;
-    width:50px;
+    /* float: left; */
+    width: 86px;
+    position: absolute;
+    left: 84px;
+    top: 22px;
 }
 
 .jobListLi a {
     width: 100%;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .jobListLi a i {
@@ -1861,6 +1853,7 @@ a:focus, a:hover {
 .skills {
     margin-top: 10px;
     text-align: left;
+    width: 100%;
 }
 
 .skills li {
@@ -2101,29 +2094,28 @@ a:focus, a:hover {
     pointer-events: none;
 }
 .birthDay{text-align: left;}
-		
-.timeline-pluss, .timeline-pluss-exp {		
-    float: right;		
-    margin: 0 auto;		
-    text-align: center;		
-    color: #fff;		
-    width: 50px !important;		
-    height: 50px;		
-    background-color: #ee5785;		
-    z-index: 100;		
-    cursor: pointer;		
-    border-top-right-radius: 50%;		
-    border-top-left-radius: 50%;		
-    border-bottom-right-radius: 50%;		
-    border-bottom-left-radius: 50%;		
-}		
-.timeline-pluss i, .timeline-pluss-exp i {		
-    margin-top: 18px;		
-}		
-.timeline-pluss-exp {		
-    float: left		
-}
 
+.timeline-pluss, .timeline-pluss-exp {
+    float: right;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    width: 50px !important;
+    height: 50px;
+    background-color: #ee5785;
+    z-index: 100;
+    cursor: pointer;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.timeline-pluss i, .timeline-pluss-exp i {
+    margin-top: 18px;
+}
+.timeline-pluss-exp {
+    float: left
+}
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
 /****************************************************************************************************************************/
@@ -2173,10 +2165,10 @@ a:focus, a:hover {
 @media ( max-width: 767px) {
     /*natalie*/
 
-    svg {
+    .myjobsWrapper svg {
         bottom: -26px;
     }
-     .navBarImg>img{
+    .navBarImg>img{
         height: 6px;
         width: 6px;
         position: absolute;
@@ -2189,10 +2181,10 @@ a:focus, a:hover {
         left: 14%;
     }
     .navBarImg {
-       width: 96%;
-       margin: 0 auto;
-       margin-top: 14px;
-       left: 2%;
+        width: 96%;
+        margin: 0 auto;
+        margin-top: 14px;
+        left: 2%;
     }
 
     .navBar {
@@ -2201,19 +2193,19 @@ a:focus, a:hover {
         padding-left: 11px;
     }
 
-        .myJobsBox {
+    .myJobsBox {
         height: 146px;
         width: 100%;
         position: relative;
         margin-top: 75px;
         /* margin-left: -32px; */
-       }
+    }
     .form-control {
         display: block;
         width: 78%;
         margin-top: -20px;
         margin-left: 0 auto;
-     }
+    }
 
     .engineering {
         /* top: 228px; */
@@ -2236,25 +2228,25 @@ a:focus, a:hover {
         width:46px;
         padding-top: -24px;
     }
-.navBar > div:nth-child(2) > a > img {
-   margin-top: 60%;
-   margin-right: 0%;
-   height:30px;
-}
+    .navBar > div:nth-child(2) > a > img {
+        margin-top: 60%;
+        margin-right: 0%;
+        height:30px;
+    }
 
-.navBarImg li a {
-  
-    font-size: 20px;
-    padding-top:8px;
-   
-}
+    .navBarImg li a {
 
-.myJobsBox {
-  /* position: absolute; */
-  /* top: 204px; */
-  /* left: 1%; */
-  /* width: 98.4%; */
-  }
+        font-size: 20px;
+        padding-top:8px;
+
+    }
+
+    .myJobsBox {
+        /* position: absolute; */
+        /* top: 204px; */
+        /* left: 1%; */
+        /* width: 98.4%; */
+    }
     .jobs > div:nth-child(2) section {
         width: 80px;
     }
@@ -2264,42 +2256,42 @@ a:focus, a:hover {
         top: 256px;
     }
 
-.jobs > div:nth-child(2) section h5 {
-    position: absolute;
-    left: 28%;
-    font-size: 24px;
-    bottom: 0px;
-    font-family: almoni-dl-aaa-regular;
-}
+    .jobs > div:nth-child(2) section h5 {
+        position: absolute;
+        left: 28%;
+        font-size: 24px;
+        bottom: 0px;
+        font-family: almoni-dl-aaa-regular;
+    }
     .jobs:first-child{
-    margin-top: 24px;
+        margin-top: 24px;
     }
 
     .jobs {
         margin-left:0;
-    margin-top: 60px;
-    /* border: 2px solid #B5B5B5; */
-    width: 100%;
+        margin-top: 60px;
+        /* border: 2px solid #B5B5B5; */
+        width: 100%;
     }
-    
+
     .myjobsWrapper header h2 {
-    top: 9%;
-    left: 10%;
-    font-size: 26px;
-    color: white;
-    font-family: almoni-dl-aaa-regular;
+        top: 9%;
+        left: 10%;
+        font-size: 26px;
+        color: white;
+        font-family: almoni-dl-aaa-regular;
     }
-    
-     .myjobsWrapper button {
-    margin-top: 102px;
-    background-color: transparent;
-    border: 0;
-    font-size: 16px;
-    font-family: almoni-dl-aaa-regular;
-    color: white;
-    margin-right:0;
-    margin-left: 0px;
-}
+
+    .myjobsWrapper button {
+        margin-top: 102px;
+        background-color: transparent;
+        border: 0;
+        font-size: 16px;
+        font-family: almoni-dl-aaa-regular;
+        color: white;
+        margin-right:0;
+        margin-left: 0px;
+    }
     /*********/
 
 
@@ -2328,8 +2320,8 @@ a:focus, a:hover {
     }
 */
     .navBar > div:nth-child(1) {
-        padding: 10px;
         z-index:1111;
+        padding: 10px;
     }
 
     .navBar > div:nth-child(2) {
@@ -2398,9 +2390,21 @@ a:focus, a:hover {
         top: 30px;
     }
 
+
+
+    /*natalie*/
+
+    .jobsList ul li {
+        width: 100%;
+
+
+    }
+
+    /********/
     .jobsList article {
-        width: 45%;
+        width: 100%;
         float: left;
+        /* margin-left: 163px; */
     }
 
     .jobListLi a i {
@@ -2489,18 +2493,18 @@ a:focus, a:hover {
     .nav-tabs li {
         height: 66px;
     }
-/*natalie*/
-/*    .googleSignInWrapper > div > a > img {
-        width: 40%;
-    }
+    /*natalie*/
+    /*    .googleSignInWrapper > div > a > img {
+            width: 40%;
+        }
 
-    .googleSignInWrapper > div > a > h3 {
-        font-size: 20px;
-    }
+        .googleSignInWrapper > div > a > h3 {
+            font-size: 20px;
+        }
 
-    .googleSignInWrapper > div > a {
-        float: none;
-    }*/
+        .googleSignInWrapper > div > a {
+            float: none;
+        }*/
 
     .googleUsers {
         display: none;
@@ -2648,12 +2652,12 @@ a:focus, a:hover {
         /*display: none !important;*/
     }
 
-   /*first page*/
+    /*first page*/
     .googleSignInImg{
-       position: absolute;
-       top: 4%;
-       height: 98%;
-       width: 100%;
+        position: absolute;
+        top: 4%;
+        height: 98%;
+        width: 100%;
     }
 
     .googleSignInBox{
@@ -2687,7 +2691,7 @@ a:focus, a:hover {
     }
 
 
-} 
+}
 }
 
 /****************************************************** TIMELINE ***************************************************/

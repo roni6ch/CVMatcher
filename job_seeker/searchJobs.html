@@ -1,23 +1,28 @@
+<div class="searchJobsImgCover"></div>
+
+
 <div class="searchJobsWrapper" ng-init="getMainJson();sort('-date');">
 
     <profileimg></profileimg>
     <h3 class="navigation"></h3>
-    <header>
-        <h2>Find your next job</h2>
-    </header>
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-    <form method="get" action="">
-        <input type="text" placeholder="Find Job" ng-model="searchText"
-               class="form-control">
-    </form>
-    <button type="button" class="btn btn-default"
-            ng-click="sort('-compatibility_level')">Sort By Compability
-    </button>
-    <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
-        By Date
-    </button>
 
-    <div class="jobsList">
+    <div class="myJobsBox">
+        <header>
+            <h2>Find your next job</h2>
+        </header>
+        <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        <form method="get" action="">
+            <input type="text" placeholder="Find Job" ng-model="searchText"
+                   class="form-control">
+        </form>
+        <button type="button" class="btn btn-default"
+                ng-click="sort('-compatibility_level')">Sort By Compability
+        </button>
+        <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+            By Date
+        </button>
+    </div>
+    <div class="jobsList" >
         <ul>
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby">
@@ -25,7 +30,7 @@
                 <a href="">
                     <img
                     ng-src="{{job.user.company.logo}}">
-                <article>
+                <article class="visibleText">
                     <p ng-model="searchText.job_name"
                        ng-bind-html="job.scope_of_position[0] | highlight:searchText">
                         {{job['scope_of_position'][0]}}</p>
@@ -55,13 +60,17 @@
                         <section>
 
                         </section>
-                        <a ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
+                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
                             my CV</a>
                     </article>
-                <hr>
+                <!-- <hr> -->
                     </div>
             </li>
         </ul>
     </div>
 
 </div>
+
+
+
+
