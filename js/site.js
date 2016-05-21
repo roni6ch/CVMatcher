@@ -213,10 +213,10 @@ app.config(function ($routeProvider) {
     if ($.cookie('userSignInType')) {
         $rootScope.userSignInType = $.cookie('userSignInType');
         $rootScope.user_id = $.cookie('user_id');
-    }
+    }/*
     $timeout(function () {
         console.clear();
-    }, 2000);
+    }, 2000);*/
 
 
 }).filter('highlight', function ($sce) {
@@ -298,6 +298,8 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $.cookie('user_id', data.data._id);
                             $rootScope.user_id = data.data._id;
                         }
+
+                        sockets();
                         location.replace("#/companyProfile");
 
                     },
@@ -327,6 +329,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                                 $rootScope.user_id = data.data._id;
                             }
 
+                            sockets();
                             location.replace("#/myjobs");
 
                         }
@@ -337,6 +340,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     });
 
             }
+
 
         }
         else if (type == 'jobSeeker') {
@@ -373,6 +377,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $rootScope.user_id = data.data._id;
                         }
 
+                        sockets();
 
                         location.replace("#/Profile");
 
@@ -399,6 +404,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $rootScope.user_id = data.data._id;
                         }
 
+                        sockets();
 
                         location.replace("#/searchJobs");
                     },
@@ -407,6 +413,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     });
             }
         }
+
 
     }
 });
@@ -1124,6 +1131,8 @@ app
     .controller(
         'matchpageController',
         function ($scope, $http, $location, $rootScope, $timeout) {
+
+
             $jobId = $location.path().split('/')[2];
             var compabilitJobSeeker;
             console.log("cv: " + $.cookie('current_cv'));
@@ -1145,8 +1154,6 @@ app
                             if (data.data.formula !== undefined) {
                                 console.log(data.data);
 
-
-                                console.log("data: ", data.data);
                                 if (data.data.formula.requirements.grade > 0) {
                                     var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
                                     var fillColors = ['#C1BFBF', '#e6e6e6'];
@@ -1201,15 +1208,17 @@ app
                                     $scope.sendcv = true;
                                 }
 
-                                angular.forEach(data.data.formula, function (value, key) {
-                                    if (key == 'requirements') {
-                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                            value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
-                                    }
-                                    else
-                                        angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                            value + '%">' + key + ' ' + value + '%</div></div>');
-                                });
+                                $scope.formula = data.data.formula;
+                                angular.element('[data-toggle="tooltip"]').tooltip();
+                                $scope.tootipInfo = {
+                                    "requirements" : "infoooooooooooooo",
+                                    "candidate_type" : "infoooooooooooooo",
+                                    "locations" : "infoooooooooooooo",
+                                    "scope_of_position" : "infoooooooooooooo",
+                                    "academy" : "infoooooooooooooo"
+
+                                }
+
                             }
                             else {
                                 angular.element(".fa-pulse").hide();
@@ -1814,11 +1823,11 @@ app.controller('candidatesController',
                 });
                 $scope.unlikeCandidates = candidatesArr;
             }
-
         }
         var stars = 0;
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
+
         }
 
         $scope.hire = function (cvId) {
@@ -1901,6 +1910,7 @@ app.controller('resumeController',
                         angular.element(".fa-pulse").hide();
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
+                            sendNotification('seen',$scope.user.user._id,$id[2]);
                         }
 
                         angular.forEach(data.data[0].formula, function (value, key) {
@@ -3297,6 +3307,20 @@ app.directive('profileimg', function ($compile) {
     }
 });
 
+app.directive('bsTooltip', function(){
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs){
+            $(element).hover(function(){
+                // on mouseenter
+                $(element).tooltip('show');
+            }, function(){
+                // on mouseleave
+                $(element).tooltip('hide');
+            });
+        }
+    };
+});
 
 /*
  * ********************* JS Functions ****************
@@ -3319,6 +3343,7 @@ function logout(out) {
     else
         window.location.href = 'http://cvmatcher.esy.es';
 }
+
 
 
 window.onload = function() {
@@ -3456,3 +3481,46 @@ function startApp() {
     });
 }
 
+
+
+
+
+var socket;
+function sockets(){
+    var userId = $.cookie('user_id').toString();
+    var url = "ws://cvmatcher.herokuapp.com/" + userId ;
+    connectToChat(url);
+}
+
+function connectToChat(url) {
+
+    socket = new WebSocket(url);
+console.log("connected socket");
+    socket.onmessage = function (msg) {
+
+        var message = JSON.parse(msg.data);
+        console.log(message);
+    };
+
+    socket.onopen = function () {
+
+        var message = {
+            "user":$.cookie('user_id'),
+            "message":"kookoo"
+        };
+        socket.send(JSON.stringify(message));
+    };
+
+}
+
+function sendNotification(notificationType,userId,jobId) {
+    console.log(notificationType);
+    console.log(userId);
+    console.log(jobId);
+    console.log(socket);
+    var message = {};
+    message.notificationType = notificationType;
+    message.user = userId;
+    message.jobId = jobId;
+    socket.send(JSON.stringify(message));
+}

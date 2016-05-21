@@ -2859,3 +2859,35 @@ footer{
 }
 
 /*********/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*add in match page*/
+.formulaSliders {
+    float: left;
+    width: 90%;
+}
+.tootipInfo{    float: right;
+    width: 10%;
+    margin-bottom: 20px;}
