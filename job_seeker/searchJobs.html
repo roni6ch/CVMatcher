@@ -26,7 +26,7 @@
         <ul>
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby">
-                <div data-toggle="collapse" data-target="#collepse-{{$index}}">
+                <div data-toggle="collapse" data-target="#collepse-{{$index}}" ng-click="collepse($index)">
                 <a href="">
                     <img
                     ng-src="{{job.user.company.logo}}">
@@ -43,6 +43,7 @@
                         {{job["locations"][0]}},
                         </p>
                     <p>{{job.date}}</p>
+                    <img class="arrow-down" src="images/arrow-down.png">
                 </article>
                 <section circle id="{{ 'circle-container-' + $index }}"
                          data-compability="{{job.compatibility_level}}">
@@ -60,8 +61,7 @@
                         <section>
 
                         </section>
-                        <p  class="redError" ng-if="cvExist == false">There is no cv in your profile - Please Update!</p>
-                        <a class="checkMyCVButton" ng-show="cvExist == true" ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
+                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
                             my CV</a>
                     </article>
                 <!-- <hr> -->

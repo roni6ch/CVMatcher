@@ -3,8 +3,8 @@
 
 //API KEY FOR PUSH WOOSH
 
-    //91422993149
-    //gsm
+//91422993149
+//gsm
 var app = angular.module('cvmatcherApp', ["ngRoute", "infinite-scroll", 'ngDragDrop']);
 
 app.config(function ($routeProvider) {
@@ -134,7 +134,7 @@ app.config(function ($routeProvider) {
                 }
             }
         })
-        // job seeker
+        /////////////////////////////////////////////////////////////////////////////////////////// job seeker
         .when('/searchJobs', {
             templateUrl: 'job_seeker/searchJobs.html',
             controller: 'jobSeekerSearchJobsController',
@@ -208,15 +208,20 @@ app.config(function ($routeProvider) {
         redirectTo: '/'
     });
 
-}).run(function ($rootScope, $http,$location,$timeout) {
+}).run(function ($rootScope, $http, $location, $timeout) {
+
+
+    if ($.cookie('user_id'))
+        sockets();
     //set the header navigation
     if ($.cookie('userSignInType')) {
         $rootScope.userSignInType = $.cookie('userSignInType');
         $rootScope.user_id = $.cookie('user_id');
-    }/*
-    $timeout(function () {
-        console.clear();
-    }, 2000);*/
+    }
+    /*
+     $timeout(function () {
+     console.clear();
+     }, 2000);*/
 
 
 }).filter('highlight', function ($sce) {
@@ -233,10 +238,17 @@ app.config(function ($routeProvider) {
  */
 
 app.controller('googleSignInController', function ($rootScope) {
+
+    //notification window accept
+    document.addEventListener('DOMContentLoaded', function () {
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+    });
+
     $rootScope.userSignInType = '';
 
-    $.cookie('employerFirstSignIn','true');
-    $.cookie('jobSeekerFirstSignIn','true');
+    $.cookie('employerFirstSignIn', 'true');
+    $.cookie('jobSeekerFirstSignIn', 'true');
 });
 
 /*
@@ -261,32 +273,31 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
             if ($.cookie('employerFirstSignIn') === 'true') {
-                $.cookie('employerFirstSignIn','false');
+                $.cookie('profileDetails', JSON.stringify(profile));
+                givenName = $.parseJSON($.cookie('profileDetails')).name.givenName;
+                familyName = $.parseJSON($.cookie('profileDetails')).name.familyName;
+                var id = $.parseJSON($.cookie('profileDetails')).id;
+                var emails = $.parseJSON($.cookie('profileDetails')).emails[0].value;
+
                 //add new user
-                console.log("givenName: " + profile.name.givenName);
-                console.log("familyName: " + profile.name.familyName);
-                console.log("id: " + profile.id);
-                console.log("email: " + profile.emails[0].value);
-                if (profile.name.givenName == '') {
+                console.log("givenName: " + givenName);
+                console.log("familyName: " + familyName);
+                console.log("id: " + id);
+                console.log("email: " + emails);
+                if (givenName == '') {
                     givenName = "Name";
                 }
-                else {
-                    givenName = profile.name.givenName;
-                }
-                if (profile.name.familyName == '') {
+                if (familyName == '') {
                     familyName = "Family";
-                }
-                else {
-                    familyName = profile.name.familyName;
                 }
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/addUser',
                     method: "POST",
                     data: {
-                        "google_user_id": profile.id,
+                        "google_user_id": id,
                         "first_name": givenName,
                         "last_name": familyName,
-                        "email": profile.emails[0].value
+                        "email": emails
                     }
                 }).then(function (data) {
                         firstTimeLogIn = false;
@@ -298,19 +309,16 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $.cookie('user_id', data.data._id);
                             $rootScope.user_id = data.data._id;
                         }
-
                         sockets();
                         location.replace("#/companyProfile");
 
                     },
                     function (response) { // optional
                         console.log("addUser AJAX failed!");
-                        location.replace("#/companyProfile");
                     });
 
             }
             else {
-                console.log("bbb");
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
@@ -328,8 +336,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                                 $.cookie('user_id', data.data._id);
                                 $rootScope.user_id = data.data._id;
                             }
-
-                            sockets();
                             location.replace("#/myjobs");
 
                         }
@@ -350,20 +356,34 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
             if ($.cookie('jobSeekerFirstSignIn') === 'true') {
-                $.cookie('jobSeekerFirstSignIn','false');
-                if (profile.name.givenName == '')
-                    userName = '';
-                if (profile.name.familyName == '')
-                    familyName = '';
+                console.log(profile);
+                $.cookie('profileDetails', JSON.stringify(profile));
+                givenName = $.parseJSON($.cookie('profileDetails')).name.givenName;
+                familyName = $.parseJSON($.cookie('profileDetails')).name.familyName;
+                var id = $.parseJSON($.cookie('profileDetails')).id;
+                var emails = $.parseJSON($.cookie('profileDetails')).emails[0].value;
+
+                //add new user
+                console.log("givenName: " + givenName);
+                console.log("familyName: " + familyName);
+                console.log("id: " + id);
+                console.log("email: " + emails);
+
+                if (givenName == '') {
+                    givenName = "Name";
+                }
+                if (familyName == '') {
+                    familyName = "Family";
+                }
                 //add new user
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/addUser',
                     method: "POST",
                     data: {
-                        "google_user_id": profile.id,
-                        "first_name": profile.name.givenName,
-                        "last_name": profile.name.familyName,
-                        "email": profile.emails[0].value
+                        "google_user_id": id,
+                        "first_name": givenName,
+                        "last_name": familyName,
+                        "email": emails
                     }
                 }).then(function (data) {
                         firstTimeLogInJobSeeker = false;
@@ -378,7 +398,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                         }
 
                         sockets();
-
                         location.replace("#/Profile");
 
                     },
@@ -404,8 +423,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             $rootScope.user_id = data.data._id;
                         }
 
-                        sockets();
-
                         location.replace("#/searchJobs");
                     },
                     function (response) { // optional
@@ -429,7 +446,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     $rootScope.userSignInType = "jobSeeker";
     $scope.cvExist = false;
-    if ($.cookie('current_cv')){
+    if ($.cookie('current_cv')) {
         $scope.cvExist = true;
     }
     $scope.getMainJson = function () {
@@ -446,19 +463,19 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     //navigation in site
                     var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>"
                     $(".navigation")[0].innerHTML = navigation;
-                  /*  if (data.data[0].jobs != 'undefined')
-                console.log(data.data[0].jobs);
-                    if (data.data.jobs.length > 0) {*/
-                        $scope.jobSeekerJobs = data.data;
-                        console.log(data.data);
-                        angular.element(".fa-pulse").hide();
+                    /*  if (data.data[0].jobs != 'undefined')
+                     console.log(data.data[0].jobs);
+                     if (data.data.jobs.length > 0) {*/
+                    $scope.jobSeekerJobs = data.data;
+                    console.log(data.data);
+                    angular.element(".fa-pulse").hide();
 
 
-                        angular.forEach(data.data, function (value, key) {
-                            data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
-                        });
-/*
-                    }*/
+                    angular.forEach(data.data, function (value, key) {
+                        data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
+                    });
+                    /*
+                     }*/
                 },
                 function (response) { // optional
                     angular.element(".fa-pulse").hide();
@@ -473,62 +490,22 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         $.cookie('compatibility_level', compatibility_level);
     }
 
+    $scope.collepse = function (id) {
+        if ($("#collepse-" + id).hasClass("in")) {
+            $("#collepse-" + id).parent().find(".arrow-down").fadeIn();
+        }
+        else {
+            $("#collepse-" + id).parent().find(".arrow-down").fadeOut();
+        }
+    }
+
+    socket.onmessage = function (msg) {
+        var message = JSON.parse(msg.data);
+        console.log(message);
+        notifyMe(message.notificationType, message.jobName);
+    }
 })
 
-
-/*
- * ********************* job page by ID Controller ****************
- */
-/*app.controller('jobpagebyIDController', function ($scope, $http, $location, $rootScope) {
-
-
- $id = $location.path().split('/');
-
-
- $http({
- url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
- method: "POST",
- data: {
- "matching_object_id": $id[2],
- "matching_object_type": "job"
- }
- })
- .then(function (data) {
- $rootScope.stringPathUrl = data.data[0].original_text.title;
- var jobCircle = new ProgressBar.Circle(
- '#job-circle-container', {
- color: '#ee5785',
- strokeWidth: 5,
- fill: '#aaa'
- });
-
- //navigation in site
- console.log($id[1]);
- if ($id[1] == 'yourjobs') {
- var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a><span> > </span><a href='#/searchJobs/" + data.data[0]._id + "'>" + data.data[0].original_text.title + "</a>"
- $scope.page = 'yourjobs';
- }
- else {
- var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + data.data[0]._id + "'>" + data.data[0].original_text.title + "</a>"
- $scope.page = 'searchjobs';
- }
- $(".navigation")[0].innerHTML = navigation;
-
- $.cookie('jobTitle', data.data[0].original_text.title);
- $.cookie('compatibility_level', data.data[0].compatibility_level);
- angular.element(".fa-pulse").hide();
- angular.element("#job-circle-container>h5").html(
- data.data[0].compatibility_level + "%");
- jobCircle.animate(data.data[0].compatibility_level / 100);
- $scope.jobDetails = data.data[0];
- console.log(data.data[0]);
- },
- function (response) { // optional
- console.log("jobSeekerJobs AJAX failed!");
- });
-
-
- });*/
 /*
  * ********************* MY JOBS - Job Seeker Controller ****************
  */
@@ -538,6 +515,36 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
     var path = $location.path().split('/')[1];
     var navigation;
     var data;
+
+    socket.onmessage = function (msg) {
+        var message = JSON.parse(msg.data);
+        console.log(message);
+        var jobId = message.jobId;
+        if (path == 'yourjobs') {
+            if (message.notificationType == 'seen') {
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+                $scope.$apply(function () {
+                    $scope.jobSJ.cv.status.current_status = 'seen';
+                })
+            }
+            else if (message.notificationType == 'like') {
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+                $scope.$apply(function () {
+                    $scope.jobSJ.cv.status.current_status = 'liked';
+                    $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
+                })
+            }
+            else if (message.notificationType == 'unlike') {
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+                $scope.$apply(function () {
+                    $scope.jobSJ.cv.status.current_status = 'unliked';
+                    $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+
+                })
+            }
+        }
+            notifyMe(message.notificationType, message.jobName);
+    }
     $scope.getMainJson = function () {
         if (path == 'Favorites') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
@@ -590,6 +597,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                                 data.data[0].jobs[key].job.date = value.job.date.split("T")[0] + ' | ' + value.job.date.split("T")[1].split(".")[0];
                             });
                             $scope.jobSeekerJobs = data.data[0].jobs;
+                            console.log($scope.jobSeekerJobs);
                         }
 
                     } else {
@@ -662,6 +670,16 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
     $scope.rating = function (rateNumber) {
         $scope.user["stars"] = rateNumber;
     }
+
+    $scope.collepse = function (id) {
+        if ($("#collepse-" + id).hasClass("in")) {
+            $("#collepse-" + id).parent().find("img").fadeIn();
+        }
+        else {
+            $("#collepse-" + id).parent().find("img").fadeOut();
+        }
+    }
+
 
 });
 
@@ -975,15 +993,15 @@ app
                     $('#myModal').modal('show');
                     return;
                 }
-/*
+                /*
 
-                var jobSeekerCVHistoryTimeLine = [];
-                //history_timeline
-                $.each($(".timeline-panel textarea"), function () {
-                    jobSeekerCVHistoryTimeLine.push($(this).val());
-                });
-                console.log("jobSeekerCVHistoryTimeLine: ",jobSeekerCVHistoryTimeLine);
-*/
+                 var jobSeekerCVHistoryTimeLine = [];
+                 //history_timeline
+                 $.each($(".timeline-panel textarea"), function () {
+                 jobSeekerCVHistoryTimeLine.push($(this).val());
+                 });
+                 console.log("jobSeekerCVHistoryTimeLine: ",jobSeekerCVHistoryTimeLine);
+                 */
 
                 var type;
                 history_timeline = [];
@@ -1100,6 +1118,8 @@ app
                     data: jobSeekerCV
                 })
                     .then(function (data) {
+
+                            $.cookie('jobSeekerFirstSignIn', 'false');
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
                             console.log("data: ", data);
@@ -1117,9 +1137,15 @@ app
                 console.log(closeModal);
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 if (closeModal == true)
-                    $timeout(function () {
-                        window.location.href = '/cvmatcher/#/searchJobs';
+                    $timeout(function ($location) {
+                        location.replace("#/searchJobs");
                     }, 1000);
+            }
+
+            socket.onmessage = function (msg) {
+                var message = JSON.parse(msg.data);
+                console.log(message);
+                notifyMe(message.notificationType, message.jobName);
             }
 
         });
@@ -1176,7 +1202,7 @@ app
                                 else {
                                     $("#circle-container1 > h2").html("");
                                     //$scope.status = 'the languges';
-                                   // $('#sendCVstatus').modal('show');
+                                    // $('#sendCVstatus').modal('show');
                                 }
                                 angular.element(".fa-pulse").hide();
                                 //user percentage
@@ -1211,11 +1237,11 @@ app
                                 $scope.formula = data.data.formula;
                                 angular.element('[data-toggle="tooltip"]').tooltip();
                                 $scope.tootipInfo = {
-                                    "requirements" : "infoooooooooooooo",
-                                    "candidate_type" : "infoooooooooooooo",
-                                    "locations" : "infoooooooooooooo",
-                                    "scope_of_position" : "infoooooooooooooo",
-                                    "academy" : "infoooooooooooooo"
+                                    "requirements": "infoooooooooooooo",
+                                    "candidate_type": "infoooooooooooooo",
+                                    "locations": "infoooooooooooooo",
+                                    "scope_of_position": "infoooooooooooooo",
+                                    "academy": "infoooooooooooooo"
 
                                 }
 
@@ -1262,8 +1288,13 @@ app
             $scope.exitStatus = function () {
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 $timeout(function () {
-                    window.location.href = '/cvmatcher/#/searchJobs';
+                    location.replace("#/searchJobs");
                 }, 1000);
+            }
+            socket.onmessage = function (msg) {
+                var message = JSON.parse(msg.data);
+                console.log(message);
+                notifyMe(message.notificationType, message.jobName);
             }
 
         });
@@ -1298,7 +1329,11 @@ app
                     function (response) { // optional
                         console.log("myjobsController AJAX failed!");
                     });
-
+            socket.onmessage = function (msg) {
+                var message = JSON.parse(msg.data);
+                console.log(message);
+                notifyMe(message.notificationType, message.jobName);
+            }
 
         });
 
@@ -1559,6 +1594,7 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function (data) {
+                        $.cookie('employerFirstSignIn', 'false');
                         $.cookie('company', true);
                         $('#update').modal('show');
                         $scope.status = "Company Updated Succesfully!"
@@ -1687,7 +1723,7 @@ app.controller('companyProfileController',
             $scope.chooseCompanyModal = false;
             $timeout(function () {
                 if (tabType == 'company')
-                    window.location.href = '#/myjobs';
+                    location.replace("#/myjobs");
             }, 500);
         }
     });
@@ -1796,8 +1832,9 @@ app.controller('candidatesController',
             $scope.sortby = sort;
         }
 
-        $scope.addCandidateToLike = function (candidate) {
-            console.log(candidate);
+        $scope.addCandidateToLike = function (candidate, user_id) {
+
+            $scope.user_id = user_id;
             if (angular.element("#candidateLike-" + candidate).hasClass(
                     "like")) {
                 angular.element("#candidateLike-" + candidate).removeClass(
@@ -1809,6 +1846,7 @@ app.controller('candidatesController',
                     return obj._id !== candidate;
                 });
                 $scope.likeCandidates = candidatesArr;
+
             }
             else {
                 angular.element("#candidateLike-" + candidate).removeClass(
@@ -1822,15 +1860,17 @@ app.controller('candidatesController',
                     return obj._id !== candidate;
                 });
                 $scope.unlikeCandidates = candidatesArr;
+
             }
         }
         var stars = 0;
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
+            sendNotification('like', $scope.user_id, $scope.jobId, stars, $.cookie('jobTitle'));
 
         }
 
-        $scope.hire = function (cvId) {
+        $scope.hire = function (cvId, userId) {
             console.log(cvId);
             $http({
                 url: 'https://cvmatcher.herokuapp.com/employer/hireToJob',
@@ -1842,13 +1882,13 @@ app.controller('candidatesController',
             })
                 .then(function (data) {
                         //remove from list filter
+                        sendNotification('hire', userId, $scope.jobId, null, $.cookie('jobTitle'));
                         var canArr = $rootScope.likeCandidates;
                         canArr = canArr.filter(function (obj) {
-                            console.log(obj._id);
-                            console.log(cvId);
-                            return obj._id != cvId;
+                            return obj._id !== cvId;
                         });
                         $rootScope.likeCandidates = canArr;
+                        $scope.likeCandidates = canArr;
 
                     },
                     function (response) { // optional
@@ -1857,6 +1897,8 @@ app.controller('candidatesController',
         }
 
         $scope.bringNextCandidate = function (type, description, id) {
+            if (type == 'unliked')
+                sendNotification('unlike', $scope.user_id, $scope.jobId, description, $.cookie('jobTitle'));
             $http({
                 url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
                 method: "POST",
@@ -1871,7 +1913,14 @@ app.controller('candidatesController',
                     "user_id": $.cookie('user_id')
 
                 }
-            });
+
+            }).then(function (data) {
+                    console.log("updateRateCV: ", data);
+                },
+                function (response) { // optional
+                    console.log("updateRateCV AJAX failed!");
+                });
+
         }
 
     });
@@ -1883,7 +1932,6 @@ var candidateId;
 app.controller('resumeController',
     function ($scope, $http, $location, $timeout, $rootScope) {
         $id = $location.path().split('/');
-
         $("#predictAppend").hide();
         // circle animation
         var circle, tmpColor;
@@ -1906,11 +1954,15 @@ app.controller('resumeController',
                         var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
                         $(".navigation")[0].innerHTML = navigation;
                         $scope.user = data.data[0];
+                        console.log(data.data[0].user._id);
+                        $scope.user_id = data.data[0].user._id;
                         console.log(data.data[0])
                         angular.element(".fa-pulse").hide();
+
+                        $scope.user["stars"] = 0;
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
-                            sendNotification('seen',$scope.user.user._id,$id[2]);
+                            sendNotification('seen', $scope.user.user._id, $id[2], null, $.cookie('jobTitle'));
                         }
 
                         angular.forEach(data.data[0].formula, function (value, key) {
@@ -1960,6 +2012,10 @@ app.controller('resumeController',
 
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
+            if ($id[1] == 'Unread')
+                sendNotification('like', $scope.user_id, $id[2], rateNumber, $.cookie('jobTitle'));
+            else
+                sendNotification('like', $scope.user_id, $id[3], rateNumber, $.cookie('jobTitle'));
         }
 
 
@@ -1988,10 +2044,12 @@ app.controller('resumeController',
         }
         var candidates;
         $scope.bringNextCandidate = function (type, description) {
+            if (type == 'unliked')
+                sendNotification('unlike', $scope.user_id, $id[3], description, $.cookie('jobTitle'));
+
             var url;
             if ($id[1] == 'Like') {
                 candidates = $rootScope.likeCandidates;
-                delete candidateslike
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
             else if ($id[1] == 'UnLike') {
@@ -2003,6 +2061,7 @@ app.controller('resumeController',
                 candidates = $rootScope.unreadCandidates;
                 url = 'https://cvmatcher.herokuapp.com/employer/rateCV';
             }
+
             //add user to like and rate stars
             $http({
                 url: url,
@@ -2022,7 +2081,8 @@ app.controller('resumeController',
             var nextCandidate;
             angular.forEach(candidates, function (value, key) {
                 if (value._id == candidateId) {
-                    delete candidates[key];
+                    candidates.splice (key, 1);
+                    console.log(candidates);
                 }
                 else
                     nextCandidate = value._id;
@@ -3307,14 +3367,14 @@ app.directive('profileimg', function ($compile) {
     }
 });
 
-app.directive('bsTooltip', function(){
+app.directive('bsTooltip', function () {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs){
-            $(element).hover(function(){
+        link: function (scope, element, attrs) {
+            $(element).hover(function () {
                 // on mouseenter
                 $(element).tooltip('show');
-            }, function(){
+            }, function () {
                 // on mouseleave
                 $(element).tooltip('hide');
             });
@@ -3345,15 +3405,16 @@ function logout(out) {
 }
 
 
-
-window.onload = function() {
+window.onload = function () {
 
     pushwoosh.subscribeAtStart();
 };
 
 $(document).ready(function () {
-
-
+    $('.navbar a').on('click', function(){
+        $('.btn-navbar').click(); //bootstrap 2.x
+        $('.navbar-toggle').click() //bootstrap 3.x by Richard
+    });
 
     $(".navbar-toggle").on("click", function () {
         $(this).toggleClass("active");
@@ -3482,45 +3543,77 @@ function startApp() {
 }
 
 
-
-
-
 var socket;
-function sockets(){
+var url;
+
+function sockets() {
+
     var userId = $.cookie('user_id').toString();
-    var url = "ws://cvmatcher.herokuapp.com/" + userId ;
+    url = "ws://cvmatcher.herokuapp.com/" + userId;
     connectToChat(url);
 }
 
+
 function connectToChat(url) {
 
-    socket = new WebSocket(url);
-console.log("connected socket");
-    socket.onmessage = function (msg) {
+    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 3000});
 
+
+    socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
         console.log(message);
+
     };
-
-    socket.onopen = function () {
-
-        var message = {
-            "user":$.cookie('user_id'),
-            "message":"kookoo"
-        };
-        socket.send(JSON.stringify(message));
-    };
-
 }
 
-function sendNotification(notificationType,userId,jobId) {
-    console.log(notificationType);
-    console.log(userId);
-    console.log(jobId);
-    console.log(socket);
+function sendNotification(notificationType, userId, jobId, other, jobName) {
     var message = {};
     message.notificationType = notificationType;
     message.user = userId;
     message.jobId = jobId;
+    message.jobName = jobName;
+    message.other = other;
     socket.send(JSON.stringify(message));
+}
+
+//notifications for sockets
+
+function notifyMe(type, jobName) {
+    var body = '';
+    if (!Notification) {
+        alert('Desktop notifications not available in your browser. Try Chromium.');
+        return;
+    }
+
+    if (Notification.permission !== "granted")
+        Notification.requestPermission();
+    else {
+
+        if (type == 'seen') {
+            body = jobName + " Watch your CV!";
+        }
+        else if (type == 'like') {
+            body = jobName + " Like your CV!";
+        }
+        else if (type == 'unlike') {
+            body = jobName + " unLike your CV!";
+
+        }
+        else if (type == 'hire') {
+            body = "Congradulations!!! You have been Hired to: " + jobName;
+
+        }
+
+
+        var notification = new Notification('CVMatcher Notification!', {
+            icon: 'http://cvmatcher.esy.es/images/logo.png',
+            body: body,
+        });
+
+        notification.onclick = function () {
+            window.open("#/searchJobs");
+        };
+
+    }
+
 }

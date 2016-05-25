@@ -19,10 +19,10 @@
     <script src="js/hammer.min.js"></script>
     <script src="js/jquery.linkedsliders.min.js"></script>
 
+    <script src="reconnecting-websocket.min.js"></script>
     <!--[if !IE]><!-->
     <script src="pushwoosh-web-pushes-http-sdk.js?pw_application_code=C6CEE-FFEC9"></script>
     <!--<![endif]-->
-
 
 
     <!-- added the maps.googleapis because it give me no warnings, so the local is locations with warning in the console
@@ -56,17 +56,37 @@
             <li><a href='' onclick=logout('signout')>Sign Out</a></li>
         </ul>
         <!-- Job Seeker NAV -->
-        <ul ng-if="userSignInType == 'jobSeeker'">
-            <li><a href="#/searchJobs">Search Jobs</a></li>
-            <li><a href="#/yourjobs">My Jobs</a></li>
-            <li><a href="#/Favorites">Favorite Jobs</a></li>
-            <li><a href="#/deleted">Deleted Jobs</a></li>
-            <li><a href="#/About"><i class="fa fa-users"></i>About</a></li>
-            <li><a href='' onclick=logout('logout')>Log Out</a></li>
-            <li><a href='' onclick=logout('signout')>Sign Out</a></li>
+        <ul class="mobileMenu" ng-if="userSignInType == 'jobSeeker'">
+            <li>
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <a href="#/searchJobs">Search Jobs</a>
+            </li>
+            <li>
+                <i class="fa fa-file" aria-hidden="true"></i>
+                <a href="#/yourjobs">My Jobs</a>
+            </li>
+            <li>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+                <a href="#/Favorites">Favorite Jobs</a>
+            </li>
+            <li>
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                <a href="#/deleted">Deleted Jobs</a>
+            </li>
+            <li>
+                <i class="fa fa-users"></i>
+                <a href="#/About">About</a>
+            </li>
+            <li>
+                <i class="fa fa-sign-out"></i>
+                <a href='' onclick=logout('logout')>Log Out</a>
+            </li>
+            <li>
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <a href='' onclick=logout('signout')>Sign Out</a></li>
         </ul>
-        </div>
     </div>
+</div>
 </div>
 <!-- HAMBURGER END HERE -->
 
@@ -74,7 +94,8 @@
     <div>
         <a ng-href="#/usersLogin" id="logo"><img src="images/logo.png"></a>
     </div>
-    <div  data-popover="true" data-html=true data-content="<a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>">
+    <div data-popover="true" data-html=true
+         data-content="<a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>">
         <profileimg id="profilePage"></profileimg>
     </div>
     <!-- Img -->
