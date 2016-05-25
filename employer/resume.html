@@ -1,3 +1,5 @@
+<div class="candidatesImgCover"></div>
+
 <div class="resumeWrapper">
     <h3 class="navigation"></h3>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
@@ -5,18 +7,21 @@
            data-toggle="modal" data-target="#myModal"/>
     <input type="hidden" class="leftModal btn btn-info btn-lg"
            data-toggle="modal" data-target="#leftModal"/>
-<div class="noMoreCandidates">No more Candidates left!</div>
+
+    <div class="noMoreCandidates">No more Candidates left!</div>
     <article id="users">
         <!-- User Name -->
-        <div ng-init="getUserJson()">
-            <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
-               ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
-            <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
-            <i id="candidateLike"
-               class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
-            <h5>{{user.sector}}</h5>
-        </div>
+        <div class="borderUserDetailsBox">
+            <div class="userDetailsBox" ng-init="getUserJson()">
+                <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
+                   ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
 
+                <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
+                <i id="candidateLike"
+                   class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
+                <h5>{{user.sector}}</h5>
+            </div>
+        </div>
         <!-- Resume Skills -->
         <section class="resumeSkillsBox">
             <h3>Software Skills</h3>
@@ -32,9 +37,10 @@
 
         <!-- TIMELINE -->
         <section class="resumeYears">
-            <div>
+            <div class="borderSides">
                 <h3>Education</h3>
-
+            </div>
+            <div class="borderSides">
                 <h3>Experience</h3>
             </div>
             <div class="container">
@@ -45,7 +51,8 @@
                 <ul class="timeline">
                     <!-- section of year -->
                     <!-- <li class="timeline-inverted"> for Employment side -->
-                    <li ng-repeat="timeline in user.original_text['history_timeline']" ng-class="{'timeline-inverted': timeline['type'] == 'experience'}">
+                    <li ng-repeat="timeline in user.original_text['history_timeline']"
+                        ng-class="{'timeline-inverted': timeline['type'] == 'experience'}">
                         <div class="timeline-badge">
                             <i class="fa fa-file-text-o"></i>
                         </div>
@@ -54,7 +61,8 @@
                                 <h4 class="timeline-title">{{timeline['type']}}</h4>
 
                                 <p>
-                                    <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}</small>
+                                    <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}
+                                    </small>
                                 </p>
                             </div>
                             <div class="timeline-body">
@@ -68,7 +76,6 @@
 
         </section>
         <div id="formulasAppend"></div>
-
         <div id="predictAppend">
             <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
                 <div class="flipper">
@@ -81,8 +88,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <!-- Resume Details -->
         <section class="resumeDetailsBox">
@@ -116,7 +121,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- STAR RANK -->
-					<span class="rating  animated pulse"> 
+					<span class="rating  animated pulse">
 			    <input type="radio" class="rating-input" id="rating-5" ng-click="rating(5)" name="rating">
 				<label for="rating-5" class="rating-star"
                        ng-style="{'background-position':'0 -16'}"></label>
@@ -136,7 +141,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal" ng-click="bringNextCandidate('liked',null)">
+                    <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal"
+                            ng-click="bringNextCandidate('liked',null)">
                         Close
                     </button>
                 </div>
@@ -161,7 +167,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="bringNextCandidate('unliked',original_text)">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"
+                            ng-click="bringNextCandidate('unliked',original_text)">
                         Close
                     </button>
                 </div>
