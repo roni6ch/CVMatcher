@@ -14,27 +14,27 @@
 @font-face {
     font-family: 'alefBold';
     font-weight: 300; (bold)
-    font-style: normal;
+font-style: normal;
     src: url('../fonts/Alef-bold.ttf');
 }
 @font-face {
     font-family: 'alefregular';
     font-weight: 300; (regular)
-    font-style: normal;
+font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
-} 
+}
 
 /******************************/
 /*natalie*/
 @font-face {
     font-family: 'almoni-dl-aaa-bold';
     src: url('../fonts/almoni-dl-aaa-bold.otf');
-} 
+}
 
 @font-face {
     font-family: 'almoni-dl-aaa-light';
     src: url('../fonts/almoni-dl-aaa-light.otf');
-} 
+}
 
 @font-face {
     font-family: 'almoni-dl-aaa-regular';
@@ -206,8 +206,8 @@ footer div a {
 
 .wrapper {
 
-/******************************/
-/*natalie*/
+    /******************************/
+    /*natalie*/
     background-color: #231f20;
     position: relative;
     text-align: center;
@@ -216,16 +216,16 @@ footer div a {
     width: 100%;
     min-height: 100vh;
     margin-bottom: -10px; /*  for the sticky footer */
-/******************************/
+    /******************************/
 
-  /*  position: relative;
-    text-align: center;
-    padding: 63px 50px 22px;
-    color: #606060;
-    float: left;
-    width: 100%;
-    min-height: 100%;
-    margin-bottom: -10px;*/ /*  for the sticky footer */
+    /*  position: relative;
+      text-align: center;
+      padding: 63px 50px 22px;
+      color: #606060;
+      float: left;
+      width: 100%;
+      min-height: 100%;
+      margin-bottom: -10px;*/ /*  for the sticky footer */
 }
 
 .fa-pulse {
@@ -276,8 +276,11 @@ footer div a {
 .companyprofileWrapper > h3, .profileWrapper > h3, .contactusWrapper > h3, .candidatesWrapper > h3 {
     position: absolute;
     color: #fff;
-    font-size: 16px;
-    top: 130px;
+    font-size: 18px;
+    top: 116px;
+    background-color: #231f20;
+    opacity: 0.8;
+    padding: 4px;
 }
 
 .highlighted {
@@ -317,34 +320,42 @@ footer div a {
 }
 
 
-            
-.navbar-toggle .icon-bar:nth-of-type(2) {       
-    top: 1px;       
-}       
-.navbar-toggle .icon-bar:nth-of-type(3) {       
-    top: 2px;       
-}       
-.navbar-toggle .icon-bar {      
-    position: relative;     
-    transition: all 500ms ease-in-out;      
-}       
-.navbar-toggle.active .icon-bar:nth-of-type(1) {        
-    top: 6px;       
-    transform: rotate(45deg);       
-}       
-.navbar-toggle.active .icon-bar:nth-of-type(2) {        
-    background-color: transparent;      
-}       
-.navbar-toggle.active .icon-bar:nth-of-type(3) {        
-    top: -6px;      
-    transform: rotate(-45deg);      
-}       
-.navbar-collapse > ul{background:#000;}     
-.navbar-collapse ul li{font-family: almoni-dl-aaa-regular;      
-    display: table;     
-    margin: 0 auto;     
-    font-size: 30px;        
-    font-weight: bold;}     
+
+.navbar-toggle .icon-bar:nth-of-type(2) {
+    top: 1px;
+}
+.navbar-toggle .icon-bar:nth-of-type(3) {
+    top: 2px;
+}
+.navbar-toggle .icon-bar {
+    position: relative;
+    transition: all 500ms ease-in-out;
+}
+.navbar-toggle.active .icon-bar:nth-of-type(1) {
+    top: 6px;
+    transform: rotate(45deg);
+}
+.navbar-toggle.active .icon-bar:nth-of-type(2) {
+    background-color: transparent;
+}
+.navbar-toggle.active .icon-bar:nth-of-type(3) {
+    top: -6px;
+    transform: rotate(-45deg);
+}
+.navbar-collapse > ul{background:#000;width: 63%;padding: 24px;border-radius: 20px;float: right;}
+.navbar-collapse ul li{
+    font-family: almoni-dl-aaa-regular;
+    display: table;
+    margin: 0 auto;
+    font-size: 30px;
+    width: 50%;
+    font-weight: bold;
+    color: #fff;
+}
+
+.mobileMenu a{
+    margin-left: 22px;
+}
 /*  HAMBURGER END HERE  */
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
@@ -363,10 +374,10 @@ footer div a {
 }
 
 .googleSignInImg{
-   position: absolute;
-   top: 4%;
-   height: 98%;
-   width: 100%;
+    position: absolute;
+    top: 4%;
+    height: 98%;
+    width: 100%;
 }
 
 .googleSignInBox{
@@ -430,8 +441,8 @@ footer div a {
 }
 
 .googleSignInWrapper > div:nth-child(2) {
-  /*  margin-top: 30px;
-    margin-bottom: 30px;*/
+    /*  margin-top: 30px;
+      margin-bottom: 30px;*/
 }
 
 .googleSignInWrapper > div:nth-child(4) {
@@ -525,7 +536,7 @@ display: none;
 
 .navBarImg {
 
-    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 72%;position: absolute;margin: 0 auto;top: 48px;left: 13%;   
+    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 72%;position: absolute;margin: 0 auto;top: 48px;left: 13%;
     /*********//* float: right;
     overflow: hidden;
     height: 150px;*//*background-image: url("../images/navImg.jpg");*//*width: 100%;*/z-index: 1;}
@@ -552,6 +563,10 @@ display: none;
     color: #fff !important;
     text-shadow: 3px 3px 2px #283744;*/
     /* width: 57%; */
+}
+
+.navBarImg li a:hover{
+    opacity: 0.7;
 }
 
 .navBarImg ul {
@@ -585,7 +600,7 @@ display: none;
 }*/
 
 .title{
-font-size: 22px;
+    font-size: 22px;
 }
 
 .myjobsWrapper svg{
@@ -598,7 +613,7 @@ font-size: 22px;
     margin: 0 auto;
     background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+    -webkit-text-fill-color: transparent;
 }
 
 .line{
@@ -641,11 +656,11 @@ font-size: 22px;
 
 .myJobsImgCover{
     background-image: url("../images/myjobscover.png");
-    height: 136%;
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
-    background-size: cover;
+    background-size: contain;
 }
 
 .engineering{
@@ -664,18 +679,18 @@ font-size: 22px;
 }
 
 .engineering:first-child{
- color: red; 
+    color: red;
 }
 
 a {
-     color: #fff;
-     text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 
 a:focus, a:hover {
-   text-decoration: none;
-   color:#BDBDBD;
+    text-decoration: none;
+    color:#BDBDBD;
 }
 
 .engineering li{
@@ -699,8 +714,8 @@ a:focus, a:hover {
     margin: 0 auto;
     background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
-    }
+    -webkit-text-fill-color: transparent;
+}
 
 .myjobsWrapper header h2{
     position: absolute;
@@ -828,7 +843,7 @@ a:focus, a:hover {
     float: left;
     width: 100%;
     /*natalie*/
-    background-color: #231f20; 
+    background-color: #231f20;
     /*********/
 }
 
@@ -884,12 +899,12 @@ a:focus, a:hover {
 
 .tabsWrapper {
     /*natalie*/
-   /* padding: 15px 20px 20px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background: #DCDCDC;
-    float: left;
-    width: 100%;*/
+    /* padding: 15px 20px 20px;
+     border-bottom-left-radius: 10px;
+     border-bottom-right-radius: 10px;
+     background: #DCDCDC;
+     float: left;
+     width: 100%;*/
 }
 
 .tabsWrapper > h3 {
@@ -1032,7 +1047,7 @@ a:focus, a:hover {
 
 .candidatesImgCover{
     background-image: url('../images/candidatescover.png');
-    min-height: 185%;
+    height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
@@ -1178,11 +1193,15 @@ a:focus, a:hover {
 
 /****************************************************** RESUME - HTML **********************************************/
 #users {
-    
+
     position: relative;
     top: 95px;
 }
 
+.borderSides{
+    background-color: #000;
+
+}
 
 #users > div {
     /* background: #000; */
@@ -1198,6 +1217,23 @@ a:focus, a:hover {
     /* float: left; */
     /* padding-top: 20px; */
     /* padding-bottom: 50px; */
+}
+
+.userDetailsBox{
+    background-color: #231f20;
+    padding-top: 44px;
+    padding-bottom: 62px;
+    color: #fff;
+}
+
+.resumeWrapper h5{
+    font-size: 20px;
+    padding-top: 20px;
+}
+
+.resumeWrapper .userDetailsBox h3{
+    font-size: 28px;
+    text-decoration: underline;
 }
 
 .resumeWrapper > div h3 {
@@ -1248,10 +1284,15 @@ a:focus, a:hover {
     margin: 0 auto;
     /* width: 560px; */
     /* margin-bottom: 20px; */
-    background: palegoldenrod;
+    /* background: palegoldenrod; */
     /* position: absolute; */
     /* top: 201px; */
     margin-top: 20px;
+}
+
+.resumeSkillsBox h2{
+    color: #fff;
+    background: #231f20;
 }
 
 .resumeSkillsBox span {
@@ -1261,6 +1302,7 @@ a:focus, a:hover {
 
 .resumeSkillsBox h3 {
     margin-bottom: 10px;
+    color: #fff;
 }
 
 .resumeSkillsBox img {
@@ -1268,8 +1310,8 @@ a:focus, a:hover {
 }
 
 .resumeYears {
-    background: #ebebeb;
-    margin-top: 20px;
+    /* background: #ebebeb; */
+    margin-top: 58px;
     /* position: absolute; */
     /* width: 100%; */
     /* top: 174px; */
@@ -1286,23 +1328,36 @@ a:focus, a:hover {
 }
 
 .resumeYears > div {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
 }
 
 .resumeYears > div h3:nth-child(1) {
     float: left;
+    background: #231f20;
+    color: #fff;
+    padding: 14px;
+    /* margin-top: 20px; */
+    /* margin-top: 20px; */
+    /* background: #231f20; */
+    /* color: #fff; */
+    /* padding: 14px; */
 }
 
 .resumeYears > div h3:nth-child(2) {
     float: right;
+    background: #231f20;
+    color: #fff;
+    padding: 14px;
+    /* margin-top: 20px; */
 }
 
 #circle-container, #circle-container1 {
     z-index: 1;
     position: relative;
-    width: 45%;
+    width: 30%;
     margin: 0 auto;
+    margin-bottom: 38px;
 }
 
 #circle-container > h2, #circle-container1 > h2 {
@@ -1324,10 +1379,10 @@ a:focus, a:hover {
 }
 
 #circle-container2 {
-    width: 90%;
+    width: 84%;
     z-index: 2;
     position: absolute;
-    top: 5%;
+    top: 6%;
     left: 5%;
 }
 
@@ -1444,14 +1499,14 @@ a:focus, a:hover {
 .companyLogo img{margin: 0 auto;}
 .logos{float:left;     margin-right: 1%;}
 .logos img{width:100px; height:100px;}
-    
-.companies {        
-    float: left;        
-    margin-right: 1%;       
-}       
-.companies img {        
-    width: 100px;       
-    height: 100px;      
+
+.companies {
+    float: left;
+    margin-right: 1%;
+}
+.companies img {
+    width: 100px;
+    height: 100px;
 }
 .pagination {
     display: block;
@@ -1634,8 +1689,8 @@ a:focus, a:hover {
 }
 .langs{width:15%;}
 
-.removeCombination {        
-    float: right;       
+.removeCombination {
+    float: right;
 }
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
@@ -1652,7 +1707,11 @@ a:focus, a:hover {
 }
 
 .btn-group {
-    width: 100%;
+    /* width: 100%; */
+    background-color: #231f20;
+    height: 60px;
+    width: 25%;
+    padding-top: 16px;
 }
 
 .mustItem1, .advantageItem1, .orItem1, .mustItem2, .advantageItem2, .orItem2 {
@@ -1707,9 +1766,15 @@ a:focus, a:hover {
 /************************************************************************************************************************************/
 /*natalie*/
 .arrow-down{
-    position: absolute;
-    margin-top: 162px;
-    left: 46% !important;
+    margin: 0 auto;
+}
+
+.arrow-up{
+    /* position: absolute; */
+    /* margin-top: 0; */
+    /* margin-bottom: 21px !important; */
+    /* padding-bottom: 116px; */
+    margin: 0 auto;
 }
 
 .searchJobsImgCover{
@@ -1719,6 +1784,14 @@ a:focus, a:hover {
     position: absolute;
     top: 0;
     background-size: cover;
+}
+.searchJobsImgCover1{
+    background-image: url("../images/searchjobscover.png");
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-size: contain;
 }
 
 .searchJobsWrapper header h2, .yourJobsWrapper header h2{
@@ -1743,10 +1816,10 @@ a:focus, a:hover {
 
 .checkMyCVButton{
     /* color: #fff; */
-    width: 44% !important;
+    width: 96% !important;
     float: left;
     text-align: center;
-    margin: 40px;
+    margin: 16px;
     margin-left: 0;
     border: 2px solid #fff;
 }
@@ -1811,19 +1884,20 @@ a:focus, a:hover {
     /* text-align: right; */
     padding-left: 29px;
     width: 100%;
+    /* height: 182px; */
     background-color: #231f20;
     margin-top: -7px;
-    padding-left: 180px;
+    padding-left: 100px;
     font-size: 134%;
     padding-right: 40px;
-    padding-bottom: 64px;
+    padding-bottom: 16px;
 }
 
 .jobsList article p {
     text-align: left;
-    padding-top: 1px;
+    padding-top: 8px;
     /* text-align: center; */
-    padding-bottom: 18px;
+    padding-bottom: 8px;
     /* float: left; */
 }
 
@@ -1837,8 +1911,8 @@ a:focus, a:hover {
     position: absolute;
     width: 90px;
     /* float: right; */
-    bottom: -72px;
-    right: 38%;
+    bottom: -74px;
+    right: 40%;
 }
 
 .jobListLi section h5 {
@@ -1851,11 +1925,16 @@ a:focus, a:hover {
 }
 
 .searchJobsWrapper .jobListLi img {
+
+}
+.logoInJobBox{
     /* float: left; */
-    width: 86px;
+    width: 72px;
+    /* height: 64px; */
     position: absolute;
-    left: 84px;
+    left: 18px;
     top: 22px;
+
 }
 
 .jobListLi a {
@@ -1903,7 +1982,7 @@ a:focus, a:hover {
     z-index: 2;
     cursor: pointer;
     top: 26px;
-    }
+}
 
 .unlikeReason{float:left;}
 .unlike{float:right;}
@@ -2148,6 +2227,13 @@ a:focus, a:hover {
 
 .page-header h1 {
     text-align: center;
+    color: #fff;
+    width: 34%;
+    margin: 0 auto;
+    background: #231f20;
+    /* color: #fff; */
+    padding: 14px;
+    /* margin-top: 20px; */
 }
 
 .parserExperienceYearsLabel {
@@ -2186,26 +2272,26 @@ a:focus, a:hover {
 }
 .birthDay{text-align: left;}
 
-    .timeline-pluss, .timeline-pluss-exp {      
-    float: right;       
-    margin: 0 auto;     
-    text-align: center;     
-    color: #fff;        
-    width: 50px !important;     
-    height: 50px;       
-    background-color: #ee5785;      
-    z-index: 100;       
-    cursor: pointer;        
-    border-top-right-radius: 50%;       
-    border-top-left-radius: 50%;        
-    border-bottom-right-radius: 50%;        
-    border-bottom-left-radius: 50%;     
-}       
-.timeline-pluss i, .timeline-pluss-exp i {      
-    margin-top: 18px;       
-}       
-.timeline-pluss-exp {       
-    float: left     
+.timeline-pluss, .timeline-pluss-exp {
+    float: right;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+    width: 50px !important;
+    height: 50px;
+    background-color: #ee5785;
+    z-index: 100;
+    cursor: pointer;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+.timeline-pluss i, .timeline-pluss-exp i {
+    margin-top: 18px;
+}
+.timeline-pluss-exp {
+    float: left
 }
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
@@ -2255,11 +2341,18 @@ a:focus, a:hover {
 /****************************************************************************************************/
 @media ( max-width: 767px) {
     /*natalie*/
-
-   .myjobsWrapper svg {
-        bottom: -26px;
+    .myjobsWrapper section {
+        margin-bottom: 22px;
     }
-     .navBarImg>img{
+
+    .jobs > div:nth-child(2) section {
+        width: 135px;
+        bottom: 20px;
+    }
+    .myjobsWrapper svg {
+        bottom: 2px;
+    }
+    .navBarImg>img{
         height: 6px;
         width: 6px;
         position: absolute;
@@ -2272,10 +2365,11 @@ a:focus, a:hover {
         left: 14%;
     }
     .navBarImg {
-       width: 96%;
-       margin: 0 auto;
-       margin-top: 14px;
-       left: 2%;
+        width: 96%;
+        margin: 0 auto;
+        margin-top: 14px;
+        left: 2%;
+        display: none;
     }
 
     .navBar {
@@ -2284,19 +2378,19 @@ a:focus, a:hover {
         padding-left: 11px;
     }
 
-        .myJobsBox {
-        height: 146px;
+    .myJobsBox {
+        height: 186px;
         width: 100%;
         position: relative;
-        margin-top: 75px;
+        margin-top: -8px;
         /* margin-left: -32px; */
-       }
+    }
     .form-control {
         display: block;
-        width: 78%;
+        width: 100%;
         margin-top: -20px;
         margin-left: 0 auto;
-     }
+    }
 
     .engineering {
         /* top: 228px; */
@@ -2320,27 +2414,27 @@ a:focus, a:hover {
         position: absolute;
         top: -30px;
     }
-.navBar > div:nth-child(2) > a > img {
-   /* margin-top: 60%; */
-   /* margin-right: 0%; */
-   height: 40px;
-   position: absolute;
-   top: 0;
-}
+    .navBar > div:nth-child(2) > a > img {
+        /* margin-top: 60%; */
+        /* margin-right: 0%; */
+        height: 40px;
+        position: absolute;
+        top: 0;
+    }
 
-.navBarImg li a {
-  
-    font-size: 20px;
-    padding-top:8px;
-   
-}
+    .navBarImg li a {
 
-.myJobsBox {
-  /* position: absolute; */
-  /* top: 204px; */
-  /* left: 1%; */
-  /* width: 98.4%; */
-  }
+        font-size: 20px;
+        padding-top:8px;
+
+    }
+
+    .myJobsBox {
+        /* position: absolute; */
+        /* top: 204px; */
+        /* left: 1%; */
+        /* width: 98.4%; */
+    }
     .jobs > div:nth-child(2) section {
         width: 80px;
     }
@@ -2350,42 +2444,44 @@ a:focus, a:hover {
         top: 256px;
     }
 
-.jobs > div:nth-child(2) section h5 {
-    position: absolute;
-    left: 28%;
-    font-size: 24px;
-    bottom: 0px;
-    font-family: almoni-dl-aaa-regular;
-}
+    .jobs > div:nth-child(2) section h5 {
+        position: absolute;
+        left: 28%;
+        font-size: 24px;
+        bottom: 25px;
+        font-size: 36px;
+        font-family: almoni-dl-aaa-regular;
+        font-weight: bold;
+    }
     .jobs:first-child{
-    margin-top: 24px;
+        margin-top: 24px;
     }
 
     .jobs {
         margin-left:0;
-    margin-top: 60px;
-    /* border: 2px solid #B5B5B5; */
-    width: 100%;
+        margin-top: 60px;
+        /* border: 2px solid #B5B5B5; */
+        width: 100%;
     }
-    
+
     .myjobsWrapper header h2 {
-    top: 9%;
-    left: 10%;
-    font-size: 26px;
-    color: white;
-    font-family: almoni-dl-aaa-regular;
+        top: 9%;
+        left: 10%;
+        font-size: 26px;
+        color: white;
+        font-family: almoni-dl-aaa-regular;
     }
-    
-     .myjobsWrapper button {
-    margin-top: 102px;
-    background-color: transparent;
-    border: 0;
-    font-size: 16px;
-    font-family: almoni-dl-aaa-regular;
-    color: white;
-    margin-right:0;
-    margin-left: 0px;
-}
+
+    .myjobsWrapper button {
+        margin-top: 102px;
+        background-color: transparent;
+        border: 0;
+        font-size: 16px;
+        font-family: almoni-dl-aaa-regular;
+        color: white;
+        margin-right:0;
+        margin-left: 0px;
+    }
     /*********/
 
 
@@ -2414,7 +2510,7 @@ a:focus, a:hover {
     }
 */
     .navBar > div:nth-child(1) {
-        z-index:1111;   
+        z-index:1111;
         padding: 10px;
     }
 
@@ -2486,15 +2582,15 @@ a:focus, a:hover {
 
 
 
-/*natalie*/
+    /*natalie*/
 
-.jobsList ul li {
-    width: 100%;
-   
-   
-}
+    .jobsList ul li {
+        width: 100%;
+        margin-top: 36px;
+        margin-bottom: 38px;
+    }
 
-/********/
+    /********/
     .jobsList article {
         width: 100%;
         float: left;
@@ -2506,7 +2602,7 @@ a:focus, a:hover {
     }
 
     .jobListLi section {
-        right: 0px;
+        right: 42%;
     }
 
     .jobsTools {
@@ -2587,18 +2683,18 @@ a:focus, a:hover {
     .nav-tabs li {
         height: 66px;
     }
-/*natalie*/
-/*    .googleSignInWrapper > div > a > img {
-        width: 40%;
-    }
+    /*natalie*/
+    /*    .googleSignInWrapper > div > a > img {
+            width: 40%;
+        }
 
-    .googleSignInWrapper > div > a > h3 {
-        font-size: 20px;
-    }
+        .googleSignInWrapper > div > a > h3 {
+            font-size: 20px;
+        }
 
-    .googleSignInWrapper > div > a {
-        float: none;
-    }*/
+        .googleSignInWrapper > div > a {
+            float: none;
+        }*/
 
     .googleUsers {
         display: none;
@@ -2746,12 +2842,12 @@ a:focus, a:hover {
         /*display: none !important;*/
     }
 
-   /*first page*/
+    /*first page*/
     .googleSignInImg{
-       position: absolute;
-       top: 4%;
-       height: 98%;
-       width: 100%;
+        position: absolute;
+        top: 4%;
+        height: 98%;
+        width: 100%;
     }
 
     .googleSignInBox{
@@ -2785,7 +2881,7 @@ a:focus, a:hover {
     }
 
 
-} 
+}
 }
 
 /****************************************************** TIMELINE ***************************************************/
