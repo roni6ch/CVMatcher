@@ -1,490 +1,154 @@
 <!DOCTYPE html>
-<html ng-app="drag-and-drop">
-<head lang="en">
+<html>
+<head>
+    <title>Hello Bubble Chart</title>
     <meta charset="utf-8">
-    <title>Drag & Drop: Multiple listsr</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 
-    <script src='js/lib/angular/angular-dragdrop-1.0.2.js'></script>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,200italic,600italic&subset=latin,vietnamese'
+          rel='stylesheet' type='text/css'>
 
-    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css"
-          rel="stylesheet" type="text/css"/>
-    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://phuonghuynh.github.io/js/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
+    <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+    <script src="js/d3-transform-animation.js"></script>
     <style>
-        .thumbnail {
-            min-height: 300px !important;
-            width: 210px;
+        .bubbleChart {
+            min-width: 100px;
+            max-width: 700px;
+            height: 700px;
+            margin: 0 auto;
         }
 
-        .btn-droppable {
-            width: 180px;
-            padding-left: 4px;
-            margin-right: 5px !important;
+        .bubbleChart svg {
+            background: #000000;
         }
-
-        .btn-draggable {
-            width: 160px;
-        }
-
-        article {
-            width: 33%;
-            float: left;
-        }
-
-        .row-fluid .span3 {
-            width: 75%;
-        }
-
-        .btn {
-            margin: 0px 0px 10px;
-        }
-
-        .langsName {
-            width: 90%;
-            text-align: center;
-            background: none !important;
-            border: 0 !important;
-        }
-
-
     </style>
-    <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
-<body>
-<div ng-controller="oneCtrl">
-    <div class='contentWrapper ng-cloak'>
-        <div class='content'>
-            <div class="row-fluid">
-                <ul class="thumbnails">
-                    <article><h1>Must</h1>
-                        <li class="span3" style='margin-left:10px;'>
-                            <div class="thumbnail must" data-drop="true" ng-model='list1'
-                                 data-jqyoui-options="optionsList1"
-                                 jqyoui-droppable="{multiple:true}">
-                                <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list1"
-                                         ng-show="item.name"
-                                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                                         ng-model="list1"
-                                         jqyoui-draggable="{index: {{$index}},animate:true}">
-                                        <i class="fa fa-times" aria-hidden="true"
-                                           ng-click="removeLang(item.langId,'must')"></i>
-                                        <input data-lang-name="{{item.langId}}" ng-model="item.name" droppable-must
-                                               ng-change="changeLangeName(item.langId)" class="langsName" type="text"
-                                               value="{{item.name}}">
-
-                                        <h3 style="    font-size: 10px; line-height: 0px;">Percentage: </h3>
-
-                                        <div class="input-group">
-                             <span class="input-group-btn"><button ng-click="minusButton(item.langId)"
-                                                                   type="button"
-                                                                   class="btn btn-danger btn-number minusButton"
-                                                                   data-type="minus"
-                                                                   data-field="quant[2]"><i class="fa fa-minus"
-                                                                                            aria-hidden="true"></i>
-                             </button></span>
-
-                                            <input type="text" name="quant[2]" data-pr-num="{{item.langId}}"
-                                                   style="    width: 28px;"
-                                                   class="form-control input-number center1" disabled
-                                                   value="{{item.percentage}}"
-                                                   min="0" max="100">
-
-                        <span class="input-group-btn"> <button type="button"
-                                                               class="btn btn-success btn-number plusButton"
-                                                               data-type="plus"
-                                                               ng-click="plusButton(item.langId)"
-                                                               data-field="quant[2]"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button></span>
-
-
-                                        </div>
-                                        <div style="margin-top:5px;">
-                                            <select class="form-control" data-select="{{item.langId}}"
-                                                    style="width: 100%;" ng-model="years"
-                                                    ng-change="changeYears(item.langId)">
-                                                <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                                                <option value="1" ng-selected="item.years == 1">1 years</option>
-                                                <option value="2" ng-selected="item.years == 2">2 years</option>
-                                                <option value="3" ng-selected="item.years == 3">3 years</option>
-                                                <option value="4" ng-selected="item.years == 4">4 years</option>
-                                                <option value="5" ng-selected="item.years == 5">5 years</option>
-                                            </select>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </article>
-                    <article>
-                        <h1>Adv</h1>
-
-                        <li class="span3" style='margin-left:10px;'>
-                            <div class="thumbnail" data-drop="true" ng-model='list2'
-                                 data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list2])'}"
-                                 jqyoui-droppable="{multiple:true}">
-                                <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list2"
-                                         ng-show="item.name"
-                                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                                         ng-model="list2" jqyoui-draggable="{index: {{$index}},animate:true}">
-                                        <i class="fa fa-times" aria-hidden="true"
-                                           ng-click="removeLang(item.langId,'adv')"></i>
-                                        <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
-                                               droppable-adv
-                                               ng-change="changeLangeName(item.langId)" class="langsName"
-                                               value="{{item.name}}">
-
-                                        <div style="margin-top:5px;">
-                                            <select class="form-control" style="    width: 100%;"
-                                                    data-select="{{item.langId}}" ng-model="years"
-                                                    ng-change="changeYears(item.langId)">
-                                                <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                                                <option value="1" ng-selected="item.years == 1">1 years</option>
-                                                <option value="2" ng-selected="item.years == 2">2 years</option>
-                                                <option value="3" ng-selected="item.years == 3">3 years</option>
-                                                <option value="4" ng-selected="item.years == 4">4 years</option>
-                                                <option value="5" ng-selected="item.years == 5">5 years</option>
-                                            </select>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </article>
-                    <article>
-                        <h1>Or</h1>
-
-                        <li class="span3" style='margin-left:10px;'>
-                            <div class="thumbnail" data-drop="true" ng-model='list3'
-                                 data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list3])'}"
-                                 jqyoui-droppable="{multiple:true}">
-                                <div class="caption">
-                                    <div class="btn btn-info btn-draggable" ng-repeat="item in list3"
-                                         ng-show="item.name"
-                                         data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                                         ng-model="list3" jqyoui-draggable="{index: {{$index}},animate:true}">
-                                        <i class="fa fa-times" aria-hidden="true"
-                                           ng-click="removeLang(item.langId,'or')"></i>
-                                        <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
-                                               droppable-or
-                                               ng-change="changeLangeName(item.langId)" class="langsName"
-                                               value="{{item.name}}">
-
-                                        <div style="margin-top:5px;">
-                                            <select class="form-control" style="    width: 100%;"
-                                                    data-select="{{item.langId}}" ng-model="years"
-                                                    ng-change="changeYears(item.langId)">
-                                                <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                                                <option value="1" ng-selected="item.years == 1">1 years</option>
-                                                <option value="2" ng-selected="item.years == 2">2 years</option>
-                                                <option value="3" ng-selected="item.years == 3">3 years</option>
-                                                <option value="4" ng-selected="item.years == 4">4 years</option>
-                                                <option value="5" ng-selected="item.years == 5">5 years</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </article>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!--BOTTOM PARSING-->
-    <div class="navbar-inner">
-        <div class="container form-inline" style="text-align: center;">
-            <div class="btn btn-droppable" ng-repeat="item in langs" data-drop="true" ng-model='langs'
-                 data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=langs])'}"
-                 jqyoui-droppable="{index: {{$index}}}">
-
-
-                <div class="btn btn-info btn-draggable" ng-repeat="item in langs"
-                     ng-show="item.name"
-                     data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}"
-                     ng-model="langs"
-                     jqyoui-draggable="{index: {{$index}},animate:true}">
-
-
-                    <input type="text" data-lang-name="{{item.langId}}" ng-model="item.name"
-                           droppable-or
-                           ng-change="changeLangeName(item.langId)" class="langsName"
-                           value="{{item.name}}">
-
-                    <div style="margin-top:5px;">
-                        <select class="form-control" style="    width: 100%;"
-                                data-select="{{item.langId}}" ng-model="years"
-                                ng-change="changeYears(item.langId)">
-                            <option value="0" ng-selected="item.years == 0">0 Exerience</option>
-                            <option value="1" ng-selected="item.years == 1">1 years</option>
-                            <option value="2" ng-selected="item.years == 2">2 years</option>
-                            <option value="3" ng-selected="item.years == 3">3 years</option>
-                            <option value="4" ng-selected="item.years == 4">4 years</option>
-                            <option value="5" ng-selected="item.years == 5">5 years</option>
-                        </select>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <button ng-click="addDynamicLang()">Add another LANGUAGE!</button>
-    <button ng-click="addDynamicCombination()">Add another COMBINATION!</button>
-</div>
+<body style="background: #000000">
+<div class="bubbleChart"/>
 </body>
 </html>
 
 <script>
-    var App = angular.module('drag-and-drop', ['ngDragDrop']);
+    $(document).ready(function () {
+        var skills = [];
+        jQuery.ajax ({
+            url: "https://cvmatcher.herokuapp.com/getMatchingObject",
+            type: "POST",
+            data: JSON.stringify({
+                matching_object_id: "5745af8ced9bf303001f1167",
+                matching_object_type: "cv"
+            }),
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
 
-    var totalPriorotySum = 0;
-    var requirements = [], combination = [];
-    App.controller('oneCtrl', function ($scope, $rootScope, $timeout) {
-        var languages = [];
-        var langId = 0;
-        var ready = false;
+                var skillsFromJson = data[0].formula.matching_requirements.details;
 
-        var json = [{
-            "name": "c++",
-            'percentage': "40",
-            'mode': "must",
-            'years': 3
-        }, {
-            "name": "java",
-            'percentage': "50",
-            'mode': "must",
-            'years': 4
-        }/*, {
-         "name": "php",
-         'percentage': "10",
-         'mode': "must",
-         'years': 0
-         }*/
-        ]
-        $.each(json, function (key, val) {
-            languages.push({
-                'langId': langId++,
-                'name': val.name,
-                'percentage': val.percentage,
-                'mode': val.mode,
-                'years': val.years,
-                'drag': true
-            });
-            totalPriorotySum += parseInt(val.percentage);
+                $.each(skillsFromJson, function (k, v) {
+                    skills.push({
+                        text: v.name,
+                        count: v.grade
+                    });
+                });
+
+                var bubbleChart = new d3.svg.BubbleChart({
+                    supportResponsive: true,
+                    //container: => use @default
+                    size: 600,
+                    //viewBoxSize: => use @default
+                    innerRadius: 600 / 3.5,
+                    //outerRadius: => use @default
+                    radiusMin: 50,
+                    //radiusMax: use @default
+                    //intersectDelta: use @default
+                    //intersectInc: use @default
+                    //circleColor: use @default
+                    data: {
+                        items: skills,
+                        eval: function (item) {
+                            return item.count;
+                        },
+                        classed: function (item) {
+                            return item.text.split(" ").join("");
+                        }
+                    },
+                    plugins: [
+                        {
+                            name: "central-click",
+                            options: {
+                                text: "(See more detail)",
+                                style: {
+                                    "font-size": "12px",
+                                    "font-style": "italic",
+                                    "font-family": "Source Sans Pro, sans-serif",
+                                    //"font-weight": "700",
+                                    "text-anchor": "middle",
+                                    "fill": "white"
+                                },
+                                attr: {dy: "65px"},
+                                centralClick: function () {
+                                    console.log("Here is more details!!");
+                                }
+                            }
+                        },
+                        {
+                            name: "lines",
+                            options: {
+                                format: [
+                                    {// Line #0
+                                        textField: "count",
+                                        classed: {count: true},
+                                        style: {
+                                            "font-size": "28px",
+                                            "font-family": "Source Sans Pro, sans-serif",
+                                            "text-anchor": "middle",
+                                            fill: "white"
+                                        },
+                                        attr: {
+                                            dy: "0px",
+                                            x: function (d) {
+                                                return d.cx;
+                                            },
+                                            y: function (d) {
+                                                return d.cy;
+                                            }
+                                        }
+                                    },
+                                    {// Line #1
+                                        textField: "text",
+                                        classed: {text: true},
+                                        style: {
+                                            "font-size": "14px",
+                                            "font-family": "Source Sans Pro, sans-serif",
+                                            "text-anchor": "middle",
+                                            fill: "white"
+                                        },
+                                        attr: {
+                                            dy: "20px",
+                                            x: function (d) {
+                                                return d.cx;
+                                            },
+                                            y: function (d) {
+                                                return d.cy;
+                                            }
+                                        }
+                                    }
+                                ],
+                                centralFormat: [
+                                    {// Line #0
+                                        style: {"font-size": "50px"},
+                                        attr: {}
+                                    },
+                                    {// Line #1
+                                        style: {"font-size": "30px"},
+                                        attr: {dy: "40px"}
+                                    }
+                                ]
+                            }
+                        }]
+                });
+            }
         });
-
-        var tempMustLangs = languages;
-        tempMustLangs = tempMustLangs.filter(function (obj) {
-            return obj.mode == "must";
-        });
-        var tempAdvLangs = languages;
-        tempAdvLangs = tempAdvLangs.filter(function (obj) {
-            return obj.mode == "adv";
-        });
-        var tempOrLangs = languages;
-        tempOrLangs = tempOrLangs.filter(function (obj) {
-            return obj.mode == "or";
-        });
-
-        $rootScope.list1 = tempMustLangs;
-        $rootScope.list2 = tempAdvLangs;
-        $rootScope.list3 = tempOrLangs;
-
-
-        //ADD COMBINATION
-        $scope.addDynamicCombination = function () {
-            if ($rootScope.list1.length > 0) {
-                $.each($rootScope.list1, function (key, val) {
-                    combination.push(val);
-                });
-            }
-            if ($rootScope.list2.length > 0) {
-                $.each($rootScope.list2, function (key, val) {
-                    combination.push(val);
-                });
-            }
-            if ($rootScope.list3.length > 0) {
-                $.each($rootScope.list3, function (key, val) {
-                    combination.push(val);
-                });
-            }
-            $rootScope.list1 = [];
-            $rootScope.list2 = [];
-            $rootScope.list3 = [];
-            $rootScope.langs = [];
-            requirements.push({'combination': combination});
-            combination = [];
-            console.log(requirements);
-        }
-
-        //ADD LANG
-        $scope.addDynamicLang = function () {
-            var newLang = [];
-            newLang.push({
-                'langId': langId++,
-                'name': "Language",
-                'percentage': "0",
-                'mode': "or",
-                'years': 0,
-                'drag': true
-            });
-            $rootScope.langs = newLang;
-        }
-        //REMOVE LANG
-        $scope.removeLang = function (id, sectType) {
-            if (sectType == 'must') {
-                $rootScope.list1 = $rootScope.list1.filter(function (obj) {
-                    return obj.langId != id;
-                });
-            }
-            if (sectType == 'adv') {
-                $rootScope.list2 = $rootScope.list2.filter(function (obj) {
-                    return obj.langId != id;
-                });
-            }
-            if (sectType == 'or') {
-                $rootScope.list3 = $rootScope.list3.filter(function (obj) {
-                    return obj.langId != id;
-                });
-            }
-
-        }
-        //NAMES
-        $scope.changeLangeName = function (id) {
-            $.each($rootScope.list1, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.list2, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.list3, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.langs, function (key, val) {
-                if (val.langId == id) {
-                    val.name = $("input[data-lang-name='" + id + "']").val();
-                }
-            });
-        }
-        //YEARS
-        $scope.changeYears = function (id) {
-            console.log(id);
-            $.each($rootScope.list1, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.list2, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.list3, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-            $.each($rootScope.langs, function (key, val) {
-                if (val.langId == id) {
-                    val.years = $("select[data-select='" + id + "']").val();
-                }
-            });
-        }
-        //PLUS
-        $scope.plusButton = function (id) {
-            if ($("input[data-pr-num='" + id + "']").val() < 100 && totalPriorotySum < 100) {
-                $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) + 10);
-                totalPriorotySum += 10;
-                $(".minusButton").attr('disabled', false);
-
-                $.each($rootScope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.percentage = parseInt(val.percentage) + 10;
-                    }
-                });
-            }
-            // else
-            //   $("input[data-pr-num='" + id + "']").parent().find(".plusButton").attr('disabled', true);
-        }
-        //MINUS
-        $scope.minusButton = function (id) {
-            if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0) {
-                $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) - 10);
-                totalPriorotySum -= 10;
-                $(".plusButton").attr('disabled', false);
-                $.each($rootScope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.percentage = parseInt(val.percentage) - 10;
-                    }
-                });
-            }
-            // else
-            //    $("input[data-pr-num='" + id + "']").parent().find(".minusButton").attr('disabled', true);
-        }
-
-
-    }).directive('droppableMust', function ($rootScope) {
-        return {
-            scope: {},
-            link: function (scope, element, attr) {
-                var id = attr.langName;
-                $.each($rootScope.list1, function (key, val) {
-                    if (val.langId == id) {
-                        val.mode = "must";
-                    }
-                });
-            }
-        }
-    }).directive('droppableAdv', function ($rootScope) {
-        return {
-            scope: {},
-            link: function (scope, element, attr) {
-                var id = attr.langName;
-                $.each($rootScope.list2, function (key, val) {
-                    if (val.langId == id) {
-                        val.mode = "adv";
-                        val.percentage = "0";
-                    }
-                });
-                totalPriorotySum = 0;
-                $.each($(".must > .caption > div > .input-group > input"), function () {
-                    totalPriorotySum += parseInt($(this).val());
-                });
-
-            }
-        }
-    }).directive('droppableOr', function ($rootScope) {
-        return {
-            scope: {},
-            link: function (scope, element, attr) {
-                var id = attr.langName;
-                $.each($rootScope.list3, function (key, val) {
-                    if (val.langId == id) {
-                        val.mode = "or";
-                        val.percentage = "0";
-                    }
-                });
-                console.log($rootScope.list3);
-                totalPriorotySum = 0;
-                $.each($(".must > .caption > div > .input-group > input"), function () {
-                    totalPriorotySum += parseInt($(this).val());
-                });
-            }
-        }
-    })
-
+    });
 </script>

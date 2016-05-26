@@ -210,6 +210,11 @@ app.config(function ($routeProvider) {
 
 }).run(function ($rootScope, $http, $location, $timeout) {
 
+    //notification window accept
+    document.addEventListener('DOMContentLoaded', function () {
+        if (Notification.permission !== "granted")
+            Notification.requestPermission();
+    });
 
     if ($.cookie('user_id'))
         sockets();
@@ -239,11 +244,7 @@ app.config(function ($routeProvider) {
 
 app.controller('googleSignInController', function ($rootScope) {
 
-    //notification window accept
-    document.addEventListener('DOMContentLoaded', function () {
-        if (Notification.permission !== "granted")
-            Notification.requestPermission();
-    });
+
 
     $rootScope.userSignInType = '';
 
@@ -1181,23 +1182,18 @@ app
                                 console.log(data.data);
 
                                 if (data.data.formula.requirements.grade > 0) {
-                                    var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
-                                    var fillColors = ['#C1BFBF', '#e6e6e6'];
-                                    //Big circle percentages
-                                    if (data.data.formula.requirements.details.length > 0) {
-                                        angular.forEach(data.data.formula.requirements.details, function (value, key) {
-                                            circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
-                                                color: colors[key],
-                                                strokeWidth: 5,
-                                                fill: fillColors[key % 2]
-                                            });
-                                            angular.element(".langsMatch").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
-                                            compabilitJobSeeker = value.grade;
-                                            circle.animate(value.grade / 100, function () {
-                                            })
+                                    skills = [];
 
+                                    var skillsFromJson = data.data.formula.requirements.details;
+
+                                    console.log(skillsFromJson);
+                                    $.each(skillsFromJson, function (k, v) {
+                                        skills.push({
+                                            text: v.name,
+                                            count: v.grade
                                         });
-                                    }
+                                    })
+                                    bubbels();
                                 }
                                 else {
                                     $("#circle-container1 > h2").html("");
@@ -1273,6 +1269,7 @@ app
                 }).then(function (data) {
                     console.log(data);
                     if (data != null) {
+                        $('#sendCVstatus').modal('show');
                         $scope.status = "your Resume Send!"
                     }
                     else {
@@ -1929,6 +1926,7 @@ app.controller('candidatesController',
  * ********************* resume controller ****************
  */
 var candidateId;
+var skills = [];
 app.controller('resumeController',
     function ($scope, $http, $location, $timeout, $rootScope) {
         $id = $location.path().split('/');
@@ -1940,6 +1938,11 @@ app.controller('resumeController',
             id = $id[5];
         else
             id = $id[4];
+var jobId;
+
+
+
+
         $scope.getUserJson = function () {
 
             $http({
@@ -1951,7 +1954,11 @@ app.controller('resumeController',
                 }
             })
                 .then(function (data) {
-                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                        if ($id[1] == "Unread")
+                            jobId = $id[4];
+                    else
+                            jobId = $id[3];
+                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + jobId + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
                         $(".navigation")[0].innerHTML = navigation;
                         $scope.user = data.data[0];
                         console.log(data.data[0].user._id);
@@ -1965,6 +1972,7 @@ app.controller('resumeController',
                             sendNotification('seen', $scope.user.user._id, $id[2], null, $.cookie('jobTitle'));
                         }
 
+                    //sliders
                         angular.forEach(data.data[0].formula, function (value, key) {
                             if (key == '__v' || key == '_id')
                                 return;
@@ -1980,27 +1988,22 @@ app.controller('resumeController',
                         if (data.data[0].predict_result) {
                             $("#predictAppend").show();
                         }
+
+                    //formula bubbels
                         if (data.data[0].formula)
                             if (data.data[0].formula.matching_requirements.grade > 0) {
-                                //circle
-                                var colors = ['#F74CF0', '#9F4CF7', '#4C58F7', '#4CBEF7', '#4CF7F0', '#4CF772', '#ACF74C', '#F7EB4C'];
-                                var fillColors = ['#C1BFBF', '#e6e6e6'];
-                                //Big circle percentages
-                                angular.forEach(data.data[0].formula.matching_requirements.details, function (value, key) {
-                                    circle = new ProgressBar.Circle('#circle-container' + (key + 1), {
-                                        color: colors[key],
-                                        strokeWidth: 5,
-                                        fill: fillColors[key % 2]
-                                    });
-                                    //angular.element(".resumeSkillsBox").append("<span style='color:" + colors[key] + "'> | " + value.name + " = " + Math.max(parseInt(value.grade), 1) + "</span>");
-                                    angular.element(".resumeSkillsBox").append('<div class="[ btn-group ]"><label for="fancy-checkbox-default" class="[ btn btn-default ]" style="color:' + colors[key] + '; float: none; cursor: auto;">' + value.name + ' </label> <label for="fancy-checkbox-default" class="[ btn btn-default active ]" style="color:' + colors[key] + ';float: none; cursor: auto;"> ' + Math.max(parseInt(value.grade), 1) + '% </label></div>');
+                                skills = [];
 
+                                        var skillsFromJson = data.data[0].formula.matching_requirements.details;
 
-                                    circle.animate(value.grade / 100, function () {
-                                    })
-                                });
-                                angular.element(".resumeSkillsBox").append("<h2>Total Skills Grade: " + Math.max(parseInt(data.data[0].formula.matching_requirements.grade), 1) + "</h2>")
-                            }
+                                        $.each(skillsFromJson, function (k, v) {
+                                            skills.push({
+                                                text: v.name,
+                                                count: v.grade
+                                            });
+                                        })
+                                    bubbels();
+                                    }
                             else {
                                 $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
                             }
@@ -2360,10 +2363,10 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
                 $(".navigation")[0].innerHTML = navigation;
 
+                angular.element(".fa-pulse").hide();
                 editJob = true;
                 //setTimeout for 1 mil sec because there is a problem loading js after angular
                 setTimeout(function () {
-                    angular.element(".fa-pulse").hide();
                     var sliders = $("#sliders .slider");
                     sliders.each(function () {
                         var availableTotal = 100;
@@ -3410,6 +3413,7 @@ window.onload = function () {
     pushwoosh.subscribeAtStart();
 };
 
+
 $(document).ready(function () {
     $('.navbar a').on('click', function(){
         $('.btn-navbar').click(); //bootstrap 2.x
@@ -3616,4 +3620,87 @@ function notifyMe(type, jobName) {
 
     }
 
+}
+
+
+
+function bubbels(){
+    var bubbleChart = new d3.svg.BubbleChart({
+        supportResponsive: true,
+        //container: => use @default
+        size: 600,
+        //viewBoxSize: => use @default
+        innerRadius: 600 / 3.5,
+        //outerRadius: => use @default
+        radiusMin: 50,
+        //radiusMax: use @default
+        //intersectDelta: use @default
+        //intersectInc: use @default
+        //circleColor: use @default
+        data: {
+            items: skills,
+            eval: function (item) {
+                return item.count;
+            },
+            classed: function (item) {
+                return item.text.split(" ").join("");
+            }
+        },
+        plugins: [
+            {
+                name: "lines",
+                options: {
+                    format: [
+                        {// Line #0
+                            textField: "count",
+                            classed: {count: true},
+                            style: {
+                                "font-size": "28px",
+                                "font-family": "Source Sans Pro, sans-serif",
+                                "text-anchor": "middle",
+                                fill: "white"
+                            },
+                            attr: {
+                                dy: "0px",
+                                x: function (d) {
+                                    return d.cx;
+                                },
+                                y: function (d) {
+                                    return d.cy;
+                                }
+                            }
+                        },
+                        {// Line #1
+                            textField: "text",
+                            classed: {text: true},
+                            style: {
+                                "font-size": "14px",
+                                "font-family": "Source Sans Pro, sans-serif",
+                                "text-anchor": "middle",
+                                fill: "white"
+                            },
+                            attr: {
+                                dy: "20px",
+                                x: function (d) {
+                                    return d.cx;
+                                },
+                                y: function (d) {
+                                    return d.cy;
+                                }
+                            }
+                        }
+                    ],
+                    centralFormat: [
+                        {// Line #0
+                            style: {"font-size": "50px"},
+                            attr: {}
+                        },
+                        {// Line #1
+                            style: {"font-size": "30px"},
+                            attr: {dy: "40px"}
+                        }
+                    ]
+                }
+            }]
+    });
 }
