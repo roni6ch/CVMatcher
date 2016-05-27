@@ -3,7 +3,6 @@
 
 <div class="searchJobsWrapper" ng-init="getMainJson();sort('-date');">
 
-    <profileimg></profileimg>
     <h3 class="navigation"></h3>
 
     <div class="myJobsBox">
@@ -11,6 +10,7 @@
             <h2>Find your next job</h2>
         </header>
         <i class="fa fa-spinner fa-pulse fa-5x"></i>
+
         <form method="get" action="">
             <input type="text" placeholder="Find Job" ng-model="searchText"
                    class="form-control">
@@ -22,7 +22,7 @@
             By Date
         </button>
     </div>
-    <div class="jobsList" >
+    <div class="jobsList">
         <ul>
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="job in jobSeekerJobs | filter:searchText | orderBy:sortby">
@@ -31,20 +31,27 @@
                         <img class="logoInJobBox"
                              ng-src="{{job.user.company.logo}}">
                         <article class="visibleText">
-                            <p ng-model="searchText.job_name"
-                               ng-bind-html="job.scope_of_position[0] | highlight:searchText">
-                                {{job['scope_of_position'][0]}}</p>
 
                             <p ng-model="searchText.name"
                                ng-bind-html="job.original_text.title | highlight:searchText">
                                 {{job['original_text']['title']}}</p>
 
+                            <p>
+                               <span ng-repeat="scope_of_position in job['scope_of_position']">
+                                    <span ng-if="scope_of_position == 'full'">Full Time Job |</span>
+                                   <span ng-if="scope_of_position == 'part'">Part Time Job |</span>
+                                   <span ng-if="scope_of_position == 'hours'">Job by Hours |</span>
+                                </span>
+                            </p>
+
                             <p ng-model="searchText.address">
                                 {{job["locations"][0]}},
                             </p>
+
                             <p>{{job.date}}</p>
-                            <img class="arrow-down" src="images/arrow-down.png">
                         </article>
+
+                        <img class="arrow-down" src="images/arrow-down.png">
                         <section circle id="{{ 'circle-container-' + $index }}"
                                  data-compability="{{job.compatibility_level}}">
                             <h5>{{job.compatibility_level}}%</h5>
@@ -52,6 +59,7 @@
                     </a>
                     <article id="collepse-{{$index}}" class="collapse ">
                         <p>Description: {{job["original_text"].description}}</p>
+
                         <div class="skills">
                             Requirements:
                             <p>{{job.original_text["requirements"].split("|||")[0]}}</p>
@@ -61,7 +69,10 @@
                         <section>
 
                         </section>
-                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-href="#/searchJobs/{{job['_id']}}/matchpage" ng-click="saveData(job['original_text']['title'],job.compatibility_level);" class="btn btn-default">Check
+                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'"
+                           ng-href="#/searchJobs/{{job['_id']}}/matchpage"
+                           ng-click="saveData(job['original_text']['title'],job.compatibility_level);"
+                           class="btn btn-default">Check
                             my CV</a>
                         <img class="arrow-up" src="images/arrow-up.png">
 

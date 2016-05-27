@@ -5,6 +5,7 @@
 
 //91422993149
 //gsm
+//TODO: open all sendNotification functions calls!
 var app = angular.module('cvmatcherApp', ["ngRoute", "infinite-scroll", 'ngDragDrop']);
 
 app.config(function ($routeProvider) {
@@ -209,6 +210,7 @@ app.config(function ($routeProvider) {
     });
 
 }).run(function ($rootScope, $http, $location, $timeout) {
+    $rootScope.userSignInType ='';
 
     //notification window accept
     document.addEventListener('DOMContentLoaded', function () {
@@ -216,12 +218,11 @@ app.config(function ($routeProvider) {
             Notification.requestPermission();
     });
 
-    if ($.cookie('user_id'))
+    if ($.cookie('user_id')) {
         sockets();
-    //set the header navigation
-    if ($.cookie('userSignInType')) {
-        $rootScope.userSignInType = $.cookie('userSignInType');
+        //set the header navigation
         $rootScope.user_id = $.cookie('user_id');
+
     }
     /*
      $timeout(function () {
@@ -243,13 +244,10 @@ app.config(function ($routeProvider) {
  */
 
 app.controller('googleSignInController', function ($rootScope) {
-
-
-
-    $rootScope.userSignInType = '';
-
+    rootScope.userSignInType ='';
+/*
     $.cookie('employerFirstSignIn', 'true');
-    $.cookie('jobSeekerFirstSignIn', 'true');
+    $.cookie('jobSeekerFirstSignIn', 'true');*/
 });
 
 /*
@@ -258,14 +256,13 @@ app.controller('googleSignInController', function ($rootScope) {
 
 var user;
 app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope, $compile, $timeout) {
-
     $("#profileImg").attr("src", "");
-    $rootScope.userSignInType = "";
+    $rootScope.userSignInType = '';
+
     if (profile)
         $.cookie('google_id', profile.id);
     var familyName;
     var givenName;
-
     $scope.userType = function (type) {
         if (type == 'employer') {
             $.cookie('userSignInType', "employer");
@@ -273,7 +270,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             angular.element("#profileImg").parent().attr("href", $.cookie('profile'));
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-            if ($.cookie('employerFirstSignIn') === 'true') {
+            if (!$.cookie('employerFirstSignIn')) {
                 $.cookie('profileDetails', JSON.stringify(profile));
                 givenName = $.parseJSON($.cookie('profileDetails')).name.givenName;
                 familyName = $.parseJSON($.cookie('profileDetails')).name.familyName;
@@ -356,7 +353,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
             angular.element("#profileImg").parent().attr("href", $.cookie('profile'));
             if ($.cookie('user'))
                 $("#profileImg").attr("src", $.parseJSON($.cookie('user')).image);
-            if ($.cookie('jobSeekerFirstSignIn') === 'true') {
+            if (!$.cookie('jobSeekerFirstSignIn')) {
                 console.log(profile);
                 $.cookie('profileDetails', JSON.stringify(profile));
                 givenName = $.parseJSON($.cookie('profileDetails')).name.givenName;
@@ -444,8 +441,11 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
  * ********************* jobSeeker Search Jobs Controller ****************
  */
 app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http, $compile) {
-
     $rootScope.userSignInType = "jobSeeker";
+
+    if ($.cookie('userSignInType'))
+        $rootScope.userSignInType = $.cookie('userSignInType');
+
     $scope.cvExist = false;
     if ($.cookie('current_cv')) {
         $scope.cvExist = true;
@@ -475,6 +475,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     angular.forEach(data.data, function (value, key) {
                         data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
                     });
+
                     /*
                      }*/
                 },
@@ -500,52 +501,57 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         }
     }
 
-    socket.onmessage = function (msg) {
-        var message = JSON.parse(msg.data);
-        console.log(message);
-        notifyMe(message.notificationType, message.jobName);
-    }
+    //TODO: OPEN SOCKET!
+    /* socket.onmessage = function (msg) {
+     var message = JSON.parse(msg.data);
+     console.log(message);
+     notifyMe(message.notificationType, message.jobName);
+     }*/
 })
 
 /*
  * ********************* MY JOBS - Job Seeker Controller ****************
  */
 
-app.controller('yourjobSeekerController', function ($scope, $http, $sce, $location) {
+app.controller('yourjobSeekerController', function ($scope, $http, $sce, $location,$rootScope) {
     var url;
     var path = $location.path().split('/')[1];
     var navigation;
     var data;
 
-    socket.onmessage = function (msg) {
-        var message = JSON.parse(msg.data);
-        console.log(message);
-        var jobId = message.jobId;
-        if (path == 'yourjobs') {
-            if (message.notificationType == 'seen') {
-                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                $scope.$apply(function () {
-                    $scope.jobSJ.cv.status.current_status = 'seen';
-                })
-            }
-            else if (message.notificationType == 'like') {
-                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                $scope.$apply(function () {
-                    $scope.jobSJ.cv.status.current_status = 'liked';
-                    $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
-                })
-            }
-            else if (message.notificationType == 'unlike') {
-                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                $scope.$apply(function () {
-                    $scope.jobSJ.cv.status.current_status = 'unliked';
-                    $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+    if ($.cookie('userSignInType'))
+        $rootScope.userSignInType = $.cookie('userSignInType');
 
-                })
-            }
-        }
-            notifyMe(message.notificationType, message.jobName);
-    }
+    //TODO: OPEN SOCKET!
+    /* socket.onmessage = function (msg) {
+     var message = JSON.parse(msg.data);
+     console.log(message);
+     var jobId = message.jobId;
+     if (path == 'yourjobs') {
+     if (message.notificationType == 'seen') {
+     $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+     $scope.$apply(function () {
+     $scope.jobSJ.cv.status.current_status = 'seen';
+     })
+     }
+     else if (message.notificationType == 'like') {
+     $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+     $scope.$apply(function () {
+     $scope.jobSJ.cv.status.current_status = 'liked';
+     $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
+     })
+     }
+     else if (message.notificationType == 'unlike') {
+     $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+     $scope.$apply(function () {
+     $scope.jobSJ.cv.status.current_status = 'unliked';
+     $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+
+     })
+     }
+     }
+     notifyMe(message.notificationType, message.jobName);
+     }*/
     $scope.getMainJson = function () {
         if (path == 'Favorites') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
@@ -674,10 +680,10 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
 
     $scope.collepse = function (id) {
         if ($("#collepse-" + id).hasClass("in")) {
-            $("#collepse-" + id).parent().find("img").fadeIn();
+            $("#collepse-" + id).parent().find(".arrow-down").fadeIn();
         }
         else {
-            $("#collepse-" + id).parent().find("img").fadeOut();
+            $("#collepse-" + id).parent().find(".arrow-down").fadeOut();
         }
     }
 
@@ -691,6 +697,10 @@ app
     .controller(
         'seekerProfileControler',
         function ($scope, $http, $compile, $rootScope, $timeout) {
+
+
+            if ($.cookie('userSignInType'))
+                $rootScope.userSignInType = $.cookie('userSignInType');
 
             $rootScope.userSignInType = "jobSeeker";
             $("#geocomplete").geocomplete();
@@ -720,7 +730,7 @@ app
                             if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                                 var currentId = data.data[0].current_cv;
                                 $.cookie('current_cv', currentId);
-                                console.log($.cookie('current_cv'));
+                                console.log("current_cv: " + $.cookie('current_cv'));
                                 $http({
                                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                                     method: "POST",
@@ -812,28 +822,28 @@ app
                     $(".parseExperience").html("");
                 }
                 angular.element(".fa-spin").show();
-                $.each($(".timeline .timeline-inverted"), function (key, val) {
-                    var text = $(this).find('.timeline-body textarea').val();
-                    var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
-                    var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                /*
+                 $.each($(".timeline .timeline-inverted"), function (key, val) {
+                 var text = $(this).find('.timeline-body textarea').val();
+                 var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                 var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
 
-                    if (startdate > enddate) {
-                        $scope.status = 'Please fix years - "From" is bigger then "TO"';
-                        $('#myModal').modal('show');
-                        return;
-                    }
-                    console.log(startdate);
-                    console.log(enddate);
+                 if (startdate > enddate) {
+                 $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                 $('#myModal').modal('show');
+                 return;
+                 }
 
-                    parseExpereince.expereince.push({
-                        "text": text,
-                        "startdate": startdate,
-                        "enddate": enddate
-                    });
-                });
+                 parseExpereince.expereince.push({
+                 "text": text,
+                 "startdate": startdate,
+                 "enddate": enddate
+                 });
+                 });*/
 
                 var type;
                 history_timeline = [];
+
                 $.each($(".timeline li"), function (key, val) {
                     var text = $(this).find('.timeline-body textarea').val();
                     var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
@@ -856,6 +866,12 @@ app
                         "end_year": parseInt(enddate),
                         "type": type
                     });
+
+                    parseExpereince.expereince.push({
+                        "text": text,
+                        "startdate": startdate,
+                        "enddate": enddate
+                    });
                 });
 
                 $http({
@@ -873,6 +889,7 @@ app
                             })
                                 .then(function (data) {
                                         console.log(data)
+                                        angular.element(".parseExperience").html('');
                                         angular.forEach(data.data, function (value, key) {
                                             var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
                                             angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
@@ -1120,7 +1137,7 @@ app
                 })
                     .then(function (data) {
 
-                            $.cookie('jobSeekerFirstSignIn', 'false');
+                            $.cookie('jobSeekerFirstSignIn', true);
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
                             console.log("data: ", data);
@@ -1143,12 +1160,13 @@ app
                     }, 1000);
             }
 
-            socket.onmessage = function (msg) {
-                var message = JSON.parse(msg.data);
-                console.log(message);
-                notifyMe(message.notificationType, message.jobName);
-            }
-
+            //TODO: OPEN SOCKET!
+            /* socket.onmessage = function (msg) {
+             var message = JSON.parse(msg.data);
+             console.log(message);
+             notifyMe(message.notificationType, message.jobName);
+             }
+             */
         });
 
 /*
@@ -1160,6 +1178,8 @@ app
         function ($scope, $http, $location, $rootScope, $timeout) {
 
 
+            if ($.cookie('userSignInType'))
+                $rootScope.userSignInType = $.cookie('userSignInType');
             $jobId = $location.path().split('/')[2];
             var compabilitJobSeeker;
             console.log("cv: " + $.cookie('current_cv'));
@@ -1175,7 +1195,7 @@ app
                 })
                     .then(function (data) {
                             //navigation in site
-                            var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + $jobId + "'>" + $.cookie('jobTitle') + "</a><span> > </span><a href='#/searchJobs/" + $jobId + "/matchpage'>Match Page</a>"
+                            var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + $jobId + "/matchpage'>" + $.cookie('jobTitle') + " Match Page</a>"
                             $(".navigation")[0].innerHTML = navigation;
 
                             if (data.data.formula !== undefined) {
@@ -1288,11 +1308,12 @@ app
                     location.replace("#/searchJobs");
                 }, 1000);
             }
-            socket.onmessage = function (msg) {
-                var message = JSON.parse(msg.data);
-                console.log(message);
-                notifyMe(message.notificationType, message.jobName);
-            }
+            //TODO: OPEN SOCKET!
+            /*socket.onmessage = function (msg) {
+             var message = JSON.parse(msg.data);
+             console.log(message);
+             notifyMe(message.notificationType, message.jobName);
+             }*/
 
         });
 
@@ -1302,8 +1323,12 @@ app
 app
     .controller(
         'favoritesController',
-        function ($scope, $http) {
+        function ($scope, $http,$rootScope) {
             angular.element(".fa-pulse").hide();
+
+            if ($.cookie('userSignInType'))
+                $rootScope.userSignInType = $.cookie('userSignInType');
+
             $http({
                 url: 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs',
                 method: "POST",
@@ -1326,11 +1351,12 @@ app
                     function (response) { // optional
                         console.log("myjobsController AJAX failed!");
                     });
-            socket.onmessage = function (msg) {
-                var message = JSON.parse(msg.data);
-                console.log(message);
-                notifyMe(message.notificationType, message.jobName);
-            }
+            //TODO: OPEN SOCKET!
+            /* socket.onmessage = function (msg) {
+             var message = JSON.parse(msg.data);
+             console.log(message);
+             notifyMe(message.notificationType, message.jobName);
+             }*/
 
         });
 
@@ -1344,17 +1370,24 @@ app
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http, $sce) {
 
 
+    if ($.cookie('userSignInType'))
+        $rootScope.userSignInType = $.cookie('userSignInType');
     $rootScope.userSignInType = "employer";
     $scope.company = company;
+
+    $('#popoverData').popover();
     var archive;
     $id = $location.path().split('/');
     if (!$.cookie('company')) {
-        $(".newJob").css("pointer-events", "none");
-        $(".newJob > input").css("text-decoration", "line-through");
+        $scope.popoverData = 'companyProfile';
+        $scope.popOverDataContent = 'Please Update Your Profile First!';
+        $("#popoverData").css("text-decoration", "line-through");
     }
     else {
         $(".newJob").css("pointer-events", "auto");
-        $(".newJob > input").css("text-decoration", "none");
+        $("#popoverData").css("text-decoration", "none");
+        $scope.popoverData = 'newJob';
+        $scope.popOverDataContent = 'Add new Job to System';
     }
     if ($id[1] == 'myjobs') {
         archive = false;
@@ -1462,6 +1495,9 @@ var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
 
+
+        if ($.cookie('userSignInType'))
+            $rootScope.userSignInType = $.cookie('userSignInType');
         $rootScope.userSignInType = "employer";
         var companyId;
         var tabType = '';
@@ -1526,12 +1562,14 @@ app.controller('companyProfileController',
             });
         }
         $scope.logo = function (word) {
+            angular.element(".fa-pulse").show();
             $http({
                 url: "https://cvmatcher.herokuapp.com/getLogoImages",
                 method: "POST",
                 data: {"word": word}
             }).then(function (data) {
                 $scope.logos = data.data;
+                angular.element(".fa-pulse").hide();
             })
         }
 
@@ -1591,7 +1629,8 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function (data) {
-                        $.cookie('employerFirstSignIn', 'false');
+                        $.cookie('employerFirstSignIn', true);
+                    console.log("employerFirstSignIn cookie created!");
                         $.cookie('company', true);
                         $('#update').modal('show');
                         $scope.status = "Company Updated Succesfully!"
@@ -1623,6 +1662,7 @@ app.controller('companyProfileController',
                 }).then(function () {
                         $.cookie('company', true);
 
+                        $.cookie('employerFirstSignIn', true);
 
                         tabType = 'company';
                         $('#update').modal('show');
@@ -1729,6 +1769,9 @@ app.controller('companyProfileController',
  */
 app.controller('candidatesController',
     function ($scope, $http, $location, $sce, $rootScope) {
+
+        if ($.cookie('userSignInType'))
+            $rootScope.userSignInType = $.cookie('userSignInType');
         $id = $location.path().split('/');
         $scope.jobId = $id[2];
         $scope.unreadCvs = function () {
@@ -1863,7 +1906,7 @@ app.controller('candidatesController',
         var stars = 0;
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
-            sendNotification('like', $scope.user_id, $scope.jobId, stars, $.cookie('jobTitle'));
+            //  sendNotification('like', $scope.user_id, $scope.jobId, stars, $.cookie('jobTitle'));
 
         }
 
@@ -1879,7 +1922,7 @@ app.controller('candidatesController',
             })
                 .then(function (data) {
                         //remove from list filter
-                        sendNotification('hire', userId, $scope.jobId, null, $.cookie('jobTitle'));
+                        // sendNotification('hire', userId, $scope.jobId, null, $.cookie('jobTitle'));
                         var canArr = $rootScope.likeCandidates;
                         canArr = canArr.filter(function (obj) {
                             return obj._id !== cvId;
@@ -1895,28 +1938,28 @@ app.controller('candidatesController',
 
         $scope.bringNextCandidate = function (type, description, id) {
             if (type == 'unliked')
-                sendNotification('unlike', $scope.user_id, $scope.jobId, description, $.cookie('jobTitle'));
-            $http({
-                url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
-                method: "POST",
-                data: {
-                    "cv_id": id,
-                    "status": {
-                        "current_status": type,
-                        "stars": stars,
-                        "description": description,
-                        "timestamp": new Date
+            //  sendNotification('unlike', $scope.user_id, $scope.jobId, description, $.cookie('jobTitle'));
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
+                    method: "POST",
+                    data: {
+                        "cv_id": id,
+                        "status": {
+                            "current_status": type,
+                            "stars": stars,
+                            "description": description,
+                            "timestamp": new Date
+                        },
+                        "user_id": $.cookie('user_id')
+
+                    }
+
+                }).then(function (data) {
+                        console.log("updateRateCV: ", data);
                     },
-                    "user_id": $.cookie('user_id')
-
-                }
-
-            }).then(function (data) {
-                    console.log("updateRateCV: ", data);
-                },
-                function (response) { // optional
-                    console.log("updateRateCV AJAX failed!");
-                });
+                    function (response) { // optional
+                        console.log("updateRateCV AJAX failed!");
+                    });
 
         }
 
@@ -1930,7 +1973,12 @@ var skills = [];
 app.controller('resumeController',
     function ($scope, $http, $location, $timeout, $rootScope) {
         $id = $location.path().split('/');
+
+        if ($.cookie('userSignInType'))
+            $rootScope.userSignInType = $.cookie('userSignInType');
+
         $("#predictAppend").hide();
+        $("#users").hide();
         // circle animation
         var circle, tmpColor;
         var id;
@@ -1938,9 +1986,7 @@ app.controller('resumeController',
             id = $id[5];
         else
             id = $id[4];
-var jobId;
-
-
+        var jobId;
 
 
         $scope.getUserJson = function () {
@@ -1954,11 +2000,12 @@ var jobId;
                 }
             })
                 .then(function (data) {
+                        $("#users").show();
                         if ($id[1] == "Unread")
-                            jobId = $id[4];
-                    else
-                            jobId = $id[3];
-                        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + jobId + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                            var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                        else
+                            var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + $.cookie('jobTitle') + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+
                         $(".navigation")[0].innerHTML = navigation;
                         $scope.user = data.data[0];
                         console.log(data.data[0].user._id);
@@ -1969,10 +2016,10 @@ var jobId;
                         $scope.user["stars"] = 0;
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
-                            sendNotification('seen', $scope.user.user._id, $id[2], null, $.cookie('jobTitle'));
+                            //sendNotification('seen', $scope.user.user._id, $id[2], null, $.cookie('jobTitle'));
                         }
 
-                    //sliders
+                        //sliders
                         angular.forEach(data.data[0].formula, function (value, key) {
                             if (key == '__v' || key == '_id')
                                 return;
@@ -1989,21 +2036,21 @@ var jobId;
                             $("#predictAppend").show();
                         }
 
-                    //formula bubbels
+                        //formula bubbels
                         if (data.data[0].formula)
                             if (data.data[0].formula.matching_requirements.grade > 0) {
                                 skills = [];
 
-                                        var skillsFromJson = data.data[0].formula.matching_requirements.details;
+                                var skillsFromJson = data.data[0].formula.matching_requirements.details;
 
-                                        $.each(skillsFromJson, function (k, v) {
-                                            skills.push({
-                                                text: v.name,
-                                                count: v.grade
-                                            });
-                                        })
-                                    bubbels();
-                                    }
+                                $.each(skillsFromJson, function (k, v) {
+                                    skills.push({
+                                        text: v.name,
+                                        count: v.grade
+                                    });
+                                })
+                                bubbels();
+                            }
                             else {
                                 $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
                             }
@@ -2015,10 +2062,11 @@ var jobId;
 
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
-            if ($id[1] == 'Unread')
-                sendNotification('like', $scope.user_id, $id[2], rateNumber, $.cookie('jobTitle'));
-            else
-                sendNotification('like', $scope.user_id, $id[3], rateNumber, $.cookie('jobTitle'));
+            /*
+             if ($id[1] == 'Unread')
+             //  sendNotification('like', $scope.user_id, $id[2], rateNumber, $.cookie('jobTitle'));
+             else
+             //  sendNotification('like', $scope.user_id, $id[3], rateNumber, $.cookie('jobTitle'));*/
         }
 
 
@@ -2048,9 +2096,9 @@ var jobId;
         var candidates;
         $scope.bringNextCandidate = function (type, description) {
             if (type == 'unliked')
-                sendNotification('unlike', $scope.user_id, $id[3], description, $.cookie('jobTitle'));
+            //  sendNotification('unlike', $scope.user_id, $id[3], description, $.cookie('jobTitle'));
 
-            var url;
+                var url;
             if ($id[1] == 'Like') {
                 candidates = $rootScope.likeCandidates;
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
@@ -2173,6 +2221,10 @@ var newLangClicked = false;
 var combinationDeleted = false;
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
         totalPriorotySum = 0;
+
+    if ($.cookie('userSignInType'))
+        $rootScope.userSignInType = $.cookie('userSignInType');
+
         nextCombinationKey = 0;
         langId = 0;
         newLangClicked = false;
@@ -2202,6 +2254,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         var savedCurrentCombination = false;
         var editJob = false;
         var sendForm = false;
+
+        angular.element(".removeCombination").hide();
+        angular.element(".buttonsAfterParse").hide();
         //edit job - get AJAX details
         $scope.getJobJson = function () {
             $(".fa-arrow-right").hide();
@@ -2363,10 +2418,11 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
                 $(".navigation")[0].innerHTML = navigation;
 
-                angular.element(".fa-pulse").hide();
                 editJob = true;
                 //setTimeout for 1 mil sec because there is a problem loading js after angular
                 setTimeout(function () {
+
+                    angular.element(".fa-pulse").hide();
                     var sliders = $("#sliders .slider");
                     sliders.each(function () {
                         var availableTotal = 100;
@@ -2437,6 +2493,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         //click on parse Orange button
         $scope.parseExperience = function () {
 
+            angular.element(".fa-spin").show();
             var parseExpereince;
             var parseExpereinceAdv;
             $http({
@@ -2453,7 +2510,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "text": $("#requirementsAdvantage").val(),
                             "words": data.data
                         };
-                        angular.element(".fa-spin").show();
                         var tempMust, tempAdv;
 
                         //Requerments Must
@@ -2461,6 +2517,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                             totalPriorotySum = 100;
 
+                            angular.element(".removeCombination").show();
+                            angular.element(".buttonsAfterParse").show();
                             $(".requirementsWrapper").show();
                             angular.element(".fa-spin").hide();
                             angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -2474,6 +2532,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 .then(function (data1) {
 
                                         combination = [];
+                                        angular.element(".removeCombination").show();
                                         angular.element(".fa-spin").hide();
                                         $(".requirementsWrapper").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -2501,6 +2560,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                         })
                                             .then(function (data1) {
 
+                                                    angular.element(".buttonsAfterParse").show();
                                                     angular.element(".fa-spin").hide();
                                                     $(".requirementsWrapper").show();
                                                     angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -2556,6 +2616,27 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
         //send form
         $scope.submitForm = function () {
+
+
+            //find duplicated languages
+            var repeat = false;
+            var repeatedLangs = [];
+            $.each(requirements, function (key, value) {
+                $.each(value, function (ke, va) {
+                    repeatedLangs = [];
+                    $.each(va, function (k, v) {
+                        if ($.inArray(v.name, repeatedLangs) == -1)
+                            repeatedLangs.push(v.name);
+                        else {
+                            $scope.status = 'Please Remove duplicated languages!';
+                            $('#sendJob').modal('show');
+                            return;
+                        }
+                    })
+                })
+            });
+
+
             $scope.status = 'Please wait';
             if (sumSliders == 100 && totalPriorotySum == 100) {
                 var academy = [];
@@ -2598,6 +2679,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     $scope.status = "Please fill Candidate Type";
                     return;
                 }
+
 
                 if ($id == 'job') {
                     var job = {
@@ -3352,23 +3434,22 @@ app.directive('circle', function ($timeout) {
     }
 });
 // focus on searchBox
-app.directive('profileimg', function ($compile) {
+app.directive('profileimg', function ($compile, $location, $rootScope) {
     return {
         replace: true,
-        restrict: 'EA',
+        restrict: 'E',
         link: function (scope, element, attr) {
             //userProfileImg
-            if ($.cookie('user') && $.cookie('profile')) {
                 var cookieImg = $.parseJSON($.cookie('user')).image;
                 var profile = $.cookie('profile');
                 var e = $compile(
                     '<a ng-href="' + profile + '"><img src="' + cookieImg + '" id="profileImg"></a>')(scope);
                 $compile(angular.element("#profilePage").replaceWith(e))(scope);
-            }
-
         }
     }
 });
+
+;
 
 app.directive('bsTooltip', function () {
     return {
@@ -3402,20 +3483,23 @@ function logout(out) {
         helper.disconnect();
     }
     if (window.location.href.indexOf("localhost") > -1)
-        window.location.href = '/cvmatcher/';
+        window.location.href = '/cvmatcher';
     else
         window.location.href = 'http://cvmatcher.esy.es';
 }
 
 
-window.onload = function () {
+//TODO: PW!
+/*
+ window.onload = function () {
 
-    pushwoosh.subscribeAtStart();
-};
+ pushwoosh.subscribeAtStart();
+ };
+ */
 
 
 $(document).ready(function () {
-    $('.navbar a').on('click', function(){
+    $('.navbar a').on('click', function () {
         $('.btn-navbar').click(); //bootstrap 2.x
         $('.navbar-toggle').click() //bootstrap 3.x by Richard
     });
@@ -3442,7 +3526,7 @@ $(document).ready(function () {
         trigger: 'click',
         content: '',
         placement: 'auto',
-        delay: {show: 200, hide: 400}
+        delay: {show: 400, hide: 1500}
     });
 
 });
@@ -3554,14 +3638,14 @@ function sockets() {
 
     var userId = $.cookie('user_id').toString();
     url = "ws://cvmatcher.herokuapp.com/" + userId;
-    connectToChat(url);
+    //TODO: OPEN SOCKET!
+    //connectToChat(url);
 }
 
 
 function connectToChat(url) {
 
     socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 3000});
-
 
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
@@ -3623,8 +3707,7 @@ function notifyMe(type, jobName) {
 }
 
 
-
-function bubbels(){
+function bubbels() {
     var bubbleChart = new d3.svg.BubbleChart({
         supportResponsive: true,
         //container: => use @default

@@ -55,11 +55,13 @@
                                    ng-bind-html="jobSJ.job.locations[0] | highlight:searchText">
                                     {{jobSJ.job.locations[0]}},
                                     {{jobSJ.job.date}}</p>
+
+                                <img class="arrow-down" src="images/arrow-down.png">
                             </article>
                             <img class="readUnread"
-                                 src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : ''}}"/>
+                                 ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : ''}}"/>
                             <img class="readUnread"
-                                 src="{{jobSJ.cv.status.current_status == 'unread' ? 'images/unreadV.png' : ''}}"/>
+                                 ng-src="{{jobSJ.cv.status.current_status == 'unread' ? 'images/unreadV.png' : ''}}"/>
                             <!--<img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                             <img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                                 -->
@@ -94,6 +96,9 @@
                         <p class="unlikeReason" ng-if="jobSJ.cv.status.current_status == 'unliked'">
                             Unlike Reason: {{jobSJ.cv.status.status_id.rate.description}}
                         </p>
+                        <p ng-if="jobSJ.cv.hired == true">
+                            <img class="hired" src="images/hired.png" />
+                        </p>
 
                         <section circle id="{{ 'circle-container-' + $index }}"
                                  data-compability="{{jobSJ.job.compatibility_level}}">
@@ -109,6 +114,8 @@
 
                                 <p>{{jobSJ.job.original_text["requirements"].split("|||")[1]}}</p>
                             </div>
+
+                            <img class="arrow-up" src="images/arrow-up.png">
                             <section>
 
                             </section>

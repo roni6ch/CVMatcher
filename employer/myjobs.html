@@ -10,14 +10,12 @@
 <div class="myjobsWrapper" ng-init="getMainJson();sort('-date');">
     <h3 class="navigation"></h3>
 
-    <profileimg></profileimg>
 
 <!-- natalie -->
     <div class="myJobsBox">
-        <a class="newJob" href="#/newJob">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <input type="button"  value="Add new Job"/>
-        </a>
+
+
+            <a id="popoverData" class="btn" href="#/{{popoverData}}" data-content="{{popOverDataContent}}" rel="popover" data-placement="bottom"  data-trigger="hover">+ Add new Job</a>
     <header>
         <h2>My Jobs</h2>
     </header>
