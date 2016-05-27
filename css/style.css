@@ -1765,8 +1765,11 @@ a:focus, a:hover {
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
 /************************************************************************************************************************************/
 /*natalie*/
-.arrow-down{
+.arrow-down,.arrow-up{
     margin: 0 auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 .arrow-up{
@@ -3061,4 +3064,20 @@ footer{
 
 .bubbleChart svg {
     background: #000000;
+}
+/*myjobs*/
+.fa-heart{color:#d43f3a;}
+.hired{    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    left: 37%;}
+
+
+/*myjobs employer*/
+#popoverData{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background-color: transparent;
+    color: white;
 }
