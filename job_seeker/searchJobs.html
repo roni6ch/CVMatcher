@@ -69,7 +69,7 @@
                         <section>
 
                         </section>
-                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'"
+                        <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-show="cv_exist == true"
                            ng-href="#/searchJobs/{{job['_id']}}/matchpage"
                            ng-click="saveData(job['original_text']['title'],job.compatibility_level);"
                            class="btn btn-default">Check
