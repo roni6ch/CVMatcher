@@ -1,11 +1,14 @@
+<div class="profileCover"></div>
+
+
 <div class="profileWrapper" ng-init="getMainJson()">
     <h3 class="navigation"></h3>
     <header>
-        <h2>Profile</h2>
+        <h2 class="profileTitle">Profile</h2>
     </header>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
-    <ul class="nav nav-tabs" ng-init="tab=0">
-        <li ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
+    <ul class="engineering" class="nav nav-tabs" ng-init="tab=0">
+        <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
             Information</a></li>
         <li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Professional
             Experience - CV</a></li>
@@ -45,7 +48,9 @@
                                                           value="{{jobSeeker['linkedin']}}">
 
 
-                <button type="submit" class="btn btn-default">Send</button>
+                <div class="buttonBorder">
+                    <button type="submit" class="btn btn-default">Send</button>
+                </div>
             </form>
         </div>
         <div ng-show="tab == 1" class="tabsContent fade in active">
@@ -249,25 +254,39 @@
                     </div>
                 </div>
 
+
+
+
+                <!-- timelineeeeeeeeeeeeeeeeeeeeeeeeeeeeee -->
+
                 <!-- TIMELINE -->
                 <section class="resumeYears">
-                    <div>
-                        <h3>Education</h3>
 
-                        <h3>Experience</h3>
-                    </div>
                     <div class="container">
+                        <div class="borderTimelineTitle1">
+                            <h3 >Education</h3>
+                        </div>
+                        <div class="borderTimelineTitle2">
+                            <h3 >Experience</h3>
+                        </div>
                         <div class="page-header">
                             <h1 id="timeline">Timeline</h1>
                         </div>
                         <!-- section of year -->
                         <ul class="timeline">
+
+
                             <li ng-repeat="experience in jobSeekerCV.original_text.history_timeline" id="cvLi{{$index}}"
                                 ng-class="{'timeline-inverted' : experience['type'] == 'experience'}">
                                 <div class="timeline-badge" ng-click="addEducation(experience.type)">
                                     <i class="fa fa-plus"></i>
                                 </div>
                                 <div class="timeline-panel">
+
+
+                                    <!-- onem new divvvvvvvvvvvv -->
+
+                                    <!-- <div class="borderBoxInTimeline"></div> -->
                                     <div class="timeline-heading">
                                         <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV($index)"></i>
                                         <label>From
@@ -365,11 +384,15 @@
                                         <div class="form-group">
                                             <label for="content">Content:</label>
                                             <textarea class="form-control" rows="3" name="content" id="content"
-                                                        ng-model="experience.text"  ng-change="changeContent(content)" required>{{experience.text}}</textarea>
+                                                      ng-model="experience.text"  ng-change="changeContent(content)" required>{{experience.text}}</textarea>
                                         </div>
 
                                         </p>
                                     </div>
+
+
+                                    <!-- close new div -->
+
                                 </div>
                             </li>
                         </ul>
@@ -382,22 +405,38 @@
                     </div>
                 </section>
                 <!-- TIMELINE END -->
+
                 <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
-                <input type="button" class="btn btn-warning parseExperienceButton" ng-click="parseMyExperience()"
-                       required
-                       value="Parse my Experience"/>
+
+                <div class="parseB">
+                    <input type="button" class="btn btn-warning parseExperienceButton" ng-click="parseMyExperience()"
+                           required
+                           value="Parse my Experience"/>
+                </div>
+
                 <section class="parseExperience"></section>
                 <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
                        ng-click="addMoreExperience()" value="+">
 
-                <button type="submit" id="submitAfterParse" class="btn btn-default disabled">Send
-                </button>
+
+                <div class="buttonBorder">
+
+                    <button type="submit" id="submitAfterParse" class="btn btn-default disabled">Send
+                    </button>
+                </div>
+
 
             </form>
         </div>
-    </div>
 
+
+    </div>
 </div>
+
+
+
+
+
 
 <!-- Modal -->
 <section class="modal fade" id="myModal" role="dialog">

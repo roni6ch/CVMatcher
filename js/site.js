@@ -212,12 +212,6 @@ app.config(function ($routeProvider) {
 }).run(function ($rootScope, $http, $location, $timeout) {
     $rootScope.userSignInType = '';
 
-
-    if (profile != '') {
-        $.cookie('user', JSON.stringify(profile));
-    }
-
-
     //notification window accept
     document.addEventListener('DOMContentLoaded', function () {
         if (Notification.permission !== "granted")
