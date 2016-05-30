@@ -1,7 +1,10 @@
+<div class="jobCover"></div>
+
+
 <div class="jobWrapper" ng-init="getJobJson()">
     <h3 class="navigation"></h3>
     <header>
-        <h2>Job</h2>
+        <h2 class="jobTitle">Job</h2>
     </header>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
 
@@ -75,7 +78,7 @@
                 <label>Degree Type:</label>
 
                 <div class="btn-group degree_type" data-toggle="buttons" required>
-                    <label class="btn btn-success"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.academy['degree_type'][0] == 'bsc' || jobDetails.academy['degree_type'][1] == 'bsc' || jobDetails.academy['degree_type'][2] == 'bsc'}">B.S.
                         (Bachelor
                         of
@@ -85,7 +88,7 @@
                                value="bsc">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
-                    <label class="btn btn-primary"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.academy['degree_type'][0] == 'msc' || jobDetails.academy['degree_type'][1] == 'msc' || jobDetails.academy['degree_type'][2] == 'msc'}">M.S.
                         (Master of
                         Science)
@@ -93,7 +96,7 @@
                                ng-checked="jobDetails.academy['degree_type'][0] == 'msc' || jobDetails.academy['degree_type'][1] == 'msc' || jobDetails.academy['degree_type'][2] == 'msc'">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
-                    <label class="btn btn-info"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.academy['degree_type'][0] == 'mres' || jobDetails.academy['degree_type'][1] == 'mres' || jobDetails.academy['degree_type'][2] == 'mres'}">M.Res.
                         (Master
                         of Research)
@@ -109,7 +112,7 @@
                 <label>Academy:</label>
 
                 <div class="btn-group academy" data-toggle="buttons" required>
-                    <label class="btn btn-success"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.academy['academy_type'][0] == 'university' || jobDetails.academy['academy_type'][1] == 'university'}">University
                         <input type="checkbox" name="academyOptions" id="academy1" autocomplete="off"
                                ng-checked="jobDetails.academy['academy_type'][0] == 'university' || jobDetails.academy['academy_type'][1] == 'university'"
@@ -117,7 +120,7 @@
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-primary"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.academy['academy_type'][0] == 'college' || jobDetails.academy['academy_type'][1] == 'college'}">College
                         <input type="checkbox" name="academyOptions" id="academy2" autocomplete="off" value="college"
                                ng-checked="jobDetails.academy['academy_type'][0] == 'college' || jobDetails.academy['academy_type'][1] == 'college'">
@@ -131,33 +134,33 @@
                 <label>Candidate Type:</label>
 
                 <div class="btn-group candidate_type" data-toggle="buttons" required>
-                    <label class="btn btn-success"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.candidate_type[0]=='student' || jobDetails.candidate_type[1]=='student' || jobDetails.candidate_type[2]=='student' || jobDetails.candidate_type[3]=='student' || jobDetails.candidate_type[4]=='student'}">Students
                         <input type="checkbox" autocomplete="off" value="student"
                                ng-checked="jobDetails.candidate_type[0]=='student' || jobDetails.candidate_type[1]=='student' || jobDetails.candidate_type[2]=='student' || jobDetails.candidate_type[3]=='student' || jobDetails.candidate_type[4]=='student'">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-primary"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.candidate_type[0]=='mothers' || jobDetails.candidate_type[1]=='mothers' || jobDetails.candidate_type[2]=='mothers' || jobDetails.candidate_type[3]=='mothers' || jobDetails.candidate_type[4]=='mothers'}">Mothers
                         <input type="checkbox" autocomplete="off" value="mothers"
                                ng-checked="jobDetails.candidate_type[0]=='mothers' || jobDetails.candidate_type[1]=='mothers' || jobDetails.candidate_type[2]=='mothers' || jobDetails.candidate_type[3]=='mothers' || jobDetails.candidate_type[4]=='mothers'">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-info"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.candidate_type[0]=='discharged' || jobDetails.candidate_type[1]=='discharged' || jobDetails.candidate_type[2]=='discharged' || jobDetails.candidate_type[3]=='discharged' || jobDetails.candidate_type[4]=='discharged'}">Discharged
                         <input type="checkbox" autocomplete="off" value="discharged"
                                ng-checked="jobDetails.candidate_type[0]=='discharged' || jobDetails.candidate_type[1]=='discharged' || jobDetails.candidate_type[2]=='discharged' || jobDetails.candidate_type[3]=='discharged' || jobDetails.candidate_type[4]=='discharged'">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
-                    <label class="btn btn-success"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.candidate_type[0]=='pensioners' || jobDetails.candidate_type[1]=='pensioners' || jobDetails.candidate_type[2]=='pensioners' || jobDetails.candidate_type[3]=='pensioners' || jobDetails.candidate_type[4]=='pensioners'}">Pensioners
                         <input type="checkbox" autocomplete="off" value="pensioners"
                                ng-checked="jobDetails.candidate_type[0]=='pensioners' || jobDetails.candidate_type[1]=='pensioners' || jobDetails.candidate_type[2]=='pensioners' || jobDetails.candidate_type[3]=='pensioners' || jobDetails.candidate_type[4]=='pensioners'">
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
-                    <label class="btn btn-primary"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.candidate_type[0]=='graduated' || jobDetails.candidate_type[1]=='graduated' || jobDetails.candidate_type[2]=='graduated' || jobDetails.candidate_type[3]=='graduated' || jobDetails.candidate_type[4]=='graduated'}">Graduate
                         <input type="checkbox" autocomplete="off" value="graduated"
                                ng-checked="jobDetails.candidate_type[0]=='graduated' || jobDetails.candidate_type[1]=='graduated' || jobDetails.candidate_type[2]=='graduated' || jobDetails.candidate_type[3]=='graduated' || jobDetails.candidate_type[4]=='graduated'">
@@ -180,7 +183,7 @@
                 <label>Scope of Position:</label>
 
                 <div class="btn-group scope_of_position" data-toggle="buttons" required>
-                    <label class="btn btn-success"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.scope_of_position[0]=='full' || jobDetails.scope_of_position[1]=='full' || jobDetails.scope_of_position[2]=='full'}">Full
                         Time
                         <input type="checkbox" autocomplete="off" value="full"
@@ -188,7 +191,7 @@
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-primary"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.scope_of_position[0]=='part' || jobDetails.scope_of_position[1]=='part' || jobDetails.scope_of_position[2]=='part'}">Part
                         Time
                         <input type="checkbox" autocomplete="off" value="part"
@@ -196,7 +199,7 @@
                         <span class="glyphicon glyphicon-ok"></span>
                     </label>
 
-                    <label class="btn btn-info"
+                    <label class="btn btn-default"
                            ng-class="{active:jobDetails.scope_of_position[0]=='hours' || jobDetails.scope_of_position[1]=='hours' || jobDetails.scope_of_position[2]=='hours'}">Hours
                         Time<input type="checkbox" autocomplete="off" value="hours"
                                    ng-checked="jobDetails.scope_of_position[0]=='hours' || jobDetails.scope_of_position[1]=='hours' || jobDetails.scope_of_position[2]=='hours'">
@@ -240,23 +243,23 @@
 
             <div class="form-group">
                 <label for="description">Description:</label>
-				<textarea class="form-control" rows="10" id="description" name="original_text" required
-                          ng-model="jobDetails.original_text['description']"
-                          placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
-                >{{jobDetails.original_text['description']}}</textarea>
+        <textarea class="form-control" rows="10" id="description" name="original_text" required
+                  ng-model="jobDetails.original_text['description']"
+                  placeholder="Please Type Description, Example: We are Apple Company, since 1960..."
+        >{{jobDetails.original_text['description']}}</textarea>
             </div>
 
             <div class="form-group requirements">
                 <label for="requirementsMust">Requirements - Must:</label>
-				<textarea class="form-control" rows="5" id="requirementsMust" required
-                          placeholder="Please write your Must Requirements"
-                          name="requirements">{{jobDetails.original_text['requirements'].split("|||")[0]}}</textarea>
+        <textarea class="form-control" rows="5" id="requirementsMust" required  ng-change="changeContent()" ng-model="requirements"
+                  placeholder="Please write your Must Requirements"
+                  name="requirements">{{jobDetails.original_text['requirements'].split("|||")[0]}}</textarea>
             </div>
             <div class="form-group requirements">
                 <label for="requirementsAdvantage">Requirements - Advantage:</label>
-				<textarea class="form-control" rows="5" id="requirementsAdvantage"
-                          placeholder="Please write your Advantage Requirements"
-                          name="requirements">{{jobDetails.original_text['requirements'].split("|||")[1]}}</textarea>
+        <textarea class="form-control" rows="5" id="requirementsAdvantage"
+                  placeholder="Please write your Advantage Requirements"
+                  name="requirements">{{jobDetails.original_text['requirements'].split("|||")[1]}}</textarea>
             </div>
 
             <div class="form-group experienceBeforeParse">
@@ -465,12 +468,13 @@
 
             <!-- TILL HERE - REQUERMENTS -->
             <div ng-include="'employer/jobparameters.html'"></div>
-            <div class="form-group">
+            <div class="buttonBorder" >
                 <!-- <button type="button" id="submitAfterParse" class="btn btn-warning disabled"  data-toggle="modal" data-target="#sendJob" ng-click="submitForm()"  >Send</button> -->
-                <button type="submit" id="submitAfterParse" class="btn btn-warning disabled">Send
+                <button type="submit" id="submitAfterParse" class="btn btn-default disabled">Send
                 </button>
             </div>
         </div>
+
     </form>
 </div>
 

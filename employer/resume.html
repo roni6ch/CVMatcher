@@ -17,6 +17,9 @@
                    ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
 
                 <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
+                <h5>{{user['user'].address}}</h5>
+                <h5>{{user['user'].email}}</h5>
+                <h5>{{user['user'].phone_number}}</h5>
                 <i id="candidateLike"
                    class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
                 <h5>{{user.sector}}</h5>

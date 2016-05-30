@@ -48,6 +48,7 @@
                                                           value="{{jobSeeker['linkedin']}}">
 
 
+
                 <div class="buttonBorder">
                     <button type="submit" class="btn btn-default">Send</button>
                 </div>
@@ -127,13 +128,13 @@
 
 
                     <div class="btn-group jobSeekerCVAcademy" required data-toggle="buttons">
-                        <label class="btn btn-success"  ng-init="University=false" ng-click="University=true"
+                        <label class="btn btn-default"  ng-init="University=false" ng-click="University=true"
                                ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'university'}">University
                             <input type="radio" name="options" id="option2" autocomplete="off" value="university" ng-checked="jobSeekerCV.academy['academy_type'][0] == 'university'">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-primary"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'college'}">College
                             <input type="radio" name="options" id="option1" autocomplete="off" value="college" ng-checked="jobSeekerCV.academy['academy_type'][0] == 'college'">
                             <span class="glyphicon glyphicon-ok"></span>
@@ -144,14 +145,14 @@
                     <label>Graduate:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success" ng-init="honors=false" ng-click="honors=true"
+                        <label class="btn btn-default" ng-init="honors=false" ng-click="honors=true"
                                ng-class="{active:jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true}">Graduate
                             with honors
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-primary" ng-init="score=false" ng-click="score=true"
+                        <label class="btn btn-default" ng-init="score=false" ng-click="score=true"
                                ng-class="{active:jobSeekerCV.personal_properties['psychometric_above_680'] == true}">SAT
                             score above 680
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['psychometric_above_680'] == true">
@@ -164,14 +165,14 @@
                     <label>Army:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success" ng-init="military=false" ng-click="military=true"
+                        <label class="btn btn-default" ng-init="military=false" ng-click="military=true"
                                ng-class="{active:jobSeekerCV.personal_properties['full_army_service'] == true}">Full
                             military service
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['full_army_service'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-primary" ng-init="Officer=false" ng-click="Officer=true"
+                        <label class="btn btn-default" ng-init="Officer=false" ng-click="Officer=true"
                                ng-class="{active:jobSeekerCV.personal_properties['officer'] == true}">Officer in the
                             army
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['officer'] == true">
@@ -184,7 +185,7 @@
                     <label>High School:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success" ng-init="graduate=false" ng-click="graduate=true"
+                        <label class="btn btn-default" ng-init="graduate=false" ng-click="graduate=true"
                                ng-class="{active:jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true}">High
                             School graduate
                             with honors
@@ -198,20 +199,20 @@
                     <label>General:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success"  ng-init="experience=false" ng-click="experience=true"
+                        <label class="btn btn-default"  ng-init="experience=false" ng-click="experience=true"
                                ng-class="{active:jobSeekerCV.personal_properties['above_two_years_experience'] == true}">2+
                             experience in the field of study
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['above_two_years_experience'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-primary" ng-init="foreign=false" ng-click="foreign=true"
+                        <label class="btn btn-default" ng-init="foreign=false" ng-click="foreign=true"
                                ng-class="{active:jobSeekerCV.personal_properties['multilingual'] == true}">Speak
                             foreign languages
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['multilingual'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
-                        <label class="btn btn-info" ng-init="volunteering=false" ng-click="volunteering=true"
+                        <label class="btn btn-default" ng-init="volunteering=false" ng-click="volunteering=true"
                                ng-class="{active:jobSeekerCV.personal_properties['volunteering'] == true}">Society
                             volunteering
                             <input type="checkbox" autocomplete="off" ng-checked="jobSeekerCV.personal_properties['volunteering'] == true">
@@ -232,20 +233,20 @@
                     <label>Scope of position:</label>
 
                     <div class="btn-group jobSeekerCVScopeOfPosition" data-toggle="buttons" name="scope_of_position" required>
-                        <label class="btn btn-success" value="full"
+                        <label class="btn btn-default" value="full"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'full' || jobSeekerCV.scope_of_position[1] == 'full' || jobSeekerCV.scope_of_position[2] == 'full'}">Full
                             Time
                             <input type="checkbox" autocomplete="off" value="full" ng-checked="jobSeekerCV.scope_of_position[0] == 'full' || jobSeekerCV.scope_of_position[1] == 'full' || jobSeekerCV.scope_of_position[2] == 'full'">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-primary" value="part"
+                        <label class="btn btn-default" value="part"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'part'  || jobSeekerCV.scope_of_position[1] == 'part' || jobSeekerCV.scope_of_position[2] == 'part'}">Part
                             Time
                             <input type="checkbox" autocomplete="off" value="part"  ng-checked="jobSeekerCV.scope_of_position[0] == 'part' || jobSeekerCV.scope_of_position[1] == 'part' || jobSeekerCV.scope_of_position[2] == 'part'">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
-                        <label class="btn btn-info" value="hours"
+                        <label class="btn btn-default" value="hours"
                                ng-class="{active:jobSeekerCV.scope_of_position[0] == 'hours'  || jobSeekerCV.scope_of_position[1] == 'hours' || jobSeekerCV.scope_of_position[2] == 'hours'}">By
                             Hours
                             <input type="checkbox" autocomplete="off" value="hours" ng-checked="jobSeekerCV.scope_of_position[0] == 'hours' || jobSeekerCV.scope_of_position[1] == 'hours' || jobSeekerCV.scope_of_position[2] == 'hours'">
@@ -431,6 +432,7 @@
 
 
     </div>
+
 </div>
 
 
