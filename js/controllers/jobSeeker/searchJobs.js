@@ -12,11 +12,30 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     $rootScope.userSignInType = "jobSeeker";
 
-    $scope.cv_exist = !!localStorage.getItem("current_cv");
-
 
     $scope.getMainJson = function () {
+
+
         $http({
+            url: 'https://cvmatcher.herokuapp.com/getUser',
+            method: "POST",
+            data: {
+                "user_id": localStorage.getItem('user_id')
+            }
+        }).then(function (data) {
+            console.log(data.data[0]);
+            if (typeof data.data[0].current_cv == 'undefined') {
+                $scope.cv_exist = false;
+            }
+            else {
+                $scope.cv_exist = true;
+            }
+
+        });
+
+
+
+            $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
             data: {

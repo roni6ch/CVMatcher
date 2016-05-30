@@ -131,8 +131,10 @@ app.directive('droppableMust', function ($rootScope) {
 
             if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
                 $.each(requirements[nextCombinationKey].combination, function (key, val) {
-                    if (val.mode == 'must')
+                    if (val.mode == 'must') {
                         totalPriorotySum += parseInt(val.percentage);
+
+                    }
                 });
             }
             else if (requirements.length == 0) {
@@ -156,7 +158,6 @@ app.directive('droppableMust', function ($rootScope) {
                     'drag': true
                 })
             }
-            console.log("totalPriorotySum: " + totalPriorotySum);
 
 
         }
@@ -298,4 +299,8 @@ app.directive('droppableMust', function ($rootScope) {
             }
         }
     }
-})
+});
+
+
+
+

@@ -17,17 +17,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     $('#popoverData').popover();
     var archive;
     $id = $location.path().split('/');
-    if (localStorage.getItem("company") === null) {
-        $scope.popoverData = 'companyProfile';
-        $scope.popOverDataContent = 'Please Update Your Profile First!';
-        $("#popoverData").css("text-decoration", "line-through");
-    }
-    else {
-        $(".newJob").css("pointer-events", "auto");
-        $("#popoverData").css("text-decoration", "none");
-        $scope.popoverData = 'newJob';
-        $scope.popOverDataContent = 'Add new Job to System';
-    }
+
     if ($id[1] == 'myjobs') {
         archive = false;
         $scope.jobPage = "myJobs";
@@ -43,6 +33,32 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     }
     var jobsArr = [];
     $scope.getMainJson = function () {
+
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/getUser',
+            method: "POST",
+            data: {
+                "user_id": localStorage.getItem('user_id')
+            }
+        }).then(function (data) {
+            if (typeof data.data[0].company == 'undefined') {
+                $scope.popoverData = 'companyProfile';
+                $scope.popOverDataContent = 'Please Update Your Profile First!';
+                $("#popoverData").css("text-decoration", "line-through");
+            }
+            else {
+                $(".newJob").css("pointer-events", "auto");
+                $("#popoverData").css("text-decoration", "none");
+                $scope.popoverData = 'newJob';
+                $scope.popOverDataContent = 'Add new Job to System';
+            }
+
+
+        });
+
+
+
+
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
             method: "POST",
@@ -54,7 +70,6 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         })
             .then(function (data) {
                     $scope.myjobs = data.data;
-                    console.log(data.data);
                     jobsArr = data.data;
                     angular.element(".fa-pulse").hide();
                     //fix date string

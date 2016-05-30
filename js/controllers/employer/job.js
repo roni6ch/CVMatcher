@@ -15,8 +15,8 @@ var combinationDeleted = false;
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
         totalPriorotySum = 0;
 
-    //noinspection JSValidateTypes,JSValidateTypes
-    angular.element("#profileImg").parent().attr("href", '#/companyProfile');
+        //noinspection JSValidateTypes,JSValidateTypes
+        angular.element("#profileImg").parent().attr("href", '#/companyProfile');
         if (localStorage.getItem("userSignInType"))
             $rootScope.userSignInType = localStorage.getItem("userSignInType");
 
@@ -48,6 +48,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         var savedCurrentCombination = false;
         var editJob = false;
         var sendForm = false;
+    var languagesAfterParseForKeyWords = [];
 
         angular.element(".removeCombination").hide();
         angular.element(".buttonsAfterParse").hide();
@@ -86,7 +87,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         if (data.data[0].requirements.length > 1) {
                             $(".fa-arrow-right").show();
                         }
-
+console.log(data.data);
                         if (data.data[0].requirements.length > 0) {
                             $.each(data.data[0].requirements, function (k, v) {
                                 i++;
@@ -101,8 +102,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                             'percentage': parseInt(val.percentage),
                                             'drag': true
                                         });
-
-                                        combination.push(tempMustLangs[0]);
+                                        languagesAfterParseForKeyWords.push(val.name);
+                                        combination.push(tempMustLangs[tempMustLangs.length-1]);
                                     }
                                     else if (val.mode == 'adv') {
                                         tempAdvLangs.push({
@@ -113,7 +114,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                             'percentage': parseInt(val.percentage),
                                             'drag': true
                                         });
-                                        combination.push(tempAdvLangs[0]);
+                                        languagesAfterParseForKeyWords.push(val.name);
+                                        combination.push(tempAdvLangs[tempAdvLangs.length-1]);
                                     }
                                     else {
                                         tempOrLangs.push({
@@ -124,7 +126,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                             'percentage': parseInt(val.percentage),
                                             'drag': true
                                         });
-                                        combination.push(tempOrLangs[0]);
+                                        languagesAfterParseForKeyWords.push(val.name);
+                                        combination.push(tempOrLangs[tempOrLangs.length-1]);
                                     }
 
                                 });
@@ -140,8 +143,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 tempOrLangs = [];
 
                                 requirements.push({'combination': combination});
-
                                 combination = [];
+
 
 
                             });
@@ -275,7 +278,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             //if user clickd ok then move to search jobs page - need to wait to close modal
             if (sumSliders == 100 && sendForm == true) {
                 $timeout(function () {
-                    location.replace("/#/myjobs");
+                    location.replace("#/myjobs");
                 }, 1000);
             }
             else {
@@ -307,7 +310,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                         //Requerments Must
                         if ($id == 'job') {
-
                             totalPriorotySum = 100;
 
                             angular.element(".removeCombination").show();
@@ -382,6 +384,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
                                         requirements.push({'combination': combination});
+                                    console.log(requirements);
 
 
                                     },
@@ -405,8 +408,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             angular.element(".operators").removeClass("hidden");
             angular.element(".experienceBeforeParse").addClass(
                 "hidden");
-            angular.element(".requirements").addClass(
-                "hidden");
 
         };
 
@@ -416,10 +417,12 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
             //find duplicated languages
             var repeatedLangs = [];
+            var languagesNames = [];
             $.each(requirements, function (key, value) {
                 $.each(value, function (ke, va) {
                     repeatedLangs = [];
                     $.each(va, function (k, v) {
+                        languagesNames.push(v.name);
                         if ($.inArray(v.name, repeatedLangs) == -1)
                             repeatedLangs.push(v.name);
                         else {
@@ -430,6 +433,30 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     })
                 })
             });
+
+            //newKeyWords
+            var difference = [];
+
+            jQuery.grep(languagesNames, function(el) {
+                if (jQuery.inArray(el, languagesAfterParseForKeyWords) == -1) difference.push(el);
+            });
+
+console.log(difference);
+            $http({
+                url: "https://cvmatcher.herokuapp.com/addKeyWords",
+                method: "POST",
+                data: {
+                    "sector": $(".sector :selected").val(),
+                    "words_list": difference
+                }
+            })
+                .then(function (data) {
+                        console.log(data);
+                    },
+                    function (response) { // optional
+                        console.log("addKeyWords send form AJAX failed!");
+                        console.log(response);
+                    });
 
 
             $scope.status = 'Please wait';
@@ -519,7 +546,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         "original_text": {
                             "title": $(".jobName").val(),
                             "description": $("#description").html(),
-                            "requirements": "Must: " + $("#requirementsMust").val() + " ||| Advantage:" + $("#requirementsAdvantage").val()
+                            "requirements": "Must: " + $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
                         "locations": [$("#geocomplete").val()],
@@ -561,7 +588,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             console.log("addMatchingObject send form AJAX failed!");
                             console.log(response);
                         });
-                //$http.post('http://cvmatcher.herokuapp.com/employer/setNewJob', JSON.stringify($scope.form, ,employerId:$id, time:dformat)).success(function(){/*success callback*/});
             }
             if (sumSliders != 100) {
 
@@ -921,7 +947,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.minusButton = function (id) {
 
 
-            if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0){
+            if ($("input[data-pr-num='" + id + "']").val() > 0 && totalPriorotySum > 0) {
                 $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) - 10);
                 totalPriorotySum -= 10;
                 $(".plusButton").attr('disabled', false);

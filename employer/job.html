@@ -251,7 +251,7 @@
 
             <div class="form-group requirements">
                 <label for="requirementsMust">Requirements - Must:</label>
-        <textarea class="form-control" rows="5" id="requirementsMust" required  ng-change="changeContent()" ng-model="requirements"
+        <textarea class="form-control" rows="5" id="requirementsMust" required  ng-change="changeContent()" ng-model="jobDetails.original_text['requirements'].split('|||')[0]"
                   placeholder="Please write your Must Requirements"
                   name="requirements">{{jobDetails.original_text['requirements'].split("|||")[0]}}</textarea>
             </div>
