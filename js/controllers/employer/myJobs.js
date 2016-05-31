@@ -9,11 +9,12 @@
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http) {
 
 
-    if (localStorage.getItem("userSignInType"))
-        $rootScope.userSignInType = localStorage.getItem("userSignInType");
     $rootScope.userSignInType = "employer";
     $scope.company = company;
+    //noinspection JSValidateTypes
     angular.element("#profileImg").parent().attr("href", '#/companyProfile');
+    angular.element("#profileImg").parent().attr("ng-href", '#/companyProfile');
+
     $('#popoverData').popover();
     var archive;
     $id = $location.path().split('/');
@@ -41,6 +42,8 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
                 "user_id": localStorage.getItem('user_id')
             }
         }).then(function (data) {
+
+            angular.element("#profileImg").parent().show();
             if (typeof data.data[0].company == 'undefined') {
                 $scope.popoverData = 'companyProfile';
                 $scope.popOverDataContent = 'Please Update Your Profile First!';

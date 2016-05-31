@@ -1,10 +1,82 @@
-<script>
-    // Defines the configuration options, these must be set before you load
-    // the platform.js file.
-    window.___gcfg = {
-        lang: 'en-US',
-        parsetags: 'explicit'    //    DS?: can the onload param be removed from the line below and added here?
-                                 //         E.g., 'explicit','onload'
-    }
-</script>
-<script src="https://apis.google.com/js/platform.js?onload=onLoadCallback" async defer></script>
+
+<html>
+<head>
+    <title>jQuery + Canvas Scratch Off</title>
+    <style type="text/css">
+        #canvas,#overlay {
+            border: 1px solid #222;
+            cursor: pointer;
+            position:absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        /*
+         * jQuery + Canvas Scratch Off
+         * @author admin@catchmyfame.com - http://www.catchmyfame.com
+         * @version 1.0
+         * @date June 28, 2011
+         * @copyright (c) 2011 admin@catchmyfame.com (www.catchmyfame.com)
+         * @license CC Attribution-NoDerivs 3.0 Unported - http://creativecommons.org/licenses/by-nc-sa/3.0/
+         */
+        var topImage = new Image();
+        var bottomImage = new Image();
+        var coinImage = new Image();
+        bottomImage.src = "https://pixabay.com/static/uploads/photo/2015/10/01/21/39/background-image-967820_960_720.jpg";
+        coinImage.src = "http://localhost/cvmatcher/images/logo.png";
+
+        function init()
+        {
+            var isMouseDown = false;
+            var canvasWidth = $('#canvas').width();
+            var canvasHeight = $('#canvas').height();
+            $('body').append('<canvas id="overlay" width="'+canvasWidth+'" height="'+canvasHeight+'" />'); // Create the coin overlay canvas
+            var overlayctx = $('canvas')[1].getContext('2d');
+            overlayctx.drawImage(coinImage, 0,0);
+
+
+            function scratchOff(x, y)
+            {
+                mainctx.save();
+                mainctx.beginPath();
+                mainctx.arc(x,y,radius,0,Math.PI*2,false); // we don't fill or stroke the arc intentionally
+                mainctx.clip();
+                mainctx.drawImage(bottomImage, 0, 0);
+                mainctx.restore();
+            }
+
+            $('#overlay').mousedown(function(e){
+                isMouseDown = true;
+                var relX = e.pageX - this.offsetLeft;
+                var relY = e.pageY - this.offsetTop;
+                scratchOff(relX, relY, true);
+            });
+            $('#overlay').mousemove(function(e){
+                var relX = e.pageX - this.offsetLeft;
+                var relY = e.pageY - this.offsetTop;
+                overlayctx.clearRect(0,0,canvasWidth,canvasHeight);
+                overlayctx.drawImage(coinImage, relX-radius, relY-radius);
+                if (isMouseDown) scratchOff(relX, relY, false);
+            });
+            $('#overlay').mouseup(function(e){
+                isMouseDown = false;
+            });
+
+            var mainctx = $('canvas')[0].getContext('2d');
+            var radius = 15;
+            topImage.onload = function(){
+                mainctx.drawImage(topImage, 0, 0);
+            };
+            topImage.src = "http://passeurdesciences.blog.lemonde.fr/files/2015/12/eit028.jpg";
+        }
+    </script>
+</head>
+
+<body onload="init()">
+
+<canvas id="canvas" width="300" height="225"></canvas>
+
+</body>
+</html>

@@ -48,7 +48,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         var savedCurrentCombination = false;
         var editJob = false;
         var sendForm = false;
-    var languagesAfterParseForKeyWords = [];
+        var languagesAfterParseForKeyWords = [];
 
         angular.element(".removeCombination").hide();
         angular.element(".buttonsAfterParse").hide();
@@ -87,7 +87,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         if (data.data[0].requirements.length > 1) {
                             $(".fa-arrow-right").show();
                         }
-console.log(data.data);
+                        console.log(data.data);
                         if (data.data[0].requirements.length > 0) {
                             $.each(data.data[0].requirements, function (k, v) {
                                 i++;
@@ -103,7 +103,7 @@ console.log(data.data);
                                             'drag': true
                                         });
                                         languagesAfterParseForKeyWords.push(val.name);
-                                        combination.push(tempMustLangs[tempMustLangs.length-1]);
+                                        combination.push(tempMustLangs[tempMustLangs.length - 1]);
                                     }
                                     else if (val.mode == 'adv') {
                                         tempAdvLangs.push({
@@ -115,7 +115,7 @@ console.log(data.data);
                                             'drag': true
                                         });
                                         languagesAfterParseForKeyWords.push(val.name);
-                                        combination.push(tempAdvLangs[tempAdvLangs.length-1]);
+                                        combination.push(tempAdvLangs[tempAdvLangs.length - 1]);
                                     }
                                     else {
                                         tempOrLangs.push({
@@ -127,7 +127,7 @@ console.log(data.data);
                                             'drag': true
                                         });
                                         languagesAfterParseForKeyWords.push(val.name);
-                                        combination.push(tempOrLangs[tempOrLangs.length-1]);
+                                        combination.push(tempOrLangs[tempOrLangs.length - 1]);
                                     }
 
                                 });
@@ -144,7 +144,6 @@ console.log(data.data);
 
                                 requirements.push({'combination': combination});
                                 combination = [];
-
 
 
                             });
@@ -172,7 +171,7 @@ console.log(data.data);
                             $(this).empty().slider({
                                 value: data.data[0].formula[formulaJson[i++]],
                                 min: 0,
-                                max: 100,
+                                max: data.data[0].formula[formulaJson[i]],
                                 range: "min",
                                 step: 10,
                                 slide: function (event, ui) {
@@ -195,9 +194,10 @@ console.log(data.data);
                                         sliders.not(this).each(function () {
                                             var t = $(this),
                                                 value = t.slider("option", "value");
+
                                             var sum = +Number(+max + +value);
                                             t.slider("option", "max", sum)
-                                                .siblings().text(value + '/' + sum);
+                                                .siblings().text(value + '/' + sum + ' Left');
                                             t.slider('value', value);
                                         });
                                     }
@@ -205,20 +205,23 @@ console.log(data.data);
                             });
                         });
 
+                        var slider = $(".academySlider");
                     });
             }
             //im in newJob - init parameters
             else {
                 url = 'https://cvmatcher.herokuapp.com/addMatchingObject';
-                var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>"
-                $(".navigation")[0].innerHTML = navigation;
+                $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>";
 
                 editJob = true;
-                //setTimeout for 1 mil sec because there is a problem loading js after angular
-                setTimeout(function () {
+                angular.element(".fa-pulse").hide();
 
-                    angular.element(".fa-pulse").hide();
+                //setTimeout  because there is a problem loading js after angular
+                $timeout(function () {
+
+                    angular.element(".fa-spinner").hide();
                     var sliders = $("#sliders").find(".slider");
+                    console.log("Df");
                     sliders.each(function () {
                         var availableTotal = 100;
                         $(this).slider({
@@ -257,9 +260,10 @@ console.log(data.data);
                             }
                         })
                     })
-                }, 100);
+                });
             }
         };
+
 
         $scope.changeContent = function () {
 
@@ -384,7 +388,7 @@ console.log(data.data);
 
 
                                         requirements.push({'combination': combination});
-                                    console.log(requirements);
+                                        console.log(requirements);
 
 
                                     },
@@ -437,11 +441,11 @@ console.log(data.data);
             //newKeyWords
             var difference = [];
 
-            jQuery.grep(languagesNames, function(el) {
+            jQuery.grep(languagesNames, function (el) {
                 if (jQuery.inArray(el, languagesAfterParseForKeyWords) == -1) difference.push(el);
             });
 
-console.log(difference);
+            console.log(difference);
             $http({
                 url: "https://cvmatcher.herokuapp.com/addKeyWords",
                 method: "POST",
@@ -599,7 +603,6 @@ console.log(difference);
                 $scope.status = "Please SUM Prioroty to 100";
             }
         };
-
 
         /***    FROM HERE THE REQUERMENTS   ***/
 
@@ -970,11 +973,6 @@ console.log(difference);
 
             }
 
-        }
-
-
-        ;
-
-
+        };
     }
 );

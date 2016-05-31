@@ -244,4 +244,7 @@ app.controller('resumeController',
         }
 
 
+
+
+
     });

@@ -9,6 +9,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     //noinspection JSValidateTypes,JSValidateTypes
     angular.element("#profileImg").parent().attr("href", '#/Profile');
+    angular.element("#profileImg").parent().attr("ng-href", '#/Profile');
 
     $rootScope.userSignInType = "jobSeeker";
 

@@ -22,23 +22,26 @@ var updateSignIn = function () {
  * This method sets up the sign-in listener after the client library loads.
  */
 function startApp() {
-    gapi.load('auth2', function () {
-        gapi.client.load('plus', 'v1').then(function () {
-            gapi.signin2.render('signin-button', {
-                scope: 'https://www.googleapis.com/auth/userinfo.email',
-                fetch_basic_profile: false
-            });
-            gapi.auth2.init({
-                fetch_basic_profile: false,
-                scope: 'https://www.googleapis.com/auth/userinfo.email'
-            }).then(
-                function () {
-                    auth2 = gapi.auth2.getAuthInstance();
-                    auth2.isSignedIn.listen(updateSignIn);
-                    auth2.then(updateSignIn);
+    if (loadedPlatformScript == false) {
+        loadedPlatformScript = true;
+        gapi.load('auth2', function () {
+            gapi.client.load('plus', 'v1').then(function () {
+                gapi.signin2.render('signin-button', {
+                    scope: 'https://www.googleapis.com/auth/userinfo.email',
+                    fetch_basic_profile: false
                 });
+                gapi.auth2.init({
+                    fetch_basic_profile: false,
+                    scope: 'https://www.googleapis.com/auth/userinfo.email'
+                }).then(
+                    function () {
+                        auth2 = gapi.auth2.getAuthInstance();
+                        auth2.isSignedIn.listen(updateSignIn);
+                        auth2.then(updateSignIn);
+                    });
+            });
         });
-    });
+    }
 }
 
 helper = (function () {
@@ -64,6 +67,14 @@ helper = (function () {
         disconnect: function () {
             // Revoke the access token.
             auth2.disconnect();
+            localStorage.removeItem('user');
+            localStorage.removeItem('profile');
+            localStorage.removeItem('userSignInType');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('company');
+            localStorage.removeItem('employerFirstSignIn');
+            localStorage.removeItem('current_cv');
+            localStorage.removeItem('jobSeekerFirstSignIn');
             console.log('User sign out.');
         },
 
@@ -80,7 +91,7 @@ helper = (function () {
                     image: profile["image"].url,
                     emails: profile.emails[0].value
                 };
-                localStorage.setItem('user',  JSON.stringify(user));
+                localStorage.setItem('user', JSON.stringify(user));
                 $("#profileImg").attr("src", $.parseJSON(localStorage.getItem('user')).image);
                 location.replace("#/usersLogin");
 
@@ -92,13 +103,22 @@ helper = (function () {
     };
 })();
 
+var auth2;
 //google signOut and LogUOut
 function logout(out) {
-    console.log(out);
     if (out == 'logout') {
-
-        var auth2 = gapi.auth2.getAuthInstance();
+        console.log(auth2);
+        //  auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
+
+            localStorage.removeItem('user');
+            localStorage.removeItem('profile');
+            localStorage.removeItem('userSignInType');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('company');
+            localStorage.removeItem('employerFirstSignIn');
+            localStorage.removeItem('current_cv');
+            localStorage.removeItem('jobSeekerFirstSignIn');
             console.log('User logout out.');
         });
 
@@ -106,9 +126,9 @@ function logout(out) {
     else {
         helper.disconnect();
     }
-    /* if (window.location.href.indexOf("localhost") > -1)
-     window.location.href = '/cvmatcher';
-     else
-     window.location.href = 'http://cvmatcher.esy.es';*/
+    if (window.location.href.indexOf("localhost") > -1)
+        window.location.href = '/cvmatcher';
+    else
+        window.location.href = 'http://cvmatcher.esy.es';
 }
 

@@ -18,8 +18,8 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/hammer.min.js"></script>
     <script src="js/jquery.linkedsliders.min.js"></script>
-<!--
-    <script src="js/reconnecting-websocket.min.js"></script>-->
+    <!--
+        <script src="js/reconnecting-websocket.min.js"></script>-->
     <!--[if !IE]><!--><!--
     <script src="js/pushwoosh-web-pushes-http-sdk.js?pw_application_code=C6CEE-FFEC9"></script>-->
     <!--<![endif]-->
@@ -98,11 +98,11 @@
 
 <div class="navBar">
     <div>
-        <a  ng-href="#/usersLogin" id="logo"><img src="images/logo.png"></a>
+        <a ng-href="#/usersLogin" id="logo"><img src="images/logo.png"></a>
     </div>
     <div data-popover="true" data-html=true
          data-content="<a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>">
-        <div id="profilePage" ></div>
+        <div id="profilePage"></div>
         <profileimg/>
     </div>
     <!-- Img -->
@@ -126,6 +126,7 @@
 
 <div class="wrapper">
     <div ng-view>
+        <check-google-log-in/>
     </div>
 </div>
 <footer>

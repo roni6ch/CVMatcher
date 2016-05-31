@@ -86,6 +86,8 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
     $scope.userType = function (type) {
         if (type == 'employer') {
+
+            localStorage.setItem("profile","#/companyProfile");
             localStorage.setItem("userSignInType",'employer');
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -94,18 +96,10 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     "user_id": localStorage.getItem('user_id')
                 }
             }).then(function (data) {
-                console.log(data.data[0]);
                 if (typeof data.data[0].company == 'undefined') {
-                    $scope.popoverData = 'companyProfile';
-                    $scope.popOverDataContent = 'Please Update Your Profile First!';
-                    $("#popoverData").css("text-decoration", "line-through");
                     location.replace("#/companyProfile");
                 }
                 else {
-                    $(".newJob").css("pointer-events", "auto");
-                    $("#popoverData").css("text-decoration", "none");
-                    $scope.popoverData = 'newJob';
-                    $scope.popOverDataContent = 'Add new Job to System';
                     location.replace("#/myjobs");
                 }
             });
@@ -115,6 +109,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
         else if (type == 'jobSeeker') {
             localStorage.setItem("userSignInType",'jobSeeker');
 
+            localStorage.setItem("profile","#/Profile");
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
                 method: "POST",
@@ -122,7 +117,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     "user_id": localStorage.getItem('user_id')
                 }
             }).then(function (data) {
-                console.log(data.data[0]);
                 if (typeof data.data[0]['current_cv'] == 'undefined') {
                     location.replace("#/Profile");
                 }

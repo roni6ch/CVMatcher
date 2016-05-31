@@ -41,6 +41,7 @@ app
                             console.log(data.data[0]);
                             if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                                 var currentId = data.data[0].current_cv;
+                                cvJson = true;
                                 localStorage.setItem("current_cv",currentId);
                                 $http({
                                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
@@ -55,7 +56,6 @@ app
                                             console.log(data);
                                             myKeyWords = [];
                                             $scope.jobSeekerCV = data.data[0];
-                                            cvJson = true;
                                             if ($scope.jobSeekerCV.original_text.history_timeline.length == 0) {
                                                 $scope.addEducation('education');
                                                 $scope.addEducation('employment');
@@ -493,10 +493,13 @@ app
                             localStorage.setItem("jobSeekerFirstSignIn",true);
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
-                            console.log("data: ", data);
                             closeModal = true;
+                        if (cvJson == false) {
+                            //first time user cv
                             var currentId = data.data.current_cv;
-                            localStorage.setItem("current_cv",currentId);
+                            console.log(data.data);
+                            localStorage.setItem("current_cv", currentId);
+                        }
                         },
                         function (response) { // optional
                             console.log("jobSeekerJobs send form AJAX failed!");

@@ -19,6 +19,16 @@ app.directive("compileGoogle", function ($compile) {
     }
 });
 
+var loadedPlatformScript = false;
+app.directive("checkGoogleLogIn", function () {
+    return {
+        link: function () {
+            $.getScript("https://apis.google.com/js/client:platform.js?onload=startApp");
+
+        }
+    }
+});
+
 // focus on searchBox
 app.directive('focus', function () {
     return {
@@ -60,13 +70,13 @@ app.directive('circle', function ($timeout) {
     }
 });
 // focus on searchBox
-app.directive('profileimg', function ($compile, $location, $rootScope) {
+app.directive('profileimg', function ($compile) {
     return {
         replace: true,
         restrict: 'E',
-        link: function (scope, element, attr) {
+        link: function (scope) {
             //userProfileImg
-            if (localStorage.getItem("user")) {
+            if (localStorage.getItem("user") !== null) {
                 var cookieImg = $.parseJSON(localStorage.getItem("user")).image;
                 var profile = localStorage.getItem("profile");
                 var e = $compile(

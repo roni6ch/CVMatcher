@@ -18,7 +18,6 @@ app.config(function ($routeProvider) {
             }).when('/usersLogin', {
             templateUrl: 'usersLogin.html',
             controller: 'usersLoginController'
-
         }).when('/myjobs', {
             templateUrl: 'employer/myjobs.html',
             controller: 'myjobsController',
