@@ -108,7 +108,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
         }
         else if (type == 'jobSeeker') {
             localStorage.setItem("userSignInType",'jobSeeker');
-
             localStorage.setItem("profile","#/Profile");
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',

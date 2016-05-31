@@ -54,7 +54,7 @@ app.controller('resumeController',
                         $scope.user["stars"] = 0;
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
-                            //sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"));
+                            sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"));
                         }
 
                         //sliders
@@ -101,11 +101,11 @@ app.controller('resumeController',
 
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
-            /*
+
              if ($id[1] == 'Unread')
-             //  sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle")));
+               sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle"));
              else
-             //  sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));*/
+               sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
         };
 
 
@@ -135,7 +135,7 @@ app.controller('resumeController',
         var candidates;
         $scope.bringNextCandidate = function (type, description) {
             if (type == 'unliked')
-            //  sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
+            sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
 
                 var url;
             if ($id[1] == 'Like') {

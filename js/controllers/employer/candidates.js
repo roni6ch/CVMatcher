@@ -148,7 +148,7 @@ app.controller('candidatesController',
         var stars = 0;
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
-            //  sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle")));
+              sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
 
         };
 
@@ -163,7 +163,7 @@ app.controller('candidatesController',
             })
                 .then(function () {
                         //remove from list filter
-                        // sendNotification('hire', userId, $scope.jobId, null, localStorage.getItem("jobTitle"));
+                        sendNotification('hire', userId, $scope.jobId, null, localStorage.getItem("jobTitle"));
                         var canArr = $rootScope.likeCandidates;
                         canArr = canArr.filter(function (obj) {
                             return obj._id !== cvId;
@@ -180,7 +180,7 @@ app.controller('candidatesController',
 
         $scope.bringNextCandidate = function (type, description, id) {
             if (type == 'unliked')
-            //  sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
+            sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
                     method: "POST",

@@ -65,7 +65,7 @@
                             <!--<img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                             <img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                                 -->
-                <span class="rating animated pulse" ng-if="jobSJ.cv.status.current_status == 'liked'">
+                <span class="rating animated shake" ng-if="jobSJ.cv.status.current_status == 'liked'">
                     <input type="radio" class="rating-input" id="rating-5" name="rating">
                     <label for="rating-5" class="rating-star" ng-if="jobSJ.cv.status.status_id.rate.stars<5"
                            ng-style="{'background-position':'0 -16px'}"></label>
@@ -93,7 +93,7 @@
                            ng-style="{'background-position':'0 0'}"></label>
                 </span>
                         </div>
-                        <p class="unlikeReason" ng-if="jobSJ.cv.status.current_status == 'unliked'">
+                        <p class="unlikeReason animated shake" ng-if="jobSJ.cv.status.current_status == 'unliked'">
                             Unlike Reason: {{jobSJ.cv.status.status_id.rate.description}}
                         </p>
                         <p ng-if="jobSJ.cv.hired == true">

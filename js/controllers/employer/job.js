@@ -73,6 +73,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>";
 
                         $scope.jobDetails = data.data[0];
+                        $scope.mustReqiurment = data.data[0].original_text['requirements'].split('|||')[0];
 
                         editJob = true;
 
@@ -550,7 +551,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         "original_text": {
                             "title": $(".jobName").val(),
                             "description": $("#description").html(),
-                            "requirements": "Must: " + $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
+                            "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
                         "locations": [$("#geocomplete").val()],

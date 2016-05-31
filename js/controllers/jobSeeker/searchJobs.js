@@ -35,8 +35,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         });
 
 
-
-            $http({
+        $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
             data: {
@@ -74,8 +73,8 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         $scope.sortby = sort;
     };
     $scope.saveData = function (title, compatibility_level) {
-        localStorage.setItem("jobTitle",title);
-        localStorage.setItem("compatibility_level",compatibility_level);
+        localStorage.setItem("jobTitle", title);
+        localStorage.setItem("compatibility_level", compatibility_level);
     };
 
     $scope.collepse = function (id) {
@@ -88,9 +87,9 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     };
 
     //TODO: OPEN SOCKET!
-    /* socket.onmessage = function (msg) {
-     var message = JSON.parse(msg.data);
-     console.log(message);
-     notifyMe(message.notificationType, message.jobName);
-     }*/
+    /*socket.onmessage = function (msg) {
+        var message = JSON.parse(msg.data);
+        console.log(message);
+        notifyMe(message.notificationType, message.jobName);
+    }*/
 });

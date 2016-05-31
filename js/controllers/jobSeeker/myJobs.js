@@ -17,35 +17,38 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
         $rootScope.userSignInType = localStorage.getItem("userSignInType");
 
     //TODO: OPEN SOCKET!
-    /* socket.onmessage = function (msg) {
-     var message = JSON.parse(msg.data);
-     console.log(message);
-     var jobId = message.jobId;
-     if (path == 'yourjobs') {
-     if (message.notificationType == 'seen') {
-     $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-     $scope.$apply(function () {
-     $scope.jobSJ.cv.status.current_status = 'seen';
-     })
-     }
-     else if (message.notificationType == 'like') {
-     $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-     $scope.$apply(function () {
-     $scope.jobSJ.cv.status.current_status = 'liked';
-     $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
-     })
-     }
-     else if (message.notificationType == 'unlike') {
-     $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-     $scope.$apply(function () {
-     $scope.jobSJ.cv.status.current_status = 'unliked';
-     $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+   /* socket.onmessage = function (msg) {
+        var message = JSON.parse(msg.data);
+        console.log(message);
+        var jobId = message.jobId;
+        if (path == 'yourjobs') {
+            if (message.notificationType == 'seen') {
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+                $scope.$apply(function () {
+                    $scope.jobSJ.cv.status.current_status = 'seen';
+                })
+            }
+            else if (message.notificationType == 'like') {
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+                $scope.$apply(function () {
+                    $scope.jobSJ.cv.status.current_status = 'liked';
+                    $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
+                })
+            }
+            else if (message.notificationType == 'unlike') {
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+                $scope.$apply(function () {
+                    $scope.jobSJ.cv.status.current_status = 'unliked';
+                    $scope.jobSJ.cv.status.status_id.rate.description = message.other;
 
-     })
-     }
-     }
-     notifyMe(message.notificationType, message.jobName);
-     }*/
+                })
+            }
+        }
+        notifyMe(message.notificationType, message.jobName);
+    }*/
+
+    //end
+
     $scope.getMainJson = function () {
         if (path == 'Favorites') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';

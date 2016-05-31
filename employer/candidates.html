@@ -72,7 +72,8 @@
                     <div><i id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
                             href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
-                            src="./images/logoSmall.png"></a><a href="" ng-click='hire(candidate._id,candidate.user._id)'><img
+                            src="./images/logoSmall.png"></a><a href=""
+                                                                ng-click='hire(candidate._id,candidate.user._id)'><img
                             src="./images/handshake1.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
 
@@ -231,3 +232,4 @@
         </div>
     </div>
 </section>
+

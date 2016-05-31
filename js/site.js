@@ -212,7 +212,6 @@ app.config(function ($routeProvider) {
 var socket;
 var url;
 var user_id;
-
 $(document).ready(function () {
     $('.navbar a').on('click', function () {
         $('.btn-navbar').click(); //bootstrap 2.x
@@ -229,6 +228,7 @@ $(document).ready(function () {
 
         }
     });
+
 
     $('html:not(".navbar")').click(function (e) {
         if (e.target.id != 'profileImg') {
@@ -258,12 +258,11 @@ function changeLocation(location, profilePath) {
 }
 
 //TODO: PW!
-/*
- window.onload = function () {
 
- pushwoosh.subscribeAtStart();
- };
- */
+window.onload = function () {
+    pushwoosh.subscribeAtStart();
+};
+
 
 function sockets() {
 
@@ -274,8 +273,8 @@ function sockets() {
 }
 
 function connectToChat(url) {
-
-    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 3000});
+    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 10000});
+    console.log(socket);
 
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
@@ -299,7 +298,7 @@ function notifyMe(type, jobName) {
     var body;
     body = '';
     if (!Notification) {
-        alert('Desktop notifications not available in your browser. Try Chromium.');
+        console.log('Desktop notifications not available in your browser. Try Chromium.');
         return;
     }
 
