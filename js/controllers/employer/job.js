@@ -507,10 +507,10 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     return;
                 }
 
-
+                var job;
                 if ($id == 'job') {
                     //noinspection JSDuplicatedDeclaration
-                    var job = {
+                     job = {
                         "_id": $jobId,
                         "matching_object_type": "job",
                         "original_text": {
@@ -545,7 +545,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
                 else {
                     //noinspection JSDuplicatedDeclaration
-                    var job = {
+                     job = {
                         "matching_object_type": "job",
                         "date": new Date(),
                         "original_text": {

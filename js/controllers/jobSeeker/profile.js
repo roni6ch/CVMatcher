@@ -42,7 +42,7 @@ app
                             if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                                 var currentId = data.data[0].current_cv;
                                 cvJson = true;
-                                localStorage.setItem("current_cv",currentId);
+                                localStorage.setItem("current_cv", currentId);
                                 $http({
                                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                                     method: "POST",
@@ -70,7 +70,7 @@ app
                                                         });
 
                                                         indx = $(".timeline li").length + 1;
-                                                        var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
+                                                        var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" value="' + value.years + '"></label>';
                                                         angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
                                                             ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
                                                     });
@@ -127,6 +127,13 @@ app
 
             history_timeline = [];
             $scope.parseMyExperience = function () {
+
+                /* $.each($(".timeline-panel select"), function (key, val) {
+                 console.log(val.find(":selected").val());
+
+                 });*/
+
+
                 parseExpereince = {
                     "expereince": []
                 };
@@ -211,7 +218,7 @@ app
                                             });
 
 
-                                            var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value="' + value.years + '"></label>';
+                                            var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears"  value="' + value.years + '"></label>';
                                             angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
                                                 ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
                                         });
@@ -236,7 +243,7 @@ app
 
             };
             $scope.addMoreExperience = function () {
-                var yearsExperience = '<label class="parserExperienceYearsLabelAdded">Years<input type="text" class="form-control" class="parserExperienceYears" name="experience_years" value=""></label>';
+                var yearsExperience = '<label class="parserExperienceYearsLabelAdded">Years<input type="text" class="form-control" class="parserExperienceYears" value=""></label>';
                 angular
                     .element(".parseExperience")
                     .append('<div class="parser"><label class="parserExperienceLanguageAdded">Language<input type="text" required class="form-control " id="experience" name="experience"' +
@@ -244,16 +251,17 @@ app
             };
 
             $scope.addEducation = function (type) {
-                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')"  id="experience_years" name="experience_years" class="form-control" id="sel1"><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
-                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '"   id="experience_years" name="experience_years"class="form-control" id="sel1"><option value="2004"  ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
+                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')" class="form-control"><option ng-selected="true" value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '" class="form-control" ><option value="2004" ng-selected="true"  ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
 
                 indx++;
+                var divTemplate;
                 if (type == 'education') {
-                    var divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
+                     divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
 
                 }
                 else {
-                    var divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                     divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
@@ -272,13 +280,13 @@ app
                 var key = 'birth_date';
                 $scope.jobSeeker[key] = $(".birthDay").val();
                 //noinspection JSDuplicatedDeclaration
-                var key = 'address';
+                 key = 'address';
                 $scope.jobSeeker[key] = $("#geocomplete").val();
                 //noinspection JSDuplicatedDeclaration
-                var key = 'phone_number';
+                 key = 'phone_number';
                 $scope.jobSeeker[key] = $(".phoneNumber").val();
                 //noinspection JSDuplicatedDeclaration
-                var key = 'linkedin';
+                 key = 'linkedin';
                 $scope.jobSeeker[key] = $(".linkedin").val();
 
                 console.log("send form: ", $scope.jobSeeker);
@@ -398,11 +406,11 @@ app
                         "type": type
                     });
                 });
-
+                var jobSeekerCV;
                 if (cvJson) {
                     url = "https://cvmatcher.herokuapp.com/updateMatchingObject";
                     //noinspection JSDuplicatedDeclaration
-                    var jobSeekerCV = {
+                     jobSeekerCV = {
                         "_id": $scope.jobSeekerCV._id,
                         "matching_object_type": "cv",
                         "date": new Date(),
@@ -444,7 +452,7 @@ app
                     console.log("first cv");
                     url = "https://cvmatcher.herokuapp.com/addMatchingObject";
                     //noinspection JSDuplicatedDeclaration
-                    var jobSeekerCV = {
+                     jobSeekerCV = {
                         "matching_object_type": "cv",
                         "date": new Date(),
                         "personal_properties": {
@@ -490,16 +498,16 @@ app
                 })
                     .then(function (data) {
 
-                            localStorage.setItem("jobSeekerFirstSignIn",true);
+                            localStorage.setItem("jobSeekerFirstSignIn", true);
                             $scope.status = 'Resume Sent Succesfully';
                             $('#myModal ').modal('show');
                             closeModal = true;
-                        if (cvJson == false) {
-                            //first time user cv
-                            var currentId = data.data.current_cv;
-                            console.log(data.data);
-                            localStorage.setItem("current_cv", currentId);
-                        }
+                            if (cvJson == false) {
+                                //first time user cv
+                                var currentId = data.data.current_cv;
+                                console.log(data.data);
+                                localStorage.setItem("current_cv", currentId);
+                            }
                         },
                         function (response) { // optional
                             console.log("jobSeekerJobs send form AJAX failed!");
@@ -518,7 +526,7 @@ app
             };
 
             //TODO: OPEN SOCKET!
-             /*socket.onmessage = function (msg) {
+            /*socket.onmessage = function (msg) {
              var message = JSON.parse(msg.data);
              console.log(message);
              notifyMe(message.notificationType, message.jobName);

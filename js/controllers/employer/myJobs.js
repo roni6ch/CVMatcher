@@ -8,7 +8,6 @@
 
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http) {
 
-
     $rootScope.userSignInType = "employer";
     $scope.company = company;
     //noinspection JSValidateTypes
@@ -29,7 +28,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         archive = true;
         $scope.jobPage = "Archive";
 
-        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Archive'>Deleted</a>"
+        var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Archive'>Deleted</a>";
         $(".navigation")[0].innerHTML = navigation;
     }
     var jobsArr = [];
@@ -42,7 +41,6 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
                 "user_id": localStorage.getItem('user_id')
             }
         }).then(function (data) {
-
             angular.element("#profileImg").parent().show();
             if (typeof data.data[0].company == 'undefined') {
                 $scope.popoverData = 'companyProfile';

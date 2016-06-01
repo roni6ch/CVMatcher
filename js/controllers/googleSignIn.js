@@ -93,8 +93,6 @@ helper = (function () {
                 };
                 localStorage.setItem('user', JSON.stringify(user));
                 $("#profileImg").attr("src", $.parseJSON(localStorage.getItem('user')).image);
-                location.replace("#/usersLogin");
-
 
             }, function (err) {
                 console.log(err);

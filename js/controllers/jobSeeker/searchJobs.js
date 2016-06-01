@@ -5,7 +5,8 @@
 /*
  * ********************* jobSeeker Search Jobs Controller ****************
  */
-app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http) {
+app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http,$location) {
+
 
     //noinspection JSValidateTypes,JSValidateTypes
     angular.element("#profileImg").parent().attr("href", '#/Profile');
@@ -47,20 +48,14 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     angular.element(".fa-pulse").hide();
                     //navigation in site
                     $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
-                    /*  if (data.data[0].jobs != 'undefined')
-                     console.log(data.data[0].jobs);
-                     if (data.data.jobs.length > 0) {*/
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();
-
 
                     angular.forEach(data.data, function (value, key) {
                         data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
                     });
 
-                    /*
-                     }*/
                 },
                 function (response) { // optional
                     angular.element(".fa-pulse").hide();
@@ -88,8 +83,8 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     //TODO: OPEN SOCKET!
     /*socket.onmessage = function (msg) {
-        var message = JSON.parse(msg.data);
-        console.log(message);
-        notifyMe(message.notificationType, message.jobName);
-    }*/
+     var message = JSON.parse(msg.data);
+     console.log(message);
+     notifyMe(message.notificationType, message.jobName);
+     }*/
 });

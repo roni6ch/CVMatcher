@@ -39,8 +39,8 @@
 
 
     <!-- SKILLS -->
-    <script src="http://phuonghuynh.github.io/js/bower_components/d3/d3.min.js"></script>
-    <script src="http://phuonghuynh.github.io/js/bower_components/d3-transform/src/d3-transform.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3-transform.js"></script>
     <script src="js/d3-transform-animation.js"></script>
 </head>
 <body>
@@ -111,15 +111,15 @@
         <nav>
             <!-- Employer NAV -->
             <ul ng-if="userSignInType == 'employer'">
-                <li><a href="#/myjobs">My jobs</a></li>
-                <li><a href="#/Archive">Deleted</a></li>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">My jobs</a></li>
+                <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/Archive">Deleted</a></li>
             </ul>
             <!-- Job Seeker NAV -->
             <ul ng-if="userSignInType == 'jobSeeker'">
-                <li><a href="#/searchJobs">Search Jobs</a></li>
-                <li><a href="#/yourjobs">My Jobs</a></li>
-                <li><a href="#/Favorites">Favorite Jobs</a></li>
-                <li><a href="#/deleted">Deleted Jobs</a></li>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/searchJobs" ng-click="tab = 0">Search Jobs</a></li>
+                <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1">My Jobs</a></li>
+                <li ng-class="{active:tab == 2, selected:tab == 2}"><a href="#/Favorites" ng-click="tab = 2">Favorite Jobs</a></li>
+                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3">Deleted Jobs</a></li>
             </ul>
         </nav>
     </div>

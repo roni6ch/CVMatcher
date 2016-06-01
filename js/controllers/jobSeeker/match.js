@@ -58,7 +58,7 @@ app
                                             bubbels();
                                         }
                                         else {
-                                            $("#circle-container1").find("> h2").html("");
+                                            $(".bubbleChart").css("height", "0px");
                                             //$scope.status = 'the languges';
                                             // $('#sendCVstatus').modal('show');
                                         }
@@ -82,13 +82,13 @@ app
                                         if (data.data.total_grade < localStorage.getItem("compatibility_level")) {
                                             angular.element(".matchResult > h2").append("Oops");
                                             angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");
-                                            angular.element(".matchResult h3").html('You did not passed the minimum requirements');
+                                            angular.element(".matchResult > h4").html('You did not passed the minimum requirements');
                                             $scope.sendcv = false;
                                         }
                                         else {
                                             angular.element(".matchResult > h2").append("Great!");
                                             angular.element(".matchResult > h2 > i").addClass("fa-thumbs-up");
-                                            angular.element(".matchResult h3").html('Harray!! You Passed The Minimum requirements');
+                                            angular.element(".matchResult > h4").html('Harray!! You Passed The Minimum requirements');
                                             $scope.sendcv = true;
                                         }
 
@@ -152,7 +152,7 @@ app
                 }, 1000);
             };
             //TODO: OPEN SOCKET!
-           /* socket.onmessage = function (msg) {
+            /* socket.onmessage = function (msg) {
              var message = JSON.parse(msg.data);
              console.log(message);
              notifyMe(message.notificationType, message.jobName);

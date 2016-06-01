@@ -102,10 +102,10 @@ app.controller('resumeController',
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
 
-             if ($id[1] == 'Unread')
-               sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle"));
-             else
-               sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
+            if ($id[1] == 'Unread')
+                sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle"));
+            else
+                sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
         };
 
 
@@ -135,9 +135,9 @@ app.controller('resumeController',
         var candidates;
         $scope.bringNextCandidate = function (type, description) {
             if (type == 'unliked')
-            sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
+                sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
 
-                var url;
+            var url;
             if ($id[1] == 'Like') {
                 candidates = $rootScope.likeCandidates;
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
@@ -209,11 +209,11 @@ app.controller('resumeController',
                 });
             }
         };
-
+        var users;
         // if i came from Unread page
         if ($id[1] == "Unread") {
             //noinspection JSDuplicatedDeclaration
-            var users = document.getElementById('users');
+            users = document.getElementById('users');
             // create a simple instance
             // by default, it only adds horizontal recognizers
             $user = new Hammer(users);
@@ -225,10 +225,9 @@ app.controller('resumeController',
             $user.on("swiperight", function () {
                 $("#candidateLike").click();
             });
-
         }
         if ($id[1] == "Candidates") {
-            var users = document.getElementById('users');
+            users = document.getElementById('users');
             // create a simple instance
             // by default, it only adds horizontal recognizers
             $user = new Hammer(users);
@@ -240,11 +239,5 @@ app.controller('resumeController',
             $user.on("swiperight", function () {
                 $(".bringNextCandidate").click();
             });
-
         }
-
-
-
-
-
     });

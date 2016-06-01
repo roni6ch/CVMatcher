@@ -4,14 +4,17 @@
             ng-repeat="job in myjobs | filter:searchText | orderBy:sortby">
         <div class="jobs animated fadeInUp">
             <div>
+                <a href="" ng-if="jobPage == 'Archive'" ng-click="revive(job._id)"><i
+                        class="fa fa-recycle fa-2x"></i></a>
+                <a href="" ng-if="jobPage == 'myJobs'" ng-click="deleteJob(job._id)"><i
+                        class="fa fa-trash fa-2x"></i></a>
 
-                <a href="" ng-if="jobPage == 'Archive'" ng-click="revive(job._id)"><i class="fa fa-recycle fa-2x" ></i></a>
-                <a href="" ng-if="jobPage == 'myJobs'" ng-click="deleteJob(job._id)"><i class="fa fa-trash fa-2x"></i></a>
+                <a ng-if="jobPage == 'myJobs' && job.cvs.length == 0" href="#/job/{{job._id}}"><i
+                        class="fa fa-pencil fa-2x"></i></a>
 
-                <a ng-if="jobPage == 'myJobs' && job.cvs.length == 0" href="#/job/{{job._id}}" ><i class="fa fa-pencil fa-2x"></i></a>
-
-                <a ng-if="job.cvs.length > 0" href="#/Candidates/{{job._id}}" ng-click="saveJobTitle(job.original_text['title']);"><img
-                        src="./images/logo.png"></a>
+                <a ng-if="job.cvs.length > 0" href="#/Candidates/{{job._id}}"
+                   ng-click="saveJobTitle(job.original_text['title']);"><img alt="logo of cv matcher"
+                                                                             src="./images/logo.png"></a>
 
                 <h3 class="title" ng-model="searchText.original_text['title']"
                     ng-bind-html="job.original_text['title'] | highlight:searchText">
@@ -30,7 +33,7 @@
                     <span>Inforamtion: </span>{{job.original_text["description"]}}
                 </article>
 
-                <span>Compability:</span>
+                <span>Compatibility:</span>
                 <section circle id="{{ 'circle-container-' + $index }}"
                          data-compability="{{job.compatibility_level}}">
                     <h5>{{job.compatibility_level.toFixed(0)}}%</h5>

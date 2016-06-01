@@ -1,41 +1,26 @@
-<!-- natalie -->
 <div class="myJobsImgCover"></div>
 <profileimg/>
-<!-- <div class="navBar"> -->
-
-<!-- <div>
-    <a href="" id="logo"><img src="images/logo.png"></a>
-</div> -->
-<!--  -->
-
 <div class="myjobsWrapper" ng-init="getMainJson();sort('-date');">
     <h3 class="navigation"></h3>
-
-
-    <!-- natalie -->
     <div class="myJobsBox">
-
-
         <a id="popoverData" class="btn" href="#/{{popoverData}}" data-content="{{popOverDataContent}}" rel="popover"
            data-placement="bottom" data-trigger="hover">+ Add new Job</a>
         <header>
             <h2>My Jobs</h2>
         </header>
         <i class="fa fa-spinner fa-pulse fa-5x"></i>
-
         <form method="get" action="">
             <input type="text" placeholder="Find Job" ng-model="searchText" highlighted data-search="searchText"
                    class="form-control">
         </form>
         <button type="button" class="btn btn-default"
-                ng-click="sort('-compatibility_level')">Sort By Compability
+                ng-click="sort('-compatibility_level')">Sort By Compatibility
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
         </button>
     </div>
-
-    <ul class="engineering" class="nav nav-tabs" ng-init="tab=0">
+    <ul class="nav engineering" ng-init="tab=0">
         <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
             Engineer</a></li>
         <li class="disabled"><a>
@@ -45,10 +30,7 @@
         <li class="disabled"><a>Mechanical
             Engineer</a></li>
     </ul>
-
     <div class="tabsWrapper">
-        <!--   <a href="#/newJob"><input type="button" class="btn btn-default" value="Add new Job"/></a> -->
         <div ng-include="'employer/myJobsAndArchiveInclude.html'"></div>
     </div>
 </div>
-<!-- </div> -->

@@ -8,24 +8,25 @@
             <h2>Deleted</h2>
         </header>
         <i class="fa fa-spinner fa-pulse fa-5x"></i>
+
         <form method="get" action="">
             <input type="text" placeholder="Find Job" ng-model="searchText"
                    class="form-control">
         </form>
         <button type="button" class="btn btn-default"
-                ng-click="sort('-compatibility_level')">Sort By Compability
+                ng-click="sort('-compatibility_level')">Sort By Compatibility
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
         </button>
     </div>
 
-    <ul class="engineering" class="nav nav-tabs" ng-init="tab=0">
+    <ul class="engineering" ng-init="tab=0">
         <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
             Engineer</a></li>
         <li class="disabled"><a>
             Managment Engineer</a></li>
-        <li class="disabled"><a n>Electrial
+        <li class="disabled"><a>Electrial
             Engineer</a></li>
         <li class="disabled"><a>Mechanical
             Engineer</a></li>

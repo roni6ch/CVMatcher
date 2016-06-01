@@ -123,6 +123,7 @@ app.controller('companyProfileController',
         };
 
         $scope.submitCompanyDetails = function () {
+            var companyJson;
             if (logo == '')
                 logo = $(".companyLogo > img").attr("src");
             if (logo == undefined)
@@ -131,7 +132,7 @@ app.controller('companyProfileController',
             $scope.status = '';
             if (!company) {
                 //noinspection JSDuplicatedDeclaration
-                var companyJson = {
+                 companyJson = {
                     "user_id": localStorage.getItem("user_id"),
                     "name": $(".companyName").val(),
                     "logo": logo,
@@ -161,8 +162,7 @@ app.controller('companyProfileController',
             }
             else {
                 //push to json new key value
-
-                var companyJson = {
+                 companyJson = {
                     "_id": $scope.employerProfile['company'],
                     "name": $(".companyName").val(),
                     "logo": logo,

@@ -14,19 +14,18 @@
                    class="form-control">
         </form>
         <button type="button" class="btn btn-default"
-                ng-click="sort('-compability')">Sort By Compability
+                ng-click="sort('-compability')">Sort By Compatibility
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
         </button>
     </div>
-    <ul class="engineering" class="nav nav-tabs candidatesTabs" ng-init="tab=0; unreadCvs()">
-        <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0; unreadCvs()">Unread</a></li>
-        <li ng-class="{active:tab == 1}"><a ng-click="tab = 1; likedCvs()">Liked</a></li>
-        <li ng-class="{active:tab == 2}"><a ng-click="tab = 2; unlikeCvs()">Unliked</a></li>
-        <li ng-class="{active:tab == 3}"><a ng-click="tab = 3; Hired()">Hired</a></li>
+    <ul class="engineering candidatesTabs" ng-init="tab=0; unreadCvs()">
+        <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0; unreadCvs()">Unread</a></li>
+        <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1; likedCvs()">Liked</a></li>
+        <li ng-class="{active:tab == 2, selected:tab == 2}"><a ng-click="tab = 2; unlikeCvs()">Unliked</a></li>
+        <li ng-class="{active:tab == 3, selected:tab == 3}"><a ng-click="tab = 3; Hired()">Hired</a></li>
     </ul>
-
 
     <div class="tabsWrapper">
         <div ng-show="tab == 0" class="fade in active">
@@ -139,15 +138,12 @@
                 <div class="candidates animated fadeInUp hiredCandidates">
                     <div>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
-
                     </div>
                     <div>
-
                         <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
 
-                        <p
-                                ng-model="searchText.sector"
-                                ng-bind-html="candidate.sector | highlight:searchText">
+                        <p ng-model="searchText.sector"
+                           ng-bind-html="candidate.sector | highlight:searchText">
                             {{candidate.sector}} ,{{candidate.academy.academy_type[0]}} ,
                             {{candidate.academy.degree_type[0]}} </p>
                         <section circle id="{{ 'circle-container-' + $index }}"
@@ -164,9 +160,9 @@
 
 <!-- MODALS -->
 <input type="hidden" class="starModal btn btn-info btn-lg"
-       data-toggle="modal" data-target="#myModal"/>
+       data-toggle="modal" data-target="#myModal">
 <input type="hidden" class="leftModal btn btn-info btn-lg"
-       data-toggle="modal" data-target="#leftModal"/>
+       data-toggle="modal" data-target="#leftModal">
 
 <!-- Modal -->
 <section class="modal fade" id="myModal" role="dialog">
@@ -219,7 +215,7 @@
 
                 <div class="form-group">
                 <textarea class="form-control" rows="5" name="original_text" ng-model="original_text"
-                          id="comment" required></textarea>
+                          id="comment"></textarea>
                 </div>
 
             </div>

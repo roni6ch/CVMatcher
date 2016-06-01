@@ -6,12 +6,10 @@
         <h2 class="profileTitle">Company Profile</h2>
     </header>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
-
-
-    <ul class="engineering" class="nav nav-tabs" ng-init="tab=0">
-        <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Personal
+    <ul class="engineering" ng-init="tab=0">
+        <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0">Personal
             Information</a></li>
-        <li ng-class="{active:tab == 1}"><a ng-click="tab = 1">Company Profile</a></li>
+        <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1">Company Profile</a></li>
 
     </ul>
 
@@ -20,27 +18,27 @@
             <!-- Content from here -->
             <form ng-submit="submitUserDetails()">
                 <div class="form-group">
-                    <label for="usr">ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
-                                                        class="form-control personalId" name="id">
+                    <label>ID:</label> <input type="text" required value="{{employerProfile['personal_id']}}"
+                                              class="form-control personalId" name="id">
                 </div>
                 <div class="form-group">
-                    <label for="usr">First name:</label> <input type="text" required
-                                                                value="{{employerProfile['first_name']}}"
-                                                                class="form-control firstName" name="first_name">
+                    <label>First name:</label> <input type="text" required
+                                                      value="{{employerProfile['first_name']}}"
+                                                      class="form-control firstName" name="first_name">
                 </div>
                 <div class="form-group">
-                    <label for="usr">Last name:</label> <input type="text" required
-                                                               value="{{employerProfile['last_name']}}"
-                                                               class="form-control lastName">
+                    <label>Last name:</label> <input type="text" required
+                                                     value="{{employerProfile['last_name']}}"
+                                                     class="form-control lastName">
                 </div>
                 <div class="form-group">
-                    <label for="usr">Email:</label> <input type="text" required value="{{employerProfile['email']}}"
-                                                           class="form-control email">
+                    <label>Email:</label> <input type="text" required value="{{employerProfile['email']}}"
+                                                 class="form-control email">
                 </div>
                 <div class="form-group ">
-                    <label for="usr">Birth Date:</label> <input type="date" required
-                                                                value="{{employerProfile['birth_date']}}"
-                                                                class="form-control birthDay">
+                    <label>Birth Date:</label> <input type="date" required
+                                                      value="{{employerProfile['birth_date']}}"
+                                                      class="form-control birthDay">
                 </div>
                 <div class="form-group">
 
@@ -50,15 +48,18 @@
                                                    placeholder="Type in an address" size="90" autocomplete="on">
                 </div>
                 <div class="form-group">
-                    <label for="usr">Phone number:</label> <input type="text" required
-                                                                  value="{{employerProfile['phone_number']}}"
-                                                                  class="form-control phoneNumber">
+                    <label>Phone number:</label> <input type="text" required
+                                                        value="{{employerProfile['phone_number']}}"
+                                                        class="form-control phoneNumber">
                 </div>
 
-                <label for="usr">LinkedIn:</label> <input type="text"
-                                                          class="form-control linkedin"
-                                                          ng-model="employerProfile['linkedin']"
-                                                          value="{{companyProfile.user['linkedin']}}">
+                <label>LinkedIn:</label> <input type="text"
+                                                class="form-control linkedin"
+                                                ng-model="employerProfile['linkedin']"
+                                                value="{{companyProfile.user['linkedin']}}">
+
+                <h6 class="requiredError"> *All the fields are Required! ( except LinkedIn )</h6>
+
                 <div class="buttonBorder">
 
                     <button type="submit" class="btn btn-default">Send
@@ -69,15 +70,16 @@
         </div>
         <div ng-show="tab == 1" class="tabsContent fade in active">
             <ul class="engineering1" class="nav nav-tabs" ng-init="t=0">
-                <li class="selected" ng-class="{active:t == 0}"><a ng-click="t = 0">Company</a></li>
-                <li ng-class="{active:t == 1}"><a ng-click="t = 1; getCompanies();">Choose existing Company</a></li>
+                <li ng-class="{active:t == 0, selected:t == 0}"><a ng-click="t = 0">Company</a></li>
+                <li ng-class="{active:t == 1, selected:t == 1}"><a ng-click="t = 1; getCompanies();">Choose existing
+                    Company</a></li>
             </ul>
 
             <div class="tab-content">
                 <div ng-show="t == 0" class="tabsContent fade in active">
 
                     <!-- Content from here -->
-                    <form ng-submit="submitCompanyDetails()" >
+                    <form ng-submit="submitCompanyDetails()">
 
                         <div class="form-group">
                             <label for="companyName">Company name:</label> <input type="text" required
@@ -98,31 +100,36 @@
                                                            placeholder="Type in an address" size="90" autocomplete="on">
                         </div>
                         <div class="form-group">
-                            <label for="usr">Phone number:</label> <input type="text" required
-                                                                          value="{{companyProfile['phone_number']}}"
-                                                                          class="form-control companyPhoneNumber"
-                                                                          id="usr" name="address">
+                            <label>Phone number:</label> <input type="text" required
+                                                                value="{{companyProfile['phone_number']}}"
+                                                                class="form-control companyPhoneNumber"
+                                                                id="usr" name="address">
                         </div>
 
 
-
-                        <input type="button" ng-show="password == false"  class="btn btn-default" ng-click="changePassword()" value="Change Password" />
+                        <input type="button" ng-show="password == false" class="btn btn-default"
+                               ng-click="changePassword()" value="Change Password"/>
 
                         <div class="form-group" ng-show="password == true || changePassword == true">
-                            <label for="usr">Company Password:</label> <input type="password"  maxlength="5"  class="form-control passwordCompany"  value="{{companyProfile['password'].substr(0,5)}}">
+                            <label>Company Password:</label> <input type="password" maxlength="5"
+                                                                    class="form-control passwordCompany"
+                                                                    value="{{companyProfile['password'].substr(0,5)}}">
                         </div>
 
 
                         <div class="form-group" ng-show="changePassword == true">
-                            <label for="usr">Change to New Password:</label> <input type="password" maxlength="5" class="form-control newPasswordCompany" value="">
+                            <label>Change to New Password:</label> <input type="password" maxlength="5"
+                                                                          class="form-control newPasswordCompany"
+                                                                          value="">
                         </div>
 
                         <div class="form-group">
-                            <label for="usr" class="editLogo">Logo:</label> <input type="text" ng-model="word" class="form-control" name="logo" value="{{companyProfile['logo']}}"  placeholder="please type Company name"><input
+                            <label class="editLogo">Logo:</label> <input type="text" ng-model="word"
+                                                                         class="form-control" name="logo"
+                                                                         value="{{companyProfile['logo']}}"
+                                                                         placeholder="please type Company name"><input
                                 type="button" ng-click="logo(word)" class="btn btn-default" value="Search Logo!"/>
                         </div>
-
-
 
 
                         <div class="companyLogo" ng-if="companyProfile['logo']">
@@ -139,16 +146,16 @@
                             </div>
                         </div>
 
+                        <h6 class="requiredError"> *All the fields are Required!</h6>
+
                         <div class="buttonBorder">
-
                             <button type="submit" class="btn btn-default">Send</button>
-
                         </div>
                     </form>
                 </div>
                 <!-- Existing compenies -->
-                <div class="tab-content" >
-                    <div ng-show="t == 1" class="tabsContent fade in active" >
+                <div class="tab-content">
+                    <div ng-show="t == 1" class="tabsContent fade in active">
                         <div ng-repeat="c in companies">
                             <div data-toggle="buttons" class="companies">
                                 <label class="btn btn-default" ng-click="checkCompany(c._id)">
@@ -171,13 +178,15 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <h4 class="modal-title">{{status}}</h4>
-                    <input ng-show="chooseCompanyModal == true" type="text" placeholder="Please write password: " ng-model="passForCompany"/>
+                    <input ng-show="chooseCompanyModal == true" type="text" placeholder="Please write password: "
+                           ng-model="passForCompany"/>
                 </div>
                 <div class="modal-footer">
 
                     <div class="buttonBorder">
 
-                        <button ng-show="chooseCompanyModal == true"  type="button" class="btn btn-default" data-dismiss="modal" ng-click="sendPassword()">
+                        <button ng-show="chooseCompanyModal == true" type="button" class="btn btn-default"
+                                data-dismiss="modal" ng-click="sendPassword()">
                             Send
                         </button>
                     </div>
@@ -188,3 +197,4 @@
             </div>
         </div>
     </section>
+</div>

@@ -1,6 +1,4 @@
 <div class="searchJobsImgCover"></div>
-
-
 <div class="yourJobsWrapper" ng-init="getMainJson();sort('-date');">
     <h3 class="navigation"></h3>
 
@@ -9,19 +7,17 @@
             <h2>{{title}}</h2>
         </header>
 
-        <form method="get" action="">
+        <form method="get">
             <input type="text" placeholder="Find Job" ng-model="searchText"
                    class="form-control">
         </form>
         <button type="button" class="btn btn-default"
-                ng-click="sort('-job.compatibility_level')">Sort By Compability
+                ng-click="sort('-job.compatibility_level')">Sort By Compatibility
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
         </button>
-
     </div>
-
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
 
     <div class="jobsList">
@@ -58,9 +54,9 @@
 
                                 <img class="arrow-down" src="images/arrow-down.png">
                             </article>
-                            <img class="readUnread"
+                            <img class="readUnread" alt="seen image"
                                  ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : ''}}"/>
-                            <img class="readUnread"
+                            <img class="readUnread" alt="unsean image"
                                  ng-src="{{jobSJ.cv.status.current_status == 'unread' ? 'images/unreadV.png' : ''}}"/>
                             <!--<img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                             <img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
@@ -96,8 +92,9 @@
                         <p class="unlikeReason animated shake" ng-if="jobSJ.cv.status.current_status == 'unliked'">
                             Unlike Reason: {{jobSJ.cv.status.status_id.rate.description}}
                         </p>
+
                         <p ng-if="jobSJ.cv.hired == true">
-                            <img class="hired" src="images/hired.png" />
+                            <img class="hired" alt="hire to Job!" src="images/hired.png"/>
                         </p>
 
                         <section circle id="{{ 'circle-container-' + $index }}"
@@ -115,7 +112,7 @@
                                 <p>{{jobSJ.job.original_text["requirements"].split("|||")[1]}}</p>
                             </div>
 
-                            <img class="arrow-up" src="images/arrow-up.png">
+                            <img class="arrow-up" src="images/arrow-up.png alt=" arrow up - great.">
                             <section>
 
                             </section>

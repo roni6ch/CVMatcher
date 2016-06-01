@@ -147,7 +147,7 @@ app.directive('droppableMust', function ($rootScope) {
                     }
                 });
             }
-            else if (requirements.length == 0) {
+            else if (requirements.length === 0) {
                 combination = [];
                 requirements.push({'combination': combination});
             }

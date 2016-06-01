@@ -71,7 +71,7 @@ app.controller('candidatesController',
                 url: 'https://cvmatcher.herokuapp.com/employer/getRateCvsForJob',
                 method: "POST",
                 data: {
-                    "user_id": localStorage.getItem("user_id") ,
+                    "user_id": localStorage.getItem("user_id"),
                     "job_id": $scope.jobId,
                     "current_status": "unliked"
                 }
@@ -97,25 +97,23 @@ app.controller('candidatesController',
                     "user_id": localStorage.getItem("user_id"),
                     "job_id": $scope.jobId
                 }
-            })
-                .then(function (data) {
-                        console.log(data.data);
-                        $scope.hiredCandidates = data.data;
-                        angular.element(".fa-pulse").hide();
-                    },
-                    function (response) { // optional
-                        console.log("Hired AJAX failed!");
-                        console.log(response);
-                    });
+            }).then(function (data) {
+                    console.log(data.data);
+                    $scope.hiredCandidates = data.data;
+                    angular.element(".fa-pulse").hide();
+                },
+                function (response) { // optional
+                    console.log("Hired AJAX failed!");
+                    console.log(response);
+                });
         };
-
 
         $scope.sort = function (sort) {
             $scope.sortby = sort;
         };
 
         $scope.addCandidateToLike = function (candidate, user_id) {
-
+            var candidatesArr;
             $scope.user_id = user_id;
             if (angular.element("#candidateLike-" + candidate).hasClass(
                     "like")) {
@@ -124,7 +122,7 @@ app.controller('candidatesController',
                 $scope.userId = candidate;
                 $(".leftModal").click();
                 //noinspection JSDuplicatedDeclaration
-                var candidatesArr = $scope.likeCandidates;
+                 candidatesArr = $scope.likeCandidates;
                 candidatesArr = candidatesArr.filter(function (obj) {
                     return obj._id !== candidate;
                 });
@@ -137,7 +135,7 @@ app.controller('candidatesController',
                 $scope.userId = candidate;
                 $(".starModal").click();
                 //noinspection JSDuplicatedDeclaration
-                var candidatesArr = $scope.unlikeCandidates;
+                 candidatesArr = $scope.unlikeCandidates;
                 candidatesArr = candidatesArr.filter(function (obj) {
                     return obj._id !== candidate;
                 });
@@ -148,7 +146,8 @@ app.controller('candidatesController',
         var stars = 0;
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
-              sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
+
+            //sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
 
         };
 
@@ -179,30 +178,32 @@ app.controller('candidatesController',
         };
 
         $scope.bringNextCandidate = function (type, description, id) {
-            if (type == 'unliked')
-            sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
-                $http({
-                    url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
-                    method: "POST",
-                    data: {
-                        "cv_id": id,
-                        "status": {
-                            "current_status": type,
-                            "stars": stars,
-                            "description": description,
-                            "timestamp": new Date
-                        },
-                        "user_id":  localStorage.getItem("user_id")
-
-                    }
-
-                }).then(function (data) {
-                        console.log("updateRateCV: ", data);
+            if (type == 'unliked') {
+                // sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
+            }
+                $("#comment").val("");
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
+                method: "POST",
+                data: {
+                    "cv_id": id,
+                    "status": {
+                        "current_status": type,
+                        "stars": stars,
+                        "description": description,
+                        "timestamp": new Date
                     },
-                    function (response) { // optional
-                        console.log("updateRateCV AJAX failed!");
-                        console.log(response);
-                    });
+                    "user_id": localStorage.getItem("user_id")
+
+                }
+
+            }).then(function (data) {
+                    console.log("updateRateCV: ", data);
+                },
+                function (response) { // optional
+                    console.log("updateRateCV AJAX failed!");
+                    console.log(response);
+                });
 
         }
 

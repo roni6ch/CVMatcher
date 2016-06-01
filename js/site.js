@@ -2,7 +2,6 @@
 //TODO: open all sendNotification functions calls!
 var app = angular.module('cvmatcherApp', ["ngRoute", "infinite-scroll", 'ngDragDrop']);
 app.config(function ($routeProvider) {
-
         $routeProvider
         // employer
             .when('/', {
@@ -31,7 +30,7 @@ app.config(function ($routeProvider) {
             controller: 'candidatesController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location,'#/companyProfile');
                 }
             }
         }).when('/Archive/Candidates/:_id', {
@@ -172,11 +171,7 @@ app.config(function ($routeProvider) {
                     }
                 }
             }
-        }).
-        otherwise({
-            redirectTo: '/'
-        });
-
+        })
     })
     .run(function ($rootScope) {
 
@@ -252,6 +247,7 @@ function changeLocation(location, profilePath) {
     //noinspection JSValidateTypes
     angular.element("#profileImg").parent().show();
     if (localStorage.getItem("user_id") === null) {
+        console.log("no user id");
         location.path('/');
     }
 
