@@ -22,11 +22,14 @@
 
             </div>
             <div data-toggle="collapse" data-target="#collepse-{{$index}}">
-                <h5>Address: {{job.locations[0]}}</h5><h5>Date: {{job.date}}</h5>
+                <h5 ng-model="searchText.locations[0]"
+                    ng-bind-html="job.locations[0] | highlight:searchText">Address: {{job.locations[0]}}</h5><h5 ng-model="searchText.date"
+                                                                                                                 ng-bind-html="job.date | highlight:searchText">Date: {{job.date}}</h5>
 
                 <h5>Requirements:</h5>
 
-                <p>{{job.original_text["requirements"].split("|||")[0]}}</p>
+                <p ng-model="searchText.original_text['requirements'].split('|||')[0]"
+                   ng-bind-html="job.original_text['requirements'].split('|||')[0] | highlight:searchText">{{job.original_text["requirements"].split("|||")[0]}}</p>
 
                 <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
                 <article id="collepse-{{$index}}" class="collapse">

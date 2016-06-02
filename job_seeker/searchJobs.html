@@ -37,14 +37,14 @@
                                 {{job['original_text']['title']}}</p>
 
                             <p>
-                               <span ng-repeat="scope_of_position in job['scope_of_position']">
-                                    <span ng-if="scope_of_position == 'full'">Full Time Job |</span>
-                                   <span ng-if="scope_of_position == 'part'">Part Time Job |</span>
-                                   <span ng-if="scope_of_position == 'hours'">Job by Hours |</span>
+                               <span ng-repeat="scope_of_position in job['scope_of_position']" >
+                                    <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"  ng-bind-html="'Full Time Job |' | highlight:searchText" >Full Time Job |</span>
+                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"  ng-bind-html="'Part Time Job |' | highlight:searchText">Part Time Job |</span>
+                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"  ng-bind-html="'Job by Hours |' | highlight:searchText">Job by Hours |</span>
                                 </span>
                             </p>
 
-                            <p ng-model="searchText.address">
+                            <p ng-model="searchText.address"  ng-bind-html="job.locations[0] | highlight:searchText">
                                 {{job["locations"][0]}},
                             </p>
 

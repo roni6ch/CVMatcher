@@ -130,7 +130,15 @@ app.controller('companyProfileController',
             if (logo == undefined)
                 logo = 'http://www.megaicons.net/static/img/icons_sizes/53/135/256/default-icon-icon.png';
 
+
             $scope.status = '';
+
+            if (!$.isNumeric($(".companyPC").val())){
+                $('#update').modal('show');
+                $scope.status = "P.C is not a number!";
+                return;
+            }
+
             if (!company) {
                 //noinspection JSDuplicatedDeclaration
                  companyJson = {

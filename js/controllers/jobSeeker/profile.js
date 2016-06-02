@@ -8,7 +8,7 @@
 app
     .controller(
         'seekerProfileControler',
-        function ($scope, $http, $compile, $rootScope, $timeout) {
+        function ($scope, $http, $compile, $rootScope, $location, $timeout) {
             //noinspection JSValidateTypes
             angular.element("#profileImg").parent().attr("href", '#/Profile');
 
@@ -555,6 +555,18 @@ app
 
             };
             $scope.exitStatus = function () {
+
+                if (localStorage.getItem('fixCV') !== null) {
+                    var jobid = localStorage.getItem('fixCV');
+                    localStorage.removeItem('fixCV');
+                    $('#myModal ').modal('hide');
+                    $timeout(function () {
+                        $location.url('/searchJobs/' + jobid + '/matchpage');
+                    }, 1000);
+                    return;
+                }
+
+
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 if (closeModal == true)
                     $timeout(function () {

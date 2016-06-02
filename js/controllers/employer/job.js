@@ -305,11 +305,11 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             })
                 .then(function (data) {
                         parseExpereince = {
-                            "text": $("#requirementsMust").val(),
+                            "text": $("#requirementsMust").val().replace(/,/g,' '),
                             "words": data.data
                         };
                         parseExpereinceAdv = {
-                            "text": $("#requirementsAdvantage").val(),
+                            "text": $("#requirementsAdvantage").val().replace(/,/g,' '),
                             "words": data.data
                         };
                         var tempMust, tempAdv;
