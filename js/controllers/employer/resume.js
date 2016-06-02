@@ -87,9 +87,11 @@ app.controller('resumeController',
                                         count: v.grade
                                     });
                                 });
+                                $(".resumeSkillsBox").show();
                                 bubbels();
                             }
                             else {
+                                $(".resumeSkillsBox").hide();
                                 $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
                             }
                     },

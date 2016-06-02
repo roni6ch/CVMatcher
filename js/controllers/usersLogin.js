@@ -12,7 +12,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
     //noinspection JSValidateTypes
     angular.element("#profileImg").parent().attr("href", '#/');
     //noinspection JSValidateTypes
-    angular.element("#profileImg").parent().hide();
+    angular.element("#profileImg").parent().show();
     var firstSignIn = true;
     $http({
         url: 'https://cvmatcher.herokuapp.com/getUserId',

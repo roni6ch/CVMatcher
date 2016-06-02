@@ -17,30 +17,49 @@
                    ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
 
                 <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
-                <h5>{{user['user'].address}}</h5>
-                <h5>{{user['user'].email}}</h5>
-                <h5>{{user['user'].phone_number}}</h5>
                 <i id="candidateLike"
                    class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
                 <h5>{{user.sector}}</h5>
+
+
+                <div>
+                    <a href="#">
+                        <!-- <i class="fa fa-phone fa-2x"></i> -->
+                        <h4>{{user['user'].address}}</h4></a>
+                </div>
+                <div>
+                    <a href="#">
+                        <!-- <i class="fa fa-phone fa-2x"></i> -->
+                        <h4>{{user['user'].phone_number}}</h4></a>
+                </div>
+                <div>
+                    <a href="#">
+                        <!-- <i class="fa fa-envelope fa-2x"></i> -->
+                        <h4>{{user['user'].email}}</h4></a>
+                </div>
+                <div>
+                    <a href="#">
+                        <!-- <i class="fa fa-linkedin-square fa-2x"></i> -->
+                        <h4>{{user['user'].linkdin}}</h4></a>
+                </div>
+
             </div>
         </div>
         <!-- Resume Skills -->
-        <h2>Skills</h2>
-
-        <div class="bubbleChart"></div>
+        <h2 class="skillsTitle">Skills</h2>
+        <div class="bubbleChart"/>
 
         <!-- TIMELINE -->
         <section class="resumeYears">
-            <div class="borderSides">
+            <div class="borderTimelineTitle1">
                 <h3>Education</h3>
             </div>
-            <div class="borderSides">
+            <div class="borderTimelineTitle2">
                 <h3>Experience</h3>
             </div>
             <div class="container">
                 <div class="page-header">
-                    <h2 id="timeline">Timeline</h2>
+                    <h1 id="timeline">Timeline</h1>
                 </div>
                 <!-- section of year -->
                 <ul class="timeline">
@@ -85,23 +104,12 @@
         </div>
 
         <!-- Resume Details -->
-        <section class="resumeDetailsBox">
-            <h3>Contact Details</h3>
+        <!--       <section class="resumeDetailsBox">
+                  <h3>Contact Details</h3>
 
-            <div>
-                <a href="#"><i class="fa fa-phone fa-2x"></i>
-                    <h4>{{user['user'].phone_number}}</h4></a>
-            </div>
-            <div>
-                <a href="#"><i class="fa fa-envelope fa-2x"></i>
-                    <h4>{{user['user'].email}}</h4></a>
-            </div>
-            <div>
-                <a href="#"><i class="fa fa-linkedin-square fa-2x"></i>
-                    <h4>{{user['user'].linkdin}}</h4></a>
-            </div>
-        </section>
 
+              </section>
+       -->
 
     </article>
 
@@ -171,5 +179,3 @@
         </div>
     </section>
 </div>
-
-

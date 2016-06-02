@@ -55,42 +55,61 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul ng-if="userSignInType == 'employer'">
-            <li><a href="#/myjobs">My jobs</a></li>
-            <li><a href="#/Archive">Deleted</a></li>
-            <li><a href="#/companyProfile">Company Profile</a></li>
-            <li><a href="#/About"><i class="fa fa-users"></i>About</a></li>
-            <li><a href='' onclick=logout('logout')>Log Out</a></li>
-            <li><a href='' onclick=logout('signout')>Sign Out</a></li>
+            <li><a href="#/myjobs">
+                <i class="fa fa-file" aria-hidden="true"></i>
+                My jobs</a></li>
+            <li><a href="#/Archive">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                Deleted</a></li>
+            <li><a href="#/companyProfile">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                Company Profile</a></li>
+            <li><a href="#/About">
+                <i class="fa fa-users"></i>
+                About</a></li>
+            <li><a href='' onclick=logout('logout')>
+                <i class="fa fa-sign-out"></i>
+                Log Out</a></li>
+            <li><a href='' onclick=logout('signout')>
+                <i class="fa fa-sign-out"></i>
+                Sign Out</a></li>
         </ul>
         <!-- Job Seeker NAV -->
         <ul class="mobileMenu" ng-if="userSignInType == 'jobSeeker'">
             <li>
-                <i class="fa fa-search" aria-hidden="true"></i>
-                <a href="#/searchJobs">Search Jobs</a>
+                <a href="#/searchJobs">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    Search Jobs</a>
             </li>
             <li>
-                <i class="fa fa-file" aria-hidden="true"></i>
-                <a href="#/yourjobs">My Jobs</a>
+                <a href="#/yourjobs">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                    My Jobs</a>
             </li>
             <li>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-                <a href="#/Favorites">Favorite Jobs</a>
+                <a href="#/Favorites">
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    Favorite Jobs</a>
             </li>
             <li>
-                <i class="fa fa-trash" aria-hidden="true"></i>
-                <a href="#/deleted">Deleted Jobs</a>
+                <a href="#/deleted">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Deleted Jobs</a>
             </li>
             <li>
-                <i class="fa fa-users"></i>
-                <a href="#/About">About</a>
+                <a href="#/About">
+                    <i class="fa fa-users"></i>
+                    About</a>
             </li>
             <li>
-                <i class="fa fa-sign-out"></i>
-                <a href='' onclick=logout('logout')>Log Out</a>
+                <a href='' onclick=logout('logout')>
+                    <i class="fa fa-sign-out"></i>
+                    Log Out</a>
             </li>
             <li>
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                <a href='' onclick=logout('signout')>Sign Out</a></li>
+                <a href='' onclick=logout('signout')>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Sign Out</a></li>
         </ul>
     </div>
 </div>

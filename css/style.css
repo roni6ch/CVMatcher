@@ -10,13 +10,13 @@
 
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 
+
 @font-face {
     font-family: 'alefBold';
     font-weight: 300; (bold)
 font-style: normal;
     src: url('../fonts/Alef-bold.ttf');
 }
-
 @font-face {
     font-family: 'alefregular';
     font-weight: 300; (regular)
@@ -24,7 +24,7 @@ font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
 }
 
-.requiredError {
+.requiredError{
     color: #f36f6f;
 }
 
@@ -45,11 +45,11 @@ font-style: normal;
     src: url('../fonts/almoni-dl-aaa-regular.otf');
 }
 
-p {
-    margin: 0px;
+p{
+    margin:0px;
 }
-
 /******************************/
+
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
 menu, nav, section, img {
@@ -244,7 +244,6 @@ footer div a {
     left: 50%;
     bottom: 10%;
 }
-
 .fa-spin2 {
     display: none;
     position: absolute;
@@ -254,7 +253,7 @@ footer div a {
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
-.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper, .yourJobsWrapper,
+.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,.yourJobsWrapper,
 .googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
 .contactusWrapper, .googleSignInWrapper, .companyprofileWrapper, .candidatesWrapper,
 .profileWrapper {
@@ -266,7 +265,7 @@ footer div a {
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
 .favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
 .resumeWrapper header h2, .jobParametersWrapper header h2,
-.searchJobsWrapper header h2, .yourJobsWrapper header h2, .jobPageWrapper header h2,
+.searchJobsWrapper header h2,.yourJobsWrapper header h2, .jobPageWrapper header h2,
 .matchpageWrapper header h2, .googleSignInWrapper header h2,
 .aboutWrapper header h2, .contactusWrapper header h2,
 .companyprofileWrapper header h2, .profileWrapper header h2, .candidatesWrapper header h2 {
@@ -276,7 +275,7 @@ footer div a {
 
 .myjobsWrapper > h3, .readcvsWrapper > h3, .unreadcvsWrapper > h3,
 .favoritesWrapper > h3, .resumeWrapper > h3, .jobWrapper > h3,
-.jobParametersWrapper > h3, .searchJobsWrapper > h3, .yourJobsWrapper > h3, .jobPageWrapper > h3,
+.jobParametersWrapper > h3, .searchJobsWrapper > h3,.yourJobsWrapper > h3, .jobPageWrapper > h3,
 .matchpageWrapper > h3, .googleSignInWrapper > h3, .aboutWrapper > h3,
 .companyprofileWrapper > h3, .profileWrapper > h3, .contactusWrapper > h3, .candidatesWrapper > h3 {
     position: absolute;
@@ -324,46 +323,31 @@ footer div a {
     background-position: 0 0;
 }
 
+
+
 .navbar-toggle .icon-bar:nth-of-type(2) {
     top: 1px;
 }
-
 .navbar-toggle .icon-bar:nth-of-type(3) {
     top: 2px;
 }
-
 .navbar-toggle .icon-bar {
     position: relative;
     transition: all 500ms ease-in-out;
 }
-
 .navbar-toggle.active .icon-bar:nth-of-type(1) {
     top: 6px;
     transform: rotate(45deg);
 }
-
 .navbar-toggle.active .icon-bar:nth-of-type(2) {
     background-color: transparent;
 }
-
 .navbar-toggle.active .icon-bar:nth-of-type(3) {
     top: -6px;
     transform: rotate(-45deg);
 }
-
-.navbar-collapse > ul {
-    background: #231f20;
-    width: 52%;
-    height: 100vh;
-    padding: 4px;
-    padding-top: 82px;
-    padding-left: 0px;
-    border-radius: 0;
-    float: right;
-    margin-top: -50px; /* position: absolute; *//* top: 0; *//* right: 0; */
-}
-
-.navbar-collapse ul li {
+.navbar-collapse > ul{background: #231f20;width: 52%;height: 100vh;padding: 4px;padding-top: 82px;padding-left: 0px;border-radius: 0;float: right;margin-top: -50px;/* position: absolute; *//* top: 0; *//* right: 0; */}
+.navbar-collapse ul li{
     font-family: almoni-dl-aaa-regular;
     display: table;
     /*margin: 0 auto;*/
@@ -373,12 +357,13 @@ footer div a {
     color: #fff;
 }
 
-.mobileMenu a {
+.mobileMenu a{
     margin-left: 22px;
     /* width: 152%; */
 }
 
-.mobileMenu i {
+
+.mobileMenu i{
     margin-right: 20px;
 }
 
@@ -393,53 +378,41 @@ footer div a {
     opacity: 1;
 }
 
-.googleSignInWrapper {
+.googleSignInWrapper{
 
     width: 100%;
     height: 100%;
 }
 
-.googleSignInImg {
+.googleSignInImg{
     position: absolute;
     top: 4%;
-    height: 98%;
+    height: 96%;
     width: 100%;
 }
 
-.googleSignInBox {
+.googleSignInBox{
     background-color: #231f20;
     opacity: 0.8;
     height: 280px;
-    width: 50%;
+    width:50%;
     position: absolute;
     top: 30%;
     left: 24%;
 }
 
-.googleSignInWrapper header {
+.googleSignInWrapper header{
 
     padding-top: 20px;
     padding-left: 20px;
     padding-bottom: 20px;
 }
 
-.googleSignInWrapper h3 {
-    padding-top: 40px;
-    opacity: 1;
-    font-size: 224%;
-    font-family: almoni-dl-aaa-regular;
-    font-weight: bold;
-}
+.googleSignInWrapper h3{padding-top: 40px;opacity: 1;font-size: 224%;font-family: almoni-dl-aaa-regular;font-weight: bold;}
 
-.googleSignInWrapper h4 {
-    padding-top: 10px;
-    opacity: 1;
-    font-size: 116%;
-    font-family: almoni-dl-aaa-regular;
-    font-weight: bold;
-}
+.googleSignInWrapper h4{padding-top: 10px;opacity: 1;font-size: 116%;font-family: almoni-dl-aaa-regular;font-weight: bold;}
 
-.googleSignInWrapper h3, .googleSignInWrapper h4 {
+.googleSignInWrapper h3, .googleSignInWrapper h4{
 
     display: table;
     margin: 0 auto;
@@ -448,7 +421,7 @@ footer div a {
     -webkit-text-fill-color: transparent;
 }
 
-.googleSignInBox img {
+.googleSignInBox img{
     opacity: 1;
     margin-top: 20px;
     margin-left: 40%;
@@ -459,7 +432,6 @@ footer div a {
     float: left;
     opacity: 0.6;
 }
-
 /**********************/
 
 /*.googleSignInWrapper > div > a {
@@ -499,12 +471,9 @@ footer div a {
 .abcRioButton {
     margin: 0 auto;
 }
-
-.popover-content a {
-    width: 100%;
+.popover-content a{    width: 100%;
     display: inline-block;
-    text-align: center;
-}
+    text-align: center;}
 
 /****************************************************** INDEX - NAV BAR **********************************************/
 /*natalie*/
@@ -513,7 +482,7 @@ footer div a {
 display: none;
 }*/
 
-.userIcon {
+.userIcon{
     position: absolute;
     width: 44px;
     left: 4%;
@@ -578,20 +547,10 @@ display: none;
 
 .navBarImg {
 
-    /*natalie*/
-    height: 60px;
-    background-color: #231f20;
-    opacity: 0.8;
-    width: 72%;
-    position: absolute;
-    margin: 0 auto;
-    top: 48px;
-    left: 13%;
+    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 72%;position: absolute;margin: 0 auto;top: 48px;left: 13%;
     /*********//* float: right;
     overflow: hidden;
-    height: 150px;*//*background-image: url("../images/navImg.jpg");*//*width: 100%;*/
-    z-index: 1;
-}
+    height: 150px;*//*background-image: url("../images/navImg.jpg");*//*width: 100%;*/z-index: 1;}
 
 .navBarImg img {
     max-height: 261px;
@@ -617,7 +576,7 @@ display: none;
     /* width: 57%; */
 }
 
-.navBarImg li a:hover {
+.navBarImg li a:hover{
     opacity: 0.7;
 }
 
@@ -651,17 +610,16 @@ display: none;
     color: #337ab7;
 }*/
 
-.title {
+.title{
     font-size: 22px;
 }
 
-.myjobsWrapper svg {
+.myjobsWrapper svg{
     overflow: hidden;
     position: absolute;
     bottom: -62px;
 }
-
-.selected a {
+.selected a{
     display: table;
     margin: 0 auto;
     background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
@@ -669,7 +627,7 @@ display: none;
     -webkit-text-fill-color: transparent;
 }
 
-.line {
+.line{
     position: absolute;
 }
 
@@ -679,11 +637,11 @@ display: none;
     top: 236px;
 }
 
-.myjobsWrapper section:first-child {
+.myjobsWrapper section:first-child{
     /* margin-top: 168px; */
 }
 
-.newJob {
+.newJob{
     position: absolute;
     right: 30px;
     top: 20px;
@@ -691,14 +649,14 @@ display: none;
     color: white;
 }
 
-.newJob button, html input[type=button] {
+.newJob button, html input[type=button]{
     background-color: transparent;
     color: white;
     font-family: almoni-dl-aaa-regular;
     font-size: 20px;
 }
 
-.myJobsBox {
+.myJobsBox{
     height: 200px;
     width: 96%;
     position: relative;
@@ -707,7 +665,7 @@ display: none;
     opacity: 0.8;
 }
 
-.myJobsImgCover {
+.myJobsImgCover{
     background-image: url("../images/myjobscover.png");
     height: 100%;
     width: 100%;
@@ -716,7 +674,7 @@ display: none;
     background-size: cover;
 }
 
-.engineering {
+.engineering{
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -731,7 +689,7 @@ display: none;
     font-family: almoni-dl-aaa-regular;
 }
 
-.engineering:first-child {
+.engineering:first-child{
     color: red;
 }
 
@@ -740,12 +698,13 @@ a {
     text-decoration: none;
 }
 
+
 a:focus, a:hover {
     text-decoration: none;
-    color: #BDBDBD;
+    color:#BDBDBD;
 }
 
-.engineering li {
+.engineering li{
     float: left;
     margin-right: 1%;
     margin-left: 1%;
@@ -760,7 +719,7 @@ a:focus, a:hover {
     background-color: #231f20;
 }
 
-.engineering li a:hover {
+.engineering li a:hover{
 
     display: table;
     margin: 0 auto;
@@ -769,7 +728,7 @@ a:focus, a:hover {
     -webkit-text-fill-color: transparent;
 }
 
-.myjobsWrapper header h2 {
+.myjobsWrapper header h2{
     position: absolute;
     top: 12%;
     left: 9%;
@@ -778,13 +737,14 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.myjobsWrapper form {
+
+.myjobsWrapper form{
     position: absolute;
     top: 80px;
     left: 9%;
 }
 
-.myjobsWrapper button {
+.myjobsWrapper button{
     margin-top: 132px;
     background-color: transparent;
     border: 0;
@@ -795,7 +755,7 @@ a:focus, a:hover {
     /* margin-left: -24%; */
 }
 
-.navBarImg > img {
+.navBarImg>img{
     height: 36px;
     width: 36px;
     position: absolute;
@@ -803,7 +763,7 @@ a:focus, a:hover {
     left: 24%;
 }
 
-#logo {
+#logo{
     height: 67px;
     width: 83px;
 }
@@ -848,7 +808,7 @@ a:focus, a:hover {
     /* margin-left: 6.2%; */
     width: 95%;
     padding: 10px;
-    border: 10px solid #231f20;
+    border: 10px solid#231f20;
     text-align: left;
     float: left;
     text-align: left;
@@ -1071,19 +1031,18 @@ a:focus, a:hover {
     color: #000;
     font-weight: bolder;
 }
-
 /**/
 /*natalie*/
 
-.navigation a {
+.navigation a{
     color: #;
 }
 
-.navigation span {
+.navigation span{
     /* color: #000; */
 }
 
-.candidatesWrapper h2 {
+.candidatesWrapper h2{
     color: #fff;
     padding-top: 18px;
     padding-left: 76px;
@@ -1093,7 +1052,7 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.candidatesWrapper .engineering {
+.candidatesWrapper .engineering{
     margin-top: 30px;
 }
 
@@ -1108,16 +1067,16 @@ a:focus, a:hover {
     /* position: absolute; */
 }
 
-.candidatesImgCover {
+.candidatesImgCover{
     background-image: url('../images/candidatescover.png');
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-size: cover;
 }
 
-.candidates h3 {
+.candidates h3{
     border-bottom-width: 1px;
     border-bottom-style: solid;
     width: 50%;
@@ -1141,9 +1100,10 @@ a:focus, a:hover {
     /* overflow: hidden; */
     /* text-align: left; */
     margin-top: 0px;
+    margin-bottom: 40px;
     width: 95%;
     padding: 10px;
-    border: 10px solid #231f20;
+    border: 10px solid#231f20;
     text-align: left;
     float: left;
     text-align: left;
@@ -1255,13 +1215,39 @@ a:focus, a:hover {
 }
 
 /****************************************************** RESUME - HTML **********************************************/
+
+.resumeWrapper .resumeYears > div {
+
+    background: transparent;
+}
+
+.resumeWrapper .page-header {border: 4px solid #000;padding: 4px;width: 200px;text-align: center;height: 84px;margin: 0 auto;margin-top: 90px;}
+
+.resumeWrapper .skillsTitle{
+    margin-bottom: 22px;
+    margin-top: 22px;
+    color: #fff;
+}
+
+.resumeWrapper h4 {
+    font-size: 18px;
+    padding-bottom: 16px;
+    /* padding-top: 8px; */
+}
+
+.resumeWrapper div#formulasAppend {
+    background-color: #231f20;
+    margin-bottom: 40px;
+    padding-top: 24px;
+}
+
 #users {
 
     position: relative;
     top: 95px;
 }
 
-.borderSides {
+.borderSides{
     background-color: #000;
 
 }
@@ -1269,7 +1255,7 @@ a:focus, a:hover {
 #users > div {
     /* background: #000; */
     padding: 10px;
-    border: 10px solid #231f20;
+    border: 10px solid#231f20;
     /* border: 2px solid red; */
     /* padding: 10px 0px; */
     /* margin: 0 auto 10px; */
@@ -1282,19 +1268,20 @@ a:focus, a:hover {
     /* padding-bottom: 50px; */
 }
 
-.userDetailsBox {
+.userDetailsBox{
     background-color: #231f20;
     padding-top: 44px;
-    padding-bottom: 62px;
+    padding-bottom: 22px;
     color: #fff;
 }
 
-.resumeWrapper h5 {
+.resumeWrapper h5{
     font-size: 20px;
     padding-top: 20px;
+    padding-bottom: 16px;
 }
 
-.resumeWrapper .userDetailsBox h3 {
+.resumeWrapper .userDetailsBox h3{
     font-size: 28px;
     text-decoration: underline;
 }
@@ -1353,7 +1340,7 @@ a:focus, a:hover {
     margin-top: 20px;
 }
 
-.resumeSkillsBox h2 {
+.resumeSkillsBox h2{
     color: #fff;
     background: #231f20;
 }
@@ -1522,7 +1509,68 @@ a:focus, a:hover {
 }*/
 
 /****************************************************** JOB - HTML **********************************************/
+
+/*languges after parsing*/
+
+.contentWrapper .thumbnails .thumbnail {
+    min-height: 100px !important;
+    width: 100%;
+}
+
+.contentWrapper .thumbnails .input-group-btn:first-child > .btn, .contentWrapper .thumbnails .input-group-btn:first-child > .btn-group {
+    margin-left: 0;
+    width: 0px;
+}
+
+.contentWrapper .thumbnails .fa {
+    margin-left: -6px;
+}
+
+.contentWrapper .thumbnails .form-control {
+
+    padding-left: 6%;
+    font-size: 92%;
+
+}
+
+
 /*roni*/
+
+.thumbnail {
+    min-height: 100px !important;
+    width: 210px;
+}
+
+.thumbnail .caption {
+    padding: 0px;
+}
+
+.btn-droppable {
+    width: 180px;
+    padding-left: 4px;
+    margin-right: 5px !important;
+}
+
+.contentWrapper article {
+    float: left;
+    width: 31%;
+    margin-right: 1%;
+}
+
+.input-group {
+    margin-top: 10px;
+}
+
+
+.langsName {
+    width: 90%;
+    font-size: 26px;
+    margin-bottom: 10px;
+    text-align: center;
+    background: none !important;
+    border: 0 !important;
+    display: block;
+}
 
 .contentWrapper.requirementsWrapper {
     min-height: 300px;
@@ -1532,7 +1580,6 @@ a:focus, a:hover {
 .flip-container {
     perspective: 1000px;
 }
-
 /* flip the pane when hovered */
 .flip-container:hover .flipper, .flip-container.hover .flipper {
     transform: rotateY(180deg);
@@ -1581,7 +1628,9 @@ a:focus, a:hover {
     padding-top: 16px;
 }
 
-.jobWrapper .navigation {
+
+
+.jobWrapper .navigation{
     top: -41px;
 }
 
@@ -1619,6 +1668,7 @@ a:focus, a:hover {
     color: #000;
 }
 
+
 .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
     border-radius: 0;
     color: #000;
@@ -1634,7 +1684,7 @@ a:focus, a:hover {
 .jobWrapper .pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    padding-left: 10px;
+    padding-left: 1%;
 
 }
 
@@ -1642,6 +1692,7 @@ a:focus, a:hover {
     text-align: center;
     width: 10%;
     color: #000;
+    padding-left: 2%;
 }
 
 .jobWrapper .pagination + section {
@@ -1683,13 +1734,13 @@ a:focus, a:hover {
     margin-top: 22px;
 }
 
-.jobP {
+.jobP{
 
     margin-top: 0 !important;
     color: #fff;
 }
 
-.jobPExp {
+.jobPExp{
     color: #fff;
     padding-left: 18px;
 }
@@ -1739,7 +1790,7 @@ a:focus, a:hover {
     background-size: cover;
 }
 
-.jobWrapper header {
+.jobWrapper header{
     border: 6px solid #231f20;
     padding: 6px;
     width: 272px;
@@ -1747,7 +1798,7 @@ a:focus, a:hover {
     margin-top: 159px;
 }
 
-.jobWrapper .jobTitle {
+.jobWrapper .jobTitle{
     color: #fff;
     background: #231f20;
     width: 246px;
@@ -1757,6 +1808,8 @@ a:focus, a:hover {
     margin-bottom: 0 !important;
 
 }
+
+
 
 .jobWrapper {
     /* background-image: url('../images/candidatescover.png'); */
@@ -1798,31 +1851,18 @@ a:focus, a:hover {
 .editLogo + input + input {
     width: 20%;
 }
-
-.companyLogo img {
-    margin: 0 auto;
-}
-
-.logos {
-    float: left;
-    margin-right: 1%;
-}
-
-.logos img {
-    width: 100px;
-    height: 100px;
-}
+.companyLogo img{margin: 0 auto;}
+.logos{float:left;     margin-right: 1%;}
+.logos img{width:100px; height:100px;}
 
 .companies {
     float: left;
     margin-right: 1%;
 }
-
 .companies img {
     width: 100px;
     height: 100px;
 }
-
 .pagination {
     display: block;
     margin: 0px;
@@ -2002,15 +2042,11 @@ a:focus, a:hover {
     height: 80px;
     background-color: #FFF4D9;
 }
-
-.langs {
-    width: 15%;
-}
+.langs{width:15%;}
 
 .removeCombination {
     float: right;
 }
-
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
     color: #606060;
@@ -2085,14 +2121,15 @@ a:focus, a:hover {
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
 /************************************************************************************************************************************/
 /*natalie*/
-.arrow-down, .arrow-up {
+.arrow-down,.arrow-up{
     margin: 0 auto;
     position: absolute;
     right: 0;
     bottom: 0;
 }
 
-.arrow-up {
+
+.arrow-up{
     /* position: absolute; */
     /* margin-top: 0; */
     /* margin-bottom: 21px !important; */
@@ -2100,7 +2137,7 @@ a:focus, a:hover {
     margin: 0 auto;
 }
 
-.searchJobsImgCover {
+.searchJobsImgCover{
     background-image: url("../images/searchjobscover.png");
     height: 100%;
     width: 100%;
@@ -2108,8 +2145,7 @@ a:focus, a:hover {
     top: 0;
     background-size: cover;
 }
-
-.searchJobsImgCover1 {
+.searchJobsImgCover1{
     background-image: url("../images/searchjobscover.png");
     height: 100%;
     width: 100%;
@@ -2118,7 +2154,7 @@ a:focus, a:hover {
     background-size: cover;
 }
 
-.searchJobsWrapper header h2, .yourJobsWrapper header h2 {
+.searchJobsWrapper header h2, .yourJobsWrapper header h2{
     position: absolute;
     top: 12%;
     left: 9%;
@@ -2127,7 +2163,7 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.searchJobsWrapper button, .yourJobsWrapper button {
+.searchJobsWrapper button, .yourJobsWrapper button{
     margin-top: 142px;
     background-color: transparent;
     border: 0;
@@ -2136,7 +2172,8 @@ a:focus, a:hover {
     color: white !important;
 }
 
-.checkMyCVButton {
+
+.checkMyCVButton{
     /* color: #fff; */
     width: 96% !important;
     float: left;
@@ -2146,14 +2183,13 @@ a:focus, a:hover {
     border: 2px solid #fff;
 }
 
-.visibleText {
+.visibleText{
     float: left;
     /* width: 32% !important; */
     /* margin-left: 0px; */
     margin-top: 0px !important;
     padding-top: 10px;
 }
-
 /*********/
 .searchJobsWrapper form input, .yourJobsWrapper form input {
     margin: 0 auto;
@@ -2177,12 +2213,12 @@ a:focus, a:hover {
 .jobsList ul li {
     /* width: 100%; */
     padding: 10px 10px;
-    overflow: hidden;
+    /*overflow:hidden;*/
     margin-top: 38px;
     width: 95%;
     padding: 6px;
     /* background-color: #231f20; */
-    border: 10px solid #231f20;
+    border: 10px solid#231f20;
     text-align: left;
     float: left;
     text-align: left;
@@ -2190,6 +2226,8 @@ a:focus, a:hover {
     color: white;
     margin-bottom: 80px;
 }
+
+
 
 .jobsList ul li a {
     /* opacity: 0.7; */
@@ -2200,6 +2238,7 @@ a:focus, a:hover {
 .jobsList ul li a:hover {
     opacity: 1;
 }
+
 
 .jobsList article {
     float: left;
@@ -2226,13 +2265,9 @@ a:focus, a:hover {
 .jobListLi {
     float: left;
 }
-
-.jobListLi > a > div {
-    width: 100%;
+.jobListLi > a > div{    width: 100%;
     position: relative;
-    min-height: 100px;
-}
-
+    min-height: 100px;}
 .jobListLi section {
     position: absolute;
     width: 90px;
@@ -2253,8 +2288,7 @@ a:focus, a:hover {
 .searchJobsWrapper .jobListLi img {
 
 }
-
-.logoInJobBox {
+.logoInJobBox{
     /* float: left; */
     width: 72px;
     /* height: 64px; */
@@ -2277,7 +2311,7 @@ a:focus, a:hover {
 /****************************************************** MY JOBS - JOBSEEKER - HTML **********************************************/
 
 /*natalie*/
-.companyLogoN {
+.companyLogoN{
     float: left;
     width: 86px;
     position: absolute;
@@ -2301,10 +2335,9 @@ a:focus, a:hover {
 .jobListLi .rating {
     position: absolute;
     top: 44px;
-    right: 20%;
+    right:20%;
 }
-
-.fa-heart-o, .fa-heart {
+.fa-heart-o,.fa-heart{
     position: absolute;
     right: 26px;
     z-index: 2;
@@ -2312,21 +2345,12 @@ a:focus, a:hover {
     top: 26px;
 }
 
-.unlikeReason {
-    float: left;
-}
-
-.unlike {
-    float: right;
-}
-
-.like {
-    float: right;
+.unlikeReason{float:left;}
+.unlike{float:right;}
+.like{    float: right;
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-    transform: rotate(180deg);
-}
-
+    transform: rotate(180deg);}
 /****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
     width: 100%;
@@ -2381,10 +2405,9 @@ a:focus, a:hover {
     left: 24%;
     font-size: 2.5vw;
 }
+.fa-times{
+    cursor: pointer;}
 
-.fa-times {
-    cursor: pointer;
-}
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 
@@ -2402,7 +2425,7 @@ a:focus, a:hover {
     background-color: #000;
 }
 
-.matchpageWrapper {
+.matchpageWrapper{
     position: relative;
     margin-top: 160px;
 }
@@ -2436,8 +2459,7 @@ a:focus, a:hover {
     /* background-color: #000; */
     margin-top: 80px;
 }
-
-.tootipInfo {
+.tootipInfo{
     float: right;
     width: 10%;
     margin-bottom: 20px;
@@ -2510,10 +2532,7 @@ a:focus, a:hover {
 .langsMatch > span {
     font-weight: bold;
 }
-
-.progress-bar-striped {
-    color: #000;
-}
+.progress-bar-striped{color:#000;}
 
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
@@ -2605,13 +2624,7 @@ a:focus, a:hover {
     border-color: #ccc;
 }
 
-.profileWrapper .parseB { /* border: 2px solid #fff; */
-    padding: 0px;
-    width: 194px;
-    height: 50px;
-    margin: 0 auto;
-    margin-top: 22px;
-}
+.profileWrapper .parseB{/* border: 2px solid #fff; */padding: 0px;width: 194px;height: 50px;margin: 0 auto;margin-top: 22px;}
 
 .profileWrapper .btn-defult {
     /* border-top-left-radius: 0; */
@@ -2630,6 +2643,7 @@ a:focus, a:hover {
     -webkit-text-fill-color: transparent;
 }
 
+
 .profileWrapper .btn-warning:hover {
     opacity: 0.7;
     border-color: #fff;
@@ -2645,6 +2659,8 @@ a:focus, a:hover {
         right: auto;*/
     display: none;
 }
+
+
 
 .profileWrapper .timeline > li > .timeline-panel:after {
     /* position: absolute; */
@@ -2676,7 +2692,7 @@ a:focus, a:hover {
     margin-bottom: 16%;
 }
 
-.borderTimelineTitle1 {
+.borderTimelineTitle1{
     padding: 4px;
     border: 4px solid #000;
     width: 133px !important;
@@ -2685,7 +2701,7 @@ a:focus, a:hover {
     margin-top: 10px;
 }
 
-.borderTimelineTitle2 {
+.borderTimelineTitle2{
     padding: 4px;
     border: 4px solid #000;
     width: 144px !important;
@@ -2702,14 +2718,15 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
 }
 */
-.profileWrapper .navigation {
+.profileWrapper .navigation{
     top: -30px;
 }
 
-.profileWrapper .btn-group {
+.profileWrapper .btn-group{
 
     width: 100%;
 }
+
 
 /*.btn-success.active, .btn-success:active, .open > .dropdown-toggle.btn-success {
     color: #000;
@@ -2739,7 +2756,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     border-color: #fff;
 }*/
 /*natalie*/
-.profileCover {
+.profileCover{
     background-image: url("../images/profileCover.jpg");
     height: 100%;
     width: 100%;
@@ -2747,8 +2764,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     top: 0;
     background-size: cover;
 }
-
-.profileTitle {
+.profileTitle{
     /* position: absolute; */
     /* top: 0; */
     color: #fff;
@@ -2759,22 +2775,19 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin: 0 auto;
     margin-bottom: 0 !important;
 }
-
-.profileWrapper header {
+.profileWrapper header{
     border: 6px solid #231f20;
     padding: 6px;
     width: 168px;
     margin: 0 auto;
 }
-
-.buttonBorder {
+.buttonBorder{
     border: 2px solid #fff;
     padding: 2px;
     width: 88px;
     margin: 0 auto;
     margin-top: 22px;
 }
-
 /*//////*/
 .userProfile h4 {
     margin: 10px 0px;
@@ -2828,7 +2841,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     /* margin-top: 20px; */
     /* margin-left: 40%; */
 }
-
 .profileWrapper > ul li {
     width: 48% !important;
     margin-top: 2%;
@@ -2878,19 +2890,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-left: 38%;
     width: 40%;
 }
-
-.removeContentCV {
-    float: right;
-    cursor: pointer;
-}
-
+.removeContentCV{float:right;
+    cursor: pointer;}
 #submitAfterParse {
     pointer-events: none;
 }
-
-.birthDay {
-    text-align: left;
-}
+.birthDay{text-align: left;}
 
 .timeline-pluss, .timeline-pluss-exp {
     float: right;
@@ -2907,17 +2912,14 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
 }
-
 .timeline-pluss i, .timeline-pluss-exp i {
     margin-top: 18px;
     color: #000;
     font-size: 18px;
 }
-
 .timeline-pluss-exp {
     float: left
 }
-
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
 /****************************************************************************************************************************/
@@ -2974,25 +2976,21 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         width: 135px;
         bottom: 20px;
     }
-
     .myjobsWrapper svg {
         bottom: 2px;
     }
-
-    .navBarImg > img {
+    .navBarImg>img{
         height: 6px;
         width: 6px;
         position: absolute;
         top: 24%;
         left: 24%;
     }
-
-    .navBarImg > img {
+    .navBarImg>img {
         height: 30px;
         width: 30px;
         left: 14%;
     }
-
     .navBarImg {
         width: 96%;
         margin: 0 auto;
@@ -3006,18 +3004,14 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         /* padding-bottom: 32px; */
         padding-left: 11px;
     }
-
-    .WRAPPER .C
-
-;A
- .myJobsBox {
-     height: 186px;
-     width: 100%;
-     position: relative;
-     margin-top: -8px;
-     /* margin-left: -32px; */
- }
-
+    .WRAPPER .C;A
+                .myJobsBox {
+                    height: 186px;
+                    width: 100%;
+                    position: relative;
+                    margin-top: -8px;
+                    /* margin-left: -32px; */
+                }
     .form-control {
         display: block;
         width: 100%;
@@ -3032,7 +3026,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         /* width: 100%; */
         /* color: red; */
     }
-
     .engineering li {
         margin-right: 1%;
         margin-left: 1%;
@@ -3042,13 +3035,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         cursor: pointer;
     }
 
-    #logo img {
+    #logo img{
         height: 50px;
         /* width:46px; */
         position: absolute;
         top: -30px;
     }
-
     .navBar > div:nth-child(2) > a > img {
         /* margin-top: 60%; */
         /* margin-right: 0%; */
@@ -3060,7 +3052,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .navBarImg li a {
 
         font-size: 20px;
-        padding-top: 8px;
+        padding-top:8px;
 
     }
 
@@ -3070,7 +3062,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         /* left: 1%; */
         /* width: 98.4%; */
     }
-
     .jobs > div:nth-child(2) section {
         width: 80px;
     }
@@ -3089,13 +3080,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         font-family: almoni-dl-aaa-regular;
         font-weight: bold;
     }
-
-    .jobs:first-child {
+    .jobs:first-child{
         margin-top: 24px;
     }
 
     .jobs {
-        margin-left: 0;
+        margin-left:0;
         margin-top: 60px;
         /* border: 2px solid #B5B5B5; */
         width: 100%;
@@ -3116,11 +3106,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         font-size: 16px;
         font-family: almoni-dl-aaa-regular;
         color: white;
-        margin-right: 0;
+        margin-right:0;
         margin-left: 0px;
     }
-
     /*********/
+
+
     .mobile {
         display: block;
     }
@@ -3140,12 +3131,13 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     /*.navBarImg {
         display: none;
     }*/
+
     /*.navBar {
         padding: 15px 15px 52px 15px;
     }
 */
     .navBar > div:nth-child(1) {
-        z-index: 1111;
+        z-index:1111;
         padding: 10px;
     }
 
@@ -3169,7 +3161,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .candidates > div:nth-child(2) section h5 {
         bottom: -8px;
     }
-
     .candidates h5 {
         color: #606060;
         font-weight: bold;
@@ -3178,13 +3169,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         overflow: hidden;
         font-size: 14px !important;
     }
-
     .candidates {
         width: 100%;
         /* padding: 49px; */
     }
 
-    .candidatesWrapper .myJobsBox {
+    .candidatesWrapper .myJobsBox{
         margin-top: 68px;
         height: 100%;
     }
@@ -3217,7 +3207,10 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         top: 30px;
     }
 
+
+
     /*natalie*/
+
     .jobsList ul li {
         width: 100%;
         margin-top: 36px;
@@ -3317,7 +3310,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .nav-tabs li {
         height: 66px;
     }
-
     /*natalie*/
     /*    .googleSignInWrapper > div > a > img {
             width: 40%;
@@ -3330,6 +3322,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         .googleSignInWrapper > div > a {
             float: none;
         }*/
+
     .googleUsers {
         display: none;
     }
@@ -3344,7 +3337,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
-    .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper, .yourJobsWrapper,
+    .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,.yourJobsWrapper,
     .jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
     .companyprofileWrapper, .contactusWrapper, .profileWrapper, .candidatesWrapper {
         padding: 10px 10px 0px;
@@ -3353,7 +3346,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     .myjobsWrapper > h3, .resumeWrapper > h3, .readcvsWrapper > h3,
     .unreadcvsWrapper > h3, .favoritesWrapper > h3, .jobParametersWrapper > h3,
-    .searchJobsWrapper > h3, .yourJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
+    .searchJobsWrapper > h3,.yourJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
     .aboutWrapper > h3, .contactusWrapper > h3,
     .matchpageWrapper > h3, .companyprofileWrapper > h3, .profileWrapper > h3, .candidatesWrapper > h3 {
         display: none;
@@ -3477,14 +3470,14 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     /*first page*/
-    .googleSignInImg {
+    .googleSignInImg{
         position: absolute;
         top: 4%;
-        height: 98%;
+        height: 96%;
         width: 100%;
     }
 
-    .googleSignInBox {
+    .googleSignInBox{
         background-color: #231f20;
         opacity: 0.8;
         height: 42%;
@@ -3502,17 +3495,18 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         width: 30%;
     }
 
-    .googleSignInWrapper h3 {
+    .googleSignInWrapper h3{
         padding-top: 32px;
         opacity: 1;
         font-size: 180%;
     }
 
-    .googleSignInWrapper h4 {
+    .googleSignInWrapper h4{
         padding-top: 22px;
         opacity: 1;
         font-size: 106%;
     }
+
 
     /*job page*/
     .jobWrapper .btn-group {
@@ -3537,7 +3531,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
         width: 100%;
     }
-
     .jobWrapper .pagination-lg > li:first-child > a {
         padding-left: 2%;
     }
@@ -3550,10 +3543,20 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         padding-left: 1%;
     }
 
+
+    /*resume*/
+
+    #users {
+        top: 0;
+    }
+
+
     /*match page*/
+
     .matchpageWrapper {
         margin-top: 60px;
     }
+
 
     /*copany profile media*/
     .myJobsBox {
@@ -3567,12 +3570,10 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         margin-top: 62px !important;
 
     }
-
     .companyprofileWrapper .companyLogo img {
         margin-top: 20px;
     }
 }
-
 }
 
 /****************************************************** TIMELINE ***************************************************/
@@ -3627,9 +3628,10 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 .timeline > li > .timeline-panel {
     width: 46%;
     float: left;
-    border: 1px solid #d4d4d4;
-    border-radius: 2px;
-    padding: 20px;
+    border: 5px solid #231f20;
+    /* border-radius: 2px; */
+    padding: 4px;
+    padding-bottom: 8px;
     position: relative;
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
@@ -3684,7 +3686,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
 .timeline > li.timeline-inverted > .timeline-panel {
     float: right;
-    background: #231f20;
+    background: transparent;
 }
 
 .timeline > li.timeline-inverted > .timeline-panel:before {
@@ -3738,48 +3740,48 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-top: 5px;
 }
 
+
 /*natalie*/
 
-footer {
+footer{
     display: none;
 }
 
 /*********/
 
+
+
+
 /* resume page */
 .bubbleChart {
     min-width: 100px;
     max-width: 700px;
-    height: 700px;
+    /* height: 560px; */
     margin: 0 auto;
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .bubbleChart svg {
     background: #000;
     /* opacity: 1; */
 }
-
 /*myjobs*/
-.fa-heart {
-    color: #d43f3a;
-}
-
-.hired {
-    position: absolute;
+.fa-heart{color:#d43f3a;}
+.hired{    position: absolute;
     margin: 0 auto;
     text-align: center;
-    left: 37%;
-}
+    left: 37%;}
+
 
 /*myjobs employer*/
-#popoverData {
+#popoverData{
     position: absolute;
     right: 30px;
     top: 20px;
     background-color: transparent;
     color: white;
 }
+
 
 /*------------------companyprofile HTML------------------------------------*/
 
@@ -3821,11 +3823,12 @@ footer {
     background-color: #231f20;
 }
 
-.companyprofileWrapper .navigation {
-    top: -36px;
+.companyprofileWrapper .navigation{
+    top:-36px;
 }
 
-.companyprofileWrapper .tab-content {
+
+.companyprofileWrapper .tab-content{
     margin-bottom: 40px;
 }
 
@@ -3840,7 +3843,7 @@ footer {
     border: 0;
 }
 
-.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover {
+.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover{
     opacity: 0.9;
 }
 
@@ -3851,7 +3854,8 @@ footer {
     margin-bottom: 20px;
 }
 
-.companyprofileWrapper .engineering1 {
+
+.companyprofileWrapper .engineering1{
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -3866,7 +3870,7 @@ footer {
     font-family: almoni-dl-aaa-regular;
 }
 
-.companyprofileWrapper .engineering1 li {
+.companyprofileWrapper .engineering1 li{
     float: left;
     margin-right: 1%;
     margin-left: 1%;
@@ -3881,11 +3885,11 @@ footer {
     background-color: #fff;
 }
 
-.companyprofileWrapper .engineering1 li a {
+.companyprofileWrapper .engineering1 li a{
     color: #000;
 }
 
-.companyprofileWrapper .engineering1 li a:hover {
+.companyprofileWrapper .engineering1 li a:hover{
 
     display: table;
     margin: 0 auto;
@@ -3894,6 +3898,7 @@ footer {
     -webkit-text-fill-color: transparent;
 }
 
+
 .companyprofileWrapper .tab-content {
     padding: 10px;
     padding-left: 12%;
@@ -3901,7 +3906,8 @@ footer {
     background: #231f20;
 }
 
-.companyprofileWrapper .popover {
+
+.companyprofileWrapper .popover  {
     top: 110px;
     left: 754px;
     display: block;

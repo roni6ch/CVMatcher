@@ -14,6 +14,8 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     $rootScope.userSignInType = "jobSeeker";
 
+    //navigation in site
+    $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
 
     $scope.getMainJson = function () {
 
@@ -46,8 +48,6 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         })
             .then(function (data) {
                     angular.element(".fa-pulse").hide();
-                    //navigation in site
-                    $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();

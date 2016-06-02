@@ -14,6 +14,8 @@ app.controller('companyProfileController',
 
         $rootScope.userSignInType = "employer";
         //noinspection JSDuplicatedDeclaration
+
+        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/companyProfile'>Company Profile</a>";
         var companyId;
         var tabType = '';
         $("#geocomplete").geocomplete();
@@ -32,7 +34,6 @@ app.controller('companyProfileController',
         })
             .then(function (data) {
                     if (data) {
-                        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/companyProfile'>Company Profile</a>";
                         $scope.employerProfile = data.data[0];
                         console.log(data.data[0]);
                         if (data.data[0].company) {

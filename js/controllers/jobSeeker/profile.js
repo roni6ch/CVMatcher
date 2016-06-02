@@ -19,6 +19,9 @@ app
             $("#geocomplete").geocomplete();
             $("[rel='popover']").popover({trigger: "hover", container: "body"});
 
+            //navigation in site
+            $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>";
+
             var cvJson = false;
             var closeModal = false;
 
@@ -34,8 +37,6 @@ app
                     }
                 })
                     .then(function (data) {
-                            //navigation in site
-                            $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>";
 
                             $scope.jobSeeker = data.data[0];
                             console.log(data.data[0]);

@@ -91,8 +91,15 @@ helper = (function () {
                     image: profile["image"].url,
                     emails: profile.emails[0].value
                 };
+                if ( localStorage.getItem('user') == null)
+                {
+                    console.log("user first time");
+                    location.replace("#/usersLogin");
+                }
                 localStorage.setItem('user', JSON.stringify(user));
                 $("#profileImg").attr("src", $.parseJSON(localStorage.getItem('user')).image);
+
+                
 
             }, function (err) {
                 console.log(err);

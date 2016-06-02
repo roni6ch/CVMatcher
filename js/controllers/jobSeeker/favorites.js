@@ -15,6 +15,8 @@ app
             if (localStorage.getItem("userSignInType"))
                 $rootScope.userSignInType = localStorage.getItem("userSignInType");
 
+            $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>";
+
             $http({
                 url: 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs',
                 method: "POST",
@@ -23,7 +25,6 @@ app
                 }
             })
                 .then(function (data) {
-                        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>";
                         $scope.jobSeekerJobs = data.data;
                         console.log(data.data);
                         angular.element(".fa-pulse").hide();
