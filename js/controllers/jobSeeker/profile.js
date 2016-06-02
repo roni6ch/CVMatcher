@@ -141,6 +141,7 @@ app
                 var type;
                 history_timeline = [];
 
+                parseExpereince.expereince = [];
                 $.each($(".profileWrapper .timeline .timeline-inverted"), function () {
                     var text = $(this).find('.timeline-body textarea').val();
                     var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
@@ -164,7 +165,6 @@ app
                         "type": type
                     });
 
-                    parseExpereince.expereince = [];
                     parseExpereince.expereince.push({
                         "text": text,
                         "startdate": startdate,
@@ -290,7 +290,6 @@ app
 
             $scope.cvPreview = function () {
 
-
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                     method: "POST",
@@ -317,21 +316,22 @@ app
                                     return;
                                 }
 
+                                var type;
                                 if ($(this).hasClass("timeline-inverted"))
                                     type = 'experience';
                                 else
                                     type = 'education';
 
-                                parseExpereince.expereince = [];
-                                parseExpereince.expereince.push({
+                                var newLi = {
                                     "text": text,
-                                    "startdate": startdate,
-                                    "enddate": enddate
-                                });
-                                $scope.user.original_text['history_timeline'][key]['text'] = text;
-                                $scope.user.original_text['history_timeline'][key]['start_year'] = startdate;
-                                $scope.user.original_text['history_timeline'][key]['end_year'] = enddate;
+                                    "start_year": parseInt(startdate),
+                                    "end_year": parseInt(enddate),
+                                    "type": type
+                                };
+                                if (key >= $scope.user.original_text['history_timeline'].length)
+                                    $scope.user.original_text['history_timeline'].push(newLi);
                             });
+                            console.log($scope.user.original_text['history_timeline']);
 
 
                         },
