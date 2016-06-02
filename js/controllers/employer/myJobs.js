@@ -8,6 +8,7 @@
 
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http) {
 
+    angular.element("#logo").attr("href", '#/usersLogin');
     $rootScope.userSignInType = "employer";
     $scope.company = company;
     //noinspection JSValidateTypes

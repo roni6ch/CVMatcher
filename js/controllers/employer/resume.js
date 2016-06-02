@@ -70,7 +70,7 @@ app.controller('resumeController',
                                     value + '%">' + key + ' ' + value + '%</div></div>');
                         });
 
-                        if (data.data[0].predict_result) {
+                        if (data.data[0].predict_result !== 'undefined') {
                             $("#predictAppend").show();
                         }
 
@@ -242,4 +242,35 @@ app.controller('resumeController',
                 $(".bringNextCandidate").click();
             });
         }
+
+
+        //scratch
+        $('#demo1').wScratchPad({
+            bg: '#000',
+            fg: '#fff',
+            'cursor': 'url("./images/logo.png") 5 5, default',
+            scratchMove: function (e, percent) {
+                $('#demo1-percent').html(percent);
+            }
+        });
+
+
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

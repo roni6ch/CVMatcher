@@ -12,6 +12,7 @@ app
             //noinspection JSValidateTypes
             angular.element("#profileImg").parent().attr("href", '#/Profile');
 
+            angular.element(".cvPreview").hide();
             if (localStorage.getItem("userSignInType"))
                 $rootScope.userSignInType = localStorage.getItem("userSignInType");
 
@@ -129,12 +130,6 @@ app
             history_timeline = [];
             $scope.parseMyExperience = function () {
 
-                /* $.each($(".timeline-panel select"), function (key, val) {
-                 console.log(val.find(":selected").val());
-
-                 });*/
-
-
                 parseExpereince = {
                     "expereince": []
                 };
@@ -142,29 +137,11 @@ app
                     $(".parseExperience").html("");
                 }
                 angular.element(".fa-spin").show();
-                /*
-                 $.each($(".timeline .timeline-inverted"), function (key, val) {
-                 var text = $(this).find('.timeline-body textarea').val();
-                 var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
-                 var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
-
-                 if (startdate > enddate) {
-                 $scope.status = 'Please fix years - "From" is bigger then "TO"';
-                 $('#myModal').modal('show');
-                 return;
-                 }
-
-                 parseExpereince.expereince.push({
-                 "text": text,
-                 "startdate": startdate,
-                 "enddate": enddate
-                 });
-                 });*/
 
                 var type;
                 history_timeline = [];
 
-                $.each($(".timeline .timeline-inverted"), function () {
+                $.each($(".profileWrapper .timeline .timeline-inverted"), function () {
                     var text = $(this).find('.timeline-body textarea').val();
                     var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
                     var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
@@ -187,6 +164,7 @@ app
                         "type": type
                     });
 
+                    parseExpereince.expereince = [];
                     parseExpereince.expereince.push({
                         "text": text,
                         "startdate": startdate,
@@ -201,6 +179,7 @@ app
                 })
                     .then(function (data) {
                             parseExpereince.words = data.data;
+                            console.log(parseExpereince);
                             myKeyWords = [];
                             $http({
                                 url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsCV",
@@ -224,6 +203,7 @@ app
                                                 ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
                                         });
                                         angular.element(".fa-spin").hide();
+                                        angular.element(".cvPreview").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
 
                                     },
@@ -258,11 +238,11 @@ app
                 indx++;
                 var divTemplate;
                 if (type == 'education') {
-                     divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
+                    divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
 
                 }
                 else {
-                     divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
@@ -281,13 +261,13 @@ app
                 var key = 'birth_date';
                 $scope.jobSeeker[key] = $(".birthDay").val();
                 //noinspection JSDuplicatedDeclaration
-                 key = 'address';
+                key = 'address';
                 $scope.jobSeeker[key] = $("#geocomplete").val();
                 //noinspection JSDuplicatedDeclaration
-                 key = 'phone_number';
+                key = 'phone_number';
                 $scope.jobSeeker[key] = $(".phoneNumber").val();
                 //noinspection JSDuplicatedDeclaration
-                 key = 'linkedin';
+                key = 'linkedin';
                 $scope.jobSeeker[key] = $(".linkedin").val();
 
                 console.log("send form: ", $scope.jobSeeker);
@@ -307,8 +287,64 @@ app
                         });
             };
 
+
+            $scope.cvPreview = function () {
+
+
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                    method: "POST",
+                    data: {
+                        "matching_object_id": localStorage.getItem('current_cv'),
+                        "matching_object_type": "cv"
+                    }
+                })
+                    .then(function (data) {
+                            console.log(data.data[0]);
+                            $scope.status = 'Preview CV before send!';
+                            $('#previewCV').modal('show');
+
+                            $scope.user = data.data[0];
+
+                            $.each($(".profileWrapper .timeline li "), function (key, val) {
+                                var text = $(this).find('.timeline-body textarea').val();
+                                var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
+                                var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+
+                                if (startdate > enddate) {
+                                    $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                                    $('#myModal').modal('show');
+                                    return;
+                                }
+
+                                if ($(this).hasClass("timeline-inverted"))
+                                    type = 'experience';
+                                else
+                                    type = 'education';
+
+                                parseExpereince.expereince = [];
+                                parseExpereince.expereince.push({
+                                    "text": text,
+                                    "startdate": startdate,
+                                    "enddate": enddate
+                                });
+                                $scope.user.original_text['history_timeline'][key]['text'] = text;
+                                $scope.user.original_text['history_timeline'][key]['start_year'] = startdate;
+                                $scope.user.original_text['history_timeline'][key]['end_year'] = enddate;
+                            });
+
+
+                        },
+                        function (response) { // optional
+                            console.log("getMatchingObject send form AJAX failed!");
+                            console.log(response);
+                        });
+
+            }
             var combination;
             $scope.submitUserCV = function () {
+
+
                 combination = [];
                 $('.parser').each(function () {
                     combination.push({
@@ -384,7 +420,7 @@ app
 
                 var type;
                 history_timeline = [];
-                $.each($(".timeline li"), function () {
+                $.each($(".profileWrapper .timeline li"), function () {
                     var text = $(this).find('.timeline-body textarea').val();
                     var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
                     var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
@@ -411,7 +447,7 @@ app
                 if (cvJson) {
                     url = "https://cvmatcher.herokuapp.com/updateMatchingObject";
                     //noinspection JSDuplicatedDeclaration
-                     jobSeekerCV = {
+                    jobSeekerCV = {
                         "_id": $scope.jobSeekerCV._id,
                         "matching_object_type": "cv",
                         "date": new Date(),
@@ -453,7 +489,7 @@ app
                     console.log("first cv");
                     url = "https://cvmatcher.herokuapp.com/addMatchingObject";
                     //noinspection JSDuplicatedDeclaration
-                     jobSeekerCV = {
+                    jobSeekerCV = {
                         "matching_object_type": "cv",
                         "date": new Date(),
                         "personal_properties": {

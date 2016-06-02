@@ -1,7 +1,6 @@
 
 <html>
 <head>
-    <title>jQuery + Canvas Scratch Off</title>
     <style type="text/css">
         #canvas,#overlay {
             border: 1px solid #222;
@@ -11,16 +10,8 @@
             left: 0px;
         }
     </style>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript">
-        /*
-         * jQuery + Canvas Scratch Off
-         * @author admin@catchmyfame.com - http://www.catchmyfame.com
-         * @version 1.0
-         * @date June 28, 2011
-         * @copyright (c) 2011 admin@catchmyfame.com (www.catchmyfame.com)
-         * @license CC Attribution-NoDerivs 3.0 Unported - http://creativecommons.org/licenses/by-nc-sa/3.0/
-         */
         var topImage = new Image();
         var bottomImage = new Image();
         var coinImage = new Image();
@@ -76,7 +67,7 @@
 
 <body onload="init()">
 
-<canvas id="canvas" width="300" height="225"></canvas>
+<canvas id="canvas" width="100%" height="225"></canvas>
 
 </body>
 </html>

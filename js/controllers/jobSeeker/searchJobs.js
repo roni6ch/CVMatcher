@@ -7,6 +7,7 @@
  */
 app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http,$location) {
 
+    angular.element("#logo").attr("href", '#/usersLogin');
 
     //noinspection JSValidateTypes,JSValidateTypes
     angular.element("#profileImg").parent().attr("href", '#/Profile');

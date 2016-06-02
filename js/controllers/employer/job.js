@@ -50,6 +50,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         var sendForm = false;
         var languagesAfterParseForKeyWords = [];
 
+
         angular.element(".removeCombination").hide();
         angular.element(".buttonsAfterParse").hide();
         //edit job - get AJAX details

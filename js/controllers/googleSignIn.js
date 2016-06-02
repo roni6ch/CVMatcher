@@ -8,6 +8,7 @@
 
 app.controller('googleSignInController', function ($rootScope) {
     $rootScope.userSignInType = '';
+    angular.element("#logo").attr("href", '');
 });
 
 
