@@ -13,46 +13,27 @@ var totalPriorotySum = 0;
 var newLangClicked = false;
 var combinationDeleted = false;
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
-        totalPriorotySum = 0;
 
-        //noinspection JSValidateTypes,JSValidateTypes
-        angular.element("#profileImg").parent().attr("href", '#/companyProfile');
-        if (localStorage.getItem("userSignInType"))
-            $rootScope.userSignInType = localStorage.getItem("userSignInType");
-
-        nextCombinationKey = 0;
-        langId = 0;
-        newLangClicked = false;
-        requirements = [];
-        $(".requirementsWrapper").hide();
-        $(".experienceBeforeParse").hide();
+        totalPriorotySum = 0, nextCombinationKey = 0, langId = 0;
         $id = $location.path().split('/')[1];
-        $("#geocomplete").geocomplete();
-        angular.element('.selectpicker').selectpicker();
-
         $jobId = $location.path().split('/')[2];
-        var sumSliders = 0;
-        var languages = [];
-        var newLang = [];
         $rootScope.langs = [];
         $rootScope.list1 = [];
         $rootScope.list2 = [];
         $rootScope.list3 = [];
+        var combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
+        var combinationLengthAfterEdit = 0, combinationsLength = 0, sumSliders = 0;
+        var editJob = false, sendForm = false, savedCurrentCombination = false, newLangClicked = false;
 
-        var combination = [];
-        var tempMustLangs = [];
-        var tempAdvLangs = [];
-        var tempOrLangs = [];
-        var combinationsLength = 0;
-        var combinationLengthAfterEdit = 0;
-        var savedCurrentCombination = false;
-        var editJob = false;
-        var sendForm = false;
-        var languagesAfterParseForKeyWords = [];
-
-
-        angular.element(".removeCombination").hide();
-        angular.element(".buttonsAfterParse").hide();
+        //initialize parameters for this controller
+        $scope.init = function(){
+            $(".requirementsWrapper").hide();
+            $(".experienceBeforeParse").hide();
+            angular.element(".removeCombination").hide();
+            angular.element(".buttonsAfterParse").hide();
+            $("#geocomplete").geocomplete();
+            angular.element('.selectpicker').selectpicker();
+        }
         //edit job - get AJAX details
         $scope.getJobJson = function () {
             $(".fa-arrow-right").hide();
@@ -265,21 +246,17 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
             }
         };
-
-
+        //CHANGE CONTENT - AND SHOW BUTTON FOR PARSING
         $scope.changeContent = function () {
-
             angular.element(".experienceBeforeParse").show();
-
         };
-
         // Limit items to be dropped in list1
         $scope.optionsList3 = {
             accept: function () {
                 return $scope.list3.length < 2;
             }
         };
-
+        //EXIT MODAL BUTTON
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
             if (sumSliders == 100 && sendForm == true) {
@@ -291,7 +268,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 $scope.status = "";
             }
         };
-
         //click on parse Orange button
         $scope.parseExperience = function () {
 
@@ -305,11 +281,11 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             })
                 .then(function (data) {
                         parseExpereince = {
-                            "text": $("#requirementsMust").val().replace(/,/g,' '),
+                            "text": $("#requirementsMust").val().replace(/,/g, ' '),
                             "words": data.data
                         };
                         parseExpereinceAdv = {
-                            "text": $("#requirementsAdvantage").val().replace(/,/g,' '),
+                            "text": $("#requirementsAdvantage").val().replace(/,/g, ' '),
                             "words": data.data
                         };
                         var tempMust, tempAdv;
@@ -416,7 +392,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 "hidden");
 
         };
-
         //send form
         $scope.submitForm = function () {
 
@@ -511,7 +486,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 var job;
                 if ($id == 'job') {
                     //noinspection JSDuplicatedDeclaration
-                     job = {
+                    job = {
                         "_id": $jobId,
                         "matching_object_type": "job",
                         "original_text": {
@@ -546,7 +521,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
                 else {
                     //noinspection JSDuplicatedDeclaration
-                     job = {
+                    job = {
                         "matching_object_type": "job",
                         "date": new Date(),
                         "original_text": {
@@ -605,10 +580,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 $scope.status = "Please SUM Prioroty to 100";
             }
         };
-
-        /***    FROM HERE THE REQUERMENTS   ***/
-
-            //ADD COMBINATION
+        //ADD COMBINATION
         $scope.addDynamicCombination = function () {
             combinationLengthAfterEdit++;
             $(".fa-arrow-right").hide();
@@ -651,7 +623,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 $scope.status = "Please SUM Prioroty to 100";
             }
         };
-
+        //BRING NEXT COMBINATION
         $scope.nextCombination = function (val) {
             if (totalPriorotySum != 100) {
                 $('#sendJob').modal('show');
@@ -732,7 +704,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
         };
-        //ADD LANG
+        //ADD LANGUAGE
         $scope.addDynamicLang = function () {
             newLang = [];
             newLang.push({
@@ -785,7 +757,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             });
             console.log("totalPriorotySum: " + totalPriorotySum);
         };
-
+        //REMOVE COMBINATION
         $scope.removeCombination = function () {
             $.each(requirements, function (key) {
                 if (nextCombinationKey == key) {
@@ -856,7 +828,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
             }
         };
-        //NAMES
+        //CHANGE NAMES
         $scope.changeLangeName = function (id) {
             $.each(requirements, function (key, val) {
                 $.each(val.combination, function (k, v) {
@@ -892,7 +864,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 });
         };
-        //YEARS
+        //CHANGE YEARS
         $scope.changeYears = function (id) {
 
             $.each(requirements, function (key, val) {
@@ -926,7 +898,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 })
         };
-        //PLUS
+        //CHANGE PLUS
         $scope.plusButton = function (id) {
             if ($("input[data-pr-num='" + id + "']").val() < 100 && totalPriorotySum < 100) {
                 $("input[data-pr-num='" + id + "']").val(parseInt($("input[data-pr-num='" + id + "']").val()) + 10);
@@ -948,7 +920,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                  });*/
             }
         };
-        //MINUS
+        //CHANGE MINUS
         $scope.minusButton = function (id) {
 
 

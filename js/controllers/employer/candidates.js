@@ -7,15 +7,12 @@
  */
 app.controller('candidatesController',
     function ($scope, $http, $location, $sce, $rootScope) {
-
-        //noinspection JSValidateTypes
-        angular.element("#profileImg").parent().attr("href", '#/companyProfile');
-        if (localStorage.getItem("userSignInType"))
-            $rootScope.userSignInType = localStorage.getItem("userSignInType");
+        var stars = 0;
         $id = $location.path().split('/');
-        $scope.jobId = $id[2];
-        $scope.unreadCvs = function () {
 
+        //init function to bring all the unread cv's
+        $scope.unreadCvs = function () {
+            $scope.jobId = $id[2];
             angular.element(".fa-pulse").show();
             $scope.candidates = '';
             $http({
@@ -39,6 +36,7 @@ app.controller('candidatesController',
                         console.log(response);
                     });
         };
+        //bring all the like cv's
         $scope.likedCvs = function () {
             $scope.likeCandidates = '';
 
@@ -64,6 +62,7 @@ app.controller('candidatesController',
 
                     });
         };
+        //bring all the unlike cv's
         $scope.unlikeCvs = function () {
             angular.element(".fa-pulse").show();
             $scope.unlikeCandidates = '';
@@ -87,6 +86,7 @@ app.controller('candidatesController',
                         console.log(response);
                     });
         };
+        //bring all the hired cv's
         $scope.Hired = function () {
             angular.element(".fa-pulse").show();
             $scope.hiredCandidates = '';
@@ -107,11 +107,11 @@ app.controller('candidatesController',
                     console.log(response);
                 });
         };
-
+        //sort by user type
         $scope.sort = function (sort) {
             $scope.sortby = sort;
         };
-
+        //add candidate to like cv's for specific job
         $scope.addCandidateToLike = function (candidate, user_id) {
             var candidatesArr;
             $scope.user_id = user_id;
@@ -143,14 +143,14 @@ app.controller('candidatesController',
 
             }
         };
-        var stars = 0;
+        //rate candidate by stars
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
 
             //sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
 
         };
-
+        //hire candidate to job
         $scope.hire = function (cvId) {
             $http({
                 url: 'https://cvmatcher.herokuapp.com/employer/hireToJob',
@@ -176,7 +176,7 @@ app.controller('candidatesController',
                         console.log(response);
                     });
         };
-
+        //bring next candidates by slide right or left - or press hands icon.
         $scope.bringNextCandidate = function (type, description, id) {
             if (type == 'unliked') {
                 // sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));

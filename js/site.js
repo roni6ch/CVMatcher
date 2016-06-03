@@ -22,7 +22,7 @@ app.config(function ($routeProvider) {
             controller: 'myjobsController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/Candidates/:_id', {
@@ -30,7 +30,7 @@ app.config(function ($routeProvider) {
             controller: 'candidatesController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location,'#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/Archive/Candidates/:_id', {
@@ -38,7 +38,7 @@ app.config(function ($routeProvider) {
             controller: 'candidatesController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/Like/Candidates/:id/resume/:_id', {
@@ -46,7 +46,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/UnLike/Candidates/:id/resume/:_id', {
@@ -54,7 +54,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/Unread/:id/resume/:_id', {
@@ -62,7 +62,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/Archive', {
@@ -70,7 +70,7 @@ app.config(function ($routeProvider) {
             controller: 'myjobsController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/job/:_id', {
@@ -78,7 +78,7 @@ app.config(function ($routeProvider) {
             controller: 'jobController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/companyProfile', {
@@ -86,7 +86,7 @@ app.config(function ($routeProvider) {
             controller: 'companyProfileController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile');
+                    return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
         }).when('/newJob', {
@@ -94,7 +94,7 @@ app.config(function ($routeProvider) {
                 controller: 'jobController',
                 resolve: {
                     resolvedVal: function ($location) {
-                        return changeLocation($location, '#/companyProfile');
+                        return changeLocation($location, '#/companyProfile',"employer");
                     }
                 }
             })
@@ -106,7 +106,7 @@ app.config(function ($routeProvider) {
                 controller: 'jobSeekerSearchJobsController',
                 resolve: {
                     resolvedVal: function ($location) {
-                        return changeLocation($location);
+                        return changeLocation($location, '#/Profile','jobSeeker');
                     }
                 }
             }).when('/yourjobs', {
@@ -114,7 +114,7 @@ app.config(function ($routeProvider) {
             controller: 'yourjobSeekerController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile');
+                    return changeLocation($location, '#/Profile','jobSeeker');
                 }
             }
         }).when('/deleted', {
@@ -122,7 +122,7 @@ app.config(function ($routeProvider) {
             controller: 'yourjobSeekerController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile');
+                    return changeLocation($location, '#/Profile','jobSeeker');
                 }
             }
         }).when('/searchJobs/:_id/matchpage', {
@@ -130,7 +130,7 @@ app.config(function ($routeProvider) {
             controller: 'matchpageController',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile');
+                    return changeLocation($location, '#/Profile','jobSeeker');
                 }
             }
         }).when('/Profile', {
@@ -138,7 +138,7 @@ app.config(function ($routeProvider) {
             controller: 'seekerProfileControler',
             resolve: {
                 resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile');
+                    return changeLocation($location, '#/Profile','jobSeeker');
                 }
             }
         }).when('/Favorites', {
@@ -146,7 +146,7 @@ app.config(function ($routeProvider) {
                 controller: 'yourjobSeekerController',
                 resolve: {
                     resolvedVal: function ($location) {
-                        return changeLocation($location, '#/Profile');
+                        return changeLocation($location, '#/Profile','jobSeeker');
                     }
                 }
             })
@@ -157,26 +157,25 @@ app.config(function ($routeProvider) {
                 templateUrl: 'about.html',
                 resolve: {
                     resolvedVal: function ($location) {
-                        if (localStorage.getItem("user_id") !== null) {
-                            $location.path('/');
-                        }
+                        return changeLocation($location, null,null);
                     }
                 }
             }).when('/Contact', {
             templateUrl: 'contact.html',
             resolve: {
                 resolvedVal: function ($location) {
-                    if (localStorage.getItem("user_id") !== null) {
-                        $location.path('/');
-                    }
+                    return changeLocation($location, null,null);
                 }
             }
         })
     })
     .run(function ($rootScope) {
 
-
-        $rootScope.userSignInType = '';
+        if (localStorage.getItem("userSignInType"))
+            $rootScope.userSignInType = localStorage.getItem("userSignInType");
+        else{
+            $rootScope.userSignInType = '';
+        }
         //notification window accept
         document.addEventListener('DOMContentLoaded', function () {
             if (Notification.permission !== "granted")
@@ -203,34 +202,27 @@ app.config(function ($routeProvider) {
  * ********************* JS Functions ****************
  */
 
-
 var socket;
 var url;
 var user_id;
+
 $(document).ready(function () {
-    $('.navbar a').on('click', function () {
-        $('.btn-navbar').click(); //bootstrap 2.x
-        $('.navbar-toggle').click(); //bootstrap 3.x by Richard
-    });
 
-    $(".navbar-toggle").on("click", function () {
-        $(this).toggleClass("active");
-        if ($(this).hasClass('active')) {
-            $(".navbar-collapse").fadeIn();
-        }
-        else {
-            $(".navbar-collapse").fadeOut();
-
+    //nav bar
+    $(document).on('click', '.navbar-collapse.in', function (e) {
+        if ($(e.target).is('a')) {
+            $(this).collapse('hide');
         }
     });
 
-
+    //click event outside profile picture.
     $('html:not(".navbar")').click(function (e) {
         if (e.target.id != 'profileImg') {
             $('[data-popover]').popover('hide');
         }
     });
 
+    //popover small modal
     $('.navBar').popover({
         selector: '[data-popover]',
         trigger: 'click',
@@ -241,44 +233,44 @@ $(document).ready(function () {
 
 });
 
-function changeLocation(location, profilePath) {
+//resolve function to make initializion before controllers
+function changeLocation(location, profilePath,userSignInType) {
+    localStorage.setItem("userSignInType",userSignInType);
     //noinspection JSValidateTypes
     angular.element("#profileImg").parent().attr("href", profilePath);
     //noinspection JSValidateTypes
     angular.element("#profileImg").parent().show();
     if (localStorage.getItem("user_id") === null) {
-        console.log("no user id");
+        console.log("no user id - changeLocation function at site.js");
         location.path('/');
     }
-
 }
 
 //TODO: PW!
-
+//push woosh notification!
 window.onload = function () {
     pushwoosh.subscribeAtStart();
 };
 
-
+//sockets for live notifications
 function sockets() {
-
     var userId = localStorage.getItem('user_id').toString();
     url = "ws://cvmatcher.herokuapp.com/" + userId;
     //TODO: OPEN SOCKET!
     //connectToChat(url);
 }
 
+//connection for sockets
 function connectToChat(url) {
     socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 10000});
     console.log(socket);
-
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
         console.log(message);
-
     };
 }
 
+//send notification
 function sendNotification(notificationType, userId, jobId, other, jobName) {
     var message = {};
     message.notificationType = notificationType;
@@ -315,7 +307,6 @@ function notifyMe(type, jobName) {
 
         }
 
-
         var notification = new Notification('CVMatcher Notification!', {
             icon: 'http://cvmatcher.esy.es/images/logo.png',
             body: body
@@ -329,6 +320,7 @@ function notifyMe(type, jobName) {
 
 }
 
+// D3 bubbels in match and resume page
 function bubbels() {
     console.log(skills);
     new d3.svg.BubbleChart({

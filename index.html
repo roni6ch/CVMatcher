@@ -3,13 +3,19 @@
 <head>
     <title>CVMatcher</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00aee3 ">
+    <!--  Google+ SignIn -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com">
+
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-select.min.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/jquery-ui.css">
     <link rel="stylesheet" type="text/css" media="all" href="css/style.css"/>
-    <link rel="icon" type="image/cvmatcher.icon"  href="./images/logo.png" />
+    <link rel="icon" type="image/cvmatcher.icon" href="./images/logo.png"/>
 
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
@@ -17,34 +23,25 @@
     <script src="js/jquery.ui.touch-punch.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/hammer.min.js"></script>
-    <script src="js/wScratchPad.js"></script>
-
-    <script src="js/jquery.linkedsliders.min.js"></script>
-
+    <script src="js/hammer.min.js" async></script>
+    <script src="js/wScratchPad.js" async></script>
+    <script src="js/jquery.linkedsliders.min.js" async></script>
     <script src="js/reconnecting-websocket.min.js"></script>
 
     <!--[if !IE]><!-->
     <script src="js/pushwoosh-web-pushes-http-sdk.js?pw_application_code=C6CEE-FFEC9"></script>
     <!--<![endif]-->
 
-
     <!-- added the maps.googleapis because it give me no warnings, so the local is locations with warning in the console
     <script src="js/location.js?libraries=places"></script>-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVPuauj0tQuhm28vMic6xjtcvn11CpDNI&libraries=places"></script>
-    <script src="js/jquery.geocomplete.js?key="></script>
-    <script src="js/bootstrap-select.min.js"></script>
-
-    <!--  Google+ SignIn -->
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id"
-          content="91422993149-abu352cg03odvve270lc2t2fp131h5av.apps.googleusercontent.com">
-
+    <script src="js/jquery.geocomplete.js" async></script>
+    <script src="js/bootstrap-select.min.js" async></script>
 
     <!-- SKILLS -->
-    <script src="js/d3.min.js"></script>
-    <script src="js/d3-transform.js"></script>
-    <script src="js/d3-transform-animation.js"></script>
+    <script src="js/d3.min.js" async></script>
+    <script src="js/d3-transform.js" async></script>
+    <script src="js/d3-transform-animation.js" async></script>
 </head>
 <body>
 <!-- HAMBURGER -->
@@ -133,15 +130,21 @@
         <nav>
             <!-- Employer NAV -->
             <ul ng-if="userSignInType == 'employer'">
-                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">My jobs</a></li>
-                <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/Archive">Deleted</a></li>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">My jobs</a>
+                </li>
+                <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/Archive">Deleted</a>
+                </li>
             </ul>
             <!-- Job Seeker NAV -->
             <ul ng-if="userSignInType == 'jobSeeker'">
-                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/searchJobs" ng-click="tab = 0">Search Jobs</a></li>
-                <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1">My Jobs</a></li>
-                <li ng-class="{active:tab == 2, selected:tab == 2}"><a href="#/Favorites" ng-click="tab = 2">Favorite Jobs</a></li>
-                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3">Deleted Jobs</a></li>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/searchJobs" ng-click="tab = 0">Search
+                    Jobs</a></li>
+                <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1">My Jobs</a>
+                </li>
+                <li ng-class="{active:tab == 2, selected:tab == 2}"><a href="#/Favorites" ng-click="tab = 2">Favorite
+                    Jobs</a></li>
+                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3">Deleted
+                    Jobs</a></li>
             </ul>
         </nav>
     </div>
@@ -196,7 +199,6 @@
 <script src="js/controllers/jobSeeker/myJobs.js"></script>
 <script src="js/controllers/jobSeeker/profile.js"></script>
 <script src="js/controllers/jobSeeker/match.js"></script>
-<script src="js/controllers/jobSeeker/favorites.js"></script>
 
 <script src="js/controllers/employer/myJobs.js"></script>
 <script src="js/controllers/employer/companyProfile.js"></script>

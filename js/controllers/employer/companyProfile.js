@@ -9,76 +9,72 @@ var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
 
-        //noinspection JSValidateTypes
-        angular.element("#profileImg").parent().attr("href", '#/companyProfile');
-
-        $rootScope.userSignInType = "employer";
-        //noinspection JSDuplicatedDeclaration
-
         $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/companyProfile'>Company Profile</a>";
-        var companyId;
-        var tabType = '';
+        var companyId,tabType = '',logo = '';
         $("#geocomplete").geocomplete();
         $("#geocomplete2").geocomplete();
         $scope.chooseCompanyModal = false;
         $scope.passForCompany = '';
         $scope.changePassword = false;
         $scope.password = false;
-        //user details
-        $http({
-            url: 'https://cvmatcher.herokuapp.com/getUser',
-            method: "POST",
-            data: {
-                "user_id": localStorage.getItem("user_id")
-            }
-        })
-            .then(function (data) {
-                    if (data) {
-                        $scope.employerProfile = data.data[0];
-                        console.log(data.data[0]);
-                        if (data.data[0].company) {
-                            company = true;
-                            companyId = data.data[0].company;
-                            if (companyId) {
-                                url = 'https://cvmatcher.herokuapp.com/employer/getCompany';
-                                $http({
-                                    url: url,
-                                    method: "POST",
-                                    data: {
-                                        "company_id": companyId
-                                    }
-                                })
-                                    .then(function (data) {
-                                            $scope.companyProfile = data.data[0];
-                                            angular.element(".fa-pulse").hide();
-                                        },
-                                        function (response) { // optional
-                                            console.log("companyProfileController AJAX failed!");
-                                            console.log(response);
 
-                                        });
-                            }
-
-                        }
-                        else {
-
-                            $scope.password = true;
-                            angular.element(".fa-pulse").hide();
-                        }
-                    }
-                },
-                function (response) { // optional
-                    angular.element(".fa-pulse").hide();
-                    console.log("companyProfileController AJAX failed!");
-                });
         //company profile details
-        var logo = '';
+        $scope.init = function(){
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/getUser',
+                method: "POST",
+                data: {
+                    "user_id": localStorage.getItem("user_id")
+                }
+            })
+                .then(function (data) {
+                        if (data) {
+                            $scope.employerProfile = data.data[0];
+                            console.log(data.data[0]);
+                            if (data.data[0].company) {
+                                company = true;
+                                companyId = data.data[0].company;
+                                if (companyId) {
+                                    url = 'https://cvmatcher.herokuapp.com/employer/getCompany';
+                                    $http({
+                                        url: url,
+                                        method: "POST",
+                                        data: {
+                                            "company_id": companyId
+                                        }
+                                    })
+                                        .then(function (data) {
+                                                $scope.companyProfile = data.data[0];
+                                                angular.element(".fa-pulse").hide();
+                                            },
+                                            function (response) { // optional
+                                                console.log("companyProfileController AJAX failed!");
+                                                console.log(response);
+
+                                            });
+                                }
+
+                            }
+                            else {
+
+                                $scope.password = true;
+                                angular.element(".fa-pulse").hide();
+                            }
+                        }
+                    },
+                    function (response) { // optional
+                        angular.element(".fa-pulse").hide();
+                        console.log("companyProfileController AJAX failed!");
+                    });
+        }
+        //select specific logo for company - and remove all other selected
         $scope.newLogo = function () {
             logo = $(this).find("img").prevObject[0].logo;
             $.each($(".logos label"), function () {
                 $(this).removeClass('active');
             });
         };
+        //bring 10 different logos by user input
         $scope.logo = function (word) {
             angular.element(".fa-pulse").show();
             $http({
@@ -90,8 +86,7 @@ app.controller('companyProfileController',
                 angular.element(".fa-pulse").hide();
             })
         };
-
-
+        //submit the first form - user details
         $scope.submitUserDetails = function () {
 
             tabType = 'profile';
@@ -122,7 +117,7 @@ app.controller('companyProfileController',
                         console.log(response);
                     });
         };
-
+        //submit the second form - company details
         $scope.submitCompanyDetails = function () {
             var companyJson;
             if (logo == '')
@@ -223,12 +218,11 @@ app.controller('companyProfileController',
             }
 
         };
-
+        //change password mechanizem
         $scope.changePassword = function () {
             $scope.changePassword = true;
         };
-
-
+        //get all compenies in our DB - for fast connect
         $scope.getCompanies = function () {
             $scope.chooseCompanyModal = false;
             $http({
@@ -243,8 +237,7 @@ app.controller('companyProfileController',
                     console.log(response);
                 });
         };
-        //noinspection JSDuplicatedDeclaration
-        var companyId;
+        //select specific logo for company - and remove all other selected
         $scope.checkCompany = function (id) {
             companyId = id;
             $scope.chooseCompanyModal = true;
@@ -256,6 +249,7 @@ app.controller('companyProfileController',
                 $(this).removeClass('active');
             });
         };
+        //end password to server by selectig specific company
         $scope.sendPassword = function () {
             var pass = $scope.passForCompany;
             $http({
@@ -276,6 +270,7 @@ app.controller('companyProfileController',
                     console.log(response);
                 });
         };
+        //close window modal.
         $scope.closeModal = function () {
             $scope.chooseCompanyModal = false;
             $timeout(function () {

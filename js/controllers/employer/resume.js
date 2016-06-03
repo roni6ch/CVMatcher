@@ -10,22 +10,56 @@ var candidateId;
 var skills = [];
 app.controller('resumeController',
     function ($scope, $http, $location, $timeout, $rootScope) {
+
+        var candidates;
+        var id;
+        var users;
         $id = $location.path().split('/');
 
-        angular.element("#profileImg").parent().attr("href", '#/companyProfile');
-        if (localStorage.getItem("userSignInType") !== null)
-            $rootScope.userSignInType = localStorage.getItem("userSignInType");
+        //initialize parameters for this controller
+        $scope.init = function(){
 
-        $("#predictAppend").hide();
-        $("#users").hide();
-        // circle animation
-        var id;
-        if ($id[5])
-            id = $id[5];
-        else
-            id = $id[4];
+            $("#predictAppend").hide();
+            $("#users").hide();
+            // circle animation
+            if ($id[5])
+                id = $id[5];
+            else
+                id = $id[4];
 
+            // if i came from Unread page
+            if ($id[1] == "Unread") {
+                //noinspection JSDuplicatedDeclaration
+                users = document.getElementById('users');
+                // create a simple instance
+                // by default, it only adds horizontal recognizers
+                $user = new Hammer(users);
+                // SWIPE LEFT - USER
+                $user.on("swipeleft", function () {
+                    $("#candidateUnLike").click();
+                });
+                // SWIPE RIGHT - USER
+                $user.on("swiperight", function () {
+                    $("#candidateLike").click();
+                });
+            }
+            if ($id[1] == "Candidates") {
+                users = document.getElementById('users');
+                // create a simple instance
+                // by default, it only adds horizontal recognizers
+                $user = new Hammer(users);
+                // SWIPE LEFT - USER
+                $user.on("swipeleft", function () {
+                    $(".bringNextCandidate").click();
+                });
+                // SWIPE RIGHT - USER
+                $user.on("swiperight", function () {
+                    $(".bringNextCandidate").click();
+                });
+            }
 
+        }
+        //get user resume - by id
         $scope.getUserJson = function () {
 
             $http({
@@ -100,7 +134,7 @@ app.controller('resumeController',
                         console.log(response);
                     });
         };
-
+        //rate user stars
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
 
@@ -109,8 +143,7 @@ app.controller('resumeController',
             else
                 sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
         };
-
-
+        //add candidate to like or unlike
         $scope.addCandidateToLikeUnlike = function (candidate, likeORunlike) {
             candidateId = candidate;
             if (likeORunlike == 'liked') {
@@ -134,7 +167,7 @@ app.controller('resumeController',
                 $(".leftModal").click();
             }
         };
-        var candidates;
+        //bring next candidate by swipe left\right or click on hands icon
         $scope.bringNextCandidate = function (type, description) {
             if (type == 'unliked')
                 sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
@@ -211,66 +244,5 @@ app.controller('resumeController',
                 });
             }
         };
-        var users;
-        // if i came from Unread page
-        if ($id[1] == "Unread") {
-            //noinspection JSDuplicatedDeclaration
-            users = document.getElementById('users');
-            // create a simple instance
-            // by default, it only adds horizontal recognizers
-            $user = new Hammer(users);
-            // SWIPE LEFT - USER
-            $user.on("swipeleft", function () {
-                $("#candidateUnLike").click();
-            });
-            // SWIPE RIGHT - USER
-            $user.on("swiperight", function () {
-                $("#candidateLike").click();
-            });
-        }
-        if ($id[1] == "Candidates") {
-            users = document.getElementById('users');
-            // create a simple instance
-            // by default, it only adds horizontal recognizers
-            $user = new Hammer(users);
-            // SWIPE LEFT - USER
-            $user.on("swipeleft", function () {
-                $(".bringNextCandidate").click();
-            });
-            // SWIPE RIGHT - USER
-            $user.on("swiperight", function () {
-                $(".bringNextCandidate").click();
-            });
-        }
-
-
-        //scratch
-        $('#demo1').wScratchPad({
-            bg: '#000',
-            fg: '#fff',
-            'cursor': 'url("./images/logo.png") 5 5, default',
-            scratchMove: function (e, percent) {
-                $('#demo1-percent').html(percent);
-            }
-        });
-
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

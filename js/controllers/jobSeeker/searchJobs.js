@@ -5,19 +5,22 @@
 /*
  * ********************* jobSeeker Search Jobs Controller ****************
  */
-app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http,$location) {
+app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http, $location) {
 
-    angular.element("#logo").attr("href", '#/usersLogin');
+    //initialize parameters for controller
+    $scope.init = function () {
+        angular.element("#logo").attr("href", '#/usersLogin');
+        //navigation in site
+        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
 
-    //noinspection JSValidateTypes,JSValidateTypes
-    angular.element("#profileImg").parent().attr("href", '#/Profile');
-    angular.element("#profileImg").parent().attr("ng-href", '#/Profile');
-
-    $rootScope.userSignInType = "jobSeeker";
-
-    //navigation in site
-    $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
-
+        //TODO: OPEN SOCKET!
+        /*socket.onmessage = function (msg) {
+         var message = JSON.parse(msg.data);
+         console.log(message);
+         notifyMe(message.notificationType, message.jobName);
+         }*/
+    };
+    //get jobs that didnot send cv to them
     $scope.getMainJson = function () {
 
 
@@ -65,14 +68,16 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
                 });
     };
+    //sort jobs by user selection
     $scope.sort = function (sort) {
         $scope.sortby = sort;
     };
+    //save data - for match page check
     $scope.saveData = function (title, compatibility_level) {
         localStorage.setItem("jobTitle", title);
         localStorage.setItem("compatibility_level", compatibility_level);
     };
-
+    //accordion collepse arrow
     $scope.collepse = function (id) {
         if ($("#collepse-" + id).hasClass("in")) {
             $("#collepse-" + id).parent().find(".arrow-down").fadeIn();
@@ -81,11 +86,4 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             $("#collepse-" + id).parent().find(".arrow-down").fadeOut();
         }
     };
-
-    //TODO: OPEN SOCKET!
-    /*socket.onmessage = function (msg) {
-     var message = JSON.parse(msg.data);
-     console.log(message);
-     notifyMe(message.notificationType, message.jobName);
-     }*/
 });

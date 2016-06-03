@@ -9,25 +9,31 @@ app
     .controller(
         'seekerProfileControler',
         function ($scope, $http, $compile, $rootScope, $location, $timeout) {
-            //noinspection JSValidateTypes
-            angular.element("#profileImg").parent().attr("href", '#/Profile');
 
-            angular.element(".cvPreview").hide();
-            if (localStorage.getItem("userSignInType"))
-                $rootScope.userSignInType = localStorage.getItem("userSignInType");
-
-            $rootScope.userSignInType = "jobSeeker";
-            $("#geocomplete").geocomplete();
-            $("[rel='popover']").popover({trigger: "hover", container: "body"});
-
-            //navigation in site
-            $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>";
-
-            var cvJson = false;
-            var closeModal = false;
-
-            var myKeyWords = [];
+            var combination;
+            var history_timeline = [], myKeyWords = [];
+            var cvJson = false, closeModal = false;
             var indx = 2;
+            var parseExpereince = {
+                "expereince": []
+            };
+            //initialize parameters for controller
+            $scope.init = function(){
+                $("#geocomplete").geocomplete();
+                $("[rel='popover']").popover({trigger: "hover", container: "body"});
+
+                //navigation in site
+                $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>";
+
+                //TODO: OPEN SOCKET!
+                /*socket.onmessage = function (msg) {
+                 var message = JSON.parse(msg.data);
+                 console.log(message);
+                 notifyMe(message.notificationType, message.jobName);
+                 }*/
+
+            }
+            //get user details
             $scope.getMainJson = function () {
                 //job seeker Details
                 $http({
@@ -103,13 +109,14 @@ app
 
                         });
             };
-
+            //remove 1 section from timeline
             $scope.removeContentCV = function (index) {
                 $scope.changeContent();
                 indx++;
                 angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
                 $("#cvLi" + index).remove();
             };
+            //change content in textarea of the timeline - open parsing option
             $scope.changeContent = function () {
 
                 angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
@@ -119,15 +126,11 @@ app
                     .element(".parseExperiencePlusButton").addClass("hidden");
 
             };
+            //select from - will open the "to" in timeline
             $scope.selectFromYear = function (selected) {
                 $scope.selectFrom = selected;
             };
-
-            var parseExpereince = {
-                "expereince": []
-            };
-
-            history_timeline = [];
+            //parse the experience and bring corrent languages that been found
             $scope.parseMyExperience = function () {
 
                 parseExpereince = {
@@ -223,6 +226,7 @@ app
                     .element(".parseExperiencePlusButton").removeClass("hidden");
 
             };
+            //add more experience to the timeline by selecting Plus button
             $scope.addMoreExperience = function () {
                 var yearsExperience = '<label class="parserExperienceYearsLabelAdded">Years<input type="text" class="form-control" class="parserExperienceYears" value=""></label>';
                 angular
@@ -230,7 +234,7 @@ app
                     .append('<div class="parser"><label class="parserExperienceLanguageAdded">Language<input type="text" required class="form-control " id="experience" name="experience"' +
                         ' value=""  /></label>' + yearsExperience + '</div>');
             };
-
+            //add more education to the timeline by selecting Plus button
             $scope.addEducation = function (type) {
                 var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')" class="form-control"><option ng-selected="true" value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
                 var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '" class="form-control" ><option value="2004" ng-selected="true"  ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
@@ -254,6 +258,7 @@ app
                         .element(".parseExperiencePlusButton").addClass("hidden");
                 }
             };
+            //submit user profile details
             $scope.submitUserDetails = function () {
 
                 //add more parameters to json
@@ -286,8 +291,7 @@ app
                             console.log(response);
                         });
             };
-
-
+            //preview cv before sending to employer
             $scope.cvPreview = function () {
 
                 $http({
@@ -341,7 +345,7 @@ app
                         });
 
             }
-            var combination;
+            //submit user cv details
             $scope.submitUserCV = function () {
 
 
@@ -554,6 +558,7 @@ app
 
 
             };
+            //exit modal
             $scope.exitStatus = function () {
 
                 if (localStorage.getItem('fixCV') !== null) {
@@ -573,12 +578,5 @@ app
                         location.replace("#/searchJobs");
                     }, 1000);
             };
-
-            //TODO: OPEN SOCKET!
-            /*socket.onmessage = function (msg) {
-             var message = JSON.parse(msg.data);
-             console.log(message);
-             notifyMe(message.notificationType, message.jobName);
-             }*/
 
         });

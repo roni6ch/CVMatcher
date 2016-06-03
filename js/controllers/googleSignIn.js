@@ -6,22 +6,20 @@
  * ********************* googleSignIn controller ****************
  */
 
+
+var helper;
+var auth2;
+var profile = '';
 app.controller('googleSignInController', function ($rootScope) {
-    $rootScope.userSignInType = '';
     angular.element("#logo").attr("href", '');
 });
 
-
-var helper;
-var profile = '';
+//sign in to google
 var updateSignIn = function () {
     auth2.isSignedIn.get();
     helper.onSignInCallback(gapi.auth2.getAuthInstance());
 };
-
-/**
- * This method sets up the sign-in listener after the client library loads.
- */
+//This method sets up the sign-in listener after the client library loads.
 function startApp() {
     if (loadedPlatformScript == false) {
         loadedPlatformScript = true;
@@ -44,7 +42,7 @@ function startApp() {
         });
     }
 }
-
+//get the profile, disconnect and sign in helper for google button
 helper = (function () {
     return {
         onSignInCallback: function (authResult) {
@@ -92,15 +90,13 @@ helper = (function () {
                     image: profile["image"].url,
                     emails: profile.emails[0].value
                 };
-                if ( localStorage.getItem('user') == null)
-                {
+                if (localStorage.getItem('user') == null) {
                     console.log("user first time");
                     location.replace("#/usersLogin");
                 }
                 localStorage.setItem('user', JSON.stringify(user));
                 $("#profileImg").attr("src", $.parseJSON(localStorage.getItem('user')).image);
 
-                
 
             }, function (err) {
                 console.log(err);
@@ -108,9 +104,7 @@ helper = (function () {
         }
     };
 })();
-
-var auth2;
-//google signOut and LogUOut
+//google signOut and LogOut
 function logout(out) {
     if (out == 'logout') {
         console.log(auth2);

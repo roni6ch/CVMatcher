@@ -6,6 +6,8 @@
  * ********************* DIRECTIVES ****************
  */
 
+var loadedPlatformScript = false;
+
 // google Button
 app.directive("compileGoogle", function ($compile) {
     return {
@@ -18,17 +20,14 @@ app.directive("compileGoogle", function ($compile) {
         }
     }
 });
-
-var loadedPlatformScript = false;
+//check if connected to google - refresh action
 app.directive("checkGoogleLogIn", function () {
     return {
         link: function () {
             $.getScript("https://apis.google.com/js/client:platform.js?onload=startApp");
-
         }
     }
 });
-
 // focus on searchBox
 app.directive('focus', function () {
     return {
@@ -38,8 +37,7 @@ app.directive('focus', function () {
         }
     }
 });
-
-// compability in myjobs page
+// compabtility level
 app.directive('circle', function ($timeout) {
 
     return {
@@ -69,7 +67,7 @@ app.directive('circle', function ($timeout) {
         }
     }
 });
-// focus on searchBox
+// append for profile image
 app.directive('profileimg', function ($compile) {
     return {
         replace: true,
@@ -86,7 +84,6 @@ app.directive('profileimg', function ($compile) {
         }
     }
 });
-
 //tool tip
 app.directive('bsTooltip', function () {
     return {
@@ -102,8 +99,7 @@ app.directive('bsTooltip', function () {
         }
     };
 });
-
-//jobPage
+//jobPage - DRAG AND DROP
 app.directive('droppableMust', function ($rootScope) {
     return {
         scope: {},
@@ -111,14 +107,11 @@ app.directive('droppableMust', function ($rootScope) {
             var id;
             id = attr.langName;
             totalPriorotySum = 0;
-
-
             $.each($rootScope.list1, function (key, val) {
                 if (val.langId == id) {
                     val.mode = "must";
                 }
             })
-
             $.each($rootScope.list2, function (key, val) {
                 if (val.langId == id) {
                     val.mode = "must";
@@ -129,8 +122,6 @@ app.directive('droppableMust', function ($rootScope) {
                     val.mode = "must";
                 }
             })
-
-
             $.each(requirements, function (key, val) {
                 $.each(val.combination, function (k, v) {
                     if (v.langId == id) {
@@ -168,7 +159,6 @@ app.directive('droppableMust', function ($rootScope) {
                     'drag': true
                 })
             }
-
 
         }
     }

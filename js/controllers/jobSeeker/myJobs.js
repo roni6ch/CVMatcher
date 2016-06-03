@@ -11,44 +11,43 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
     var path = $location.path().split('/')[1];
     var navigation;
     var data;
-    //noinspection JSValidateTypes
-    angular.element("#profileImg").parent().attr("href", '#/Profile');
-    if (localStorage.getItem("userSignInType"))
-        $rootScope.userSignInType = localStorage.getItem("userSignInType");
 
-    //TODO: OPEN SOCKET!
-   /* socket.onmessage = function (msg) {
-        var message = JSON.parse(msg.data);
-        console.log(message);
-        var jobId = message.jobId;
-        if (path == 'yourjobs') {
-            if (message.notificationType == 'seen') {
-                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                $scope.$apply(function () {
-                    $scope.jobSJ.cv.status.current_status = 'seen';
-                })
-            }
-            else if (message.notificationType == 'like') {
-                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                $scope.$apply(function () {
-                    $scope.jobSJ.cv.status.current_status = 'liked';
-                    $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
-                })
-            }
-            else if (message.notificationType == 'unlike') {
-                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                $scope.$apply(function () {
-                    $scope.jobSJ.cv.status.current_status = 'unliked';
-                    $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+    //initialize parameter in the controller
+    $scope.init = function () {
 
-                })
-            }
-        }
-        notifyMe(message.notificationType, message.jobName);
-    }*/
+        //TODO: OPEN SOCKET!
+        /* socket.onmessage = function (msg) {
+         var message = JSON.parse(msg.data);
+         console.log(message);
+         var jobId = message.jobId;
+         if (path == 'yourjobs') {
+         if (message.notificationType == 'seen') {
+         $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+         $scope.$apply(function () {
+         $scope.jobSJ.cv.status.current_status = 'seen';
+         })
+         }
+         else if (message.notificationType == 'like') {
+         $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+         $scope.$apply(function () {
+         $scope.jobSJ.cv.status.current_status = 'liked';
+         $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
+         })
+         }
+         else if (message.notificationType == 'unlike') {
+         $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+         $scope.$apply(function () {
+         $scope.jobSJ.cv.status.current_status = 'unliked';
+         $scope.jobSJ.cv.status.status_id.rate.description = message.other;
 
-    //end
+         })
+         }
+         }
+         notifyMe(message.notificationType, message.jobName);
+         }*/
 
+    }
+    //check what page im located and bring the right json
     $scope.getMainJson = function () {
         if (path == 'Favorites') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
@@ -113,7 +112,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                     console.log(response);
                 });
     };
-
+    //send job to trash
     $scope.removeReviveJob = function (id, bool) {
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/updateActivityJob',
@@ -132,7 +131,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                 $scope.jobSeekerJobs = jobsArr;
             });
     };
-
+    //click on specific job
     $scope.favoriteJob = function (id, indx) {
         var favorite;
         if ($("#fav" + indx).hasClass("fa-heart-o")) {
@@ -168,14 +167,15 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
 
 
     };
-
+    //sort by user request
     $scope.sort = function (sort) {
         $scope.sortby = sort;
     };
+    //show rate stars number from employer
     $scope.rating = function (rateNumber) {
         $scope.user["stars"] = rateNumber;
     };
-
+    //accordion collepse - arrow
     $scope.collepse = function (id) {
         if ($("#collepse-" + id).hasClass("in")) {
             $("#collepse-" + id).parent().find(".arrow-down").fadeIn();
@@ -184,6 +184,5 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
             $("#collepse-" + id).parent().find(".arrow-down").fadeOut();
         }
     }
-
 
 });
