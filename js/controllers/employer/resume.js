@@ -17,7 +17,7 @@ app.controller('resumeController',
         $id = $location.path().split('/');
 
         //initialize parameters for this controller
-        $scope.init = function(){
+        $scope.init = function () {
 
             $("#predictAppend").hide();
             $("#users").hide();
@@ -109,6 +109,9 @@ app.controller('resumeController',
                         if (data.data[0].predict_result !== 'undefined') {
                             $("#predictAppend").show();
                         }
+                        else {
+                            $(".predictAppend").hide();
+                        }
 
                         //formula bubbels
                         if (data.data[0].formula)
@@ -127,6 +130,9 @@ app.controller('resumeController',
                                 bubbels();
                             }
                             else {
+
+                                $(".skillsTitle").hide();
+                                $(".bubbleChart").hide();
                                 $(".resumeSkillsBox").hide();
                                 $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
                             }

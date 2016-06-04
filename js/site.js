@@ -10,7 +10,6 @@ app.config(function ($routeProvider) {
                 resolve: {
                     resolvedVal: function ($location,$rootScope) {
                         $rootScope.userSignInType = '';
-                        $(".navBarImg").css("display",'none');
                         if (localStorage.getItem("user_id") !== null) {
                             $location.path('/usersLogin');
                         }
@@ -21,7 +20,6 @@ app.config(function ($routeProvider) {
             controller: 'usersLoginController',
             resolve: {
                 resolvedVal: function ($rootScope) {
-                    $(".navBarImg").css("display",'block');
                     $rootScope.userSignInType = '';
                 }
             }
@@ -30,6 +28,7 @@ app.config(function ($routeProvider) {
             controller: 'myjobsController',
             resolve: {
                 resolvedVal: function ($location) {
+                    $(".navBarImg").removeClass('hidden');
                     return changeLocation($location, '#/companyProfile',"employer");
                 }
             }
@@ -114,6 +113,7 @@ app.config(function ($routeProvider) {
                 controller: 'jobSeekerSearchJobsController',
                 resolve: {
                     resolvedVal: function ($location) {
+                        $(".navBarImg").removeClass('hidden');
                         return changeLocation($location, '#/Profile','jobSeeker');
                     }
                 }
@@ -236,8 +236,6 @@ $(document).ready(function () {
 
 //resolve function to make initializion before controllers
 function changeLocation(location, profilePath,userSignInType) {
-    console.log(userSignInType);
-
     localStorage.setItem("userSignInType",userSignInType);
     //noinspection JSValidateTypes
     angular.element("#profileImg").parent().attr("href", profilePath);
@@ -264,7 +262,7 @@ function sockets() {
 
 //connection for sockets
 function connectToChat(url) {
-    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 3000});
+    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 10000});
     console.log(socket);
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
@@ -324,7 +322,6 @@ function notifyMe(type, jobName) {
 
 // D3 bubbels in match and resume page
 function bubbels() {
-    console.log(skills);
     new d3.svg.BubbleChart({
         supportResponsive: true,
         //container: => use @default

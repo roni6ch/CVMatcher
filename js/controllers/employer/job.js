@@ -13,7 +13,6 @@ var totalPriorotySum = 0;
 var newLangClicked = false;
 var combinationDeleted = false;
 app.controller('jobController', function ($scope, $http, $location, $timeout, $compile, $rootScope) {
-
         totalPriorotySum = 0, nextCombinationKey = 0, langId = 0;
         $id = $location.path().split('/')[1];
         $jobId = $location.path().split('/')[2];
@@ -25,8 +24,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
     var locationIndex = 0;
         var locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
         var combinationLengthAfterEdit = 0, combinationsLength = 0, sumSliders = 0;
-        var editJob = false, sendForm = false, savedCurrentCombination = false, newLangClicked = false;
-
+        var editJob = false, sendForm = false, savedCurrentCombination = false;
+        newLangClicked = false
         //initialize parameters for this controller
         $scope.init = function () {
 
@@ -71,13 +70,13 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         combinationLengthAfterEdit = data.data[0].requirements.length;
                         if (combinationsLength > 1)
                             $(".fa-arrow-right").show();
-
+                        var i = 0;
                         totalPriorotySum = 100;
 
                         if (data.data[0].requirements.length > 1) {
                             $(".fa-arrow-right").show();
                         }
-                        console.log(data.data);
+                        console.log(data.data[0]);
                         if (data.data[0].requirements.length > 0) {
                             $.each(data.data[0].requirements, function (k, v) {
                                 i++;
@@ -160,9 +159,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         sliders.each(function () {
                             var availableTotal = 100;
                             $(this).empty().slider({
-                                value: data.data[0].formula[formulaJson[i++]],
+                                value: data.data[0].formula[formulaJson[i]],
                                 min: 0,
-                                max: data.data[0].formula[formulaJson[i]],
+                                max: data.data[0].formula[formulaJson[i++]],
                                 range: "min",
                                 step: 10,
                                 slide: function (event, ui) {
@@ -200,10 +199,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                         $timeout(function () {
                             $.each($(".geocomplete input"), function (key) {
-                                console.log(key);
                                  $("#geocomplete" + key).geocomplete();
                                 locationIndex++;
-
                             });
                         });
 
@@ -213,8 +210,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             //im in newJob - init parameters
             else {
                 $scope.newJob = true;
-
-
                 var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
                 $("#geocomplete" + locationIndex).geocomplete();
                 locationIndex++;
@@ -232,7 +227,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                     angular.element(".fa-spinner").hide();
                     var sliders = $("#sliders").find(".slider");
-                    console.log("Df");
                     sliders.each(function () {
                         var availableTotal = 100;
                         $(this).slider({
@@ -309,11 +303,11 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             })
                 .then(function (data) {
                         parseExpereince = {
-                            "text": $("#requirementsMust").val().replace(/,/g, ' '),
+                            "text": $.trim($("#requirementsMust").val()),
                             "words": data.data
                         };
                         parseExpereinceAdv = {
-                            "text": $("#requirementsAdvantage").val().replace(/,/g, ' '),
+                            "text": $.trim($("#requirementsAdvantage").val()),
                             "words": data.data
                         };
                         var tempMust, tempAdv;
@@ -335,7 +329,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 data: parseExpereince
                             })
                                 .then(function (data1) {
-
                                         combination = [];
                                         angular.element(".removeCombination").show();
                                         angular.element(".fa-spin").hide();
@@ -534,7 +527,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
-                        "locations": [$("#geocomplete").val()],
+                        "locations": [$("#geocomplete0").val()],
                         "candidate_type": candidate_type,
                         "scope_of_position": scope_of_position,
                         "academy": {
@@ -568,7 +561,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
-                        "locations": [$("#geocomplete").val()],
+                        "locations": [$("#geocomplete0").val()],
                         "candidate_type": candidate_type,
                         "scope_of_position": scope_of_position,
                         "academy": {

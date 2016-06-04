@@ -56,6 +56,7 @@ app
                                                 bubbels();
                                             }
                                             else {
+                                                $(".skillsTitleM").hide();
                                                 $(".bubbleChart").css("height", "0px");
                                                 //$scope.status = 'the languges';
                                                 // $('#sendCVstatus').modal('show');

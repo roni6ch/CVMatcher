@@ -26,6 +26,7 @@ font-style: normal;
 
 .requiredError{
     color: #f36f6f;
+    padding-top: 12px;
 }
 
 /******************************/
@@ -314,6 +315,7 @@ footer div a {
 .rating-star {
     display: block;
     float: right;
+    margin-top: 0px;
     width: 16px;
     height: 16px;
     background: url('../images/star.png') 0 -16px;
@@ -346,7 +348,7 @@ footer div a {
     top: -6px;
     transform: rotate(-45deg);
 }
-.navbar-collapse > ul{background: #231f20;width: 52%;height: 100vh;padding: 4px;padding-top: 82px;padding-left: 0px;border-radius: 0;float: right;margin-top: -50px;/* position: absolute; *//* top: 0; *//* right: 0; */}
+.navbar-collapse > ul{background: #231f20;width: 100%;height: 100vh;padding: 4px;padding-top: 70px;padding-left: 0px;border-radius: 0;float: right;margin-top: -50px;/* position: absolute; *//* top: 0; *//* right: 0; */}
 .navbar-collapse ul li{
     font-family: almoni-dl-aaa-regular;
     display: table;
@@ -355,10 +357,13 @@ footer div a {
     width: 100%;
     font-weight: bold;
     color: #fff;
+    padding-top: 10px;
+    border-bottom: 1px solid #fff;
+    padding-left: 20px;
 }
 
 .mobileMenu a{
-    margin-left: 22px;
+    margin-left: 0px;
     /* width: 152%; */
 }
 
@@ -471,9 +476,12 @@ footer div a {
 .abcRioButton {
     margin: 0 auto;
 }
-.popover-content a{    width: 100%;
+.popover-content a{
+    width: 100%;
+    color: #231f20;
     display: inline-block;
-    text-align: center;}
+    text-align: center;
+}
 
 /****************************************************** INDEX - NAV BAR **********************************************/
 /*natalie*/
@@ -547,7 +555,7 @@ display: none;
 
 .navBarImg {
 
-    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 72%;position: absolute;margin: 0 auto;top: 48px;left: 13%;
+    /*natalie*/height: 60px;background-color: #231f20;opacity: 0.8;width: 75%;position: absolute;margin: 0 auto;top: 48px;left: 12.5%;
     /*********//* float: right;
     overflow: hidden;
     height: 150px;*//*background-image: url("../images/navImg.jpg");*//*width: 100%;*/z-index: 1;}
@@ -610,6 +618,10 @@ display: none;
     color: #337ab7;
 }*/
 
+.myjobsWrapper .navigation{
+    margin-left: 0px;
+}
+
 .title{
     font-size: 22px;
 }
@@ -658,7 +670,7 @@ display: none;
 
 .myJobsBox{
     height: 200px;
-    width: 96%;
+    width: 100%;
     position: relative;
     margin-top: 156px;
     background-color: #231f20;
@@ -708,7 +720,7 @@ a:focus, a:hover {
     float: left;
     margin-right: 1%;
     margin-left: 1%;
-    width: 22%;
+    width: 23%;
     padding: 4px;
     font-size: 11px;
     cursor: pointer;
@@ -754,6 +766,13 @@ a:focus, a:hover {
     /* margin-right: 26%; */
     /* margin-left: -24%; */
 }
+
+.myjobsWrapper button:hover{
+
+    color: #000 !important;
+
+}
+
 
 .navBarImg>img{
     height: 36px;
@@ -806,7 +825,8 @@ a:focus, a:hover {
     /*natalie*/
     margin-top: 0px;
     /* margin-left: 6.2%; */
-    width: 95%;
+    width: 100%;
+    /* margin: 0 auto; */
     padding: 10px;
     border: 10px solid#231f20;
     text-align: left;
@@ -1080,6 +1100,7 @@ a:focus, a:hover {
     border-bottom-width: 1px;
     border-bottom-style: solid;
     width: 50%;
+    font-size: 190%;
 }
 
 /*.NcandidaesBox{
@@ -1100,8 +1121,8 @@ a:focus, a:hover {
     /* overflow: hidden; */
     /* text-align: left; */
     margin-top: 0px;
-    margin-bottom: 40px;
-    width: 95%;
+    margin-bottom: 60px;
+    width: 100%;
     padding: 10px;
     border: 10px solid#231f20;
     text-align: left;
@@ -1168,8 +1189,8 @@ a:focus, a:hover {
 
 .candidates > div:nth-child(2) section {
     position: absolute;
-    width: 60px;
-    bottom: -24px;
+    width: 100px;
+    bottom: -48px;
     left: 44%;
 }
 
@@ -1178,9 +1199,9 @@ a:focus, a:hover {
     color: #fff;
     /* top: 0; */
     z-index: 1;
-    left: 28%;
-    bottom: 18px;
-    font-size: 24px;
+    left: 32%;
+    bottom: 34px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -1195,14 +1216,14 @@ a:focus, a:hover {
 }
 
 .candidates p {
-    margin: 10px 0px 10px;
+    margin: 20px 0px 60px;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
     text-align: justify;
 }
 
 .candidates img {
-    width: 100%;
+    width: 128%;
     float: right;
 }
 
@@ -1215,6 +1236,36 @@ a:focus, a:hover {
 }
 
 /****************************************************** RESUME - HTML **********************************************/
+.resumeWrapper .timeline-badge .fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: small;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.resumeWrapper{
+    margin-top: 85px;
+}
+
+.timeline-heading{
+
+    background-color: #000;
+}
+
+.timeline-body{
+    background-color: #000;
+    margin-bottom: -28px;
+}
+
+.timeline-body p{
+    /* padding-left: 34px; */
+    font-size: 26px;
+    padding-bottom: 28px;
+    text-align: center !important;
+}
+
 
 .resumeWrapper .resumeYears > div {
 
@@ -1225,13 +1276,20 @@ a:focus, a:hover {
 
 .resumeWrapper .skillsTitle{
     margin-bottom: 22px;
-    margin-top: 22px;
+    /* margin-top: 50px; */
     color: #fff;
+    background-color: #231f20;
+    width: 168px;
+    height: 50px;
+    padding-top: 9px;
+    margin: 0 auto;
+    margin-top: 44px;
 }
 
 .resumeWrapper h4 {
     font-size: 18px;
     padding-bottom: 16px;
+    padding-top: 0px;
     /* padding-top: 8px; */
 }
 
@@ -1507,6 +1565,13 @@ a:focus, a:hover {
     transform: rotate(180deg);
     top: 18%;
 }*/
+
+.timeline-heading h4{
+    padding-top: 22px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
 
 /****************************************************** JOB - HTML **********************************************/
 
@@ -2124,8 +2189,9 @@ a:focus, a:hover {
 .arrow-down,.arrow-up{
     margin: 0 auto;
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 6px;
+    bottom: 6px;
+    width: 62px;
 }
 
 
@@ -2141,7 +2207,7 @@ a:focus, a:hover {
     background-image: url("../images/searchjobscover.png");
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0;
     background-size: cover;
 }
@@ -2170,6 +2236,11 @@ a:focus, a:hover {
     font-size: 20px;
     font-family: almoni-dl-aaa-regular;
     color: white !important;
+}
+
+.searchJobsWrapper button:hover{
+
+    color: #000 !important;
 }
 
 
@@ -2270,7 +2341,7 @@ a:focus, a:hover {
     min-height: 100px;}
 .jobListLi section {
     position: absolute;
-    width: 90px;
+    width: 110px;
     /* float: right; */
     bottom: -74px;
     right: 40%;
@@ -2278,8 +2349,8 @@ a:focus, a:hover {
 
 .jobListLi section h5 {
     position: absolute;
-    top: 28%;
-    left: 30%;
+    top: 32%;
+    left: 33%;
     font-size: 36px;
     font-weight: bold;
     font-family: almoni-dl-aaa-regular;
@@ -2319,23 +2390,34 @@ a:focus, a:hover {
     top: 22px;
 }
 
-.yourJobsWrapper .jobsList article {
-
-    margin-top: -17px;
-
+.yourJobsWrapper .companyLogoN {
+    float: left;
+    width: 86px;
+    position: absolute;
+    left: 14px;
+    top: 31px;
 }
+
+
+.yourJobsWrapper .jobListLi i.fa.fa-times {
+    position: relative;
+    top: -12px;
+    left: -8px;
+    font-size: larger;
+}
+.yourJobsWrapper .jobsList article {margin-top: -17px;padding-bottom: 54px;padding-top: 18px;}
 
 /*------*/
 .readUnread {
     position: absolute;
-    right: 70px;
-    top: 20px;
+    right: 58px;
+    top: 12px;
 }
 
 .jobListLi .rating {
     position: absolute;
-    top: 44px;
-    right:20%;
+    top: 26px;
+    right: 12%;
 }
 .fa-heart-o,.fa-heart{
     position: absolute;
@@ -2343,6 +2425,7 @@ a:focus, a:hover {
     z-index: 2;
     cursor: pointer;
     top: 26px;
+    font-size: x-large;
 }
 
 .unlikeReason{float:left;}
@@ -2411,6 +2494,20 @@ a:focus, a:hover {
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 
+
+.slidersAndTooltips{background-color: #000;width: 100%;height: 225px;}
+
+.skillsTitleM {
+    /* margin-top: 120px; */
+    background-color: #000;
+    width: 114px;
+    height: 50px;
+    padding-top: 14px;
+    margin: 0 auto;
+    margin-top: 120px;
+}
+
+
 .matchpageWrapper .btn-default {
     color: #333;
     background-color: #fff;
@@ -2457,12 +2554,14 @@ a:focus, a:hover {
     float: left;
     width: 90%;
     /* background-color: #000; */
-    margin-top: 80px;
+    margin-top: 20px;
+    padding-left: 22px;
 }
 .tootipInfo{
     float: right;
     width: 10%;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    margin-top: 20px;
 }
 
 .matchpageWrapper .matchResult {
@@ -2600,6 +2699,32 @@ a:focus, a:hover {
 /****************************************************** PROFILE - HTML ********************************************************/
 /****************************************************************************************************************************/
 /*natalie*/
+
+div#popover924921 {
+    top: 106px;
+    left: 861px;
+    display: block;
+    /* color: #231f20; */
+}
+
+.profileWrapper .timeline-body p {
+
+    padding-bottom: 0px;
+}
+
+.profileWrapper .timeline-body {
+    margin-bottom: 4px;
+}
+
+.profileWrapper .timeline-heading {
+    padding-left: 6%;
+}
+
+.profileWrapper .timeline-panel .form-group {
+    margin-bottom: 15px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
 
 [data-toggle=buttons] > .btn input[type=checkbox], [data-toggle=buttons] > .btn input[type=radio], [data-toggle=buttons] > .btn-group > .btn input[type=checkbox], [data-toggle=buttons] > .btn-group > .btn input[type=radio] {
     position: absolute;
@@ -2961,12 +3086,510 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     float: left;
 }
 
+
+
+/*------------------companyprofile HTML------------------------------------*/
+
+.companyprofileWrapper {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 154px;
+    position: relative;
+    margin-bottom: 16%;
+}
+
+.companyprofileWrapper header {
+    border: 6px solid #231f20;
+    padding: 6px;
+    width: 272px;
+    margin: 0 auto;
+}
+
+.companyprofileWrapper .profileTitle {
+    /* position: absolute; */
+    /* top: 0; */
+    color: #fff;
+    background: #231f20;
+    width: 246px;
+    text-align: center !important;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 0 !important;
+}
+
+.companyprofileWrapper .engineering li {
+    margin-top: 22px;
+    width: 48%;
+    font-size: 16px;
+    cursor: pointer;
+    /* margin-right: 2%; */
+    padding: 6px;
+    color: white;
+    background-color: #231f20;
+}
+
+.companyprofileWrapper .navigation{
+    top:-36px;
+}
+
+
+.companyprofileWrapper .tab-content{
+    margin-bottom: 40px;
+}
+
+.companyprofileWrapper .newJob button, html .companyprofileWrapper input[type=button] {
+    background-color: #fff;
+    color: #000;
+    font-family: almoni-dl-aaa-regular;
+    font-size: 16px;
+    text-align: center;
+    width: 48%;
+    border-radius: 0;
+    border: 0;
+}
+
+.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover{
+    opacity: 0.9;
+}
+
+.companyprofileWrapper .editLogo + input {
+    width: 100%;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+
+.companyprofileWrapper .engineering1{
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+    /* top: 186px; */
+    margin-top: 10px;
+    height: 70px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+    /* left: 6%; */
+    /* color: red; */
+    font-family: almoni-dl-aaa-regular;
+}
+
+.companyprofileWrapper .engineering1 li{
+    float: left;
+    margin-right: 1%;
+    margin-left: 1%;
+    width: 48%;
+    padding: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    /* margin-right: 2%; */
+    padding: 6px;
+    color: white;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.companyprofileWrapper .engineering1 li a{
+    color: #000;
+}
+
+.companyprofileWrapper .engineering1 li a:hover{
+
+    display: table;
+    margin: 0 auto;
+    background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.companyprofileWrapper .tab-content {
+    padding: 10px;
+    padding-left: 12%;
+    padding-right: 12%;
+    background: #231f20;
+}
+
+
+.companyprofileWrapper .popover  {
+    top: 110px;
+    left: 754px;
+    display: block;
+    /* color: #000; */
+}
+
+
 /****************************************************************************************************/
 /****************************************************************************************************************************/
 /****************************************************** MEDIA - MAX 767 ********************************************************/
 /****************************************************************************************************************************/
 /****************************************************************************************************/
 @media ( max-width: 767px) {
+
+    /*searcj job html*/
+
+    .searchJobsWrapper header h2, .yourJobsWrapper header h2 {
+        font-size: 30px;
+    }
+
+    .searchJobsWrapper button, .yourJobsWrapper button {
+        font-size: 14px;
+
+    }
+
+    .navbar-header {
+        background-color: #231f20;
+        height: 63px;
+        opacity: 0.8;
+    }
+
+    .searchJobsWrapper .myJobsBox {
+        margin-top: 28px;
+        width: 100%;
+    }
+
+
+    .searchJobsWrapper .logoInJobBox {
+        width: 49px;
+        position: absolute;
+        left: 41%;
+        top: -28px;
+    }
+
+    .searchJobsWrapper .jobsList article {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .searchJobsWrapper .jobListLi section {
+        right: 31%;
+    }
+
+    .searchJobsWrapper .jobsList ul li {
+        margin-top: 60px;
+        margin-bottom: 60px;
+    }
+
+    .searchJobsWrapper .jobsList ul li {
+
+        border: 0px solid#231f20;
+        padding: 0;
+    }
+
+    .searchJobsWrapper .checkMyCVButton {
+
+        margin-bottom: 34px;
+    }
+
+
+    /*your jobs*/
+
+    .yourJobsWrapper .myJobsBox {
+        margin-top: 28px;
+    }
+
+    .jobsList ul li {
+
+        padding: 0px;
+        border: 0px solid#231f20;
+    }
+
+    .yourJobsWrapper .jobListLi i.fa.fa-times {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        font-size: x-large;
+    }
+
+    .yourJobsWrapper .jobListLi section {
+        right: 34%;
+    }
+
+    .yourJobsWrapper .companyLogoN {
+        float: left;
+        width: 86px;
+        position: absolute;
+        left: 33%;
+        top: -10px;
+    }
+
+    .yourJobsWrapper .jobsList article {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .yourJobsWrapper .fa-heart-o, .fa-heart {
+        position: absolute;
+        right: 5px;
+        z-index: 2;
+        cursor: pointer;
+        top: 26px;
+        font-size: x-large;
+    }
+
+    .yourJobsWrapper .readUnread {
+        position: absolute;
+        right: 29px;
+        top: 8px;
+    }
+
+    .yourJobsWrapper .jobsList ul li {
+        width: 100%;
+        margin-top: 60px;
+        margin-bottom: 40px;
+    }
+
+
+    /*match*/
+
+    .matchpageWrapper {
+        margin-top: 82px;
+    }
+
+    .matchpageWrapper .matchResult h2 {
+        font-size: 20px;
+    }
+
+
+    .matchpageWrapper .skillsTitleM {
+        /* margin-top: 120px; */
+        background-color: #000;
+        width: 104px;
+        height: 50px;
+        padding-top: 14px;
+        margin: 0 auto;
+        margin-top: 76px;
+    }
+
+    .matchpageWrapper #user-container {
+        width: 34%;
+        position: relative;
+        margin: 20px auto;
+    }
+
+    .matchpageWrapper #user-container h5 {
+        font-size: 8vw;
+    }
+
+    .matchpageWrapper h4 {
+        padding-top: 16px;
+    }
+
+    .matchpageWrapper .matchResult {
+        height: 280px;
+    }
+
+    /*profile*/
+
+    .profileWrapper .userProfile {
+        margin-top: 40px;
+    }
+
+    .profileWrapper .tab-content {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+    .profileWrapper .container {
+        padding-right: 4px;
+        padding-left: 4px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .borderTimelineTitle1 {
+        padding: 4px;
+        border: 4px solid #000;
+        width: 107px !important;
+        height: 50px;
+        float: left;
+        margin-top: 10px;
+    }
+
+    .borderTimelineTitle2 {
+        padding: 4px;
+        border: 4px solid #000;
+        width: 117px !important;
+        height: 49px;
+        float: right;
+        margin-top: 10px;
+    }
+
+    .resumeYears > div h3:nth-child(1) {
+        float: left;
+        background: #231f20;
+        color: #fff;
+        padding: 8px;
+        font-size: 17px;
+        font-weight: normal;
+    }
+
+    .profileWrapper .page-header h1 {
+
+        padding: 10px;
+        font-size: 24px;
+    }
+
+    .profileWrapper .page-header {
+        padding: 4px;
+        /* margin: 40px 0 20px; */
+        border: 4px solid #000;
+        width: 50%;
+        margin: 0 auto;
+        margin-top: 90px;
+        margin-bottom: 24px;
+    }
+
+    .profileWrapper .timeline > li > .timeline-badge {
+        top: -12px;
+        left: 53.7%;
+
+    }
+
+
+    .profileWrapper .parser {
+        float: left;
+        width: 78%;
+        margin-left: 24%;
+        margin-top: 10px;
+    }
+
+    /*myjobs*/
+
+    .myjobsWrapper .nav > li > a {
+        position: relative;
+        display: block;
+        padding: 0px 0px;
+        font-size: 14px;
+    }
+
+    .myjobsWrapper .jobs {
+        padding: 0px;
+        border: 0px solid#231f20;
+    }
+
+    .myjobsWrapper #popoverData {
+        position: absolute;
+        right: 0px;
+        top: 8px;
+    }
+
+    .myjobsWrapper .fa-2x {
+        font-size: 2.3em;
+    }
+
+    .myjobsWrapper .jobs img {
+        width: 28%;
+        float: right;
+    }
+
+    .myjobsWrapper .jobs:first-child {
+        margin-top: 42px;
+    }
+
+    .myjobsWrapper .jobs > div section {
+        margin-left: 32%;
+        position: absolute;
+        top: 236px;
+    }
+
+    /*candidates*/
+
+    .candidatesWrapper button {
+        font-size: 15px;
+    }
+
+    .candidatesWrapper h2 {
+        padding-top: 12px;
+        padding-left: 28px;
+        padding-bottom: 14px;
+        font-size: 34px;
+    }
+
+    .candidatesWrapper .myJobsBox {
+        margin-top: 40px;
+        height: 100%;
+    }
+
+    .candidatesWrapper .engineering li {
+        margin-right: 1%;
+        margin-left: 1%;
+        width: 23%;
+        padding: 4px;
+        font-size: 11px;
+        cursor: pointer;
+        padding-top: 13px;
+    }
+
+    .candidatesWrapper .candidates > div:nth-child(2) section {
+        bottom: -50px;
+        left: 35%;
+    }
+
+    .candidatesWrapper .candidates {
+        padding: 0px;
+        border: 0px solid#231f20;
+    }
+
+    /*resume*/
+
+    .resumeWrapper .userDetailsBox h3 {
+        font-size: 17px;
+        text-decoration: underline;
+    }
+
+    .resumeWrapper #candidateUnLike {
+        padding: 0px 8px;
+    }
+
+    .resumeWrapper #candidateLike {
+        padding: 0px 8px;
+    }
+
+    .resumeWrapper .timeline > li > .timeline-badge {
+        top: -12px;
+        left: 53.7%;
+    }
+
+    .resumeWrapper h5 {
+        font-size: 16px;
+    }
+
+    .resumeWrapper h4 {
+        font-size: 16px;
+    }
+
+    .resumeWrapper .page-header {
+        margin-top: 80px;
+        margin-bottom: 20px;
+    }
+
+    /*company profile*/
+
+    .companyprofileWrapper .tab-content {
+        padding: 10px;
+        padding-left: 4%;
+        padding-right: 4%;
+        background: #231f20;
+    }
+
+
+    .companyprofileWrapper .tab-content {
+        padding: 8px;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+
+    .companyprofileWrapper .newJob button, html .companyprofileWrapper input[type=button] {
+        margin-top: 12px;
+    }
+
+    .companyprofileWrapper .companies img {
+        width: 66px;
+        height: 66px;
+    }
+
     /*natalie*/
     .myjobsWrapper section {
         margin-bottom: 22px;
@@ -3040,6 +3663,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         /* width:46px; */
         position: absolute;
         top: -30px;
+        left: -16px;
     }
     .navBar > div:nth-child(2) > a > img {
         /* margin-top: 60%; */
@@ -3159,7 +3783,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .candidates > div:nth-child(2) section h5 {
-        bottom: -8px;
+        bottom: 38px;
     }
     .candidates h5 {
         color: #606060;
@@ -3167,17 +3791,17 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         line-height: 21px;
         float: left;
         overflow: hidden;
-        font-size: 14px !important;
+        font-size: 28px !important;
     }
     .candidates {
         width: 100%;
         /* padding: 49px; */
     }
 
-    .candidatesWrapper .myJobsBox{
-        margin-top: 68px;
-        height: 100%;
-    }
+    /*    .candidatesWrapper .myJobsBox{
+            margin-top: 68px;
+            height: 100%;
+        }*/
 
     #sliders li div span {
         width: 25px;
@@ -3553,17 +4177,13 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     /*match page*/
 
-    .matchpageWrapper {
-        margin-top: 60px;
-    }
+    /* .matchpageWrapper {
+         margin-top: 60px;
+     }*/
 
 
     /*copany profile media*/
-    .myJobsBox {
-
-        margin-top: 0px;
-
-    }
+    .myJobsBox {margin-top: 28px;}
 
     .companyprofileWrapper {
         width: 100% !important;
@@ -3577,6 +4197,123 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 /****************************************************** TIMELINE ***************************************************/
+/*roni*/
+
+.timelineForPreview{
+    position: relative;
+}
+
+.timelineForPreview:before {
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    position: absolute;
+    content: " ";
+    width: 3px;
+    background-color: #000;
+    left: 50%;
+    margin-left: -1.5px;
+    position: absolute;
+}
+
+.timelineForPreview > li{
+    margin-bottom: 20px;
+    margin-top: 3px;
+    position: relative;
+    /* border: 4px solid #000; */
+    /* width: 50%; */
+    /* float: right; */
+}
+
+
+.timelineForPreview > li:before, .timelineForPreview > li:after  {
+    content: " ";
+    display: table;
+}
+
+.timelineForPreview > li:after {
+    clear: both;
+}
+
+.timelineForPreview > li:before, .timelineForPreview > li:after {
+    content: " ";
+    display: table;
+}
+
+.timelineForPreview > li:after {
+    clear: both;
+}
+
+.timelineForPreview > li > .timeline-panel {
+    width: 46%;
+    float: left;
+    border: 5px solid #231f20;
+    /* border-radius: 2px; */
+    padding: 4px;
+    padding-bottom: 8px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    background-color: #231f20;
+    margin-top: 20px;
+}
+
+
+.timelineForPreview > li > .timeline-panel:after {
+    /* position: absolute; */
+    top: 27px;
+    right: -14px;
+    display: inline-block;
+    border-top: 14px solid transparent;
+    z-index: 233;
+    border-left: 0px solid #fff;
+    border-right: 0 solid #fff;
+    border-bottom: 14px solid transparent;
+    content: " ";
+}
+
+.timelineForPreview > li > .timeline-badge {
+    color: #fff;
+    width: 28px;
+    height: 28px;
+    line-height: 31px;
+    font-size: 1.4em;
+    text-align: center;
+    position: absolute;
+    top: 16px;
+    left: 51.7%;
+    /* margin: 0 auto; */
+    margin-left: -25px;
+    background-color: #000;
+    z-index: 100;
+    border-top-right-radius: 50%;
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.timelineForPreview > li.timeline-inverted > .timeline-panel {
+    float: right;
+    background: transparent;
+}
+
+.timelineForPreview > li.timeline-inverted > .timeline-panel:before {
+    /* border-left-width: 0; */
+    /* border-right-width: 15px; */
+    /* left: -15px; */
+    /* right: auto; */
+}
+
+.timelineForPreview > li.timeline-inverted > .timeline-panel:after {
+    border-left-width: 0;
+    /* border-right-width: 14px; */
+    /* left: -14px; */
+    /* right: auto; */
+}
+
+
+
+/**/
 .container {
     width: 100% !important;
 }
@@ -3631,12 +4368,13 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     border: 5px solid #231f20;
     /* border-radius: 2px; */
     padding: 4px;
-    padding-bottom: 8px;
+    padding-bottom: 0px;
     position: relative;
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
-    background-color: #231f20;
+    background-color: transparent;
     margin-top: 20px;
+    /* margin-bottom: 0px; */
 }
 
 .timeline > li > .timeline-panel:before {
@@ -3668,11 +4406,11 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     color: #fff;
     width: 28px;
     height: 28px;
-    line-height: 31px;
+    line-height: 24px;
     font-size: 1.4em;
     text-align: center;
     position: absolute;
-    top: 16px;
+    top: 19px;
     left: 51.7%;
     /* margin: 0 auto; */
     margin-left: -25px;
@@ -3878,7 +4616,7 @@ footer{
     max-width: 700px;
     /* height: 560px; */
     margin: 0 auto;
-    /* margin-top: 40px; */
+    margin-top: 22px;
 }
 
 .bubbleChart svg {
@@ -3900,136 +4638,4 @@ footer{
     top: 20px;
     background-color: transparent;
     color: white;
-}
-
-
-/*------------------companyprofile HTML------------------------------------*/
-
-.companyprofileWrapper {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 154px;
-    position: relative;
-    margin-bottom: 16%;
-}
-
-.companyprofileWrapper header {
-    border: 6px solid #231f20;
-    padding: 6px;
-    width: 272px;
-    margin: 0 auto;
-}
-
-.companyprofileWrapper .profileTitle {
-    /* position: absolute; */
-    /* top: 0; */
-    color: #fff;
-    background: #231f20;
-    width: 246px;
-    text-align: center !important;
-    padding: 10px;
-    margin: 0 auto;
-    margin-bottom: 0 !important;
-}
-
-.companyprofileWrapper .engineering li {
-    margin-top: 22px;
-    width: 42%;
-    font-size: 16px;
-    cursor: pointer;
-    /* margin-right: 2%; */
-    padding: 6px;
-    color: white;
-    background-color: #231f20;
-}
-
-.companyprofileWrapper .navigation{
-    top:-36px;
-}
-
-
-.companyprofileWrapper .tab-content{
-    margin-bottom: 40px;
-}
-
-.companyprofileWrapper .newJob button, html .companyprofileWrapper input[type=button] {
-    background-color: #fff;
-    color: #000;
-    font-family: almoni-dl-aaa-regular;
-    font-size: 16px;
-    text-align: center;
-    width: 48%;
-    border-radius: 0;
-    border: 0;
-}
-
-.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover{
-    opacity: 0.9;
-}
-
-.companyprofileWrapper .editLogo + input {
-    width: 100%;
-    float: left;
-    margin-right: 20px;
-    margin-bottom: 20px;
-}
-
-
-.companyprofileWrapper .engineering1{
-    margin: 0 auto;
-    position: relative;
-    width: 100%;
-    /* top: 186px; */
-    margin-top: 10px;
-    height: 70px;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 10px;
-    /* left: 6%; */
-    /* color: red; */
-    font-family: almoni-dl-aaa-regular;
-}
-
-.companyprofileWrapper .engineering1 li{
-    float: left;
-    margin-right: 1%;
-    margin-left: 1%;
-    width: 48%;
-    padding: 4px;
-    font-size: 11px;
-    cursor: pointer;
-    /* margin-right: 2%; */
-    padding: 6px;
-    color: white;
-    font-size: 16px;
-    background-color: #fff;
-}
-
-.companyprofileWrapper .engineering1 li a{
-    color: #000;
-}
-
-.companyprofileWrapper .engineering1 li a:hover{
-
-    display: table;
-    margin: 0 auto;
-    background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-
-.companyprofileWrapper .tab-content {
-    padding: 10px;
-    padding-left: 12%;
-    padding-right: 12%;
-    background: #231f20;
-}
-
-
-.companyprofileWrapper .popover  {
-    top: 110px;
-    left: 754px;
-    display: block;
-    /* color: #000; */
 }

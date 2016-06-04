@@ -32,6 +32,35 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Archive'>Deleted</a>";
             $(".navigation")[0].innerHTML = navigation;
         }
+
+
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
+            method: "POST",
+            data: {
+                "user_id": localStorage.getItem("user_id"),
+                "sector": "software engineering",
+                "archive": archive
+            }
+        })
+            .then(function (data) {
+                    $scope.myjobs = data.data;
+                    jobsArr = data.data;
+                    angular.element(".fa-pulse").hide();
+                    //fix date string
+                    angular.forEach(data.data, function (value, key) {
+                        data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
+                    });
+
+
+                },
+                function (response) { // optional
+                    angular.element(".fa-pulse").hide();
+                    console.log("myjobsController AJAX failed!");
+                    console.log(response);
+                });
+
+
     }
     //get user and jobs by employer id
     $scope.getMainJson = function () {
@@ -60,31 +89,6 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         });
 
 
-        $http({
-            url: 'https://cvmatcher.herokuapp.com/employer/getJobsBySector',
-            method: "POST",
-            data: {
-                "user_id": localStorage.getItem("user_id"),
-                "sector": "software engineering",
-                "archive": archive
-            }
-        })
-            .then(function (data) {
-                    $scope.myjobs = data.data;
-                    jobsArr = data.data;
-                    angular.element(".fa-pulse").hide();
-                    //fix date string
-                    angular.forEach(data.data, function (value, key) {
-                        data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
-                    });
-
-
-                },
-                function (response) { // optional
-                    angular.element(".fa-pulse").hide();
-                    console.log("myjobsController AJAX failed!");
-                    console.log(response);
-                });
 
     };
     //sort by user preference
