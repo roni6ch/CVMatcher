@@ -99,7 +99,6 @@ app.directive('bsTooltip', function () {
         }
     };
 });
-//jobPage - DRAG AND DROP
 app.directive('droppableMust', function ($rootScope) {
     return {
         scope: {},
@@ -129,7 +128,6 @@ app.directive('droppableMust', function ($rootScope) {
                     }
                 });
             });
-
             if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
                 $.each(requirements[nextCombinationKey].combination, function (key, val) {
                     if (val.mode == 'must') {
@@ -142,7 +140,7 @@ app.directive('droppableMust', function ($rootScope) {
                 combination = [];
                 requirements.push({'combination': combination});
             }
-
+            console.log("a");
             //requeire if i want to return the 'combinationDeleted' to original position
             combinationDeleted = false;
 
