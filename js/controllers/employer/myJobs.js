@@ -14,6 +14,8 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 
     //initialize parameters for this controller
     $scope.init = function(){
+
+        $rootScope.userSignInType = 'employer';
         angular.element("#logo").attr("href", '#/usersLogin');
         $scope.company = company;
 

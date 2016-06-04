@@ -119,11 +119,11 @@ app
                     })
 
                 //TODO: OPEN SOCKET!
-                /* socket.onmessage = function (msg) {
+                 socket.onmessage = function (msg) {
                  var message = JSON.parse(msg.data);
                  console.log(message);
                  notifyMe(message.notificationType, message.jobName);
-                 }*/
+                 }
             }
             //fix cv - go to profile and come back!
             $scope.fixCV = function () {

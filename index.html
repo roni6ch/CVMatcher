@@ -3,7 +3,7 @@
 <head>
     <title>CVMatcher</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#00aee3 ">
+    <meta name="theme-color" content="#00aee3">
     <!--  Google+ SignIn -->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id"
@@ -45,7 +45,7 @@
 </head>
 <body>
 <!-- HAMBURGER -->
-<div class="navbar navbar-inverse navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top hamburger">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon-bar"></span>
@@ -55,61 +55,82 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul ng-if="userSignInType == 'employer'">
-            <li><a href="#/myjobs">
+            <li><a href="#/myjobs" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-file" aria-hidden="true"></i>
                 My jobs</a></li>
-            <li><a href="#/Archive">
+            <li><a href="#/Archive" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 Deleted</a></li>
-            <li><a href="#/companyProfile">
+            <li><a href="#/companyProfile" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 Company Profile</a></li>
-            <li><a href="#/About">
+            <li><a href="#/About" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-users"></i>
                 About</a></li>
-            <li><a href='' onclick=logout('logout')>
+            <li><a href="#/Contact" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-users"></i>
+                Contact</a></li>
+            <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('logout')>
                 <i class="fa fa-sign-out"></i>
                 Log Out</a></li>
-            <li><a href='' onclick=logout('signout')>
+            <li><a href=''  data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('signout')>
                 <i class="fa fa-sign-out"></i>
                 Sign Out</a></li>
         </ul>
         <!-- Job Seeker NAV -->
         <ul class="mobileMenu" ng-if="userSignInType == 'jobSeeker'">
             <li>
-                <a href="#/searchJobs">
+                <a href="#/Profile" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-image" aria-hidden="true"></i>
+                    Profile</a>
+            </li>
+            <li>
+                <a href="#/searchJobs" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-search" aria-hidden="true"></i>
                     Search Jobs</a>
             </li>
             <li>
-                <a href="#/yourjobs">
+                <a href="#/yourjobs" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-file" aria-hidden="true"></i>
                     My Jobs</a>
             </li>
             <li>
-                <a href="#/Favorites">
+                <a href="#/Favorites" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-star-o" aria-hidden="true"></i>
                     Favorite Jobs</a>
             </li>
             <li>
-                <a href="#/deleted">
+                <a href="#/deleted" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                     Deleted Jobs</a>
             </li>
             <li>
-                <a href="#/About">
+                <a href="#/About" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-users"></i>
                     About</a>
             </li>
             <li>
-                <a href='' onclick=logout('logout')>
+                <a href="#/Contact" data-toggle="collapse" data-target=".navbar-collapse">
+                    <i class="fa fa-users"></i>
+                    Contact</a>
+            </li>
+            <li>
+                <a href='' onclick=logout('logout') data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-sign-out"></i>
                     Log Out</a>
             </li>
             <li>
-                <a href='' onclick=logout('signout')>
+                <a href='' onclick=logout('signout') data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                     Sign Out</a></li>
+        </ul>
+        <ul ng-if="userSignInType == 'usersLogin'">
+            <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('logout')>
+                <i class="fa fa-sign-out"></i>
+                Log Out</a></li>
+            <li><a href=''  data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('signout')>
+                <i class="fa fa-sign-out"></i>
+                Sign Out</a></li>
         </ul>
     </div>
 </div>

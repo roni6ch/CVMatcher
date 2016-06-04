@@ -21,12 +21,15 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $rootScope.list1 = [];
         $rootScope.list2 = [];
         $rootScope.list3 = [];
-        var combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
+        var i = 0;
+    var locationIndex = 0;
+        var locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
         var combinationLengthAfterEdit = 0, combinationsLength = 0, sumSliders = 0;
         var editJob = false, sendForm = false, savedCurrentCombination = false, newLangClicked = false;
 
         //initialize parameters for this controller
-        $scope.init = function(){
+        $scope.init = function () {
+
             $(".requirementsWrapper").hide();
             $(".experienceBeforeParse").hide();
             angular.element(".removeCombination").hide();
@@ -39,7 +42,12 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             $(".fa-arrow-right").hide();
             $(".fa-arrow-left").hide();
 
+
+
             if ($id == 'job') {
+                $scope.newJob = false;
+
+
                 requirements = [];
                 //url for later to submit!
                 url = 'https://cvmatcher.herokuapp.com/updateMatchingObject';
@@ -63,7 +71,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         combinationLengthAfterEdit = data.data[0].requirements.length;
                         if (combinationsLength > 1)
                             $(".fa-arrow-right").show();
-                        var i = 0;
 
                         totalPriorotySum = 100;
 
@@ -136,6 +143,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         angular.element(".fa-pulse").hide();
 
 
+
                         //SLIDERS
                         var sliders = $("#sliders").find(".slider");
                         var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
@@ -189,10 +197,30 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         });
 
                         var slider = $(".academySlider");
+
+                        $timeout(function () {
+                            $.each($(".geocomplete input"), function (key) {
+                                console.log(key);
+                                 $("#geocomplete" + key).geocomplete();
+                                locationIndex++;
+
+                            });
+                        });
+
+
                     });
             }
             //im in newJob - init parameters
             else {
+                $scope.newJob = true;
+
+
+                var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
+                $("#geocomplete" + locationIndex).geocomplete();
+                locationIndex++;
+                $compile(html)($scope);
+
+
                 url = 'https://cvmatcher.herokuapp.com/addMatchingObject';
                 $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>";
 
@@ -482,6 +510,16 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     $scope.status = "Please fill Candidate Type";
                     return;
                 }
+
+                $.each($(".geocomplete input"), function () {
+                    locations.push($(this).val());
+                });
+                if (locations.length == 0) {
+                    $('#sendJob').modal('show');
+                    $scope.status = "Please fill Location";
+                    return;
+                }
+                //TODO: SEND locations ARRAY IN LOCATION JOB AND NOT JOB AJAX
 
                 var job;
                 if ($id == 'job') {
@@ -948,5 +986,15 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             }
 
         };
+        //ADD LOCATION
+        $scope.addAnotherLocation = function () {
+            var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
+            $("#geocomplete" + locationIndex).geocomplete();
+            locationIndex++;
+            $compile(html)($scope);
+        }
+        $scope.deleteLocation = function (i) {
+                $("#geocomplete" + i).parent().remove();
+        }
     }
 );

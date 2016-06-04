@@ -8,7 +8,9 @@ app.config(function ($routeProvider) {
                 templateUrl: 'googleSignIn.html',
                 controller: 'googleSignInController',
                 resolve: {
-                    resolvedVal: function ($location) {
+                    resolvedVal: function ($location,$rootScope) {
+                        $rootScope.userSignInType = '';
+                        $(".navBarImg").css("display",'none');
                         if (localStorage.getItem("user_id") !== null) {
                             $location.path('/usersLogin');
                         }
@@ -16,7 +18,13 @@ app.config(function ($routeProvider) {
                 }
             }).when('/usersLogin', {
             templateUrl: 'usersLogin.html',
-            controller: 'usersLoginController'
+            controller: 'usersLoginController',
+            resolve: {
+                resolvedVal: function ($rootScope) {
+                    $(".navBarImg").css("display",'block');
+                    $rootScope.userSignInType = '';
+                }
+            }
         }).when('/myjobs', {
             templateUrl: 'employer/myjobs.html',
             controller: 'myjobsController',
@@ -208,13 +216,6 @@ var user_id;
 
 $(document).ready(function () {
 
-    //nav bar
-    $(document).on('click', '.navbar-collapse.in', function (e) {
-        if ($(e.target).is('a')) {
-            $(this).collapse('hide');
-        }
-    });
-
     //click event outside profile picture.
     $('html:not(".navbar")').click(function (e) {
         if (e.target.id != 'profileImg') {
@@ -235,6 +236,8 @@ $(document).ready(function () {
 
 //resolve function to make initializion before controllers
 function changeLocation(location, profilePath,userSignInType) {
+    console.log(userSignInType);
+
     localStorage.setItem("userSignInType",userSignInType);
     //noinspection JSValidateTypes
     angular.element("#profileImg").parent().attr("href", profilePath);
@@ -246,7 +249,6 @@ function changeLocation(location, profilePath,userSignInType) {
     }
 }
 
-//TODO: PW!
 //push woosh notification!
 window.onload = function () {
     pushwoosh.subscribeAtStart();
@@ -257,12 +259,12 @@ function sockets() {
     var userId = localStorage.getItem('user_id').toString();
     url = "ws://cvmatcher.herokuapp.com/" + userId;
     //TODO: OPEN SOCKET!
-    //connectToChat(url);
+    connectToChat(url);
 }
 
 //connection for sockets
 function connectToChat(url) {
-    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 10000});
+    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 3000});
     console.log(socket);
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);

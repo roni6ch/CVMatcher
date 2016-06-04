@@ -12,7 +12,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
     //initialize for this controller
     $scope.init = function () {
-        $rootScope.userSignInType = '';
+        $rootScope.userSignInType = 'usersLogin';
         //noinspection JSValidateTypes
         angular.element("#profileImg").parent().attr("href", '#/');
         //noinspection JSValidateTypes

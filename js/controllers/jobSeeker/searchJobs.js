@@ -9,16 +9,17 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     //initialize parameters for controller
     $scope.init = function () {
+        $rootScope.userSignInType = 'jobSeeker';
         angular.element("#logo").attr("href", '#/usersLogin');
         //navigation in site
         $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
 
         //TODO: OPEN SOCKET!
-        /*socket.onmessage = function (msg) {
+        socket.onmessage = function (msg) {
          var message = JSON.parse(msg.data);
          console.log(message);
          notifyMe(message.notificationType, message.jobName);
-         }*/
+         }
     };
     //get jobs that didnot send cv to them
     $scope.getMainJson = function () {

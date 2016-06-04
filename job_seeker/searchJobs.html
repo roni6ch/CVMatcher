@@ -61,10 +61,9 @@
                         <p>Description: {{job["original_text"].description}}</p>
 
                         <div class="skills">
-                            Requirements:
-                            <p>{{job.original_text["requirements"].split("|||")[0]}}</p>
+                            <p>Requirements Must:{{job.original_text["requirements"].split("|||")[0]}}</p>
 
-                            <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
+                            <p>Advantage: {{job.original_text["requirements"].split("|||")[1]}}</p>
                         </div>
                         <section>
 

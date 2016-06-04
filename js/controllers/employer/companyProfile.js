@@ -20,6 +20,8 @@ app.controller('companyProfileController',
 
         //company profile details
         $scope.init = function(){
+
+            $rootScope.userSignInType = 'employer';
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
                 method: "POST",
@@ -102,6 +104,7 @@ app.controller('companyProfileController',
                 "linkedin": $(".linkedin").val()
             };
 
+            console.log(userJson);
             $http({
                 url: 'https://cvmatcher.herokuapp.com/updateUser',
                 method: "POST",

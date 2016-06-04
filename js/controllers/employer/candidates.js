@@ -147,7 +147,7 @@ app.controller('candidatesController',
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
 
-            //sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
+            sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
 
         };
         //hire candidate to job
@@ -179,7 +179,7 @@ app.controller('candidatesController',
         //bring next candidates by slide right or left - or press hands icon.
         $scope.bringNextCandidate = function (type, description, id) {
             if (type == 'unliked') {
-                // sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
+                sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
             }
                 $("#comment").val("");
             $http({

@@ -19,6 +19,8 @@ app
             };
             //initialize parameters for controller
             $scope.init = function(){
+
+                $rootScope.userSignInType = 'jobSeeker';
                 $("#geocomplete").geocomplete();
                 $("[rel='popover']").popover({trigger: "hover", container: "body"});
 
@@ -26,11 +28,11 @@ app
                 $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>";
 
                 //TODO: OPEN SOCKET!
-                /*socket.onmessage = function (msg) {
+                socket.onmessage = function (msg) {
                  var message = JSON.parse(msg.data);
                  console.log(message);
                  notifyMe(message.notificationType, message.jobName);
-                 }*/
+                 }
 
             }
             //get user details

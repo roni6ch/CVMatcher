@@ -58,10 +58,12 @@ app.controller('resumeController',
                 });
             }
 
+            angular.element('[data-toggle="tooltip"]').tooltip();
+
+
         }
         //get user resume - by id
         $scope.getUserJson = function () {
-
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
                 method: "POST",

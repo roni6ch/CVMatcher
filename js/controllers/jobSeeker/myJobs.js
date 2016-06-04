@@ -16,7 +16,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
     $scope.init = function () {
 
         //TODO: OPEN SOCKET!
-        /* socket.onmessage = function (msg) {
+         socket.onmessage = function (msg) {
          var message = JSON.parse(msg.data);
          console.log(message);
          var jobId = message.jobId;
@@ -44,7 +44,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
          }
          }
          notifyMe(message.notificationType, message.jobName);
-         }*/
+         }
 
     }
     //check what page im located and bring the right json
