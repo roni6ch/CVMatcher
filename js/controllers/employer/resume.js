@@ -106,7 +106,7 @@ app.controller('resumeController',
                                     value + '%">' + key + ' ' + value + '%</div></div>');
                         });
 
-                        if (data.data[0].predict_result !== 'undefined') {
+                        if (data.data[0].predict_result !== 'undefined' && data.data[0].predict_result == true || data.data[0].predict_result == false) {
                             $("#predictAppend").show();
                         }
                         else {
@@ -211,17 +211,22 @@ app.controller('resumeController',
                 }
             });
 
-            var nextCandidate;
-            angular.forEach(candidates, function (value, key) {
-                if (value._id == candidateId) {
-                    candidates.splice (key, 1);
-                }
-                else
-                    nextCandidate = value._id;
-            })
+            var nextCandidate = null;
+            if (candidates.length > 0) {
+                angular.forEach(candidates, function (value, key) {
+                    if (value._id == candidateId) {
+                        candidates = candidates.splice (key, 1);
+                    }
+                    else {
+                        nextCandidate = value._id;
+                        return;
+                    }
+                })
+            }
 
+            console.log("nextCandidate: ", nextCandidate);
             //bring next candidate
-            if (!nextCandidate) {
+            if (nextCandidate == null) {
                 angular.element(".noMoreCandidates").show();
                 angular.element("#users").hide();
 

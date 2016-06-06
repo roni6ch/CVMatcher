@@ -527,7 +527,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
-                        "locations": [$("#geocomplete0").val()],
+                       // "locations": [$("#geocomplete0").val()],
+                        "locations": locations,
                         "candidate_type": candidate_type,
                         "scope_of_position": scope_of_position,
                         "academy": {
@@ -561,7 +562,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
-                        "locations": [$("#geocomplete0").val()],
+                        //"locations": [$("#geocomplete0").val()],
+                        "locations": locations,
                         "candidate_type": candidate_type,
                         "scope_of_position": scope_of_position,
                         "academy": {
@@ -984,7 +986,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
             $("#geocomplete" + locationIndex).geocomplete();
             locationIndex++;
-            $compile(html)($scope);
+            //$compile(html)($scope);
         }
         $scope.deleteLocation = function (i) {
                 $("#geocomplete" + i).parent().remove();

@@ -15,6 +15,8 @@ app
 
             //initialize parameter in the controller
             $scope.init = function(){
+
+                $(".matchResult").hide();
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
@@ -36,6 +38,7 @@ app
                                 }
                             })
                                 .then(function (data) {
+                                        $(".matchResult").show();
                                         //navigation in site
                                         $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
 
@@ -44,6 +47,8 @@ app
 
                                             if (data.data.formula.requirements.grade > 0) {
                                                 skills = [];
+                                                $(".skillsTitleM").show();
+                                                $(".bubbleChart").show();
 
                                                 var skillsFromJson = data.data.formula.requirements.details;
 
@@ -57,7 +62,7 @@ app
                                             }
                                             else {
                                                 $(".skillsTitleM").hide();
-                                                $(".bubbleChart").css("height", "0px");
+                                                $(".bubbleChart").hide();
                                                 //$scope.status = 'the languges';
                                                 // $('#sendCVstatus').modal('show');
                                             }

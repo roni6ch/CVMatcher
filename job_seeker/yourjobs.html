@@ -49,10 +49,14 @@
                                     {{jobSJ.job.academy["degree_name"]}}</p>
 
 
-                                <p ng-model="searchText.address"
-                                   ng-bind-html="jobSJ.job.locations[0] | highlight:searchText">
-                                    {{jobSJ.job.locations[0]}},
-                                    {{jobSJ.job.date}}</p>
+                                  <p>  {{jobSJ.job.date}}</p>
+
+
+                                <p>Address: </p>
+                                <h5 ng-repeat="j in jobSJ.job.locations" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+
+
+
 
                                 <img class="arrow-down" src="images/arrow-down.png">
                             </article>

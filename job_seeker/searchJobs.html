@@ -44,9 +44,10 @@
                                 </span>
                             </p>
 
-                            <p ng-model="searchText.address"  ng-bind-html="job.locations[0] | highlight:searchText">
-                                {{job["locations"][0]}},
-                            </p>
+
+                            <p>Address: </p>
+                            <h5 ng-repeat="j in job.locations" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+
 
                             <p>{{job.date}}</p>
                         </article>

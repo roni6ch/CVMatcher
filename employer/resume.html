@@ -8,17 +8,17 @@
     <input type="hidden" class="leftModal btn btn-info btn-lg"
            data-toggle="modal" data-target="#leftModal"/>
 
-    <div class="noMoreCandidates">No more Candidates left!</div>
+    <p class="noMoreCandidates">No more Candidates left!</p>
     <article id="users">
         <!-- User Name -->
         <div class="borderUserDetailsBox">
             <div class="userDetailsBox" ng-init="getUserJson()">
                 <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
-                   ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
+                   ng-if="user.status.current_status == 'liked' || user.status.current_status == 'unread'" ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
 
                 <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
                 <i id="candidateLike"
-                   class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
+                   ng-if="user.status.current_status == 'unliked' || user.status.current_status == 'unread'" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
                 <h5>{{user.sector}}</h5>
 
 
@@ -111,7 +111,6 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Rate by Stars</h4>
                 </div>
                 <div class="modal-body">
@@ -138,7 +137,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default bringNextCandidate" data-dismiss="modal"
                             ng-click="bringNextCandidate('liked',null)">
-                        Close
+                        Send
                     </button>
                 </div>
             </div>
@@ -149,7 +148,6 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Description</h4>
                     <h5 class="modal-title">Please type your Reason</h5>
                 </div>
@@ -164,7 +162,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"
                             ng-click="bringNextCandidate('unliked',original_text)">
-                        Close
+                        Send
                     </button>
                 </div>
             </div>
