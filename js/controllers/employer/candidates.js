@@ -147,7 +147,24 @@ app.controller('candidatesController',
         $scope.rating = function (rateNumber) {
             stars = rateNumber;
 
+			
             sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
+						
+			$http({
+                url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                method: "POST",
+                data: {
+                    "user_id": $scope.user_id,
+                    "message": "The employer like your cv and rated it with a number of " + stars + " stars for job " + localStorage.getItem("jobTitle")
+                }
+            }).then(function (data) {
+                    console.log(data.data);
+                },
+                function (response) { // optional
+                    console.log("like notification AJAX failed!");
+                    console.log(response);
+                });
+			
 
         };
         //hire candidate to job
@@ -162,7 +179,23 @@ app.controller('candidatesController',
             })
                 .then(function () {
                         //remove from list filter
-                        sendNotification('hire', userId, $scope.jobId, null, localStorage.getItem("jobTitle"));
+                        sendNotification('hire', $scope.user_id, $scope.jobId, null, localStorage.getItem("jobTitle"));					
+				
+						$http({
+							url: 'https://cvmatcher.herokuapp.com/sendNotification',
+							method: "POST",
+							data: {
+								"user_id": $scope.user_id,
+								"message": "congratulations!! you're hired for job: " + localStorage.getItem("jobTitle")
+							}
+						}).then(function (data) {
+								console.log(data.data);
+							},
+							function (response) { // optional
+								console.log("Hired notification AJAX failed!");
+								console.log(response);
+							});
+						
                         var canArr = $rootScope.likeCandidates;
                         canArr = canArr.filter(function (obj) {
                             return obj._id !== cvId;
@@ -180,6 +213,21 @@ app.controller('candidatesController',
         $scope.bringNextCandidate = function (type, description, id) {
             if (type == 'unliked') {
                 sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
+				$http({
+					url: 'https://cvmatcher.herokuapp.com/sendNotification',
+					method: "POST",
+					data: {
+						"user_id": $scope.user_id,
+						"message": "The employer unlike your cv and entered the feedback: "
+										+ description + "for job " + localStorage.getItem("jobTitle")
+					}
+				}).then(function (data) {
+						console.log(data.data);
+					},
+					function (response) { // optional
+						console.log("unlike notification AJAX failed!");
+						console.log(response);
+					});
             }
                 $("#comment").val("");
             $http({
