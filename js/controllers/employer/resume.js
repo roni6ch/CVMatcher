@@ -16,6 +16,9 @@ app.controller('resumeController',
         var users;
         $id = $location.path().split('/');
 
+        $scope.predictTrue = messageResource.get("predict.true", 'resources');
+        $scope.predictFalse = messageResource.get("predict.false", 'resources');
+
         //initialize parameters for this controller
         $scope.init = function () {
 
