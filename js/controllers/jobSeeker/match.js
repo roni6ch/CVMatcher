@@ -27,8 +27,10 @@ app
                     .then(function (data) {
                         if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                             current_cv = data.data[0].current_cv;
+                            console.log("data: " , data.data[0]);
                             console.log("cv: " + current_cv);
                             console.log("job: " + $jobId);
+                            localStorage.setItem("current_cv",data.data[0].current_cv);
                             $http({
                                 url: 'https://cvmatcher.herokuapp.com/jobSeeker/checkCV',
                                 method: "POST",
@@ -139,6 +141,8 @@ app
             }
             //send cv to employer
             $scope.sendCV = function () {
+                console.log(localStorage.getItem("current_cv"));
+                console.log($jobId);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/addCvToJob',
                     method: "POST",

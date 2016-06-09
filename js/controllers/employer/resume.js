@@ -90,21 +90,21 @@ app.controller('resumeController',
                         $scope.user["stars"] = 0;
                         if ($id[1] == "Unread") {
                             $scope.user["stars"] = 0;
-							sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"));
-							$http({
-								url: 'https://cvmatcher.herokuapp.com/sendNotification',
-								method: "POST",
-								data: {
-									"user_id": $scope.user_id,
-									"message": "The employer viewed your cv for job: " + localStorage.getItem("jobTitle")
-								}
-							}).then(function (data) {
-									console.log(data.data);
-								},
-								function (response) { // optional
-									console.log("seen notification AJAX failed!");
-									console.log(response);
-								});
+                            sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"));
+                            $http({
+                                url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                                method: "POST",
+                                data: {
+                                    "user_id": $scope.user_id,
+                                    "message": "The employer viewed your cv for job: " + localStorage.getItem("jobTitle")
+                                }
+                            }).then(function (data) {
+                                    console.log(data.data);
+                                },
+                                function (response) { // optional
+                                    console.log("seen notification AJAX failed!");
+                                    console.log(response);
+                                });
                         }
 
                         //sliders
@@ -164,14 +164,14 @@ app.controller('resumeController',
                 sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle"));
             else
                 sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
-			
-			$http({
+
+            $http({
                 url: 'https://cvmatcher.herokuapp.com/sendNotification',
                 method: "POST",
                 data: {
                     "user_id": $scope.user_id,
                     "message": "The employer like your cv and rated it with a number of "
-									+ rateNumber + " stars for job " + localStorage.getItem("jobTitle")
+                    + rateNumber + " stars for job " + localStorage.getItem("jobTitle")
                 }
             }).then(function (data) {
                     console.log(data.data);
@@ -180,7 +180,6 @@ app.controller('resumeController',
                     console.log("like notification AJAX failed!");
                     console.log(response);
                 });
-			
         };
         //add candidate to like or unlike
         $scope.addCandidateToLikeUnlike = function (candidate, likeORunlike) {
@@ -210,22 +209,22 @@ app.controller('resumeController',
         $scope.bringNextCandidate = function (type, description) {
             if (type == 'unliked') {
                 sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
-				$http({
-					url: 'https://cvmatcher.herokuapp.com/sendNotification',
-					method: "POST",
-					data: {
-						"user_id": $scope.user_id,
-						"message": "The employer didn't like your cv and entered the feedback: "
-										+ description + " for job " + localStorage.getItem("jobTitle")
-					}
-				}).then(function (data) {
-						console.log(data.data);
-					},
-					function (response) { // optional
-						console.log("unlike notification AJAX failed!");
-						console.log(response);
-					});
-			}
+                $http({
+                    url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                    method: "POST",
+                    data: {
+                        "user_id": $scope.user_id,
+                        "message": "The employer didn't like your cv and entered the feedback: "
+                        + description + " for job " + localStorage.getItem("jobTitle")
+                    }
+                }).then(function (data) {
+                        console.log(data.data);
+                    },
+                    function (response) { // optional
+                        console.log("unlike notification AJAX failed!");
+                        console.log(response);
+                    });
+            }
 
             var url;
             if ($id[1] == 'Like') {

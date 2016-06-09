@@ -66,14 +66,18 @@ helper = (function () {
         disconnect: function () {
             // Revoke the access token.
             auth2.disconnect();
-            localStorage.removeItem('user');
-            localStorage.removeItem('profile');
-            localStorage.removeItem('userSignInType');
-            localStorage.removeItem('user_id');
-            localStorage.removeItem('company');
-            localStorage.removeItem('employerFirstSignIn');
-            localStorage.removeItem('current_cv');
-            localStorage.removeItem('jobSeekerFirstSignIn');
+            /*
+
+             localStorage.removeItem('user');
+             localStorage.removeItem('profile');
+             localStorage.removeItem('userSignInType');
+             localStorage.removeItem('user_id');
+             localStorage.removeItem('company');
+             localStorage.removeItem('employerFirstSignIn');
+             localStorage.removeItem('current_cv');
+             localStorage.removeItem('jobSeekerFirstSignIn');
+             */
+            localStorage.clear();
             console.log('User sign out.');
         },
 
@@ -111,14 +115,7 @@ function logout(out) {
         //  auth2 = gapi.auth2.getAuthInstance();
         auth2.signOut().then(function () {
 
-            localStorage.removeItem('user');
-            localStorage.removeItem('profile');
-            localStorage.removeItem('userSignInType');
-            localStorage.removeItem('user_id');
-            localStorage.removeItem('company');
-            localStorage.removeItem('employerFirstSignIn');
-            localStorage.removeItem('current_cv');
-            localStorage.removeItem('jobSeekerFirstSignIn');
+            localStorage.clear();
             console.log('User logout out.');
         });
 
