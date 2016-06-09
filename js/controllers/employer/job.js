@@ -415,8 +415,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         };
         //send form
         $scope.submitForm = function () {
-
-
             //find duplicated languages
             var repeatedLangs = [];
             var languagesNames = [];
