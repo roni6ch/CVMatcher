@@ -337,7 +337,6 @@ app
                                 if (key >= $scope.user.original_text['history_timeline'].length)
                                     $scope.user.original_text['history_timeline'].push(newLi);
                             });
-                            console.log($scope.user.original_text['history_timeline']);
 
 
                         },

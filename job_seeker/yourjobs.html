@@ -24,15 +24,17 @@
         <ul>
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby">
+                <i ng-if="jobSJ.job.active == true" class="fa fa-3x" id="fav{{$index}}"
+                   ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
+                   ng-show="page!='deleted'"
+                   ng-click="favoriteJob(jobSJ._id,$index)"></i>
                 <div data-toggle="collapse" data-target="#collepse-{{$index}}" ng-click="collepse($index)">
                     <input type="hidden" class="classForNotifications" value="{{jobSJ.job._id}}"/>
-                    <i class="fa fa-times" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
+                    <i ng-if="jobSJ.job.active == true" class="fa fa-times" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
                        ng-click="removeReviveJob(jobSJ._id,false)"></i>
                     <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'"
                        ng-click="removeReviveJob(jobSJ._id,true)"></i>
-                    <i class="fa fa-3x" id="fav{{$index}}"
-                       ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
-                       ng-click="favoriteJob(jobSJ._id,$index)"></i>
+
                     <a
                             href="">
                         <div>
@@ -53,7 +55,7 @@
 
 
                                 <p>Address: </p>
-                                <h5 ng-repeat="j in jobSJ.job.locations" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+                                <h5 ng-repeat="j in jobSJ.job.locations  track by $index" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 
 
@@ -102,6 +104,10 @@
                         <p ng-if="jobSJ.cv.hired == true">
                             <img class="hired"  src="images/hired.png"/>
                         </p>
+                        <p ng-if="jobSJ.job.active == false">
+                            <img class="hired"  src="images/expired.png"/>
+                        </p>
+
 
                         <section circle id="{{ 'circle-container-' + $index }}"
                                  data-compability="{{jobSJ.job.compatibility_level}}">

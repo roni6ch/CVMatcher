@@ -63,7 +63,6 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                             "email": emails
                         }
                     }).then(function (data) {
-                            console.log("addUser!!!");
                             if ($.isArray(data.data)) {
                                 localStorage.setItem('user_id', data.data[0]._id);
                                 $rootScope.user_id = data.data[0]._id;

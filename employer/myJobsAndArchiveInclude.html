@@ -12,7 +12,7 @@
                 <a ng-if="jobPage == 'myJobs' && job.cvs.length == 0" href="#/job/{{job._id}}"><i
                         class="fa fa-pencil fa-2x"></i></a>
 
-                <a ng-if="job.cvs.length > 0" href="#/Candidates/{{job._id}}"
+                <a ng-if="job.cvs.length > 0 && jobPage != 'Archive'" href="#/Candidates/{{job._id}}"
                    ng-click="saveJobTitle(job.original_text['title']);"><img alt="logo of cv matcher"
                                                                              src="./images/logo.png"></a>
 

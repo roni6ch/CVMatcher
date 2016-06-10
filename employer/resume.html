@@ -14,11 +14,11 @@
         <div class="borderUserDetailsBox">
             <div class="userDetailsBox" ng-init="getUserJson()">
                 <i id="candidateUnLike" class='fa fa-thumbs-o-up fa-2x'
-                   ng-if="user.status.current_status == 'liked' || user.status.current_status == 'unread'" ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
+                   ng-if="(user.status.current_status == 'liked' || user.status.current_status == 'unread') && hiredPage == false" ng-click='addCandidateToLikeUnlike(user._id,"unliked")'></i>
 
                 <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
                 <i id="candidateLike"
-                   ng-if="user.status.current_status == 'unliked' || user.status.current_status == 'unread'" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
+                   ng-if="(user.status.current_status == 'unliked' || user.status.current_status == 'unread') && hiredPage == false" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
                 <h5>{{user.sector}}</h5>
 
 
@@ -73,8 +73,6 @@
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
-                                <h4 class="timeline-title">{{timeline['type']}}</h4>
-
                                 <p>
                                     <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}
                                     </small>
