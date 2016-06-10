@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6ba904a7-ce38-47f0-8a7c-19d479c2400d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/logo.png" afterPath="$PROJECT_DIR$/images/logo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employer/resume.html" afterPath="$PROJECT_DIR$/employer/resume.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/employer/resume.js" afterPath="$PROJECT_DIR$/js/controllers/employer/resume.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/site.js" afterPath="$PROJECT_DIR$/js/site.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employer/archive.html" afterPath="$PROJECT_DIR$/employer/archive.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/employer/myjobs.html" afterPath="$PROJECT_DIR$/employer/myjobs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/job_seeker/matchpage.html" afterPath="$PROJECT_DIR$/job_seeker/matchpage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/job_seeker/searchJobs.html" afterPath="$PROJECT_DIR$/job_seeker/searchJobs.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/employer/companyProfile.js" afterPath="$PROJECT_DIR$/js/controllers/employer/companyProfile.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/jobSeeker/match.js" afterPath="$PROJECT_DIR$/js/controllers/jobSeeker/match.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js" afterPath="$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js" />
     </list>
     <ignored path="CVMatcher.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,11 +36,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="resume.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/employer/resume.html">
+      <file leaf-file-name="searchJobs.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
+            <state relative-caret-position="851">
+              <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="match.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/match.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="545">
+              <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="companyprofile.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/employer/companyprofile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="175">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="matchpage.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/job_seeker/matchpage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25">
+              <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searchJobs.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/job_seeker/searchJobs.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -44,53 +89,19 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="1690" column="23" selection-start-line="1690" selection-start-column="23" selection-end-line="1690" selection-end-column="23" />
+            <state relative-caret-position="6000">
+              <caret line="240" column="11" selection-start-line="240" selection-start-column="11" selection-end-line="240" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="site.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/site.js">
+      <file leaf-file-name="companyProfile.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/controllers/employer/companyProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="226" selection-end-column="2" />
+            <state relative-caret-position="725">
+              <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resources.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/resources.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="resume.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/controllers/employer/resume.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-              <folding>
-                <element signature="e#8885#9933#0" expanded="false" />
-                <marker date="1465512475946" expanded="true" signature="5441:5504" ph="..." />
-                <marker date="1465512475946" expanded="true" signature="5847:5904" ph="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -115,7 +126,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/js/script.js" />
         <option value="$PROJECT_DIR$/js/manifest.json" />
         <option value="$PROJECT_DIR$/js/service-worker.js" />
@@ -138,34 +148,35 @@
         <option value="$PROJECT_DIR$/employer/jobparameters.html" />
         <option value="$PROJECT_DIR$/job_seeker/preview_cv.html" />
         <option value="$PROJECT_DIR$/employer/companyProfile.html" />
-        <option value="$PROJECT_DIR$/employer/myjobs.html" />
         <option value="$PROJECT_DIR$/js/controllers/jobSeeker/favorites.js" />
         <option value="$PROJECT_DIR$/employer/candidates.html" />
         <option value="$PROJECT_DIR$/usersLogin.html" />
         <option value="$PROJECT_DIR$/js/controllers/usersLogin.js" />
-        <option value="$PROJECT_DIR$/js/controllers/employer/companyProfile.js" />
         <option value="$PROJECT_DIR$/js/controllers/jobSeeker/myJobs.js" />
         <option value="$PROJECT_DIR$/js/controllers/jobSeeker/profile.js" />
-        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js" />
-        <option value="$PROJECT_DIR$/job_seeker/matchpage.html" />
         <option value="$PROJECT_DIR$/employer/job.html" />
-        <option value="$PROJECT_DIR$/employer/archive.html" />
         <option value="$PROJECT_DIR$/js/controllers/employer/myJobs.js" />
         <option value="$PROJECT_DIR$/employer/myJobsAndArchiveInclude.html" />
-        <option value="$PROJECT_DIR$/job_seeker/searchJobs.html" />
         <option value="$PROJECT_DIR$/job_seeker/yourjobs.html" />
         <option value="$PROJECT_DIR$/job_seeker/profile.html" />
         <option value="$PROJECT_DIR$/js/controllers/directives.js" />
         <option value="$PROJECT_DIR$/js/controllers/employer/job.js" />
         <option value="$PROJECT_DIR$/js/controllers/googleSignIn.js" />
-        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/match.js" />
         <option value="$PROJECT_DIR$/js/controllers/employer/candidates.js" />
         <option value="$PROJECT_DIR$/employer/resume.html" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/resources/resources.properties" />
         <option value="$PROJECT_DIR$/js/controllers/employer/resume.js" />
         <option value="$PROJECT_DIR$/js/site.js" />
+        <option value="$PROJECT_DIR$/job_seeker/searchJobs.html" />
+        <option value="$PROJECT_DIR$/employer/myjobs.html" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js" />
+        <option value="$PROJECT_DIR$/employer/archive.html" />
+        <option value="$PROJECT_DIR$/js/controllers/employer/companyProfile.js" />
+        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/match.js" />
+        <option value="$PROJECT_DIR$/job_seeker/matchpage.html" />
+        <option value="$PROJECT_DIR$/employer/companyprofile.html" />
       </list>
     </option>
   </component>
@@ -176,9 +187,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-10" />
-    <option name="width" value="1934" />
-    <option name="height" value="1030" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1942" />
+    <option name="height" value="1042" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -227,6 +239,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -345,6 +359,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="job_seeker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CVMatcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CVMatcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CVMatcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CVMatcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="employer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -365,8 +407,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -379,17 +419,17 @@
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\CVMatcher\js" />
-      <recent name="C:\wamp\www\CVMatcher\js" />
-      <recent name="C:\wamp\www\CVMatcher\employer" />
-      <recent name="C:\wamp\www\CVMatcher\job_seeker" />
-      <recent name="C:\wamp\www\CVMatcher\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp\www\CVMatcher\js" />
       <recent name="C:\wamp\www\CVMatcher" />
       <recent name="C:\wamp\www\CVMatcher\employer" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\CVMatcher\images" />
+      <recent name="C:\xampp\htdocs\CVMatcher\js" />
+      <recent name="C:\wamp\www\CVMatcher\js" />
+      <recent name="C:\wamp\www\CVMatcher\employer" />
+      <recent name="C:\wamp\www\CVMatcher\job_seeker" />
     </key>
   </component>
   <component name="RunManager">
@@ -460,33 +500,35 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1458134567070</updated>
-      <workItem from="1465508576501" duration="3900000" />
+      <workItem from="1465508576501" duration="4651000" />
+      <workItem from="1465560162263" duration="2881000" />
+      <workItem from="1465574678127" duration="2884000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3900000" />
+    <option name="totallyTimeSpent" value="10416000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-10" y="0" width="1934" height="1030" extended-state="0" />
-    <editor active="true" />
+    <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18566945" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20885417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18816067" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -510,27 +552,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/controllers/directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="49" column="144" selection-start-line="49" selection-start-column="144" selection-end-line="49" selection-end-column="144" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/myJobs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="24" column="124" selection-start-line="24" selection-start-column="124" selection-end-line="24" selection-end-column="124" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/usersLogin.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -605,9 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="7" column="18316" selection-start-line="7" selection-start-column="18316" selection-end-line="7" selection-end-column="18316" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -674,24 +692,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/companyProfile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="106" column="34" selection-start-line="106" selection-start-column="34" selection-end-line="106" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/profile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -702,20 +706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/employer/archive.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/myJobs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/employer/myJobsAndArchiveInclude.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -723,31 +713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/job_seeker/searchJobs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/job_seeker/yourjobs.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/employer/myjobs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/job_seeker/matchpage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -769,7 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="700">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -777,36 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="100" column="3" selection-start-line="100" selection-start-column="3" selection-end-line="100" selection-end-column="3" />
-          <folding>
-            <element signature="e#43#102#0" expanded="false" />
-            <element signature="e#207#538#0" expanded="false" />
-            <element signature="e#220#536#0" expanded="false" />
-            <element signature="e#262#530#0" expanded="false" />
-            <element signature="e#635#785#0" expanded="false" />
-            <element signature="e#648#783#0" expanded="false" />
-            <element signature="e#676#777#0" expanded="false" />
-            <element signature="e#845#974#0" expanded="false" />
-            <element signature="e#858#972#0" expanded="false" />
-            <element signature="e#923#966#0" expanded="false" />
-            <element signature="e#1043#1908#0" expanded="false" />
-            <element signature="e#1057#1906#0" expanded="false" />
-            <element signature="e#1128#1900#0" expanded="false" />
-            <element signature="e#1214#1888#0" expanded="false" />
-            <element signature="e#1279#1406#0" expanded="false" />
-            <element signature="e#1474#1746#0" expanded="false" />
-            <element signature="e#1510#1728#0" expanded="false" />
-            <element signature="e#1579#1606#0" expanded="false" />
-            <element signature="e#1823#1842#0" expanded="false" />
-            <element signature="e#1987#2567#0" expanded="false" />
-            <element signature="e#2000#2565#0" expanded="false" />
-            <element signature="e#2079#2559#0" expanded="false" />
-            <element signature="e#2165#2549#0" expanded="false" />
-            <element signature="e#2620#2960#0" expanded="false" />
-            <element signature="e#2633#2957#0" expanded="false" />
-            <element signature="e#2698#2951#0" expanded="false" />
-            <element signature="e#2741#2833#0" expanded="false" />
-            <element signature="e#2847#2939#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -814,237 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
           <caret line="1084" column="0" selection-start-line="1084" selection-start-column="0" selection-end-line="1084" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#43#106#0" expanded="false" />
-            <element signature="e#361#43840#0" expanded="false" />
-            <element signature="e#1164#1492#0" expanded="false" />
-            <element signature="e#1571#13010#0" expanded="false" />
-            <element signature="e#1687#9940#0" expanded="false" />
-            <element signature="e#1908#2199#0" expanded="false" />
-            <element signature="e#2050#2181#0" expanded="false" />
-            <element signature="e#2243#9924#0" expanded="false" />
-            <element signature="e#3126#3210#0" expanded="false" />
-            <element signature="e#3328#6660#0" expanded="false" />
-            <element signature="e#3408#6577#0" expanded="false" />
-            <element signature="e#3575#5969#0" expanded="false" />
-            <element signature="e#3637#4370#0" expanded="false" />
-            <element signature="e#3698#4144#0" expanded="false" />
-            <element signature="e#4435#5165#0" expanded="false" />
-            <element signature="e#4495#4941#0" expanded="false" />
-            <element signature="e#5207#5934#0" expanded="false" />
-            <element signature="e#5266#5712#0" expanded="false" />
-            <element signature="e#6016#6259#0" expanded="false" />
-            <element signature="e#7236#7349#0" expanded="false" />
-            <element signature="e#7493#9533#0" expanded="false" />
-            <element signature="e#7600#9505#0" expanded="false" />
-            <element signature="e#7944#9475#0" expanded="false" />
-            <element signature="e#8211#8342#0" expanded="false" />
-            <element signature="e#8382#8425#0" expanded="false" />
-            <element signature="e#8679#9441#0" expanded="false" />
-            <element signature="e#8893#9401#0" expanded="false" />
-            <element signature="e#9641#9898#0" expanded="false" />
-            <element signature="e#9718#9870#0" expanded="false" />
-            <element signature="e#10003#13000#0" expanded="false" />
-            <element signature="e#10974#12984#0" expanded="false" />
-            <element signature="e#11146#12965#0" expanded="false" />
-            <element signature="e#11237#12942#0" expanded="false" />
-            <element signature="e#11487#12916#0" expanded="false" />
-            <element signature="e#11738#11861#0" expanded="false" />
-            <element signature="e#11897#11940#0" expanded="false" />
-            <element signature="e#12178#12886#0" expanded="false" />
-            <element signature="e#12380#12850#0" expanded="false" />
-            <element signature="e#13110#13183#0" expanded="false" />
-            <element signature="e#13261#13368#0" expanded="false" />
-            <element signature="e#13295#13358#0" expanded="false" />
-            <element signature="e#13438#13796#0" expanded="false" />
-            <element signature="e#13587#13717#0" expanded="false" />
-            <element signature="e#13626#13695#0" expanded="false" />
-            <element signature="e#13735#13786#0" expanded="false" />
-            <element signature="e#13882#20136#0" expanded="false" />
-            <element signature="e#14020#14200#0" expanded="false" />
-            <element signature="e#14240#19767#0" expanded="false" />
-            <element signature="e#14284#14432#0" expanded="false" />
-            <element signature="e#14479#14632#0" expanded="false" />
-            <element signature="e#14767#15241#0" expanded="false" />
-            <element signature="e#15271#19744#0" expanded="false" />
-            <element signature="e#15307#15542#0" expanded="false" />
-            <element signature="e#15599#19385#0" expanded="false" />
-            <element signature="e#16166#16838#0" expanded="false" />
-            <element signature="e#16223#16649#0" expanded="false" />
-            <element signature="e#17009#17295#0" expanded="false" />
-            <element signature="e#17364#18884#0" expanded="false" />
-            <element signature="e#17945#18745#0" expanded="false" />
-            <element signature="e#18013#18522#0" expanded="false" />
-            <element signature="e#18954#19185#0" expanded="false" />
-            <element signature="e#19443#19714#0" expanded="false" />
-            <element signature="e#19809#19965#0" expanded="false" />
-            <element signature="e#20198#29109#0" expanded="false" />
-            <element signature="e#20368#20974#0" expanded="false" />
-            <element signature="e#20418#20959#0" expanded="false" />
-            <element signature="e#20507#20940#0" expanded="false" />
-            <element signature="e#20715#20918#0" expanded="false" />
-            <element signature="e#21092#21206#0" expanded="false" />
-            <element signature="e#21265#21527#0" expanded="false" />
-            <element signature="e#21389#21513#0" expanded="false" />
-            <element signature="e#21567#21633#0" expanded="false" />
-            <element signature="e#21675#21832#0" expanded="false" />
-            <element signature="e#21942#28773#0" expanded="false" />
-            <element signature="e#22078#22146#0" expanded="false" />
-            <element signature="e#22190#22345#0" expanded="false" />
-            <element signature="e#22488#22560#0" expanded="false" />
-            <element signature="e#22608#22767#0" expanded="false" />
-            <element signature="e#22922#23000#0" expanded="false" />
-            <element signature="e#23054#23219#0" expanded="false" />
-            <element signature="e#23368#23443#0" expanded="false" />
-            <element signature="e#23494#23656#0" expanded="false" />
-            <element signature="e#23718#23788#0" expanded="false" />
-            <element signature="e#23834#23990#0" expanded="false" />
-            <element signature="e#24129#26174#0" expanded="false" />
-            <element signature="e#24216#26156#0" expanded="false" />
-            <element signature="e#24353#24698#0" expanded="false" />
-            <element signature="e#25036#25315#0" expanded="false" />
-            <element signature="e#25352#25947#0" expanded="false" />
-            <element signature="e#26196#28042#0" expanded="false" />
-            <element signature="e#26283#28024#0" expanded="false" />
-            <element signature="e#26425#26698#0" expanded="false" />
-            <element signature="e#27036#27249#0" expanded="false" />
-            <element signature="e#27286#27815#0" expanded="false" />
-            <element signature="e#28067#28182#0" expanded="false" />
-            <element signature="e#28226#28472#0" expanded="false" />
-            <element signature="e#28518#28757#0" expanded="false" />
-            <element signature="e#28809#28935#0" expanded="false" />
-            <element signature="e#28977#29099#0" expanded="false" />
-            <element signature="e#29188#30821#0" expanded="false" />
-            <element signature="e#29345#30470#0" expanded="false" />
-            <element signature="e#29483#30070#0" expanded="false" />
-            <element signature="e#30522#30642#0" expanded="false" />
-            <element signature="e#30689#30811#0" expanded="false" />
-            <element signature="e#30904#33767#0" expanded="false" />
-            <element signature="e#30947#31098#0" expanded="false" />
-            <element signature="e#31131#31592#0" expanded="false" />
-            <element signature="e#31324#31440#0" expanded="false" />
-            <element signature="e#31462#31578#0" expanded="false" />
-            <element signature="e#31610#32008#0" expanded="false" />
-            <element signature="e#31738#31856#0" expanded="false" />
-            <element signature="e#31878#31994#0" expanded="false" />
-            <element signature="e#32362#33617#0" expanded="false" />
-            <element signature="e#32404#32819#0" expanded="false" />
-            <element signature="e#32511#32799#0" expanded="false" />
-            <element signature="e#32864#33212#0" expanded="false" />
-            <element signature="e#32904#33192#0" expanded="false" />
-            <element signature="e#33256#33603#0" expanded="false" />
-            <element signature="e#33295#33583#0" expanded="false" />
-            <element signature="e#33836#34184#0" expanded="false" />
-            <element signature="e#33889#34097#0" expanded="false" />
-            <element signature="e#34260#35546#0" expanded="false" />
-            <element signature="e#34299#34455#0" expanded="false" />
-            <element signature="e#34375#34439#0" expanded="false" />
-            <element signature="e#34491#34647#0" expanded="false" />
-            <element signature="e#34567#34631#0" expanded="false" />
-            <element signature="e#34682#34838#0" expanded="false" />
-            <element signature="e#34758#34822#0" expanded="false" />
-            <element signature="e#34892#35468#0" expanded="false" />
-            <element signature="e#34950#35194#0" expanded="false" />
-            <element signature="e#34992#35175#0" expanded="false" />
-            <element signature="e#35213#35453#0" expanded="false" />
-            <element signature="e#35624#38560#0" expanded="false" />
-            <element signature="e#35674#35928#0" expanded="false" />
-            <element signature="e#35723#35914#0" expanded="false" />
-            <element signature="e#35976#38550#0" expanded="false" />
-            <element signature="e#36366#36482#0" expanded="false" />
-            <element signature="e#36527#36643#0" expanded="false" />
-            <element signature="e#36689#38536#0" expanded="false" />
-            <element signature="e#36845#38356#0" expanded="false" />
-            <element signature="e#36895#37390#0" expanded="false" />
-            <element signature="e#37018#37362#0" expanded="false" />
-            <element signature="e#37443#37863#0" expanded="false" />
-            <element signature="e#37491#37835#0" expanded="false" />
-            <element signature="e#37915#38334#0" expanded="false" />
-            <element signature="e#37962#38306#0" expanded="false" />
-            <element signature="e#38632#40058#0" expanded="false" />
-            <element signature="e#38687#38924#0" expanded="false" />
-            <element signature="e#38745#38908#0" expanded="false" />
-            <element signature="e#38787#38890#0" expanded="false" />
-            <element signature="e#39038#39205#0" expanded="false" />
-            <element signature="e#39082#39187#0" expanded="false" />
-            <element signature="e#39318#39485#0" expanded="false" />
-            <element signature="e#39362#39467#0" expanded="false" />
-            <element signature="e#39599#39766#0" expanded="false" />
-            <element signature="e#39643#39748#0" expanded="false" />
-            <element signature="e#39879#40046#0" expanded="false" />
-            <element signature="e#39923#40028#0" expanded="false" />
-            <element signature="e#40126#41346#0" expanded="false" />
-            <element signature="e#40182#40428#0" expanded="false" />
-            <element signature="e#40240#40412#0" expanded="false" />
-            <element signature="e#40282#40394#0" expanded="false" />
-            <element signature="e#40490#40640#0" expanded="false" />
-            <element signature="e#40530#40626#0" expanded="false" />
-            <element signature="e#40700#40850#0" expanded="false" />
-            <element signature="e#40740#40836#0" expanded="false" />
-            <element signature="e#40910#41060#0" expanded="false" />
-            <element signature="e#40950#41046#0" expanded="false" />
-            <element signature="e#41169#41335#0" expanded="false" />
-            <element signature="e#41213#41317#0" expanded="false" />
-            <element signature="e#41412#42262#0" expanded="false" />
-            <element signature="e#41506#42252#0" expanded="false" />
-            <element signature="e#41782#42021#0" expanded="false" />
-            <element signature="e#41844#42001#0" expanded="false" />
-            <element signature="e#41890#41979#0" expanded="false" />
-            <element signature="e#42041#42238#0" expanded="false" />
-            <element signature="e#42330#43181#0" expanded="false" />
-            <element signature="e#42422#43170#0" expanded="false" />
-            <element signature="e#42697#42936#0" expanded="false" />
-            <element signature="e#42759#42916#0" expanded="false" />
-            <element signature="e#42805#42894#0" expanded="false" />
-            <element signature="e#42957#43154#0" expanded="false" />
-            <element signature="e#43254#43720#0" expanded="false" />
-            <element signature="e#43766#43834#0" expanded="false" />
-            <element signature="e#43972#46023#0" expanded="false" />
-            <element signature="e#44117#44229#0" expanded="false" />
-            <element signature="e#44157#44215#0" expanded="false" />
-            <element signature="e#44288#44400#0" expanded="false" />
-            <element signature="e#44328#44386#0" expanded="false" />
-            <element signature="e#44459#44571#0" expanded="false" />
-            <element signature="e#44499#44557#0" expanded="false" />
-            <element signature="e#44626#44824#0" expanded="false" />
-            <element signature="e#44684#44808#0" expanded="false" />
-            <element signature="e#44726#44790#0" expanded="false" />
-            <element signature="e#44926#45191#0" expanded="false" />
-            <element signature="e#45017#45175#0" expanded="false" />
-            <element signature="e#45063#45157#0" expanded="false" />
-            <element signature="e#45240#45354#0" expanded="false" />
-            <element signature="e#45651#46012#0" expanded="false" />
-            <element signature="e#45760#45997#0" expanded="false" />
-            <element signature="e#46503#46654#0" expanded="false" />
-            <element signature="e#46543#46640#0" expanded="false" />
-            <element signature="e#46713#46864#0" expanded="false" />
-            <element signature="e#46753#46850#0" expanded="false" />
-            <element signature="e#47175#47428#0" expanded="false" />
-            <element signature="e#47529#47769#0" expanded="false" />
-            <element signature="e#47620#47753#0" expanded="false" />
-            <element signature="e#47817#47931#0" expanded="false" />
-            <element signature="e#48030#48389#0" expanded="false" />
-            <element signature="e#48138#48374#0" expanded="false" />
-            <element signature="e#48499#50719#0" expanded="false" />
-            <element signature="e#48512#50717#0" expanded="false" />
-            <element signature="e#48579#50711#0" expanded="false" />
-            <element signature="e#48710#48820#0" expanded="false" />
-            <element signature="e#48750#48806#0" expanded="false" />
-            <element signature="e#48880#49030#0" expanded="false" />
-            <element signature="e#48920#49016#0" expanded="false" />
-            <element signature="e#49089#49239#0" expanded="false" />
-            <element signature="e#49129#49225#0" expanded="false" />
-            <element signature="e#49296#49534#0" expanded="false" />
-            <element signature="e#49354#49518#0" expanded="false" />
-            <element signature="e#49396#49500#0" expanded="false" />
-            <element signature="e#49549#49741#0" expanded="false" />
-            <element signature="e#49843#50083#0" expanded="false" />
-            <element signature="e#49934#50067#0" expanded="false" />
-            <element signature="e#50131#50245#0" expanded="false" />
-            <element signature="e#50343#50701#0" expanded="false" />
-            <element signature="e#50451#50686#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1052,7 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,63 +772,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/match.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/employer/candidates.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="224" column="23" selection-start-line="224" selection-start-column="23" selection-end-line="224" selection-end-column="23" />
-          <folding>
-            <element signature="e#43#113#0" expanded="false" />
-            <element signature="e#1611#2539#0" expanded="false" />
-            <element signature="e#1721#2046#0" expanded="false" />
-            <element signature="e#1859#2032#0" expanded="false" />
-            <element signature="e#2086#2340#0" expanded="false" />
-            <element signature="e#2382#2527#0" expanded="false" />
-            <element signature="e#2616#3551#0" expanded="false" />
-            <element signature="e#2727#3054#0" expanded="false" />
-            <element signature="e#2865#3040#0" expanded="false" />
-            <element signature="e#3094#3352#0" expanded="false" />
-            <element signature="e#3394#3539#0" expanded="false" />
-            <element signature="e#3623#4384#0" expanded="false" />
-            <element signature="e#3733#4006#0" expanded="false" />
-            <element signature="e#3866#3992#0" expanded="false" />
-            <element signature="e#4029#4205#0" expanded="false" />
-            <element signature="e#4243#4372#0" expanded="false" />
-            <element signature="e#4452#4497#0" expanded="false" />
-            <element signature="e#4619#5884#0" expanded="false" />
-            <element signature="e#4792#5322#0" expanded="false" />
-            <element signature="e#5181#5250#0" expanded="false" />
-            <element signature="e#5340#5874#0" expanded="false" />
-            <element signature="e#5731#5800#0" expanded="false" />
-            <element signature="e#6990#7107#0" expanded="false" />
-            <element signature="e#8229#8309#0" expanded="false" />
-            <element signature="e#8492#8633#0" expanded="false" />
-            <element signature="e#9886#10243#0" expanded="false" />
-            <element signature="e#9951#10160#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/employer/companyprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="1690" column="23" selection-start-line="1690" selection-start-column="23" selection-end-line="1690" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1130,13 +783,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/resources.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/employer/resume.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
+        <state relative-caret-position="25">
           <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
           <folding />
         </state>
@@ -1146,35 +812,112 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="95" column="48" selection-start-line="95" selection-start-column="48" selection-end-line="95" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/resources.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/site.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="226" selection-end-column="2" />
+        <state relative-caret-position="1420">
+          <caret line="221" column="27" selection-start-line="221" selection-start-column="27" selection-end-line="221" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/resume.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/employer/myJobs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#8885#9933#0" expanded="false" />
-            <marker date="1465512475946" expanded="true" signature="5441:5504" ph="..." />
-            <marker date="1465512475946" expanded="true" signature="5847:5904" ph="..." />
-          </folding>
+        <state relative-caret-position="800">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_seeker/searchJobs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6000">
+          <caret line="240" column="11" selection-start-line="240" selection-start-column="11" selection-end-line="240" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/employer/companyProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret line="31" column="39" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/employer/archive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/employer/myjobs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_seeker/jobpage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="851">
+          <caret line="64" column="20" selection-start-line="64" selection-start-column="20" selection-end-line="64" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/match.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_seeker/matchpage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/images/logoSmall.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/employer/companyprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

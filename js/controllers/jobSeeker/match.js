@@ -111,7 +111,6 @@ app
 
                                         }
                                         else {
-                                            angular.element(".fa-pulse").hide();
                                             $scope.status = "Please Update your CV!";
                                             angular.element(".fa-pulse").hide();
                                         }
