@@ -53,7 +53,7 @@
 
 
                                 <p>Address: </p>
-                                <h5 ng-repeat="j in jobSJ.job.locations" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+                                <h5 ng-repeat="j in jobSJ.job.locations  track by $index" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 
 

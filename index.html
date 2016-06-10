@@ -74,7 +74,7 @@
             <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('logout')>
                 <i class="fa fa-sign-out"></i>
                 Log Out</a></li>
-            <li><a href=''  data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('signout')>
+            <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('signout')>
                 <i class="fa fa-sign-out"></i>
                 Sign Out</a></li>
         </ul>
@@ -129,7 +129,7 @@
             <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('logout')>
                 <i class="fa fa-sign-out"></i>
                 Log Out</a></li>
-            <li><a href=''  data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('signout')>
+            <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('signout')>
                 <i class="fa fa-sign-out"></i>
                 Sign Out</a></li>
         </ul>
@@ -142,11 +142,11 @@
     <div>
         <a ng-href="#/usersLogin" id="logo"><img src="images/logo.png"></a>
     </div>
-    <div data-popover="true" data-html=true
-         data-content="<a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>">
-        <div id="profilePage"></div>
-        <profileimg/>
-    </div>
+
+    <img id='profilePicture' src="{{imgProfile}}" data-html="true" data-container="body" data-toggle="popover"
+         data-placement="bottom"
+         data-content="{{content}}">
+
     <!-- Img -->
     <div class="navBarImg hidden">
         <nav>
@@ -230,3 +230,15 @@
 
 </body>
 </html>
+
+<style>
+    #profilePicture {
+        position: absolute;
+        top: 20px;
+        right: 28px;
+        z-index: 100;
+        border-radius: 100px;
+        border: 2px solid #fff;
+        cursor: pointer;
+    }
+</style>
