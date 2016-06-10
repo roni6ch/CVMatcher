@@ -52,6 +52,7 @@ app.controller('companyProfileController',
                                             function (response) { // optional
                                                 console.log("companyProfileController AJAX failed!");
                                                 console.log(response);
+                                                angular.element(".fa-pulse").hide();
 
                                             });
                                 }

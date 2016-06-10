@@ -52,7 +52,6 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             }
         })
             .then(function (data) {
-                    angular.element(".fa-pulse").hide();
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();
