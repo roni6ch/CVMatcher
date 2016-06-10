@@ -8,6 +8,7 @@
 
 var requirements = [];
 
+var locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
 var nextCombinationKey = 0;
 var langId = 0;
 var totalPriorotySum = 0;
@@ -23,7 +24,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $rootScope.list3 = [];
         var i = 0;
     var locationIndex = 0;
-        var locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
         var combinationLengthAfterEdit = 0, combinationsLength = 0, sumSliders = 0;
         var editJob = false, sendForm = false, savedCurrentCombination = false;
         newLangClicked = false
@@ -47,7 +47,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             if ($id == 'job') {
                 $scope.newJob = false;
 
-
+                locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
                 requirements = [];
                 //url for later to submit!
                 url = 'https://cvmatcher.herokuapp.com/updateMatchingObject';
@@ -210,6 +210,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             }
             //im in newJob - init parameters
             else {
+                locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
+
                 $scope.newJob = true;
                 var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
                 $("#geocomplete" + locationIndex).geocomplete();
@@ -945,6 +947,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         }
                     });
                 });
+                console.log(requirements);
 
                 /* $.each($rootScope.list1, function (key, val) {
                  if (val.langId == id) {
@@ -1021,6 +1024,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 });
             });
+
+
             if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
                 $.each(requirements[nextCombinationKey].combination, function (key, val) {
                     if (val.mode == 'must') {
@@ -1057,6 +1062,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         scope: {},
         link: function (scope, element, attr) {
 
+            console.log(requirements);
+            console.log(totalPriorotySum);
             var id = attr.langName;
             totalPriorotySum = 0;
 
@@ -1079,7 +1086,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 }
             })
 
-
             $.each(requirements, function (key, val) {
                 $.each(val.combination, function (k, v) {
                     if (v.langId == id) {
@@ -1097,9 +1103,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
              }
              });*/
 
-            console.log(combinationDeleted);
-            console.log(nextCombinationKey);
-            console.log(requirements.length);
+            console.log(requirements);
+            console.log(totalPriorotySum);
             if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
                 $.each(requirements[nextCombinationKey].combination, function (key, val) {
                     console.log(val);
@@ -1111,6 +1116,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 combination = [];
                 requirements.push({'combination': combination});
             }
+
+            console.log(requirements);
+            console.log(totalPriorotySum);
 
 
             if (attr.class == 'langsName' && newLangClicked == true && requirements.length > 0) {
