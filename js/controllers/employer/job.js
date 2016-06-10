@@ -7,6 +7,7 @@
  */
 
 var requirements = [];
+
 var nextCombinationKey = 0;
 var langId = 0;
 var totalPriorotySum = 0;
@@ -348,6 +349,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                             combination.push(tempMust);
                                         });
                                         $rootScope.list1 = tempMustLangs;
+
 
 
                                         //adv
@@ -1064,7 +1066,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     val.percentage = 0;
                 }
             })
-
             $.each($rootScope.list2, function (key, val) {
                 if (val.langId == id) {
                     val.mode = "adv";
@@ -1087,16 +1088,21 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 });
             });
-            /*
-             $.each(requirements[nextCombinationKey].combination, function (key, val) {
+
+            /* $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                 console.log(val);
              if (val.mode == 'must') {
              totalPriorotySum += parseInt(val.percentage);
              console.log(val);
              }
              });*/
 
+            console.log(combinationDeleted);
+            console.log(nextCombinationKey);
+            console.log(requirements.length);
             if (combinationDeleted == false && nextCombinationKey >= 0 && requirements.length > 0) {
                 $.each(requirements[nextCombinationKey].combination, function (key, val) {
+                    console.log(val);
                     if (val.mode == 'must')
                         totalPriorotySum += parseInt(val.percentage);
                 });

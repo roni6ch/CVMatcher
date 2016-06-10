@@ -267,7 +267,7 @@ messageResource.init({
 });
 
 var resourcesCallback = function () {
-    console.log("resources.properties loaded");
+   // console.log("resources.properties loaded");
 };
 
 messageResource.load('resources', resourcesCallback);
