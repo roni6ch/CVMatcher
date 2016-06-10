@@ -21,7 +21,7 @@ app.controller('resumeController',
 
         //initialize parameters for this controller
         $scope.init = function () {
-
+            $scope.hiredPage = false;
             $("#predictAppend").hide();
             $("#users").hide();
             // circle animation
@@ -32,6 +32,8 @@ app.controller('resumeController',
 
             // if i came from Unread page
             if ($id[1] == "Unread") {
+                $("#candidateUnLike").show();
+                $("#candidateLike").show();
                 //noinspection JSDuplicatedDeclaration
                 users = document.getElementById('users');
                 // create a simple instance
@@ -47,6 +49,8 @@ app.controller('resumeController',
                 });
             }
             if ($id[1] == "Candidates") {
+                $("#candidateUnLike").show();
+                $("#candidateLike").show();
                 users = document.getElementById('users');
                 // create a simple instance
                 // by default, it only adds horizontal recognizers
@@ -59,6 +63,12 @@ app.controller('resumeController',
                 $user.on("swiperight", function () {
                     $(".bringNextCandidate").click();
                 });
+            }
+
+
+            if ($id[1] == "hired") {
+                $scope.hiredPage = true;
+
             }
 
             angular.element('[data-toggle="tooltip"]').tooltip();
@@ -78,8 +88,9 @@ app.controller('resumeController',
                 .then(function (data) {
                         $("#users").show();
                         var navigation;
-                        if ($id[1] == "Unread")
-
+                        if ($id[1] == "hired")
+                            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>Hired " + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                        else if ($id[1] == "Unread")
                             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
                         else
                             navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"

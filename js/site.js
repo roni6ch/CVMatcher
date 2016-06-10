@@ -74,6 +74,14 @@ app.config(function ($routeProvider) {
                     return changeLocation($location, '#/companyProfile', "employer");
                 }
             }
+        }).when('/hired/Candidates/:id/resume/:_id', {
+            templateUrl: 'employer/resume.html',
+            controller: 'resumeController',
+            resolve: {
+                resolvedVal: function ($location) {
+                    return changeLocation($location, '#/companyProfile', "employer");
+                }
+            }
         }).when('/UnLike/Candidates/:id/resume/:_id', {
             templateUrl: 'employer/resume.html',
             controller: 'resumeController',
@@ -189,7 +197,6 @@ app.config(function ($routeProvider) {
                 controller: 'yourjobSeekerController',
                 resolve: {
                     resolvedVal: function ($location,$rootScope) {
-                        console.log($rootScope.userSignInType );
                         return changeLocation($location, '#/Profile', 'jobSeeker');
                     }
                 }

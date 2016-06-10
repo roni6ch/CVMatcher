@@ -23,38 +23,7 @@
     <favorites_list name="CVMatcher" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="site.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/site.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8649238">
-              <caret line="190" column="63" selection-start-line="190" selection-start-column="63" selection-end-line="190" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="yourjobs.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/job_seeker/yourjobs.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.2181816">
-              <caret line="55" column="88" selection-start-line="55" selection-start-column="88" selection-end-line="55" selection-end-column="88" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-43.53846">
-              <caret line="142" column="59" selection-start-line="142" selection-start-column="59" selection-end-line="142" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -93,35 +62,35 @@
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/employer/scratch.html" />
         <option value="$PROJECT_DIR$/employer/jobparameters.html" />
-        <option value="$PROJECT_DIR$/job_seeker/preview_cv.html" />
         <option value="$PROJECT_DIR$/employer/companyProfile.html" />
         <option value="$PROJECT_DIR$/employer/myjobs.html" />
         <option value="$PROJECT_DIR$/js/controllers/jobSeeker/favorites.js" />
-        <option value="$PROJECT_DIR$/employer/candidates.html" />
         <option value="$PROJECT_DIR$/usersLogin.html" />
-        <option value="$PROJECT_DIR$/js/controllers/usersLogin.js" />
         <option value="$PROJECT_DIR$/js/controllers/employer/companyProfile.js" />
         <option value="$PROJECT_DIR$/js/controllers/jobSeeker/myJobs.js" />
-        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/profile.js" />
         <option value="$PROJECT_DIR$/js/controllers/jobSeeker/searchJobs.js" />
         <option value="$PROJECT_DIR$/job_seeker/matchpage.html" />
         <option value="$PROJECT_DIR$/employer/job.html" />
         <option value="$PROJECT_DIR$/employer/archive.html" />
         <option value="$PROJECT_DIR$/js/controllers/employer/myJobs.js" />
-        <option value="$PROJECT_DIR$/employer/myJobsAndArchiveInclude.html" />
         <option value="$PROJECT_DIR$/job_seeker/searchJobs.html" />
-        <option value="$PROJECT_DIR$/employer/resume.html" />
         <option value="$PROJECT_DIR$/job_seeker/profile.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/js/controllers/employer/job.js" />
         <option value="$PROJECT_DIR$/js/controllers/googleSignIn.js" />
-        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/match.js" />
         <option value="$PROJECT_DIR$/js/controllers/employer/candidates.js" />
-        <option value="$PROJECT_DIR$/js/controllers/employer/resume.js" />
         <option value="$PROJECT_DIR$/js/controllers/directives.js" />
-        <option value="$PROJECT_DIR$/job_seeker/yourjobs.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/job_seeker/yourjobs.html" />
+        <option value="$PROJECT_DIR$/job_seeker/preview_cv.html" />
+        <option value="$PROJECT_DIR$/employer/myJobsAndArchiveInclude.html" />
+        <option value="$PROJECT_DIR$/js/controllers/usersLogin.js" />
+        <option value="$PROJECT_DIR$/js/controllers/employer/job.js" />
+        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/match.js" />
+        <option value="$PROJECT_DIR$/js/controllers/jobSeeker/profile.js" />
+        <option value="$PROJECT_DIR$/employer/candidates.html" />
         <option value="$PROJECT_DIR$/js/site.js" />
+        <option value="$PROJECT_DIR$/js/controllers/employer/resume.js" />
+        <option value="$PROJECT_DIR$/employer/resume.html" />
       </list>
     </option>
   </component>
@@ -413,9 +382,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1859375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1859375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38372093" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -458,13 +427,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/match.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="83" selection-start-line="60" selection-start-column="83" selection-end-line="60" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/directives.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -615,13 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/employer/candidates.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5714285">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/contact.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27237186">
@@ -633,13 +588,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6168942">
           <caret line="106" column="34" selection-start-line="106" selection-start-column="34" selection-end-line="106" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/profile.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48983365">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -664,24 +612,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/employer/myJobsAndArchiveInclude.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41928253">
-          <caret line="23" column="75" selection-start-line="23" selection-start-column="75" selection-end-line="25" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/job_seeker/matchpage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.807693">
           <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/job_seeker/preview_cv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.346154">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="37" />
         </state>
       </provider>
     </entry>
@@ -696,6 +630,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="36" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -709,10 +644,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/job.js">
+    <entry file="file://$PROJECT_DIR$/js/controllers/employer/candidates.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1084" column="0" selection-start-line="1084" selection-start-column="0" selection-end-line="1084" selection-end-column="0" />
+          <caret line="149" column="108" selection-start-line="149" selection-start-column="12" selection-end-line="149" selection-end-column="108" />
+          <folding>
+            <element signature="e#43#113#0" expanded="false" />
+            <element signature="e#1611#2539#0" expanded="false" />
+            <element signature="e#1721#2046#0" expanded="false" />
+            <element signature="e#1859#2032#0" expanded="false" />
+            <element signature="e#2086#2340#0" expanded="false" />
+            <element signature="e#2382#2527#0" expanded="false" />
+            <element signature="e#2616#3551#0" expanded="false" />
+            <element signature="e#2727#3054#0" expanded="false" />
+            <element signature="e#2865#3040#0" expanded="false" />
+            <element signature="e#3094#3352#0" expanded="false" />
+            <element signature="e#3394#3539#0" expanded="false" />
+            <element signature="e#3623#4384#0" expanded="false" />
+            <element signature="e#3733#4006#0" expanded="false" />
+            <element signature="e#3866#3992#0" expanded="false" />
+            <element signature="e#4029#4205#0" expanded="false" />
+            <element signature="e#4243#4372#0" expanded="false" />
+            <element signature="e#4452#4497#0" expanded="false" />
+            <element signature="e#4619#5884#0" expanded="false" />
+            <element signature="e#4792#5322#0" expanded="false" />
+            <element signature="e#5181#5250#0" expanded="false" />
+            <element signature="e#5340#5874#0" expanded="false" />
+            <element signature="e#5731#5800#0" expanded="false" />
+            <element signature="e#6990#7107#0" expanded="false" />
+            <element signature="e#8229#8309#0" expanded="false" />
+            <element signature="e#8492#8633#0" expanded="false" />
+            <element signature="e#9886#10243#0" expanded="false" />
+            <element signature="e#9951#10160#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/resources.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06390978">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/directives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39177102">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding>
+            <element signature="e#43#102#0" expanded="false" />
+            <element signature="e#207#538#0" expanded="false" />
+            <element signature="e#220#536#0" expanded="false" />
+            <element signature="e#262#530#0" expanded="false" />
+            <element signature="e#635#785#0" expanded="false" />
+            <element signature="e#648#783#0" expanded="false" />
+            <element signature="e#676#777#0" expanded="false" />
+            <element signature="e#845#974#0" expanded="false" />
+            <element signature="e#858#972#0" expanded="false" />
+            <element signature="e#923#966#0" expanded="false" />
+            <element signature="e#1043#1908#0" expanded="false" />
+            <element signature="e#1057#1906#0" expanded="false" />
+            <element signature="e#1128#1900#0" expanded="false" />
+            <element signature="e#1214#1888#0" expanded="false" />
+            <element signature="e#1279#1406#0" expanded="false" />
+            <element signature="e#1474#1746#0" expanded="false" />
+            <element signature="e#1510#1728#0" expanded="false" />
+            <element signature="e#1579#1606#0" expanded="false" />
+            <element signature="e#1823#1842#0" expanded="false" />
+            <element signature="e#2620#2960#0" expanded="false" />
+            <element signature="e#2633#2957#0" expanded="false" />
+            <element signature="e#2698#2951#0" expanded="false" />
+            <element signature="e#2741#2833#0" expanded="false" />
+            <element signature="e#2847#2939#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/usersLogin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06378987">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_seeker/searchJobs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35084426">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/employer/archive.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.384615">
+          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_seeker/yourjobs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.7636366">
+          <caret line="29" column="64" selection-start-line="29" selection-start-column="64" selection-end-line="29" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/profile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33115467">
+          <caret line="346" column="0" selection-start-line="346" selection-start-column="0" selection-end-line="346" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/match.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18300654">
+          <caret line="130" column="52" selection-start-line="130" selection-start-column="52" selection-end-line="131" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/usersLogin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20152505">
+          <caret line="83" column="16" selection-start-line="83" selection-start-column="16" selection-end-line="83" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/hammer.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07631874">
+          <caret line="5" column="620" selection-start-line="5" selection-start-column="620" selection-end-line="5" selection-end-column="620" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/job_seeker/preview_cv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5807175">
+          <caret line="54" column="50" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/controllers/employer/job.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18300654">
+          <caret line="1032" column="13" selection-start-line="1032" selection-start-column="13" selection-end-line="1032" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#43#106#0" expanded="false" />
@@ -899,7 +991,6 @@
             <element signature="e#42957#43154#0" expanded="false" />
             <element signature="e#43254#43720#0" expanded="false" />
             <element signature="e#43766#43834#0" expanded="false" />
-            <element signature="e#43972#46023#0" expanded="false" />
             <element signature="e#44117#44229#0" expanded="false" />
             <element signature="e#44157#44215#0" expanded="false" />
             <element signature="e#44288#44400#0" expanded="false" />
@@ -913,214 +1004,97 @@
             <element signature="e#45017#45175#0" expanded="false" />
             <element signature="e#45063#45157#0" expanded="false" />
             <element signature="e#45240#45354#0" expanded="false" />
-            <element signature="e#45651#46012#0" expanded="false" />
-            <element signature="e#45760#45997#0" expanded="false" />
-            <element signature="e#46503#46654#0" expanded="false" />
-            <element signature="e#46543#46640#0" expanded="false" />
-            <element signature="e#46713#46864#0" expanded="false" />
-            <element signature="e#46753#46850#0" expanded="false" />
-            <element signature="e#47175#47428#0" expanded="false" />
-            <element signature="e#47529#47769#0" expanded="false" />
-            <element signature="e#47620#47753#0" expanded="false" />
-            <element signature="e#47817#47931#0" expanded="false" />
-            <element signature="e#48030#48389#0" expanded="false" />
-            <element signature="e#48138#48374#0" expanded="false" />
-            <element signature="e#48499#50719#0" expanded="false" />
-            <element signature="e#48512#50717#0" expanded="false" />
-            <element signature="e#48579#50711#0" expanded="false" />
-            <element signature="e#48710#48820#0" expanded="false" />
-            <element signature="e#48750#48806#0" expanded="false" />
-            <element signature="e#48880#49030#0" expanded="false" />
-            <element signature="e#48920#49016#0" expanded="false" />
-            <element signature="e#49089#49239#0" expanded="false" />
-            <element signature="e#49129#49225#0" expanded="false" />
-            <element signature="e#49296#49534#0" expanded="false" />
-            <element signature="e#49354#49518#0" expanded="false" />
-            <element signature="e#49396#49500#0" expanded="false" />
-            <element signature="e#49549#49741#0" expanded="false" />
-            <element signature="e#49843#50083#0" expanded="false" />
-            <element signature="e#49934#50067#0" expanded="false" />
-            <element signature="e#50131#50245#0" expanded="false" />
-            <element signature="e#50343#50701#0" expanded="false" />
-            <element signature="e#50451#50686#0" expanded="false" />
+            <element signature="e#45621#45982#0" expanded="false" />
+            <element signature="e#45730#45967#0" expanded="false" />
+            <element signature="e#46473#46624#0" expanded="false" />
+            <element signature="e#46513#46610#0" expanded="false" />
+            <element signature="e#46683#46834#0" expanded="false" />
+            <element signature="e#46723#46820#0" expanded="false" />
+            <element signature="e#47145#47398#0" expanded="false" />
+            <element signature="e#47499#47739#0" expanded="false" />
+            <element signature="e#47590#47723#0" expanded="false" />
+            <element signature="e#47787#47901#0" expanded="false" />
+            <element signature="e#48000#48359#0" expanded="false" />
+            <element signature="e#48108#48344#0" expanded="false" />
+            <element signature="e#48469#50689#0" expanded="false" />
+            <element signature="e#48482#50687#0" expanded="false" />
+            <element signature="e#48549#50681#0" expanded="false" />
+            <element signature="e#48680#48790#0" expanded="false" />
+            <element signature="e#48720#48776#0" expanded="false" />
+            <element signature="e#48850#49000#0" expanded="false" />
+            <element signature="e#48890#48986#0" expanded="false" />
+            <element signature="e#49059#49209#0" expanded="false" />
+            <element signature="e#49099#49195#0" expanded="false" />
+            <element signature="e#49266#49504#0" expanded="false" />
+            <element signature="e#49324#49488#0" expanded="false" />
+            <element signature="e#49366#49470#0" expanded="false" />
+            <element signature="e#49519#49711#0" expanded="false" />
+            <element signature="e#49813#50053#0" expanded="false" />
+            <element signature="e#49904#50037#0" expanded="false" />
+            <element signature="e#50101#50215#0" expanded="false" />
+            <element signature="e#50313#50671#0" expanded="false" />
+            <element signature="e#50421#50656#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/usersLogin.js">
+    <entry file="file://$PROJECT_DIR$/employer/myjobs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.114349775">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/jobSeeker/match.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/candidates.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="149" column="108" selection-start-line="149" selection-start-column="12" selection-end-line="149" selection-end-column="108" />
-          <folding>
-            <element signature="e#43#113#0" expanded="false" />
-            <element signature="e#1611#2539#0" expanded="false" />
-            <element signature="e#1721#2046#0" expanded="false" />
-            <element signature="e#1859#2032#0" expanded="false" />
-            <element signature="e#2086#2340#0" expanded="false" />
-            <element signature="e#2382#2527#0" expanded="false" />
-            <element signature="e#2616#3551#0" expanded="false" />
-            <element signature="e#2727#3054#0" expanded="false" />
-            <element signature="e#2865#3040#0" expanded="false" />
-            <element signature="e#3094#3352#0" expanded="false" />
-            <element signature="e#3394#3539#0" expanded="false" />
-            <element signature="e#3623#4384#0" expanded="false" />
-            <element signature="e#3733#4006#0" expanded="false" />
-            <element signature="e#3866#3992#0" expanded="false" />
-            <element signature="e#4029#4205#0" expanded="false" />
-            <element signature="e#4243#4372#0" expanded="false" />
-            <element signature="e#4452#4497#0" expanded="false" />
-            <element signature="e#4619#5884#0" expanded="false" />
-            <element signature="e#4792#5322#0" expanded="false" />
-            <element signature="e#5181#5250#0" expanded="false" />
-            <element signature="e#5340#5874#0" expanded="false" />
-            <element signature="e#5731#5800#0" expanded="false" />
-            <element signature="e#6990#7107#0" expanded="false" />
-            <element signature="e#8229#8309#0" expanded="false" />
-            <element signature="e#8492#8633#0" expanded="false" />
-            <element signature="e#9886#10243#0" expanded="false" />
-            <element signature="e#9951#10160#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/employer/resume.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="83" column="31" selection-start-line="92" selection-start-column="17" selection-end-line="92" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/employer/resume.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3">
-          <caret line="18" column="78" selection-start-line="18" selection-start-column="78" selection-end-line="18" selection-end-column="78" />
-          <folding>
-            <marker date="1465554831226" expanded="true" signature="5441:5504" placeholder="..." />
-            <marker date="1465554831226" expanded="true" signature="5847:5904" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/resources.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06390978">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/controllers/directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39177102">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#43#102#0" expanded="false" />
-            <element signature="e#207#538#0" expanded="false" />
-            <element signature="e#220#536#0" expanded="false" />
-            <element signature="e#262#530#0" expanded="false" />
-            <element signature="e#635#785#0" expanded="false" />
-            <element signature="e#648#783#0" expanded="false" />
-            <element signature="e#676#777#0" expanded="false" />
-            <element signature="e#845#974#0" expanded="false" />
-            <element signature="e#858#972#0" expanded="false" />
-            <element signature="e#923#966#0" expanded="false" />
-            <element signature="e#1043#1908#0" expanded="false" />
-            <element signature="e#1057#1906#0" expanded="false" />
-            <element signature="e#1128#1900#0" expanded="false" />
-            <element signature="e#1214#1888#0" expanded="false" />
-            <element signature="e#1279#1406#0" expanded="false" />
-            <element signature="e#1474#1746#0" expanded="false" />
-            <element signature="e#1510#1728#0" expanded="false" />
-            <element signature="e#1579#1606#0" expanded="false" />
-            <element signature="e#1823#1842#0" expanded="false" />
-            <element signature="e#2620#2960#0" expanded="false" />
-            <element signature="e#2633#2957#0" expanded="false" />
-            <element signature="e#2698#2951#0" expanded="false" />
-            <element signature="e#2741#2833#0" expanded="false" />
-            <element signature="e#2847#2939#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/googleSignIn.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7602862">
-          <caret line="78" column="15" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.6481481">
+          <caret line="118" column="12" selection-start-line="118" selection-start-column="12" selection-end-line="118" selection-end-column="12" />
           <folding>
             <element signature="e#2230#2673#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/usersLogin.html">
+    <entry file="file://$PROJECT_DIR$/employer/myJobsAndArchiveInclude.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06378987">
-          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+        <state vertical-scroll-proportion="-9.153846">
+          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/job_seeker/searchJobs.html">
+    <entry file="file://$PROJECT_DIR$/employer/candidates.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35084426">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="31" />
+        <state vertical-scroll-proportion="-11.115385">
+          <caret line="141" column="40" selection-start-line="141" selection-start-column="35" selection-end-line="141" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/employer/myjobs.html">
+    <entry file="file://$PROJECT_DIR$/employer/resume.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.9230769">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.43337196">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/employer/archive.html">
+    <entry file="file://$PROJECT_DIR$/js/controllers/employer/resume.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923">
-          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/job_seeker/yourjobs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.2181816">
-          <caret line="55" column="88" selection-start-line="55" selection-start-column="88" selection-end-line="55" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-43.53846">
-          <caret line="142" column="59" selection-start-line="142" selection-start-column="59" selection-end-line="142" selection-end-column="59" />
-          <folding />
+        <state vertical-scroll-proportion="0.47806525">
+          <caret line="69" column="32" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="32" />
+          <folding>
+            <marker date="1465566733930" expanded="true" signature="6152:6215" placeholder="..." />
+            <marker date="1465566733930" expanded="true" signature="6558:6615" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/site.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8649238">
-          <caret line="190" column="63" selection-start-line="190" selection-start-column="63" selection-end-line="190" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.30283225">
+          <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
           <folding />
         </state>
       </provider>

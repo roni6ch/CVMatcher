@@ -1031,7 +1031,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 combination = [];
                 requirements.push({'combination': combination});
             }
-            console.log("a");
             //requeire if i want to return the 'combinationDeleted' to original position
             combinationDeleted = false;
 

@@ -136,10 +136,14 @@
             <section
                     ng-repeat="candidate in hiredCandidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp hiredCandidates">
+
                     <div>
+
+                        <a href="#/hired/Candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
                     </div>
                     <div>
+
                         <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
 
                         <p ng-model="searchText.sector"

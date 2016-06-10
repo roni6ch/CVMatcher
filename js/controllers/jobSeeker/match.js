@@ -135,14 +135,11 @@ app
             }
             //fix cv - go to profile and come back!
             $scope.fixCV = function () {
-                console.log($location.path())
                 localStorage.setItem('fixCV', $jobId);
                 $location.path('/Profile');
             }
             //send cv to employer
             $scope.sendCV = function () {
-                console.log(localStorage.getItem("current_cv"));
-                console.log($jobId);
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/addCvToJob',
                     method: "POST",
