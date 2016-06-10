@@ -214,6 +214,20 @@ var socket;
 var url;
 var user_id;
 
+// initialize messageResource.js with settings
+messageResource.init({
+    // path to directory containing message resource files(.properties files),
+    // give empty string or discard this configuration if files are in the
+    // same directory as that of html file.
+    filePath : 'resources/'
+});
+
+var resourcesCallback = function () {
+    console.log("resources.properties loaded");
+};
+
+messageResource.load('resources', resourcesCallback);
+
 $(document).ready(function () {
 
     //click event outside profile picture.
