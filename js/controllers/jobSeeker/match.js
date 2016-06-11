@@ -50,21 +50,25 @@ app
                                             if (data.data.formula.requirements.grade > 0) {
                                                 skills = [];
                                                 $(".skillsTitleM").show();
-                                                $(".bubbleChart").show();
+                                                $(".requirements-skills-bar").show();
+
+                                                //$(".bubbleChart").show();
 
                                                 var skillsFromJson = data.data.formula.requirements.details;
 
-                                                $.each(skillsFromJson, function (k, v) {
-                                                    skills.push({
-                                                        text: v.name,
-                                                        count: v.grade
-                                                    });
+                                                $.each(skillsFromJson, function (key, value) {
+
+                                                    $("#requirements-skills-bar").append('<div class="skillbar" data-percent=' + value.grade + ' ><span class="skillbar-title" style="background: #d35400;">' + value.name + '</span><p class="skillbar-bar" style="background: #e67e22;"></p><span class="skill-bar-percent"></span></div>');
+
                                                 });
-                                                bubbels();
+                                                //bubbels();
+
+                                                skillsBar();
                                             }
                                             else {
                                                 $(".skillsTitleM").hide();
-                                                $(".bubbleChart").hide();
+                                                $(".requirements-skills-bar").hide();
+                                                //$(".bubbleChart").hide();
                                                 //$scope.status = 'the languges';
                                                 // $('#sendCVstatus').modal('show');
                                             }
@@ -80,10 +84,8 @@ app
                                             angular
                                                 .element(
                                                     "#user-container>h5")
-                                                .html(Math.max(parseInt(data.data.total_grade), 1)
-                                                    + "%");
-                                            userCircle
-                                                .animate(data.data.total_grade / 100);
+                                                .html(Math.max(parseInt(data.data.total_grade), 1) + "%");
+                                            userCircle.animate(data.data.total_grade / 100);
                                             //check if user passed the Match!!!
                                             if (data.data.total_grade < localStorage.getItem("compatibility_level")) {
                                                 angular.element(".matchResult > h2").append("Oops");
@@ -99,15 +101,8 @@ app
                                             }
 
                                             $scope.formula = data.data.formula;
-                                            angular.element('[data-toggle="tooltip"]').tooltip();
-                                            $scope.tootipInfo = {
-                                                "requirements": "infoooooooooooooo",
-                                                "candidate_type": "infoooooooooooooo",
-                                                "locations": "infoooooooooooooo",
-                                                "scope_of_position": "infoooooooooooooo",
-                                                "academy": "infoooooooooooooo"
 
-                                            }
+
 
                                         }
                                         else {
@@ -123,7 +118,7 @@ app
                                     });
                         }
 
-                    })
+                    });
 
                 //TODO: OPEN SOCKET!
                  socket.onmessage = function (msg) {
@@ -131,12 +126,12 @@ app
                  console.log(message);
                  notifyMe(message.notificationType, message.jobName);
                  }
-            }
+            };
             //fix cv - go to profile and come back!
             $scope.fixCV = function () {
                 localStorage.setItem('fixCV', $jobId);
                 $location.path('/Profile');
-            }
+            };
             //send cv to employer
             $scope.sendCV = function () {
                 $http({

@@ -2511,9 +2511,6 @@ a:focus, a:hover {
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 
-
-.slidersAndTooltips{background-color: #000;width: 100%;height: 225px;}
-
 .skillsTitleM {
     /* margin-top: 120px; */
     background-color: #000;
@@ -2524,18 +2521,12 @@ a:focus, a:hover {
     margin-top: 120px;
 }
 
-
 .matchpageWrapper .btn-default {
     color: #333;
     background-color: #fff;
     border-color: #ccc;
     margin-bottom: 90px;
     margin-top: 20px;
-}
-
-.AlltootipInfo {
-    margin-top: 80px;
-    background-color: #000;
 }
 
 .matchpageWrapper{
@@ -2566,13 +2557,6 @@ a:focus, a:hover {
     margin-bottom: 0 !important;
 }
 
-.formulaSliders {
-    float: left;
-    width: 90%;
-    /* background-color: #000; */
-    margin-top: 20px;
-    padding-left: 22px;
-}
 .tootipInfo{
     float: right;
     width: 10%;
@@ -2647,7 +2631,60 @@ a:focus, a:hover {
 .langsMatch > span {
     font-weight: bold;
 }
-.progress-bar-striped{color:#000;}
+
+/* requirements skills bar*/
+
+#requirements-skills-bar {
+    position: relative;
+    margin-top: 40px;
+}
+
+.skillbar {
+    position: relative;
+    display: inline-block;
+    margin: 15px 0;
+    width: 100%;
+    background: #eee;
+    height: 35px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.skillbar-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #ffffff;
+    background: #6adcfa;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0 20px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.skillbar-bar {
+    float: left;
+    height: 35px;
+    width: 0px;
+    background: #6adcfa;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.skill-bar-percent {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 11px;
+    height: 35px;
+    line-height: 35px;
+    color: #000000;
+}
 
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
@@ -4776,30 +4813,13 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 /*natalie*/
 
 footer{
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
     z-index: 1000000;
 }
 
 /*********/
 
-
-
-
-/* resume page */
-.bubbleChart {
-    min-width: 100px;
-    max-width: 700px;
-    /* height: 560px; */
-    margin: 0 auto;
-    margin-top: 22px;
-}
-
-.bubbleChart svg {
-    background: #000;
-    /* opacity: 1; */
-    margin-top: 0;
-}
 /*myjobs*/
 .fa-heart{color:#d43f3a;}
 .hired{    position: absolute;

@@ -17,37 +17,13 @@
 
         <h3 class="skillsTitleM">Skills</h3>
 
-        <div class="bubbleChart"></div>
+        <div id="requirements-skills-bar">
 
-        <div class="langsMatch"></div>
+            <!-- End Skill Bar -->
 
-        <div class="slidersAndTooltips">
-            <section class="formulaSliders">
-                <div ng-repeat="(key, value) in formula">
-                    <div ng-if="key != 'requirements'" class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
-                             aria-valuemax="100" style="width:{{value}}%">{{key}} {{value}} %
-                        </div>
-                    </div>
-                    <div ng-if="key == 'requirements'" class="progress">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0"
-                             aria-valuemax="100" style="width:{{value.grade}}%">{{key}} {{value.grade}} %
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div class="AlltootipInfo">
-                <div class="tootipInfo" ng-repeat="(key, value) in tootipInfo">
-                    <a href="#" bs-tooltip data-toggle="tooltip" title="{{value}}"><i class="fa fa-info-circle"
-                                                                                      aria-hidden="true"></i></a>
-                </div>
-            </div>
         </div>
-        <a ng-click="fixCV()" class="btn btn-default">Fix CV</a>
-        <a href="" ng-if="sendcv" class="btn btn-default" ng-click="sendCV()">Send
-            CV</a>
+
     </div>
-</div>
 
 </div>
 

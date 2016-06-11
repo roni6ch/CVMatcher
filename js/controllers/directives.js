@@ -101,3 +101,10 @@ app.directive('bsTooltip', function () {
 });
 
 
+app.directive('myRepeatDirective', function() {
+    return function(scope, element, attrs) {
+        if (scope.$last){
+            skillsBar();
+        }
+    };
+})
