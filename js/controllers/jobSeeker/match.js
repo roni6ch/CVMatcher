@@ -42,7 +42,7 @@ app
                                 .then(function (data) {
                                         $(".matchResult").show();
                                         //navigation in site
-                                        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a><span> > </span><a href='#/searchJobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
+                                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search_jobs'>Search Jobs</a><span> > </span><a href='#/search_jobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
 
                                         if (data.data.formula !== undefined) {
                                             console.log(data.data);
@@ -130,8 +130,8 @@ app
             //fix cv - go to profile and come back!
             $scope.fixCV = function () {
                 localStorage.setItem('fixCV', $jobId);
-                $location.path('/Profile');
-            };
+                $location.path('/profile');
+            }
             //send cv to employer
             $scope.sendCV = function () {
                 $http({
@@ -160,7 +160,7 @@ app
             $scope.exitStatus = function () {
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 $timeout(function () {
-                    location.replace("#/searchJobs");
+                    location.replace("#/search_jobs");
                 }, 1000);
             };
         });

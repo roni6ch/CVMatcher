@@ -36,13 +36,13 @@
                 <div class="candidates animated fadeInUp">
 
                     <div><a
-                            href="#/Unread/{{jobId}}/resume/{{candidate._id}}"><img
+                            href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logo.png"></a>
                         <h5>{{candidate.sub_sector[0]}}</h5>
                     </div>
                     <div>
 
-                        <a ng-if="tab == 0" href="#/Unread/{{jobId}}/resume/{{candidate._id}}">
+                        <a ng-if="tab == 0" href="#/unread/{{jobId}}/resume/{{candidate._id}}">
                             <h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3>
 
                             <p
@@ -70,7 +70,7 @@
 
                     <div><i id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
-                            href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
+                            href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a><a href=""
                                                                 ng-click='hire(candidate._id,candidate.user._id)'><img
                             src="./images/handshake1.png"></a>
@@ -79,7 +79,7 @@
                     </div>
                     <div>
 
-                        <a ng-if="tab == 1" href="#/Like/Candidates/{{jobId}}/resume/{{candidate._id}}">
+                        <a ng-if="tab == 1" href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}">
                             <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
 
                             <p
@@ -105,7 +105,7 @@
                     <div><i id="candidateLike-{{candidate._id}}"
                             class='fa fa-thumbs-o-up fa-2x unlike'
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
-                            href="#/UnLike/Candidates/{{jobId}}/resume/{{candidate._id}}"><img
+                            href="#/unlike/candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a>
 
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
@@ -113,7 +113,7 @@
                     </div>
                     <div>
 
-                        <a ng-if="tab == 2" href="#/UnLike/Candidates/{{jobId}}/resume/{{candidate._id}}">
+                        <a ng-if="tab == 2" href="#/unlike/candidates/{{jobId}}/resume/{{candidate._id}}">
                             <h3>{{candidate.user["first_name"]}} {{candidate.user["last_name"]}}</h3>
 
                             <p
@@ -139,7 +139,7 @@
 
                     <div>
 
-                        <a href="#/hired/Candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
+                        <a href="#/hired/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
                     </div>
                     <div>

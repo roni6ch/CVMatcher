@@ -15,24 +15,26 @@ app.config(function ($routeProvider) {
 
                         $rootScope.userSignInType = '';
                         if (localStorage.getItem("user_id") !== null) {
-                            $location.path('/usersLogin');
+                            $location.path('/login');
                         }
                     }
                 }
-            }).when('/usersLogin', {
+            }).when('/login', {
             templateUrl: 'usersLogin.html',
             controller: 'usersLoginController',
             resolve: {
                 resolvedVal: function ($rootScope) {
-                    var checkPopOverOpenOrClose = $('#profilePicture').attr('aria-describedby');
-                    if (checkPopOverOpenOrClose)
-                        $('#profilePicture').popover('hide');
-
+                    //don't use here in checkProfile function - different Path!
                     if (localStorage.getItem("profile")) {
                         $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
                         $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
                         $rootScope.content = "<a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
                     }
+
+                    var checkPopOverOpenOrClose = $('#profilePicture').attr('aria-describedby');
+                    if (checkPopOverOpenOrClose)
+                        $('#profilePicture').popover('hide');
+
                     $rootScope.userSignInType = '';
                 }
             }
@@ -41,163 +43,157 @@ app.config(function ($routeProvider) {
             controller: 'myjobsController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
-                    if (localStorage.getItem("profile")) {
-                        $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
-                        $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
-                        $rootScope.content = "<a href='#/" + $rootScope.Profile + "'>Company Profile</a><a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
-                    }
-                    $(".navBarImg").removeClass('hidden');
-                    return changeLocation($location, '#/companyProfile', "employer");
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/Candidates/:_id', {
+        }).when('/candidates/:_id', {
             templateUrl: 'employer/candidates.html',
             controller: 'candidatesController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/Archive/Candidates/:_id', {
+        }).when('/archive/candidates/:_id', {
             templateUrl: 'employer/candidates.html',
             controller: 'candidatesController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/Like/Candidates/:id/resume/:_id', {
+        }).when('/like/candidates/:id/resume/:_id', {
             templateUrl: 'employer/resume.html',
             controller: 'resumeController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/hired/Candidates/:id/resume/:_id', {
+        }).when('/hired/candidates/:id/resume/:_id', {
             templateUrl: 'employer/resume.html',
             controller: 'resumeController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/UnLike/Candidates/:id/resume/:_id', {
+        }).when('/unlike/candidates/:id/resume/:_id', {
             templateUrl: 'employer/resume.html',
             controller: 'resumeController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/Unread/:id/resume/:_id', {
+        }).when('/unread/:id/resume/:_id', {
             templateUrl: 'employer/resume.html',
             controller: 'resumeController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/Archive', {
-            templateUrl: 'employer/archive.html',
+        }).when('/archive', {
+            templateUrl: 'employer/myjobs.html',
             controller: 'myjobsController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
         }).when('/job/:_id', {
             templateUrl: 'employer/job.html',
             controller: 'jobController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/companyProfile', "employer");
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/companyProfile', {
+        }).when('/company_profile', {
             templateUrl: 'employer/companyProfile.html',
             controller: 'companyProfileController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
-
-
-                    if (localStorage.getItem("profile")) {
-                        $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
-                        $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
-                        $rootScope.content = "<a href='#/" + $rootScope.Profile + "'>Company Profile</a><a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
-                    }
-                    return changeLocation($location, '#/companyProfile', "employer");
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company_profile', "employer");
                 }
             }
-        }).when('/newJob', {
+        }).when('/new_job', {
                 templateUrl: 'employer/job.html',
                 controller: 'jobController',
                 resolve: {
-                    resolvedVal: function ($location) {
-                        return changeLocation($location, '#/companyProfile', "employer");
+                    resolvedVal: function ($location, $rootScope) {
+                        checkProfile($rootScope, 'Company Profile');
+                        return changeLocation($location, '#/company_profile', "employer");
                     }
                 }
             })
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////// job seeker///////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            .when('/searchJobs', {
-                templateUrl: 'job_seeker/searchJobs.html',
+            .when('/search_jobs', {
+                templateUrl: 'job_seeker/search_jobs.html',
                 controller: 'jobSeekerSearchJobsController',
                 resolve: {
                     resolvedVal: function ($location, $rootScope) {
-                        if (localStorage.getItem("profile")) {
-                            $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
-                            $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
-                            $rootScope.content = "<a href='#/" + $rootScope.Profile + "'>Profile</a><a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
-                        }
-                        $(".navBarImg").removeClass('hidden');
-                        return changeLocation($location, '#/Profile', 'jobSeeker');
+                        checkProfile($rootScope, 'Profile');
+                        return changeLocation($location, '#/profile', 'jobSeeker');
                     }
                 }
             }).when('/yourjobs', {
             templateUrl: 'job_seeker/yourjobs.html',
             controller: 'yourjobSeekerController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile', 'jobSeeker');
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Profile');
+                    return changeLocation($location, '#/profile', 'jobSeeker');
                 }
             }
         }).when('/deleted', {
             templateUrl: 'job_seeker/yourjobs.html',
             controller: 'yourjobSeekerController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile', 'jobSeeker');
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Profile');
+                    return changeLocation($location, '#/profile', 'jobSeeker');
                 }
             }
-        }).when('/searchJobs/:_id/matchpage', {
+        }).when('/search_jobs/:_id/matchpage', {
             templateUrl: 'job_seeker/matchpage.html',
             controller: 'matchpageController',
             resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, '#/Profile', 'jobSeeker');
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Profile');
+                    return changeLocation($location, '#/profile', 'jobSeeker');
                 }
             }
-        }).when('/Profile', {
+        }).when('/profile', {
             templateUrl: 'job_seeker/profile.html',
             controller: 'seekerProfileControler',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
-                    if (localStorage.getItem("profile")) {
-                        $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
-                        $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
-                        $rootScope.content = "<a href='#/" + $rootScope.Profile + "'>Profile</a><a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
-                    }
-                    return changeLocation($location, '#/Profile', 'jobSeeker');
+                    checkProfile($rootScope, 'Profile');
+                    return changeLocation($location, '#/profile', 'jobSeeker');
                 }
             }
-        }).when('/Favorites', {
+        }).when('/favorites', {
                 templateUrl: 'job_seeker/yourjobs.html',
                 controller: 'yourjobSeekerController',
                 resolve: {
-                    resolvedVal: function ($location,$rootScope) {
-                        return changeLocation($location, '#/Profile', 'jobSeeker');
+                    resolvedVal: function ($location, $rootScope) {
+
+                        checkProfile($rootScope, 'Profile');
+                        return changeLocation($location, '#/profile', 'jobSeeker');
                     }
                 }
             })
@@ -221,6 +217,8 @@ app.config(function ($routeProvider) {
         })
     })
     .run(function ($rootScope) {
+
+
         if (localStorage.getItem("userSignInType")) {
             $rootScope.userSignInType = localStorage.getItem("userSignInType");
         }
@@ -258,6 +256,35 @@ var socket;
 var url;
 var user_id;
 
+
+//resolve function to make initializion before controllers
+function changeLocation(location, profilePath, userSignInType) {
+    $(".navBarImg").removeClass('hidden');
+    var checkPopOverOpenOrClose = $('#profilePicture').attr('aria-describedby');
+    if (checkPopOverOpenOrClose)
+        $('#profilePicture').popover('hide');
+    localStorage.setItem("userSignInType", userSignInType);
+    //noinspection JSValidateTypes
+    angular.element("#profileImg").parent().attr("href", profilePath);
+    //noinspection JSValidateTypes
+    angular.element("#profileImg").parent().show();
+    if (localStorage.getItem("user_id") === null) {
+        console.log("no user id - changeLocation function at site.js");
+        location.path('/');
+    }
+}
+function checkProfile($rootScope, str) {
+    if (localStorage.getItem("profile")) {
+        $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
+        $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
+        var location = $rootScope.Profile;
+        if ($rootScope.Profile == 'companyProfile')
+            location = 'company_profile';
+        else
+            location = 'profile';
+        $rootScope.content = "<a href='#/" + location + "'>" + str + "</a><a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
+    }
+}
 // initialize messageResource.js with settings
 messageResource.init({
     // path to directory containing message resource files(.properties files),
@@ -267,7 +294,7 @@ messageResource.init({
 });
 
 var resourcesCallback = function () {
-   // console.log("resources.properties loaded");
+    // console.log("resources.properties loaded");
 };
 
 messageResource.load('resources', resourcesCallback);
@@ -275,9 +302,9 @@ messageResource.load('resources', resourcesCallback);
 $(document).ready(function () {
     $("[data-toggle = 'popover']").popover();
     //click event outside profile picture.
-    $('html:not(".navbar")').click(function (e) {
-        if (e.target.id != 'profileImg') {
-            $('[data-popover]').popover('hide');
+    $('html:not("#profilePicture")').click(function (e) {
+        if (e.target.id != 'profilePicture') {
+            $('#profilePicture').popover('hide');
         }
     });
 
@@ -292,21 +319,6 @@ $(document).ready(function () {
 
 });
 
-//resolve function to make initializion before controllers
-function changeLocation(location, profilePath, userSignInType) {
-    var checkPopOverOpenOrClose = $('#profilePicture').attr('aria-describedby');
-    if (checkPopOverOpenOrClose)
-        $('#profilePicture').popover('hide');
-    localStorage.setItem("userSignInType", userSignInType);
-    //noinspection JSValidateTypes
-    angular.element("#profileImg").parent().attr("href", profilePath);
-    //noinspection JSValidateTypes
-    angular.element("#profileImg").parent().show();
-    if (localStorage.getItem("user_id") === null) {
-        console.log("no user id - changeLocation function at site.js");
-        location.path('/');
-    }
-}
 
 //push woosh notification!
 window.onload = function () {
@@ -374,7 +386,7 @@ function notifyMe(type, jobName) {
         });
 
         notification.onclick = function () {
-            window.open("#/searchJobs");
+            window.open("#/search_jobs");
         };
 
     } else Notification.requestPermission();
@@ -391,4 +403,6 @@ function skillsBar() {
 }
 
 
+/* SHORTCUT URL */
+var myjobs =  messageResource.get("myjobs", 'resources');
 

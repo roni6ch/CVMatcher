@@ -9,7 +9,7 @@ app.controller('candidatesController',
     function ($scope, $http, $location, $sce, $rootScope) {
         var stars = 0;
         $id = $location.path().split('/');
-
+var candidates = [];
         //init function to bring all the unread cv's
         $scope.unreadCvs = function () {
             $scope.jobId = $id[2];
@@ -24,12 +24,20 @@ app.controller('candidatesController',
                 }
             })
                 .then(function (data) {
-                        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a>";
+
+                        candidates = [];
+                        localStorage.setItem("candidates",candidates);
+                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a>";
                         $scope.candidates = data.data;
                         $rootScope.unreadCandidates = data.data;
                         console.log(data.data);
-
                         angular.element(".fa-pulse").hide();
+
+                        $.each(data.data, function (k, v) {
+                            candidates.push(v._id);
+                            localStorage.setItem("candidates",candidates);
+                        });
+
                     },
                     function (response) { // optional
                         console.log("unreadCvs AJAX failed!");
@@ -38,6 +46,9 @@ app.controller('candidatesController',
         };
         //bring all the like cv's
         $scope.likedCvs = function () {
+
+            candidates = [];
+            localStorage.setItem("candidates",candidates);
             $scope.likeCandidates = '';
 
             angular.element(".fa-pulse").show();
@@ -55,6 +66,11 @@ app.controller('candidatesController',
                         $scope.likeCandidates = data.data;
                         console.log(data.data);
                         angular.element(".fa-pulse").hide();
+                        $.each(data.data, function (k, v) {
+                            candidates.push(v._id);
+                            localStorage.setItem("candidates",candidates);
+                        });
+
                     },
                     function (response) { // optional
                         console.log("likedCvs AJAX failed!");
@@ -64,6 +80,8 @@ app.controller('candidatesController',
         };
         //bring all the unlike cv's
         $scope.unlikeCvs = function () {
+            candidates = [];
+            localStorage.setItem("candidates",candidates);
             angular.element(".fa-pulse").show();
             $scope.unlikeCandidates = '';
             $http({
@@ -80,6 +98,11 @@ app.controller('candidatesController',
                         $scope.unlikeCandidates = data.data;
                         console.log(data.data);
                         angular.element(".fa-pulse").hide();
+                        $.each(data.data, function (k, v) {
+                            candidates.push(v._id);
+                            localStorage.setItem("candidates",candidates);
+
+                        });
                     },
                     function (response) { // optional
                         console.log("unlikeCvs AJAX failed!");
@@ -88,6 +111,8 @@ app.controller('candidatesController',
         };
         //bring all the hired cv's
         $scope.Hired = function () {
+            candidates = [];
+            localStorage.setItem("candidates",candidates);
             angular.element(".fa-pulse").show();
             $scope.hiredCandidates = '';
             $http({
@@ -101,6 +126,10 @@ app.controller('candidatesController',
                     console.log(data.data);
                     $scope.hiredCandidates = data.data;
                     angular.element(".fa-pulse").hide();
+                    $.each(data.data, function (k, v) {
+                        candidates.push(v._id);
+                        localStorage.setItem("candidates",candidates);
+                    });
                 },
                 function (response) { // optional
                     console.log("Hired AJAX failed!");

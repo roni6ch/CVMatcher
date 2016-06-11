@@ -31,7 +31,7 @@ app.controller('resumeController',
                 id = $id[4];
 
             // if i came from Unread page
-            if ($id[1] == "Unread") {
+            if ($id[1] == "unread") {
                 $("#candidateUnLike").show();
                 $("#candidateLike").show();
                 //noinspection JSDuplicatedDeclaration
@@ -48,7 +48,7 @@ app.controller('resumeController',
                     $("#candidateLike").click();
                 });
             }
-            if ($id[1] == "Candidates") {
+            if ($id[1] == "candidates") {
                 $("#candidateUnLike").show();
                 $("#candidateLike").show();
                 users = document.getElementById('users');
@@ -89,11 +89,11 @@ app.controller('resumeController',
                         $("#users").show();
                         var navigation;
                         if ($id[1] == "hired")
-                            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>Hired " + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
-                        else if ($id[1] == "Unread")
-                            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/candidates/" + $id[3] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/unread/" + $id[2] + "/resume/" + id + "'>Hired " + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                        else if ($id[1] == "unread")
+                            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
                         else
-                            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[3] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/Unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
+                            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/candidates/" + $id[3] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a><span> > </span><a href='#/unread/" + $id[2] + "/resume/" + id + "'>" + data.data[0].user.first_name + " " + data.data[0].user.last_name + " Resume</a>"
 
                         $(".navigation")[0].innerHTML = navigation;
                         $scope.user = data.data[0];
@@ -102,7 +102,7 @@ app.controller('resumeController',
                         angular.element(".fa-pulse").hide();
 
                         $scope.user["stars"] = 0;
-                        if ($id[1] == "Unread") {
+                        if ($id[1] == "unread") {
                             $scope.user["stars"] = 0;
                             sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"));
                             $http({
@@ -174,7 +174,7 @@ app.controller('resumeController',
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
 
-            if ($id[1] == 'Unread')
+            if ($id[1] == 'unread')
                 sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle"));
             else
                 sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
@@ -241,17 +241,20 @@ app.controller('resumeController',
             }
 
             var url;
-            if ($id[1] == 'Like') {
-                candidates = $rootScope.likeCandidates;
+            if ($id[1] == 'like') {
+              //  candidates = $rootScope.likeCandidates;
+                candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
-            else if ($id[1] == 'UnLike') {
-                candidates = $rootScope.unlikeCandidates;
+            else if ($id[1] == 'unlike') {
+               // candidates = $rootScope.unlikeCandidates;
+                candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
             else {
                 //i came from UnreadCVS
-                candidates = $rootScope.unreadCandidates;
+              // candidates = $rootScope.unreadCandidates;
+                candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/rateCV';
             }
 
@@ -272,17 +275,17 @@ app.controller('resumeController',
             });
 
             var nextCandidate = null;
+            candidates = candidates.split(",");
+
             if (candidates.length > 0) {
-                angular.forEach(candidates, function (value, key) {
-                    if (value._id == candidateId) {
-                        candidates = candidates.splice (key, 1);
-                    }
-                    else {
-                        nextCandidate = value._id;
-                        return;
-                    }
-                })
+                var index = candidates.indexOf(candidateId);
+                candidates.splice(index, 1);
+                localStorage.setItem("candidates",candidates);
             }
+            if (candidates.length > 0) {
+                nextCandidate = candidates[0];
+            }
+
 
             console.log("nextCandidate: ", nextCandidate);
             //bring next candidate
@@ -302,7 +305,7 @@ app.controller('resumeController',
                 })
                     .then(function (data) {
                         $scope.user = data.data[0];
-                        if ($id[1] == "Unread") {
+                        if ($id[1] == "unread") {
                             $scope.user["stars"] = 0;
                         }
 

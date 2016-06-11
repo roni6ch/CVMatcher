@@ -16,7 +16,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     $scope.init = function(){
 
         $rootScope.userSignInType = 'employer';
-        angular.element("#logo").attr("href", '#/usersLogin');
+        angular.element("#logo").attr("href", '#/login');
         $scope.company = company;
 
         $('#popoverData').popover();
@@ -24,12 +24,14 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         if ($id[1] == 'myjobs') {
             archive = false;
             $scope.jobPage = "myJobs";
-            $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a>";
+            $scope.pageTitle = 'My Jobs';
+            $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a>";
         }
         else {
             archive = true;
-            $scope.jobPage = "Archive";
-            var navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Archive'>Deleted</a>";
+            $scope.jobPage = "archive";
+            $scope.pageTitle = 'Deleted';
+            var navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/archive'>Deleted</a>";
             $(".navigation")[0].innerHTML = navigation;
         }
 
@@ -74,14 +76,14 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         }).then(function (data) {
             angular.element("#profileImg").parent().show();
             if (typeof data.data[0].company == 'undefined') {
-                $scope.popoverData = 'companyProfile';
+                $scope.popoverData = 'company_profile';
                 $scope.popOverDataContent = 'Please Update Your Profile First!';
                 $("#popoverData").css("text-decoration", "line-through");
             }
             else {
                 $(".newJob").css("pointer-events", "auto");
                 $("#popoverData").css("text-decoration", "none");
-                $scope.popoverData = 'newJob';
+                $scope.popoverData = 'new_job';
                 $scope.popOverDataContent = 'Add new Job to System';
             }
 

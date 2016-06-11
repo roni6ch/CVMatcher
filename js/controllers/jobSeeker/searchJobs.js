@@ -10,9 +10,9 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     //initialize parameters for controller
     $scope.init = function () {
         $rootScope.userSignInType = 'jobSeeker';
-        angular.element("#logo").attr("href", '#/usersLogin');
+        angular.element("#logo").attr("href", '#/login');
         //navigation in site
-        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/searchJobs'>Search Jobs</a>";
+        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search_jobs'>Search Jobs</a>";
 
         //TODO: OPEN SOCKET!
         socket.onmessage = function (msg) {

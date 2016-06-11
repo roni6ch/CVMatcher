@@ -49,9 +49,9 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
     }
     //check what page im located and bring the right json
     $scope.getMainJson = function () {
-        if (path == 'Favorites') {
+        if (path == 'favorites') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
-            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>";
+            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/favorites'>Favorites Jobs</a>";
             $scope.title = "Favorites Jobs";
             $scope.page = 'favorites';
             data = {
@@ -63,7 +63,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getMyJobs';
             $scope.title = "My Jobs";
             $scope.page = 'myjobs';
-            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>";
+            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/yourjobs'>My Jobs</a>";
             data = {
                 "user_id": localStorage.getItem("user_id"),
                 "active": true
@@ -77,7 +77,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                 "user_id": localStorage.getItem("user_id"),
                 "active": false
             };
-            navigation = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/deleted'>Deleted Jobs</a>";
+            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/deleted'>Deleted Jobs</a>";
         }
         $http({
             url: url,
@@ -152,7 +152,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
             }
         })
             .then(function () {
-                    if (path == 'Favorites') {
+                    if (path == 'favorites') {
                         var jobsArr = $scope.jobSeekerJobs;
                         jobsArr = jobsArr.filter(function (obj) {
                             return obj._id !== id;
