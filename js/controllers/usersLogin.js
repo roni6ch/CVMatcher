@@ -89,7 +89,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
     //set user type and bring correct ajax
     $scope.userType = function (type) {
         if (type == 'employer') {
-            localStorage.setItem("profile", "#/companyProfile");
+            localStorage.setItem("profile", "#/company_profile");
             localStorage.setItem("userSignInType", 'employer');
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -99,7 +99,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                 }
             }).then(function (data) {
                 if (typeof data.data[0].company == 'undefined') {
-                    location.replace("#/companyProfile");
+                    location.replace("#/company_profile");
                 }
                 else {
                     location.replace("#/myjobs");
@@ -110,7 +110,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
         }
         else if (type == 'jobSeeker') {
             localStorage.setItem("userSignInType", 'jobSeeker');
-            localStorage.setItem("profile", "#/Profile");
+            localStorage.setItem("profile", "#/profile");
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
                 method: "POST",
@@ -119,10 +119,10 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                 }
             }).then(function (data) {
                 if (typeof data.data[0]['current_cv'] == 'undefined') {
-                    location.replace("#/Profile");
+                    location.replace("#/profile");
                 }
                 else {
-                    location.replace("#/searchJobs");
+                    location.replace("#/search_jobs");
                 }
             });
 

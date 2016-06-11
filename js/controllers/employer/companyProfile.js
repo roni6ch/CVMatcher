@@ -9,7 +9,7 @@ var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
 
-        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/companyProfile'>Company Profile</a>";
+        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/company_profile'>Company Profile</a>";
         var companyId,tabType = '',logo = '';
         $("#geocomplete").geocomplete();
         $("#geocomplete2").geocomplete();

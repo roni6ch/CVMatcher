@@ -11,11 +11,11 @@ app
         function ($scope, $http, $rootScope) {
             angular.element(".fa-pulse").hide();
             //noinspection JSValidateTypes
-            angular.element("#profileImg").parent().attr("href", '#/Profile');
+            angular.element("#profileImg").parent().attr("href", '#/profile');
             if (localStorage.getItem("userSignInType"))
                 $rootScope.userSignInType = localStorage.getItem("userSignInType");
 
-            $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Favorites'>Favorites Jobs</a>";
+            $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/favorites'>Favorites Jobs</a>";
 
             $http({
                 url: 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs',

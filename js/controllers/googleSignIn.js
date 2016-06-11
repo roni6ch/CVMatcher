@@ -96,7 +96,7 @@ helper = (function () {
                 };
                 if (localStorage.getItem('user') == null) {
                     console.log("user first time");
-                    location.replace("#/usersLogin");
+                    location.replace("#/login");
                 }
                 localStorage.setItem('user', JSON.stringify(user));
                 $("#profileImg").attr("src", $.parseJSON(localStorage.getItem('user')).image);

@@ -25,7 +25,7 @@ app
                 $("[rel='popover']").popover({trigger: "hover", container: "body"});
 
                 //navigation in site
-                $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/Profile'>Profile</a>";
+                $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/profile'>Profile</a>";
 
                 //TODO: OPEN SOCKET!
                 socket.onmessage = function (msg) {
@@ -567,7 +567,7 @@ app
                     localStorage.removeItem('fixCV');
                     $('#myModal ').modal('hide');
                     $timeout(function () {
-                        $location.url('/searchJobs/' + jobid + '/matchpage');
+                        $location.url('/search_jobs/' + jobid + '/matchpage');
                     }, 1000);
                     return;
                 }
@@ -576,7 +576,7 @@ app
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 if (closeModal == true)
                     $timeout(function () {
-                        location.replace("#/searchJobs");
+                        location.replace("#/search_jobs");
                     }, 1000);
             };
 

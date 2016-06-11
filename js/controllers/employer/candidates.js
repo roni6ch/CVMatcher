@@ -24,7 +24,7 @@ app.controller('candidatesController',
                 }
             })
                 .then(function (data) {
-                        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/Candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a>";
+                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a>";
                         $scope.candidates = data.data;
                         $rootScope.unreadCandidates = data.data;
                         console.log(data.data);

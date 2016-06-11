@@ -60,7 +60,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     }
                 })
                     .then(function (data) {
-                        $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>";
+                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>";
 
                         $scope.jobDetails = data.data[0];
                         $scope.mustReqiurment = data.data[0].original_text['requirements'].split('|||')[0];
@@ -220,7 +220,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
                 url = 'https://cvmatcher.herokuapp.com/addMatchingObject';
-                $(".navigation")[0].innerHTML = "<a href='#/usersLogin'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/newJob'>New Job</a>";
+                $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/new_job'>New Job</a>";
 
                 editJob = true;
                 angular.element(".fa-pulse").hide();
@@ -276,11 +276,11 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             angular.element(".experienceBeforeParse").show();
         };
         // Limit items to be dropped in list1
-        $scope.optionsList3 = {
+        /*$scope.optionsList3 = {
             accept: function () {
                 return $scope.list3.length < 2;
             }
-        };
+        };*/
         //EXIT MODAL BUTTON
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
@@ -438,6 +438,9 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 })
             });
 
+
+
+
             //newKeyWords
             var difference = [];
 
@@ -446,6 +449,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             });
 
             console.log(difference);
+            if (difference.length > 0)
             $http({
                 url: "https://cvmatcher.herokuapp.com/addKeyWords",
                 method: "POST",
@@ -464,7 +468,10 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
             $scope.status = 'Please wait';
-            if (sumSliders == 100 && totalPriorotySum == 100) {
+
+            if (sumSliders == 100 && $rootScope.list1.length > 0 && totalPriorotySum == 100 && $rootScope.list3.length != 1 || sumSliders == 100 && $rootScope.list1.length == 0 && $rootScope.list3.length != 1) {
+
+                console.log(requirements);
                 var academy = [];
                 //scope_of_position
                 $.each($(".academy input:checked"), function () {
@@ -605,12 +612,16 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             console.log(response);
                         });
             }
+            if ($rootScope.list3.length == 1){
+                $('#sendJob').modal('show');
+                $scope.status = "OR section must be different then 1 language";
+            }
             if (sumSliders != 100) {
 
                 $('#sendJob').modal('show');
                 $scope.status = "Please SUM the sliders to 100";
             }
-            if (totalPriorotySum != 100) {
+            if (totalPriorotySum != 100 && $rootScope.list1.length > 0) {
                 $('#sendJob').modal('show');
                 $scope.status = "Please SUM Prioroty to 100";
             }
@@ -619,7 +630,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.addDynamicCombination = function () {
             combinationLengthAfterEdit++;
             $(".fa-arrow-right").hide();
-            if (totalPriorotySum == 100 && $rootScope.list1.length > 0) {
+            if (totalPriorotySum == 100 &&  $rootScope.list3.length != 1) {
                 nextCombinationKey++;
                 combinationsLength++;
                 $(".fa-arrow-left").show();
@@ -657,9 +668,19 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 $('#sendJob').modal('show');
                 $scope.status = "Please SUM Prioroty to 100";
             }
+            else if($rootScope.list3.length == 1){
+                $('#sendJob').modal('show');
+                $scope.status = "OR section must be different then 1 language";
+            }
         };
         //BRING NEXT COMBINATION
         $scope.nextCombination = function (val) {
+            if ($rootScope.list3.length == 1){
+                $('#sendJob').modal('show');
+                $scope.status = "OR section must be different then 1 language";
+                return;
+            }
+
             if (totalPriorotySum != 100) {
                 $('#sendJob').modal('show');
                 $scope.status = "Please sum Must Prioroty to 100";

@@ -41,7 +41,7 @@
             <div class="form-group geocomplete">
                 <label>Location:</label>
 
-                <div ng-repeat="location in jobDetails.locations"><input class="form-control" ng-model="location"
+                <div ng-repeat="location in jobDetails.locations track by $index"><input class="form-control" ng-model="location"
                                                                          id="geocomplete{{$index}}"
                                                                          required
                                                                          type="text"
