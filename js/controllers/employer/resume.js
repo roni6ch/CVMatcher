@@ -242,16 +242,19 @@ app.controller('resumeController',
 
             var url;
             if ($id[1] == 'like') {
-                candidates = $rootScope.likeCandidates;
+              //  candidates = $rootScope.likeCandidates;
+                candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
             else if ($id[1] == 'unlike') {
-                candidates = $rootScope.unlikeCandidates;
+               // candidates = $rootScope.unlikeCandidates;
+                candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
             else {
                 //i came from UnreadCVS
-                candidates = $rootScope.unreadCandidates;
+              // candidates = $rootScope.unreadCandidates;
+                candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/rateCV';
             }
 
@@ -272,17 +275,17 @@ app.controller('resumeController',
             });
 
             var nextCandidate = null;
+            candidates = candidates.split(",");
+
             if (candidates.length > 0) {
-                angular.forEach(candidates, function (value, key) {
-                    if (value._id == candidateId) {
-                        candidates = candidates.splice (key, 1);
-                    }
-                    else {
-                        nextCandidate = value._id;
-                        return;
-                    }
-                })
+                var index = candidates.indexOf(candidateId);
+                candidates.splice(index, 1);
+                localStorage.setItem("candidates",candidates);
             }
+            if (candidates.length > 0) {
+                nextCandidate = candidates[0];
+            }
+
 
             console.log("nextCandidate: ", nextCandidate);
             //bring next candidate

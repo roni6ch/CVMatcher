@@ -476,3 +476,7 @@ function bubbels() {
 }
 
 
+
+/* SHORTCUT URL */
+var myjobs =  messageResource.get("myjobs", 'resources');
+
