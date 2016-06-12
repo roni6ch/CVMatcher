@@ -35,8 +35,7 @@
                     ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp">
 
-                    <div><a ng-if="jobPage != 'archive'" href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logo.png"></a>
-                        <a ng-if="jobPage == 'archive'" href="#/archive/unread/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logo.png"></a>
+                    <div><a ng-click="checkIfArchivePage()" href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logo.png"></a>
                         <h5>{{candidate.sub_sector[0]}}</h5>
                     </div>
                     <div>
@@ -69,8 +68,7 @@
 
                     <div><i id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i>
-                            <a ng-if="jobPage != 'archive'" href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}">
-                            <a ng-if="jobPage == 'archive'" href="#/archive/like/candidates/{{jobId}}/resume/{{candidate._id}}">
+                            <a ng-click="checkIfArchivePage()" href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}">
 
 
                             <img
@@ -108,6 +106,7 @@
                     <div><i id="candidateLike-{{candidate._id}}"
                             class='fa fa-thumbs-o-up fa-2x unlike'
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
+                            ng-click="checkIfArchivePage()"
                             href="#/unlike/candidates/{{jobId}}/resume/{{candidate._id}}"><img
                             src="./images/logoSmall.png"></a>
 
@@ -142,7 +141,7 @@
 
                     <div>
 
-                        <a href="#/hired/candidates/{{jobId}}/resume/{{candidate._id}}"><img
+                        <a ng-click="checkIfArchivePage()" href="#/hired/candidates/{{jobId}}/resume/{{candidate._id}}"><img
                                 src="./images/logoSmall.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
                     </div>

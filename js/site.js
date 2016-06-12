@@ -218,7 +218,6 @@ app.config(function ($routeProvider) {
     })
     .run(function ($rootScope) {
 
-
         if (localStorage.getItem("userSignInType")) {
             $rootScope.userSignInType = localStorage.getItem("userSignInType");
         }

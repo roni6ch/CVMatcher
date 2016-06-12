@@ -71,6 +71,13 @@ app.controller('resumeController',
                 });
             }
 
+            if (localStorage.getItem('archive') == 'true'){
+                $scope.archivePage = true;
+            }
+            else{
+                $scope.archivePage = false;
+            }
+
 
             if ($id[1] == "hired") {
                 $scope.hiredPage = true;

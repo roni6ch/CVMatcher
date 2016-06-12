@@ -144,6 +144,13 @@ var candidates = [];
                     console.log(response);
                 });
         };
+        $scope.checkIfArchivePage = function(){
+            console.log($id[1]);
+            if ($id[1] == 'archive')
+                localStorage.setItem('archive','true');
+            else
+                localStorage.setItem('archive','false');
+        }
         //sort by user type
         $scope.sort = function (sort) {
             $scope.sortby = sort;
