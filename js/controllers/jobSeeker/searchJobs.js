@@ -80,10 +80,12 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     //accordion collepse arrow
     $scope.collepse = function (id) {
         if ($("#collepse-" + id).hasClass("in")) {
-            $("#collepse-" + id).parent().find(".arrow-down").fadeIn();
+            $("#collepse-" + id).parent().find(".arrow-down").show();
+            $("#collepse-" + id).parent().find(".arrow-up").hide();
         }
         else {
-            $("#collepse-" + id).parent().find(".arrow-down").fadeOut();
+            $("#collepse-" + id).parent().find(".arrow-up").show();
+            $("#collepse-" + id).parent().find(".arrow-down").hide();
         }
     };
 });

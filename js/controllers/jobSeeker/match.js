@@ -146,6 +146,7 @@ app
             }
             //send cv to employer
             $scope.sendCV = function () {
+                $(".fa-spinner").show();
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/addCvToJob',
                     method: "POST",
@@ -154,6 +155,8 @@ app
                         "cv_id": localStorage.getItem("current_cv")
                     }
                 }).then(function (data) {
+
+                        $(".fa-spinner").hide();
                         console.log(data);
                         if (data != null) {
                             $('#sendCVstatus').modal('show');

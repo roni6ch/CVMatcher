@@ -12,6 +12,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
     //initialize for this controller
     $scope.init = function () {
+        $(".fa-spinner").hide();
         $rootScope.userSignInType = 'usersLogin';
         //noinspection JSValidateTypes
         angular.element("#profileImg").parent().attr("href", '#/');
@@ -88,6 +89,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
     }
     //set user type and bring correct ajax
     $scope.userType = function (type) {
+        $(".fa-spinner").show();
         if (type == 'employer') {
             localStorage.setItem("profile", "#/company-profile");
             localStorage.setItem("userSignInType", 'employer');
@@ -98,6 +100,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                     "user_id": localStorage.getItem('user_id')
                 }
             }).then(function (data) {
+                $(".fa-spinner").hide();
                 if (typeof data.data[0].company == 'undefined') {
                     location.replace("#/company-profile");
                 }
@@ -109,6 +112,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
 
         }
         else if (type == 'jobSeeker') {
+            $(".fa-spinner").hide();
             localStorage.setItem("userSignInType", 'jobSeeker');
             localStorage.setItem("profile", "#/profile");
             $http({

@@ -217,6 +217,8 @@ footer div a {
     position: absolute;
     left: 50%;
     top: 50%;
+    color: #fff;
+    z-index: 1;
 }
 
 .fa-spin {
@@ -2088,7 +2090,6 @@ a:focus, a:hover {
     width: 100%;
     padding-left: 100px;
     font-size: 126%;
-    padding-bottom: 28px;
 }
 
 .jobsList article p {
@@ -2176,7 +2177,7 @@ a:focus, a:hover {
     left: -8px;
     font-size: larger;
 }
-.yourJobsWrapper .jobsList article {margin-top: -17px;padding-bottom: 54px;padding-top: 18px;}
+.yourJobsWrapper .jobsList article {margin-top: -17px;padding-top: 18px;}
 
 .readUnread {
     position: absolute;
