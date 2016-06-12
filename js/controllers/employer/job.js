@@ -521,7 +521,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     $scope.status = messageResource.get("modal.fill.location", 'resources');
                     return;
                 }
-                //TODO: SEND locations ARRAY IN LOCATION JOB AND NOT JOB AJAX
 
                 var job;
                 if ($id == 'job') {

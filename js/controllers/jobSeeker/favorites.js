@@ -38,10 +38,10 @@ app
                         console.log(response);
                     });
             //TODO: OPEN SOCKET!
-            /* socket.onmessage = function (msg) {
-             var message = JSON.parse(msg.data);
-             console.log(message);
-             notifyMe(message.notificationType, message.jobName);
-             }*/
+            socket.onmessage = function (msg) {
+                var message = JSON.parse(msg.data);
+                console.log(message);
+                notifyMe(message.notificationType, message.jobName);
+            }
 
         });

@@ -16,10 +16,10 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
         //TODO: OPEN SOCKET!
         socket.onmessage = function (msg) {
-         var message = JSON.parse(msg.data);
-         console.log(message);
-         notifyMe(message.notificationType, message.jobName);
-         }
+            var message = JSON.parse(msg.data);
+            console.log(message);
+            notifyMe(message.notificationType, message.jobName);
+        }
     };
     //get jobs that didnot send cv to them
     $scope.getMainJson = function () {

@@ -14,7 +14,7 @@ app.controller('resumeController',
         var candidates;
         var id;
         var users;
-
+var rateStars;
         var colorsArr = ["#106332", "#0F8742", "#58B647", "#1FB24A", "#1EAE6D", "#3DB98C", "#48C1C3",
             "#71CBD2", "#7BD0E5", "#AFE0E9", "#BFDEDF"];
 
@@ -71,10 +71,10 @@ app.controller('resumeController',
                 });
             }
 
-            if (localStorage.getItem('archive') == 'true'){
+            if (localStorage.getItem('archive') == 'true') {
                 $scope.archivePage = true;
             }
-            else{
+            else {
                 $scope.archivePage = false;
             }
 
@@ -134,19 +134,19 @@ app.controller('resumeController',
                                 });
                         }
 
-                    console.log("test", data.data[0].formula);
-                    if (data.data[0].formula !== undefined) {
+                        console.log("test", data.data[0].formula);
+                        if (data.data[0].formula !== undefined) {
 
 
-                        $(".resumeWrapper #formulasAppend").append(
-                            '<p>' + messageResource.get("jobseeker.formula", "resources") + '</p>' +
-                            '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " " + data.data[0].formula.candidate_type + '%</p>' +
-                            '<p>' + messageResource.get("jobseeker.formula.requirements", "resources") + " " + data.data[0].formula.matching_requirements.grade + '%</p>' +
-                            '<p>' + messageResource.get("jobseeker.formula.locations", "resources") + " " + data.data[0].formula.locations + '%</p>' +
-                            '<p>' + messageResource.get("jobseeker.formula.scope_of_position", "resources") + " " + data.data[0].formula.scope_of_position + '%</p>' +
-                            '<p>' + messageResource.get("jobseeker.formula.academy", "resources") + " " + data.data[0].formula.academy + '%</p>'
-                        );
-                    }
+                            $(".resumeWrapper #formulasAppend").append(
+                                '<p>' + messageResource.get("jobseeker.formula", "resources") + '</p>' +
+                                '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " " + data.data[0].formula.candidate_type + '%</p>' +
+                                '<p>' + messageResource.get("jobseeker.formula.requirements", "resources") + " " + data.data[0].formula.matching_requirements.grade + '%</p>' +
+                                '<p>' + messageResource.get("jobseeker.formula.locations", "resources") + " " + data.data[0].formula.locations + '%</p>' +
+                                '<p>' + messageResource.get("jobseeker.formula.scope_of_position", "resources") + " " + data.data[0].formula.scope_of_position + '%</p>' +
+                                '<p>' + messageResource.get("jobseeker.formula.academy", "resources") + " " + data.data[0].formula.academy + '%</p>'
+                            );
+                        }
 
                         if (data.data[0].predict_result !== 'undefined' && data.data[0].predict_result == true || data.data[0].predict_result == false) {
                             $("#predictAppend").show();
@@ -168,7 +168,7 @@ app.controller('resumeController',
                                         '</span><p class="skillbar-bar" style="background: ' + color + ';">' +
                                         '</p><span class="skill-bar-percent"></span></div>');
                                     colorIndex++;
-                                    if (colorIndex > colorsArr.length -1 ) {
+                                    if (colorIndex > colorsArr.length - 1) {
                                         colorIndex = 0;
                                     }
 
@@ -192,29 +192,11 @@ app.controller('resumeController',
                     });
         };
         //rate user stars
+
         $scope.rating = function (rateNumber) {
             $scope.user["stars"] = rateNumber;
+            rateStars = rateNumber;
 
-            if ($id[1] == 'unread')
-                sendNotification('like', $scope.user_id, $id[2], rateNumber, localStorage.getItem("jobTitle"));
-            else
-                sendNotification('like', $scope.user_id, $id[3], rateNumber, localStorage.getItem("jobTitle"));
-
-            $http({
-                url: 'https://cvmatcher.herokuapp.com/sendNotification',
-                method: "POST",
-                data: {
-                    "user_id": $scope.user_id,
-                    "message": "The employer like your cv and rated it with a number of "
-                    + rateNumber + " stars for job " + localStorage.getItem("jobTitle")
-                }
-            }).then(function (data) {
-                    console.log(data.data);
-                },
-                function (response) { // optional
-                    console.log("like notification AJAX failed!");
-                    console.log(response);
-                });
         };
         //add candidate to like or unlike
         $scope.addCandidateToLikeUnlike = function (candidate, likeORunlike) {
@@ -242,44 +224,27 @@ app.controller('resumeController',
         };
         //bring next candidate by swipe left\right or click on hands icon
         $scope.bringNextCandidate = function (type, description) {
-            if (type == 'unliked') {
-                sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
-                $http({
-                    url: 'https://cvmatcher.herokuapp.com/sendNotification',
-                    method: "POST",
-                    data: {
-                        "user_id": $scope.user_id,
-                        "message": "The employer didn't like your cv and entered the feedback: "
-                        + description + " for job " + localStorage.getItem("jobTitle")
-                    }
-                }).then(function (data) {
-                        console.log(data.data);
-                    },
-                    function (response) { // optional
-                        console.log("unlike notification AJAX failed!");
-                        console.log(response);
-                    });
-            }
+
 
             var url;
             if ($id[1] == 'like') {
-              //  candidates = $rootScope.likeCandidates;
+                //  candidates = $rootScope.likeCandidates;
                 candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
             else if ($id[1] == 'unlike') {
-               // candidates = $rootScope.unlikeCandidates;
+                // candidates = $rootScope.unlikeCandidates;
                 candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/updateRateCV';
             }
             else {
                 //i came from UnreadCVS
-              // candidates = $rootScope.unreadCandidates;
+                // candidates = $rootScope.unreadCandidates;
                 candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/rateCV';
             }
 
-            //add user to like and rate stars
+            //add user to like and rate stars || unlike and description
             $http({
                 url: url,
                 method: "POST",
@@ -293,7 +258,65 @@ app.controller('resumeController',
                     },
                     "user_id": localStorage.getItem("user_id")
                 }
+            }).then(function () {
+                if (type == 'unliked') {
+                    sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"));
+                    $http({
+                        url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                        method: "POST",
+                        data: {
+                            "user_id": $scope.user_id,
+                            "message": "The employer didn't like your cv and entered the feedback: "
+                            + description + " for job " + localStorage.getItem("jobTitle")
+                        }
+                    }).then(function (data) {
+                            console.log(data.data);
+                        },
+                        function (response) { // optional
+                            console.log("unlike notification AJAX failed!");
+                            console.log(response);
+                        });
+                }
+
+                var id;
+                if ($id[1] == 'unread')
+                    id = $id[2];
+                else
+                    id = $id[3];
+
+                if (type == 'liked') {
+                    sendNotification('like', $scope.user_id, id, rateStars, localStorage.getItem("jobTitle"));
+
+                    $http({
+                        url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                        method: "POST",
+                        data: {
+                            "user_id": $scope.user_id,
+                            "message": "The employer like your cv and rated it with a number of "
+                            + rateStars + " stars for job " + localStorage.getItem("jobTitle")
+                        }
+                    }).then(function (data) {
+                            console.log(data.data);
+                        },
+                        function (response) { // optional
+                            console.log("like notification AJAX failed!");
+                            console.log(response);
+                        });
+                }
+
             });
+
+
+
+
+
+
+
+
+
+
+
+
 
             var nextCandidate = null;
             candidates = candidates.split(",");
@@ -301,7 +324,7 @@ app.controller('resumeController',
             if (candidates.length > 0) {
                 var index = candidates.indexOf(candidateId);
                 candidates.splice(index, 1);
-                localStorage.setItem("candidates",candidates);
+                localStorage.setItem("candidates", candidates);
             }
             if (candidates.length > 0) {
                 nextCandidate = candidates[0];
