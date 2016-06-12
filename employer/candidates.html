@@ -66,15 +66,13 @@
                 <div class="candidates animated fadeInUp likeCandidates">
 
 
-                    <div><i id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
-                            ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i>
-                            <a ng-click="checkIfArchivePage()" href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}">
+                    <div>
+                        <i ng-if="archivePage == false" id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
+                           ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i>
 
-
-                            <img
-                            src="./images/logoSmall.png"></a><a href=""
-                                                                ng-click='hire(candidate._id,candidate.user._id)'><img
-                            src="./images/handshake1.png"></a>
+                            <a href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
+                                <a href="" ng-click='hire(candidate._id,candidate.user._id)'> <img ng-if="archivePage == false"  src="./images/handshake1.png">
+                            </a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
 
                     </div>
@@ -103,7 +101,7 @@
             <section
                     ng-repeat="candidate in unlikeCandidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp unlikeCandidates">
-                    <div><i id="candidateLike-{{candidate._id}}"
+                    <div><i ng-if="archivePage == false" id="candidateLike-{{candidate._id}}"
                             class='fa fa-thumbs-o-up fa-2x unlike'
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
                             ng-click="checkIfArchivePage()"

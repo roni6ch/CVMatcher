@@ -13,14 +13,15 @@ app.controller('candidatesController',
 var candidates = [];
         //init function to bring all the unread cv's
         $scope.unreadCvs = function () {
-            if ($id[1] == 'archive') {
+            if (localStorage.getItem('archive') == 'true') {
+                $scope.archivePage = true;
                 $scope.jobId = $id[3];
-                $scope.jobPage = 'archive';
             }
             else {
+                $scope.archivePage = false;
                 $scope.jobId = $id[2];
-                $scope.jobPage = '';
             }
+
             angular.element(".fa-pulse").show();
             $scope.candidates = '';
             $http({
@@ -144,13 +145,6 @@ var candidates = [];
                     console.log(response);
                 });
         };
-        $scope.checkIfArchivePage = function(){
-            console.log($id[1]);
-            if ($id[1] == 'archive')
-                localStorage.setItem('archive','true');
-            else
-                localStorage.setItem('archive','false');
-        }
         //sort by user type
         $scope.sort = function (sort) {
             $scope.sortby = sort;

@@ -1,5 +1,4 @@
 * {
-    /* margin: 0; */
     padding: 0;
     border: 0;
     font-size: 100%;
@@ -29,8 +28,6 @@ font-style: normal;
     padding-top: 12px;
 }
 
-/******************************/
-/*natalie*/
 @font-face {
     font-family: 'almoni-dl-aaa-bold';
     src: url('../fonts/almoni-dl-aaa-bold.otf');
@@ -49,7 +46,6 @@ font-style: normal;
 p{
     margin:0px;
 }
-/******************************/
 
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
@@ -147,13 +143,9 @@ footer {
     float: right;
     background: #231f20;
     padding: 10px;
-    /* float: right; */
-    /* z-index: 10000; */
-    /* font-size: 23px; */
 }
 
 footer ul {
-    /* float: left; */
     margin-left: 20%;
     width: 100%;
 }
@@ -166,16 +158,12 @@ footer ul li {
     float: left;
     width: 20%;
     text-align: center;
-    /* font-size: 4px; */
 }
 
 footer ul li a {
     color: #fff;
     font-size: 22px;
     font-weight: 600;
-    /* padding: 0% !important; */
-    /* color: #fff !important; */
-    /* text-shadow: 1px 1px 0px #283744; */
     font-size: 18px;
 }
 
@@ -216,16 +204,14 @@ footer div a {
 
 .wrapper {
 
-    /******************************/
-    /*natalie*/background-color: #231f20;position: relative;text-align: center;/* color: #606060; */float: left;width: 100%;min-height: 100vh;margin-bottom: -10px; /*  for the sticky footer */
-    /******************************//*  position: relative;
-      text-align: center;
-      padding: 63px 50px 22px;
-      color: #606060;
-      float: left;
-      width: 100%;
-      min-height: 100%;
-      margin-bottom: -10px;*/ /*  for the sticky footer */}
+    background-color: #231f20;
+    position: relative;
+    text-align: center;
+    float: left;
+    width: 100%;
+    min-height: 100vh;
+    margin-bottom: -10px;
+}
 
 .fa-pulse {
     position: absolute;
@@ -254,7 +240,6 @@ footer div a {
 .profileWrapper {
     width: 75%;
     margin: 0 auto;
-    /* margin-bottom: 159px; */
 }
 
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
@@ -264,7 +249,6 @@ footer div a {
 .matchpageWrapper header h2, .googleSignInWrapper header h2,
 .aboutWrapper header h2, .contactusWrapper header h2,
 .companyprofileWrapper header h2, .profileWrapper header h2, .candidatesWrapper header h2 {
-    /* margin-bottom: 25px !important; */
     text-align: left;
 }
 
@@ -277,11 +261,20 @@ footer div a {
     color: #fff;
     font-size: 14px;
     top: 54px;
-    /* left: 15%; */
-    /* background-color: #231f20; */
-    /* opacity: 0.8; */
     padding: 4px;
     padding-left: 2.4%;
+}
+
+footer{
+    position: relative;
+    z-index: 1000000;
+}
+
+.Garrow{
+    width: 20px;
+    float: left;
+    margin-right: 10px;
+    margin-top: 0px;
 }
 
 .highlighted {
@@ -348,7 +341,6 @@ footer div a {
 .navbar-collapse ul li{
     font-family: almoni-dl-aaa-regular;
     display: table;
-    /*margin: 0 auto;*/
     font-size: 30px;
     width: 100%;
     font-weight: bold;
@@ -360,7 +352,6 @@ footer div a {
 
 .mobileMenu a{
     margin-left: 0px;
-    /* width: 152%; */
 }
 
 
@@ -368,66 +359,11 @@ footer div a {
     margin-right: 20px;
 }
 
-/* requirements skills resume and match page */
-
-.requirements-skills-bar {
-    position: relative;
-    margin-top: 40px;
-}
-
-.skillbar {
-    position: relative;
-    display: inline-block;
-    margin: 15px 0;
-    width: 100%;
-    background: #eee;
-    height: 35px;
-    border-radius: 3px;
-    width: 100%;
-}
-
-.skillbar-title {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 110px;
-    font-weight: bold;
-    font-size: 13px;
-    color: #ffffff;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    padding: 0 20px;
-    height: 35px;
-    line-height: 35px;
-}
-
-.skillbar-bar {
-    float: left;
-    height: 35px;
-    width: 0px;
-    background: #6adcfa;
-    border-radius: 3px;
-    display: inline-block;
-}
-
-.skill-bar-percent {
-    position: absolute;
-    right: 10px;
-    top: 0;
-    font-size: 11px;
-    height: 35px;
-    line-height: 35px;
-    color: #000000;
-}
-
-
 /*  HAMBURGER END HERE  */
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
-/**********************/
-/*natalie*/
-
 .seeker{margin-top: 34px;}
+
 .employer{margin-top: 44px;}
 
 .googleSignInImg{
@@ -451,21 +387,14 @@ footer div a {
 }
 
 .googleSignInImg{
-    /* position: absolute; */
-    /* top: 0%; */
-    /* height: 96%; */
     width: 100%;
 }
 
 .googleSignInBox{
-    /* background-color: #231f20; */
-    /* opacity: 0.8; */
-    /* height: 280px; */
     width: 50%;
     margin: 0 auto;
     position: relative;
     top: 94px;
-    /* left: 24%; */
 }
 
 .googleSignInWrapper header{
@@ -475,11 +404,11 @@ footer div a {
     padding-bottom: 20px;
 }
 
-.googleSignInWrapper h3{/* padding-top: 40px; */opacity: 1;font-size: 260%;font-family: almoni-dl-aaa-regular;/* font-weight: bold; */}
+.googleSignInWrapper h3{opacity: 1;font-size: 260%;font-family: almoni-dl-aaa-regular;}
 
-.googleSignInWrapper h4{padding-top: 20px;/* opacity: 1; */font-size: 114%;font-family: almoni-dl-aaa-regular;/* font-weight: bold; */}
+.googleSignInWrapper h4{padding-top: 20px;font-size: 114%;font-family: almoni-dl-aaa-regular;}
 
-.googleSignInWrapper h3, .googleSignInWrapper h4{/* display: table; *//* margin: 0 auto; *//* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); *//* -webkit-background-clip: text; *//* -webkit-text-fill-color: transparent; */color: white;}
+.googleSignInWrapper h3, .googleSignInWrapper h4{color: white;}
 
 .googleSignInBox img{
     opacity: 1;
@@ -490,15 +419,7 @@ footer div a {
 .googleSignInBox > div > a {
     width: 50%;
     float: left;
-    /* opacity: 0.6; */
 }
-/**********************/
-
-/*.googleSignInWrapper > div > a {
-    width: 50%;
-    float: left;
-    opacity: 0.6;
-}*/
 
 .googleSignInWrapper > div > a:hover, .googleSignInWrapper > div > a:focus {
     opacity: 1;
@@ -512,8 +433,7 @@ footer div a {
 }
 
 .googleSignInWrapper > div:nth-child(2) {
-    /*  margin-top: 30px;
-      margin-bottom: 30px;*/
+
 }
 
 .googleSignInWrapper > div:nth-child(4) {
@@ -562,11 +482,16 @@ footer div a {
 }
 
 /****************************************************** INDEX - NAV BAR **********************************************/
-/*natalie*/
 
-/*.hamburgerN{
-display: none;
-}*/
+#profilePicture {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    z-index: 100;
+    border-radius: 100px;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
 
 .userIcon{
     position: absolute;
@@ -575,7 +500,6 @@ display: none;
     top: 8px;
 }
 
-/*-------*/
 /*NAV*/
 .navbar {
     height: 0px;
@@ -583,19 +507,7 @@ display: none;
 
 }
 
-/*.navBar{}
-    position: absolute;
-    z-index: 1;
-    width: 100%;
-}*/
-
 .navBar > div:nth-child(1) {
-    /*******************/
-    /*natalie*/
-    /* padding-left: 2%; */
-    /*******************/
-    /* padding-top: 37px; */
-    /* float: left; */
     position: absolute;
     z-index: 11;
     left: 26px;
@@ -603,7 +515,6 @@ display: none;
 }
 
 .navBar > div:nth-child(1) img {
-    /*natalie*/
     width: 74px;
     position: absolute;
     top: -18px;
@@ -611,8 +522,6 @@ display: none;
 }
 
 .navBar > div:nth-child(2) {
-    /* margin: 15px; */
-    /* float: right; */
     position: absolute;
     right: 60px;
     top: 12px;
@@ -621,11 +530,6 @@ display: none;
 
 .navBar > div:nth-child(2) > a > img {
     border-radius: 1000px;
-    /* float: right; */
-    /*natalie*/
-    /* margin-top: 39px; */
-    /* margin-right: 16px; */
-    /*********/
     border: 2px solid #fff;
     position: absolute;
     top: 19px;
@@ -634,62 +538,41 @@ display: none;
 
 .navBarImg {
 
-    /*natalie*/height: 60px;/* background-color: #231f20; *//* opacity: 0.8; */width: 100%;position: relative;margin: 0 auto;/* top: 48px; *//* left: 12.5%; */
-    /*********//* float: right;
-    overflow: hidden;
-    height: 150px;*//*background-image: url("../images/navImg.jpg");*//*width: 100%;*/z-index: 1;}
+    height: 60px;
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    z-index: 1;
+}
 
 .navBarImg img {
     max-height: 261px;
-    /* width: 100%; */
 }
 
 .navBarImg li a {
-    /*natalie*/
     font-family: almoni-dl-aaa-regular;
-    /* display: table; */
-    /* margin-left: 19%; */
-    /* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); */
-    /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
     font-size: 154%;
-    /* font-weight: bold; */
-    /*********/
-    /*font-size: 26px;
-    font-weight: 600;
-    padding: 0% !important;
-    color: #fff !important;
-    text-shadow: 3px 3px 2px #283744;*/
-    /* width: 57%; */
     float: right;
-    /* margin-right: 0px; */
 }
 
 .navBarImg li a:hover{
-    /* opacity: 0.7; */
     border-top: 1px solid #33B778;
     border-bottom: 1px solid #33B778;
 }
 
 .navBarImg ul {
     width: 100%;
-    /*natalie*/
-    /* margin: 0 auto; */
     padding: 17px 11% 0px;
-    /*********/
-    /*padding: 100px 0px 0px;*/
     font-size: 78%;
+    min-height: 83px;
+    float: left;
 }
 
 .navBarImg ul li {
-    /* display: inline-block !important; */
     float: none;
-    /* margin: 0% 3px !important; */
     float: right;
     width: 16%;
     padding-top: 24px;
-    /* padding-right: 6%; */
-    /* padding-left: 6%; */
     margin-right: 26px;
 }
 
@@ -698,17 +581,25 @@ display: none;
 }
 
 /****************************************************** MY JOBS - HTML **********************************************/
-/***********/
-/*natalie*/
-/*.navigation a {
-    color: #337ab7;
-}*/
 
 .myjobsWrapper .form-control {
     display: block;
     width: 90%;
     margin: 0 auto;
+}
 
+#popoverData{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    background-color: transparent;
+    color: white;
+}
+#previewCV > div{width:80%;}
+
+.myjobsWrapper button:hover, .searchJobsWrapper button:hover, .yourJobsWrapper button:hover  {
+    background-color: transparent;
+    color: #fff !important;
 }
 
 .myjobsWrapper .navigation{
@@ -721,16 +612,9 @@ display: none;
 
 .myjobsWrapper svg{
     overflow: auto;
-    /* z-index: 12344444444; */
-    /* bottom: -62px; */
 }
 .selected a{
-    /*display: table;*/
-    /*margin: 0 auto;*/
-    /*color: red;*/
-    /*background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;*/
+
 }
 
 .line{
@@ -738,15 +622,10 @@ display: none;
 }
 
 .jobs > div section {
-    /* margin-left: 38%; */
-    /* left: 46%; */
-    /* bottom: -94px; */
-    /* position: absolute; */
-    /* top: 236px; */
+
 }
 
 .myjobsWrapper section:first-child{
-    /* margin-top: 168px; */
 }
 
 .newJob{
@@ -769,8 +648,6 @@ display: none;
     width: 100%;
     position: relative;
     margin-top: 0px;
-    /* background-color: #231f20; */
-    /* opacity: 0.8; */
 }
 
 .myJobsImgCover{
@@ -786,14 +663,11 @@ display: none;
     margin: 0 auto;
     position: relative;
     width: 100%;
-    /* top: 186px; */
     margin-top: 10px;
     height: 70px;
     margin: 0 auto;
     text-align: center;
     margin-top: 10px;
-    /* left: 6%; */
-    /* color: red; */
     font-family: almoni-dl-aaa-regular;
 }
 
@@ -820,11 +694,9 @@ a:focus, a:hover {
     padding: 2px;
     font-size: 11px;
     cursor: pointer;
-    /* margin-right: 2%; */
     padding: 6px;
     color: white;
     font-size: 16px;
-    /* background-color: #231f20; */
 }
 
 
@@ -849,27 +721,21 @@ a:focus, a:hover {
 .myjobsWrapper form{
     position: absolute;
     top: 80px;
-    /* left: 9%; */
 }
 
 .myjobsWrapper button{
-    /* background-image: url('../images/Garrow.png'); */
     margin-top: 116px;
     background-color: transparent;
     border: 0;
     font-size: 16px;
     font-family: almoni-dl-aaa-regular;
     color: white !important;
-    /* margin-right: 26%; */
-    /* margin-left: -24%; */
     float: left;
     margin-left: 2%;
 }
 
 .myjobsWrapper button:hover{
-
     color: #000 !important;
-
 }
 
 
@@ -886,13 +752,8 @@ a:focus, a:hover {
     width: 83px;
 }
 
-/***********/
-
 .myjobsWrapper form {
-    /* margin: 0 auto; */
     width: 60%;
-    /* margin-bottom: 10px; */
-    /* display: inline-block; */
 }
 
 .myjobsWrapper form button {
@@ -905,8 +766,6 @@ a:focus, a:hover {
 
 .myjobsWrapper section {
     width: 100%;
-    /* float: left; */
-    /* margin-bottom: 92px; */
 }
 
 .myjobsWrapper section > div {
@@ -914,18 +773,8 @@ a:focus, a:hover {
 }
 
 .jobs {
-    /*margin-top: 20px;
-    border: 2px solid #B5B5B5;
-    width: 100%;
-    text-align: left;
-    float: left;
-    text-align: left;*/
-
-    /*natalie*/
     margin-top: 0px;
-    /* margin-left: 6.2%; */
     width: 100%;
-    /* margin: 0 auto; */
     padding: 0px;
     border: 0px solid#231f20;
     text-align: left;
@@ -933,17 +782,11 @@ a:focus, a:hover {
     text-align: left;
     font-family: almoni-dl-aaa-regular;
     color: white;
-    /*********/
 }
 
 .jobs > div:nth-child(1) {
     height: 40px;
-    /* font-size: 20px; */
-    /*background: #B5B5B5;*/
     padding: 10px 13px;
-    /*natalie*/
-    /* background: #231f20; */
-    /*********/
 }
 
 .jobs > div:nth-child(1) a {
@@ -954,17 +797,10 @@ a:focus, a:hover {
 
 .jobs > div:nth-child(1) h3 {
     font-size: 22px;
-    /*natalie*/
     font-weight: bold;
-    /* font-family:  almoni-dl-aaa-regular; */
     width: 50%;
     padding-left: 10px;
-    /*********/
-    /* border: 5px transparent; */
     border-bottom-width: 1px;
-    /* padding-bottom: 10px; */
-    /* border-bottom-style: solid; */
-    /* text-decoration: underline; */
 }
 
 .jobs > div:nth-child(2) {
@@ -973,10 +809,6 @@ a:focus, a:hover {
     float: left;
     position: relative;
     width: 100%;
-    /*natalie*/
-    /* background-color: #231f20; */
-    /*********/
-    /* border: 1px solid #fff; */
 }
 
 .jobs > div:nth-child(2) a {
@@ -984,66 +816,36 @@ a:focus, a:hover {
 }
 
 .jobs > div:nth-child(2) section {
-    /*natalie*/
     position: absolute;
     width: 122px;
-    /* margin: 0 auto; */
     right: 0;
     top: 12px;
-    /* width: 100%; */
-    /* line-height: 37px; */
-    /* bottom: -120px; */
-    /*********/
-    /* position: relative;
-    width: 60px;
-    float: right;*/
 }
 
 .jobs > div:nth-child(2) section h5 {
-    /*natalie*/
     position: absolute;
-    /* z-index: 11; */
     bottom: 47px;
-    /* top: 44px; */
     left: 35%;
     font-size: 34px;
     font-family: almoni-dl-aaa-regular;
-    /*********/
-    /*position: absolute;
-    top: 36%;
-    left: 24%;
-    font-size: 18px;*/
 }
 
 .jobs > div:nth-child(2) span {
     float: left;
-    /* font-weight: bold; */
 }
 
 .jobs > div:nth-child(2) article {
     float: left;
     width: 100%;
-    /* line-height: 24px; */
     text-align: justify;
 }
 
 .jobs h5 {
-    /*natalie*/
     padding-top: 6px;
-    /*color: #606060;*/
-    /*********/
-    /* font-weight: bold; */
     font-size: 16px;
 }
 
 .tabsWrapper {
-    /*natalie*/
-    /* padding: 15px 20px 20px;
-     border-bottom-left-radius: 10px;
-     border-bottom-right-radius: 10px;
-     background: #DCDCDC;
-     float: left;
-     width: 100%;*/
 }
 
 .tabsWrapper > h3 {
@@ -1051,13 +853,10 @@ a:focus, a:hover {
 }
 
 .jobs h5:nth-child(3) {
-    /* margin-top: 20px !important; */
     display: inline-block;
 }
 
 .jobs p {
-    /* margin: 10px 0px 10px; */
-    /* font-size: 16px; */
 }
 
 .jobs img {
@@ -1092,7 +891,6 @@ a:focus, a:hover {
     padding: 30px;
     padding-left: 12%;
     padding-right: 12%;
-    /* background: #231f20; */
 }
 
 .tab-content a {
@@ -1120,10 +918,7 @@ a:focus, a:hover {
 .nav-tabs li a {
     color: #1b75bb;
     margin-right: 0px !important;
-    /*natalie*/
     padding: 21px 0px !important;
-    /*********/
-    /*padding: 10px 0px !important;*/
     height: 100%;
     font-size: 18px;
 }
@@ -1151,30 +946,24 @@ a:focus, a:hover {
 }
 
 /****************************************************** Candidtaes - HTML **********************************************/
-/*roni*/
-
 .candidatesWrapper .tabsWrapper > div > h3 {
     position: relative;
     font-size: 40px;
     color: #000;
     font-weight: bolder;
 }
-/**/
-/*natalie*/
 
 .navigation a{
     color: #;
 }
 
 .navigation span{
-    /* color: #000; */
 }
 
 .candidatesWrapper h2{
     color: #fff;
     padding-top: 18px;
     padding-left: 76px;
-    /* font-size: 30px; */
     font-size: 40px;
     color: white;
     font-family: almoni-dl-aaa-regular;
@@ -1192,7 +981,6 @@ a:focus, a:hover {
     font-size: 20px;
     font-family: almoni-dl-aaa-regular;
     color: white;
-    /* position: absolute; */
 }
 
 .candidatesImgCover{
@@ -1211,23 +999,7 @@ a:focus, a:hover {
     font-size: 190%;
 }
 
-/*.NcandidaesBox{
-    height: 146px;
-    width: 100%;
-    position: relative;
-    margin-top: 170px;
-}*/
-/************/
-
 .candidates {
-    /* margin-top: 20px; */
-    /* border: 2px solid #B5B5B5; */
-    /* width: 100%; */
-    /* text-align: left; */
-    /* float: left; */
-    /* max-height: 300px; */
-    /* overflow: hidden; */
-    /* text-align: left; */
     margin-top: 0px;
     margin-bottom: 60px;
     width: 100%;
@@ -1243,15 +1015,11 @@ a:focus, a:hover {
 .candidatesWrapper form {
     margin: 0 auto;
     width: 70%;
-    /* margin-left: 11%; */
-    /* margin-bottom: 10px; */
-    /* display: inline-block; */
     padding-top: -21px;
 }
 
 .myjobsWrapper section > div {
     border-radius: 10px;
-    /* padding-bottom: 88px; */
     margin-bottom: 54px;
     margin-top: 6px;
     position: relative;
@@ -1264,12 +1032,7 @@ a:focus, a:hover {
 }
 
 .candidates > div:nth-child(1) {
-    /* height: 40px; */
-    /* width: 10px; */
-    /* float: right; */
     position: absolute;
-    /* background: #231f20; */
-    /* padding: 10px 13px; */
     right: 18px;
     top: 18px;
 }
@@ -1297,7 +1060,6 @@ a:focus, a:hover {
     text-decoration: none;
     float: left;
     width: 100%;
-    /* background-color: #231f20; */
 }
 
 .candidates > div:nth-child(2) section {
@@ -1310,7 +1072,6 @@ a:focus, a:hover {
 .candidates > div:nth-child(2) section h5 {
     position: absolute;
     color: #fff;
-    /* top: 0; */
     z-index: 1;
     left: 32%;
     bottom: 34px;
@@ -1358,6 +1119,19 @@ a:focus, a:hover {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#previewCV > div{width:80%;}
+.bubbleChart {
+    min-width: 100px;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-top: 22px;
+}
+
+.bubbleChart svg {
+    background: #000;
+    margin-top: 0;
+}
+
 .resumeWrapper{
     margin-top: 85px;
 }
@@ -1388,7 +1162,6 @@ a:focus, a:hover {
 
 .resumeWrapper .skillsTitle{
     margin-bottom: 22px;
-    /* margin-top: 50px; */
     color: #fff;
     background-color: #231f20;
     width: 168px;
@@ -1402,22 +1175,12 @@ a:focus, a:hover {
     font-size: 18px;
     padding-bottom: 16px;
     padding-top: 0px;
-    /* padding-top: 8px; */
 }
 
 .resumeWrapper div#formulasAppend {
     background-color: #231f20;
     margin-bottom: 40px;
     padding-top: 24px;
-}
-
-.resumeWrapper div#formulasAppend  p {
-    color: #FFFFFF;
-    font-size: 3vh;
-    font-weight: bold;
-    display: block;
-    text-align: left;
-    margin-top: 5px;
 }
 
 #users {
@@ -1432,19 +1195,8 @@ a:focus, a:hover {
 }
 
 #users > div {
-    /* background: #000; */
     padding: 10px;
     border: 10px solid#231f20;
-    /* border: 2px solid red; */
-    /* padding: 10px 0px; */
-    /* margin: 0 auto 10px; */
-    /* border-radius: 10px; */
-    /* position: absolute; */
-    /* margin-top: 75px; */
-    /* left: 20%; */
-    /* float: left; */
-    /* padding-top: 20px; */
-    /* padding-bottom: 50px; */
 }
 
 .userDetailsBox{
@@ -1481,10 +1233,6 @@ a:focus, a:hover {
 .resumeDetailsBox {
     background: #ebebeb;
     margin-top: 20px;
-    /* position: absolute; */
-    /* top: 645px; */
-    /* margin: 0 auto; */
-    /* border-radius: 10px; */
 }
 
 .resumeDetailsBox div {
@@ -1507,15 +1255,7 @@ a:focus, a:hover {
 }
 
 .resumeSkillsBox {
-    /* margin-bottom: 20px; */
-    /* padding: 10px; */
-    /* border-radius: 10px; */
     margin: 0 auto;
-    /* width: 560px; */
-    /* margin-bottom: 20px; */
-    /* background: palegoldenrod; */
-    /* position: absolute; */
-    /* top: 201px; */
     margin-top: 20px;
 }
 
@@ -1539,12 +1279,7 @@ a:focus, a:hover {
 }
 
 .resumeYears {
-    /* background: #ebebeb; */
     margin-top: 58px;
-    /* position: absolute; */
-    /* width: 100%; */
-    /* top: 174px; */
-    /* margin-bottom: 20px; */
 }
 
 .resumeYears input, .resumeYears textarea {
@@ -1564,15 +1299,9 @@ a:focus, a:hover {
 
 .resumeYears > div h3:nth-child(1) {
     float: left;
-    /* background: #231f20; */
     padding: 14px;
     font-size: 20px;
     font-weight: normal;
-    /* margin-top: 20px; */
-    /* margin-top: 20px; */
-    /* background: #231f20; */
-    /* color: #fff; */
-    /* padding: 14px; */
     border-bottom: 1px solid #000;
 }
 
@@ -1581,7 +1310,6 @@ a:focus, a:hover {
     background: #231f20;
     color: #fff;
     padding: 14px;
-    /* margin-top: 20px; */
 }
 
 #circle-container, #circle-container1 {
@@ -1669,24 +1397,6 @@ a:focus, a:hover {
     font-size: 30px;
 }
 
-/*
-#candidateLike {
-    position: fixed;
-    right: 4%;
-    top: 18%;
-    z-index: 100000000000;
-}
-
-#candidateUnLike {
-    position: fixed;
-    z-index: 100000000000;
-    left: 4%;
-    -ms-transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    transform: rotate(180deg);
-    top: 18%;
-}*/
-
 .timeline-heading h4{
     padding-top: 22px;
     font-weight: bold;
@@ -1718,9 +1428,6 @@ a:focus, a:hover {
     font-size: 92%;
 
 }
-
-
-/*roni*/
 
 .thumbnail {
     min-height: 100px !important;
@@ -1805,11 +1512,8 @@ a:focus, a:hover {
     transform: rotateY(180deg);
 }
 
-/*----*/
 .jobWrapper .btn-group {
-    /* width: 100%; */
     background-color: transparent;
-    /* height: 60px; */
     width: 100%;
     padding-top: 16px;
 }
@@ -1850,7 +1554,6 @@ a:focus, a:hover {
 
 .jobWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
     border-radius: 0;
-    /* border-bottom-right-radius: 0; */
     color: #000;
 }
 
@@ -1862,7 +1565,6 @@ a:focus, a:hover {
 
 .jobWrapper .pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span {
     border-top-left-radius: 0;
-    /* width: 10%; */
     border-bottom-left-radius: 0;
 }
 
@@ -1898,14 +1600,7 @@ a:focus, a:hover {
 }
 
 .jobWrapper .newJob button, html .jobWrapper input[type=button] {
-    /* background-color: transparent; */
-    /* color: white; */
-    /* font-family: almoni-dl-aaa-regular; */
-    /* font-size: 20px; */
     float: none;
-    /* margin-right: 38%; */
-    /* width: 74%; */
-    /* margin: 0 auto; */
     border-radius: 0;
     margin: 2px;
     color: #000;
@@ -1950,25 +1645,18 @@ a:focus, a:hover {
     background-color: #fff;
     border-color: #ccc;
     border-radius: 0;
-    /* bottom: 0; */
 }
 
 .jobWrapper .buttonBorder {
     border: 0px solid #fff;
-    /* display: none; */
-    /* padding: 4px; */
     height: 46px;
     width: 70px !important;
     margin: 0 auto;
     margin-top: 22px;
-    /* position: absolute; */
-    /* left: 46%; */
-    /* bottom: 0; */
     float: none;
 }
 
 .jobCover {
-    /* background-image: url('../images/candidatescover.png'); */
     background-image: url('../images/candidatescover.png');
     width: 100%;
     height: 100%;
@@ -1999,8 +1687,6 @@ a:focus, a:hover {
 
 
 .jobWrapper {
-    /* background-image: url('../images/candidatescover.png'); */
-    /* background-image: url('../images/candidatescover.png'); */
     width: 75%;
     margin: 0 auto;
     margin-top: 154px;
@@ -2250,9 +1936,6 @@ a:focus, a:hover {
 }
 
 .btn-group {
-    /* width: 100%; */
-    /* background-color: #231f20; */
-    /* height: 60px; */
     width: 25%;
     padding-top: 16px;
 }
@@ -2307,7 +1990,6 @@ a:focus, a:hover {
 /************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
 /************************************************************************************************************************************/
-/*natalie*/
 .arrow-down,.arrow-up{
     margin: 0 auto;
     position: absolute;
@@ -2316,12 +1998,7 @@ a:focus, a:hover {
     width: 62px;
 }
 
-
 .arrow-up{
-    /* position: absolute; */
-    /* margin-top: 0; */
-    /* margin-bottom: 21px !important; */
-    /* padding-bottom: 116px; */
     margin: 0 auto;
 }
 
@@ -2333,13 +2010,10 @@ a:focus, a:hover {
     top: 0;
     background-size: cover;
 }
-.searchJobsImgCover1{/*    background-image: url("../images/searchjobscover.png");*/height: 100%;width: 100%;position: fixed;top: 0;background-size: cover;background-image: url("../images/myjobscover22.png");background-position: left top, right top;background-repeat: no-repeat, repeat;}
+.searchJobsImgCover1{height: 100%;width: 100%;position: fixed;top: 0;background-size: cover;background-image: url("../images/myjobscover22.png");background-position: left top, right top;background-repeat: no-repeat, repeat;}
 
 
 .searchJobsWrapper header h2, .yourJobsWrapper header h2{
-    /* position: absolute; */
-    /* top: 12%; */
-    /* left: 9%; */
     padding-top: 0px;
     padding-left: 3%;
     font-size: 40px;
@@ -2348,7 +2022,6 @@ a:focus, a:hover {
 }
 
 .searchJobsWrapper button, .yourJobsWrapper button{
-    /* margin-top: 142px; */
     background-color: transparent;
     border: 0;
     font-size: 16px;
@@ -2356,41 +2029,28 @@ a:focus, a:hover {
     color: white;
     float: left;
     margin-left: 3%;
-
 }
 
-.searchJobsWrapper button:hover{/* color: #000 !important; */}
-
+.searchJobsWrapper button:hover{}
 
 .checkMyCVButton{
-    /* color: #fff; */
     width: 23% !important;
     float: left;
     text-align: center;
     margin: 14px;
     margin-left: 0px;
-    /* border: 2px solid #fff; */
 }
 
 .visibleText{
     float: left;
-    /* width: 32% !important; */
-    /* margin-left: 0px; */
     margin-top: 0px !important;
     padding-top: 10px;
 }
-/*********/
+
 .searchJobsWrapper form input, .yourJobsWrapper form input {
-    /* margin: 0 auto; */
-    /* margin: 0 auto; */
-    /* float: left; */
     width: 60%;
-    /* padding-top: 10px; */
     margin-top: 20px;
     margin-left: 3%;
-    /* position: absolute; */
-    /* top: 85px; */
-    /* left: 5%; */
 }
 
 .searchJobsWrapper form button, .yourJobsWrapper form button {
@@ -2403,11 +2063,8 @@ a:focus, a:hover {
 .jobsList ul li {
     width: 100%;
     padding: 10px 10px;
-    /* overflow:hidden; */
-    /* margin-top: 38px; */
     width: 100%;
     padding: 6px;
-    /* background-color: #231f20; */
     border: 0px solid#231f20;
     text-align: left;
     float: left;
@@ -2418,41 +2075,26 @@ a:focus, a:hover {
     margin-bottom: 39px;
 }
 
-
-
 .jobsList ul li a {
-    /* opacity: 0.7; */
     padding: 0px;
-    /* background-color: #231f20; */
 }
 
 .jobsList ul li a:hover {
     opacity: 1;
 }
 
-
 .jobsList article {
     float: left;
-    /* text-align: right; */
-    /* padding-left: 29px; */
     width: 100%;
-    /* height: 182px; */
-    /* background-color: #231f20; */
-    /* margin-top: -7px; */
     padding-left: 100px;
     font-size: 126%;
-    /* padding-right: 40px; */
     padding-bottom: 28px;
-    /* border-bottom: 1px solid #fff; */
 }
 
 .jobsList article p {
     text-align: left;
-    /* font-size: 15px; */
     padding-top: 8px;
-    /* text-align: center; */
     padding-bottom: 8px;
-    /* float: left; */
 }
 
 .jobListLi {
@@ -2461,10 +2103,10 @@ a:focus, a:hover {
 .jobListLi > a > div{    width: 100%;
     position: relative;
     min-height: 100px;}
+
 .jobListLi section {
     position: absolute;
     width: 110px;
-    /* float: right; */
     top: 55px;
     right: 4%;
     z-index: 11;
@@ -2483,9 +2125,7 @@ a:focus, a:hover {
 
 }
 .logoInJobBox{
-    /* float: left; */
     width: 72px;
-    /* height: 64px; */
     position: absolute;
     left: 18px;
     top: 22px;
@@ -2494,7 +2134,6 @@ a:focus, a:hover {
 
 .jobListLi a {
     width: 100%;
-    /* display: inline-block; */
 }
 
 .jobListLi a i {
@@ -2504,11 +2143,15 @@ a:focus, a:hover {
 
 /****************************************************** MY JOBS - JOBSEEKER - HTML **********************************************/
 
-/*natalie*/
-
 .yourJobsWrapper .myJobsBox {
     margin-top: 81px;
 }
+
+.fa-heart{color:#d43f3a;}
+.hired{    position: absolute;
+    margin: 0 auto;
+    text-align: center;
+    left: 37%;}
 
 .companyLogoN{
     float: left;
@@ -2535,7 +2178,6 @@ a:focus, a:hover {
 }
 .yourJobsWrapper .jobsList article {margin-top: -17px;padding-bottom: 54px;padding-top: 18px;}
 
-/*------*/
 .readUnread {
     position: absolute;
     right: 58px;
@@ -2626,7 +2268,6 @@ a:focus, a:hover {
 .slidersAndTooltips{background-color: #000;width: 100%;height: 225px;}
 
 .skillsTitleM {
-    /* margin-top: 120px; */
     background-color: #000;
     width: 114px;
     height: 50px;
@@ -2655,10 +2296,6 @@ a:focus, a:hover {
 }
 
 .matchpageWrapper header {
-    /* border: 6px solid #231f20; */
-    /* padding: 6px; */
-    /* width: 226px; */
-    /* margin: 0 auto; */
 }
 
 .matchpageWrapper .navigation {
@@ -2666,22 +2303,29 @@ a:focus, a:hover {
 }
 
 .matchTitle {
-    /* position: absolute; */
-    /* top: 0; */
     color: #fff;
-    /* background: #231f20; */
-    /* width: 200px; */
-    /* text-align: center !important; */
     padding: 10px;
-    /* margin: 0 auto; */
-    /* margin-bottom: 0 !important; */
     padding-left: 4%;
+}
+
+.formulaSliders {
+    float: left;
+    width: 90%;
+    margin-top: 20px;
+    padding-left: 22px;
+}
+
+.tootipInfo{
+    float: right;
+    width: 10%;
+    margin-top: 20px;
 }
 
 .matchpageWrapper .matchResult {
     width: 80%;
     margin: 0 auto;
     color: #fff;
+    height: 342px;
     width: 96%;
     position: relative;
     margin-top: 50px;
@@ -2745,22 +2389,6 @@ a:focus, a:hover {
     font-weight: bold;
 }
 .progress-bar-striped{color:#000;}
-
-/* requirements skills bar*/
-
-.matchpageWrapper .formula-result {
-    background-color: #231f20;
-    opacity: 0.8;
-}
-
-.matchpageWrapper .formula-result p{
-    color: #FFFFFF;
-    font-size: 3vh;
-    font-weight: bold;
-    display: block;
-    text-align: left;
-    margin-top: 5px;
-}
 
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
@@ -2827,9 +2455,6 @@ a:focus, a:hover {
 /****************************************************************************************************************************/
 /****************************************************** PROFILE - HTML ********************************************************/
 /****************************************************************************************************************************/
-/*natalie*/
-
-/*preview*/
 
 .parseButton{
     float: none;
@@ -2842,7 +2467,6 @@ a:focus, a:hover {
 }
 
 .profileTitle {
-
     color: #fff;
     margin-bottom: 0 !important;
     padding-left: 3.5%;
@@ -2858,8 +2482,6 @@ a:focus, a:hover {
     padding-bottom: 6px;
 }
 
-
-
 .page-header {
     border-bottom: 0px solid #eee;
 }
@@ -2872,7 +2494,6 @@ a:focus, a:hover {
 }
 
 .cvPreview{
-    /*width: 50%;*/
     margin-left: 40%;
 }
 
@@ -2902,7 +2523,6 @@ div#popover924921 {
     top: 106px;
     left: 861px;
     display: block;
-    /* color: #231f20; */
 }
 
 .profileWrapper .timeline-body p {
@@ -2932,28 +2552,21 @@ div#popover924921 {
 
 .profileWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
     border-radius: 0;
-    /*width: 100%;*/
 }
 
 .profileWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
     border-radius: 0;
     color: #000;
-    /*width: 100%;*/
-    /* border-bottom-right-radius: 0; */
 }
 
 .profileWrapper .btn-default {
     color: #000 !important;
     border-radius: 0;
-    /* background-color: #fff; */
-    /* border-color: #ccc; */
-    /*width: 100%;*/
 }
 
-.profileWrapper .parseB{/* border: 2px solid #fff; */padding: 0px;width: 194px;height: 50px;margin: 0 auto;margin-top: 22px;margin-bottom: 22px;}
+.profileWrapper .parseB{padding: 0px;width: 194px;height: 50px;margin: 0 auto;margin-top: 22px;margin-bottom: 22px;}
 
 .profileWrapper .btn-defult {
-    /* border-top-left-radius: 0; */
     border-radius: 0;
     background: #ccc;
 }
@@ -2962,9 +2575,7 @@ div#popover924921 {
     color: #000;
     background-color: #fff;
     border-color: #fff;
-    /* display: table; */
     margin: 0 auto;
-    /* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -2979,17 +2590,10 @@ div#popover924921 {
 }
 
 .profileWrapper .timeline > li.timeline-inverted > .timeline-panel:before {
-    /*    border-left-width: 0;
-        border-right-width: 15px;
-        left: -15px;
-        right: auto;*/
     display: none;
 }
 
-
-
 .profileWrapper .timeline > li > .timeline-panel:after {
-    /* position: absolute; */
     top: 27px;
     right: -14px;
     display: none;
@@ -3002,10 +2606,6 @@ div#popover924921 {
 }
 
 .profileWrapper .page-header {
-    /* padding: 4px; */
-    /* margin: 40px 0 20px; */
-    /* border-bottom: 1px solid #000; */
-    /* width: 42%; */
     margin: 0 auto;
     margin-top: 6px;
 }
@@ -3019,31 +2619,15 @@ div#popover924921 {
 }
 
 .borderTimelineTitle1{
-    /* padding: 4px; */
-    /* border: 4px solid #000; */
-    /* width: 133px !important; */
-    /* height: 66px; */
     float: left;
     margin-top: 40px;
 }
 
 .borderTimelineTitle2{
-    /* padding: 4px; */
-    /* border: 4px solid #000; */
-    /* width: 144px !important; */
-    /* height: 66px; */
     float: right;
     margin-top: 40px;
 }
 
-/*.grad{
-    background-color: #231f20;
-background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%) !important;
--webkit-background-clip: text !important;
--webkit-text-fill-color: transparent;
-
-}
-*/
 .profileWrapper .navigation{
     top: 24px;
     left: 1.2%;
@@ -3054,35 +2638,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     width: 100%;
 }
 
-
-/*.btn-success.active, .btn-success:active, .open > .dropdown-toggle.btn-success {
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-    border-radius: 0;
-}
-
-.btn-primary {
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-        border-radius: 0;
-
-}
-
-.btn-primary:hover {
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-    opacity: 0.7;
-    }
-
-    .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open > .dropdown-toggle.btn-primary.focus, .open > .dropdown-toggle.btn-primary:focus, .open > .dropdown-toggle.btn-primary:hover {
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-}*/
-/*natalie*/
 .profileCover{
     background-image: url("../images/myjobscover22.png");
     height: 100%;
@@ -3093,31 +2648,20 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 .profileWrapper header{
-    /* border: 6px solid #231f20; */
-    /* padding: 6px; */
-    /* width: 168px; */
-    /* margin: 0 auto; */
 }
 .buttonBorder{
-    /* border: 2px solid #fff; */
-    /* padding: 2px; */
     width: 88px;
     margin: 0 auto;
     margin-top: 22px;
 }
-/*//////*/
+
 .userProfile h4 {
-    /* margin: 10px 0px; */
     color: #fff;
     text-align: center;
-    /* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); */
-    /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
     font-size: 22px;
     font-weight: bold;
 }
 
-/*-------*/
 .userProfile h4 {
     margin: 10px 0px;
 }
@@ -3129,39 +2673,29 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 .userProfile {
     margin-top: 0px;
     text-align: left;
-    /* height: 11%; */
-    /* border-bottom-left-radius: 10px; */
-    /* border-bottom-right-radius: 10px; */
 }
 
 .userProfile label {
     margin: 0 auto;
     margin-top: 5px;
-    /* margin-left: 4%; */
-    /* margin-right: 4%; */
     padding-right: 5px;
     color: #fff;
 }
 
 .userProfile .btn.btn-warning {
     float: none;
-    /* margin-right: 38%; */
-    /* width: 74%; */
-    /* margin: 0 auto; */
     border-radius: 0;
     margin: 2px;
 }
 
 .userProfile div button {
-    /* margin: 20px; */
     width: 80px;
     border-radius: 0;
     border: 0;
     background-color: transparent;
     color: #fff;
-    /* margin-top: 20px; */
-    /* margin-left: 40%; */
 }
+
 .profileWrapper > ul li {
     width: 48% !important;
     margin-top: 2%;
@@ -3176,9 +2710,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     width: 34%;
     margin: 0 auto;
     border-bottom: 1px solid #000;
-    /* color: #fff; */
-    /* padding: 14px; */
-    /* margin-top: 20px; */
 }
 
 .parserExperienceYearsLabel {
@@ -3206,7 +2737,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 .parser {
-    /* float: left; */
     margin-left: 38%;
     width: 40%;
     margin-bottom: 8px;
@@ -3295,22 +2825,11 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 .companyprofileWrapper header {
-    /* border: 6px solid #231f20; */
-    /* padding: 6px; */
-    /* width: 272px; */
-    /* margin: 0 auto; */
 }
 
 .companyprofileWrapper .profileTitle {
-    /* position: absolute; */
-    /* top: 0; */
     color: #fff;
-    /* background: #231f20; */
-    /* width: 246px; */
-    /* text-align: center !important; */
     padding: 10px;
-    /* margin: 0 auto; */
-    /* margin-bottom: 0 !important; */
 }
 
 .companyprofileWrapper .engineering li {
@@ -3318,16 +2837,13 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     width: 48%;
     font-size: 16px;
     cursor: pointer;
-    /* margin-right: 2%; */
     padding: 6px;
     color: white;
-    /* background-color: #231f20; */
 }
 
 .companyprofileWrapper .navigation{
     top:-36px;
 }
-
 
 .companyprofileWrapper .tab-content{
     margin-bottom: 40px;
@@ -3358,17 +2874,8 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
 
 .companyprofileWrapper .engineering1{
-    /* margin: 0 auto; */
-    /* position: relative; */
-    /* width: 100%; */
-    /* top: 186px; */
-    /* margin-top: 10px; */
     height: 70px;
-    /* margin: 0 auto; */
     text-align: center;
-    /* margin-top: 10px; */
-    /* left: 6%; */
-    /* color: red; */
     font-family: almoni-dl-aaa-regular;
     margin: 0 auto;
 }
@@ -3381,7 +2888,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     padding: 4px;
     font-size: 11px;
     cursor: pointer;
-    /* margin-right: 2%; */
     padding: 6px;
     color: white;
     font-size: 16px;
@@ -3401,22 +2907,18 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     -webkit-text-fill-color: transparent;
 }
 
-
 .companyprofileWrapper .tab-content {
     padding: 10px;
     padding-left: 4%;
     padding-right: 4%;
     padding-bottom: 30px;
     margin-bottom: 80px;
-    /* background: #231f20; */
 }
-
 
 .companyprofileWrapper .popover  {
     top: 110px;
     left: 754px;
     display: block;
-    /* color: #000; */
 }
 
 
@@ -3429,13 +2931,11 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
 
     footer ul {
-        /* float: left; */
         margin-left: 10%;
         width: 100%;
     }
 
     /*job*/
-
     .jobWrapper .thumbnail {
         display: block;
         padding: 4px;
@@ -3519,7 +3019,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .jobListLi section {
         position: absolute;
         width: 76px;
-        /* float: right; */
         bottom: -52px;
         right: 40%;
     }
@@ -3552,7 +3051,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         width: 100%;
     }
 
-
     .searchJobsWrapper .logoInJobBox {
         width: 49px;
         position: absolute;
@@ -3564,7 +3062,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .searchJobsWrapper .jobsList article {
         padding-left: 14px;
         padding-right: 14px;
-        /* border-bottom: 1px solid #fff; */
     }
 
     .searchJobsWrapper .jobListLi section {
@@ -3586,7 +3083,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
 
     /*your jobs*/
-
     .yourJobsWrapper .myJobsBox {
         margin-top: 60px;
     }
@@ -3645,9 +3141,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         border: 1px solid #fff;
     }
 
-
     /*match*/
-
     .matchpageWrapper {
         margin-top: 82px;
     }
@@ -3656,9 +3150,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         font-size: 20px;
     }
 
-
     .matchpageWrapper .skillsTitleM {
-        /* margin-top: 120px; */
         background-color: #000;
         width: 104px;
         height: 50px;
@@ -3681,10 +3173,11 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         padding-top: 16px;
     }
 
+    .matchpageWrapper .matchResult {
+        height: 280px;
+    }
+
     /*profile*/
-
-
-
     .profileWrapper .nav > li > a {
         font-size: 14px;
         padding-left: 0;
@@ -3776,9 +3269,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .profileWrapper .page-header {
-        /* padding: 4px; */
-        /* margin: 40px 0 20px; */
-        /* border: 4px solid #000; */
         width: 50%;
         margin: 0 auto;
         margin-top: 30px;
@@ -3788,9 +3278,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .profileWrapper .timeline > li > .timeline-badge {
         top: -12px;
         left: 53.7%;
-
     }
-
 
     .profileWrapper .parser {
         float: left;
@@ -3801,7 +3289,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     /*myjobs*/
-
     .jobs > div:nth-child(1) h3 {
         font-size: 22px !important;
     }
@@ -3844,13 +3331,9 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .myjobsWrapper .jobs > div section {
-        /* margin-left: 32%; */
-        /* position: absolute; */
-        /* top: 236px; */
     }
 
     /*candidates*/
-
     .candidatesWrapper button {
         font-size: 15px;
     }
@@ -3888,7 +3371,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     /*resume*/
-
     .resumeWrapper .userDetailsBox h3 {
         font-size: 17px;
         text-decoration: underline;
@@ -3916,19 +3398,16 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .resumeWrapper .page-header {
-        /*        margin-top: 80px;
-        */        margin-bottom: 20px;
+        margin-bottom: 20px;
     }
 
     /*company profile*/
-
     .companyprofileWrapper .tab-content {
         padding: 10px;
         padding-left: 4%;
         padding-right: 4%;
         background: #231f20;
     }
-
 
     .companyprofileWrapper .tab-content {
         padding: 8px;
@@ -3945,18 +3424,18 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         height: 66px;
     }
 
-    /*natalie*/
     .myjobsWrapper section {
         margin-bottom: 22px;
     }
 
     .jobs > div:nth-child(2) section {
         width: 135px;
-        /* bottom: -74px; */
     }
+
     .myjobsWrapper svg {
         bottom: 2px;
     }
+
     .navBarImg>img{
         height: 6px;
         width: 6px;
@@ -3978,8 +3457,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .navBar {
-        /* padding-top: 12px; */
-        /* padding-bottom: 32px; */
         padding-left: 11px;
     }
     .WRAPPER .C;A
@@ -3988,8 +3465,8 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
                     width: 100%;
                     position: relative;
                     margin-top: -8px;
-                    /* margin-left: -32px; */
                 }
+
     .form-control {
         display: block;
         width: 100%;
@@ -3998,11 +3475,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .engineering {
-        /* top: 228px; */
         height: 28px;
-        /* left: 0%; */
-        /* width: 100%; */
-        /* color: red; */
     }
     .engineering li {
         margin-right: 1%;
@@ -4015,14 +3488,11 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     #logo img{
         height: 41px;
-        /* width:46px; */
-        position: fixed;
+    ]        position: fixed;
         top: 6px;
         left: 8px;
     }
     .navBar > div:nth-child(2) > a > img {
-        /* margin-top: 60%; */
-        /* margin-right: 0%; */
         height: 40px;
         position: absolute;
         top: 0;
@@ -4036,10 +3506,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .myJobsBox {
-        /* position: absolute; */
-        /* top: 204px; */
-        /* left: 1%; */
-        /* width: 98.4%; */
     }
     .jobs > div:nth-child(2) section {
         width: 80px;
@@ -4047,7 +3513,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     .jobs > div section {
         margin-left: 0 auto;
-        /* top: 256px; */
     }
 
     .jobs > div:nth-child(2) section h5 {
@@ -4066,7 +3531,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     .jobs {
         margin-left:0;
         margin-top: 60px;
-        /* border: 2px solid #B5B5B5; */
         width: 100%;
     }
 
@@ -4088,8 +3552,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         margin-right:0;
         margin-left: 0px;
     }
-    /*********/
-
 
     .mobile {
         display: block;
@@ -4107,14 +3569,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         font-size: 15px;
     }
 
-    /*.navBarImg {
-        display: none;
-    }*/
-
-    /*.navBar {
-        padding: 15px 15px 52px 15px;
-    }
-*/
     .navBar > div:nth-child(1) {
         z-index:1111;
         padding: 10px;
@@ -4150,13 +3604,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
     .candidates {
         width: 100%;
-        /* padding: 49px; */
     }
-
-    /*    .candidatesWrapper .myJobsBox{
-            margin-top: 68px;
-            height: 100%;
-        }*/
 
     #sliders li div span {
         width: 25px;
@@ -4186,22 +3634,15 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         top: 30px;
     }
 
-
-
-    /*natalie*/
-
     .jobsList ul li {
         width: 100%;
         margin-top: 36px;
         margin-bottom: 38px;
     }
 
-    /********/
     .jobsList article {
         width: 100%;
         float: left;
-        /* margin-left: 163px; */
-        /* border-bottom: 1px solid #fff; */
     }
 
     .jobListLi a i {
@@ -4283,25 +3724,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .jobs p {
-        /* margin: 10px 0px 10px; */
         font-size: 16px;
     }
 
     .nav-tabs li {
         height: 66px;
     }
-    /*natalie*/
-    /*    .googleSignInWrapper > div > a > img {
-            width: 40%;
-        }
-
-        .googleSignInWrapper > div > a > h3 {
-            font-size: 20px;
-        }
-
-        .googleSignInWrapper > div > a {
-            float: none;
-        }*/
 
     .googleUsers {
         display: none;
@@ -4336,11 +3764,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         height: 200px;
     }
 
-    /*    .profileWrapper .tabsContent div {
-            margin-bottom: 0px;
-            width: 100%;
-        }*/
-
     .swipeIcon {
         position: absolute;
         top: 5%;
@@ -4371,7 +3794,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     .resumeYears > div:nth-child(1) {
-        /* display: none; */
     }
 
     .myjobsWrapper form {
@@ -4408,11 +3830,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     footer {
-        /* height: 36px; */
-        /* position: fixed; */
-        /* bottom: 0; */
-        /* padding: 5px 0px 0px; */
-        /* border-top: 1px solid #6F6F6F; */
         display: none;
     }
 
@@ -4421,7 +3838,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     }
 
     footer ul:nth-child(1) {
-        /* display: none; */
     }
 
     footer ul:nth-child(3) {
@@ -4448,7 +3864,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     .timeline-inverted, .timeline-badge, .timeline > li > .timeline-panel:after,
     .timeline > li > .timeline-panel:before {
-        /*display: none !important;*/
     }
 
     /*first page*/
@@ -4492,9 +3907,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     /*job page*/
     .jobWrapper .btn-group {
-        /* width: 100%; */
         background-color: #231f20;
-        /* height: 60px; */
         width: 25%;
         padding-top: 16px;
     }
@@ -4525,23 +3938,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
         padding-left: 1%;
     }
 
-
     /*resume*/
-
     #users {
         top: 0;
     }
 
-
-    /*match page*/
-
-    /* .matchpageWrapper {
-         margin-top: 60px;
-     }*/
-
-
-    /*copany profile media*/
-    .myJobsBox {/* margin-top: 60px; */}
+    .myJobsBox {}
 
     .companyprofileWrapper {
         width: 100% !important;
@@ -4555,7 +3957,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 /****************************************************** TIMELINE ***************************************************/
-/*roni*/
 
 .timelineForPreview{
     position: relative;
@@ -4578,9 +3979,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-bottom: 20px;
     margin-top: 3px;
     position: relative;
-    /* border: 4px solid #000; */
-    /* width: 50%; */
-    /* float: right; */
 }
 
 
@@ -4606,7 +4004,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     width: 46%;
     float: left;
     border: 5px solid #231f20;
-    /* border-radius: 2px; */
     padding: 4px;
     padding-bottom: 8px;
     position: relative;
@@ -4618,7 +4015,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
 
 .timelineForPreview > li > .timeline-panel:after {
-    /* position: absolute; */
     top: 27px;
     right: -14px;
     display: inline-block;
@@ -4640,7 +4036,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     position: absolute;
     top: 16px;
     left: 51.7%;
-    /* margin: 0 auto; */
     margin-left: -25px;
     background-color: #000;
     z-index: 100;
@@ -4656,22 +4051,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 .timelineForPreview > li.timeline-inverted > .timeline-panel:before {
-    /* border-left-width: 0; */
-    /* border-right-width: 15px; */
-    /* left: -15px; */
-    /* right: auto; */
 }
 
 .timelineForPreview > li.timeline-inverted > .timeline-panel:after {
     border-left-width: 0;
-    /* border-right-width: 14px; */
-    /* left: -14px; */
-    /* right: auto; */
 }
 
-
-
-/**/
 .container {
     width: 100% !important;
 }
@@ -4697,9 +4082,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-bottom: 20px;
     margin-top: 3px;
     position: relative;
-    /* border: 4px solid #000; */
-    /* width: 50%; */
-    /* float: right; */
 }
 
 .timeline > li:before, .timeline > li:after  {
@@ -4723,8 +4105,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 .timeline > li > .timeline-panel {
     width: 50%;
     float: left;
-    /* border: 5px solid #231f20; */
-    /* border-radius: 2px; */
     padding: 4px;
     padding-bottom: 0px;
     position: relative;
@@ -4732,23 +4112,12 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     background-color: transparent;
     margin-top: 34px;
-    /* margin-bottom: 0px; */
 }
 
 .timeline > li > .timeline-panel:before {
-    /* position: absolute; */
-    /* top: 26px; */
-    /* right: -15px; */
-    /* display: inline-block; */
-    /* border-top: 15px solid transparent; */
-    /* border-left: 15px solid #ccc; */
-    /* border-right: 0 solid #ccc; */
-    /* border-bottom: 15px solid transparent; */
-    /* content: " "; */
 }
 
 .timeline > li > .timeline-panel:after {
-    /* position: absolute; */
     top: 27px;
     right: -14px;
     display: inline-block;
@@ -4770,7 +4139,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     position: absolute;
     top: 0px;
     left: 51.7%;
-    /* margin: 0 auto; */
     margin-left: -22px;
     background-color: #000;
     z-index: 100;
@@ -4786,17 +4154,10 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 .timeline > li.timeline-inverted > .timeline-panel:before {
-    /* border-left-width: 0; */
-    /* border-right-width: 15px; */
-    /* left: -15px; */
-    /* right: auto; */
 }
 
 .timeline > li.timeline-inverted > .timeline-panel:after {
     border-left-width: 0;
-    /* border-right-width: 14px; */
-    /* left: -14px; */
-    /* right: auto; */
 }
 
 .timeline-badge.primary {
@@ -4836,13 +4197,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-top: 5px;
 }
 
-
-
-
-
-
-
-
 .timelineForPreview{
     position: relative;
 }
@@ -4864,9 +4218,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-bottom: 20px;
     margin-top: 3px;
     position: relative;
-    /* border: 4px solid #000; */
-    /* width: 50%; */
-    /* float: right; */
 }
 
 
@@ -4892,7 +4243,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     width: 46%;
     float: left;
     border: 5px solid #231f20;
-    /* border-radius: 2px; */
     padding: 4px;
     padding-bottom: 8px;
     position: relative;
@@ -4902,9 +4252,7 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     margin-top: 20px;
 }
 
-
 .timelineForPreview > li > .timeline-panel:after {
-    /* position: absolute; */
     top: 27px;
     right: -14px;
     display: inline-block;
@@ -4926,7 +4274,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
     position: absolute;
     top: 16px;
     left: 51.7%;
-    /* margin: 0 auto; */
     margin-left: -25px;
     background-color: #000;
     z-index: 100;
@@ -4942,67 +4289,10 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 }
 
 .timelineForPreview > li.timeline-inverted > .timeline-panel:before {
-    /* border-left-width: 0; */
-    /* border-right-width: 15px; */
-    /* left: -15px; */
-    /* right: auto; */
 }
 
 .timelineForPreview > li.timeline-inverted > .timeline-panel:after {
     border-left-width: 0;
-    /* border-right-width: 14px; */
-    /* left: -14px; */
-    /* right: auto; */
 }
 
-
-
-/*natalie*/
-
-footer{
-    position: relative;
-    /* bottom: -116px; */
-    z-index: 1000000;
-}
-
-/*********/
-
-
-
-
-/* resume page */
-#previewCV > div{width:80%;}
-
-/*myjobs*/
-.fa-heart{color:#d43f3a;}
-.hired{    position: absolute;
-    margin: 0 auto;
-    text-align: center;
-    left: 37%;}
-
-
-/*myjobs employer*/
-#popoverData{
-    position: absolute;
-    right: 30px;
-    top: 20px;
-    background-color: transparent;
-    color: white;
-}
-#previewCV > div{width:80%;}
-
-
-.myjobsWrapper button:hover, .searchJobsWrapper button:hover, .yourJobsWrapper button:hover  {
-    background-color: transparent;
-    color: #fff !important;
-}
-
-.Garrow{
-    /* height: 20px; */
-    width: 20px;
-    float: left;
-    margin-right: 10px;
-    margin-top: 0px;
-    /* background-repeat-y: no-repeat; */
-}
 

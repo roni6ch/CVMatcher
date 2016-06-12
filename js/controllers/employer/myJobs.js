@@ -22,12 +22,14 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         $('#popoverData').popover();
 
         if ($id[1] == 'myjobs') {
+            localStorage.setItem('archive','false');
             archive = false;
             $scope.jobPage = "myJobs";
             $scope.pageTitle = 'My Jobs';
             $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a>";
         }
         else {
+            localStorage.setItem('archive','true');
             archive = true;
             $scope.jobPage = "archive";
             $scope.pageTitle = 'Deleted';
