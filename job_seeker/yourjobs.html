@@ -13,9 +13,11 @@
         </form>
         <button type="button" class="btn btn-default"
                 ng-click="sort('-job.compatibility_level')">Sort By Compatibility
+            <img class="Garrow" src="images/Garrow.png">
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
+            <img class="Garrow" src="images/Garrow.png">
         </button>
     </div>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
@@ -24,16 +26,24 @@
         <ul>
             <li class="jobListLi  animated fadeInUp"
                 ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby">
-                <i ng-if="jobSJ.job.active == true" class="fa fa-3x" id="fav{{$index}}"
-                   ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
-                   ng-show="page!='deleted'"
-                   ng-click="favoriteJob(jobSJ._id,$index)"></i>
+
+
+
+
                 <div data-toggle="collapse" data-target="#collepse-{{$index}}" ng-click="collepse($index)">
                     <input type="hidden" class="classForNotifications" value="{{jobSJ.job._id}}"/>
                     <i ng-if="jobSJ.job.active == true" class="fa fa-times" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
                        ng-click="removeReviveJob(jobSJ._id,false)"></i>
                     <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'"
                        ng-click="removeReviveJob(jobSJ._id,true)"></i>
+
+
+
+                    <i ng-if="jobSJ.job.active == true" class="fa fa-3x fav" id="fav{{$index}}"
+                       ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
+                       ng-show="page!='deleted'"
+                       ng-click="favoriteJob(jobSJ._id,$index)"></i>
+
 
                     <a
                             href="">

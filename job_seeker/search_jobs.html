@@ -2,6 +2,8 @@
 
 
 <div class="searchJobsWrapper" ng-init="init();getMainJson();sort('-date');">
+    <img class="jobSeekerLogo" src="images/jobsee.png">
+
 
     <h3 class="navigation"></h3>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
@@ -16,9 +18,11 @@
         </form>
         <button type="button" class="btn btn-default"
                 ng-click="sort('-compatibility_level')">Sort By Compatibility
+            <img class="Garrow" src="images/Garrow.png">
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
+            <img class="Garrow" src="images/Garrow.png">
         </button>
     </div>
     <div class="jobsList">
@@ -71,7 +75,7 @@
                         <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-show="cv_exist == true"
                            ng-href="#/search-jobs/{{job['_id']}}/matchpage"
                            ng-click="saveData(job['original_text']['title'],job.compatibility_level);"
-                           class="btn btn-default">Check
+                           class="btn btn-default"><img class="Garrow" src="images/Garrow.png">Check
                             my CV</a>
                         <img class="arrow-up" src="images/arrow-up.png">
                     </article>

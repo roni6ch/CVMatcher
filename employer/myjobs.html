@@ -14,20 +14,22 @@
         </form>
         <button type="button" class="btn btn-default"
                 ng-click="sort('-compatibility_level')">Sort By Compatibility
+            <img class="Garrow" src="images/Garrow.png">
         </button>
         <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
             By Date
+            <img class="Garrow" src="images/Garrow.png">
         </button>
     </div>
     <ul class="nav engineering" ng-init="tab=0">
         <li class="selected" ng-class="{active:tab == 0}"><a ng-click="tab = 0">Software
-            Engineer</a></li>
+            </a></li>
         <li class="disabled"><a>
-            Managment Engineer</a></li>
+            Managment</a></li>
         <li class="disabled"><a>Electrial
-            Engineer</a></li>
+            </a></li>
         <li class="disabled"><a>Mechanical
-            Engineer</a></li>
+            </a></li>
     </ul>
     <div class="tabsWrapper">
         <div ng-show="tab == 0" class="fade in active">

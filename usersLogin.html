@@ -1,20 +1,20 @@
 <div class="googleSignInWrapper" ng-init="init()">
     <!-- natalie -->
-    <img class="googleSignInImg" alt="background Img" src="images/buildings.png"/>
+    <div class="googleSignInImg"></div>
 
     <div class="googleSignInBox">
-        <h3>CV Matcher</h3>  
+        <h3>Find the best matching</h3>
 
-        <div>  
-            <a href=""  ng-click="userType('jobSeeker')">
+        <div class="seeker">
+            <a href="" ng-click="userType('jobSeeker')">
                 <img alt="job seeer" src="images/jobsee.png">
-                <h4>Im a Job Seeker</h4>
+                <h4>Find my next job</h4>
             </a>
         </div>
-        <div>
+        <div class="employer">
             <a href="" ng-click="userType('employer')">
                 <img alt="employer" src="images/emp.png">
-                <h4>Im an Employer</h4>
+                <h4>Find the best employee</h4>
             </a>
         </div>
     </div>
