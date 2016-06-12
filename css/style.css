@@ -2177,7 +2177,7 @@ a:focus, a:hover {
     left: -8px;
     font-size: larger;
 }
-.yourJobsWrapper .jobsList article {margin-top: -17px;padding-top: 18px;}
+.yourJobsWrapper .jobsList article {margin-top: -17px;}
 
 .readUnread {
     position: absolute;
