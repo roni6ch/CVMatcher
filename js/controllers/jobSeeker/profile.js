@@ -153,7 +153,7 @@ app
                     var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
 
                     if (startdate > enddate) {
-                        $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                        $scope.status = messageResource.get("modal.seeker.fix_years", 'resources');
                         $('#myModal').modal('show');
                         return;
                     }
@@ -284,7 +284,7 @@ app
                     data: $scope.jobSeeker
                 })
                     .then(function () {
-                            $scope.status = 'Deatils Sent Succesfully';
+                            $scope.status = messageResource.get("modal.seeker.details_send", 'resources');
                             $('#myModal').modal('show');
                             $scope.tab = 1;
                         },
@@ -306,7 +306,7 @@ app
                 })
                     .then(function (data) {
                             console.log(data.data[0]);
-                            $scope.status = 'Preview CV before send!';
+                            $scope.status = messageResource.get("modal.seeker.preview", 'resources');
                             $('#previewCV').modal('show');
 
                             $scope.user = data.data[0];
@@ -317,7 +317,7 @@ app
                                 var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
 
                                 if (startdate > enddate) {
-                                    $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                                    $scope.status = messageResource.get("modal.seeker.fix_years", 'resources');
                                     $('#myModal').modal('show');
                                     return;
                                 }
@@ -397,7 +397,7 @@ app
                     jobSeekerCVScopeOfPosition.push($(this).val());
                 });
                 if (jobSeekerCVScopeOfPosition.length == 0) {
-                    $scope.status = 'Please fill the "Scope of Position" section';
+                    $scope.status = messageResource.get("modal.seeker.scope_of_position", 'resources');
                     $('#myModal').modal('show');
                     return;
                 }
@@ -409,7 +409,7 @@ app
                 });
 
                 if (jobSeekerCVAcademy.length == 0) {
-                    $scope.status = 'Please fill the "Academy" section';
+                    $scope.status = messageResource.get("modal.seeker.fill.academy", 'resources');
                     $('#myModal').modal('show');
                     return;
                 }
@@ -431,7 +431,7 @@ app
                     var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
 
                     if (startdate > enddate) {
-                        $scope.status = 'Please fix years - "From" is bigger then "TO"';
+                        $scope.status = messageResource.get("modal.seeker.fix_years", 'resources');
                         $('#myModal').modal('show');
                         return;
                     }
@@ -541,7 +541,7 @@ app
                     .then(function (data) {
 
                             localStorage.setItem("jobSeekerFirstSignIn", true);
-                            $scope.status = 'Resume Sent Succesfully';
+                            $scope.status = messageResource.get("modal.seeker.resume.sent", 'resources');
                             $('#myModal ').modal('show');
                             closeModal = true;
                             if (cvJson == false) {
@@ -567,7 +567,7 @@ app
                     localStorage.removeItem('fixCV');
                     $('#myModal ').modal('hide');
                     $timeout(function () {
-                        $location.url('/search_jobs/' + jobid + '/matchpage');
+                        $location.url('/search-jobs/' + jobid + '/matchpage');
                     }, 1000);
                     return;
                 }
@@ -576,7 +576,7 @@ app
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 if (closeModal == true)
                     $timeout(function () {
-                        location.replace("#/search_jobs");
+                        location.replace("#/search-jobs");
                     }, 1000);
             };
 

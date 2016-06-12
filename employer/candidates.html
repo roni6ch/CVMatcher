@@ -35,9 +35,8 @@
                     ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
                 <div class="candidates animated fadeInUp">
 
-                    <div><a
-                            href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img
-                            src="./images/logo.png"></a>
+                    <div><a ng-if="jobPage != 'archive'" href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logo.png"></a>
+                        <a ng-if="jobPage == 'archive'" href="#/archive/unread/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logo.png"></a>
                         <h5>{{candidate.sub_sector[0]}}</h5>
                     </div>
                     <div>
@@ -69,8 +68,12 @@
 
 
                     <div><i id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
-                            ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
-                            href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img
+                            ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i>
+                            <a ng-if="jobPage != 'archive'" href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}">
+                            <a ng-if="jobPage == 'archive'" href="#/archive/like/candidates/{{jobId}}/resume/{{candidate._id}}">
+
+
+                            <img
                             src="./images/logoSmall.png"></a><a href=""
                                                                 ng-click='hire(candidate._id,candidate.user._id)'><img
                             src="./images/handshake1.png"></a>
@@ -139,7 +142,8 @@
 
                     <div>
 
-                        <a href="#/hired/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
+                        <a href="#/hired/candidates/{{jobId}}/resume/{{candidate._id}}"><img
+                                src="./images/logoSmall.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
                     </div>
                     <div>

@@ -42,7 +42,7 @@ app
                                 .then(function (data) {
                                         $(".matchResult").show();
                                         //navigation in site
-                                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search_jobs'>Search Jobs</a><span> > </span><a href='#/search_jobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
+                                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Search Jobs</a><span> > </span><a href='#/search-jobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
 
                                         if (data.data.formula !== undefined) {
                                             console.log(data.data);
@@ -106,7 +106,7 @@ app
 
                                         }
                                         else {
-                                            $scope.status = "Please Update your CV!";
+                                            $scope.status = messageResource.get("modal.seeker.cv_update", 'resources');
                                             angular.element(".fa-pulse").hide();
                                         }
                                     },
@@ -145,10 +145,11 @@ app
                         console.log(data);
                         if (data != null) {
                             $('#sendCVstatus').modal('show');
-                            $scope.status = "your Resume Send!"
+                            $scope.status = messageResource.get("modal.seeker.cv_update", 'resources');
+
                         }
                         else {
-                            $scope.status = "Problem send resume";
+                            $scope.status = messageResource.get("modal.seeker.resume_problem", 'resources');
                         }
                     },
                     function (response) { // optional
@@ -160,7 +161,7 @@ app
             $scope.exitStatus = function () {
                 //if user clickd ok then move to search jobs page - need to wait to close modal
                 $timeout(function () {
-                    location.replace("#/search_jobs");
+                    location.replace("#/search-jobs");
                 }, 1000);
             };
         });

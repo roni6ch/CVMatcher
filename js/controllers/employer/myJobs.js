@@ -76,14 +76,14 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
         }).then(function (data) {
             angular.element("#profileImg").parent().show();
             if (typeof data.data[0].company == 'undefined') {
-                $scope.popoverData = 'company_profile';
+                $scope.popoverData = 'company-profile';
                 $scope.popOverDataContent = 'Please Update Your Profile First!';
                 $("#popoverData").css("text-decoration", "line-through");
             }
             else {
                 $(".newJob").css("pointer-events", "auto");
                 $("#popoverData").css("text-decoration", "none");
-                $scope.popoverData = 'new_job';
+                $scope.popoverData = 'new-job';
                 $scope.popOverDataContent = 'Add new Job to System';
             }
 

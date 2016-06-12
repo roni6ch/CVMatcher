@@ -44,7 +44,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/candidates/:_id', {
@@ -53,7 +53,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/archive/candidates/:_id', {
@@ -62,7 +62,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/like/candidates/:id/resume/:_id', {
@@ -71,7 +71,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/hired/candidates/:id/resume/:_id', {
@@ -80,7 +80,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/unlike/candidates/:id/resume/:_id', {
@@ -89,7 +89,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/unread/:id/resume/:_id', {
@@ -98,7 +98,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/archive', {
@@ -107,7 +107,7 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
         }).when('/job/:_id', {
@@ -116,32 +116,32 @@ app.config(function ($routeProvider) {
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
-        }).when('/company_profile', {
+        }).when('/company-profile', {
             templateUrl: 'employer/companyProfile.html',
             controller: 'companyProfileController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
                     checkProfile($rootScope, 'Company Profile');
-                    return changeLocation($location, '#/company_profile', "employer");
+                    return changeLocation($location, '#/company-profile', "employer");
                 }
             }
-        }).when('/new_job', {
+        }).when('/new-job', {
                 templateUrl: 'employer/job.html',
                 controller: 'jobController',
                 resolve: {
                     resolvedVal: function ($location, $rootScope) {
                         checkProfile($rootScope, 'Company Profile');
-                        return changeLocation($location, '#/company_profile', "employer");
+                        return changeLocation($location, '#/company-profile', "employer");
                     }
                 }
             })
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
             //////////////////////////////////////////////////// job seeker///////////////////////////////////////////////
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            .when('/search_jobs', {
+            .when('/search-jobs', {
                 templateUrl: 'job_seeker/search_jobs.html',
                 controller: 'jobSeekerSearchJobsController',
                 resolve: {
@@ -168,7 +168,7 @@ app.config(function ($routeProvider) {
                     return changeLocation($location, '#/profile', 'jobSeeker');
                 }
             }
-        }).when('/search_jobs/:_id/matchpage', {
+        }).when('/search-jobs/:_id/matchpage', {
             templateUrl: 'job_seeker/matchpage.html',
             controller: 'matchpageController',
             resolve: {
@@ -200,14 +200,14 @@ app.config(function ($routeProvider) {
 
 
             // Other
-            .when('/About', {
+            .when('/about', {
                 templateUrl: 'about.html',
                 resolve: {
                     resolvedVal: function ($location) {
                         return changeLocation($location, null, null);
                     }
                 }
-            }).when('/Contact', {
+            }).when('/contact', {
             templateUrl: 'contact.html',
             resolve: {
                 resolvedVal: function ($location) {
@@ -278,8 +278,8 @@ function checkProfile($rootScope, str) {
         $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
         $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
         var location = $rootScope.Profile;
-        if ($rootScope.Profile == 'companyProfile')
-            location = 'company_profile';
+        if ($rootScope.Profile == 'company-profile')
+            location = 'company-profile';
         else
             location = 'profile';
         $rootScope.content = "<a href='#/" + location + "'>" + str + "</a><a href='' onclick=logout('logout')>Log Out</a><a href='' onclick=logout('signout')>Sign Out</a>";
@@ -386,7 +386,7 @@ function notifyMe(type, jobName) {
         });
 
         notification.onclick = function () {
-            window.open("#/search_jobs");
+            window.open("#/search-jobs");
         };
 
     } else Notification.requestPermission();
