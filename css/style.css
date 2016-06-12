@@ -2929,7 +2929,7 @@ div#popover924921 {
 /****************************************************************************************************/
 @media ( max-width: 767px) {
 
-
+    #profilePicture{display:none;}
     footer ul {
         margin-left: 10%;
         width: 100%;
