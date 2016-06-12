@@ -368,6 +368,59 @@ footer div a {
     margin-right: 20px;
 }
 
+/* requirements skills resume and match page */
+
+.requirements-skills-bar {
+    position: relative;
+    margin-top: 40px;
+}
+
+.skillbar {
+    position: relative;
+    display: inline-block;
+    margin: 15px 0;
+    width: 100%;
+    background: #eee;
+    height: 35px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+.skillbar-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 110px;
+    font-weight: bold;
+    font-size: 13px;
+    color: #ffffff;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    padding: 0 20px;
+    height: 35px;
+    line-height: 35px;
+}
+
+.skillbar-bar {
+    float: left;
+    height: 35px;
+    width: 0px;
+    background: #6adcfa;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.skill-bar-percent {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    font-size: 11px;
+    height: 35px;
+    line-height: 35px;
+    color: #000000;
+}
+
+
 /*  HAMBURGER END HERE  */
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
@@ -1356,6 +1409,15 @@ a:focus, a:hover {
     background-color: #231f20;
     margin-bottom: 40px;
     padding-top: 24px;
+}
+
+.resumeWrapper div#formulasAppend  p {
+    color: #FFFFFF;
+    font-size: 3vh;
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-top: 5px;
 }
 
 #users {
@@ -2616,20 +2678,6 @@ a:focus, a:hover {
     padding-left: 4%;
 }
 
-.formulaSliders {
-    float: left;
-    width: 90%;
-    /* background-color: #000; */
-    margin-top: 20px;
-    padding-left: 22px;
-}
-.tootipInfo{
-    float: right;
-    width: 10%;
-    /* margin-bottom: 20px; */
-    margin-top: 20px;
-}
-
 .matchpageWrapper .matchResult {
     width: 80%;
     margin: 0 auto;
@@ -2698,6 +2746,22 @@ a:focus, a:hover {
     font-weight: bold;
 }
 .progress-bar-striped{color:#000;}
+
+/* requirements skills bar*/
+
+.matchpageWrapper .formula-result {
+    background-color: #231f20;
+    opacity: 0.8;
+}
+
+.matchpageWrapper .formula-result p{
+    color: #FFFFFF;
+    font-size: 3vh;
+    font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+}
 
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
@@ -4913,19 +4977,7 @@ footer{
 
 /* resume page */
 #previewCV > div{width:80%;}
-.bubbleChart {
-    min-width: 100px;
-    max-width: 700px;
-    /* height: 560px; */
-    margin: 0 auto;
-    margin-top: 22px;
-}
 
-.bubbleChart svg {
-    background: #000;
-    /* opacity: 1; */
-    margin-top: 0;
-}
 /*myjobs*/
 .fa-heart{color:#d43f3a;}
 .hired{    position: absolute;
