@@ -2682,7 +2682,6 @@ a:focus, a:hover {
     width: 80%;
     margin: 0 auto;
     color: #fff;
-    height: 342px;
     width: 96%;
     position: relative;
     margin-top: 50px;
@@ -3680,10 +3679,6 @@ background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c
 
     .matchpageWrapper h4 {
         padding-top: 16px;
-    }
-
-    .matchpageWrapper .matchResult {
-        height: 280px;
     }
 
     /*profile*/
