@@ -14,6 +14,12 @@ app.controller('resumeController',
         var candidates;
         var id;
         var users;
+
+        var colorsArr = ["#106332", "#0F8742", "#58B647", "#1FB24A", "#1EAE6D", "#3DB98C", "#48C1C3",
+            "#71CBD2", "#7BD0E5", "#AFE0E9", "#BFDEDF"];
+
+        var colorIndex = 0;
+
         $id = $location.path().split('/');
 
         $scope.predictTrue = messageResource.get("predict.true", 'resources');
@@ -121,46 +127,54 @@ app.controller('resumeController',
                                 });
                         }
 
-                        //sliders
-                        angular.forEach(data.data[0].formula, function (value, key) {
-                            if (key == '__v' || key == '_id')
-                                return;
-                            if (key == 'matching_requirements' && value.grade > 0) {
-                                angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                    value.grade + '%">' + key + ' ' + value.grade + '%</div></div>');
-                            }
-                            else if (value > 0)
-                                angular.element("#formulasAppend").append('<div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ' +
-                                    value + '%">' + key + ' ' + value + '%</div></div>');
-                        });
+                    console.log("test", data.data[0].formula);
+                    if (data.data[0].formula !== undefined) {
+
+
+                        $(".resumeWrapper #formulasAppend").append(
+                            '<p>' + messageResource.get("jobseeker.formula", "resources") + '</p>' +
+                            '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " " + data.data[0].formula.candidate_type + '%</p>' +
+                            '<p>' + messageResource.get("jobseeker.formula.requirements", "resources") + " " + data.data[0].formula.matching_requirements.grade + '%</p>' +
+                            '<p>' + messageResource.get("jobseeker.formula.locations", "resources") + " " + data.data[0].formula.locations + '%</p>' +
+                            '<p>' + messageResource.get("jobseeker.formula.scope_of_position", "resources") + " " + data.data[0].formula.scope_of_position + '%</p>' +
+                            '<p>' + messageResource.get("jobseeker.formula.academy", "resources") + " " + data.data[0].formula.academy + '%</p>'
+                        );
+                    }
 
                         if (data.data[0].predict_result !== 'undefined' && data.data[0].predict_result == true || data.data[0].predict_result == false) {
                             $("#predictAppend").show();
                         }
                         else {
-                            $(".predictAppend").hide();
+                            $("#predictAppend").hide();
                         }
 
-                        //formula bubbels
+                        //formula requirements
                         if (data.data[0].formula)
                             if (data.data[0].formula.matching_requirements.grade > 0) {
-                                skills = [];
 
                                 var skillsFromJson = data.data[0].formula.matching_requirements.details;
 
-                                $.each(skillsFromJson, function (k, v) {
-                                    skills.push({
-                                        text: v.name,
-                                        count: v.grade
-                                    });
+                                $.each(skillsFromJson, function (key, value) {
+                                    var color = colorsArr[colorIndex];
+                                    $(".resumeWrapper .requirements-skills-bar").append('<div class="skillbar" data-percent=' + value.grade + ' >' +
+                                        '<span class="skillbar-title">' + value.name + '' +
+                                        '</span><p class="skillbar-bar" style="background: ' + color + ';">' +
+                                        '</p><span class="skill-bar-percent"></span></div>');
+                                    colorIndex++;
+                                    if (colorIndex > colorsArr.length -1 ) {
+                                        colorIndex = 0;
+                                    }
+
                                 });
+
                                 $(".resumeSkillsBox").show();
-                                bubbels();
+                                skillsBar();
+
                             }
                             else {
 
                                 $(".skillsTitle").hide();
-                                $(".bubbleChart").hide();
+                                $(".resumeWrapper .requirements-skills-bar").hide();
                                 $(".resumeSkillsBox").hide();
                                 $(".resumeSkillsBox > h3").html("There is no Skills for this Candidate!");
                             }
