@@ -335,7 +335,6 @@ function sockets() {
 //connection for sockets
 function connectToChat(url) {
     socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 10000});
-    console.log(socket);
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
         console.log(message);
@@ -400,8 +399,3 @@ function skillsBar() {
         decimals: 0,
     });
 }
-
-
-/* SHORTCUT URL */
-var myjobs =  messageResource.get("myjobs", 'resources');
-

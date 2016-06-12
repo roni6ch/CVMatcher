@@ -71,15 +71,14 @@ app.directive('circle', function ($timeout) {
 app.directive('profileimg', function ($compile) {
     return {
         replace: true,
-        restrict: 'E',
+        restrict: 'EA',
         link: function (scope) {
             //userProfileImg
             if (localStorage.getItem("user") !== null) {
                 var cookieImg = $.parseJSON(localStorage.getItem("user")).image;
-                var profile = localStorage.getItem("profile");
-                var e = $compile(
-                    '<a ng-href="' + profile + '"><img src="' + cookieImg + '" id="profileImg"></a>')(scope);
-                $compile(angular.element("#profilePage").replaceWith(e))(scope);
+                angular.element("#profilePicture").attr("src",cookieImg);
+              //  var e = $compile( '<a ng-href="' + profile + '"><img src="' + cookieImg + '" id="profileImg"></a>')(scope);
+              //  $compile(angular.element("#profilePage").replaceWith(e))(scope);
             }
         }
     }
@@ -100,10 +99,9 @@ app.directive('bsTooltip', function () {
     };
 });
 
-app.directive('myRepeatDirective', function() {
+app.directive('myRepeatDirective', function($rootScope) {
     return function(scope, element, attrs) {
         if (scope.$last){
-
         }
     };
 });
