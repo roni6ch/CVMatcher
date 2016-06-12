@@ -9,10 +9,18 @@ app.controller('candidatesController',
     function ($scope, $http, $location, $sce, $rootScope) {
         var stars = 0;
         $id = $location.path().split('/');
+        $scope.jobPage = '';
 var candidates = [];
         //init function to bring all the unread cv's
         $scope.unreadCvs = function () {
-            $scope.jobId = $id[2];
+            if ($id[1] == 'archive') {
+                $scope.jobId = $id[3];
+                $scope.jobPage = 'archive';
+            }
+            else {
+                $scope.jobId = $id[2];
+                $scope.jobPage = '';
+            }
             angular.element(".fa-pulse").show();
             $scope.candidates = '';
             $http({

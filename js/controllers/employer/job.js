@@ -220,7 +220,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
                 url = 'https://cvmatcher.herokuapp.com/addMatchingObject';
-                $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/new_job'>New Job</a>";
+                $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/new-job'>New Job</a>";
 
                 editJob = true;
                 angular.element(".fa-pulse").hide();
@@ -430,7 +430,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         if ($.inArray(v.name, repeatedLangs) == -1)
                             repeatedLangs.push(v.name);
                         else {
-                            $scope.status = 'Please Remove duplicated languages!';
+                            $scope.status = messageResource.get("modal.job.duplicate", 'resources');
                             $('#sendJob').modal('show');
                             return;
                         }
@@ -467,7 +467,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     });
 
 
-            $scope.status = 'Please wait';
+            $scope.status = messageResource.get("modal.wait", 'resources');
 
             if (sumSliders == 100 && $rootScope.list1.length > 0 && totalPriorotySum == 100 && $rootScope.list3.length != 1 || sumSliders == 100 && $rootScope.list1.length == 0 && $rootScope.list3.length != 1) {
 
@@ -479,7 +479,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
                 if (academy.length == 0) {
                     $('#sendJob').modal('show');
-                    $scope.status = "Please fill Academy";
+                    $scope.status = messageResource.get("modal.fill.academy", 'resources');
                     return;
                 }
                 var degree_type = [];
@@ -489,7 +489,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
                 if (degree_type.length == 0) {
                     $('#sendJob').modal('show');
-                    $scope.status = "Please fill Degree Type";
+                    $scope.status = messageResource.get("modal.fill.degree_type", 'resources');
                     return;
                 }
                 var scope_of_position = [];
@@ -499,7 +499,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
                 if (scope_of_position.length == 0) {
                     $('#sendJob').modal('show');
-                    $scope.status = "Please fill Scope of Position";
+                    $scope.status = messageResource.get("modal.fill.scope_of_position", 'resources');
                     return;
                 }
                 var candidate_type = [];
@@ -509,7 +509,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
                 if (candidate_type.length == 0) {
                     $('#sendJob').modal('show');
-                    $scope.status = "Please fill Candidate Type";
+                    $scope.status = messageResource.get("modal.fill.candidate", 'resources');
                     return;
                 }
 
@@ -518,7 +518,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 });
                 if (locations.length == 0) {
                     $('#sendJob').modal('show');
-                    $scope.status = "Please fill Location";
+                    $scope.status = messageResource.get("modal.fill.location", 'resources');
                     return;
                 }
                 //TODO: SEND locations ARRAY IN LOCATION JOB AND NOT JOB AJAX
@@ -603,34 +603,36 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                     .then(function (data) {
                             if (data != null)
                                 $('#sendJob').modal('show');
-                            $scope.status = "Job Send Succesfuly";
+                            //$scope.status = "Job Send Succesfuly";
+                            $scope.status = messageResource.get("modal.job.complete", 'resources');
                             sendForm = true;
                         },
                         function (response) { // optional
                             $scope.status = "Job did not send";
+                            $scope.status = messageResource.get("modal.job.error", 'resources');
                             console.log("addMatchingObject send form AJAX failed!");
                             console.log(response);
                         });
             }
             if ($rootScope.list3.length == 1){
                 $('#sendJob').modal('show');
-                $scope.status = "OR section must be different then 1 language";
+                $scope.status = messageResource.get("modal.job.or", 'resources');
             }
             if (sumSliders != 100) {
 
                 $('#sendJob').modal('show');
-                $scope.status = "Please SUM the sliders to 100";
+                $scope.status = messageResource.get("modal.job.sum_sliders", 'resources');
             }
             if (totalPriorotySum != 100 && $rootScope.list1.length > 0) {
                 $('#sendJob').modal('show');
-                $scope.status = "Please SUM Prioroty to 100";
+                $scope.status = messageResource.get("modal.job.sum_prioroty", 'resources');
             }
         };
         //ADD COMBINATION
         $scope.addDynamicCombination = function () {
             combinationLengthAfterEdit++;
             $(".fa-arrow-right").hide();
-            if (totalPriorotySum == 100 &&  $rootScope.list3.length != 1) {
+            if ($rootScope.list3.length != 1 && $rootScope.list1.length > 0 && totalPriorotySum == 100 || $rootScope.list3.length != 1 && $rootScope.list1.length == 0) {
                 nextCombinationKey++;
                 combinationsLength++;
                 $(".fa-arrow-left").show();
@@ -660,30 +662,26 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 totalPriorotySum = 0;
                 $scope.addDynamicLang();
             }
-            else if ($rootScope.list1.length == 0) {
+            else if ($rootScope.list1.length > 0 && totalPriorotySum != 100) {
                 $('#sendJob').modal('show');
-                $scope.status = "Please add Must Language";
-            }
-            else if (totalPriorotySum != 100) {
-                $('#sendJob').modal('show');
-                $scope.status = "Please SUM Prioroty to 100";
+                $scope.status = messageResource.get("modal.job.sum_prioroty", 'resources');
             }
             else if($rootScope.list3.length == 1){
                 $('#sendJob').modal('show');
-                $scope.status = "OR section must be different then 1 language";
+                $scope.status = messageResource.get("modal.job.or", 'resources');
             }
         };
         //BRING NEXT COMBINATION
         $scope.nextCombination = function (val) {
             if ($rootScope.list3.length == 1){
                 $('#sendJob').modal('show');
-                $scope.status = "OR section must be different then 1 language";
+                $scope.status = messageResource.get("modal.job.or", 'resources');
                 return;
             }
 
-            if (totalPriorotySum != 100) {
+                if ($rootScope.list3.length != 1 && $rootScope.list1.length > 0 && totalPriorotySum != 100) {
                 $('#sendJob').modal('show');
-                $scope.status = "Please sum Must Prioroty to 100";
+                $scope.status = messageResource.get("modal.job.sum_prioroty", 'resources');
                 return;
             }
             if (val == 'right') {

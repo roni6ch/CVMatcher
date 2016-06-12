@@ -9,7 +9,7 @@ var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
 
-        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/company_profile'>Company Profile</a>";
+        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/company-profile'>Company Profile</a>";
         var companyId,tabType = '',logo = '';
         $("#geocomplete").geocomplete();
         $("#geocomplete2").geocomplete();
@@ -113,11 +113,12 @@ app.controller('companyProfileController',
             })
                 .then(function () {
                         $('#update').modal('show');
-                        $scope.status = "User Updated Succesfully!";
+                        $scope.status = messageResource.get("modal.user.details", 'resources');
                         $scope.tab = 1;
                     },
                     function (response) { // optional
                         $scope.status = "Error User Update!";
+                        $scope.status = messageResource.get("modal.user.error", 'resources');
                         console.log(response);
                     });
         };
@@ -127,14 +128,14 @@ app.controller('companyProfileController',
             if (logo == '')
                 logo = $(".companyLogo > img").attr("src");
             if (logo == undefined)
-                logo = 'http://www.megaicons.net/static/img/icons_sizes/53/135/256/default-icon-icon.png';
+                logo = 'logo-default.png';
 
 
             $scope.status = '';
 
             if (!$.isNumeric($(".companyPC").val())){
                 $('#update').modal('show');
-                $scope.status = "P.C is not a number!";
+                $scope.status = messageResource.get("modal.user.pc", 'resources');
                 return;
             }
 
@@ -159,12 +160,12 @@ app.controller('companyProfileController',
                         localStorage.setItem("company", true);
                         localStorage.setItem("employerFirstSignIn", true);
                         $('#update').modal('show');
-                        $scope.status = "Company Updated Succesfully!";
+                        $scope.status = messageResource.get("modal.company", 'resources');
 
                         tabType = 'company';
                     },
                     function (response) { // optional
-                        $scope.status = "Error Company Update!";
+                        $scope.status = messageResource.get("modal.company.error", 'resources');
                         console.log(response);
                     });
             }
@@ -191,11 +192,11 @@ app.controller('companyProfileController',
 
                         tabType = 'company';
                         $('#update').modal('show');
-                        $scope.status = "Company Updated Succesfully!"
+                        $scope.status = messageResource.get("modal.company.update", 'resources');
 
                     },
                     function (response) { // optional
-                        $scope.status = "Error Company Update!";
+                        $scope.status = messageResource.get("modal.company.error", 'resources');
                         console.log(response);
                     });
 
@@ -211,10 +212,10 @@ app.controller('companyProfileController',
                         }
                     }).then(function () {
                             $('#update').modal('show');
-                            $scope.status = "Company Updated Succesfully!"
+                            $scope.status = messageResource.get("modal.company", 'resources');
                         },
                         function (response) { // optional
-                            $scope.status = "Wrong Password!";
+                            $scope.status = messageResource.get("modal.password.wrong", 'resources');
                             console.log(response);
                         });
                 }
@@ -237,7 +238,7 @@ app.controller('companyProfileController',
                     $scope.companies = data.data;
                 },
                 function (response) { // optional
-                    $scope.status = "Error get Companies!"
+                    $scope.status = messageResource.get("modal.get.companies", 'resources');
                     console.log(response);
                 });
         };
@@ -246,7 +247,7 @@ app.controller('companyProfileController',
             companyId = id;
             $scope.chooseCompanyModal = true;
             $('#update').modal('show');
-            $scope.status = "Password";
+            $scope.status = messageResource.get("modal.password", 'resources');
             //remove the v check mark from other buttons
             logo = $(this).find("img").prevObject[0].logo;
             $.each($(".companies label"), function () {
@@ -270,7 +271,7 @@ app.controller('companyProfileController',
 
                 },
                 function (response) { // optional
-                    $scope.status = "Error  sendPassword!";
+                    $scope.status = messageResource.get("modal.password.error", 'resources');
                     console.log(response);
                 });
         };

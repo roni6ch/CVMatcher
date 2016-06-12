@@ -48,6 +48,10 @@
                            ng-click="saveJobTitle(job.original_text['title']);"><img alt="logo of cv matcher"
                                                                                      src="./images/logo.png"></a>
 
+                        <a ng-if="job.cvs.length > 0 && jobPage == 'archive'" href="#/archive/candidates/{{job._id}}"
+                           ng-click="saveJobTitle(job.original_text['title']);"><img alt="logo of cv matcher"
+                                                                                     src="./images/logo.png"></a>
+
                         <h3 class="title" ng-model="searchText.original_text['title']"
                             ng-bind-html="job.original_text['title'] | highlight:searchText">
                             {{job.original_text["title"]}}</h3>

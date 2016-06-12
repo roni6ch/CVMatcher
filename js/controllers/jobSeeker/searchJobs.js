@@ -12,7 +12,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         $rootScope.userSignInType = 'jobSeeker';
         angular.element("#logo").attr("href", '#/login');
         //navigation in site
-        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search_jobs'>Search Jobs</a>";
+        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Search Jobs</a>";
 
         //TODO: OPEN SOCKET!
         socket.onmessage = function (msg) {
