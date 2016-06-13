@@ -149,7 +149,7 @@
     <div class="navBarImg hidden">
         <nav>
             <!-- Employer NAV -->
-            <ul ng-if="userSignInType == 'employer'">
+            <ul ng-if="userSignInType == 'employer'" ng-init="tab = 0">
                 <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">	<i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
 
                 </li>
@@ -157,7 +157,7 @@
                 </li>
             </ul>
             <!-- Job Seeker NAV -->
-            <ul ng-if="userSignInType == 'jobSeeker'">
+            <ul ng-if="userSignInType == 'jobSeeker'" ng-init="tab = 0">
                 <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/search-jobs" ng-click="tab = 0">	<i class="fa fa-search" aria-hidden="true"></i>FIND JOBS</a></li>
                 <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1"><i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
                 </li>

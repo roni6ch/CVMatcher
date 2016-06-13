@@ -163,7 +163,7 @@ app
                         console.log(data);
                         if (data != null) {
                             $('#sendCVstatus').modal('show');
-                            $scope.status = messageResource.get("modal.seeker.cv_update", 'resources');
+                            $scope.status = messageResource.get("modal.seeker.resume_sent", 'resources');
 
                         }
                         else {

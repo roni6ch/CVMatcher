@@ -9,13 +9,13 @@
 
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 
-
 @font-face {
     font-family: 'alefBold';
     font-weight: 300; (bold)
 font-style: normal;
     src: url('../fonts/Alef-bold.ttf');
 }
+
 @font-face {
     font-family: 'alefregular';
     font-weight: 300; (regular)
@@ -23,7 +23,7 @@ font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
 }
 
-.requiredError{
+.requiredError {
     color: #f36f6f;
     padding-top: 12px;
 }
@@ -43,10 +43,9 @@ font-style: normal;
     src: url('../fonts/almoni-dl-aaa-regular.otf');
 }
 
-p{
-    margin:0px;
+p {
+    margin: 0px;
 }
-
 
 article, aside, details, figcaption, figure, footer, header, hgroup,
 menu, nav, section, img {
@@ -143,6 +142,7 @@ footer {
     float: right;
     background: #231f20;
     padding: 10px;
+
 }
 
 footer ul {
@@ -227,6 +227,7 @@ footer div a {
     left: 50%;
     bottom: 10%;
 }
+
 .fa-spin2 {
     display: none;
     position: absolute;
@@ -245,6 +246,7 @@ footer div a {
     border-radius: 3px;
     width: 100%;
 }
+
 .skillbar-title {
     position: absolute;
     top: 0;
@@ -259,6 +261,7 @@ footer div a {
     height: 35px;
     line-height: 35px;
 }
+
 .skillbar-bar {
     float: left;
     height: 35px;
@@ -267,6 +270,7 @@ footer div a {
     border-radius: 3px;
     display: inline-block;
 }
+
 .skill-bar-percent {
     position: absolute;
     right: 10px;
@@ -279,7 +283,7 @@ footer div a {
 
 /****************************************************** HTML **********************************************/
 .myjobsWrapper, .readcvsWrapper, .unreadcvsWrapper, .favoritesWrapper,
-.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper,.yourJobsWrapper,
+.resumeWrapper, .jobWrapper, .jobParametersWrapper, .searchJobsWrapper, .yourJobsWrapper,
 .googleSignInWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
 .contactusWrapper, .googleSignInWrapper, .companyprofileWrapper, .candidatesWrapper,
 .profileWrapper {
@@ -290,7 +294,7 @@ footer div a {
 .unreadcvsWrapper header h2, .readcvsWrapper header h2,
 .favoritesWrapper header h2, .jobWrapper header h2, .myjobsWrapper header h2,
 .resumeWrapper header h2, .jobParametersWrapper header h2,
-.searchJobsWrapper header h2,.yourJobsWrapper header h2, .jobPageWrapper header h2,
+.searchJobsWrapper header h2, .yourJobsWrapper header h2, .jobPageWrapper header h2,
 .matchpageWrapper header h2, .googleSignInWrapper header h2,
 .aboutWrapper header h2, .contactusWrapper header h2,
 .companyprofileWrapper header h2, .profileWrapper header h2, .candidatesWrapper header h2 {
@@ -299,7 +303,7 @@ footer div a {
 
 .myjobsWrapper > h3, .readcvsWrapper > h3, .unreadcvsWrapper > h3,
 .favoritesWrapper > h3, .resumeWrapper > h3, .jobWrapper > h3,
-.jobParametersWrapper > h3, .searchJobsWrapper > h3,.yourJobsWrapper > h3, .jobPageWrapper > h3,
+.jobParametersWrapper > h3, .searchJobsWrapper > h3, .yourJobsWrapper > h3, .jobPageWrapper > h3,
 .matchpageWrapper > h3, .googleSignInWrapper > h3, .aboutWrapper > h3,
 .companyprofileWrapper > h3, .profileWrapper > h3, .contactusWrapper > h3, .candidatesWrapper > h3 {
     position: absolute;
@@ -310,13 +314,13 @@ footer div a {
     /* padding-left: 2.4%; */
 }
 
-footer{
+footer {
     position: relative;
     z-index: 1000000;
-    /* bottom: 0; */
+    margin-top: 57px;
 }
 
-.Garrow{
+.Garrow {
     width: 20px;
     float: left;
     margin-right: 10px;
@@ -360,31 +364,46 @@ footer{
     background-position: 0 0;
 }
 
-
-
 .navbar-toggle .icon-bar:nth-of-type(2) {
     top: 1px;
 }
+
 .navbar-toggle .icon-bar:nth-of-type(3) {
     top: 2px;
 }
+
 .navbar-toggle .icon-bar {
     position: relative;
     transition: all 500ms ease-in-out;
 }
+
 .navbar-toggle.active .icon-bar:nth-of-type(1) {
     top: 6px;
     transform: rotate(45deg);
 }
+
 .navbar-toggle.active .icon-bar:nth-of-type(2) {
     background-color: transparent;
 }
+
 .navbar-toggle.active .icon-bar:nth-of-type(3) {
     top: -6px;
     transform: rotate(-45deg);
 }
-.navbar-collapse > ul{background: #231f20;width: 100%;height: 100vh;padding: 4px;padding-top: 70px;padding-left: 0px;border-radius: 0;float: right;margin-top: -50px;/* position: absolute; *//* top: 0; *//* right: 0; */}
-.navbar-collapse ul li{
+
+.navbar-collapse > ul {
+    background: #231f20;
+    width: 100%;
+    height: 100vh;
+    padding: 4px;
+    padding-top: 70px;
+    padding-left: 0px;
+    border-radius: 0;
+    float: right;
+    margin-top: -50px; /* position: absolute; *//* top: 0; *//* right: 0; */
+}
+
+.navbar-collapse ul li {
     font-family: almoni-dl-aaa-regular;
     display: table;
     font-size: 30px;
@@ -396,23 +415,26 @@ footer{
     padding-left: 20px;
 }
 
-.mobileMenu a{
+.mobileMenu a {
     margin-left: 0px;
 }
 
-
-.mobileMenu i{
+.mobileMenu i {
     margin-right: 20px;
 }
 
 /*  HAMBURGER END HERE  */
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
-.seeker{margin-top: 34px;}
+.seeker {
+    margin-top: 34px;
+}
 
-.employer{margin-top: 44px;}
+.employer {
+    margin-top: 44px;
+}
 
-.googleSignInImg{
+.googleSignInImg {
     background-image: url("../images/myjobscover22.png");
     height: 100%;
     width: 100%;
@@ -423,43 +445,53 @@ footer{
 
 .googleSignInBox > div > a:hover {
 
-    opacity: 1;
+    opacity: 0.5;
 }
 
-.googleSignInWrapper{
+.googleSignInWrapper {
 
     width: 100%;
     height: 100%;
 }
 
-.googleSignInImg{
+.googleSignInImg {
     width: 100%;
 }
 
-.googleSignInBox{
+.googleSignInBox {
     width: 50%;
     margin: 0 auto;
     position: relative;
     top: 94px;
 }
 
-.googleSignInWrapper header{
+.googleSignInWrapper header {
 
     padding-top: 20px;
     padding-left: 20px;
     padding-bottom: 20px;
 }
 
-.googleSignInWrapper h3{opacity: 1;font-size: 260%;font-family: almoni-dl-aaa-regular;}
+.googleSignInWrapper h3 {
+    opacity: 1;
+    font-size: 260%;
+    font-family: almoni-dl-aaa-regular;
+}
 
-.googleSignInWrapper h4{padding-top: 20px;font-size: 114%;font-family: almoni-dl-aaa-regular;}
+.googleSignInWrapper h4 {
+    padding-top: 20px;
+    font-size: 114%;
+    font-family: almoni-dl-aaa-regular;
+}
 
-.googleSignInWrapper h3, .googleSignInWrapper h4{color: white;}
+.googleSignInWrapper h3, .googleSignInWrapper h4 {
+    color: white;
+}
 
-.googleSignInBox img{
+.googleSignInBox img {
     opacity: 1;
     margin-top: 34px;
-    margin-left: 36%;
+    margin: 0 auto;
 }
 
 .googleSignInBox > div > a {
@@ -497,14 +529,13 @@ footer{
 .abcRioButton {
     margin: 0 auto;
 }
-.popover-content a{
+
+.popover-content a {
     width: 100%;
     color: #231f20;
     display: inline-block;
     text-align: center;
 }
-
-
 
 .geocomplete {
     width: 50% !important;
@@ -527,8 +558,6 @@ footer{
     font-size: 33px;
 }
 
-
-
 /****************************************************** INDEX - NAV BAR **********************************************/
 #profilePicture {
     position: absolute;
@@ -540,16 +569,22 @@ footer{
     cursor: pointer;
 }
 
-.parseExperience{}
+.parseExperience {
+}
 
-.GarrowCV{width: 20px;float: left;margin-right: -20px;margin-top: 4px;}
+.GarrowCV {
+    width: 20px;
+    float: left;
+    margin-right: -20px;
+    margin-top: 4px;
+}
 
 .sendButtonP .Garrow {
     margin-top: 4px;
     margin-left: 10px;
 }
 
-.userIcon{
+.userIcon {
     position: absolute;
     width: 44px;
     left: 4%;
@@ -614,24 +649,19 @@ footer{
     float: right;
 }
 
-.navBarImg li a:hover{
-    border-top: 1px solid #33B778;
-    border-bottom: 1px solid #33B778;
-}
 
 .navBarImg ul {
     width: 100%;
-    padding: 17px 11% 0px;
+    padding: 17px 12% 0px;
     font-size: 78%;
-    min-height: 83px;
-    float: left;}
+    min-height: 69px;
+    float: left;
+}
 
 .navBarImg ul li {
-    float: none;
-    float: right;
-    width: 15%;
-    padding-top: 24px;
-    margin-right: 8px;
+    float: left;
+    margin-top: 24px;
+    margin-right: 50px;
 }
 
 .container-fluid {
@@ -643,45 +673,55 @@ footer{
 .myjobsWrapper .myJobsBox {
     margin-top: 0px;
 }
-
+.myjobsWrapper .nav > li > a:hover{
+    background-color: transparent;
+    font-size:22px;
+}
 .myjobsWrapper .form-control {
     display: block;
     width: 90%;
     margin: 0 auto;
 }
 
-#popoverData{
+#popoverData {
     position: absolute;
     right: 30px;
     top: 20px;
     background-color: transparent;
     color: white;
 }
-#previewCV > div{width:80%;}
 
-.myjobsWrapper button:hover, .searchJobsWrapper button:hover, .yourJobsWrapper button:hover  {
+#previewCV > div {
+    width: 80%;
+}
+
+.myjobsWrapper button:hover, .searchJobsWrapper button:hover, .yourJobsWrapper button:hover {
     background-color: transparent;
     color: #fff !important;
 }
 
-.myjobsWrapper .navigation{
+.myjobsWrapper .navigation {
     margin-left: 0px;
+    z-index: 111;
     margin-top: -24px;
     padding: 0;
 }
 
-.title{
+.title {
     font-size: 22px;
 }
 
-.myjobsWrapper svg{
+.myjobsWrapper svg {
     overflow: auto;
 }
-.selected a{
 
+.selected{
+    border-top: 1px solid #33B778;
+    border-bottom: 1px solid #33B778;
+    background-color: transparent;
 }
 
-.line{
+.line {
     position: absolute;
 }
 
@@ -689,10 +729,10 @@ footer{
 
 }
 
-.myjobsWrapper section:first-child{
+.myjobsWrapper section:first-child {
 }
 
-.newJob{
+.newJob {
     position: absolute;
     right: 30px;
     top: 20px;
@@ -700,21 +740,21 @@ footer{
     color: white;
 }
 
-.newJob button, html input[type=button]{
+.newJob button, html input[type=button] {
     background-color: transparent;
     color: white;
     font-family: almoni-dl-aaa-regular;
     font-size: 20px;
 }
 
-.myJobsBox{
-    height: 200px;
+.myJobsBox {
+    height: 133px;
     width: 100%;
     position: relative;
     margin-top: 0px;
 }
 
-.myJobsImgCover{
+.myJobsImgCover {
     background-image: url("../images/myjobscover22.png");
     height: 100%;
     width: 100%;
@@ -723,7 +763,7 @@ footer{
     background-size: cover;
 }
 
-.engineering{
+.engineering {
     margin: 0 auto;
     position: relative;
     width: 100%;
@@ -735,7 +775,7 @@ footer{
     font-family: almoni-dl-aaa-regular;
 }
 
-.engineering:first-child{
+.engineering:first-child {
     color: red;
 }
 
@@ -744,13 +784,12 @@ a {
     text-decoration: none;
 }
 
-
 a:focus, a:hover {
     text-decoration: none;
-    color:#BDBDBD;
+    color: #BDBDBD;
 }
 
-.engineering li{
+.engineering li {
     float: left;
     margin-right: 1%;
     margin-left: 1%;
@@ -764,15 +803,7 @@ a:focus, a:hover {
 }
 
 
-.engineering li a:hover{
-
-    border-top: 1px solid #33B778;
-    border-bottom: 1px solid #33B778;
-    background-color: transparent;
-
-}
-
-.myjobsWrapper header h2{
+.myjobsWrapper header h2 {
     position: absolute;
     top: 12%;
     left: 0%;
@@ -781,14 +812,13 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-
-.myjobsWrapper form{
+.myjobsWrapper form {
     position: absolute;
     top: 80px;
     left: -3%;
 }
 
-.myjobsWrapper button{
+.myjobsWrapper button {
     margin-top: 116px;
     background-color: transparent;
     border: 0;
@@ -799,13 +829,13 @@ a:focus, a:hover {
     margin-left: -1%;
 }
 
-.myjobsWrapper button:hover{
-    /* color: #000 !important; */
-    opacity: 0.6;
+.myjobsWrapper button:hover,.myjobsWrapper button:active:hover,.myjobsWrapper button:focus {
+    outline:none;
+    opacity: 0.6;    background-color: transparent;
+    color:#fff;
 }
 
-
-.navBarImg>img{
+.navBarImg > img {
     height: 36px;
     width: 36px;
     position: absolute;
@@ -813,7 +843,7 @@ a:focus, a:hover {
     left: 24%;
 }
 
-#logo{
+#logo {
     height: 67px;
     width: 83px;
 }
@@ -842,7 +872,7 @@ a:focus, a:hover {
     margin-top: 0px;
     width: 100%;
     padding: 0px;
-    border: 0px solid#231f20;
+    border: 0px solid #231f20;
     text-align: left;
     float: left;
     text-align: left;
@@ -1016,7 +1046,6 @@ a:focus, a:hover {
     position: relative;
     font-size: 34px;
     color: #fff;
-    border-bottom: 1px solid #fff;
     margin-bottom: 37px;
 }
 
@@ -1027,14 +1056,14 @@ a:focus, a:hover {
     opacity: 0.6;
 }
 
-.navigation a{
+.navigation a {
     color: #;
 }
 
-.navigation span{
+.navigation span {
 }
 
-.candidatesWrapper h2{
+.candidatesWrapper h2 {
     color: #fff;
     margin-top: 51px;
     /* padding-left: 76px; */
@@ -1043,7 +1072,7 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.candidatesWrapper .engineering{
+.candidatesWrapper .engineering {
     margin-top: 0px;
 }
 
@@ -1063,8 +1092,8 @@ a:focus, a:hover {
     float: left;
     margin-left: -1%;
 }
-
-.candidatesImgCover{
+.candidatesWrapper button:active,.candidatesWrapper button:active:hover,.candidatesWrapper button:focus{outline:none; background-color:transparent; color:#fff;}
+.candidatesImgCover {
     background-image: url('../images/myjobscover22.png');
     height: 100%;
     width: 100%;
@@ -1073,7 +1102,7 @@ a:focus, a:hover {
     background-size: cover;
 }
 
-.candidates h3{
+.candidates h3 {
     /* border-bottom-width: 1px; */
     /* border-bottom-style: solid; */
     width: 50%;
@@ -1082,10 +1111,8 @@ a:focus, a:hover {
 
 .candidates {
     margin-top: 0px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     width: 100%;
-    /* padding: 10px; */
-    /* border: 10px solid#231f20; */
     text-align: left;
     float: left;
     text-align: left;
@@ -1101,7 +1128,6 @@ a:focus, a:hover {
 
 .myjobsWrapper section > div {
     border-radius: 10px;
-    margin-bottom: 54px;
     margin-top: 6px;
     position: relative;
     border-bottom: 1px solid #fff;
@@ -1110,6 +1136,15 @@ a:focus, a:hover {
 
 .candidatesTabs li {
     height: 44px !important;
+}
+.candidatesTabs li  > a{
+       width: 100%;
+       float: left;
+   }
+.candidatesTabs li:hover{
+    border-top: 1px solid #33B778;
+    border-bottom: 1px solid #33B778;
+    background-color: transparent;
 }
 
 .candidates > div:nth-child(1) {
@@ -1130,26 +1165,25 @@ a:focus, a:hover {
 }
 
 .candidates > div:nth-child(2) {
-    padding-bottom: 22px;
-    padding-top: 26px;
     float: left;
     width: 100%;
-    min-height: 120px;
+    margin: 10px 0px;
     border-bottom: 1px solid #fff;
-    /* background-color: #231f20; */
 }
 
 .candidates > div:nth-child(2) a {
     text-decoration: none;
     float: left;
-    width: 100%;
+    width: 89%;
+    margin-left: 11%;
+    margin-top: 1%;
 }
 
 .candidates > div:nth-child(2) section {
     position: absolute;
     width: 100px;
-    top: 48px;
-    right: 44px;
+    top: 0px;
+    left: 0px;
 }
 
 .candidates > div:nth-child(2) section h5 {
@@ -1173,7 +1207,7 @@ a:focus, a:hover {
 }
 
 .candidates p {
-    margin: 20px 0px 60px;
+    margin: 20px 0px;
     color: #fff;
     font-size: 18px;
     text-align: justify;
@@ -1202,7 +1236,10 @@ a:focus, a:hover {
     -moz-osx-font-smoothing: grayscale;
 }
 
-#previewCV > div{width:80%;}
+#previewCV > div {
+    width: 80%;
+}
+
 .bubbleChart {
     min-width: 100px;
     max-width: 700px;
@@ -1215,35 +1252,41 @@ a:focus, a:hover {
     margin-top: 0;
 }
 
-.resumeWrapper{
+.resumeWrapper {
     margin-top: 85px;
 }
 
-.timeline-heading{
+.timeline-heading {
 
     background-color: #000;
 }
 
-.timeline-body{
+.timeline-body {
     background-color: #000;
     margin-bottom: -28px;
 }
 
-.timeline-body p{
+.timeline-body p {
     font-size: 26px;
     padding-bottom: 28px;
     text-align: center !important;
 }
-
 
 .resumeWrapper .resumeYears > div {
 
     background: transparent;
 }
 
-.resumeWrapper .page-header {border: 4px solid #000;padding: 4px;width: 200px;text-align: center;height: 84px;margin: 0 auto;}
+.resumeWrapper .page-header {
+    border: 4px solid #000;
+    padding: 4px;
+    width: 200px;
+    text-align: center;
+    height: 84px;
+    margin: 0 auto;
+}
 
-.resumeWrapper .skillsTitle{
+.resumeWrapper .skillsTitle {
     margin-bottom: 22px;
     color: #fff;
     background-color: #231f20;
@@ -1266,7 +1309,7 @@ a:focus, a:hover {
     padding-top: 24px;
 }
 
-.resumeWrapper div#formulasAppend  p {
+.resumeWrapper div#formulasAppend p {
     color: #FFFFFF;
     font-size: 3vh;
     font-weight: bold;
@@ -1281,30 +1324,30 @@ a:focus, a:hover {
     top: 95px;
 }
 
-.borderSides{
+.borderSides {
     background-color: #000;
 
 }
 
 #users > div {
     padding: 10px;
-    border: 10px solid#231f20;
+    border: 10px solid #231f20;
 }
 
-.userDetailsBox{
+.userDetailsBox {
     background-color: #231f20;
     padding-top: 44px;
     padding-bottom: 22px;
     color: #fff;
 }
 
-.resumeWrapper h5{
+.resumeWrapper h5 {
     font-size: 20px;
     padding-top: 20px;
     padding-bottom: 16px;
 }
 
-.resumeWrapper .userDetailsBox h3{
+.resumeWrapper .userDetailsBox h3 {
     font-size: 28px;
     text-decoration: underline;
 }
@@ -1351,7 +1394,7 @@ a:focus, a:hover {
     margin-top: 20px;
 }
 
-.resumeSkillsBox h2{
+.resumeSkillsBox h2 {
     color: #fff;
     background: #231f20;
 }
@@ -1489,12 +1532,11 @@ a:focus, a:hover {
     font-size: 30px;
 }
 
-.timeline-heading h4{
+.timeline-heading h4 {
     padding-top: 22px;
     font-weight: bold;
     font-size: 30px;
 }
-
 
 /****************************************************** JOB - HTML **********************************************/
 
@@ -1546,7 +1588,6 @@ a:focus, a:hover {
     margin-top: 10px;
 }
 
-
 .langsName {
     width: 90%;
     font-size: 26px;
@@ -1565,6 +1606,7 @@ a:focus, a:hover {
 .flip-container {
     perspective: 1000px;
 }
+
 /* flip the pane when hovered */
 .flip-container:hover .flipper, .flip-container.hover .flipper {
     transform: rotateY(180deg);
@@ -1610,9 +1652,7 @@ a:focus, a:hover {
     padding-top: 16px;
 }
 
-
-
-.jobWrapper .navigation{
+.jobWrapper .navigation {
     top: -28px;
 }
 
@@ -1648,7 +1688,6 @@ a:focus, a:hover {
     border-radius: 0;
     color: #000;
 }
-
 
 .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
     border-radius: 0;
@@ -1706,13 +1745,13 @@ a:focus, a:hover {
     margin-top: 22px;
 }
 
-.jobP{
+.jobP {
 
     margin-top: 0 !important;
     color: #fff;
 }
 
-.jobPExp{
+.jobPExp {
     color: #fff;
     padding-left: 18px;
 }
@@ -1757,7 +1796,7 @@ a:focus, a:hover {
     background-size: cover;
 }
 
-.jobWrapper header{
+.jobWrapper header {
     /* border: 6px solid #231f20; */
     /* padding: 6px; */
     /* width: 272px; */
@@ -1765,7 +1804,7 @@ a:focus, a:hover {
     /* margin-top: 159px; */
 }
 
-.jobWrapper .jobTitle{
+.jobWrapper .jobTitle {
     color: #fff;
     /* background: #231f20; */
     /* width: 246px; */
@@ -1774,8 +1813,6 @@ a:focus, a:hover {
     /* margin: 0 auto; */
     /* margin-bottom: 0 !important; */
 }
-
-
 
 .jobWrapper {
     width: 75%;
@@ -1815,18 +1852,31 @@ a:focus, a:hover {
 .editLogo + input + input {
     width: 20%;
 }
-.companyLogo img{margin: 0 auto;/* border: 4px solid #fff; *//* padding: 6px; */}
-.logos{float:left;     margin-right: 1%;}
-.logos img{width:100px; height:100px;}
+
+.companyLogo img {
+    margin: 0 auto; /* border: 4px solid #fff; *//* padding: 6px; */
+}
+
+.logos {
+    float: left;
+    margin-right: 1%;
+}
+
+.logos img {
+    width: 100px;
+    height: 100px;
+}
 
 .companies {
     float: left;
     margin-right: 1%;
 }
+
 .companies img {
     width: 100px;
     height: 100px;
 }
+
 .pagination {
     display: block;
     margin: 0px;
@@ -2006,11 +2056,15 @@ a:focus, a:hover {
     height: 80px;
     background-color: #FFF4D9;
 }
-.langs{width:15%;}
+
+.langs {
+    width: 15%;
+}
 
 .removeCombination {
     float: right;
 }
+
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
 .jobParametersWrapper > p {
     color: #606060;
@@ -2081,7 +2135,7 @@ a:focus, a:hover {
 /************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
 /************************************************************************************************************************************/
-.arrow-down,.arrow-up{
+.arrow-down, .arrow-up {
     margin: 0 auto;
     position: absolute;
     right: 6px;
@@ -2089,11 +2143,11 @@ a:focus, a:hover {
     width: 62px;
 }
 
-.arrow-up{
+.arrow-up {
     margin: 0 auto;
 }
 
-.searchJobsImgCover{
+.searchJobsImgCover {
     background-image: url("../images/myjobscover22.png");
     height: 100%;
     width: 100%;
@@ -2101,10 +2155,19 @@ a:focus, a:hover {
     top: 0;
     background-size: cover;
 }
-.searchJobsImgCover1{height: 100%;width: 100%;position: fixed;top: 0;background-size: cover;background-image: url("../images/myjobscover22.png");background-position: left top, right top;background-repeat: no-repeat, repeat;}
 
+.searchJobsImgCover1 {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-size: cover;
+    background-image: url("../images/myjobscover22.png");
+    background-position: left top, right top;
+    background-repeat: no-repeat, repeat;
+}
 
-.searchJobsWrapper header h2, .yourJobsWrapper header h2{
+.searchJobsWrapper header h2, .yourJobsWrapper header h2 {
     padding-top: 0px;
     /* padding-left: 3%; */
     font-size: 40px;
@@ -2112,7 +2175,7 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.searchJobsWrapper button, .yourJobsWrapper button{
+.searchJobsWrapper button, .yourJobsWrapper button {
     background-color: transparent;
     border: 0;
     font-size: 16px;
@@ -2122,9 +2185,13 @@ a:focus, a:hover {
     margin-left: -1%;
 }
 
-.searchJobsWrapper button:hover{}
+.searchJobsWrapper button:hover,.searchJobsWrapper button:active:hover,.searchJobsWrapper button:focus {
+    outline:none;
+    opacity: 0.6;    background-color: transparent;
+    color:#fff;
+}
 
-.checkMyCVButton{
+.checkMyCVButton {
     width: 25% !important;
     float: left;
     text-align: center;
@@ -2132,14 +2199,13 @@ a:focus, a:hover {
     margin-left: 0px;
 }
 
-.visibleText{
+.visibleText {
     float: left;
     margin-top: 0px !important;
     padding-top: 10px;
 }
 
 .searchJobsWrapper form input, .yourJobsWrapper form input {
-    width: 60%;
     margin-top: 20px;
     margin-left: 0%;
 }
@@ -2156,14 +2222,13 @@ a:focus, a:hover {
     padding: 10px 10px;
     width: 100%;
     padding: 6px;
-    border: 0px solid#231f20;
+    border: 0px solid #231f20;
     text-align: left;
     float: left;
     text-align: left;
     font-family: almoni-dl-aaa-regular;
     border-bottom: 1px solid #fff;
     color: white;
-    margin-bottom: 39px;
 }
 
 .jobsList ul li a {
@@ -2176,29 +2241,29 @@ a:focus, a:hover {
 
 .jobsList article {
     float: left;
-    width: 100%;
-    padding-left: 100px;
-    font-size: 126%;
-    padding-bottom: 28px;
+    width: 91%;
+    font-size: 18px;
 }
 
 .jobsList article p {
     text-align: left;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .jobListLi {
     float: left;
 }
-.jobListLi > a > div{    width: 100%;
+
+.jobListLi > a > div {
+    width: 100%;
     position: relative;
-    min-height: 100px;}
+    min-height: 100px;
+}
 
 .jobListLi section {
     position: absolute;
     width: 110px;
-    top: 55px;
+    top: 24px;
     right: 4%;
     z-index: 11;
 }
@@ -2212,13 +2277,9 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.searchJobsWrapper .jobListLi img {
-
-}
-.logoInJobBox{
+.logoInJobBox {
     width: 72px;
     position: absolute;
-    left: 18px;
     top: 22px;
 
 }
@@ -2238,13 +2299,18 @@ a:focus, a:hover {
     margin-top: 81px;
 }
 
-.fa-heart{color:#d43f3a;}
-.hired{    position: absolute;
+.fa-heart {
+    color: #d43f3a;
+}
+
+.hired {
+    position: absolute;
     margin: 0 auto;
     text-align: center;
-    left: 37%;}
+    left: 37%;
+}
 
-.companyLogoN{
+.companyLogoN {
     float: left;
     width: 86px;
     position: absolute;
@@ -2260,14 +2326,17 @@ a:focus, a:hover {
     top: 31px;
 }
 
-
 .yourJobsWrapper .jobListLi i.fa.fa-times {
     position: relative;
     top: -12px;
     left: -8px;
     font-size: larger;
 }
-.yourJobsWrapper .jobsList article {margin-top: -17px;padding-bottom: 54px;padding-top: 18px;}
+
+.yourJobsWrapper .jobsList article {
+    margin-top: -17px;
+    padding-top: 18px;
+}
 
 .readUnread {
     position: absolute;
@@ -2280,7 +2349,8 @@ a:focus, a:hover {
     top: 26px;
     right: 12%;
 }
-.fav{
+
+.fav {
     position: absolute;
     right: 26px;
     z-index: 2;
@@ -2289,12 +2359,21 @@ a:focus, a:hover {
     font-size: x-large;
 }
 
-.unlikeReason{float:left;}
-.unlike{float:right;}
-.like{    float: right;
+.unlikeReason {
+    float: left;
+}
+
+.unlike {
+    float: right;
+}
+
+.like {
+    float: right;
     -ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-    transform: rotate(180deg);}
+    transform: rotate(180deg);
+}
+
 /****************************************************** JOB - JOBSEEKER - HTML **********************************************/
 .jobPageWrapper header h2 {
     width: 100%;
@@ -2349,9 +2428,10 @@ a:focus, a:hover {
     left: 24%;
     font-size: 2.5vw;
 }
-.fa-times{
-    cursor: pointer;}
 
+.fa-times {
+    cursor: pointer;
+}
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
 
@@ -2361,26 +2441,27 @@ a:focus, a:hover {
     margin-top: 28px;
 }
 
-.greate{
+.greate {
     text-align: left;
 }
 
-.matchpageWrapper h4{
+.matchpageWrapper h4 {
     text-align: left;
 }
 
-.slidersAndTooltips{background-color: #000;width: 100%;height: 225px;}
+.slidersAndTooltips {
+    background-color: #000;
+    width: 100%;
+    height: 225px;
+}
 
 .skillsTitleM {
-    /* background-color: #000; */
-    /* width: 114px; */
-    height: 50px;
+    width: 60px;
+    height: 40px;
     text-align: left;
     padding-top: 10px;
     border-bottom: 1px solid #fff;
-    /* margin-top: 120px; */
 }
-
 
 .matchpageWrapper .btn-default {
     color: #fff;
@@ -2395,7 +2476,7 @@ a:focus, a:hover {
     background-color: #000;
 }
 
-.matchpageWrapper{
+.matchpageWrapper {
     position: relative;
     margin-top: 50px;
 }
@@ -2421,7 +2502,7 @@ a:focus, a:hover {
     padding-left: 22px;
 }
 
-.tootipInfo{
+.tootipInfo {
     float: right;
     width: 10%;
     margin-top: 20px;
@@ -2496,7 +2577,10 @@ a:focus, a:hover {
 .langsMatch > span {
     font-weight: bold;
 }
-.progress-bar-striped{color:#000;}
+
+.progress-bar-striped {
+    color: #000;
+}
 
 /****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
@@ -2505,7 +2589,8 @@ a:focus, a:hover {
     /* background-color: #231f20; */
     /* opacity: 0.8; */
 }
-.matchpageWrapper .formula-result p{
+
+.matchpageWrapper .formula-result p {
     color: #FFFFFF;
     font-size: 3vh;
     /* font-weight: bold; */
@@ -2577,11 +2662,11 @@ a:focus, a:hover {
 /****************************************************************************************************************************/
 /****************************************************** PROFILE - HTML ********************************************************/
 /****************************************************************************************************************************/
-.sendButtonP{
+.sendButtonP {
     font-size: 19px;
 }
 
-.parseButton{
+.parseButton {
     float: none;
     border-radius: 0;
     margin: 2px;
@@ -2605,11 +2690,11 @@ a:focus, a:hover {
     padding-top: 54px;
 }
 
-.sendB{
+.sendB {
     color: #fff;
 }
 
-.companyprofileWrapper .engineering a{
+.companyprofileWrapper .engineering a {
     padding-top: 6px;
     padding-bottom: 6px;
 }
@@ -2618,14 +2703,19 @@ a:focus, a:hover {
     border-bottom: 0px solid #eee;
 }
 
-.borderUserDetailsBoxModal{
+.borderUserDetailsBoxModal {
     padding: 8px;
     width: 90%;
     border: 8px solid #000;
     margin: 0 auto;
 }
 
-.cvPreview{margin: 0 auto;width: 269px;text-align: center;padding: 0;}
+.cvPreview {
+    margin: 0 auto;
+    width: 269px;
+    text-align: center;
+    padding: 0;
+}
 
 .profileWrapper .cvPreview .btn-default {
     border: 0;
@@ -2697,7 +2787,14 @@ div#popover924921 {
     border-radius: 0;
 }
 
-.profileWrapper .parseB{padding: 0px;width: 222px;height: 50px;margin: 0 auto;margin-top: 22px;margin-bottom: 22px;}
+.profileWrapper .parseB {
+    padding: 0px;
+    width: 222px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
 
 .profileWrapper .btn-defult {
     border-radius: 0;
@@ -2712,7 +2809,6 @@ div#popover924921 {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
 
 .profileWrapper .btn-warning:hover {
     opacity: 0.7;
@@ -2751,27 +2847,27 @@ div#popover924921 {
     margin-bottom: 10%;
 }
 
-.borderTimelineTitle1{
+.borderTimelineTitle1 {
     float: left;
     margin-top: 40px;
 }
 
-.borderTimelineTitle2{
+.borderTimelineTitle2 {
     float: right;
     margin-top: 40px;
 }
 
-.profileWrapper .navigation{
+.profileWrapper .navigation {
     top: 24px;
     left: 0;
 }
 
-.profileWrapper .btn-group{
+.profileWrapper .btn-group {
 
     width: 100%;
 }
 
-.profileCover{
+.profileCover {
     background-image: url("../images/myjobscover22.png");
     height: 100%;
     width: 100%;
@@ -2780,9 +2876,10 @@ div#popover924921 {
     background-size: cover;
 }
 
-.profileWrapper header{
+.profileWrapper header {
 }
-.buttonBorder{
+
+.buttonBorder {
     width: 88px;
     margin: 0 auto;
     margin-top: 22px;
@@ -2874,12 +2971,19 @@ div#popover924921 {
     width: 40%;
     margin-bottom: 8px;
 }
-.removeContentCV{float:right;
-    cursor: pointer;}
+
+.removeContentCV {
+    float: right;
+    cursor: pointer;
+}
+
 #submitAfterParse {
     pointer-events: none;
 }
-.birthDay{text-align: left;}
+
+.birthDay {
+    text-align: left;
+}
 
 .timeline-pluss, .timeline-pluss-exp {
     float: right;
@@ -2896,14 +3000,17 @@ div#popover924921 {
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 50%;
 }
+
 .timeline-pluss i, .timeline-pluss-exp i {
     margin-top: 18px;
     color: #000;
     font-size: 18px;
 }
+
 .timeline-pluss-exp {
     float: left
 }
+
 /****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
 /****************************************************************************************************************************/
@@ -2945,8 +3052,6 @@ div#popover924921 {
     float: left;
 }
 
-
-
 /*------------------companyprofile HTML------------------------------------*/
 
 .companyprofileWrapper {
@@ -2963,7 +3068,7 @@ div#popover924921 {
     /* border-color: #adadad; */
 }
 
-.GarrowInput{
+.GarrowInput {
     position: relative;
     left: 41%;
     top: 5px;
@@ -2991,11 +3096,11 @@ div#popover924921 {
     color: white;
 }
 
-.companyprofileWrapper .navigation{
+.companyprofileWrapper .navigation {
     top: -27px;
 }
 
-.companyprofileWrapper .tab-content{
+.companyprofileWrapper .tab-content {
     margin-bottom: 40px;
 }
 
@@ -3011,7 +3116,7 @@ div#popover924921 {
     margin-left: 26%;
 }
 
-.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover{
+.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover {
     opacity: 0.9;
 }
 
@@ -3022,15 +3127,14 @@ div#popover924921 {
     margin-bottom: 20px;
 }
 
-
-.companyprofileWrapper .engineering1{
+.companyprofileWrapper .engineering1 {
     height: 70px;
     text-align: center;
     font-family: almoni-dl-aaa-regular;
     margin: 0 auto;
 }
 
-.companyprofileWrapper .engineering1 li{
+.companyprofileWrapper .engineering1 li {
     float: left;
     margin-right: 3%;
     margin-left: 3%;
@@ -3044,12 +3148,15 @@ div#popover924921 {
     /* background-color: #fff; */
 }
 
-.companyprofileWrapper .engineering1 li a{
+.companyprofileWrapper .engineering1 li a {
     /* color: #000; */
     padding: 6px;
 }
 
-.companyprofileWrapper .engineering1 li a:hover{/* display: table; */border-bottom: 1px solid #33B778;border-top: 1px solid #33B778;/* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); *//* -webkit-background-clip: text; *//* -webkit-text-fill-color: transparent; */}
+.companyprofileWrapper .engineering1 li a:hover { /* display: table; */
+    border-bottom: 1px solid #33B778;
+    border-top: 1px solid #33B778; /* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); *//* -webkit-background-clip: text; *//* -webkit-text-fill-color: transparent; */
+}
 
 .companyprofileWrapper .tab-content {
     padding: 10px;
@@ -3059,12 +3166,11 @@ div#popover924921 {
     margin-bottom: 80px;
 }
 
-.companyprofileWrapper .popover  {
+.companyprofileWrapper .popover {
     top: 110px;
     left: 754px;
     display: block;
 }
-
 
 /****************************************************************************************************/
 /****************************************************************************************************************************/
@@ -3073,12 +3179,17 @@ div#popover924921 {
 /****************************************************************************************************/
 @media ( max-width: 767px) {
 
-    #profilePicture{display:none;}
+    #profilePicture {
+        display: none;
+    }
 
     footer ul {
-        margin-left: 10%;
+        margin-left: 4%;
         width: 100%;
+
     }
+    .employer{
+        margin-top:0px;}
 
     /*job*/
     .jobWrapper .thumbnail {
@@ -3093,6 +3204,7 @@ div#popover924921 {
     .jobWrapper .langs {
         width: 100%;
     }
+
     .jobWrapper .pagination + section h5 {
         top: 39%;
         font-size: 22px;
@@ -3103,15 +3215,16 @@ div#popover924921 {
         font-size: 16px;
     }
 
-    .profileWrapper .btn-group > .btn:last-child:not(:first-child),.jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
+    .profileWrapper .btn-group > .btn:last-child:not(:first-child), .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
         width: 100%;
     }
-    .profileWrapper .profileWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .jobWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle){
+
+    .profileWrapper .profileWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .jobWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
 
         width: 100%;
     }
 
-    .profileWrapper .profileWrapper .btn-group > .btn:last-child:not(:first-child),.jobWrapper .btn-group > .btn:last-child:not(:first-child) , .btn-group > .dropdown-toggle:not(:first-child) {
+    .profileWrapper .profileWrapper .btn-group > .btn:last-child:not(:first-child), .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
         width: 100%;
     }
 
@@ -3132,7 +3245,7 @@ div#popover924921 {
         width: 100%;
     }
 
-    .jobWrapper .caption div{
+    .jobWrapper .caption div {
         margin-bottom: 8px;
     }
 
@@ -3142,7 +3255,6 @@ div#popover924921 {
         padding-right: 0%;
         margin-bottom: 0px;
     }
-
 
     .jobWrapper .pagination-lg > li > a {
         font-size: 13px;
@@ -3160,19 +3272,18 @@ div#popover924921 {
     }
 
     /*searcj job html*/
-
     .jobListLi section {
         position: absolute;
-        width: 76px;
+        width: 55px;
         bottom: -52px;
         right: 40%;
     }
 
     .jobListLi section h5 {
         position: absolute;
-        top: 21px;
-        left: 30%;
-        font-size: 30px;
+        top: 15px;
+        left: 19%;
+        font-size: 25px;
         font-weight: bold;
         font-family: almoni-dl-aaa-regular;
     }
@@ -3197,10 +3308,10 @@ div#popover924921 {
     }
 
     .searchJobsWrapper .logoInJobBox {
-        width: 49px;
+        width: 44px;
         position: absolute;
         left: 41%;
-        top: -28px;
+        top: -33px;
         border-radius: 8px;
     }
 
@@ -3211,21 +3322,23 @@ div#popover924921 {
 
     .searchJobsWrapper .jobListLi section {
         right: 2%;
-        top: 68px;
+        top: 6px;
     }
 
     .searchJobsWrapper .jobsList ul li {
         margin-top: 20px;
-        margin-bottom: 60px;
+        margin-bottom: 20px;
     }
 
-    .searchJobsWrapper .jobsList ul li {border: 1px solid#fff;padding: 0;}
+    .searchJobsWrapper .jobsList ul li {
+        border: 1px solid #fff;
+        padding: 0;
+    }
 
     .searchJobsWrapper .checkMyCVButton {
 
         margin-bottom: 34px;
     }
-
 
     /*your jobs*/
     .yourJobsWrapper .myJobsBox {
@@ -3235,7 +3348,7 @@ div#popover924921 {
     .jobsList ul li {
 
         padding: 0px;
-        border: 0px solid#231f20;
+        border: 0px solid #231f20;
     }
 
     .yourJobsWrapper .jobListLi i.fa.fa-times {
@@ -3341,9 +3454,10 @@ div#popover924921 {
         margin-top: 50px;
     }
 
-    .cvPreview{
+    .cvPreview {
         margin-left: 30%;
     }
+
     .profileWrapper .timeline-heading .form-control {
         width: 100%;
     }
@@ -3352,7 +3466,7 @@ div#popover924921 {
         width: 80%;
     }
 
-    .profileWrapper .timeline-panel label{
+    .profileWrapper .timeline-panel label {
         color: #606060;
         font-weight: bold;
         font-size: 18px;
@@ -3362,7 +3476,7 @@ div#popover924921 {
         padding-left: 2%;
     }
 
-    .profileWrapper .timeline-badge .fa{
+    .profileWrapper .timeline-badge .fa {
         margin-top: 6px;
     }
 
@@ -3457,7 +3571,7 @@ div#popover924921 {
 
     .myjobsWrapper .jobs {
         padding: 0px;
-        border: 0px solid#231f20;
+        border: 0px solid #231f20;
     }
 
     .myjobsWrapper #popoverData {
@@ -3516,7 +3630,7 @@ div#popover924921 {
 
     .candidatesWrapper .candidates {
         padding: 0px;
-        border: 0px solid#231f20;
+        border: 0px solid #231f20;
     }
 
     /*resume*/
@@ -3585,18 +3699,20 @@ div#popover924921 {
         bottom: 2px;
     }
 
-    .navBarImg>img{
+    .navBarImg > img {
         height: 6px;
         width: 6px;
         position: absolute;
         top: 24%;
         left: 24%;
     }
-    .navBarImg>img {
+
+    .navBarImg > img {
         height: 30px;
         width: 30px;
         left: 14%;
     }
+
     .navBarImg {
         width: 96%;
         margin: 0 auto;
@@ -3608,13 +3724,16 @@ div#popover924921 {
     .navBar {
         padding-left: 11px;
     }
-    .WRAPPER .C;A
-                .myJobsBox {
-                    height: 186px;
-                    width: 100%;
-                    position: relative;
-                    margin-top: -8px;
-                }
+
+    .WRAPPER .C
+
+;A
+ .myJobsBox {
+     height: 186px;
+     width: 100%;
+     position: relative;
+     margin-top: -8px;
+ }
 
     .form-control {
         display: block;
@@ -3626,6 +3745,7 @@ div#popover924921 {
     .engineering {
         height: 28px;
     }
+
     .engineering li {
         margin-right: 1%;
         margin-left: 1%;
@@ -3635,14 +3755,14 @@ div#popover924921 {
         cursor: pointer;
     }
 
-    #logo img{
+    #logo img {
         height: 41px;
-    ]
-    position: fixed;
+    ] position: fixed;
         top: -28px;
         left: -14px;
         width: 40px;
     }
+
     .navBar > div:nth-child(2) > a > img {
         height: 40px;
         position: absolute;
@@ -3652,12 +3772,13 @@ div#popover924921 {
     .navBarImg li a {
 
         font-size: 20px;
-        padding-top:8px;
+        padding-top: 8px;
 
     }
 
     .myJobsBox {
     }
+
     .jobs > div:nth-child(2) section {
         width: 80px;
     }
@@ -3675,12 +3796,13 @@ div#popover924921 {
         font-family: almoni-dl-aaa-regular;
         font-weight: bold;
     }
-    .jobs:first-child{
+
+    .jobs:first-child {
         margin-top: 24px;
     }
 
     .jobs {
-        margin-left:0;
+        margin-left: 0;
         margin-top: 60px;
         width: 100%;
     }
@@ -3700,7 +3822,7 @@ div#popover924921 {
         font-size: 16px;
         font-family: almoni-dl-aaa-regular;
         color: white;
-        margin-right:0;
+        margin-right: 0;
         margin-left: 0px;
     }
 
@@ -3721,7 +3843,7 @@ div#popover924921 {
     }
 
     .navBar > div:nth-child(1) {
-        z-index:1111;
+        z-index: 1111;
         padding: 10px;
     }
 
@@ -3745,6 +3867,7 @@ div#popover924921 {
     .candidates > div:nth-child(2) section h5 {
         bottom: 38px;
     }
+
     .candidates h5 {
         color: #606060;
         font-weight: bold;
@@ -3753,6 +3876,7 @@ div#popover924921 {
         overflow: hidden;
         font-size: 28px !important;
     }
+
     .candidates {
         width: 100%;
     }
@@ -3798,10 +3922,6 @@ div#popover924921 {
 
     .jobListLi a i {
         display: none;
-    }
-
-    .jobListLi section {
-        right: 42%;
     }
 
     .jobsTools {
@@ -3896,7 +4016,7 @@ div#popover924921 {
     }
 
     .myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
-    .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper,.yourJobsWrapper,
+    .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper, .yourJobsWrapper,
     .jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
     .companyprofileWrapper, .contactusWrapper, .profileWrapper, .candidatesWrapper {
         padding: 10px 10px 0px;
@@ -3905,7 +4025,7 @@ div#popover924921 {
 
     .myjobsWrapper > h3, .resumeWrapper > h3, .readcvsWrapper > h3,
     .unreadcvsWrapper > h3, .favoritesWrapper > h3, .jobParametersWrapper > h3,
-    .searchJobsWrapper > h3,.yourJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
+    .searchJobsWrapper > h3, .yourJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
     .aboutWrapper > h3, .contactusWrapper > h3,
     .matchpageWrapper > h3, .companyprofileWrapper > h3, .profileWrapper > h3, .candidatesWrapper > h3 {
         display: none;
@@ -4018,14 +4138,14 @@ div#popover924921 {
     }
 
     /*first page*/
-    .googleSignInImg{
+    .googleSignInImg {
         position: absolute;
         top: 4%;
         height: 96%;
         width: 100%;
     }
 
-    .googleSignInBox{
+    .googleSignInBox {
         background-color: #231f20;
         opacity: 0.8;
         height: 42%;
@@ -4043,18 +4163,17 @@ div#popover924921 {
         width: 30%;
     }
 
-    .googleSignInWrapper h3{
+    .googleSignInWrapper h3 {
         padding-top: 32px;
         opacity: 1;
-        font-size: 180%;
+        font-size: 20px;
     }
 
-    .googleSignInWrapper h4{
+    .googleSignInWrapper h4 {
         padding-top: 22px;
         opacity: 1;
         font-size: 106%;
     }
-
 
     /*job page*/
     .jobWrapper .btn-group {
@@ -4077,6 +4196,7 @@ div#popover924921 {
 
         width: 100%;
     }
+
     .jobWrapper .pagination-lg > li:first-child > a {
         padding-left: 2%;
     }
@@ -4094,22 +4214,25 @@ div#popover924921 {
         top: 0;
     }
 
-    .myJobsBox {}
+    .myJobsBox {
+    }
 
     .companyprofileWrapper {
         width: 100% !important;
         margin-top: 62px !important;
 
     }
+
     .companyprofileWrapper .companyLogo img {
         margin-top: 20px;
     }
 }
+
 }
 
 /****************************************************** TIMELINE ***************************************************/
 
-.timelineForPreview{
+.timelineForPreview {
     position: relative;
 }
 
@@ -4126,14 +4249,13 @@ div#popover924921 {
     position: absolute;
 }
 
-.timelineForPreview > li{
+.timelineForPreview > li {
     margin-bottom: 20px;
     margin-top: 3px;
     position: relative;
 }
 
-
-.timelineForPreview > li:before, .timelineForPreview > li:after  {
+.timelineForPreview > li:before, .timelineForPreview > li:after {
     content: " ";
     display: table;
 }
@@ -4163,7 +4285,6 @@ div#popover924921 {
     background-color: #231f20;
     margin-top: 20px;
 }
-
 
 .timelineForPreview > li > .timeline-panel:after {
     top: 27px;
@@ -4212,7 +4333,7 @@ div#popover924921 {
     width: 100% !important;
 }
 
-.timeline{
+.timeline {
     position: relative;
 }
 
@@ -4229,13 +4350,13 @@ div#popover924921 {
     position: absolute;
 }
 
-.timeline > li{
+.timeline > li {
     margin-bottom: 20px;
     margin-top: 3px;
     position: relative;
 }
 
-.timeline > li:before, .timeline > li:after  {
+.timeline > li:before, .timeline > li:after {
     content: " ";
     display: table;
 }
@@ -4349,7 +4470,7 @@ div#popover924921 {
     margin-top: 5px;
 }
 
-.timelineForPreview{
+.timelineForPreview {
     position: relative;
 }
 
@@ -4366,14 +4487,13 @@ div#popover924921 {
     position: absolute;
 }
 
-.timelineForPreview > li{
+.timelineForPreview > li {
     margin-bottom: 20px;
     margin-top: 3px;
     position: relative;
 }
 
-
-.timelineForPreview > li:before, .timelineForPreview > li:after  {
+.timelineForPreview > li:before, .timelineForPreview > li:after {
     content: " ";
     display: table;
 }
