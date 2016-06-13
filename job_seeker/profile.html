@@ -433,32 +433,40 @@
                 </section>
                 <!-- TIMELINE END -->
 
-                <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
 
-                <div class="parseB">
+
+
+
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
+
+            <div class="parseB">
+                <img class="Garrow" src="images/Garrow.png">
+                <input type="button" class="btn btn-warning parseExperienceButton parseButton" ng-click="parseMyExperience()"
+                       required
+                       value="Parse my Experience"/>
+            </div>
+
+            <section class="parseExperience"></section>
+            <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
+                   ng-click="addMoreExperience()" value="+">
+
+
+
+            <div class="cvPreview">
+                <img class="GarrowCV" src="images/Garrow.png">
+
+                <input type="button"  ng-click="cvPreview()" value="CV Preview" class="btn btn-default">
+
+                <button class="sendButtonP" type="submit" id="submitAfterParse" class="btn btn-default disabled">
                     <img class="Garrow" src="images/Garrow.png">
-                    <input type="button" class="btn btn-warning parseExperienceButton parseButton" ng-click="parseMyExperience()"
-                           required
-                           value="Parse my Experience"/>
-                </div>
+                    Send
+                </button>
+            </div>
 
-                <section class="parseExperience"></section>
-                <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
-                       ng-click="addMoreExperience()" value="+">
-
-
-
-                <div class="cvPreview">
-                    <input type="button"  ng-click="cvPreview()" value="CV Preview" class="btn btn-default">
-                </div>
-                <div class="buttonBorder">
-                    <button type="submit" id="submitAfterParse" class="btn btn-default disabled">Send
-                    </button>
-                </div>
-
-
-                <h6 class="requiredError"> *All the fields are Required!</h6>
             </form>
+
+            <h6 class="requiredError"> *All the fields are Required!</h6>
+
         </div>
 
 

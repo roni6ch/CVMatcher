@@ -14,10 +14,13 @@
                    class="form-control">
         </form>
         <button type="button" class="btn btn-default"
-                ng-click="sort('-compability')">Sort By Compatibility
+                ng-click="sort('-compability')">
+            <img class="Garrow" src="images/Garrow.png">
+            Sort By Compatibility
         </button>
-        <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
-            By Date
+        <button type="button" class="btn btn-default" ng-click="sort('-date')">
+            <img class="Garrow" src="images/Garrow.png">
+            Sort By Date
         </button>
     </div>
     <ul class="engineering candidatesTabs" ng-init="tab=0; unreadCvs()">
@@ -70,9 +73,9 @@
                         <i ng-if="archivePage == false" id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
                            ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i>
 
-                            <a href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
-                                <a href="" ng-click='hire(candidate._id,candidate.user._id)'> <img ng-if="archivePage == false"  src="./images/handshake1.png">
-                            </a>
+                        <a href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
+                        <a href="" ng-click='hire(candidate._id,candidate.user._id)'> <img ng-if="archivePage == false"  src="./images/handshake1.png">
+                        </a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
 
                     </div>
