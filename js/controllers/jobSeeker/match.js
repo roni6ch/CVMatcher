@@ -12,6 +12,7 @@ app
 
             var current_cv;
             $jobId = $location.path().split('/')[2];
+            console.log($jobId);
 
             var colorsArr = ["#106332", "#0F8742", "#58B647", "#1FB24A", "#1EAE6D", "#3DB98C", "#48C1C3",
                 "#71CBD2", "#7BD0E5", "#AFE0E9", "#BFDEDF"];
@@ -146,6 +147,8 @@ app
             }
             //send cv to employer
             $scope.sendCV = function () {
+                console.log($jobId);
+                console.log(localStorage.getItem("current_cv"));
                 $(".fa-spinner").show();
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/jobSeeker/addCvToJob',

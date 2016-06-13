@@ -50,6 +50,7 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
             .then(function (data) {
                     $scope.myjobs = data.data;
                     jobsArr = data.data;
+                console.log(jobsArr);
                     angular.element(".fa-pulse").hide();
                     //fix date string
                     angular.forEach(data.data, function (value, key) {

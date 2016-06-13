@@ -61,7 +61,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 })
                     .then(function (data) {
                         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>";
-
+console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
                         $scope.mustReqiurment = data.data[0].original_text['requirements'].split('|||')[0];
 
@@ -1007,9 +1007,10 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
             $("#geocomplete" + locationIndex).geocomplete();
             locationIndex++;
-            //$compile(html)($scope);
+            $compile(html)($scope);
         }
         $scope.deleteLocation = function (i) {
+            console.log("#geocomplete" + i)
                 $("#geocomplete" + i).parent().remove();
         }
     }

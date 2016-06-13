@@ -46,6 +46,7 @@ app.controller('companyProfileController',
                                         }
                                     })
                                         .then(function (data) {
+                                            console.log(data);
                                                 $scope.companyProfile = data.data[0];
                                                 angular.element(".fa-pulse").hide();
                                             },
@@ -85,6 +86,7 @@ app.controller('companyProfileController',
                 method: "POST",
                 data: {"word": word}
             }).then(function (data) {
+                console.log(data);
                 $scope.logos = data.data;
                 angular.element(".fa-pulse").hide();
             })
@@ -105,7 +107,6 @@ app.controller('companyProfileController',
                 "linkedin": $(".linkedin").val()
             };
 
-            console.log(userJson);
             $http({
                 url: 'https://cvmatcher.herokuapp.com/updateUser',
                 method: "POST",
