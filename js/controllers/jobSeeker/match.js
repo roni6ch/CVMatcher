@@ -52,7 +52,7 @@ app
 
                                         if (data.data.formula !== undefined) {
                                             console.log(data.data);
-                                            
+
                                             $(".matchpageWrapper .formula-result").append(
                                                 '<p>' + messageResource.get("jobseeker.formula","resources") + '</p>' +
                                                 '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " " + data.data.formula.candidate_type + '%</p>' +

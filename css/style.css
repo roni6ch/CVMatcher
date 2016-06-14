@@ -215,7 +215,7 @@ footer div a {
 .fa-pulse {
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 4%;
     color: #fff;
     z-index: 1;
 }
@@ -4841,7 +4841,7 @@ div#popover924921 {
 
 .signExistingCompany{float:left;     width: 100%;}
 
-.cvPreview {
+.userProfile .cvPreview {
     border: 0;
     outline: 0;
     background-color: transparent;
@@ -4854,3 +4854,11 @@ div#popover924921 {
     padding: 0;
 }
 .userProfile .cvPreview:hover,.userProfile .cvPreview:active,.userProfile .cvPreview:focus{background-color: transparent;color:#fff;opacity:0.8;}
+.nav > li > a:hover{
+                                        background-color: transparent;
+                                    }
+.navBarImg li a:hover{
+                                        border-top: 1px solid #33B778;
+                                        border-bottom: 1px solid #33B778;
+                                        background-color: transparent;
+                                    }

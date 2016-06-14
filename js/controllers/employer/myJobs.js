@@ -67,13 +67,6 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 
 
     }
-    //get user and jobs by employer id
-    $scope.getMainJson = function () {
-
-
-
-
-    };
     //sort by user preference
     $rootScope.sort = function (sort) {
         $scope.sortby = sort;

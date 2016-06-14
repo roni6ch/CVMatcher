@@ -139,12 +139,12 @@ var rateStars;
 
 
                             $(".resumeWrapper #formulasAppend").append(
-                                '<p>' + messageResource.get("jobseeker.formula", "resources") + '</p>' +
-                                '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " " + data.data[0].formula.candidate_type + '%</p>' +
-                                '<p>' + messageResource.get("jobseeker.formula.requirements", "resources") + " " + data.data[0].formula.matching_requirements.grade + '%</p>' +
-                                '<p>' + messageResource.get("jobseeker.formula.locations", "resources") + " " + data.data[0].formula.locations + '%</p>' +
-                                '<p>' + messageResource.get("jobseeker.formula.scope_of_position", "resources") + " " + data.data[0].formula.scope_of_position + '%</p>' +
-                                '<p>' + messageResource.get("jobseeker.formula.academy", "resources") + " " + data.data[0].formula.academy + '%</p>'
+                                '<p>' + messageResource.get("employer.formula", "resources") + '</p>' +
+                                '<p>' + messageResource.get("employer.formula.candidate_type", "resources") + " " + data.data[0].formula.candidate_type + '%</p>' +
+                                '<p>' + messageResource.get("employer.formula.requirements", "resources") + " " + data.data[0].formula.matching_requirements.grade + '%</p>' +
+                                '<p>' + messageResource.get("employer.formula.locations", "resources") + " " + data.data[0].formula.locations + '%</p>' +
+                                '<p>' + messageResource.get("employer.formula.scope_of_position", "resources") + " " + data.data[0].formula.scope_of_position + '%</p>' +
+                                '<p>' + messageResource.get("employer.formula.academy", "resources") + " " + data.data[0].formula.academy + '%</p>'
                             );
                         }
 
