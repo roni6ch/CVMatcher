@@ -51,8 +51,8 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
     $scope.getMainJson = function () {
         if (path == 'favorites') {
             url = 'https://cvmatcher.herokuapp.com/jobSeeker/getFavoritesJobs';
-            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/favorites'>Favorites Jobs</a>";
-            $scope.title = "Favorites Jobs";
+            navigation = "<a href='#/login'>Homepage</a><span> > </span><a href='#/favorites'>Favorite Jobs</a>";
+            $scope.title = "Favorite Jobs";
             $scope.page = 'favorites';
             data = {
                 "user_id": localStorage.getItem("user_id")

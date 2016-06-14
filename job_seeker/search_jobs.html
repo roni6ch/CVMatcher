@@ -7,27 +7,35 @@
 
     <h3 class="navigation"></h3>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
+
     <div class="myJobsBox">
         <header>
             <h2>Find your next job</h2>
         </header>
 
-        <form method="get" action="">
-            <input type="text" placeholder="Find Job" ng-model="searchText"
-                   class="form-control">
-        </form>
-        <button type="button" class="btn btn-default"
+        <input type="text" placeholder="Find Job" ng-model="searchText"
+               class="form-control">
+        <button type="button" class="btn btn-default" ng-click="getMainJson(); showSortOptions()">All Jobs
+            <img class="Garrow" src="images/Garrow.png">
+        </button>
+
+        <button type="button" class="btn btn-default sort_compability"
                 ng-click="sort('-compatibility_level')">Sort By Compatibility
             <img class="Garrow" src="images/Garrow.png">
         </button>
-        <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+        <button type="button" class="btn btn-default sort_date" ng-click="sort('-date')">Sort
             By Date
             <img class="Garrow" src="images/Garrow.png">
         </button>
-        <button type="button" class="btn btn-default" ng-click="getTopTen()">Top 10!
+
+        <button type="button" class="btn btn-default" ng-click="getTopTen()">CVMatch Jobs!
             <img class="Garrow" src="images/Garrow.png">
         </button>
+
+
     </div>
+
+
     <div class="jobsList">
         <ul>
             <li class="jobListLi  animated fadeInUp"
@@ -43,16 +51,20 @@
                                 {{job['original_text']['title']}}</p>
 
                             <p>
-                               <span ng-repeat="scope_of_position in job['scope_of_position']" >
-                                    <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"  ng-bind-html="'Full Time Job |' | highlight:searchText" >Full Time Job |</span>
-                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"  ng-bind-html="'Part Time Job |' | highlight:searchText">Part Time Job |</span>
-                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"  ng-bind-html="'Job by Hours |' | highlight:searchText">Job by Hours |</span>
+                               <span ng-repeat="scope_of_position in job['scope_of_position']">
+                                    <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"
+                                          ng-bind-html="'Full Time Job |' | highlight:searchText">Full Time Job |</span>
+                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"
+                                         ng-bind-html="'Part Time Job |' | highlight:searchText">Part Time Job |</span>
+                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"
+                                         ng-bind-html="'Job by Hours |' | highlight:searchText">Job by Hours |</span>
                                 </span>
                             </p>
 
 
                             <p>Address: </p>
-                            <h5 ng-repeat="j in job.locations  track by $index" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
+                            <h5 ng-repeat="j in job.locations  track by $index"
+                                ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 
                             <p>{{job.date}}</p>

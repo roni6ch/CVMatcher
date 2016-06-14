@@ -21,6 +21,9 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             console.log(message);
             notifyMe(message.notificationType, message.jobName);
         }
+
+        angular.element(".sort_compability").hide();
+        angular.element(".sort_date").hide();
     };
     //get jobs that didnot send cv to them
     $scope.getMainJson = function () {
@@ -69,6 +72,11 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
                 });
     };
+    $scope.showSortOptions = function(){
+        console.log("a");
+        angular.element(".sort_compability").show();
+        angular.element(".sort_date").show();
+    }
     //sort jobs by user selection
     $scope.sort = function (sort) {
         $scope.sortby = sort;
@@ -92,6 +100,8 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     //get top 10
     $scope.getTopTen = function(){
 
+        angular.element(".sort_compability").hide();
+        angular.element(".sort_date").hide();
         angular.element(".fa-spinner").show();
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getBestMatchJobs',

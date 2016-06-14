@@ -1007,6 +1007,7 @@ console.log(data.data[0]);
             var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
             $("#geocomplete" + locationIndex).geocomplete();
             locationIndex++;
+            if ($id != 'job')
             $compile(html)($scope);
         }
         $scope.deleteLocation = function (i) {

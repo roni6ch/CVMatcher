@@ -676,7 +676,6 @@ footer {
 }
 .myjobsWrapper .nav > li > a:hover{
     background-color: transparent;
-    font-size:22px;
 }
 .myjobsWrapper .form-control {
     display: block;
@@ -3353,6 +3352,8 @@ div#popover924921 {
 /****************************************************************************************************/
 @media ( max-width: 767px) {
 
+    .hired{left: 8%;
+        top: 26%;}
     #profilePicture {
         display: none;
     }
@@ -3398,6 +3399,7 @@ div#popover924921 {
         font-size: 16px;
     }
 
+    .profileWrapper .btn-group label{color:#000;}
     .profileWrapper .btn-group > .btn:last-child:not(:first-child), .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
         width: 100%;
     }
