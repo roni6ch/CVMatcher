@@ -10,6 +10,8 @@
     <form method="post" ng-submit="submitForm()">
         <div class="animated fadeInDown jobEdit">
             <div class="form-group">
+                <h6 class="requiredError"> *All the fields are Required!</h6>
+
                 <label for="jobName">Job Name:</label> <input type="text"
                                                               ng-model="jobDetails['original_text']['title']"
                                                               placeholder="Please Type job name" id="jobName"
@@ -21,17 +23,17 @@
                 <label>Location:</label>
 
                 <div ng-repeat="location in jobDetails.locations track by $index"><input class="form-control" ng-model="location"
-                                                                         id="geocomplete{{$index}}"
-                                                                         required
-                                                                         type="text"
-                                                                         name="location" value="{{location}}"
-                                                                         placeholder="Type in an address" size="90"
-                                                                         autocomplete="on"/>
+                                                                                         id="geocomplete{{$index}}"
+                                                                                         required
+                                                                                         type="text"
+                                                                                         name="location" value="{{location}}"
+                                                                                         placeholder="Type in an address" size="90"
+                                                                                         autocomplete="on"/>
                     <i class="fa fa-times" aria-hidden="true" ng-click="deleteLocation($index)"></i>
                 </div>
             </div>
             <input type="button" class="btn btn-warning"
-                   ng-click="addAnotherLocation()" value="+"/>
+                   ng-click="addAnotherLocation()" value="+ Add location"/>
 
             <div class="form-group">
                 <label>Sector:</label>
@@ -249,6 +251,7 @@
             </div>
 
             <div class="form-group experienceBeforeParse">
+                <img class="Garrow" src="images/Garrow.png">
                 <input type="button" class="btn btn-warning"
                        ng-click="parseExperience()" value="Parse my Experience">
             </div>
@@ -257,6 +260,8 @@
             <i class="fa fa-times fa-3x removeCombination" aria-hidden="true" ng-click="removeCombination()"></i>
 
             <div class='contentWrapper ng-cloak requirementsWrapper'>
+
+
                 <div class='content'>
                     <div class="row-fluid">
                         <ul class="thumbnails">
@@ -398,6 +403,10 @@
                     </div>
                 </div>
             </div>
+            <i class="fa fa-arrow-right fa-3x combArrow" ng-click="nextCombination('right')"
+               style="float:right; cursor: pointer;" aria-hidden="true">combination 1/2</i>
+            <i class="fa fa-arrow-left fa-3x combArrow" ng-click="nextCombination('left')"
+               style="float:right; cursor: pointer;" aria-hidden="true">combination 2/2</i>
             <!--BOTTOM PARSING-->
             <div class="navbar-inner">
                 <div class="container form-inline" style="text-align: center;">
@@ -429,25 +438,28 @@
             </div>
 
             <div class="form-group buttonsAfterParse">
+                <img class="Garrow" src="images/Garrow.png">
+
                 <input type="button" class="btn btn-warning"
                        ng-click="addDynamicLang()" value="Add another LANGUAGE!"><!--
                 <input type="button" class="btn btn-warning"
                        ng-click="saveCombination()" value="Save">-->
+                <img class="Garrow" src="images/Garrow.png">
+
                 <input type="button" class="btn btn-warning"
                        ng-click="addDynamicCombination()" value="Save and Create another Combination">
-                <i class="fa fa-arrow-right fa-3x" ng-click="nextCombination('right')"
-                   style="float:right; cursor: pointer;" aria-hidden="true"></i>
-                <i class="fa fa-arrow-left fa-3x" ng-click="nextCombination('left')"
-                   style="float:right; cursor: pointer;" aria-hidden="true"></i>
+
             </div>
 
             <!-- TILL HERE - REQUERMENTS -->
             <div ng-include="'employer/jobparameters.html'"></div>
-            <h6 class="requiredError"> *All the fields are Required!</h6>
 
             <div class="buttonBorder">
                 <!-- <button type="button" id="submitAfterParse" class="btn btn-warning disabled"  data-toggle="modal" data-target="#sendJob" ng-click="submitForm()"  >Send</button> -->
-                <button type="submit" id="submitAfterParse" class="btn btn-default disabled">Send
+                <button type="submit" id="submitAfterParse" class="btn btn-default disabled">
+                    <img class="Garrow" src="images/Garrow.png">
+
+                    Send
                 </button>
             </div>
         </div>

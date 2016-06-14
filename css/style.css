@@ -543,7 +543,7 @@ footer {
 .geocomplete input {
     margin-bottom: 10px;
     float: left;
-    width: 92%;
+    width: 70%;
 }
 
 .geocomplete > div {
@@ -554,7 +554,9 @@ footer {
 .geocomplete .fa-times {
     cursor: pointer;
     float: right;
-    font-size: 33px;
+    font-size: 22px;
+    color: #fff;
+    /* font-weight: 300; */
 }
 
 /****************************************************** INDEX - NAV BAR **********************************************/
@@ -653,7 +655,7 @@ footer {
     width: 100%;
     padding: 17px 12% 0px;
     font-size: 78%;
-    min-height: 69px;
+    min-height: 90px;
     float: left;
 }
 
@@ -1142,9 +1144,9 @@ a:focus, a:hover {
     height: 44px !important;
 }
 .candidatesTabs li  > a{
-       width: 100%;
-       float: left;
-   }
+    width: 100%;
+    float: left;
+}
 .candidatesTabs li:hover{
     border-top: 1px solid #33B778;
     border-bottom: 1px solid #33B778;
@@ -1235,6 +1237,7 @@ a:focus, a:hover {
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: small;
+    /* margin-top: -25px; */
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -1257,17 +1260,17 @@ a:focus, a:hover {
 }
 
 .resumeWrapper {
-    margin-top: 85px;
+    margin-top: 0;
 }
 
-.timeline-heading {
-
-    background-color: #000;
-}
+.timeline-heading {border-top: 1px solid #fff;border-left: 1px solid #fff;border-right: 1px solid #fff;}
 
 .timeline-body {
-    background-color: #000;
+    /* background-color: #000; */
     margin-bottom: -28px;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
 }
 
 .timeline-body p {
@@ -1282,22 +1285,23 @@ a:focus, a:hover {
 }
 
 .resumeWrapper .page-header {
-    border: 4px solid #000;
-    padding: 4px;
-    width: 200px;
-    text-align: center;
-    height: 84px;
-    margin: 0 auto;
+    /* border: 4px solid #000; */
+    /* padding: 4px; */
+    /* width: 200px; */
+    /* text-align: center; */
+    /* height: 84px; */
+    /* margin: 0 auto; */
 }
 
 .resumeWrapper .skillsTitle {
     margin-bottom: 22px;
+    text-align: left;
     color: #fff;
-    background-color: #231f20;
-    width: 168px;
-    height: 50px;
-    padding-top: 9px;
-    margin: 0 auto;
+    /* background-color: #231f20; */
+    /* width: 168px; */
+    /* height: 50px; */
+    /* padding-top: 9px; */
+    /* margin: 0 auto; */
     margin-top: 44px;
 }
 
@@ -1308,15 +1312,15 @@ a:focus, a:hover {
 }
 
 .resumeWrapper div#formulasAppend {
-    background-color: #231f20;
+    /* background-color: #231f20; */
     margin-bottom: 40px;
     padding-top: 24px;
 }
 
 .resumeWrapper div#formulasAppend p {
     color: #FFFFFF;
-    font-size: 3vh;
-    font-weight: bold;
+    font-size: 16px;
+    /* font-weight: bold; */
     display: block;
     text-align: left;
     margin-top: 5px;
@@ -1334,15 +1338,16 @@ a:focus, a:hover {
 }
 
 #users > div {
-    padding: 10px;
-    border: 10px solid #231f20;
+    /*padding: 10px;*/
+    /*border: 10px solid #231f20;*/
 }
 
-.userDetailsBox {
-    background-color: #231f20;
-    padding-top: 44px;
-    padding-bottom: 22px;
+.resumeWrapper .userDetailsBox {
+    /* background-color: #231f20; */
+    padding-top: 32px;
+    /* padding-bottom: 22px; */
     color: #fff;
+    border: 1px solid #fff;
 }
 
 .resumeWrapper h5 {
@@ -1431,7 +1436,7 @@ a:focus, a:hover {
 }
 
 .resumeYears > div {
-    width: 100%;
+    width: 138px;
     margin: 4px auto;
 }
 
@@ -1542,7 +1547,129 @@ a:focus, a:hover {
 
 /****************************************************** JOB - HTML **********************************************/
 
+/*.jobWrapper .requirementsWrapper i {
+    display: block;
+    color: #fff;
+    font-size: x-large;
+    padding-top: 8px;
+}*/
+.jobWrapper .ui-corner-all{
+    left: 1%;
+}
+
+.jobWrapper .combArrow{
+    font-size: 3em;
+    color: #fff;
+    margin-top: 0px;
+    font-size: x-large;
+}
+.jobWrapper .thumbnails h1 {
+    font-weight: normal;
+    margin: 0px;
+    color: #fff;
+    text-align: center;
+}
+
+.jobWrapper #sliders p .fa {
+    color: #4F846A;
+    /* opacity: 0; */
+}
+
+.jobWrapper .btn-success:hover {
+    color: #fff;
+    background-color: #254117;
+    border-color: #25411D;
+    opacity: 0.6;
+}
+
+.jobWrapper .btn-success {
+    color: #fff;
+    background-color: #254117;
+    border-color: #254117;
+}
+
+.jobWrapper .btn-danger {
+    color: #fff;
+    background-color: #800517;
+    border-color: #800517;
+}
+
+.jobWrapper .btn-danger:hover {
+    color: #fff;
+    background-color: #800517;
+    border-color: #800517;
+    opacity: 0.6;
+}
+
+.jobWrapper .jobEdit > div {
+    width: 100% !important;
+    padding: 6px 0px;
+    margin-bottom: 0px !important;
+    /* float: left; */
+}
+.jobWrapper .buttonBorder {
+    /* border: 0px solid #fff; */
+    height: 46px;
+    width: 70px !important;
+    margin: 0 auto;
+    margin-top: 22px;
+    float: none;
+}
+
 /*languges after parsing*/
+
+.jobWrapper .btn-info {
+    color: #fff;
+    background-color: #ccc;
+    border-color: #ccc;
+    margin-top: 2px;
+}
+
+.jobWrapper .btn-info.active.focus, .jobWrapper .btn-info.active:focus, .jobWrapper .btn-info.active:hover, .jobWrapper .btn-info:active.focus, .jobWrapper .btn-info:active:focus, .jobWrapper .btn-info:active:hover, .jobWrapper .open > .dropdown-toggle.btn-info.focus, .jobWrapper .open > .dropdown-toggle.btn-info:focus, .jobWrapper .open > .dropdown-toggle.btn-info:hover {
+    color: #fff;
+    background-color: #ddd;
+    border-color: #ddd;
+}
+
+.jobWrapper .buttonsAfterParse .Garrow{
+    margin-top: 12px;
+}
+
+.jobWrapper .experienceBeforeParse .Garrow{
+    margin-top: 12px;
+}
+
+.jobWrapper .btn-warning.active, .btn-warning:active, .open > .dropdown-toggle.btn-warning {
+    color: #fff;
+    background-color: transparent;
+    /* border-color: transparent; */
+}
+
+.jobWrapper .btn-warning:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    opacity: 0.6;
+}
+
+.jobWrapper .btn-warning.active.focus, .jobWrapper .btn-warning.active:focus, .jobWrapper .btn-warning.active:hover, .jobWrapper .btn-warning:active.focus, .jobWrapper .btn-warning:active:focus, .jobWrapper .btn-warning:active:hover, .jobWrapper .open > .dropdown-toggle.btn-warning.focus, .jobWrapper .open > .dropdown-toggle.btn-warning:focus, .jobWrapper .open > .dropdown-toggle.btn-warning:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    opacity: 0.6;
+}
+
+.jobWrapper .btn-warning.focus, .jobWrapper .btn-warning:focus {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.jobWrapper .btn.active.focus, .jobWrapper .btn.active:focus, .jobWrapper .btn.focus, .jobWrapper .btn:active.focus, .jobWrapper .btn:active:focus, .jobWrapper .btn:focus {
+    /*outline: thin dotted;*/
+    outline: 0;
+    outline-offset: 0;
+}
 
 .contentWrapper .thumbnails .thumbnail {
     min-height: 100px !important;
@@ -1675,7 +1802,7 @@ a:focus, a:hover {
     padding: 15px 0px 15px 0px;
     text-align: left;
     border-radius: 0;
-    margin-top: 24px;
+    margin-top: 0px;
     width: 100%;
     padding-bottom: 52px !important;
     padding-right: 12%;
@@ -1732,7 +1859,7 @@ a:focus, a:hover {
     font-weight: bold;
 }
 
-.jobWrapper .newJob button, html .jobWrapper input[type=button] {
+/*.jobWrapper .newJob button, html .jobWrapper input[type=button] {
     float: none;
     border-radius: 0;
     margin: 2px;
@@ -1745,6 +1872,21 @@ a:focus, a:hover {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-top: 22px;
+}*/
+
+.jobWrapper .newJob button, html .jobWrapper input[type=button] {
+    float: none;
+    border-radius: 0;
+    margin: 2px;
+    color: #fff;
+    /* background-color: #fff; */
+    border-color: transparent;
+    display: table;
+    /* margin: 0 auto; */
+    /* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); */
+    /* -webkit-background-clip: text; */
+    /* -webkit-text-fill-color: transparent; */
+    /* margin-top: 22px; */
 }
 
 .jobP {
@@ -1755,7 +1897,13 @@ a:focus, a:hover {
 
 .jobPExp {
     color: #fff;
-    padding-left: 18px;
+    padding-top: 10px;
+    /* padding-bottom: 10px; */
+}
+
+.ui-slider-horizontal .ui-slider-range-min {
+    left: -1px;
+    top: -17px;
 }
 
 .jobWrapper #sliders p {
@@ -1764,7 +1912,8 @@ a:focus, a:hover {
 
 .jobWrapper #sliders span {
     color: #fff;
-    font-size: 20px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .jobWrapper #sliders > div {
@@ -1774,21 +1923,21 @@ a:focus, a:hover {
 
 .jobWrapper .buttonBorder button {
     pointer-events: auto;
-    color: #000 !important;
-    background-color: #fff;
-    border-color: #ccc;
+    color: #fff;
+    margin-left: 50%;
+    background-color: transparent;
+    border-color: transparent;
     border-radius: 0;
 }
-
+/*
 .jobWrapper .buttonBorder {
-    /* border: 0px solid #fff; */
     height: 46px;
     width: 70px !important;
     margin: 0 auto;
     margin-top: 22px;
     float: none;
 }
-
+*/
 .jobCover {
     background-image: url('../images/myjobscover22.png');
     width: 100%;
@@ -1838,7 +1987,7 @@ a:focus, a:hover {
     width: 100% !important;
     padding: 6px 15px;
     margin-bottom: 0px !important;
-    float: left;
+    /* float: left; */
 }
 
 .editLogo {
@@ -2060,11 +2209,15 @@ a:focus, a:hover {
 }
 
 .langs {
-    width: 15%;
+    width: 36%;
 }
 
 .removeCombination {
     float: right;
+    display: block;
+    color: #fff;
+    font-size: x-large;
+    padding-top: 8px;
 }
 
 /****************************************************** JOB PARAMETERS - HTML **********************************************/
@@ -2108,19 +2261,19 @@ a:focus, a:hover {
 #sliders li div {
     width: 100%;
     float: left;
-    height: 20px;
+    height: 6px;
     margin-bottom: 10px;
+    margin-top: 16px;
 }
 
-#sliders p {
-
-    font-size: 20px;
-}
+#sliders p {font-size: 16px;margin-top: 12px;}
 
 #sliders span {
     font-size: 24px;
     font-weight: bold;
-    height: 32px;
+    height: 22px;
+    width: 8px;
+    margin-top: -6px;
 }
 
 .ui-widget-header {
@@ -2130,8 +2283,7 @@ a:focus, a:hover {
     rgba(77, 207, 221, 1) 100%); /* FF3.6-15 */
     background: -webkit-linear-gradient(top, rgba(30, 87, 153, 1) 0%,
     rgba(77, 207, 221, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, rgba(30, 87, 153, 1) 0%,
-    rgba(77, 207, 221, 1) 100%);
+    background: #258759;
 }
 
 /************************************************************************************************************************************/
@@ -2876,7 +3028,7 @@ div#popover924921 {
 
 .borderTimelineTitle2 {
     float: right;
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 .profileWrapper .navigation {
@@ -3214,6 +3366,15 @@ div#popover924921 {
         margin-top:0px;}
 
     /*job*/
+
+    .jobWrapper .ui-slider-handle,.jobWrapper .ui-state-default,.jobWrapper .ui-corner-all{
+        left: 1%  !important;
+    }
+
+    .jobWrapper .buttonBorder button {
+        margin-left: 40%;
+    }
+
     .jobWrapper .thumbnail {
         display: block;
         padding: 4px;
@@ -3760,12 +3921,12 @@ div#popover924921 {
         padding-left: 11px;
     }
 
- .myJobsBox {
-     height: 186px;
-     width: 100%;
-     position: relative;
-     margin-top: -8px;
- }
+    .myJobsBox {
+        height: 186px;
+        width: 100%;
+        position: relative;
+        margin-top: -8px;
+    }
 
     .form-control {
         display: block;
@@ -3914,7 +4075,7 @@ div#popover924921 {
     }
 
     #sliders li div span {
-        width: 25px;
+        width: 8px;
     }
 
     #user-container h5 {
@@ -4379,8 +4540,8 @@ div#popover924921 {
     z-index: 1;
     position: absolute;
     content: " ";
-    width: 3px;
-    background-color: #000;
+    width: 1px;
+    background-color: #fff;
     left: 50%;
     margin-left: -1.5px;
     position: absolute;
@@ -4449,7 +4610,7 @@ div#popover924921 {
     top: 0px;
     left: 51.7%;
     margin-left: -22px;
-    background-color: #000;
+    background-color: #808080;
     z-index: 100;
     border-top-right-radius: 50%;
     border-top-left-radius: 50%;
@@ -4498,7 +4659,9 @@ div#popover924921 {
     margin-bottom: 0;
     text-align: justify;
     width: 100%;
-    font-style: italic;
+    font-size: 20px;
+    color: #fff;
+    /* font-style: italic; */
     overflow: hidden;
 }
 

@@ -63,12 +63,7 @@
             <li><a href="#/company-profile" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 Company Profile</a></li>
-            <li><a href="#/about" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-users"></i>
-                About</a></li>
-            <li><a href="#/contact" data-toggle="collapse" data-target=".navbar-collapse">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                Contact</a></li>
+
             <li><a href='' data-toggle="collapse" data-target=".navbar-collapse" onclick=logout('logout')>
                 <i class="fa fa-sign-out"></i>
                 Log Out</a></li>
@@ -103,16 +98,7 @@
                     <i class="fa fa-trash" aria-hidden="true"></i>
                     Deleted Jobs</a>
             </li>
-            <li>
-                <a href="#/about" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-users"></i>
-                    About</a>
-            </li>
-            <li>
-                <a href="#/contact" data-toggle="collapse" data-target=".navbar-collapse">
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    Contact</a>
-            </li>
+
             <li>
                 <a href='' onclick=logout('logout') data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-sign-out"></i>
@@ -150,7 +136,7 @@
         <nav>
             <!-- Employer NAV -->
             <ul ng-if="userSignInType == 'employer'" ng-init="tab = 0">
-                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">	<i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">  <i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
 
                 </li>
                 <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/archive"><i class="fa fa-trash" aria-hidden="true"></i>DELETED</a>
@@ -158,13 +144,13 @@
             </ul>
             <!-- Job Seeker NAV -->
             <ul ng-if="userSignInType == 'jobSeeker'" ng-init="tab = 0">
-                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/search-jobs" ng-click="tab = 0">	<i class="fa fa-search" aria-hidden="true"></i>FIND JOBS</a></li>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/search-jobs" ng-click="tab = 0"> <i class="fa fa-search" aria-hidden="true"></i>FIND JOBS</a></li>
                 <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1"><i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
                 </li>
                 <li ng-class="{active:tab == 2, selected:tab == 2}"><a href="#/favorites" ng-click="tab = 2"><i class="fa fa-heart-o" aria-hidden="true"></i>FAVORITE
-                    </a></li>
-                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3">	<i class="fa fa-trash" aria-hidden="true"></i>DELETED
-                    </a></li>
+                </a></li>
+                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3"> <i class="fa fa-trash" aria-hidden="true"></i>DELETED
+                </a></li>
             </ul>
         </nav>
     </div>
