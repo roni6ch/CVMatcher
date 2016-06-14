@@ -73,7 +73,7 @@
                         <i ng-if="archivePage == false" id="candidateLike-{{candidate._id}}" class='fa fa-thumbs-o-up fa-2x like'
                            ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i>
 
-                        <a href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logoSmall.png"></a>
+                        <a href="#/like/candidates/{{jobId}}/resume/{{candidate._id}}"><img src="./images/logo.png"></a>
                         <a href="" ng-click='hire(candidate._id,candidate.user._id)'> <img ng-if="archivePage == false"  src="./images/handshake1.png">
                         </a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
@@ -109,7 +109,7 @@
                             ng-click='addCandidateToLike(candidate._id,candidate.user._id)'></i> <a
                             ng-click="checkIfArchivePage()"
                             href="#/unlike/candidates/{{jobId}}/resume/{{candidate._id}}"><img
-                            src="./images/logoSmall.png"></a>
+                            src="./images/logo.png"></a>
 
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
 
@@ -143,7 +143,7 @@
                     <div>
 
                         <a ng-click="checkIfArchivePage()" href="#/hired/candidates/{{jobId}}/resume/{{candidate._id}}"><img
-                                src="./images/logoSmall.png"></a>
+                                src="./images/logo.png"></a>
                         <article ng-repeat="subsector in candidate['sub_sector']"><h5> | {{subsector}} | </h5></article>
                     </div>
                     <div>
