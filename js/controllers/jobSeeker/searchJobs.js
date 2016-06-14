@@ -12,6 +12,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         $rootScope.userSignInType = 'jobSeeker';
         angular.element("#logo").attr("href", '#/login');
         //navigation in site
+        //navigation in site
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Search Jobs</a>";
 
         //TODO: OPEN SOCKET!
@@ -88,4 +89,23 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             $("#collepse-" + id).parent().find(".arrow-down").hide();
         }
     };
+    //get top 10
+    $scope.getTopTen = function(){
+
+        angular.element(".fa-spinner").show();
+        $http({
+            url: 'https://cvmatcher.herokuapp.com/jobSeeker/getBestMatchJobs',
+            method: "POST",
+            data: {
+                "user_id":localStorage.getItem('user_id'),
+                "sector":"software engineering",
+                "cv": localStorage.getItem('current_cv')
+            }
+        }).then(function (data) {
+            angular.element(".fa-spinner").hide();
+            $scope.jobSeekerJobs = data.data;
+        });
+
+
+    }
 });

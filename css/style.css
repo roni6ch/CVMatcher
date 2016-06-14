@@ -1433,15 +1433,13 @@ a:focus, a:hover {
 .resumeYears > div {
     width: 100%;
     margin: 4px auto;
-    background: #fff;
 }
 
 .resumeYears > div h3:nth-child(1) {
     float: left;
     padding: 14px;
-    /* font-size: 20px; */
+    color:#fff;
     font-weight: normal;
-    border-bottom: 1px solid #000;
 }
 
 .resumeYears > div h3:nth-child(2) {
@@ -2722,7 +2720,9 @@ a:focus, a:hover {
 
 .cvPreview {
     margin: 0 auto;
-    width: 269px;
+    margin-top: 12px;
+    font-size: 24px;
+    width: 100%;
     text-align: center;
     padding: 0;
 }
@@ -2730,10 +2730,17 @@ a:focus, a:hover {
 .profileWrapper .cvPreview .btn-default {
     border: 0;
     padding: 0;
-    width: 104px;
+    width: 100%;
     font-size: 20px;
+    margin-top: 16px;
 }
 
+.userProfile div button:hover,.userProfile div button:active:hover,.userProfile div button:focus,.userProfile div button:active {
+    outline:none;
+    opacity: 0.6;
+    background-color: transparent;
+    color:#fff;
+}
 .profileWrapper .nav > li > a {
     position: relative;
     display: block;
@@ -2748,12 +2755,13 @@ a:focus, a:hover {
     color:#fff;
 }
 
+.profileWrapper .timeline-heading , .profileWrapper .timeline-body{
+    background-color: #CCC;
+}
+
 .userProfile .parseExperience label {
     margin: 0 auto;
-    margin-top: 5px;
-    margin-left: 4%;
-    margin-right: 4%;
-    padding-right: 5px;
+    width: 50%;
     color: #fff;
 }
 
@@ -2773,7 +2781,7 @@ div#popover924921 {
 }
 
 .profileWrapper .timeline-heading {
-    padding-left: 6%;
+    padding: 10px;
 }
 
 .profileWrapper .timeline-panel .form-group {
@@ -2798,7 +2806,6 @@ div#popover924921 {
 }
 
 .profileWrapper form .btn-default {
-    color: #000 !important;
     border-radius: 0;
 }
 
@@ -2923,8 +2930,8 @@ div#popover924921 {
 .userProfile label {
     margin: 0 auto;
     margin-top: 5px;
+    color:#fff;
     padding-right: 5px;
-    color: #fff;
 }
 
 .userProfile .btn.btn-warning {
@@ -2934,7 +2941,6 @@ div#popover924921 {
 }
 
 .userProfile div button {
-    width: 98px;
     border-radius: 0;
     border: 0;
     outline: 0;
@@ -2951,11 +2957,12 @@ div#popover924921 {
     cursor: pointer;
 }
 
+
 .page-header h1 {
     text-align: center;
     width: 34%;
     margin: 0 auto;
-    border-bottom: 1px solid #000;
+    color:#fff;
 }
 
 .parserExperienceYearsLabel {
@@ -2982,15 +2989,14 @@ div#popover924921 {
     width: 30%;
 }
 
-.parser {
-    margin-left: 38%;
-    width: 40%;
-    margin-bottom: 8px;
-}
 
 .removeContentCV {
     float: right;
+    position: absolute;
     cursor: pointer;
+    top: -10px;
+    right: -6px;
+    color: #fff;
 }
 
 #submitAfterParse {
@@ -3008,7 +3014,7 @@ div#popover924921 {
     color: #fff;
     width: 50px !important;
     height: 50px;
-    background-color: #ee5785;
+    background-color: rgba(0, 200, 29, 0.39);
     z-index: 100;
     cursor: pointer;
     border-top-right-radius: 50%;
@@ -3255,6 +3261,18 @@ div#popover924921 {
         width: 100%;
     }
 
+    .profileWrapper .parseB{    width: 100%;
+        height: 50px;
+        text-align: center;
+        float: left;}
+
+    .profileWrapper .sendButtonP{
+        font-size: 19px;
+        text-align: center;
+        margin: 0 auto;
+        margin-left: 75px;
+        margin-top: 16px;
+    }
     .jobWrapper .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
         border-radius: 0;
         color: #000;
@@ -3479,9 +3497,6 @@ div#popover924921 {
         margin-top: 50px;
     }
 
-    .cvPreview {
-        margin-left: 30%;
-    }
 
     .profileWrapper .timeline-heading .form-control {
         width: 100%;
@@ -3551,16 +3566,12 @@ div#popover924921 {
     }
 
     .profileWrapper .page-header h1 {
-
-        padding: 10px;
         font-size: 24px;
     }
 
     .profileWrapper .page-header {
         width: 50%;
         margin: 0 auto;
-        margin-top: 30px;
-        margin-bottom: 24px;
     }
 
     .profileWrapper .timeline > li > .timeline-badge {
@@ -3570,8 +3581,7 @@ div#popover924921 {
 
     .profileWrapper .parser {
         float: left;
-        width: 78%;
-        margin-left: 21%;
+        width: 100%;
         margin-top: 10px;
         margin-bottom: 10px;
     }
@@ -4151,7 +4161,11 @@ div#popover924921 {
     /*MEDIA TIMELINE*/
     .timeline > li > .timeline-panel {
         width: 100% !important;
+        padding-bottom:0px !important;
+        padding:0px !important;
         background: #d4d4d4;
+        margin-top:0px !important;
+        margin:0px !important;
         z-index: 2;
     }
 
@@ -4428,7 +4442,7 @@ div#popover924921 {
     color: #fff;
     width: 28px;
     height: 28px;
-    line-height: 24px;
+    line-height: 29px;
     font-size: 1.4em;
     text-align: center;
     position: absolute;
