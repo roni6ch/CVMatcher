@@ -20,7 +20,7 @@ app.controller('companyProfileController',
 
         //company profile details
         $scope.init = function(){
-
+            angular.element(".existingCompanis").hide();
             $rootScope.userSignInType = 'employer';
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -126,10 +126,10 @@ app.controller('companyProfileController',
         //submit the second form - company details
         $scope.submitCompanyDetails = function () {
             var companyJson;
-            if (logo == '')
+            if (logo == '' && $(".companyLogo > img").length == 0)
+                logo = 'images/logo-default.png';
+            else
                 logo = $(".companyLogo > img").attr("src");
-            if (logo == undefined)
-                logo = 'logo-default.png';
 
 
             $scope.status = '';
@@ -283,5 +283,9 @@ app.controller('companyProfileController',
                 if (tabType == 'company')
                     location.replace("#/myjobs");
             }, 500);
+        }
+
+        $scope.signExistingCompany = function(){
+            angular.element(".existingCompanis").toggle();
         }
     });

@@ -23,12 +23,29 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $rootScope.list2 = [];
         $rootScope.list3 = [];
         var i = 0;
-    var locationIndex = 0;
+        var locationIndex = 0;
         var combinationLengthAfterEdit = 0, combinationsLength = 0, sumSliders = 0;
-        var editJob = false, sendForm = false, savedCurrentCombination = false;
+        var editJob = false, sendForm = false, savedCurrentCombination = false, updateCV = false;
         newLangClicked = false
         //initialize parameters for this controller
         $scope.init = function () {
+
+
+            $http({
+                url: 'https://cvmatcher.herokuapp.com/getUser',
+                method: "POST",
+                data: {
+                    "user_id": localStorage.getItem('user_id')
+                }
+            }).then(function (data) {
+                if (typeof data.data[0].company == 'undefined') {
+                    //no company
+                    $scope.status = messageResource.get("modal.job.updateProfile", 'resources');
+                    $('#sendJob').modal('show');
+                    updateCV = true;
+                }
+            });
+
 
             $(".requirementsWrapper").hide();
             $(".experienceBeforeParse").hide();
@@ -41,7 +58,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.getJobJson = function () {
             $(".fa-arrow-right").hide();
             $(".fa-arrow-left").hide();
-
 
 
             if ($id == 'job') {
@@ -61,7 +77,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 })
                     .then(function (data) {
                         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/job/" + $jobId + "'>Edit Job - " + data.data[0].original_text.title + "</a>";
-console.log(data.data[0]);
+                        console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
                         $scope.mustReqiurment = data.data[0].original_text['requirements'].split('|||')[0];
 
@@ -143,7 +159,6 @@ console.log(data.data[0]);
                         angular.element(".fa-pulse").hide();
 
 
-
                         //SLIDERS
                         var sliders = $("#sliders").find(".slider");
                         var formulaJson = ["academy", "candidate_type", "locations", "requirements", "scope_of_position"];
@@ -200,7 +215,7 @@ console.log(data.data[0]);
 
                         $timeout(function () {
                             $.each($(".geocomplete input"), function (key) {
-                                 $("#geocomplete" + key).geocomplete();
+                                $("#geocomplete" + key).geocomplete();
                                 locationIndex++;
                             });
                         });
@@ -213,7 +228,7 @@ console.log(data.data[0]);
                 locations = [], combination = [], tempMustLangs = [], tempAdvLangs = [], tempOrLangs = [], languagesAfterParseForKeyWords = [], newLang = [], languages = [], requirements = [];
 
                 $scope.newJob = true;
-                var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/><i class="fa fa-times" aria-hidden="true"  ng-click="deleteLocation(' + locationIndex + ')"></i></div>');
+                var html = $(".geocomplete").append('<div><input class="form-control" id="geocomplete' + locationIndex + '" required  type="text"  name="location" placeholder="Type in an address" size="90" autocomplete="on"/></div>');
                 $("#geocomplete" + locationIndex).geocomplete();
                 locationIndex++;
                 $compile(html)($scope);
@@ -277,10 +292,10 @@ console.log(data.data[0]);
         };
         // Limit items to be dropped in list1
         /*$scope.optionsList3 = {
-            accept: function () {
-                return $scope.list3.length < 2;
-            }
-        };*/
+         accept: function () {
+         return $scope.list3.length < 2;
+         }
+         };*/
         //EXIT MODAL BUTTON
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
@@ -289,7 +304,12 @@ console.log(data.data[0]);
                     location.replace("#/myjobs");
                 }, 1000);
             }
-            else {
+            else if (updateCV == true) {
+                $timeout(function () {
+                    location.replace("#/profile");
+                }, 1000);
+            }
+            else{
                 $scope.status = "";
             }
         };
@@ -351,7 +371,6 @@ console.log(data.data[0]);
                                             combination.push(tempMust);
                                         });
                                         $rootScope.list1 = tempMustLangs;
-
 
 
                                         //adv
@@ -439,8 +458,6 @@ console.log(data.data[0]);
             });
 
 
-
-
             //newKeyWords
             var difference = [];
 
@@ -450,21 +467,21 @@ console.log(data.data[0]);
 
             console.log(difference);
             if (difference.length > 0)
-            $http({
-                url: "https://cvmatcher.herokuapp.com/addKeyWords",
-                method: "POST",
-                data: {
-                    "sector": $(".sector :selected").val(),
-                    "words_list": difference
-                }
-            })
-                .then(function (data) {
-                        console.log(data);
-                    },
-                    function (response) { // optional
-                        console.log("addKeyWords send form AJAX failed!");
-                        console.log(response);
-                    });
+                $http({
+                    url: "https://cvmatcher.herokuapp.com/addKeyWords",
+                    method: "POST",
+                    data: {
+                        "sector": $(".sector :selected").val(),
+                        "words_list": difference
+                    }
+                })
+                    .then(function (data) {
+                            console.log(data);
+                        },
+                        function (response) { // optional
+                            console.log("addKeyWords send form AJAX failed!");
+                            console.log(response);
+                        });
 
 
             $scope.status = messageResource.get("modal.wait", 'resources');
@@ -535,7 +552,7 @@ console.log(data.data[0]);
                             "requirements": $("#requirementsMust").val() + " ||| " + $("#requirementsAdvantage").val()
                         },
                         "sector": $(".sector :selected").val(),
-                       // "locations": [$("#geocomplete0").val()],
+                        // "locations": [$("#geocomplete0").val()],
                         "locations": locations,
                         "candidate_type": candidate_type,
                         "scope_of_position": scope_of_position,
@@ -613,7 +630,7 @@ console.log(data.data[0]);
                             console.log(response);
                         });
             }
-            if ($rootScope.list3.length == 1){
+            if ($rootScope.list3.length == 1) {
                 $('#sendJob').modal('show');
                 $scope.status = messageResource.get("modal.job.or", 'resources');
             }
@@ -665,20 +682,20 @@ console.log(data.data[0]);
                 $('#sendJob').modal('show');
                 $scope.status = messageResource.get("modal.job.sum_prioroty", 'resources');
             }
-            else if($rootScope.list3.length == 1){
+            else if ($rootScope.list3.length == 1) {
                 $('#sendJob').modal('show');
                 $scope.status = messageResource.get("modal.job.or", 'resources');
             }
         };
         //BRING NEXT COMBINATION
         $scope.nextCombination = function (val) {
-            if ($rootScope.list3.length == 1){
+            if ($rootScope.list3.length == 1) {
                 $('#sendJob').modal('show');
                 $scope.status = messageResource.get("modal.job.or", 'resources');
                 return;
             }
 
-                if ($rootScope.list3.length != 1 && $rootScope.list1.length > 0 && totalPriorotySum != 100) {
+            if ($rootScope.list3.length != 1 && $rootScope.list1.length > 0 && totalPriorotySum != 100) {
                 $('#sendJob').modal('show');
                 $scope.status = messageResource.get("modal.job.sum_prioroty", 'resources');
                 return;
@@ -1008,11 +1025,11 @@ console.log(data.data[0]);
             $("#geocomplete" + locationIndex).geocomplete();
             locationIndex++;
             if ($id != 'job')
-            $compile(html)($scope);
+                $compile(html)($scope);
         }
         $scope.deleteLocation = function (i) {
-            console.log("#geocomplete" + i)
-                $("#geocomplete" + i).parent().remove();
+            console.log("#geocomplete" + i);
+            $("#geocomplete" + i).parent().remove();
         }
     }
 ).directive('droppableMust', function ($rootScope) {
@@ -1116,7 +1133,7 @@ console.log(data.data[0]);
             });
 
             /* $.each(requirements[nextCombinationKey].combination, function (key, val) {
-                 console.log(val);
+             console.log(val);
              if (val.mode == 'must') {
              totalPriorotySum += parseInt(val.percentage);
              console.log(val);

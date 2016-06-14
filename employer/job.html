@@ -29,7 +29,7 @@
                                                                                          name="location" value="{{location}}"
                                                                                          placeholder="Type in an address" size="90"
                                                                                          autocomplete="on"/>
-                    <i class="fa fa-times" aria-hidden="true" ng-click="deleteLocation($index)"></i>
+                    <i ng-if="$index != 0" class="fa fa-times" aria-hidden="true" ng-click="deleteLocation($index)"></i>
                 </div>
             </div>
             <input type="button" class="btn btn-warning"

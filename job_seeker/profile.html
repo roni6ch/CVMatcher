@@ -20,6 +20,8 @@
             <!-- Content from here -->
             <form ng-submit="submitUserDetails()">
                 <h4>Personal Information</h4>
+
+                <h6 class="requiredError"> *All the fields are Required! ( except LinkedIn )</h6>
                 <label>ID:</label> <input type="text" ng-model="jobSeeker['personal_id']"
                                           class="form-control" name="name" required
                                           value="{{jobSeeker['personal_id']}}">
@@ -48,7 +50,6 @@
                                                 value="{{jobSeeker['linkedin']}}">
 
 
-                <h6 class="requiredError"> *All the fields are Required! ( except LinkedIn )</h6>
 
                 <div class="buttonBorder">
                     <button class="sendB" type="submit" class="btn btn-default">
@@ -62,6 +63,8 @@
             <form ng-submit="submitUserCV()">
 
                 <h4>Professional Experience</h4>
+
+                <h6 class="requiredError"> *All the fields are Required!</h6>
                 <label>Sector:</label> <select name="sector" required
                                                class="form-control jobSeekerCVsector">
                 <option ng-selected="jobSeekerCV.sector == ''" value="">
@@ -453,9 +456,9 @@
 
 
 
-                <button ng-click="cvPreview()" value="CV Preview" class="btn btn-default cvPreview">
+                <section ng-click="cvPreview()" value="CV Preview" class="btn btn-default cvPreview">
                     <span>CV Preview</span>
-                </button>
+                </section>
 
                 <button class="sendButtonP" type="submit" id="submitAfterParse" class="btn btn-default disabled">
                     <img class="Garrow" src="images/Garrow.png">
@@ -464,7 +467,6 @@
 
             </form>
 
-            <h6 class="requiredError"> *All the fields are Required!</h6>
 
         </div>
 

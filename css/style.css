@@ -4839,4 +4839,18 @@ div#popover924921 {
     border-left-width: 0;
 }
 
+.signExistingCompany{float:left;     width: 100%;}
 
+.cvPreview {
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 12px;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+.userProfile .cvPreview:hover,.userProfile .cvPreview:active,.userProfile .cvPreview:focus{background-color: transparent;color:#fff;opacity:0.8;}

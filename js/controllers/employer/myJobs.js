@@ -70,28 +70,6 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
     //get user and jobs by employer id
     $scope.getMainJson = function () {
 
-        $http({
-            url: 'https://cvmatcher.herokuapp.com/getUser',
-            method: "POST",
-            data: {
-                "user_id": localStorage.getItem('user_id')
-            }
-        }).then(function (data) {
-            angular.element("#profileImg").parent().show();
-            if (typeof data.data[0].company == 'undefined') {
-                $scope.popoverData = 'company-profile';
-                $scope.popOverDataContent = 'Please Update Your Profile First!';
-                $("#popoverData").css("text-decoration", "line-through");
-            }
-            else {
-                $(".newJob").css("pointer-events", "auto");
-                $("#popoverData").css("text-decoration", "none");
-                $scope.popoverData = 'new-job';
-                $scope.popOverDataContent = 'Add new Job to System';
-            }
-
-
-        });
 
 
 

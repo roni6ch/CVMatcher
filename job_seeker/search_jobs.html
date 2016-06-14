@@ -19,20 +19,21 @@
             <img class="Garrow" src="images/Garrow.png">
         </button>
 
-        <button type="button" class="btn btn-default sort_compability"
-                ng-click="sort('-compatibility_level')">Sort By Compatibility
-            <img class="Garrow" src="images/Garrow.png">
-        </button>
-        <button type="button" class="btn btn-default sort_date" ng-click="sort('-date')">Sort
-            By Date
+
+        <button type="button" class="btn btn-default" ng-click="getTopTen()">CV Match Jobs
             <img class="Garrow" src="images/Garrow.png">
         </button>
 
-        <button type="button" class="btn btn-default" ng-click="getTopTen()">CVMatch Jobs!
-            <img class="Garrow" src="images/Garrow.png">
-        </button>
-
-
+        <div class="flc">
+            <button type="button" class="btn btn-default sort_compability"
+                    ng-click="sort('-compatibility_level')">Sort By Compatibility
+                <img class="Garrow" src="images/Garrow.png">
+            </button>
+            <button type="button" class="btn btn-default sort_date" ng-click="sort('-date')">Sort
+                By Date
+                <img class="Garrow" src="images/Garrow.png">
+            </button>
+        </div>
     </div>
 
 
@@ -44,6 +45,8 @@
                     <a href="">
                         <img class="logoInJobBox"
                              ng-src="{{job.user.company.logo}}">
+                        <img class="logoInJobBox" ng-if="!job.user.company.logo"
+                             ng-src="images/logo-default.png">
                         <article class="visibleText">
 
                             <p ng-model="searchText.name"

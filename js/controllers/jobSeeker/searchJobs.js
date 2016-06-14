@@ -73,7 +73,6 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                 });
     };
     $scope.showSortOptions = function(){
-        console.log("a");
         angular.element(".sort_compability").show();
         angular.element(".sort_date").show();
     }
@@ -86,6 +85,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         localStorage.setItem("jobTitle", title);
         localStorage.setItem("compatibility_level", compatibility_level);
     };
+    //accordion collepse arrow
     //accordion collepse arrow
     $scope.collepse = function (id) {
         if ($("#collepse-" + id).hasClass("in")) {
@@ -114,6 +114,9 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         }).then(function (data) {
             angular.element(".fa-spinner").hide();
             $scope.jobSeekerJobs = data.data;
+            angular.forEach(data.data, function (value, key) {
+                data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
+            });
         });
 
 
