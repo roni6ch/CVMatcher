@@ -2988,10 +2988,6 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     width: 100% !important;
 }
 
-.profileWrapper .form-control {
-    width: 80%;
-}
-
 .sendButtonP {
     font-size: 19px;
 }
@@ -3267,7 +3263,7 @@ div#popover924921 {
 
 
 .userProfile .btn.btn-warning {
-    float: none;
+    float: right;
     border-radius: 0;
     margin: 2px;
 }
