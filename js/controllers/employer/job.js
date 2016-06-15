@@ -705,6 +705,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 savedCurrentCombination = true;
                 nextCombinationKey++;
                 $scope.combinationIndx = nextCombinationKey;
+                console.log($scope.combinationIndx);
                 if (nextCombinationKey < combinationsLength && nextCombinationKey != combinationsLength) {
                     $(".fa-arrow-right").show();
                     $(".fa-arrow-left").show();
@@ -717,6 +718,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             else {
                 nextCombinationKey--;
                 $scope.combinationIndx = nextCombinationKey;
+                console.log($scope.combinationIndx);
                 if (nextCombinationKey < combinationsLength && nextCombinationKey != 0) {
                     $(".fa-arrow-right").show();
                     $(".fa-arrow-left").show();

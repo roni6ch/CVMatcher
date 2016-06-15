@@ -1633,6 +1633,11 @@ a:focus, a:hover {
     left: 1%;
 }
 
+.jobWrapper .combinations{
+    color: #fff;
+    font-size:20px;
+    float:right;
+}
 .jobWrapper .combArrow{
     font-size: 3em;
     color: #fff;

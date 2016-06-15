@@ -10,7 +10,7 @@ app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
 
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/company-profile'>Company Profile</a>";
-        var companyId,tabType = '',logo = '';
+        var companyId,tabType = '';
         $("#geocomplete").geocomplete();
         $("#geocomplete2").geocomplete();
         $scope.chooseCompanyModal = false;
@@ -47,6 +47,7 @@ app.controller('companyProfileController',
                                     })
                                         .then(function (data) {
                                             console.log(data);
+                                            logo = data.data[0].logo;
                                                 $scope.companyProfile = data.data[0];
                                                 angular.element(".fa-pulse").hide();
                                             },
@@ -73,6 +74,7 @@ app.controller('companyProfileController',
         }
         //select specific logo for company - and remove all other selected
         $scope.newLogo = function () {
+            console.log($(this).find("img").prevObject[0].logo);
             logo = $(this).find("img").prevObject[0].logo;
             $.each($(".logos label"), function () {
                 $(this).removeClass('active');
@@ -126,10 +128,8 @@ app.controller('companyProfileController',
         //submit the second form - company details
         $scope.submitCompanyDetails = function () {
             var companyJson;
-            if (logo == '' && $(".companyLogo > img").length == 0)
+            if (logo == '')
                 logo = 'images/logo-default.png';
-            else
-                logo = $(".companyLogo > img").attr("src");
 
 
             $scope.status = '';
