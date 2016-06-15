@@ -18,8 +18,8 @@
     <div class="tab-content userProfile">
         <div ng-show="tab == 0" class="tabsContent fade in active">
             <!-- Content from here -->
-            <form ng-submit="submitUserDetails()">
-                <h4>Personal Information</h4>
+            <form ng-submit="submitUserDetails()"><!--
+                <h4>Personal Information</h4>-->
 
                 <h6 class="requiredError"> *All the fields are Required! ( except LinkedIn )</h6>
                 <label>ID:</label> <input type="text" ng-model="jobSeeker['personal_id']"
@@ -61,8 +61,8 @@
         <div ng-show="tab == 1" class="tabsContent fade in active">
             <!-- Content from here -->
             <form ng-submit="submitUserCV()">
-
-                <h4>Professional Experience</h4>
+    <!--
+                    <h4>Professional Experience</h4>-->
 
                 <h6 class="requiredError"> *All the fields are Required!</h6>
                 <label>Sector:</label> <select name="sector" required
@@ -307,7 +307,7 @@
                                            ng-click="removeContentCV($index)"></i>
                                         <label>From
                                             <select ng-model="selectedFrom" ng-change="selectFromYear(selectedFrom)"
-                                                    class="form-control">
+                                                    class="form-control yearsProfile">
                                                 <option value="2004" ng-selected="experience['start_year'] == '2004'">
                                                     2004
                                                 </option>
@@ -351,7 +351,7 @@
                                         </label>
                                         <label>To
                                             <select ng-model="selectedTo" ng-change="selectToYear(selectedTo)"
-                                                    class="form-control">
+                                                    class="form-control yearsProfile">
                                                 <option value="2004" ng-selected="experience['end_year'] == '2004'"
                                                         ng-show="selectFrom == 2004">
                                                     2004
@@ -457,6 +457,7 @@
 
 
                 <section ng-click="cvPreview()" value="CV Preview" class="btn btn-default cvPreview">
+                    <img class="Garrow" src="images/Garrow.png">
                     <span>CV Preview</span>
                 </section>
 
