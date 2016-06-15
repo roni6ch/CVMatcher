@@ -3535,6 +3535,10 @@ div#popover924921 {
 /****************************************************************************************************/
 @media ( max-width: 767px) {
 
+    .jobListLi .rating{
+
+        right: 18px;
+    }
     #profilePicture {
         display: none;
     }
@@ -4715,8 +4719,6 @@ div#popover924921 {
     }
 }
 
-}
-
 
 
 /****************************************************** TIMELINE ***************************************************/
@@ -5061,3 +5063,4 @@ div#popover924921 {
 .existingCompany{background: transparent; color:#fff; border:0; outline:0;}
 .existingCompany:hover{opacity:0.8;background: transparent; color:#fff; border:0; outline:0;}
 .cvPreview{background: transparent; color:#fff; border:0; outline:0; float:left;}
+#predictAppend h2 {color: #fff;}

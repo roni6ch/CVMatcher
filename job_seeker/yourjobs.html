@@ -32,7 +32,7 @@
                    ng-show="page!='deleted'"
                    ng-click="favoriteJob(jobSJ._id,$index)"></i>
 
-                <i class="fa fa-times" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
+                <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
                    ng-click="removeReviveJob(jobSJ._id,false)"></i>
                 <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'" ng-if="jobSJ.job.archive == false"
                    ng-click="removeReviveJob(jobSJ._id,true)"></i>
