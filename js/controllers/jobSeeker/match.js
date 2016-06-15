@@ -23,6 +23,7 @@ app
             $scope.init = function () {
 
                 $(".matchResult").hide();
+                $(".fixCV").hide();
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
@@ -47,6 +48,7 @@ app
                             })
                                 .then(function (data) {
                                         $(".matchResult").show();
+                                        $(".fixCV").show();
                                         //navigation in site
                                         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Search Jobs</a><span> > </span><a href='#/search-jobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
 

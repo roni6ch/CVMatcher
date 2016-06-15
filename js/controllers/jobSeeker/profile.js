@@ -25,7 +25,7 @@ app
                 $("[rel='popover']").popover({trigger: "hover", container: "body"});
 
                 //navigation in site
-                $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/profile'>Profile</a>";
+                $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/profile'>My Profile</a>";
 
                 //TODO: OPEN SOCKET!
                 socket.onmessage = function (msg) {

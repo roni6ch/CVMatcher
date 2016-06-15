@@ -6,8 +6,10 @@
         <header>
             <h2>{{pageTitle}}</h2>
         </header>
+        <form >
             <input type="text" placeholder="Find Job" ng-model="searchText" highlighted data-search="searchText"
                    class="form-control">
+        </form>
         <button type="button" class="btn btn-default"
                 ng-click="sort('-compatibility_level')">Sort By Compatibility
             <img class="Garrow" src="images/Garrow.png">

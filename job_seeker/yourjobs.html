@@ -25,7 +25,7 @@
     <div class="jobsList">
         <ul>
             <li class="jobListLi  animated fadeInUp"
-                ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby">
+                ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby" >
 
                 <i  class="fa fa-3x fav" id="fav{{$index}}"
                    ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
@@ -34,7 +34,7 @@
 
                 <i class="fa fa-times" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
                    ng-click="removeReviveJob(jobSJ._id,false)"></i>
-                <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'"
+                <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'" ng-if="jobSJ.job.archive == false"
                    ng-click="removeReviveJob(jobSJ._id,true)"></i>
 
 
