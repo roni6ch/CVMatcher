@@ -10,7 +10,7 @@ app.controller('candidatesController',
         var stars = 0;
         $id = $location.path().split('/');
         $scope.jobPage = '';
-var candidates = [];
+        var candidates = [];
         //init function to bring all the unread cv's
         $scope.unreadCvs = function () {
             if (localStorage.getItem('archive') == 'true') {
@@ -35,7 +35,7 @@ var candidates = [];
                 .then(function (data) {
 
                         candidates = [];
-                        localStorage.setItem("candidates",candidates);
+                        localStorage.setItem("candidates", candidates);
                         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a>";
                         $scope.candidates = data.data;
                         $rootScope.unreadCandidates = data.data;
@@ -44,7 +44,7 @@ var candidates = [];
 
                         $.each(data.data, function (k, v) {
                             candidates.push(v._id);
-                            localStorage.setItem("candidates",candidates);
+                            localStorage.setItem("candidates", candidates);
                         });
 
                     },
@@ -57,7 +57,7 @@ var candidates = [];
         $scope.likedCvs = function () {
 
             candidates = [];
-            localStorage.setItem("candidates",candidates);
+            localStorage.setItem("candidates", candidates);
             $scope.likeCandidates = '';
 
             angular.element(".fa-pulse").show();
@@ -77,7 +77,7 @@ var candidates = [];
                         angular.element(".fa-pulse").hide();
                         $.each(data.data, function (k, v) {
                             candidates.push(v._id);
-                            localStorage.setItem("candidates",candidates);
+                            localStorage.setItem("candidates", candidates);
                         });
 
                     },
@@ -90,7 +90,7 @@ var candidates = [];
         //bring all the unlike cv's
         $scope.unlikeCvs = function () {
             candidates = [];
-            localStorage.setItem("candidates",candidates);
+            localStorage.setItem("candidates", candidates);
             angular.element(".fa-pulse").show();
             $scope.unlikeCandidates = '';
             $http({
@@ -109,7 +109,7 @@ var candidates = [];
                         angular.element(".fa-pulse").hide();
                         $.each(data.data, function (k, v) {
                             candidates.push(v._id);
-                            localStorage.setItem("candidates",candidates);
+                            localStorage.setItem("candidates", candidates);
 
                         });
                     },
@@ -121,7 +121,7 @@ var candidates = [];
         //bring all the hired cv's
         $scope.Hired = function () {
             candidates = [];
-            localStorage.setItem("candidates",candidates);
+            localStorage.setItem("candidates", candidates);
             angular.element(".fa-pulse").show();
             $scope.hiredCandidates = '';
             $http({
@@ -137,7 +137,7 @@ var candidates = [];
                     angular.element(".fa-pulse").hide();
                     $.each(data.data, function (k, v) {
                         candidates.push(v._id);
-                        localStorage.setItem("candidates",candidates);
+                        localStorage.setItem("candidates", candidates);
                     });
                 },
                 function (response) { // optional
@@ -160,7 +160,7 @@ var candidates = [];
                 $scope.userId = candidate;
                 $(".leftModal").click();
                 //noinspection JSDuplicatedDeclaration
-                 candidatesArr = $scope.likeCandidates;
+                candidatesArr = $scope.likeCandidates;
                 candidatesArr = candidatesArr.filter(function (obj) {
                     return obj._id !== candidate;
                 });
@@ -173,7 +173,7 @@ var candidates = [];
                 $scope.userId = candidate;
                 $(".starModal").click();
                 //noinspection JSDuplicatedDeclaration
-                 candidatesArr = $scope.unlikeCandidates;
+                candidatesArr = $scope.unlikeCandidates;
                 candidatesArr = candidatesArr.filter(function (obj) {
                     return obj._id !== candidate;
                 });
@@ -198,28 +198,50 @@ var candidates = [];
             })
                 .then(function () {
                         //remove from list filter
-                        sendNotification('hire', $scope.user_id, $scope.jobId, null, localStorage.getItem("jobTitle"));
 
                         $http({
-                            url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                            url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
                             method: "POST",
                             data: {
-                                "user_id": $scope.user_id,
-                                "message": "congratulations!! you're hired for job: " + localStorage.getItem("jobTitle")
+                                "user_id": localStorage.getItem("user_id")
                             }
-                        }).then(function (data) {
-                                console.log(data.data);
-                            },
-                            function (response) { // optional
-                                console.log("Hired notification AJAX failed!");
-                                console.log(response);
-                            });
-                        var canArr = $rootScope.likeCandidates;
-                        canArr = canArr.filter(function (obj) {
-                            return obj._id !== cvId;
-                        });
-                        $rootScope.likeCandidates = canArr;
-                        $scope.likeCandidates = canArr;
+                        })
+                            .then(function (data) {
+                                    if (data) {
+                                        console.log('getCompany', data);
+                                        var companyName = data.data[0].name;
+
+                                        sendNotification('hire', $scope.user_id, $scope.jobId, null, localStorage.getItem("jobTitle"), companyName);
+                                        $http({
+                                            url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                                            method: "POST",
+                                            data: {
+                                                "user_id": $scope.user_id,
+                                                "message": "congratulations!! you're hired for job: " + localStorage.getItem("jobTitle")
+                                            }
+                                        }).then(function (data) {
+                                                console.log(data.data);
+                                            },
+                                            function (response) { // optional
+                                                console.log("Hired notification AJAX failed!");
+                                                console.log(response);
+                                            });
+
+                                        var canArr = $rootScope.likeCandidates;
+                                        canArr = canArr.filter(function (obj) {
+                                            return obj._id !== cvId;
+                                        });
+                                        $rootScope.likeCandidates = canArr;
+                                        $scope.likeCandidates = canArr;
+
+                                    }
+                                },
+                                function (response) { // optional
+                                    console.log("getCompany AJAX failed!");
+                                    console.log(response);
+
+                                });
+
 
                     },
                     function (response) { // optional
@@ -231,7 +253,7 @@ var candidates = [];
         $scope.bringNextCandidate = function (type, description, id) {
             console.log(type);
 
-                $("#comment").val("");
+            $("#comment").val("");
             $http({
                 url: 'https://cvmatcher.herokuapp.com/employer/updateRateCV',
                 method: "POST",
@@ -249,42 +271,62 @@ var candidates = [];
 
             }).then(function (data) {
                     console.log("updateRateCV: ", data);
-                    if (type == 'unliked') {
-                        sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"));
-                        $http({
-                            url: 'https://cvmatcher.herokuapp.com/sendNotification',
-                            method: "POST",
-                            data: {
-                                "user_id": $scope.user_id,
-                                "message": "The employer unlike your cv and entered the feedback: "
-                                + description + "for job " + localStorage.getItem("jobTitle")
-                            }
-                        }).then(function (data) {
-                                console.log(data.data);
-                            },
-                            function (response) { // optional
-                                console.log("unlike notification AJAX failed!");
-                                console.log(response);
-                            });
-                    }
-                    else if(type == 'liked'){
+                    $http({
+                        url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
+                        method: "POST",
+                        data: {
+                            "user_id": localStorage.getItem("user_id")
+                        }
+                    })
+                        .then(function (data) {
+                            if (data) {
+                                var companyName = data.data[0].name;
+                                if (type == 'unliked') {
+console.log(data);
 
-                        sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"));
-                        $http({
-                            url: 'https://cvmatcher.herokuapp.com/sendNotification',
-                            method: "POST",
-                            data: {
-                                "user_id": $scope.user_id,
-                                "message": "The employer like your cv and rated it with a number of " + stars + " stars for job " + localStorage.getItem("jobTitle")
+                                    sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"), companyName);
+                                    $http({
+                                        url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                                        method: "POST",
+                                        data: {
+                                            "user_id": $scope.user_id,
+                                            "message": "The employer unlike your cv and entered the feedback: "
+                                            + description + "for job " + localStorage.getItem("jobTitle")
+                                        }
+                                    }).then(function (data) {
+                                            console.log(data.data);
+                                        },
+                                        function (response) { // optional
+                                            console.log("unlike notification AJAX failed!");
+                                            console.log(response);
+                                        });
+                                }
+                                else if (type == 'liked') {
+
+                                    sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"), companyName);
+                                    $http({
+                                        url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                                        method: "POST",
+                                        data: {
+                                            "user_id": $scope.user_id,
+                                            "message": "The employer like your cv and rated it with a number of " + stars + " stars for job " + localStorage.getItem("jobTitle")
+                                        }
+                                    }).then(function (data) {
+                                            console.log(data.data);
+                                        },
+                                        function (response) { // optional
+                                            console.log("like notification AJAX failed!");
+                                            console.log(response);
+                                        });
+                                }
                             }
-                        }).then(function (data) {
-                                console.log(data.data);
-                            },
-                            function (response) { // optional
-                                console.log("like notification AJAX failed!");
-                                console.log(response);
-                            });
-                    }
+                        },
+                        function (response) { // optional
+                            console.log("getCompany  AJAX failed!");
+                            console.log(response);
+                        });
+
+
                 },
                 function (response) { // optional
                     console.log("updateRateCV AJAX failed!");

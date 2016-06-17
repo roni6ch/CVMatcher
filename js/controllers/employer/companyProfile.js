@@ -10,7 +10,7 @@ app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
 
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/company-profile'>Company Profile</a>";
-        var companyId,tabType = '';
+        var companyId, tabType = '';
         $("#geocomplete").geocomplete();
         $("#geocomplete2").geocomplete();
         $scope.chooseCompanyModal = false;
@@ -19,7 +19,9 @@ app.controller('companyProfileController',
         $scope.password = false;
 
         //company profile details
-        $scope.init = function(){
+        $scope.init = function () {
+
+            angular.element(".password").hide();
             angular.element(".existingCompanis").hide();
             $rootScope.userSignInType = 'employer';
             $http({
@@ -42,14 +44,16 @@ app.controller('companyProfileController',
                                         url: url,
                                         method: "POST",
                                         data: {
-                                            "company_id": companyId
+                                            "user_id": localStorage.getItem("user_id")
                                         }
                                     })
                                         .then(function (data) {
-                                            console.log(data);
-                                            logo = data.data[0].logo;
-                                                $scope.companyProfile = data.data[0];
-                                                angular.element(".fa-pulse").hide();
+                                                if (data) {
+                                                    console.log(data);
+                                                    logo = data.data[0].logo;
+                                                    $scope.companyProfile = data.data[0];
+                                                    angular.element(".fa-pulse").hide();
+                                                }
                                             },
                                             function (response) { // optional
                                                 console.log("companyProfileController AJAX failed!");
@@ -134,7 +138,7 @@ app.controller('companyProfileController',
 
             $scope.status = '';
 
-            if (!$.isNumeric($(".companyPC").val())){
+            if (!$.isNumeric($(".companyPC").val())) {
                 $('#update').modal('show');
                 $scope.status = messageResource.get("modal.user.pc", 'resources');
                 return;
@@ -142,7 +146,7 @@ app.controller('companyProfileController',
 
             if (!company) {
                 //noinspection JSDuplicatedDeclaration
-                 companyJson = {
+                companyJson = {
                     "user_id": localStorage.getItem("user_id"),
                     "name": $(".companyName").val(),
                     "logo": logo,
@@ -172,7 +176,7 @@ app.controller('companyProfileController',
             }
             else {
                 //push to json new key value
-                 companyJson = {
+                companyJson = {
                     "_id": $scope.employerProfile['company'],
                     "name": $(".companyName").val(),
                     "logo": logo,
@@ -225,8 +229,9 @@ app.controller('companyProfileController',
 
         };
         //change password mechanizem
-        $scope.changePassword = function () {
+        $scope.changePasswordSect = function () {
             $scope.changePassword = true;
+            angular.element(".password").toggle();
         };
         //get all compenies in our DB - for fast connect
         $scope.getCompanies = function () {
@@ -267,12 +272,12 @@ app.controller('companyProfileController',
                     "password": pass
                 }
             }).then(function (data) {
-                    console.log(data);
-
-
+                    $scope.companyProfile = data.data[0];
                 },
                 function (response) { // optional
-                    $scope.status = messageResource.get("modal.password.error", 'resources');
+                    $scope.status = messageResource.get("modal.password.wrong", 'resources');
+                    $('#wrong').modal('show');
+                    $scope.passForCompany = '';
                     console.log(response);
                 });
         };
@@ -285,7 +290,7 @@ app.controller('companyProfileController',
             }, 500);
         }
 
-        $scope.signExistingCompany = function(){
+        $scope.signExistingCompany = function () {
             angular.element(".existingCompanis").toggle();
         }
     });

@@ -119,6 +119,7 @@ var rateStars;
                             $scope.user["stars"] = 0;
 
 
+
                             $http({
                                 url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
                                 method: "POST",
@@ -129,41 +130,48 @@ var rateStars;
                                 .then(function (data) {
                                     if (data) {
                                         console.log('getCompany', data);
-                                        var companyName = data.data[0]._id;
+                                        var companyName = data.data[0];
+
+                                        sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"),companyName);
                                         $http({
                                             url: 'https://cvmatcher.herokuapp.com/sendNotification',
                                             method: "POST",
                                             data: {
                                                 "user_id": $scope.user_id,
-                                                "message": "The employer unlike your cv and entered the feedback: "
-                                                + description + "for job " + localStorage.getItem("jobTitle")
+                                                "message": "The employer viewed your cv for job: " + localStorage.getItem("jobTitle")
                                             }
                                         }).then(function (data) {
                                                 console.log(data.data);
-                                                var companyName = data.data[0]._id;
-                                                sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"),companyName);
+
+
                                                 $http({
                                                     url: 'https://cvmatcher.herokuapp.com/sendNotification',
                                                     method: "POST",
                                                     data: {
                                                         "user_id": $scope.user_id,
-                                                        "message": "The employer viewed your cv for job: " + localStorage.getItem("jobTitle")
+                                                        "message": "The employer unlike your cv and entered the feedback: "
+                                                        + description + "for job " + localStorage.getItem("jobTitle")
                                                     }
                                                 }).then(function (data) {
                                                         console.log(data.data);
                                                     },
                                                     function (response) { // optional
-                                                        console.log("seen notification AJAX failed!");
+                                                        console.log("unlike notification AJAX failed!");
                                                         console.log(response);
                                                     });
 
+
                                             },
                                             function (response) { // optional
-                                                console.log("unlike notification AJAX failed!");
+                                                console.log("seen notification AJAX failed!");
                                                 console.log(response);
                                             });
+
                                     }
-                                })
+                                });
+
+
+
 
 
 
@@ -281,7 +289,6 @@ var rateStars;
                 candidates = localStorage.getItem("candidates");
                 url = 'https://cvmatcher.herokuapp.com/employer/rateCV';
             }
-            console.log("a");
 
             //add user to like and rate stars || unlike and description
             $http({
@@ -301,7 +308,6 @@ var rateStars;
 
 
 
-                console.log("b");
 
 
 
@@ -317,16 +323,7 @@ var rateStars;
                     .then(function (data) {
                             if (data) {
                                 console.log('getCompany', data);
-                                var companyName = data.data[0]._id;
-
-                                var id;
-                                if ($id[1] == 'unread')
-                                    id = $id[2];
-                                else
-                                    id = $id[3];
-
-                                console.log("companyName", companyName);
-
+                                var companyName = data.data[0];
                                 if (type == 'unliked') {
                                     sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"),companyName);
                                     $http({
@@ -346,6 +343,11 @@ var rateStars;
                                         });
                                 }
 
+                                var id;
+                                if ($id[1] == 'unread')
+                                    id = $id[2];
+                                else
+                                    id = $id[3];
 
                                 if (type == 'liked') {
                                     sendNotification('like', $scope.user_id, id, rateStars, localStorage.getItem("jobTitle"),companyName);

@@ -107,16 +107,16 @@
                         <img class="GarrowInput" src="images/Garrow.png">
 
                         <input type="button" ng-show="password == false" class="btn btn-default"
-                               ng-click="changePassword()" value="Change Password"/>
+                               ng-click="changePasswordSect()" value="Change Password"/>
 
-                        <div class="form-group" ng-show="password == true || changePassword == true">
+                        <div class="form-group password" >
                             <label>Company Password:</label> <input type="password" maxlength="5"
                                                                     class="form-control passwordCompany"
                                                                     value="{{companyProfile['password'].substr(0,5)}}">
                         </div>
 
 
-                        <div class="form-group" ng-show="changePassword == true">
+                        <div class="form-group password">
                             <label>Change to New Password:</label> <input type="password" maxlength="5"
                                                                           class="form-control newPasswordCompany"
                                                                           value="">
@@ -205,6 +205,22 @@
                             Send
                         </button>
                     </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Modal -->
+    <section class="modal fade" id="wrong" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <h4 class="modal-title">{{status}}</h4>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">
                         Close
                     </button>

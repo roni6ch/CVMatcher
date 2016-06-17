@@ -334,7 +334,7 @@ function sockets() {
 
 //connection for sockets
 function connectToChat(url) {
-    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 10000});
+    socket = new ReconnectingWebSocket(url, null, {debug: false, reconnectInterval: 3000});
     socket.onmessage = function (msg) {
         var message = JSON.parse(msg.data);
         console.log(message);
@@ -342,39 +342,42 @@ function connectToChat(url) {
 }
 
 //send notification
-function sendNotification(notificationType, userId, jobId, other, jobName) {
+function sendNotification(notificationType, userId, jobId, other, jobName,companyName) {
+    console.log(companyName);
     var message = {};
     message.notificationType = notificationType;
     message.user = userId;
     message.jobId = jobId;
     message.jobName = jobName;
     message.other = other;
+    message.companyName = companyName;
     socket.send(JSON.stringify(message));
 }
 
 //notifications for sockets
-function notifyMe(type, jobName) {
+function notifyMe(type, jobName,companyName) {
     var body;
     body = '';
     if (!Notification) {
         console.log('Desktop notifications not available in your browser. Try Chromium.');
         return;
     }
+    console.log(companyName);
 
     if (Notification.permission === "granted") {
 
         if (type == 'seen') {
-            body = jobName + " Watch your CV!";
+            body = jobName + "from comapny: " + companyName + "  Watch your CV!";
         }
         else if (type == 'like') {
-            body = jobName + " Like your CV!";
+            body = jobName + "from comapny: " + companyName + "  Like your CV!";
         }
         else if (type == 'unlike') {
-            body = jobName + " unLike your CV!";
+            body = "Company: " + companyName + " " + jobName + " unLike your CV!";
 
         }
         else if (type == 'hire') {
-            body = "Congradulations!!! You have been Hired to: " + jobName;
+            body = "Congradulations!!! You have been Hired to: " + jobName + " at: " + companyName;
 
         }
 
