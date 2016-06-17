@@ -1254,8 +1254,6 @@ a:focus, a:hover {
     float: left;
 }
 .candidatesTabs li:hover{
-    border-top: 1px solid #33B778;
-    border-bottom: 1px solid #33B778;
     background-color: transparent;
 }
 

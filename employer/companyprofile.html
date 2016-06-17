@@ -54,11 +54,12 @@
                                                         value="{{employerProfile['phone_number']}}"
                                                         class="form-control phoneNumber">
                 </div>
-
-                <label>LinkedIn:</label> <input type="text"
-                                                class="form-control linkedin"
-                                                ng-model="employerProfile['linkedin']"
-                                                value="{{companyProfile.user['linkedin']}}">
+                <div class="form-group">
+                    <label>LinkedIn:</label> <input type="text" required
+                                                    class="form-control linkedin"
+                                                    ng-model="employerProfile['linkedin']"
+                                                    value="{{companyProfile.user['linkedin']}}">
+                </div>
 
                 <div class="buttonBorder">
 
