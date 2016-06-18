@@ -9,6 +9,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     //initialize parameters for controller
     $scope.init = function () {
+        localStorage.removeItem('fixCV');
         $scope.getTopTenJobs = false;
         $rootScope.userSignInType = 'jobSeeker';
         angular.element("#logo").attr("href", '#/login');

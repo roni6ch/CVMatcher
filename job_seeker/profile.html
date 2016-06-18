@@ -10,7 +10,7 @@
     <ul class="nav engineering" ng-init="tab=0">
         <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0">Personal
             Information</a></li>
-        <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1">Professional
+        <li ng-class="{active:tab == 1, selected:tab == 1}"><a id="tab1" ng-click="tab = 1">Professional
             Experience</a></li>
 
     </ul>
@@ -28,12 +28,12 @@
                 <label>Name:</label> <input type="text" required ng-model="jobSeeker['first_name']"
                                             class="form-control" name="name"
                                             value="{{jobSeeker['first_name']}}"> <label
-            >Family:</label> <input type="text" required ng-model="jobSeeker['last_name']"
-                                    class="form-control" name="family"
-                                    value="{{jobSeeker['last_name']}}"> <label
-            >Date of birth:</label> <input type="date" required
-                                           class="form-control birthDay" name="birth"
-                                           value="{{jobSeeker['birth_date']}}">
+                >Family:</label> <input type="text" required ng-model="jobSeeker['last_name']"
+                                        class="form-control" name="family"
+                                        value="{{jobSeeker['last_name']}}"> <label
+                >Date of birth:</label> <input type="date" required
+                                               class="form-control birthDay" name="birth"
+                                               value="{{jobSeeker['birth_date']}}">
 
                 <label>Address:</label> <input class="form-control" ng-model="jobSeeker['address']" id="geocomplete"
                                                type="text"
@@ -50,19 +50,19 @@
                                                 value="{{jobSeeker['linkedin']}}">
 
 
-
                 <div class="buttonBorder">
                     <button class="sendB" type="submit" class="btn btn-default">
                         <img class="Garrow" src="images/Garrow.png">
-                        Send</button>
+                        Save
+                    </button>
                 </div>
             </form>
         </div>
         <div ng-show="tab == 1" class="tabsContent fade in active">
             <!-- Content from here -->
             <form ng-submit="submitUserCV()">
-    <!--
-                    <h4>Professional Experience</h4>-->
+                <!--
+                                <h4>Professional Experience</h4>-->
 
                 <h6 class="requiredError"> *All the fields are Required!</h6>
                 <label>Sector:</label> <select name="sector" required
@@ -134,7 +134,7 @@
 
 
                     <div class="btn-group jobSeekerCVAcademy" required data-toggle="buttons">
-                        <label class="btn btn-default" ng-init="University=false" ng-click="University=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.academy['academy_type'][0] == 'university'}">University
                             <input type="radio" name="options" id="option2" value="university"
                                    ng-checked="jobSeekerCV.academy['academy_type'][0] == 'university'">
@@ -153,18 +153,19 @@
                     <label>Graduate:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default" ng-init="honors=false" ng-click="honors=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true}">Graduate
                             with honors
-                            <input type="checkbox"
+                            <input type="checkbox" id="honorsCB"
                                    ng-checked="jobSeekerCV.personal_properties['degree_graduation_with_honors'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-default" ng-init="score=false" ng-click="score=true"
+
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['psychometric_above_680'] == true}">SAT
                             score above 680
-                            <input type="checkbox"
+                            <input type="checkbox" id="scoreCB"
                                    ng-checked="jobSeekerCV.personal_properties['psychometric_above_680'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
@@ -175,20 +176,22 @@
                     <label>Army:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default" ng-init="military=false" ng-click="military=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['full_army_service'] == true}">Full
                             military service
-                            <input type="checkbox"
+                            <input type="checkbox"  id="armyCB"
                                    ng-checked="jobSeekerCV.personal_properties['full_army_service'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-default" ng-init="Officer=false" ng-click="Officer=true"
-                               ng-class="{active:jobSeekerCV.personal_properties['officer'] == true}">Officer in the
+                        <label class="btn btn-default"
+                               ng-class="{active:jobSeekerCV.personal_properties['officer_in_the_military'] == true}">Officer in the
                             army
-                            <input type="checkbox" ng-checked="jobSeekerCV.personal_properties['officer'] == true">
+                            <input type="checkbox"  id="officerCB"
+                                   ng-checked="jobSeekerCV.personal_properties['officer_in_the_military'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
+
                     </div>
                 </div>
 
@@ -196,11 +199,11 @@
                     <label>High School:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default" ng-init="graduate=false" ng-click="graduate=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true}">High
                             School graduate
                             with honors
-                            <input type="checkbox"
+                            <input type="checkbox" id="graduateCB"
                                    ng-checked="jobSeekerCV.personal_properties['high_school_graduation_with_honors'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
@@ -211,31 +214,31 @@
                     <label>General:</label>
 
                     <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-default" ng-init="experience=false" ng-click="experience=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['above_two_years_experience'] == true}">2+
                             experience in the field of study
-                            <input type="checkbox"
+                            <input type="checkbox" id="experienceCB"
                                    ng-checked="jobSeekerCV.personal_properties['above_two_years_experience'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-default" ng-init="foreign=false" ng-click="foreign=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['multilingual'] == true}">Speak
                             foreign languages
-                            <input type="checkbox" ng-checked="jobSeekerCV.personal_properties['multilingual'] == true">
+                            <input type="checkbox"   id="foreignCB" ng-checked="jobSeekerCV.personal_properties['multilingual'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
-                        <label class="btn btn-default" ng-init="volunteering=false" ng-click="volunteering=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['volunteering'] == true}">Society
                             volunteering
-                            <input type="checkbox" ng-checked="jobSeekerCV.personal_properties['volunteering'] == true">
+                            <input type="checkbox"   id="volunteeringCB" ng-checked="jobSeekerCV.personal_properties['volunteering'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
 
-                        <label class="btn btn-default" ng-init="Youth=false" ng-click="Youth=true"
+                        <label class="btn btn-default"
                                ng-class="{active:jobSeekerCV.personal_properties['youth_movements'] == true}">Past
                             member of the Youth Movement
-                            <input type="checkbox"
+                            <input type="checkbox"  id="YouthCB"
                                    ng-checked="jobSeekerCV.personal_properties['youth_movements'] == true">
                             <span class="glyphicon glyphicon-ok"></span>
                         </label>
@@ -303,6 +306,9 @@
 
                                     <!-- <div class="borderBoxInTimeline"></div> -->
                                     <div class="timeline-heading">
+
+                                        <h2 class='timelineTitle' ng-if="experience['type'] == 'experience'">Experience</h2>
+                                        <h2 class='timelineTitle' ng-if="experience['type'] == 'education'">Education</h2>
                                         <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true"
                                            ng-click="removeContentCV($index)"></i>
                                         <label>From
@@ -437,25 +443,21 @@
                 <!-- TIMELINE END -->
 
 
+                <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
 
-
-
-            <i class="fa fa-refresh fa-spin fa-3x fa-fw margin-bottom"></i>
-
-            <div class="parseB">
-                <img class="Garrow" src="images/Garrow.png">
-                <input type="button" class="btn btn-warning parseExperienceButton parseButton" ng-click="parseMyExperience()"
-                       required
-                       value="Parse my Experience"/>
-            </div>
+                <div class="parseB">
+                    <img class="Garrow" src="images/Garrow.png">
+                    <input type="button" class="btn btn-warning parseExperienceButton parseButton"
+                           ng-click="parseMyExperience()"
+                           required
+                           value="Parse my Experience"/>
+                </div>
 
                 <label class="parserExperienceLanguage">Language</label>
                 <label class="parserExperienceYearsLabel">Years</label>
-            <section class="parseExperience"></section>
-            <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
-                   ng-click="addMoreExperience()" value="+">
-
-
+                <section class="parseExperience"></section>
+                <input type="button" class="btn btn-warning parseExperiencePlusButton hidden"
+                       ng-click="addMoreExperience()" value="+">
 
 
                 <section ng-click="cvPreview()" value="CV Preview" class="btn btn-default cvPreview">
@@ -465,17 +467,12 @@
 
                 <button class="sendButtonP" type="submit" id="submitAfterParse" class="btn btn-default disabled">
                     <img class="Garrow" src="images/Garrow.png">
-                    <span>Send</span>
+                    <span>Save</span>
                 </button>
 
             </form>
-
-
         </div>
-
-
     </div>
-
 </div>
 
 

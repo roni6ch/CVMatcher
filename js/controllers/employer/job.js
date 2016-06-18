@@ -50,6 +50,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
             $(".requirementsWrapper").hide();
             $(".experienceBeforeParse").hide();
+            angular.element(".spin").hide();
             angular.element(".removeCombination").hide();
             angular.element(".buttonsAfterParse").hide();
             $("#geocomplete").geocomplete();
@@ -317,7 +318,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         //click on parse Orange button
         $scope.parseExperience = function () {
 
-            angular.element(".fa-spin").show();
+            angular.element(".spin").show();
             var parseExpereince;
             var parseExpereinceAdv;
             $http({
@@ -326,6 +327,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 data: {"sector": "software engineering"}
             })
                 .then(function (data) {
+                        angular.element(".spin").hide();
                         parseExpereince = {
                             "text": $.trim($("#requirementsMust").val()),
                             "words": data.data

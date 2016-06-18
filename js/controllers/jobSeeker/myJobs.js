@@ -14,7 +14,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
 
     //initialize parameter in the controller
     $scope.init = function () {
-
+        localStorage.removeItem('fixCV');
         //TODO: OPEN SOCKET!
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
@@ -43,7 +43,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                     })
                 }
             }
-            notifyMe(message.notificationType, message.jobName,message.companyName);
+            notifyMe(message.notificationType, message.jobName);
         }
 
     }

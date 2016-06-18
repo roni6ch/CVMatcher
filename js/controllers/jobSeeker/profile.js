@@ -37,6 +37,14 @@ app
             }
             //get user details
             $scope.getMainJson = function () {
+//http://stackoverflow.com/questions/22447374/how-to-trigger-ng-click-angularjs-programmatically
+                if (localStorage.getItem('fixCV') !== null) {
+                    $timeout(function() {
+                        angular.element( "#tab1" ).trigger('click');
+                    }, 100);
+                }
+
+
                 //job seeker Details
                 $http({
                     url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -63,7 +71,9 @@ app
                                 })
                                     .then(function (data) {
                                             angular.element(".fa-pulse").hide();
-                                            console.log(data);
+                                        $.each(data.data[0].personal_properties, function(i, post) {
+                                            console.log(i + " : " + post);
+                                        });
                                             myKeyWords = [];
                                             $scope.jobSeekerCV = data.data[0];
                                             if ($scope.jobSeekerCV.original_text.history_timeline.length == 0) {
@@ -459,16 +469,16 @@ app
                         "date": new Date(),
                         "personal_properties": {
                             "_id": $scope.jobSeekerCV.personal_properties._id,
-                            "university_degree": $scope.University,
-                            "degree_graduation_with_honors": $scope.honors,
-                            "above_two_years_experience": $scope.experience,
-                            "psychometric_above_680": $scope.score,
-                            "multilingual": $scope.foreign,
-                            "volunteering": $scope.volunteering,
-                            "full_army_service": $scope.military,
-                            "officer_in_the_military": $scope.Officer,
-                            "high_school_graduation_with_honors": $scope.graduate,
-                            "youth_movements": $scope.Youth
+                            "university_degree": $('.jobSeekerCVAcademy > label > input').is(":checked"),
+                            "degree_graduation_with_honors": $('#honorsCB').is(":checked"),
+                            "above_two_years_experience": $('#experienceCB').is(":checked"),
+                            "psychometric_above_680":  $('#scoreCB').is(":checked"),
+                            "multilingual":  $('#foreignCB').is(":checked"),
+                            "volunteering": $('#volunteeringCB').is(":checked"),
+                            "full_army_service": $('#armyCB').is(":checked"),
+                            "officer_in_the_military": $('#officerCB').is(":checked"),
+                            "high_school_graduation_with_honors": $('#graduateCB').is(":checked"),
+                            "youth_movements":$('#YouthCB').is(":checked")
 
                         },
                         "original_text": {
@@ -499,16 +509,16 @@ app
                         "matching_object_type": "cv",
                         "date": new Date(),
                         "personal_properties": {
-                            "university_degree": $scope.University,
-                            "degree_graduation_with_honors": $scope.honors,
-                            "above_two_years_experience": $scope.experience,
-                            "psychometric_above_680": $scope.score,
-                            "multilingual": $scope.foreign,
-                            "volunteering": $scope.volunteering,
-                            "full_army_service": $scope.military,
-                            "officer_in_the_military": $scope.Officer,
-                            "high_school_graduation_with_honors": $scope.graduate,
-                            "youth_movements": $scope.Youth
+                            "university_degree": $('.jobSeekerCVAcademy > label > input').is(":checked"),
+                            "degree_graduation_with_honors": $('#honorsCB').is(":checked"),
+                            "above_two_years_experience": $('#experienceCB').is(":checked"),
+                            "psychometric_above_680":  $('#scoreCB').is(":checked"),
+                            "multilingual":  $('#foreignCB').is(":checked"),
+                            "volunteering": $('#volunteeringCB').is(":checked"),
+                            "full_army_service": $('#armyCB').is(":checked"),
+                            "officer_in_the_military": $('#officerCB').is(":checked"),
+                            "high_school_graduation_with_honors": $('#graduateCB').is(":checked"),
+                            "youth_movements":$('#YouthCB').is(":checked")
 
                         },
                         "original_text": {

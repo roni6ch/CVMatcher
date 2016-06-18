@@ -110,6 +110,15 @@ app.config(function ($routeProvider) {
                     return changeLocation($location, '#/company-profile', "employer");
                 }
             }
+        }).when('/hired', {
+            templateUrl: 'employer/hired.html',
+            controller: 'hiredController',
+            resolve: {
+                resolvedVal: function ($location, $rootScope) {
+                    checkProfile($rootScope, 'Company Profile');
+                    return changeLocation($location, '#/company-profile', "employer");
+                }
+            }
         }).when('/job/:_id', {
             templateUrl: 'employer/job.html',
             controller: 'jobController',

@@ -282,7 +282,6 @@ app.controller('candidatesController',
                             if (data) {
                                 var companyName = data.data[0].name;
                                 if (type == 'unliked') {
-console.log(data);
 
                                     sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"), companyName);
                                     $http({

@@ -63,6 +63,9 @@
             <li><a href="#/archive" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-trash" aria-hidden="true"></i>
                 Deleted</a></li>
+            <li><a href="#/hired" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                Hired</a></li>
             <li><a href="#/company-profile" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 Company Profile</a></li>
@@ -143,10 +146,12 @@
             <ul ng-if="userSignInType == 'employer'" ng-init="tab = 0">
                 <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs"> <i
                         class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
-
                 </li>
                 <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/archive"><i
                         class="fa fa-trash" aria-hidden="true"></i>DELETED</a>
+                </li>
+                <li ng-class="{active:tab == 3, selected:tab == 3}"><a ng-click="tab = 3" href="#/hired"><i
+                        class="fa fa-users" aria-hidden="true"></i>Hired</a>
                 </li>
                 <li ng-class="{active:tab == 2, selected:tab == 2}"><a ng-click="tab = 2" href="#/new-job"><i
                         class="fa fa-plus" aria-hidden="true"></i>Add new Job</a>
@@ -175,12 +180,6 @@
         <check-google-log-in/>
     </div>
 </div>
-<!--<footer>
-    <ul>
-        <li><a href="#/about">About</a></li>
-        <li><a href="#/contact">Contact Us</a></li>
-    </ul>
-</footer>-->
 <script src="js/lib/angular/angular.min.js"></script>
 <script src="js/lib/angular/angular-route.min.js"></script>
 <script src='js/lib/angular/ng-infinite-scroll.min.js'></script>
@@ -201,23 +200,7 @@
 <script src="js/controllers/employer/candidates.js"></script>
 <script src="js/controllers/employer/resume.js"></script>
 <script src="js/controllers/employer/job.js"></script>
+<script src="js/controllers/employer/hired.js"></script>
 
 </body>
 </html>
-
-<style>
-    .profilePictureHam {
-        position: fixed;
-        top: 10%;
-        left: 45%;
-        z-index: 100;
-        border-radius: 100px;
-        border: 2px solid #fff;
-        cursor: pointer;
-    }
-    .redGrade{font-size:24px; color:red;}
-    .parserExperienceLanguage,.parserExperienceYearsLabel{width:50%;}
-    .parser {
-        margin-bottom: 2%;
-    }
-</style>

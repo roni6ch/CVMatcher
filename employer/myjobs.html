@@ -63,7 +63,7 @@
 
 
                         <h5 ng-model="searchText.date" ng-bind-html="job.date | highlight:searchText">Date: {{job.date}}</h5>
-
+                        <article id="collepse-{{$index}}" class="collapse">
                         <h5>Requirements:</h5>
 
                         <p ng-model="searchText.original_text['requirements'].split('|||')[0]"
@@ -71,11 +71,11 @@
                             {{job.original_text["requirements"].split("|||")[0]}}</p>
 
                         <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
-                        <article id="collepse-{{$index}}" class="collapse">
+
                             <span>Inforamtion: </span>{{job.original_text["description"]}}
                         </article>
 
-                        <span>Compatibility:</span>
+                        <span class="compabilityM">Compatibility:</span>
                         <section circle id="{{ 'circle-container-' + $index }}"
                                  data-compability="{{job.compatibility_level}}">
                             <h5>{{job.compatibility_level.toFixed(0)}}%</h5>

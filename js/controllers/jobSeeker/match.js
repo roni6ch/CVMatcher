@@ -146,7 +146,6 @@ app
             //fix cv - go to profile and come back!
             $scope.fixCV = function () {
                 localStorage.setItem('fixCV', $jobId);
-                $location.path('/profile');
             }
             //send cv to employer
             $scope.sendCV = function () {

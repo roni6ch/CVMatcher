@@ -34,7 +34,7 @@
 
                 <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
                    ng-click="removeReviveJob(jobSJ._id,false)"></i>
-                <i class="fa fa-times" aria-hidden="true" ng-show="page=='deleted'" ng-if="jobSJ.job.archive == false"
+                <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='deleted'" ng-if="jobSJ.job.archive == false"
                    ng-click="removeReviveJob(jobSJ._id,true)"></i>
 
 
@@ -123,6 +123,7 @@
                                  data-compability="{{jobSJ.job.compatibility_level}}">
                             <h5>{{jobSJ.job.compatibility_level}}%</h5>
                         </section>
+                        <h5 class="compatibilityText">Compatibility Level</h5>
 
                         <article id="collepse-{{$index}}" class="collapse ">
                             <p>Description: {{jobSJ.job["original_text"].description}}</p>

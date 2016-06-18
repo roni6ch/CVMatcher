@@ -1,0 +1,37 @@
+<div class="jobCover"></div>
+<div class="candidatesWrapper" ng-init="init()">
+    <h3 class="navigation"></h3>
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+    <form method="get" action="">
+        <input type="text" placeholder="Find Candidate" ng-model="searchText"
+               class="form-control">
+    </form>
+    <h4>{{hired.length}} Candidates has been Hired!</h4>
+    <!-- candidates sections -->
+    <section
+            ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
+        <div class="candidates animated fadeInUp">
+
+            <div><a ng-click="checkIfArchivePage()" href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img
+                    src="./images/logo.png"></a>
+                <h5>{{candidate.sub_sector[0]}}</h5>
+            </div>
+            <div>
+
+                <a ng-if="tab == 0" href="#/unread/{{jobId}}/resume/{{candidate._id}}">
+                    <h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3>
+
+                    <p
+                            ng-model="searchText.sector"
+                            ng-bind-html="candidate.sector | highlight:searchText">
+                        {{candidate.sector}} ,{{candidate.academy.academy_type[0]}} ,
+                        {{candidate.academy.degree_type[0]}} </p>
+                    <section circle id="{{ 'circle-container-' + $index }}"
+                             data-compability="{{candidate.compatibility_level}}">
+                        <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
+                    </section>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
