@@ -272,6 +272,8 @@ function changeLocation(location, profilePath, userSignInType) {
         location.path('/');
     }
 }
+
+
 function checkProfile($rootScope, str) {
     if (localStorage.getItem("profile")) {
         $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
@@ -314,6 +316,12 @@ $(document).ready(function () {
         content: '',
         placement: 'auto',
         delay: {show: 400, hide: 1500}
+    });
+
+
+    $("#logo").click(function(){
+        console.log("A");
+        $(".navbar-collapse").collapse('hide');
     });
 
 });

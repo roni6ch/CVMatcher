@@ -1,3 +1,11 @@
+<style>
+    .diploma{    width: 50px;
+        float: left;}
+    .compatibilityText{    position: absolute;
+        top: 149px;
+        right: 7%;
+        z-index: 11;}
+</style>
 <div class="searchJobsImgCover1"></div>
 
 
@@ -65,6 +73,10 @@
                             </p>
 
 
+                            <img class="diploma" ng-if="getTopTenJobs == true"
+                                 ng-src="images/diploma_grade.png">
+                            <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade!</span>
+
                             <p>Address: </p>
                             <h5 ng-repeat="j in job.locations  track by $index"
                                 ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
@@ -78,6 +90,7 @@
                                  data-compability="{{job.compatibility_level}}">
                             <h5>{{job.compatibility_level}}%</h5>
                         </section>
+                        <h5 class="compatibilityText">Compatibility Level</h5>
                     </a>
                     <article id="collepse-{{$index}}" class="collapse ">
                         <p>Description: {{job["original_text"].description}}</p>
@@ -92,7 +105,7 @@
                         </section>
                         <a class="checkMyCVButton" ng-if="page != 'yourjobs'" ng-show="cv_exist == true"
                            ng-href="#/search-jobs/{{job['_id']}}/matchpage"
-                           ng-click="saveData(job['original_text']['title'],job.compatibility_level);"
+                           ng-click="saveData(job['original_text']['title'],job.compatibility_level,job.user.company.logo,job.date);"
                            class="btn btn-default"><img class="Garrow" src="images/Garrow.png">Check
                             my CV</a>
                         <img class="arrow-up" src="images/arrow-up.png">

@@ -3,7 +3,7 @@
 <head>
     <title>CVMatcher</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#00aee3">
+    <meta name="theme-color" content="#00A651">
     <!--  Google+ SignIn -->
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id"
@@ -36,11 +36,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVPuauj0tQuhm28vMic6xjtcvn11CpDNI&libraries=places"></script>
     <script src="js/jquery.geocomplete.js"></script>
     <script src="js/bootstrap-select.min.js"></script>
-<!--
-    &lt;!&ndash; SKILLS &ndash;&gt;
-    <script src="js/d3.min.js"></script>
-    <script src="js/d3-transform.js"></script>
-    <script src="js/d3-transform-animation.js"></script>-->
+    <!--
+        &lt;!&ndash; SKILLS &ndash;&gt;
+        <script src="js/d3.min.js"></script>
+        <script src="js/d3-transform.js"></script>
+        <script src="js/d3-transform-animation.js"></script>-->
 </head>
 <body>
 <!-- HAMBURGER -->
@@ -54,6 +54,9 @@
     </div>
     <div class="navbar-collapse collapse">
         <ul ng-if="userSignInType == 'employer'">
+
+            <li><a href="#/company-profile" data-toggle="collapse" data-target=".navbar-collapse">
+                <img class='profilePictureHam' profileimg src="" ></a></li>
             <li><a href="#/myjobs" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-file" aria-hidden="true"></i>
                 My jobs</a></li>
@@ -73,6 +76,8 @@
         </ul>
         <!-- Job Seeker NAV -->
         <ul class="mobileMenu" ng-if="userSignInType == 'jobSeeker'">
+            <li><a href="#/profile" data-toggle="collapse" data-target=".navbar-collapse">
+                <img class='profilePictureHam' profileimg src="" ></a></li>
             <li>
                 <a href="#/profile" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -124,7 +129,7 @@
 
 <div class="navBar">
     <div>
-        <a ng-href="#/login" id="logo"><img src="images/logo.png"></a>
+        <a ng-href="#/login" id="logo" ng-click="checkHamburger()"><img src="images/logo.png"></a>
     </div>
 
     <img id='profilePicture' profileimg src="" data-html="true" data-container="body" data-toggle="popover"
@@ -136,22 +141,29 @@
         <nav>
             <!-- Employer NAV -->
             <ul ng-if="userSignInType == 'employer'" ng-init="tab = 0">
-                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs">  <i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a ng-click="tab = 0" href="#/myjobs"> <i
+                        class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
 
                 </li>
-                <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/archive"><i class="fa fa-trash" aria-hidden="true"></i>DELETED</a>
+                <li ng-class="{active:tab == 1, selected:tab == 1}"><a ng-click="tab = 1" href="#/archive"><i
+                        class="fa fa-trash" aria-hidden="true"></i>DELETED</a>
                 </li>
-                <li ng-class="{active:tab == 2, selected:tab == 2}"><a ng-click="tab = 2" href="#/new-job"><i class="fa fa-plus" aria-hidden="true"></i>Add new Job</a>
+                <li ng-class="{active:tab == 2, selected:tab == 2}"><a ng-click="tab = 2" href="#/new-job"><i
+                        class="fa fa-plus" aria-hidden="true"></i>Add new Job</a>
                 </li>
             </ul>
             <!-- Job Seeker NAV -->
             <ul ng-if="userSignInType == 'jobSeeker'" ng-init="tab = 0">
-                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/search-jobs" ng-click="tab = 0"> <i class="fa fa-search" aria-hidden="true"></i>FIND JOBS</a></li>
-                <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1"><i class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
+                <li ng-class="{active:tab == 0, selected:tab == 0}"><a href="#/search-jobs" ng-click="tab = 0"> <i
+                        class="fa fa-search" aria-hidden="true"></i>FIND JOBS</a></li>
+                <li ng-class="{active:tab == 1, selected:tab == 1}"><a href="#/yourjobs" ng-click="tab = 1"><i
+                        class="fa fa-suitcase" aria-hidden="true"></i>MY JOBS</a>
                 </li>
-                <li ng-class="{active:tab == 2, selected:tab == 2}"><a href="#/favorites" ng-click="tab = 2"><i class="fa fa-heart-o" aria-hidden="true"></i>FAVORITE
+                <li ng-class="{active:tab == 2, selected:tab == 2}"><a href="#/favorites" ng-click="tab = 2"><i
+                        class="fa fa-heart-o" aria-hidden="true"></i>FAVORITE
                 </a></li>
-                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3"> <i class="fa fa-trash" aria-hidden="true"></i>DELETED
+                <li ng-class="{active:tab == 3, selected:tab == 3}"><a href="#/deleted" ng-click="tab = 3"> <i
+                        class="fa fa-trash" aria-hidden="true"></i>DELETED
                 </a></li>
             </ul>
         </nav>
@@ -192,3 +204,20 @@
 
 </body>
 </html>
+
+<style>
+    .profilePictureHam {
+        position: fixed;
+        top: 10%;
+        left: 45%;
+        z-index: 100;
+        border-radius: 100px;
+        border: 2px solid #fff;
+        cursor: pointer;
+    }
+    .redGrade{font-size:24px; color:red;}
+    .parserExperienceLanguage,.parserExperienceYearsLabel{width:50%;}
+    .parser {
+        margin-bottom: 2%;
+    }
+</style>

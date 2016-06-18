@@ -43,7 +43,7 @@ app.controller('yourjobSeekerController', function ($scope, $http, $sce, $locati
                     })
                 }
             }
-            notifyMe(message.notificationType, message.jobName);
+            notifyMe(message.notificationType, message.jobName,message.companyName);
         }
 
     }

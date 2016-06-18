@@ -77,6 +77,7 @@ app.directive('profileimg', function ($compile) {
             if (localStorage.getItem("user") !== null) {
                 var cookieImg = $.parseJSON(localStorage.getItem("user")).image;
                 angular.element("#profilePicture").attr("src",cookieImg);
+                angular.element(".profilePictureHam").attr("src",cookieImg);
               //  var e = $compile( '<a ng-href="' + profile + '"><img src="' + cookieImg + '" id="profileImg"></a>')(scope);
               //  $compile(angular.element("#profilePage").replaceWith(e))(scope);
             }

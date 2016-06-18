@@ -19,28 +19,23 @@
                 <h3>{{user['user'].first_name}} {{user['user'].last_name}} Resume</h3>
                 <i id="candidateLike"
                    ng-if="(user.status.current_status == 'unliked' || user.status.current_status == 'unread') && hiredPage == false && archivePage == false" class='fa fa-thumbs-o-up fa-2x' ng-click='addCandidateToLikeUnlike(user._id,"liked")'></i>
-                <h5>{{user.sector}}</h5>
+
+                <h5><i class="fa fa-book"></i> {{user.sector}}</h5>
 
 
                 <div>
-                    <a href="#">
-                        <!-- <i class="fa fa-phone fa-2x"></i> -->
-                        <h4>{{user['user'].address}}</h4></a>
+
+                        <h4><i class="fa fa-location-arrow"></i> {{user['user'].address}}</h4>
                 </div>
                 <div>
-                    <a href="#">
-                        <!-- <i class="fa fa-phone fa-2x"></i> -->
-                        <h4>{{user['user'].phone_number}}</h4></a>
+                        <h4> <i class="fa fa-phone"></i> {{user['user'].phone_number}}</h4></a>
                 </div>
                 <div>
-                    <a href="#">
-                        <!-- <i class="fa fa-envelope fa-2x"></i> -->
-                        <h4>{{user['user'].email}}</h4></a>
+
+                        <h4><i class="fa fa-envelope"></i> {{user['user'].email}}</h4>
                 </div>
                 <div>
-                    <a href="#">
-                        <!-- <i class="fa fa-linkedin-square fa-2x"></i> -->
-                        <h4>{{user['user'].linkdin}}</h4></a>
+                        <h4> <i class="fa fa-linkedin-square"></i> {{user['user'].linkdin}}</h4>
                 </div>
 
             </div>

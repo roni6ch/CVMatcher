@@ -1632,9 +1632,11 @@ a:focus, a:hover {
 
 #candidateLike {
     padding: 0px 20px;
+    cursor: pointer;
 }
 
 #candidateUnLike {
+    cursor: pointer;
     padding: 0px 20px;
     -ms-transform: rotate(180deg);
     -webkit-transform: rotate(180deg);

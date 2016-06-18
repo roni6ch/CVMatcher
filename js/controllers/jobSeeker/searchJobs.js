@@ -9,6 +9,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     //initialize parameters for controller
     $scope.init = function () {
+        $scope.getTopTenJobs = false;
         $rootScope.userSignInType = 'jobSeeker';
         angular.element("#logo").attr("href", '#/login');
         //navigation in site
@@ -19,7 +20,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
             console.log(message);
-            notifyMe(message.notificationType, message.jobName);
+            notifyMe(message.notificationType, message.jobName,message.companyName);
         }
 
         angular.element(".sort_compability").hide();
@@ -28,6 +29,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     //get jobs that didnot send cv to them
     $scope.getMainJson = function () {
 
+        $scope.getTopTenJobs = false;
 
         $http({
             url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -81,9 +83,14 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         $scope.sortby = sort;
     };
     //save data - for match page check
-    $scope.saveData = function (title, compatibility_level) {
-        localStorage.setItem("jobTitle", title);
-        localStorage.setItem("compatibility_level", compatibility_level);
+    $scope.saveData = function (title, compatibility_level,logo,date) {
+        var jobDetails = {
+            "title":title,
+            "compatibility_level":compatibility_level,
+            "logo":logo,
+            "date":date
+        };
+        localStorage.setItem("jobDetails", JSON.stringify(jobDetails));
     };
     //accordion collepse arrow
     //accordion collepse arrow
@@ -99,7 +106,6 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     };
     //get top 10
     $scope.getTopTen = function(){
-
         angular.element(".sort_compability").hide();
         angular.element(".sort_date").hide();
         angular.element(".fa-spinner").show();
@@ -112,8 +118,10 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                 "cv": localStorage.getItem('current_cv')
             }
         }).then(function (data) {
+            $scope.getTopTenJobs = true;
             angular.element(".fa-spinner").hide();
             $scope.jobSeekerJobs = data.data;
+            console.log(data.data);
             angular.forEach(data.data, function (value, key) {
                 data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
             });

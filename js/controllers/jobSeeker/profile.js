@@ -31,7 +31,7 @@ app
                 socket.onmessage = function (msg) {
                  var message = JSON.parse(msg.data);
                  console.log(message);
-                 notifyMe(message.notificationType, message.jobName);
+                 notifyMe(message.notificationType, message.jobName,message.companyName);
                  }
 
             }
@@ -80,8 +80,8 @@ app
                                                         });
 
                                                         indx = $(".timeline li").length + 1;
-                                                        var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears" value="' + value.years + '"></label>';
-                                                        angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
+                                                        var yearsExperience = '<label class="parserExperienceYearsLabel"><input type="text" class="form-control" class="parserExperienceYears" value="' + value.years + '"></label>';
+                                                        angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage"><input type="text" required class="form-control " id="experience" name="experience"' +
                                                             ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
                                                     });
                                                 angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -203,8 +203,8 @@ app
                                             });
 
 
-                                            var yearsExperience = '<label class="parserExperienceYearsLabel">Years<input type="text" class="form-control" class="parserExperienceYears"  value="' + value.years + '"></label>';
-                                            angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage">Language<input type="text" required class="form-control " id="experience" name="experience"' +
+                                            var yearsExperience = '<label class="parserExperienceYearsLabel"><input type="text" class="form-control" class="parserExperienceYears"  value="' + value.years + '"></label>';
+                                            angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage"><input type="text" required class="form-control " id="experience" name="experience"' +
                                                 ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
                                         });
                                         angular.element(".fa-spin").hide();
@@ -230,10 +230,10 @@ app
             };
             //add more experience to the timeline by selecting Plus button
             $scope.addMoreExperience = function () {
-                var yearsExperience = '<label class="parserExperienceYearsLabelAdded">Years<input type="text" class="form-control" class="parserExperienceYears" value=""></label>';
+                var yearsExperience = '<label class="parserExperienceYearsLabelAdded"><input type="text" class="form-control" class="parserExperienceYears" value=""></label>';
                 angular
                     .element(".parseExperience")
-                    .append('<div class="parser"><label class="parserExperienceLanguageAdded">Language<input type="text" required class="form-control " id="experience" name="experience"' +
+                    .append('<div class="parser"><label class="parserExperienceLanguageAdded"><input type="text" required class="form-control " id="experience" name="experience"' +
                         ' value=""  /></label>' + yearsExperience + '</div>');
             };
             //add more education to the timeline by selecting Plus button

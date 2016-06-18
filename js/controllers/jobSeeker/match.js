@@ -47,21 +47,22 @@ app
                                 }
                             })
                                 .then(function (data) {
+                                    $(".jobDetailsLS").append("<img src='"+JSON.parse(localStorage.getItem("jobDetails")).logo+"'/><h3>"+JSON.parse(localStorage.getItem("jobDetails")).title+"</h3><h3>"+JSON.parse(localStorage.getItem("jobDetails")).date+"</h3>");
                                         $(".matchResult").show();
                                         $(".fixCV").show();
                                         //navigation in site
-                                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Search Jobs</a><span> > </span><a href='#/search-jobs/" + $jobId + "/matchpage'>" + localStorage.getItem("jobTitle") + " Match Page</a>";
+                                        $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Search Jobs</a><span> > </span><a href='#/search-jobs/" + $jobId + "/matchpage'>" + JSON.parse(localStorage.getItem("jobDetails")).title + " Match Page</a>";
 
                                         if (data.data.formula !== undefined) {
                                             console.log(data.data);
 
                                             $(".matchpageWrapper .formula-result").append(
                                                 '<p>' + messageResource.get("jobseeker.formula","resources") + '</p>' +
-                                                '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " " + data.data.formula.candidate_type + '%</p>' +
-                                                '<p>' + messageResource.get("jobseeker.formula.requirements", "resources") + " " + data.data.formula.requirements.grade +  '%</p>' +
-                                                '<p>' + messageResource.get("jobseeker.formula.locations", "resources") + " " + data.data.formula.locations +  '%</p>' +
-                                                '<p>' + messageResource.get("jobseeker.formula.scope_of_position", "resources") + " " + data.data.formula.scope_of_position + '%</p>' +
-                                                '<p>' + messageResource.get("jobseeker.formula.academy", "resources") + " " + data.data.formula.academy +  '%</p>'
+                                                '<p>' + messageResource.get("jobseeker.formula.candidate_type", "resources") + " <span class='redGrade'>" + data.data.formula.candidate_type + '%</span></p>' +
+                                                '<p>' + messageResource.get("jobseeker.formula.requirements", "resources") + " <span class='redGrade'>" + data.data.formula.requirements.grade +  '%</span></p>' +
+                                                '<p>' + messageResource.get("jobseeker.formula.locations", "resources") + " <span class='redGrade'>" + data.data.formula.locations +  '%</span></p>' +
+                                                '<p>' + messageResource.get("jobseeker.formula.scope_of_position", "resources") + " <span class='redGrade'>" + data.data.formula.scope_of_position + '%</span></p>' +
+                                                '<p>' + messageResource.get("jobseeker.formula.academy", "resources") + " <span class='redGrade'>" + data.data.formula.academy +  '%</span></p>'
                                             );
                                             
                                             if (data.data.formula.requirements.grade > 0) {
@@ -104,7 +105,7 @@ app
                                                 .html(Math.max(parseInt(data.data.total_grade), 1) + "%");
                                             userCircle.animate(data.data.total_grade / 100);
                                             //check if user passed the Match!!!
-                                            if (data.data.total_grade < localStorage.getItem("compatibility_level")) {
+                                            if (data.data.total_grade < JSON.parse(localStorage.getItem("jobDetails")).compatibility_level) {
                                                 angular.element(".matchResult > h2").append("Oops");
                                                 angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");
                                                 angular.element(".matchResult > h4").html('You did not passed the minimum requirements');
@@ -139,7 +140,7 @@ app
                 socket.onmessage = function (msg) {
                     var message = JSON.parse(msg.data);
                     console.log(message);
-                    notifyMe(message.notificationType, message.jobName);
+                    notifyMe(message.notificationType, message.jobName,message.companyName);
                 }
             };
             //fix cv - go to profile and come back!
