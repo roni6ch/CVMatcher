@@ -1,0 +1,67 @@
+
+.matchpageWrapper .fixCV{
+    padding: 0;
+}
+
+.matchpageWrapper .sendCV{
+    padding: 0;
+    margin-left: 22px;
+}
+
+.matchpageWrapper .requirements-skills-bar {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 28px;
+    float: left;
+}
+
+.matchpageWrapper h4 {
+    text-align: left;
+}
+
+.matchpageWrapper .btn-default {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    margin-bottom: 28px;
+    margin-top: 20px;
+    float: left;
+}
+.matchpageWrapper .btn-default:hover{
+    opacity:0.5;
+}
+
+.matchpageWrapper {
+    position: relative;
+}
+
+.matchpageWrapper header {
+}
+
+.matchpageWrapper .navigation {
+    top: 0;
+    padding: 0;
+}
+
+.matchpageWrapper .matchResult {
+    width: 100%;
+    margin: 0 auto;
+    color: #fff;
+    position: relative;
+    padding-top: 22px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.matchpageWrapper header h2 img {
+    margin: 0 auto;
+}
+
+.matchpageWrapper .formula-result p {
+    color: #FFFFFF;
+    font-size: 3vh;
+    display: block;
+    text-align: left;
+    margin-top: 5px;
+    font-size: 16px;
+}
