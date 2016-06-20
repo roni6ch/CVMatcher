@@ -318,7 +318,6 @@ footer div a {
     color: #fff;
     font-size: 14px;
     top: 0px;
-    /* padding: 4px; */
     padding-left: 0;
 }
 
@@ -336,12 +335,6 @@ footer {
     font-size: 24px;
     color: red;
 }
-
-/*.navBarImg li a:hover,.profileWrapper  .nav > li > a:hover{
-                                        border-top: 1px solid #33B778;
-                                        border-bottom: 1px solid #33B778;
-                                        background-color: transparent;
-                                    }*/
 
 .navBarImg li a:hover{
     border-top: 1px solid #33B778;
@@ -455,144 +448,8 @@ footer {
 /*  HAMBURGER END HERE  */
 /****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
-.seeker {
-    margin-top: 34px;
-}
-
-.employer {
-    margin-top: 44px;
-}
-
-.googleSignInImg {
-    background-image: url("../images/myjobscover22.png");
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    background-size: cover;
-}
-
-.googleSignInBox > div > a:hover {
-
-    opacity: 0.5;
-}
-
-.googleSignInWrapper {
-
-    width: 100%;
-    height: 100%;
-}
-
-.googleSignInImg {
-    width: 100%;
-}
-
-.googleSignInBox {
-    width: 50%;
-    margin: 0 auto;
-    position: relative;
-    top: 94px;
-}
-
-.googleSignInWrapper header {
-
-    padding-top: 20px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-}
-
-.googleSignInWrapper h3 {
-    opacity: 1;
-    font-size: 260%;
-    font-family: almoni-dl-aaa-regular;
-}
-
-.googleSignInWrapper h4 {
-    padding-top: 20px;
-    font-size: 112%;
-    font-family: almoni-dl-aaa-regular;
-}
-
-.googleSignInWrapper h3, .googleSignInWrapper h4 {
-    color: white;
-    text-align: center;
-}
-
-.googleSignInBox img {
-    opacity: 1;
-    margin-top: 34px;
-    margin: 0 auto;
-}
-
-.googleSignInBox > div > a {
-    width: 50%;
-    float: left;
-}
-
-.googleSignInWrapper > div > a:hover, .googleSignInWrapper > div > a:focus {
-    opacity: 1;
-    text-decoration: none;
-}
-
-.googleSignInWrapper > div > a > h3 {
-    margin-left: 5%;
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.googleSignInWrapper > div:nth-child(2) {
-
-}
-
-.googleSignInWrapper > div:nth-child(4) {
-    width: 100%;
-    margin-top: 5%;
-    float: left;
-}
-
-.googleSignInWrapper > div > a > img {
-    margin-left: 5%;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.abcRioButton {
-    margin: 0 auto;
-}
-
-.popover-content a {
-    width: 100%;
-    color: #231f20;
-    display: inline-block;
-    text-align: center;
-}
-
-.geocomplete {
-    width: 50% !important;
-}
-
-.geocomplete input {
-    margin-bottom: 10px;
-    float: left;
-    width: 70%;
-}
-
-.geocomplete > div {
-    float: left;
-    width: 100%;
-}
-
-.geocomplete .fa-times {
-    cursor: pointer;
-    /* float: right; */
-    font-size: 22px;
-    color: #fff;
-    /* font-weight: 300; */
-    margin-left: 20px;
-    margin-top: 8px;
-}
-
 /****************************************************** INDEX - NAV BAR **********************************************/
+
 #profilePicture {
     position: absolute;
     top: 20px;
@@ -612,6 +469,7 @@ footer {
     border: 2px solid #fff;
     cursor: pointer;
 }
+
 
 .parseExperience {
 }
@@ -713,112 +571,13 @@ footer {
 }
 
 
+
 /****************************************************** CV PREVIEW ***************************************************/
-.modal-content .userDetailsBox h4 {
-    font-weight: normal;
-    margin: 0px;
-    color: #000;
-    padding:10px;
-    font-size: 14px;
-}
 
-.modal-content .userDetailsBox h5 {
-    font-weight: normal;
-    margin: 0px;
-    padding: 8px;
-    font-size: 14px;
-}
-
-.modal-content .userDetailsBox {
-    border: 1px solid #000;
-}
-
-.modal-content .userDetailsBox #candidateUnLike + h3,.modal-content .userDetailsBox #candidateLike + h4 {
-    display: inline-block;
-    padding-top: 16px;
-    font-size: 21px;
-}
-
-.modal-content .resumeYears > div h3:nth-child(1) {
-    float: left;
-    /* margin: 14px; */
-    color: #000;
-    /* font-weight: normal; */
-}
-
-.modal-content .resumeYears {
-    margin-top: 36px;
-}
-
-.modal-content .page-header h1 {
-    text-align: center;
-    width: 34%;
-    margin: 0 auto;
-    color: #000;
-}
-
-.modal-content .timelineForPreview > li > .timeline-panel {
-    border: 1px solid #231f20;
-}
-
-.modal-content .timeline-body > p,.modal-content .timeline-body > ul {
-    margin-bottom: 0;
-    text-align: justify;
-    width: 100%;
-    font-size: 20px;
-    color: #000;
-    /* font-style: italic; */
-    overflow: hidden;
-}
-
-.modal-content .timelineForPreview > li > .timeline-panel {
-
-    background-color: transparent;
-}
-
-.modal-content .timelineForPreview:before {
-    width: 2px;
-    background-color: #808080;
-
-}
-
-.modal-content .timelineForPreview > li > .timeline-badge {
-    font-size: small;
-    background-color: #808080;
-
-}
 /****************************************************** MY JOBS - HTML **********************************************/
 /*liked*/
 img.ng-scope {
     margin-right: 16px;
-}
-
-.myjobsWrapper .pencilMyJobs{margin-right: 14px;}
-
-.myjobsWrapper .compabilityM{
-    position: absolute;
-    top: 0;
-    right: 19px;
-}
-
-.myjobsWrapper .nav > li > a {
-    position: relative;
-    display: block;
-    padding: 0;
-    /* padding-right: 21%; */
-}
-
-.myjobsWrapper .myJobsBox {
-    margin-top: 0px;
-}
-/*.myjobsWrapper .nav > li > a:hover{
-    background-color: transparent;
-    font-size:22px;
-}*/
-.myjobsWrapper .form-control {
-    display: block;
-    width: 90%;
-    margin: 0 auto;
 }
 
 #popoverData {
@@ -838,20 +597,10 @@ img.ng-scope {
     color: #fff !important;
 }
 
-.myjobsWrapper .navigation {
-    margin-left: 0px;
-    z-index: 111;
-    margin-top: 0px;
-    padding: 0;
-}
-
 .title {
     font-size: 22px;
 }
 
-.myjobsWrapper svg {
-    overflow: auto;
-}
 
 .selected{
     border-top: 1px solid #33B778;
@@ -863,12 +612,6 @@ img.ng-scope {
     position: absolute;
 }
 
-.jobs > div section {
-
-}
-
-.myjobsWrapper section:first-child {
-}
 
 .newJob {
     position: absolute;
@@ -929,9 +672,6 @@ a:focus, a:hover {
 
 .engineering li {
     float: left;
-    /* margin-right: 1%; */
-    /* margin-left: 1%; */
-    /* width: 23%; */
     padding: 2px;
     font-size: 11px;
     cursor: pointer;
@@ -940,41 +680,6 @@ a:focus, a:hover {
     font-size: 16px;
 }
 
-
-.myjobsWrapper header h2 {
-    position: absolute;
-    top: 12%;
-    left: 0%;
-    font-size: 40px;
-    color: white;
-    font-family: almoni-dl-aaa-regular;
-}
-
-.myjobsWrapper form {
-    position: absolute;
-    top: 80px;
-    left: -3%;
-}
-
-.myjobsWrapper button {
-    margin-top: 116px;
-    background-color: transparent;
-    border: 0;
-    font-size: 16px;
-    font-family: almoni-dl-aaa-regular;
-    color: white !important;
-    float: left;
-    margin-left: 0%;
-    padding-left: 0;
-}
-
-.myjobsWrapper button:hover,.myjobsWrapper button:active:hover,.myjobsWrapper button:focus {
-    outline:none;
-    /* padding-left: 0; */
-    opacity: 0.6;
-    background-color: transparent;
-    color:#fff;
-}
 .yourJobsWrapper button:hover,.yourJobsWrapper button:active:hover,.yourJobsWrapper button:focus {
     outline:none;
     opacity: 0.6;    background-color: transparent;
@@ -992,26 +697,6 @@ a:focus, a:hover {
 #logo {
     height: 67px;
     width: 83px;
-}
-
-.myjobsWrapper form {
-    width: 60%;
-}
-
-.myjobsWrapper form button {
-    float: left;
-    width: 15%;
-    padding-right: 0px;
-    margin-left: 10px;
-    padding-left: 0px;
-}
-
-.myjobsWrapper section {
-    width: 100%;
-}
-
-.myjobsWrapper section > div {
-    border-radius: 10px;
 }
 
 .jobs {
@@ -1053,7 +738,6 @@ a:focus, a:hover {
     float: left;
     position: relative;
     width: 100%;
-    /* margin-bottom: 30px; */
 }
 
 .jobs > div:nth-child(2) a {
@@ -1076,11 +760,6 @@ a:focus, a:hover {
 }
 
 .jobs > div:nth-child(2) span {
-    /* float: right; */
-    /* color: red; */
-    /* position: absolute; */
-    /* top: 0; */
-    /* right: 116px; */
 }
 
 .jobs > div:nth-child(2) article {
@@ -1138,7 +817,6 @@ a:focus, a:hover {
 }
 
 .tab-content {
-    /* padding: 30px; */
     padding-left: 0;
     padding-right: 12%;
 }
@@ -1161,10 +839,6 @@ a:focus, a:hover {
     border-top-right-radius: 10px;
 }
 
-.myjobsWrapper .nav-tabs li {
-    width: 25%;
-}
-
 .nav-tabs li a {
     color: #1b75bb;
     margin-right: 0px !important;
@@ -1178,7 +852,6 @@ a:focus, a:hover {
 }
 
 .tabsContent div h3 {
-    /* font-weight: 800; */
     padding-bottom: 20px;
     overflow: hidden;
 }
@@ -1196,208 +869,9 @@ a:focus, a:hover {
 }
 
 /****************************************************** Candidtaes - HTML **********************************************/
-.candidatesWrapper .tabsWrapper > div > h3 {
-    text-align: left;
-    position: relative;
-    /* left: 0; */
-    font-size: 26px;
-    color: #fff;
-    margin-bottom: 44px;
-}
 
-.candidatesWrapper .btn-default:hover {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-    opacity: 0.6;
-}
-
-.navigation a {
-    color: #;
-}
-
-.navigation span {
-}
-
-.candidatesWrapper h2 {
-    color: #fff;
-    margin-top: 20px;
-    margin-left: -2px;
-    font-size: 40px;
-    color: white;
-    font-family: almoni-dl-aaa-regular;
-}
-
-.candidatesWrapper .engineering {
-    margin-top: 0px;
-}
-
-.candidatesWrapper button {
-    margin-top: 4px;
-    padding-bottom: 20px;
-    /* background-color: transparent; */
-    /* border: 0; */
-    /* font-size: 20px; */
-    /* font-family: almoni-dl-aaa-regular; */
-    /* color: white; */
-    background-color: transparent;
-    border: 0;
-    font-size: 16px;
-    font-family: almoni-dl-aaa-regular;
-    color: white;
-    float: left;
-    margin-left: -1%;
-}
-.candidatesWrapper button:active,.candidatesWrapper button:active:hover,.candidatesWrapper button:focus{outline:none; background-color:transparent; color:#fff;}
-.candidatesImgCover {
-    background-image: url('../images/myjobscover22.png');
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    background-size: cover;
-}
-
-.candidates h3 {
-    /* border-bottom-width: 1px; */
-    /* border-bottom-style: solid; */
-    width: 50%;
-    font-size: 190%;
-}
-
-.candidates {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    width: 100%;
-    text-align: left;
-    float: left;
-    text-align: left;
-    font-family: almoni-dl-aaa-regular;
-    color: white;
-}
-
-.candidatesWrapper form {
-    margin-top: 13px;
-    width: 70%;
-    padding-top: -21px;
-}
-
-.myjobsWrapper section > div {
-    border-radius: 10px;
-    margin-top: 6px;
-    margin-bottom: 34px;
-    position: relative;
-    border-bottom: 1px solid #fff;
-    border-radius: 0;
-}
-
-.candidatesTabs li {
-    /* height: 44px !important; */
-}
-.candidatesTabs li  > a{
-    width: 100%;
-    float: left;
-}
-.candidatesTabs li:hover{
-    border-top: 1px solid #33B778;
-    border-bottom: 1px solid #33B778;
-    background-color: transparent;
-}
-
-.candidates > div:nth-child(1) {
-    position: absolute;
-    right: 18px;
-    top: 18px;
-}
-
-.candidates > div:nth-child(1) a {
-    float: right;
-    margin-left: 5px;
-    width: 25px;
-    font-size: 11px;
-}
-
-.candidates > div:nth-child(1) h3 {
-    font-size: 18px;
-}
-
-.candidates > div:nth-child(2) {
-    float: left;
-    width: 100%;
-    height: 112px;
-    margin-top: 0px;
-    margin-bottom: 40px;
-    padding-left: 16%;
-    border-bottom: 1px solid #fff;
-}
-
-.candidates > div:nth-child(2) a {
-    text-decoration: none;
-    float: left;
-    width: 100%;
-    margin-left: 4%;
-    margin-top: 1%;
-}
-
-.candidates > div:nth-child(2) section {
-    position: absolute;
-    width: 75px;
-    top: 0px;
-    left: 0px;
-}
-
-.candidates > div:nth-child(2) section h5 {
-    position: absolute;
-    color: #fff;
-    z-index: 1;
-    left: 27%;
-    bottom: 24px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.candidates > div:nth-child(2) span {
-    float: left;
-}
-
-.candidates h5 {
-    color: #606060;
-    font-weight: bold;
-    float: left;
-}
-
-.candidates p {
-    margin: 20px 0px;
-    color: #fff;
-    font-size: 18px;
-    text-align: justify;
-}
-
-.candidates img {
-    width: 128%;
-    float: right;
-    margin-top: -14px;
-}
-
-.candidates span {
-    float: right;
-}
-
-.candidates img:hover {
-    opacity: 0.6;
-}
 
 /****************************************************** RESUME - HTML **********************************************/
-.resumeWrapper .timeline-badge .fa {
-    display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
-    font-size: small;
-    /* margin-top: -25px; */
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
 #previewCV > div {
     width: 80%;
 }
@@ -1414,14 +888,9 @@ a:focus, a:hover {
     margin-top: 0;
 }
 
-.resumeWrapper {
-    margin-top: 0;
-}
-
 .timeline-heading {border-top: 1px solid #fff;border-left: 1px solid #fff;border-right: 1px solid #fff;}
 
 .timeline-body {
-    /* background-color: #000; */
     margin-bottom: -28px;
     border-bottom: 1px solid #fff;
     border-right: 1px solid #fff;
@@ -1434,99 +903,13 @@ a:focus, a:hover {
     text-align: left;
 }
 
-.resumeWrapper .resumeYears > div {
-
-    background: transparent;
-}
-
-.resumeWrapper .page-header {
-    /* border: 4px solid #000; */
-    /* padding: 4px; */
-    /* width: 200px; */
-    /* text-align: center; */
-    /* height: 84px; */
-    /* margin: 0 auto; */
-}
-
-.resumeWrapper .skillsTitle {
-    margin-bottom: 22px;
-    text-align: left;
-    color: #fff;
-    /* background-color: #231f20; */
-    /* width: 168px; */
-    /* height: 50px; */
-    /* padding-top: 9px; */
-    /* margin: 0 auto; */
-    margin-top: 44px;
-}
-
-.resumeWrapper h4 {
-    font-size: 18px;
-    padding-bottom: 16px;
-    padding-top: 0px;
-}
-
-.resumeWrapper div#formulasAppend {
-    /* background-color: #231f20; */
-    margin-bottom: 40px;
-    padding-top: 24px;
-}
-
-.resumeWrapper div#formulasAppend p {
-    color: #FFFFFF;
-    font-size: 16px;
-    /* font-weight: bold; */
-    display: block;
-    text-align: left;
-    margin-top: 5px;
-}
-
 #users {
-
     position: relative;
     top: 95px;
 }
 
 .borderSides {
     background-color: #000;
-
-}
-
-#users > div {
-    /*padding: 10px;*/
-    /*border: 10px solid #231f20;*/
-}
-
-.resumeWrapper .userDetailsBox {
-    /* background-color: #231f20; */
-    padding-top: 32px;
-    /* padding-bottom: 22px; */
-    color: #fff;
-    border: 1px solid #fff;
-}
-
-.resumeWrapper h5 {
-    font-size: 20px;
-    padding-top: 20px;
-    padding-bottom: 16px;
-}
-
-.resumeWrapper .userDetailsBox h3 {
-    font-size: 28px;
-    text-decoration: underline;
-}
-
-.resumeWrapper > div h3 {
-    font-size: 2.2vw;
-    padding-bottom: 10px;
-}
-
-.resumeWrapper > div h4 {
-    font-size: 1.5vw;
-}
-
-.resumeWrapper > div h3, .resumeWrapper > div h4 {
-    color: #ebebeb;
 }
 
 .resumeDetailsBox {
@@ -1596,8 +979,6 @@ a:focus, a:hover {
 }
 
 .resumeYears > div h3:nth-child(1) {
-    /* float: left; */
-    /* padding: 0px; */
     color:#fff;
     font-weight: normal;
 }
@@ -1705,135 +1086,6 @@ a:focus, a:hover {
 
 /****************************************************** JOB - HTML **********************************************/
 
-/*.jobWrapper .requirementsWrapper i {
-    display: block;
-    color: #fff;
-    font-size: x-large;
-    padding-top: 8px;
-}*/
-.jobWrapper .ui-corner-all{
-    left: 1%;
-}
-
-.jobWrapper .form-control {
-    width: 70%;
-
-}
-
-.jobWrapper .combArrow{
-    font-size: 3em;
-    color: #fff;
-    margin-top: 0px;
-    font-size: x-large;
-}
-.jobWrapper .thumbnails h1 {
-    font-weight: normal;
-    margin: 0px;
-    color: #fff;
-    text-align: center;
-}
-
-.jobWrapper #sliders p .fa {
-    color: #4F846A;
-    /* opacity: 0; */
-}
-
-.jobWrapper .btn-success:hover {
-    color: #fff;
-    background-color: #254117;
-    border-color: #25411D;
-    opacity: 0.6;
-}
-
-.jobWrapper .btn-success {
-    color: #fff;
-    background-color: #254117;
-    border-color: #254117;
-}
-
-.jobWrapper .btn-danger {
-    color: #fff;
-    background-color: #800517;
-    border-color: #800517;
-}
-
-.jobWrapper .btn-danger:hover {
-    color: #fff;
-    background-color: #800517;
-    border-color: #800517;
-    opacity: 0.6;
-}
-
-.jobWrapper .jobEdit > div {
-    width: 100% !important;
-    padding: 6px 0px;
-    margin-bottom: 0px !important;
-    /* float: left; */
-}
-.jobWrapper .buttonBorder {
-    /* border: 0px solid #fff; */
-    height: 46px;
-    width: 70px !important;
-    margin: 0 auto;
-    margin-top: 22px;
-    float: none;
-}
-
-/*languges after parsing*/
-
-.jobWrapper .btn-info {
-    color: #fff;
-    background-color: #ccc;
-    border-color: #ccc;
-    margin-top: 2px;
-}
-
-.jobWrapper .btn-info.active.focus, .jobWrapper .btn-info.active:focus, .jobWrapper .btn-info.active:hover, .jobWrapper .btn-info:active.focus, .jobWrapper .btn-info:active:focus, .jobWrapper .btn-info:active:hover, .jobWrapper .open > .dropdown-toggle.btn-info.focus, .jobWrapper .open > .dropdown-toggle.btn-info:focus, .jobWrapper .open > .dropdown-toggle.btn-info:hover {
-    color: #fff;
-    background-color: #ddd;
-    border-color: #ddd;
-}
-
-.jobWrapper .buttonsAfterParse .Garrow{
-    margin-top: 12px;
-}
-
-.jobWrapper .experienceBeforeParse .Garrow{
-    margin-top: 12px;
-}
-
-.jobWrapper .btn-warning.active, .btn-warning:active, .open > .dropdown-toggle.btn-warning {
-    color: #fff;
-    background-color: transparent;
-    /* border-color: transparent; */
-}
-
-.jobWrapper .btn-warning:hover {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-    opacity: 0.6;
-}
-
-.jobWrapper .btn-warning.active.focus, .jobWrapper .btn-warning.active:focus, .jobWrapper .btn-warning.active:hover, .jobWrapper .btn-warning:active.focus, .jobWrapper .btn-warning:active:focus, .jobWrapper .btn-warning:active:hover, .jobWrapper .open > .dropdown-toggle.btn-warning.focus, .jobWrapper .open > .dropdown-toggle.btn-warning:focus, .jobWrapper .open > .dropdown-toggle.btn-warning:hover {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-    opacity: 0.6;
-}
-
-.jobWrapper .btn-warning.focus, .jobWrapper .btn-warning:focus {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-}
-
-.jobWrapper .btn.active.focus, .jobWrapper .btn.active:focus, .jobWrapper .btn.focus, .jobWrapper .btn:active.focus, .jobWrapper .btn:active:focus, .jobWrapper .btn:focus {
-    /*outline: thin dotted;*/
-    outline: 0;
-    outline-offset: 0;
-}
-
 .contentWrapper .thumbnails .thumbnail {
     min-height: 100px !important;
     width: 100%;
@@ -1849,10 +1101,8 @@ a:focus, a:hover {
 }
 
 .contentWrapper .thumbnails .form-control {
-
     padding-left: 6%;
     font-size: 92%;
-
 }
 
 .thumbnail {
@@ -1938,122 +1188,6 @@ a:focus, a:hover {
     transform: rotateY(180deg);
 }
 
-.jobWrapper .btn-group {
-    background-color: transparent;
-    width: 100%;
-    padding-top: 16px;
-}
-
-.jobWrapper .navigation{
-    top: -18px;
-}
-
-.jobWrapper label {
-    display: inline-block;
-    max-width: 100%;
-    margin-bottom: 5px;
-    font-weight: 700;
-    color: #fff;
-}
-
-.jobWrapper .jobEdit {
-    margin-bottom: 68px;
-    border: 0px;
-    /* background-color: #231f20; */
-    float: left;
-    overflow: hidden;
-    padding: 15px 0px 15px 0px;
-    text-align: left;
-    border-radius: 0;
-    margin-top: 0px;
-    width: 100%;
-    padding-bottom: 52px !important;
-    padding-right: 12%;
-}
-
-.jobWrapper .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-    border-radius: 0;
-    color: #000;
-}
-
-.jobWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-    border-radius: 0;
-    color: #000;
-}
-
-.jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
-    border-radius: 0;
-    color: #000;
-}
-
-.jobWrapper .pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.jobWrapper .pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    padding-left: 1%;
-
-}
-
-.jobWrapper .pagination-lg > li > a, .pagination-lg > li > span {
-    text-align: center;
-    width: 10%;
-    color: #000;
-    padding-left: 2%;
-}
-
-.jobWrapper .pagination + section {
-    float: none;
-    width: 20%;
-    position: relative;
-    margin: 0 auto;
-    margin-top: 86px;
-}
-
-.jobWrapper .pagination + section h5 {
-    position: absolute;
-    top: 44%;
-    font-size: 30px;
-    left: 38%;
-    color: #fff;
-    font-weight: bold;
-    /* margin: 0 auto; */
-}
-
-/*.jobWrapper .newJob button, html .jobWrapper input[type=button] {
-    float: none;
-    border-radius: 0;
-    margin: 2px;
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-    display: table;
-    margin: 0 auto;
-    background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-top: 22px;
-}*/
-
-.jobWrapper .newJob button, html .jobWrapper input[type=button] {
-    padding-left: 0;
-    float: none;
-    border-radius: 0;
-    margin: 2px;
-    color: #fff;
-    /* background-color: #fff; */
-    border-color: transparent;
-    display: table;
-    /* margin: 0 auto; */
-    /* background: linear-gradient(90deg, #26b678 40%, #0cb48f 20%, #00b2a6 20%, #00b0c5 75%, #00aee3 90%); */
-    /* -webkit-background-clip: text; */
-    /* -webkit-text-fill-color: transparent; */
-    /* margin-top: 22px; */
-}
-
 .jobP {
 
     margin-top: 0 !important;
@@ -2063,7 +1197,6 @@ a:focus, a:hover {
 .jobPExp {
     color: #fff;
     padding-top: 10px;
-    /* padding-bottom: 10px; */
 }
 
 .ui-slider-horizontal .ui-slider-range-min {
@@ -2071,38 +1204,6 @@ a:focus, a:hover {
     top: -17px;
 }
 
-.jobWrapper #sliders p {
-    color: #fff;
-}
-
-.jobWrapper #sliders span {
-    color: #fff;
-    font-size: 14px;
-    font-weight: normal;
-}
-
-.jobWrapper #sliders > div {
-
-    padding-bottom: 16px;
-}
-
-.jobWrapper .buttonBorder button {
-    pointer-events: auto;
-    color: #fff;
-    margin-left: 50%;
-    background-color: transparent;
-    border-color: transparent;
-    border-radius: 0;
-}
-/*
-.jobWrapper .buttonBorder {
-    height: 46px;
-    width: 70px !important;
-    margin: 0 auto;
-    margin-top: 22px;
-    float: none;
-}
-*/
 .jobCover {
     background-image: url('../images/myjobscover22.png');
     width: 100%;
@@ -2110,33 +1211,6 @@ a:focus, a:hover {
     position: fixed;
     top: 0;
     background-size: cover;
-}
-
-.jobWrapper header {
-    /* border: 6px solid #231f20; */
-    /* padding: 6px; */
-    /* width: 272px; */
-    /* margin: 0 auto; */
-    /* margin-top: 159px; */
-}
-
-.jobWrapper .jobTitle {
-    color: #fff;
-    /* background: #231f20; */
-    /* width: 246px; */
-    /* text-align: center !important; */
-    /* padding: 10px; */
-    /* margin: 0 auto; */
-    /* margin-bottom: 0 !important; */
-}
-
-
-.jobWrapper {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 22px;
-    position: relative;
-    margin-bottom: 16%;
 }
 
 .jobEdit {
@@ -2172,8 +1246,6 @@ a:focus, a:hover {
 
 .companyLogo img {
     margin-bottom: 22px;
-    /* border: 4px solid #fff; */
-    /* padding: 6px; */
     width: 120px;
     border-radius: 10px;
 }
@@ -2495,19 +1567,6 @@ a:focus, a:hover {
     color: #254117;
 }
 
-.searchJobsWrapper header h2, .yourJobsWrapper header h2 {
-    padding-top: 0px;
-    /* padding-left: 3%; */
-    font-size: 40px;
-    color: white;
-    font-family: almoni-dl-aaa-regular;
-}
-
-.searchJobsWrapper .form-control {
-    display: block;
-    width: 54%;
-}
-
 .diploma{
     width: 50px;
     float: left;
@@ -2520,25 +1579,8 @@ a:focus, a:hover {
     z-index: 11;
 }
 
-.searchJobsWrapper button, .yourJobsWrapper button {
-    background-color: transparent;
-    border: 0;
-    font-size: 16px;
-    font-family: almoni-dl-aaa-regular;
-    color: white;
-    float: left;
-    margin-left: -1%;
-}
-
-.searchJobsWrapper button:hover,.searchJobsWrapper button:active:hover,.searchJobsWrapper button:focus {
-    outline:none;
-    opacity: 0.6;    background-color: transparent;
-    color:#fff;
-}
-
 .checkMyCVButton {
     width: 25% !important;
-    /* float: left; */
     text-align: center;
     margin: 14px;
     margin-left: 0px;
@@ -2548,12 +1590,6 @@ a:focus, a:hover {
     float: left;
     margin-top: 0px !important;
     padding-top: 10px;
-}
-
-.searchJobsWrapper form input, .yourJobsWrapper form input {
-    margin-top: 20px;
-    margin-left: 0%;
-    width: 60%;
 }
 
 input.form-control.ng-pristine.ng-untouched.ng-valid {}
@@ -2645,26 +1681,6 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
 }
 
 /****************************************************** MY JOBS - JOBSEEKER - HTML **********************************************/
-.yourJobsWrapper .form-control {
-    width: 60%;
-}
-
-.yourJobsWrapper .trashMyJobs{
-    position: absolute;
-    right: 26px;
-    z-index: 2;
-    cursor: pointer;
-    top: 26px;
-    font-size: x-large;
-}
-
-.yourJobsWrapper article#collepse-6 {
-    padding-right: 50px;
-}
-
-.yourJobsWrapper .myJobsBox {
-    margin-top: 18px;
-}
 
 .fa-heart {
     color: #d43f3a;
@@ -2684,29 +1700,6 @@ text-align: center;
     position: absolute;
     left: 84px;
     top: 22px;
-}
-
-.yourJobsWrapper .companyLogoN {
-    float: left;
-    width: 86px;
-    position: absolute;
-    left: 14px;
-    top: 31px;
-}
-
-.yourJobsWrapper .jobListLi i.fa.fa-times {
-    position: absolute;
-    top: 1px;
-    left: -30px;
-    font-size: 42px;
-    float: left;
-}
-
-.yourJobsWrapper .jobsList article {
-    margin-top: -17px;
-    padding-top: 18px;
-    margin-left: 120px;
-    padding-right: 206px;
 }
 
 .readUnread {
@@ -2822,28 +1815,7 @@ text-align: center;
     color: #fff;
 }
 
-
-.matchpageWrapper .fixCV{
-    padding: 0;
-}
-
-.matchpageWrapper .sendCV{
-    padding: 0;
-    margin-left: 22px;
-}
-
-.matchpageWrapper .requirements-skills-bar {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 28px;
-    float: left;
-}
-
 .greate {
-    text-align: left;
-}
-
-.matchpageWrapper h4 {
     text-align: left;
 }
 
@@ -2858,37 +1830,11 @@ text-align: center;
     height: 40px;
     text-align: left;
     padding-top: 10px;
-    /* border-bottom: 1px solid #fff; */
-}
-
-.matchpageWrapper .btn-default {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-    margin-bottom: 28px;
-    margin-top: 20px;
-    float: left;
-}
-.matchpageWrapper .btn-default:hover{
-    opacity:0.5;
 }
 
 .AlltootipInfo {
     margin-top: 80px;
     background-color: #000;
-}
-
-.matchpageWrapper {
-    position: relative;
-    /* margin-top: 50px; */
-}
-
-.matchpageWrapper header {
-}
-
-.matchpageWrapper .navigation {
-    top: 0;
-    padding: 0;
 }
 
 .matchTitle {
@@ -2908,25 +1854,6 @@ text-align: center;
     float: right;
     width: 10%;
     margin-top: 20px;
-}
-
-.matchpageWrapper .matchResult {
-    width: 100%;
-    margin: 0 auto;
-    color: #fff;
-    /* height: 342px; */
-    /* width: 96%; */
-    position: relative;
-    /* margin-top: 50px; */
-    /* background-color: #231f20; */
-    /* opacity: 0.8; */
-    padding-top: 22px;
-    margin-left: 0;
-    margin-right: 0;
-}
-
-.matchpageWrapper header h2 img {
-    margin: 0 auto;
 }
 
 .matchResult img {
@@ -2984,98 +1911,11 @@ text-align: center;
     color: #000;
 }
 
-/****************************************************************************************************************************/
 /****************************************************** ABOUT - HTML ********************************************************/
-/****************************************************************************************************************************/
-.matchpageWrapper .formula-result {
-    /* background-color: #231f20; */
-    /* opacity: 0.8; */
-}
 
-.matchpageWrapper .formula-result p {
-    color: #FFFFFF;
-    font-size: 3vh;
-    /* font-weight: bold; */
-    display: block;
-    text-align: left;
-    margin-top: 5px;
-    font-size: 16px;
-}
-
-.aboutWrapper p {
-    text-align: left;
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-.aboutWrapper h4 {
-    text-align: left;
-    margin-top: 24px;
-}
-
-.aboutWrapper h5 {
-    font-size: 18px;
-    margin: 30px 0px;
-}
-
-/****************************************************************************************************************************/
 /****************************************************** CONTACT - HTML ********************************************************/
-/****************************************************************************************************************************/
-.contactusWrapper div {
-    float: left;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    width: 48%;
-    margin-left: 2%;
-    min-height: 477px;
-    padding: 30px;
-    margin-bottom: 1%;
-}
 
-.contactusWrapper div h3 {
-    margin-bottom: 40px;
-}
-
-.contactusWrapper > div > section {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.contactusWrapper > div > section > i {
-    width: 100%;
-    text-align: center;
-}
-
-.contactusWrapper > div > section > span {
-    text-align: left;
-    font-size: 20px;
-}
-
-.contactusWrapper > article {
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    width: 98%;
-    margin-left: 2%;
-    min-height: 420px;
-    clear: both;
-    padding: 30px;
-}
-
-/****************************************************************************************************************************/
 /****************************************************** PROFILE - HTML ********************************************************/
-/****************************************************************************************************************************/
-/*.userProfile .cvPreview {
-    border: 0;
-    outline: 0;
-    background-color: transparent;
-    color: #fff;
-    margin: 0 auto;
-    margin-top: 12px;
-    font-size: 24px;
-    width: 100%;
-    text-align: center;
-    padding: 0;
-}*/
 
 .parseButton{
     float: none;
@@ -3088,25 +1928,8 @@ text-align: center;
 
 .userProfile .cvPreview:hover,.userProfile .cvPreview:active,.userProfile .cvPreview:focus{background-color: transparent;color:#fff;opacity:0.8;}
 
-.profileWrapper .btn-group label{color:#000;}
-
-.profileWrapper .engineering li {
-    float: left;
-    padding-left: 0;
-    margin-right: 16px;
-    margin-left: 0;
-}
-
 .timelineTitle{
     color: #fff;
-}
-
-.profileWrapper .form-control {
-    display: block;
-}
-
-.profileWrapper .yearsProfile{
-    width: 100% !important;
 }
 
 .sendButtonP {
@@ -3120,7 +1943,6 @@ text-align: center;
     background-color: transparent;
     color: #fff;
     border: 0;
-
 }
 
 .parseB .Garrow {
@@ -3143,11 +1965,6 @@ text-align: center;
     color: #fff;
 }
 
-.companyprofileWrapper .engineering a {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
 .page-header {
     border-bottom: 0px solid #eee;
 }
@@ -3160,48 +1977,17 @@ text-align: center;
 }
 
 .cvPreview {
-    /* margin: 0 auto; */
     margin-top: 12px;
     font-size: 20px;
-    /* width: 100%; */
     text-align: center;
     padding: 0;
-}
-
-.profileWrapper .cvPreview .btn-default {
-    border: 0;
-    padding: 0;
-    width: 100%;
-    font-size: 20px;
-    margin-top: 16px;
 }
 
 .userProfile div button:hover,.userProfile div button:active:hover,.userProfile div button:focus,.userProfile div button:active {
     outline:none;
     opacity: 0.6;
     background-color: transparent;
-    /* padding-left: 0; */
     color:#fff;
-    /* display: block; */
-}
-.profileWrapper .nav > li > a {
-    position: relative;
-    display: block;
-    /* padding: 10px 15px; */
-    /* padding-left: 0; */
-    /* padding-right: 0; */
-    padding: 0;
-    text-align: left;
-    font-size: 20px;
-}
-.profileWrapper li a:hover,.profileWrapper li a:active:hover,.profileWrapper li a:focus {
-    outline:none;
-    opacity: 0.6;    background-color: transparent;
-    color:#fff;
-}
-
-.profileWrapper .timeline-heading , .profileWrapper .timeline-body{
-    background-color: transparent;
 }
 
 .userProfile .parseExperience label {
@@ -3216,102 +2002,10 @@ div#popover924921 {
     display: block;
 }
 
-.profileWrapper .timeline-body p {
-
-    padding-bottom: 0px;
-}
-
-.profileWrapper .timeline-body {
-    margin-bottom: 4px;
-}
-
-.profileWrapper .timeline-heading {
-    padding: 10px;
-}
-
-.profileWrapper .timeline-panel .form-group {
-    margin-bottom: 15px;
-    padding-left: 2%;
-    padding-right: 2%;
-}
-
 [data-toggle=buttons] > .btn input[type=checkbox], [data-toggle=buttons] > .btn input[type=radio], [data-toggle=buttons] > .btn-group > .btn input[type=checkbox], [data-toggle=buttons] > .btn-group > .btn input[type=radio] {
     position: absolute;
     clip: auto;
     pointer-events: none;
-}
-
-.profileWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
-    border-radius: 0;
-}
-
-.profileWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-    border-radius: 0;
-    color: #000;
-}
-
-.profileWrapper form .btn-default {
-    border-radius: 0;
-}
-
-.profileWrapper .parseB {
-    padding: 0px;
-    width: 222px;
-    height: 50px;
-    /* margin: 0 auto; */
-    margin-top: 64px;
-    margin-bottom: 22px;
-}
-
-.profileWrapper .btn-defult {
-    border-radius: 0;
-    background: #ccc;
-}
-
-.profileWrapper .btn-warning {
-    color: #000;
-    background-color: #fff;
-    border-color: #fff;
-    margin: 0 auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.profileWrapper .btn-warning:hover {
-    opacity: 0.7;
-    border-color: #fff;
-    background-color: #fff;
-    border-color: #fff;
-
-}
-
-.profileWrapper .timeline > li.timeline-inverted > .timeline-panel:before {
-    display: none;
-}
-
-.profileWrapper .timeline > li > .timeline-panel:after {
-    top: 27px;
-    right: -14px;
-    display: none;
-    border-top: 0px solid transparent;
-    z-index: 233;
-    border-left: 0px solid #fff;
-    border-right: 0 solid #fff;
-    border-bottom: 14px solid transparent;
-    content: " ";
-}
-
-.profileWrapper .page-header {
-    margin: 0 auto;
-    margin-top: 6px;
-}
-
-.profileWrapper {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 0%;
-    position: relative;
-    margin-bottom: 10%;
 }
 
 .borderTimelineTitle1 {
@@ -3321,17 +2015,6 @@ div#popover924921 {
 
 .borderTimelineTitle2 {
     float: right;
-    /* margin-top: 40px; */
-}
-
-.profileWrapper .navigation {
-    top: 0px;
-    left: 0;
-}
-
-.profileWrapper .btn-group {
-
-    width: 100%;
 }
 
 .profileCover {
@@ -3343,12 +2026,8 @@ div#popover924921 {
     background-size: cover;
 }
 
-.profileWrapper header {
-}
-
 .buttonBorder {
     width: 88px;
-    /* margin: 0 auto; */
     margin-top: 22px;
 }
 
@@ -3377,13 +2056,7 @@ div#popover924921 {
     margin: 0 auto;
     margin-top: 5px;
     color:#fff;
-    /* padding-right: 5px; */
 }
-
-.profileWrapper .userProfile label{
-    /* width: 49%; */
-}
-
 
 .userProfile .btn.btn-warning {
     float: left;
@@ -3404,23 +2077,12 @@ div#popover924921 {
     clear: both;
 }
 
-.profileWrapper > ul li {
-    /* width: 196px; */
-    margin-top: 10px;
-}
-
-.profileWrapper .timeline-badge {
-    cursor: pointer;
-}
-
-
 .page-header h1 {
     text-align: center;
     width: 34%;
     margin: 0 auto;
     color:#fff;
 }
-
 
 .parserExperienceYearsLabelAdded {
     width: 30%;
@@ -3440,7 +2102,6 @@ div#popover924921 {
     float: left;
     padding-right: 2%;
 }
-
 
 .removeContentCV {
     float: right;
@@ -3528,48 +2189,6 @@ div#popover924921 {
 .signExistingCompany{float:left;     width: 100%;}
 
 
-.companyprofileWrapper {
-    width: 75%;
-    margin: 0 auto;
-    margin-top: 34px;
-    position: relative;
-    margin-bottom: 16%;
-}
-
-.companyprofileWrapper .Twrapper{
-    width: 100%;
-    height: 100%;
-}
-
-.companyprofileWrapper .form-group {
-    margin-bottom: 15px;
-    width: 57%;
-}
-
-.companyprofileWrapper .btn-default {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-}
-
-.companyprofileWrapper .btn-default.active, .btn-default:active, .companyprofileWrapper .open > .dropdown-toggle.btn-default {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-
-}
-
-.companyprofileWrapper .btn-default:hover {
-    color: #fff;
-    opacity: 0.6;
-    /* border-color: #adadad; */
-}
-.companyprofileWrapper .btn-default.active.focus, .companyprofileWrapper .btn-default.active:focus, .companyprofileWrapper .btn-default.active:hover, .companyprofileWrapper .btn-default:active.focus, .companyprofileWrapper .btn-default:active:focus, .companyprofileWrapper .btn-default:active:hover, .companyprofileWrapper .open > .dropdown-toggle.btn-default.focus, .companyprofileWrapper .open > .dropdown-toggle.btn-default:focus, .companyprofileWrapper .open > .dropdown-toggle.btn-default:hover {
-    color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-}
-
 .GarrowInput {
     position: relative;
     left: 0%;
@@ -3579,101 +2198,6 @@ div#popover924921 {
     margin-right: 4px;
     margin-top: 1px;
 }
-
-.companyprofileWrapper header {
-}
-
-.companyprofileWrapper .profileTitle {
-    color: #fff;
-    padding: 0px;
-    margin-top: -16px;
-}
-
-.companyprofileWrapper .engineering li {
-    margin-top: 22px;
-    /* width: 48%; */
-    font-size: 16px;
-    cursor: pointer;
-    /* padding: 6px; */
-    color: white;
-}
-
-.companyprofileWrapper .navigation {
-    top: -18px;
-}
-
-.companyprofileWrapper .tab-content {
-    margin-bottom: 40px;
-}
-
-.companyprofileWrapper .newJob button, html .companyprofileWrapper input[type=button] {
-    /* background-color: #fff; */
-    /* color: #000; */
-    font-family: almoni-dl-aaa-regular;
-    font-size: 16px;
-    text-align: center;
-    /* width: 48%; */
-    border-radius: 0;
-    border: 0;
-    margin-left: 0%;
-    padding-left: 0;
-}
-
-.companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover {
-    opacity: 0.9;
-    background-color: transparent;
-}
-
-.companyprofileWrapper .editLogo + input {
-    width: 100%;
-    float: left;
-    margin-right: 20px;
-    margin-bottom: 20px;
-}
-
-.companyprofileWrapper .engineering1 {
-    height: 70px;
-    text-align: center;
-    font-family: almoni-dl-aaa-regular;
-    margin: 0 auto;
-}
-
-.companyprofileWrapper .engineering1 li {
-    float: left;
-    /* margin-right: 3%; */
-    /* margin-left: 3%; */
-    /* width: 44%; */
-    padding: 4px;
-    font-size: 15px;
-    cursor: pointer;
-    /* padding: 6px; */
-    /* color: #fff !important; */
-    /* font-size: 16px; */
-    /* background-color: #fff; */
-}
-
-.companyprofileWrapper .engineering1 li a {
-    /* color: #000; */
-    padding: 6px;
-}
-
-
-
-.companyprofileWrapper .tab-content {
-    padding: 10px;
-    padding-left: 0%;
-    padding-right: 4%;
-    padding-bottom: 30px;
-    margin-bottom: 0px;
-}
-
-.companyprofileWrapper .popover {
-    top: 110px;
-    left: 754px;
-    display: block;
-}
-
-
 
 /****************************************************** TIMELINE ***************************************************/
 
@@ -3821,18 +2345,13 @@ div#popover924921 {
 
 .timeline > li > .timeline-panel {
     width: 49%;
-    /* float: left; */
     padding: 4px;
     padding-bottom: 0px;
     position: relative;
-    /* right: 0; */
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
     background-color: transparent;
     margin-top: 34px;
-}
-
-.timeline > li > .timeline-panel:before {
 }
 
 .timeline > li > .timeline-panel:after {
@@ -3909,7 +2428,6 @@ div#popover924921 {
     width: 100%;
     font-size: 16px;
     color: #fff;
-    /* font-style: italic; */
     overflow: hidden;
 }
 
@@ -4018,1272 +2536,4 @@ div#popover924921 {
 .existingCompany:hover{opacity:0.8;background: transparent; color:#fff; border:0; outline:0;}
 .cvPreview{background: transparent;color:#fff;border:0;outline:0;float:left;}
 #predictAppend h2 {color: #fff;margin-top: 200px;margin-bottom: 30px;border: 1px solid #57b7ee;padding: 12px;}
-
-/****************************************************************************************************/
-/****************************************************************************************************************************/
-/****************************************************** MEDIA - MAX 767 ********************************************************/
-/****************************************************************************************************************************/
-/****************************************************************************************************/
-@media ( max-width: 767px) {
-
-
-
-    .jobListLi .rating{
-
-        right: 58px;
-
-        top: 8px;
-    }
-    #profilePicture {
-        display: none;
-    }
-
-    footer ul {
-        margin-left: 4%;
-        width: 100%;
-
-    }
-    .employer{
-        margin-top:0px;}
-    /*preview cv*/
-
-    #previewCV > div {
-        width: 98%;
-        top: 49px;
-        margin: 1%;
-        /* z-index: -1; */
-    }
-
-    .timelineForPreview > li > .timeline-badge {
-        top: 0px;
-    }
-
-    .timelineForPreview > li > .timeline-panel {
-        width: 100%;
-    }
-
-    .timelineForPreview:before{
-        display: none;
-    }
-
-
-
-    /*job*/
-
-    .jobWrapper .ui-slider-handle,.jobWrapper .ui-state-default,.jobWrapper .ui-corner-all{
-        left: 1%  !important;
-    }
-
-    .jobWrapper .buttonBorder button {
-        margin-left: 40%;
-    }
-
-    .jobWrapper .thumbnail {
-        display: block;
-        padding: 4px;
-        margin-bottom: 20px;
-        line-height: 1.42857143;
-        background-color: transparent;
-        border: 0px solid #ddd;
-    }
-
-    .jobWrapper .langs {
-        width: 100%;
-    }
-
-    .jobWrapper .pagination + section h5 {
-        top: 42%;
-        font-size: 22px;
-        left: 36%;
-    }
-
-    .jobWrapper .newJob button, html .jobWrapper input[type=button] {
-        font-size: 16px;
-    }
-
-    .profileWrapper .btn-group > .btn:last-child:not(:first-child), .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
-        width: 100%;
-    }
-
-    .profileWrapper .profileWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle), .jobWrapper .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle) {
-
-        width: 100%;
-    }
-
-    .profileWrapper .profileWrapper .btn-group > .btn:last-child:not(:first-child), .jobWrapper .btn-group > .btn:last-child:not(:first-child), .btn-group > .dropdown-toggle:not(:first-child) {
-        width: 100%;
-    }
-
-    .profileWrapper .btn-group > .btn:first-child, .jobWrapper .btn-group > .btn:first-child {
-        margin-left: 0;
-        width: 100%;
-        border-radius: 0;
-    }
-
-    .profileWrapper .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-        border-radius: 0;
-        width: 100%;
-    }
-
-    .profileWrapper .parseB{
-        /* width: 43%; */
-        height: 38px;
-        text-align: center;
-        float: left;
-        margin-top: 52px;
-        margin-left: -22px;
-    }
-
-    .profileWrapper .sendButtonP{
-        font-size: 19px;
-        text-align: center;
-        margin: 0 auto;
-        margin-top: 16px;
-    }
-    .jobWrapper .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
-        border-radius: 0;
-        color: #000;
-        width: 100%;
-    }
-
-    .jobWrapper .caption div {
-        margin-bottom: 8px;
-    }
-
-    .jobWrapper .jobEdit {
-        padding: 10px 0px 10px 0px;
-        padding-left: 0%;
-        padding-right: 0%;
-        margin-bottom: 0px;
-    }
-
-    .jobWrapper .pagination-lg > li > a {
-        font-size: 13px;
-    }
-
-    .jobWrapper .buttonBorder {
-        right: 0;
-        bottom: 0px;
-    }
-
-    .contentWrapper article {
-        float: left;
-        width: 100%;
-        margin-right: 1%;
-    }
-
-    /*searcj job html*/
-    .jobListLi section {
-        position: absolute;
-        width: 55px;
-        top: 17px;
-        right: 40%;
-    }
-
-    .searchJobsWrapper .myJobsBox {
-        height: 100px;
-    }
-
-    .compatibilityText{
-        display: none;
-    }
-
-    .jobListLi section h5 {
-        position: absolute;
-        top: 15px;
-        left: 19%;
-        font-size: 25px;
-        font-weight: bold;
-        font-family: almoni-dl-aaa-regular;
-    }
-
-    .searchJobsWrapper header h2, .yourJobsWrapper header h2 {
-        font-size: 30px;
-    }
-
-    .searchJobsWrapper button, .yourJobsWrapper button {
-        font-size: 14px;
-
-    }
-
-    .navbar-header {
-        background-color: #231f20;
-        height: 54px;
-    }
-
-    .searchJobsWrapper .myJobsBox {
-        margin-top: 52px;
-        width: 100%;
-    }
-
-    .searchJobsWrapper .logoInJobBox {
-        width: 44px;
-        position: relative;
-        left: 13px;
-        top: 9px;
-        border-radius: 8px;
-    }
-
-    .searchJobsWrapper .jobsList article {
-        padding-left: 14px;
-        padding-right: 14px;
-        margin-left:0px;
-    }
-
-    .searchJobsWrapper .jobListLi section {
-        right: 2%;
-        top: 6px;
-    }
-
-    .searchJobsWrapper .jobsList ul li {
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-
-    .searchJobsWrapper .jobsList ul li {
-        border: 1px solid #fff;
-        padding: 0;
-    }
-
-    .searchJobsWrapper .checkMyCVButton {
-
-        margin-bottom: 34px;
-    }
-
-    /*your jobs*/
-    .yourJobsWrapper .myJobsBox {
-        margin-top: 60px;
-    }
-
-    .yourJobsWrapper .hired {
-        position: absolute;
-        top: 32px;
-        left: 50%;
-        width: 106px;
-        background: #C11B17;
-    }
-
-    .unlikeReason {
-        margin: 10px;
-    }
-
-    .yourJobsWrapper .myJobsBox {
-        height: 148px;
-        width: 100%;
-        position: relative;
-        margin-top: 50px;
-        margin-right: 0;
-    }
-
-    .jobsList ul li {
-
-        padding: 0px;
-        border: 0px solid #231f20;
-    }
-
-    .yourJobsWrapper .jobListLi i.fa.fa-times {
-        position: relative;
-        top: -22px;
-        left: -10px;
-        font-size: 44px;
-    }
-
-    .yourJobsWrapper .jobListLi section {
-        right: 2%;
-        top: 36px;
-    }
-
-    .yourJobsWrapper .companyLogoN {
-        float: left;
-        width: 54px;
-        position: absolute;
-        left: 39%;
-        top: -50px;
-        border-radius: 8px;
-    }
-
-    .yourJobsWrapper .jobsList article {
-        padding-left: 14px;
-        padding-right: 70px;
-        margin-left: 0px;
-    }
-
-    .yourJobsWrapper .fa-heart-o, .fa-heart {
-        position: absolute;
-        right: 5px;
-        z-index: 2;
-        cursor: pointer;
-        top: 11px;
-        font-size: medium;
-    }
-
-    .yourJobsWrapper .readUnread {
-        position: absolute;
-        right: 43px;
-        top: -7px;
-        font-size: medium;
-    }
-
-    .yourJobsWrapper .jobsList ul li {
-        width: 100%;
-        margin-top: 22px;
-        margin-bottom: 40px;
-        border: 1px solid #fff;
-    }
-
-    .yourJobsWrapper .trashMyJobs {
-        right: 32px;
-        top: 11px;
-        font-size: medium;
-    }
-
-    /*match*/
-    .matchpageWrapper {
-        margin-top: 38px;
-    }
-
-    .matchpageWrapper .formula-result p {
-        color: #FFFFFF;
-        font-size: 3vh;
-        /* font-weight: bold; */
-        display: block;
-        text-align: left;
-        margin-top: 5px;
-        font-size: 10px;
-    }
-
-    .matchpageWrapper .skillbar-title {
-        position: absolute;
-        top: -34px;
-        left: -18px;
-        font-size: 10px;
-    }
-
-    .matchpageWrapper .matchResult h2 {
-        font-size: 20px;
-    }
-
-    .matchpageWrapper .skillsTitleM {
-        width: 100%;
-        height: 50px;
-        padding-top: 14px;
-        float: left;
-        margin: 0 auto;
-    }
-
-    .matchpageWrapper #user-container {
-        width: 24%;
-        float: left;
-        position: relative;
-        margin: 20px auto;
-    }
-
-    .matchpageWrapper #user-container h5 {
-        font-size: 5vw;
-        left: 32%;
-        top: 34px;
-    }
-
-    .matchpageWrapper h4 {
-        padding-top: 16px;
-    }
-
-    .matchpageWrapper .matchResult {
-        height: 280px;
-    }
-
-    .matchpageWrapper .formula-result{
-        float: left;
-    }
-    .matchpageWrapper .skillbar{
-        float: left;
-        width: 90%;
-    }
-    /*profile*/
-
-    .parseButton{
-        float: none;
-    }
-    .checkMyCVButton {
-        /* width: 54% !important; */
-    }
-
-    .profileWrapper > ul li {
-        width: 133px;
-        margin-top: -12px;
-    }
-
-    .profileWrapper .form-control {
-        width: 100%;
-    }
-
-    .profileWrapper .timeline:before{
-        display: none;
-    }
-
-    .profileWrapper .nav > li > a {
-        font-size: 14px;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .userProfile h4 {
-        font-size: 20px;
-    }
-
-    .profileWrapper header {
-        margin-top: 50px;
-    }
-
-
-    .profileWrapper .timeline-heading .form-control {
-        width: 100%;
-    }
-
-    .profileWrapper .cvPreview .btn-default {
-        width: 80%;
-    }
-
-    .profileWrapper .timeline-panel label {
-        color: #606060;
-        font-weight: bold;
-        font-size: 18px;
-    }
-
-    .profileWrapper .timeline-heading {
-        padding-left: 2%;
-    }
-
-    .profileWrapper .timeline-badge .fa {
-        margin-top: 6px;
-    }
-
-    .profileWrapper .userProfile {
-        margin-top: 0;
-    }
-
-    .profileWrapper .tab-content {
-        padding-left: 4%;
-        padding-right: 4%;
-    }
-
-    .profileWrapper .container {
-        padding-right: 4px;
-        padding-left: 4px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .borderTimelineTitle1 {
-        padding: 4px;
-        border: 4px solid #000;
-        width: 107px !important;
-        height: 50px;
-        float: left;
-        margin-top: 10px;
-        display: none;
-    }
-
-    .borderTimelineTitle2 {
-        padding: 4px;
-        border: 4px solid #000;
-        width: 117px !important;
-        height: 49px;
-        float: right;
-        margin-top: 10px;
-        display: none;
-    }
-
-    .resumeYears > div h3:nth-child(1) {
-        float: left;
-        background: #231f20;
-        color: #fff;
-        padding: 8px;
-        font-size: 17px;
-        font-weight: normal;
-    }
-
-    .profileWrapper .page-header h1 {
-        font-size: 24px;
-    }
-
-    .profileWrapper .page-header {
-        width: 50%;
-        margin: 0 auto;
-    }
-
-    .profileWrapper .timeline > li > .timeline-badge {
-        top: -12px;
-        left: 53.7%;
-    }
-
-    .profileWrapper .parser {
-        float: left;
-        width: 100%;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    /*myjobs*/
-
-    .jobs > div:nth-child(2) {
-        border-bottom: 1px solid #fff;
-        padding-left: 5px;
-    }
-
-    .jobs > div:nth-child(1) h3 {
-        font-size: 22px !important;
-    }
-
-    .jobs > div:nth-child(1) a {
-        float: right;
-        margin-right: 6%;
-        font-size: 10px;
-    }
-
-    .myjobsWrapper .nav > li > a {
-        position: relative;
-        display: block;
-        padding: 0px 0px;
-        font-size: 14px;
-    }
-
-    .myjobsWrapper .jobs {
-        padding: 0px;
-        border: 0px solid #231f20;
-    }
-
-    .myjobsWrapper #popoverData {
-        position: absolute;
-        right: 0px;
-        top: 8px;
-    }
-
-    .myjobsWrapper .fa-2x {
-        font-size: 2.3em;
-    }
-
-    .myjobsWrapper .jobs img {
-        width: 31%;
-        float: right;
-        margin-top: -3px;
-        margin-right: -6px;
-    }
-
-    .myjobsWrapper .jobs:first-child {
-        margin-top: 18px;
-    }
-
-    .myjobsWrapper .jobs > div section {
-    }
-
-    /*candidates*/
-
-    .candidates p {
-        font-size: 14px;
-        padding-right: 80px;
-    }
-
-    .candidatesWrapper .tabsWrapper > div > h3 {
-        text-align: left;
-        position: relative;
-        top: 22px;
-        font-size: 20px;
-        color: #fff;
-        margin-bottom: 44px;
-    }
-
-    .candidatesWrapper button {
-        font-size: 15px;
-        padding-left: 0;
-    }
-
-    .candidatesWrapper h2 {
-        padding-top: 12px;
-        /* padding-left: 28px; */
-        padding-bottom: 14px;
-        font-size: 34px;
-    }
-
-    .candidatesWrapper .myJobsBox {
-        margin-top: 40px;
-        height: 100%;
-    }
-
-    .candidatesWrapper .engineering li {
-        margin-right: 1%;
-        margin-left: 1%;
-        /* width: 23%; */
-        padding: 4px;
-        font-size: 14px;
-        cursor: pointer;
-        /* padding-top: 13px; */
-    }
-
-    .candidatesWrapper .candidates > div:nth-child(2) section {
-        top: 12px;
-        left: -8px;
-        width: 56px;
-    }
-
-    .candidatesWrapper .candidates {
-        padding: 0px;
-        border: 0px solid #231f20;
-    }
-
-    /*resume*/
-
-    .resumeWrapper .userDetailsBox {
-        margin-top: 64px;
-    }
-
-    .resumeYears {
-        margin-top: 0px;
-    }
-
-    .resumeWrapper div#formulasAppend p {
-        font-size: 14px;
-        margin-top: 2px;
-    }
-
-    .resumeWrapper .skillsTitle {
-        margin-bottom: -18px;
-        margin-top: 30px;
-    }
-
-    .resumeWrapper .skillbar-title {
-        left: -54px;
-        width: 100px;
-        font-size: 14px;
-    }
-
-    .resumeWrapper .timeline:before{
-        display: none;
-    }
-
-    .resumeWrapper .userDetailsBox h3 {
-        font-size: 17px;
-        text-decoration: underline;
-    }
-
-    .resumeWrapper #candidateUnLike {
-        padding: 0px 8px;
-    }
-
-    .resumeWrapper #candidateLike {
-        padding: 0px 8px;
-    }
-
-    .resumeWrapper .timeline > li > .timeline-badge {
-        top: -22px;
-        left: 53.7%;
-    }
-
-    .resumeWrapper h5 {
-        font-size: 16px;
-    }
-
-    .resumeWrapper h4 {
-        font-size: 16px;
-    }
-
-    .resumeWrapper .page-header {
-        margin-bottom: 20px;
-    }
-
-    /*company profile*/
-
-    .companyprofileWrapper .engineering {
-        margin-top: 6px;
-    }
-    .companyprofileWrapper .tab-content {
-        padding: 10px;
-        padding-left: 4%;
-        padding-right: 4%;
-        /* background: #231f20; */
-    }
-
-    .linkedin{
-        /* width: 80%; */
-    }
-    .companyprofileWrapper .tab-content {
-        padding: 8px;
-        padding-left: 2%;
-        padding-right: 2%;
-    }
-
-    .companyprofileWrapper .engineering li {
-        margin-right: 1%;
-        margin-left: 1%;
-        width: 46%;
-        padding: 4px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .companyprofileWrapper .form-group {
-        margin-bottom: 15px;
-        width: 100%;
-    }
-
-    .companyprofileWrapper .newJob button, html .companyprofileWrapper input[type=button] {
-        /* margin-top: 12px; */
-    }
-
-    .companyprofileWrapper .companies img {
-        width: 66px;
-        height: 66px;
-    }
-
-    .myjobsWrapper section {
-        /* margin-bottom: 22px; */
-    }
-
-    .jobs > div:nth-child(2) section {
-        width: 135px;
-    }
-
-    .myjobsWrapper svg {
-        bottom: 2px;
-    }
-
-    .navBarImg > img {
-        height: 6px;
-        width: 6px;
-        position: absolute;
-        top: 24%;
-        left: 24%;
-    }
-
-    .navBarImg > img {
-        height: 30px;
-        width: 30px;
-        left: 14%;
-    }
-
-    .navBarImg {
-        width: 96%;
-        margin: 0 auto;
-        margin-top: 14px;
-        left: 2%;
-        display: none;
-    }
-
-    .navBar {
-        padding-left: 11px;
-    }
-
-    .myJobsBox {
-        height: 132px;
-        width: 100%;
-        position: relative;
-        margin-top: -8px;
-    }
-
-    .form-control {
-        display: block;
-        width: 100%;
-        /* margin: 0 auto; */
-        margin-left: 0 auto;
-    }
-
-    .engineering {
-        height: 28px;
-        margin-top: 48px;
-        clear: both;
-    }
-
-    .engineering li {
-        margin-right: 1%;
-        margin-left: 1%;
-        /* width: 23%; */
-        padding: 4px;
-        font-size: 11px;
-        cursor: pointer;
-    }
-
-    #logo img {
-        height: 41px;
-    ]
-    position: fixed;
-        position: fixed;
-        top: 8px;
-        left: 8px;
-        width: 40px;
-    }
-
-    .navBar > div:nth-child(2) > a > img {
-        height: 40px;
-        position: absolute;
-        top: 0;
-    }
-
-    .navBarImg li a {
-
-        font-size: 20px;
-        padding-top: 8px;
-
-    }
-
-    .myJobsBox {
-    }
-
-    .jobs > div:nth-child(2) section {
-        width: 74px;
-        top: 26px;
-    }
-
-    .jobs > div section {
-        margin-left: 0 auto;
-    }
-
-    .jobs > div:nth-child(2) section h5 {
-        position: absolute;
-        left: 28%;
-        font-size: 24px;
-        bottom: 25px;
-        font-size: 26px;
-        font-family: almoni-dl-aaa-regular;
-        font-weight: bold;
-    }
-
-    .jobs:first-child {
-        margin-top: 24px;
-    }
-
-    .jobs {
-        margin-left: 0;
-        margin-top: 60px;
-        width: 100%;
-    }
-
-    .myjobsWrapper header h2 {
-        top: 9%;
-        left: 10%;
-        font-size: 26px;
-        color: white;
-        font-family: almoni-dl-aaa-regular;
-    }
-
-    .myjobsWrapper button {
-        margin-top: 126px;
-        background-color: transparent;
-        border: 0;
-        font-size: 14px;
-        font-family: almoni-dl-aaa-regular;
-        color: white;
-        margin-right: 0;
-        margin-left: 0px;
-    }
-
-    .mobile {
-        display: block;
-    }
-
-    .web {
-        display: none;
-    }
-
-    .tab-content section:hover {
-        opacity: 1;
-    }
-
-    .nav-tabs li a {
-        font-size: 15px;
-    }
-
-    .navBar > div:nth-child(1) {
-        z-index: 1111;
-        padding: 10px;
-    }
-
-    .navBar > div:nth-child(2) {
-        margin: 0px;
-    }
-
-    .jobs > div > h3 {
-        line-height: 21px;
-        position: absolute;
-        overflow: hidden;
-        width: 66%;
-        height: 25px;
-        font-size: 14px !important;
-    }
-
-    .candidates > div:nth-child(2) section {
-        bottom: 0px;
-    }
-
-    .candidates > div:nth-child(2) section h5 {
-        top: 18px;
-        left: 30%;
-        font-size: 18px;
-    }
-
-    .candidates h5 {
-        color: #606060;
-        font-weight: bold;
-        line-height: 21px;
-        float: left;
-        overflow: hidden;
-        /* font-size: 28px !important; */
-    }
-
-    .candidates {
-        width: 100%;
-    }
-
-    #sliders li div span {
-        width: 8px;
-    }
-
-    #user-container h5 {
-        font-size: 5vw;
-    }
-
-    .matchResult #circle-container h2 {
-        font-size: 10.5vw;
-    }
-
-    .candidates > div:nth-child(1) {
-        padding: 10px 5px 0px;
-    }
-
-    .candidates > div:nth-child(1) a {
-        margin-right: 0px;
-        margin-left: 0px;
-        text-align: right
-    }
-
-    .readUnread {
-        position: absolute;
-        right: 70px;
-        top: 30px;
-    }
-
-    .jobsList ul li {
-        width: 100%;
-        margin-top: 36px;
-        margin-bottom: 38px;
-    }
-
-    .jobsList article {
-        width: 100%;
-        float: left;
-    }
-
-    .jobListLi a i {
-        display: none;
-    }
-
-    .jobsTools {
-        width: 15%;
-    }
-
-    .jobsTools a i {
-        margin: 10px 0px 10px;
-    }
-
-    .jobs > div:nth-child(1) a i {
-        margin-left: 2px;
-    }
-
-    .nav-tabs {
-        margin-top: 10px;
-    }
-
-    .jobs > div:nth-child(1) {
-        padding: 10px 4px;
-    }
-
-    .tabsWrapper {
-        padding: 10px 5px 0px;
-    }
-
-    .resumeWrapper > div {
-        width: 100%;
-    }
-
-    .jobParametersWrapper {
-        padding-bottom: 80px;
-    }
-
-    .resumeWrapper > div h3 {
-        font-size: 6.2vw;
-    }
-
-    .resumeWrapper > div h4 {
-        font-size: 3.5vw;
-    }
-
-    #job-circle-container h5 {
-        position: absolute;
-        top: 71%;
-        left: 14%;
-        font-size: 21px;
-    }
-
-    .jobSlider > h3 {
-        font-size: 22px;
-        margin-top: 114px;
-        -webkit-transform: rotate(-90deg);
-        -moz-transform: rotate(-90deg);
-    }
-
-    .jobSlider label {
-        font-size: 10px;
-    }
-
-    .jobSlider input {
-        width: 75%;
-    }
-
-    .wrapper {
-        padding: 0px 0px 70px;
-    }
-
-    .myjobsWrapper, .resumeWrapper {
-        padding: 0px 10px 80px;
-    }
-
-    .jobs p {
-        font-size: 16px;
-    }
-
-    .nav-tabs li {
-        height: 66px;
-    }
-
-    .googleUsers {
-        display: none;
-    }
-
-    .tabsContent .starRating {
-        bottom: 10px;
-        top: initial;
-    }
-
-    .matchResult {
-        width: 100%;
-    }
-
-    .myjobsWrapper, .resumeWrapper, .readcvsWrapper, .unreadcvsWrapper,
-    .favoritesWrapper, .jobParametersWrapper, .searchJobsWrapper, .yourJobsWrapper,
-    .jobWrapper, .jobPageWrapper, .matchpageWrapper, .aboutWrapper,
-    .companyprofileWrapper, .contactusWrapper, .profileWrapper, .candidatesWrapper {
-        padding: 10px 10px 0px;
-        width: 100%;
-    }
-
-    .myjobsWrapper > h3, .resumeWrapper > h3, .readcvsWrapper > h3,
-    .unreadcvsWrapper > h3, .favoritesWrapper > h3, .jobParametersWrapper > h3,
-    .searchJobsWrapper > h3, .yourJobsWrapper > h3, .jobWrapper > h3, .jobPageWrapper > h3,
-    .aboutWrapper > h3, .contactusWrapper > h3,
-    .matchpageWrapper > h3, .companyprofileWrapper > h3, .profileWrapper > h3, .candidatesWrapper > h3 {
-        display: none;
-    }
-
-    #myManagmentJobs, #mySoftwareJobs, #myElectrialJobs, #myMechanicalJobs {
-        height: 200px;
-    }
-
-    .swipeIcon {
-        position: absolute;
-        top: 5%;
-        left: 35%;
-        display: block;
-    }
-
-    .jobPageWrapper > a {
-        float: left;
-        margin-bottom: 70px;
-    }
-
-    .resumeSkillsBox {
-        width: 100%;
-    }
-
-    #circle-container > h2, #circle-container1 > h2 {
-        font-size: 5vw;
-        line-height: 16vw;
-    }
-
-    .resumeDetailsBox {
-        width: 100%;
-    }
-
-    .resumeDetailsBox div {
-        width: 100%;
-    }
-
-    .resumeYears > div:nth-child(1) {
-    }
-
-    .myjobsWrapper form {
-        width: 100%;
-    }
-
-    .myjobsWrapper form button {
-        width: 25%;
-    }
-
-    .jobSlider div span {
-        width: 125% !important;
-    }
-
-    .contactusWrapper div {
-        width: 100%;
-        margin-bottom: 1%;
-        margin-left: 0%;
-    }
-
-    footer div {
-        padding: 0px;
-        display: none;
-    }
-
-    footer ul {
-        padding: 0px;
-    }
-
-    footer ul li {
-        padding: 0px;
-        text-align: center;
-        width: 26%;
-    }
-
-    footer {
-        display: none;
-    }
-
-    footer ul li a {
-        font-size: 3.5vw;
-    }
-
-    footer ul:nth-child(1) {
-    }
-
-    footer ul:nth-child(3) {
-        display: block;
-        width: 100%;
-        margin: 0 auto;
-    }
-
-    footer ul:nth-child(3) a i {
-        width: 100%;
-        text-align: center;
-    }
-
-    footer ul:nth-child(3) a p {
-        margin: 0px;
-    }
-
-    /*MEDIA TIMELINE*/
-    .timeline > li > .timeline-panel {
-        width: 100% !important;
-        padding-bottom:0px !important;
-        padding:0px !important;
-        /* background: #d4d4d4; */
-        margin-top:0px !important;
-        margin:0px !important;
-        z-index: 2;
-    }
-
-    .timeline-inverted, .timeline-badge, .timeline > li > .timeline-panel:after,
-    .timeline > li > .timeline-panel:before {
-    }
-
-    /*first page*/
-    .googleSignInImg {
-        position: absolute;
-        top: 4%;
-        height: 96%;
-        width: 100%;
-    }
-
-    .googleSignInBox {
-        /* background-color: #231f20; */
-        opacity: 0.8;
-        height: 42%;
-        width: 90%;
-        position: absolute;
-        top: 24%;
-        left: 4%;
-    }
-
-    .googleSignInBox img {
-        opacity: 1;
-        margin-top: 20px;
-        margin-left: 40%;
-        height: 30%;
-        width: 30%;
-    }
-
-    .googleSignInWrapper h3 {
-        padding-top: 32px;
-        opacity: 1;
-        font-size: 20px;
-    }
-
-    .googleSignInWrapper h4 {
-        padding-top: 22px;
-        opacity: 1;
-        font-size: 106%;
-    }
-
-    /*job page*/
-    .jobWrapper .btn-group {
-        background-color: #231f20;
-        width: 25%;
-        padding-top: 16px;
-    }
-
-    .jobWrapper {
-
-        margin-top: 0;
-    }
-
-    .jobWrapper .pagination + section {
-        width: 30%;
-    }
-
-    .jobWrapper header {
-        margin-top: 60px;
-    }
-
-    .jobWrapper .btn-group {
-
-        width: 100%;
-    }
-
-    .jobWrapper .pagination-lg > li:first-child > a {
-        padding-left: 2%;
-    }
-
-    .jobWrapper .pagination-lg > li > a {
-        padding-left: 2%;
-    }
-
-    .jobWrapper .pagination-lg > li:last-child > a {
-        padding-left: 1%;
-    }
-
-    /*resume*/
-    #users {
-        top: 0;
-    }
-
-    .myJobsBox {
-    }
-
-    .companyprofileWrapper {
-        width: 100% !important;
-        margin-top: 62px !important;
-
-    }
-
-    .companyprofileWrapper .companyLogo img {
-        margin-top: 20px;
-    }
-}
 

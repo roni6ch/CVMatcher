@@ -117,6 +117,10 @@ app.controller('resumeController',
                         $scope.user["stars"] = 0;
                         if ($id[1] == "unread") {
                             $scope.user["stars"] = 0;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
                             $http({
                                 url: 'https://cvmatcher.herokuapp.com/employer/seenCV',
                                 method: "POST",
@@ -145,9 +149,13 @@ app.controller('resumeController',
                                                     "message": "The employer viewed your cv for job " + localStorage.getItem("jobTitle")
                                                 }
                                             }).then(function () {
+<<<<<<< HEAD
                                                 console.log($scope.user_id);
                                                 console.log($id[2]);
                                                     sendNotification('seen', $scope.user_id , $id[2], '', localStorage.getItem("jobTitle"), companyName);
+=======
+                                                    sendNotification('seen', $scope.user.user._id, $id[2], null, localStorage.getItem("jobTitle"), companyName);
+>>>>>>> origin/master
                                                 },
                                                 function (response) { // optional
                                                     console.log("unlike notification AJAX failed!");
