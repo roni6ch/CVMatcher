@@ -373,6 +373,7 @@ function sendNotification(notificationType, userId, jobId, other, jobName,compan
 
 //notifications for sockets
 function notifyMe(type, jobName,companyName) {
+
     var body;
     body = '';
     if (!Notification) {
@@ -384,17 +385,20 @@ function notifyMe(type, jobName,companyName) {
     if (Notification.permission === "granted") {
 
         if (type == 'seen') {
-            body = jobName + "from comapny: " + companyName + "  Watch your CV!";
+            body = 'The employer from company '+ companyName +' viewed your cv for job: '+ jobName;
         }
         else if (type == 'like') {
-            body = jobName + "from comapny: " + companyName + "  Like your CV!";
+            body = "The employer from company "+ companyName +" liked your cv for job " + jobName;;
+
         }
         else if (type == 'unlike') {
-            body = "Company: " + companyName + " " + jobName + " unLike your CV!";
+            body = "The employer from company "+ companyName +"  didn't liked your cv for job: "+ jobName;
+
 
         }
         else if (type == 'hire') {
-            body = "Congradulations!!! You have been Hired to: " + jobName + " at: " + companyName;
+            body = "Congratulations!! you have been hired by company "+ companyName + " for  job: " + jobName;
+
 
         }
 

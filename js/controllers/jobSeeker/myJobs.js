@@ -6,44 +6,57 @@
  * ********************* MY JOBS - Job Seeker Controller ****************
  */
 
-app.controller('yourjobSeekerController', function ($scope, $http, $sce, $location, $rootScope) {
+app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $sce, $location, $timeout) {
     var url;
     var path = $location.path().split('/')[1];
     var navigation;
     var data;
 
+
     //initialize parameter in the controller
     $scope.init = function () {
+
+
+        console.log($rootScope.userSignInType);
         localStorage.removeItem('fixCV');
         //TODO: OPEN SOCKET!
+        console.log(path);
+
         socket.onmessage = function (msg) {
+
+
             var message = JSON.parse(msg.data);
             console.log(message);
+            console.log(path);
             var jobId = message.jobId;
+            console.log(jobId);
             if (path == 'yourjobs') {
+                console.log(message.notificationType);
+                $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
+
+                console.log($scope);
                 if (message.notificationType == 'seen') {
-                    $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                    $scope.$apply(function () {
+                    console.log("seen");
+                    $timeout(function() {
                         $scope.jobSJ.cv.status.current_status = 'seen';
-                    })
+                    });
                 }
                 else if (message.notificationType == 'like') {
-                    $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                    $scope.$apply(function () {
+                    $timeout(function() {
                         $scope.jobSJ.cv.status.current_status = 'liked';
                         $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
-                    })
+                    });
+
                 }
                 else if (message.notificationType == 'unlike') {
-                    $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
-                    $scope.$apply(function () {
+
+                    $timeout(function() {
                         $scope.jobSJ.cv.status.current_status = 'unliked';
                         $scope.jobSJ.cv.status.status_id.rate.description = message.other;
-
-                    })
+                    });
                 }
             }
-            notifyMe(message.notificationType, message.jobName);
+            notifyMe(message.notificationType, message.jobName, message.companyName);
         }
 
     }

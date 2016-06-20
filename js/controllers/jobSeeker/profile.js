@@ -18,7 +18,7 @@ app
                 "expereince": []
             };
             //initialize parameters for controller
-            $scope.init = function(){
+            $scope.init = function () {
 
                 $rootScope.userSignInType = 'jobSeeker';
                 $("#geocomplete").geocomplete();
@@ -29,18 +29,18 @@ app
 
                 //TODO: OPEN SOCKET!
                 socket.onmessage = function (msg) {
-                 var message = JSON.parse(msg.data);
-                 console.log(message);
-                 notifyMe(message.notificationType, message.jobName,message.companyName);
-                 }
+                    var message = JSON.parse(msg.data);
+                    console.log(message);
+                    notifyMe(message.notificationType, message.jobName, message.companyName);
+                }
 
             }
             //get user details
             $scope.getMainJson = function () {
 //http://stackoverflow.com/questions/22447374/how-to-trigger-ng-click-angularjs-programmatically
                 if (localStorage.getItem('fixCV') !== null) {
-                    $timeout(function() {
-                        angular.element( "#tab1" ).trigger('click');
+                    $timeout(function () {
+                        angular.element("#tab1").trigger('click');
                     }, 100);
                 }
 
@@ -71,9 +71,9 @@ app
                                 })
                                     .then(function (data) {
                                             angular.element(".fa-pulse").hide();
-                                        $.each(data.data[0].personal_properties, function(i, post) {
-                                            console.log(i + " : " + post);
-                                        });
+                                            $.each(data.data[0].personal_properties, function (i, post) {
+                                                console.log(i + " : " + post);
+                                            });
                                             myKeyWords = [];
                                             $scope.jobSeekerCV = data.data[0];
                                             if ($scope.jobSeekerCV.original_text.history_timeline.length == 0) {
@@ -159,8 +159,8 @@ app
                 parseExpereince.expereince = [];
                 $.each($(".profileWrapper .timeline .timeline-inverted"), function () {
                     var text = $(this).find('.timeline-body textarea').val();
-                    var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
-                    var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                    var startdate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                    var enddate = $(this).find('.timeline-heading label:nth-child(4) select').val();
 
                     if (startdate > enddate) {
                         $scope.status = messageResource.get("modal.seeker.fix_years", 'resources');
@@ -254,11 +254,11 @@ app
                 indx++;
                 var divTemplate;
                 if (type == 'education') {
-                    divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
+                    divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"><h2 class="timelineTitle">Education</h2> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
 
                 }
                 else {
-                    divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"><h2 class="timelineTitle">Experience</h2> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);
@@ -323,8 +323,8 @@ app
 
                             $.each($(".profileWrapper .timeline li "), function (key, val) {
                                 var text = $(this).find('.timeline-body textarea').val();
-                                var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
-                                var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                                var startdate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                                var enddate = $(this).find('.timeline-heading label:nth-child(4) select').val();
 
                                 if (startdate > enddate) {
                                     $scope.status = messageResource.get("modal.seeker.fix_years", 'resources');
@@ -347,7 +347,6 @@ app
                                 if (key >= $scope.user.original_text['history_timeline'].length)
                                     $scope.user.original_text['history_timeline'].push(newLi);
                             });
-
 
 
                         },
@@ -438,8 +437,8 @@ app
                 history_timeline = [];
                 $.each($(".profileWrapper .timeline li"), function () {
                     var text = $(this).find('.timeline-body textarea').val();
-                    var startdate = $(this).find('.timeline-heading label:nth-child(2) select').val();
-                    var enddate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                    var startdate = $(this).find('.timeline-heading label:nth-child(3) select').val();
+                    var enddate = $(this).find('.timeline-heading label:nth-child(4) select').val();
 
                     if (startdate > enddate) {
                         $scope.status = messageResource.get("modal.seeker.fix_years", 'resources');
@@ -472,13 +471,13 @@ app
                             "university_degree": $('.jobSeekerCVAcademy > label > input').is(":checked"),
                             "degree_graduation_with_honors": $('#honorsCB').is(":checked"),
                             "above_two_years_experience": $('#experienceCB').is(":checked"),
-                            "psychometric_above_680":  $('#scoreCB').is(":checked"),
-                            "multilingual":  $('#foreignCB').is(":checked"),
+                            "psychometric_above_680": $('#scoreCB').is(":checked"),
+                            "multilingual": $('#foreignCB').is(":checked"),
                             "volunteering": $('#volunteeringCB').is(":checked"),
                             "full_army_service": $('#armyCB').is(":checked"),
                             "officer_in_the_military": $('#officerCB').is(":checked"),
                             "high_school_graduation_with_honors": $('#graduateCB').is(":checked"),
-                            "youth_movements":$('#YouthCB').is(":checked")
+                            "youth_movements": $('#YouthCB').is(":checked")
 
                         },
                         "original_text": {
@@ -512,13 +511,13 @@ app
                             "university_degree": $('.jobSeekerCVAcademy > label > input').is(":checked"),
                             "degree_graduation_with_honors": $('#honorsCB').is(":checked"),
                             "above_two_years_experience": $('#experienceCB').is(":checked"),
-                            "psychometric_above_680":  $('#scoreCB').is(":checked"),
-                            "multilingual":  $('#foreignCB').is(":checked"),
+                            "psychometric_above_680": $('#scoreCB').is(":checked"),
+                            "multilingual": $('#foreignCB').is(":checked"),
                             "volunteering": $('#volunteeringCB').is(":checked"),
                             "full_army_service": $('#armyCB').is(":checked"),
                             "officer_in_the_military": $('#officerCB').is(":checked"),
                             "high_school_graduation_with_honors": $('#graduateCB').is(":checked"),
-                            "youth_movements":$('#YouthCB').is(":checked")
+                            "youth_movements": $('#YouthCB').is(":checked")
 
                         },
                         "original_text": {

@@ -105,6 +105,8 @@ app
                                                 .html(Math.max(parseInt(data.data.total_grade), 1) + "%");
                                             userCircle.animate(data.data.total_grade / 100);
                                             //check if user passed the Match!!!
+                                            console.log(data.data.total_grade);
+                                            console.log(JSON.parse(localStorage.getItem("jobDetails")).compatibility_level);
                                             if (data.data.total_grade < JSON.parse(localStorage.getItem("jobDetails")).compatibility_level) {
                                                 angular.element(".matchResult > h2").append("Oops");
                                                 angular.element(".matchResult > h2 > i").addClass("fa-thumbs-down");

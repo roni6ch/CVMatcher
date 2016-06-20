@@ -2,36 +2,59 @@
 <div class="candidatesWrapper" ng-init="init()">
     <h3 class="navigation"></h3>
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
-    <form method="get" action="">
-        <input type="text" placeholder="Find Candidate" ng-model="searchText"
-               class="form-control">
-    </form>
-    <h4>{{hired.length}} Candidates has been Hired!</h4>
+    <h4 class="hiredCandidatesLength">{{hireCandidates.length}} Candidates has been Hired!</h4>
     <!-- candidates sections -->
-    <section
-            ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
-        <div class="candidates animated fadeInUp">
-
-            <div><a ng-click="checkIfArchivePage()" href="#/unread/{{jobId}}/resume/{{candidate._id}}"><img
-                    src="./images/logo.png"></a>
-                <h5>{{candidate.sub_sector[0]}}</h5>
+    <article class="hiredCandWrap">
+        <section ng-repeat="hireCandidate in hireCandidates">
+            <div class="hireCandidate animated fadeInUp">
+                <img src="images/diploma_grade2.png">
+                <section>
+                    <h3>{{hireCandidate.user['first_name']}} {{hireCandidate.user['last_name']}}</h3>
+                    <h4>ID: {{hireCandidate.user['personal_id']}}</h4>
+                </section>
+                <div id="diploma_grade" ng-if="hireCandidate.personal_properties['decision'] == true">true</div>
+                <div id="diploma_grade" ng-if="hireCandidate.personal_properties['decision'] == false">false</div>
             </div>
-            <div>
-
-                <a ng-if="tab == 0" href="#/unread/{{jobId}}/resume/{{candidate._id}}">
-                    <h3>{{candidate.user['first_name']}} {{candidate.user['last_name']}}</h3>
-
-                    <p
-                            ng-model="searchText.sector"
-                            ng-bind-html="candidate.sector | highlight:searchText">
-                        {{candidate.sector}} ,{{candidate.academy.academy_type[0]}} ,
-                        {{candidate.academy.degree_type[0]}} </p>
-                    <section circle id="{{ 'circle-container-' + $index }}"
-                             data-compability="{{candidate.compatibility_level}}">
-                        <h5>{{candidate.compatibility_level.toFixed(0)}}%</h5>
-                    </section>
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </article>
 </div>
+
+
+<style>
+    .hireCandidate {
+        position: relative;
+        border-bottom: 1px solid #fff;
+        height: 100px;
+    }
+
+
+    .hireCandidate > img:nth-child(3) {
+        right: 0px;
+        top: 0;
+    }
+
+    .hireCandidate > img {
+        width: 100px;
+        position: absolute
+    }
+
+    .hireCandidate > section > h3, .hireCandidate > section > h4 {
+        margin: 0 auto;
+        color: #fff;
+    }
+
+    .hireCandidate > section > h3 {
+        line-height: 50px;
+    }
+
+    .hiredCandidatesLength {
+        margin-bottom: 100px;
+        color: #fff;
+        margin-top: 10px;
+        position: absolute;
+        top: 16px;
+    }
+    .hiredCandWrap{margin-top:100px;}
+#diploma_grade{background: url('images/diploma_grade2.png'); width:100px; height:78px; cursor: pointer; position: absolute; right: 0; top:0px;}
+    #diploma_grade:hover{background: url('images/diploma_grade1.png');}
+</style>

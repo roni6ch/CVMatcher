@@ -281,8 +281,9 @@ app.controller('candidatesController',
                         .then(function (data) {
                             if (data) {
                                 var companyName = data.data[0].name;
+                                console.log('scope.user_id: ' + $scope.user_id);
                                 if (type == 'unliked') {
-
+console.log(description);
                                     sendNotification('unlike', $scope.user_id, $scope.jobId, description, localStorage.getItem("jobTitle"), companyName);
                                     $http({
                                         url: 'https://cvmatcher.herokuapp.com/sendNotification',
@@ -302,6 +303,7 @@ app.controller('candidatesController',
                                 }
                                 else if (type == 'liked') {
 
+                                    console.log(stars);
                                     sendNotification('like', $scope.user_id, $scope.jobId, stars, localStorage.getItem("jobTitle"), companyName);
                                     $http({
                                         url: 'https://cvmatcher.herokuapp.com/sendNotification',

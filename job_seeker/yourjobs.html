@@ -24,25 +24,23 @@
 
     <div class="jobsList">
         <ul>
-            <li class="jobListLi  animated fadeInUp"
-                ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby" >
+            <li class="jobListLi  animated fadeInUp" ng-model="jobSJ"
+                ng-repeat="jobSJ in jobSeekerJobs | filter:searchText | orderBy:sortby">
 
-                <i  class="fa fa-3x fav" id="fav{{$index}}"
+                <i class="fa fa-3x fav" id="fav{{$index}}"
                    ng-class='{"fa-heart-o" : jobSJ.favorite == false, "fa-heart": jobSJ.favorite == true}'
                    ng-show="page!='deleted'"
                    ng-click="favoriteJob(jobSJ._id,$index)"></i>
 
                 <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='myjobs' || page=='favorites'"
                    ng-click="removeReviveJob(jobSJ._id,false)"></i>
-                <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='deleted'" ng-if="jobSJ.job.archive == false"
+                <i class="fa fa-trash trashMyJobs" aria-hidden="true" ng-show="page=='deleted'"
+                   ng-if="jobSJ.job.archive == false"
                    ng-click="removeReviveJob(jobSJ._id,true)"></i>
-
 
 
                 <div data-toggle="collapse" data-target="#collepse-{{$index}}" ng-click="collepse($index)">
                     <input type="hidden" class="classForNotifications" value="{{jobSJ.job._id}}"/>
-
-
 
 
                     <a
@@ -61,21 +59,20 @@
                                     {{jobSJ.job.academy["degree_name"]}}</p>
 
 
-                                  <p>  {{jobSJ.job.date}}</p>
+                                <p> {{jobSJ.job.date}}</p>
 
 
                                 <p>Address: </p>
-                                <h5 ng-repeat="j in jobSJ.job.locations  track by $index" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
-
-
+                                <h5 ng-repeat="j in jobSJ.job.locations  track by $index"
+                                    ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 
                                 <img class="arrow-down" src="images/arrow-down.png">
                             </article>
-                            <img class="readUnread"
-                                 ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : ''}}"/>
-                            <img class="readUnread"
-                                 ng-src="{{jobSJ.cv.status.current_status == 'unread' ? 'images/unreadV.png' : ''}}"/>
+                            <img class="readUnread" ng-if="jobSJ.cv.status.current_status == 'seen'"
+                                 ng-src="images/readV.png"/>
+                            <img class="readUnread" ng-if="jobSJ.cv.status.current_status == 'unread'"
+                                 ng-src="images/unreadV.png"/>
                             <!--<img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                             <img class="readUnread" ng-src="{{jobSJ.cv.status.current_status == 'seen' ? 'images/readV.png' : 'images/unreadV.png'}}"/>
                                 -->
@@ -107,15 +104,16 @@
                            ng-style="{'background-position':'0 0'}"></label>
                 </span>
                         </div>
-                        <p class="unlikeReason " ng-if="jobSJ.cv.status.current_status == 'unliked'">
+                        <p  class="unlikeReason " ng-if="jobSJ.cv.status.current_status == 'unliked'" >
                             Unlike Reason: {{jobSJ.cv.status.status_id.rate.description}}
                         </p>
 
                         <p ng-if="jobSJ.cv.hired == true && jobSJ.job.archive == false">
-                            <img class="hired"  src="images/hired.png"/>
+                            <img class="hired" src="images/hired.png"/>
                         </p>
+
                         <p ng-if="jobSJ.job.archive == true">
-                            <img class="hired"  src="images/expired.png"/>
+                            <img class="hired" src="images/expired.png"/>
                         </p>
 
 
@@ -130,6 +128,7 @@
 
                             <div class="skills">
                                 <p>Requirements {{jobSJ.job.original_text["requirements"].split("|||")[0]}}</p>
+
                                 <p>{{jobSJ.job.original_text["requirements"].split("|||")[1]}}</p>
                             </div>
 
