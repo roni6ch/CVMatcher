@@ -6,14 +6,21 @@
     <!-- candidates sections -->
     <article class="hiredCandWrap">
         <section ng-repeat="hireCandidate in hireCandidates">
-            <div class="hireCandidate animated fadeInUp">
-                <img src="images/diploma_grade2.png">
+            <div class="hireCandidate animated fadeInUp" id="indx-{{$index}}">
+                <div class="fired" ng-click="fired($index,hireCandidate.personal_properties['_id'])"
+                     ng-class="{on:hireCandidate.personal_properties['decision'] == false}">
+                </div>
+
                 <section>
                     <h3>{{hireCandidate.user['first_name']}} {{hireCandidate.user['last_name']}}</h3>
                     <h4>ID: {{hireCandidate.user['personal_id']}}</h4>
                 </section>
-                <div id="diploma_grade" ng-if="hireCandidate.personal_properties['decision'] == true">true</div>
-                <div id="diploma_grade" ng-if="hireCandidate.personal_properties['decision'] == false">false</div>
+
+
+                <div class="hiredImg" ng-click="hired($index,hireCandidate.personal_properties['_id'])"
+                     ng-class="{on:hireCandidate.personal_properties['decision'] == true}">
+                </div>
+
             </div>
         </section>
     </article>
@@ -26,7 +33,6 @@
         border-bottom: 1px solid #fff;
         height: 100px;
     }
-
 
     .hireCandidate > img:nth-child(3) {
         right: 0px;
@@ -54,7 +60,37 @@
         position: absolute;
         top: 16px;
     }
-    .hiredCandWrap{margin-top:100px;}
-#diploma_grade{background: url('images/diploma_grade2.png'); width:100px; height:78px; cursor: pointer; position: absolute; right: 0; top:0px;}
-    #diploma_grade:hover{background: url('images/diploma_grade1.png');}
+
+    .hiredCandWrap {
+        margin-top: 100px;
+    }
+
+    .fired, .hiredImg {
+        top: 0;
+        width: 120px;
+        height: 60px;
+        position: absolute;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+    .fired {
+        background: url("images/fired2.png");
+        left: 0;
+    }
+
+    .fired:hover ,.fired.on{
+        background: url("images/fired1.png");
+
+    }
+
+    .hiredImg {
+        background: url("images/hired2.png");
+        right: 0;
+    }
+
+    .hiredImg:hover ,.hiredImg.on{
+        background: url("images/hired1.png");
+    }
+
 </style>

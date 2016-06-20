@@ -1,5 +1,5 @@
 <div class="searchJobsImgCover"></div>
-<div class="yourJobsWrapper" ng-init="init();getMainJson();sort('-date');">
+<div class="yourJobsWrapper" ng-init="init();getMainJson();sort('date');">
     <h3 class="navigation"></h3>
 
     <div class="myJobsBox">
@@ -12,10 +12,10 @@
                    class="form-control">
         </form>
         <button type="button" class="btn btn-default"
-                ng-click="sort('-job.compatibility_level')">Sort By Compatibility
+                ng-click="sort('job.compatibility_level')">Sort By Compatibility
             <img class="Garrow" src="images/Garrow.png">
         </button>
-        <button type="button" class="btn btn-default" ng-click="sort('-date')">Sort
+        <button type="button" class="btn btn-default" ng-click="sort('date')">Sort
             By Date
             <img class="Garrow" src="images/Garrow.png">
         </button>
