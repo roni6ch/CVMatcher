@@ -303,7 +303,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             //if user clickd ok then move to search jobs page - need to wait to close modal
             if (sumSliders == 100 && sendForm == true) {
                 $timeout(function () {
-                    location.replace("#/myjobs");
+                    //location.replace("#/myjobs");
                 }, 1000);
             }
             else if (updateCV == true) {

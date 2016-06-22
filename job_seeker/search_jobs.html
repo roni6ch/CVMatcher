@@ -1,15 +1,8 @@
-<style>
-    .diploma{    width: 50px;
-        float: left;}
-    .compatibilityText{    position: absolute;
-        top: 149px;
-        right: 7%;
-        z-index: 11;}
-</style>
+
 <div class="searchJobsImgCover1"></div>
 
 
-<div class="searchJobsWrapper" ng-init="init();getMainJson();sort('date');">
+<div class="searchJobsWrapper" ng-init="init();getMainJson();sort('-date');">
    <!-- <img class="jobSeekerLogo" src="images/jobsee.png">-->
 
 
@@ -21,8 +14,8 @@
             <h2>Find your next job</h2>
         </header>
 
-        <input type="text" placeholder="Find Job" ng-model="searchText"
-               class="form-control">
+        <input type="text" placeholder="Find Job" ng-model="searchText" 
+               class="form-control searchText">
         <button type="button" class="btn btn-default" ng-click="getMainJson(); showSortOptions()">All Jobs
             <img class="Garrow" src="images/Garrow.png">
         </button>
@@ -37,7 +30,7 @@
                     ng-click="sort('compatibility_level')">Sort By Compatibility
                 <img class="Garrow" src="images/Garrow.png">
             </button>
-            <button type="button" class="btn btn-default sort_date" ng-click="sort('date')">Sort
+            <button type="button" class="btn btn-default sort_date" ng-click="sort('-date')">Sort
                 By Date
                 <img class="Garrow" src="images/Garrow.png">
             </button>

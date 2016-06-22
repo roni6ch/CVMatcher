@@ -101,6 +101,7 @@ app.controller('usersLoginController', function ($scope, $http, $sce, $rootScope
                 }
             }).then(function (data) {
                 $(".fa-spinner").hide();
+                console.log(data);
                 if (typeof data.data[0].company == 'undefined') {
                     location.replace("#/company-profile");
                 }

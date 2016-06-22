@@ -117,12 +117,22 @@ app.controller('resumeController',
                         $scope.user["stars"] = 0;
                         if ($id[1] == "unread") {
                             $scope.user["stars"] = 0;
+
+
+                            console.log(id);
+                            console.log(localStorage.getItem("user_id"));
                             $http({
-                                url: 'https://cvmatcher.herokuapp.com/employer/seenCV',
+                                url: 'https://cvmatcher.herokuapp.com/employer/rateCV',
                                 method: "POST",
                                 data: {
                                     "cv_id": id,
-                                    "timestamp": new Date
+                                    "status": {
+                                        "current_status": 'seen',
+                                        "stars": 0,
+                                        "description": '',
+                                        "timestamp": new Date
+                                    },
+                                    "user_id": localStorage.getItem("user_id")
                                 }
                             }).then(function () {
 
@@ -146,23 +156,26 @@ app.controller('resumeController',
                                                 }
                                             }).then(function () {
 
-                                                console.log($scope.user_id);
-                                                console.log($id[2]);
-                                                    sendNotification('seen', $scope.user_id , $id[2], '', localStorage.getItem("jobTitle"), companyName);
+                                                    console.log($scope.user_id);
+                                                    console.log($id[2]);
+                                                    sendNotification('seen', $scope.user_id, $id[2], '', localStorage.getItem("jobTitle"), companyName);
 
                                                 },
                                                 function (response) { // optional
-                                                    console.log("unlike notification AJAX failed!");
+                                                    console.log("sendNotification notification AJAX failed!");
                                                     console.log(response);
                                                 });
                                         }
                                     })
 
 
-                            })
+                            },
+                                function (response) { // optional
+                                    console.log("rateCV notification AJAX failed!");
+                                    console.log(response);
+                                });
                         }
 
-                        console.log("test", data.data[0].formula);
                         if (data.data[0].formula !== undefined) {
 
 
@@ -303,11 +316,12 @@ app.controller('resumeController',
                                     id = $id[2];
                                 else
                                     id = $id[3];
+                                console.log(id);
 
                                 console.log("companyName", companyName);
 
                                 if (type == 'unliked') {
-                                    sendNotification('unlike', $scope.user_id, $id[3], description, localStorage.getItem("jobTitle"), companyName);
+                                    sendNotification('unlike', $scope.user_id, id, description, localStorage.getItem("jobTitle"), companyName);
                                     $http({
                                         url: 'https://cvmatcher.herokuapp.com/sendNotification',
                                         method: "POST",

@@ -1,18 +1,34 @@
 <div class="jobCover"></div>
-<div class="candidatesWrapper" ng-init="init()">
+<div class="hiredWrapper" ng-init="init()">
     <h3 class="navigation"></h3>
+
+
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
     <h4 class="hiredCandidatesLength">{{hireCandidates.length}} Candidates has been Hired!</h4>
+
+    <div class="searchHiredCndidate">
+            <input type="text" id='searchHire'  placeholder="Find Hired Candidate" ng-model="search"
+                   class="form-control">
+    </div>
+
     <!-- candidates sections -->
+    <div class="filterHired">
+        <button ng-click="searchText.personal_properties['decision'] = all"><img class="Garrow" src="images/Garrow.png">Show All</button>
+        <button ng-click="searchText.personal_properties['decision'] = true"><img class="Garrow" src="images/Garrow.png">Positive Feedback</button>
+        <button ng-click="searchText.personal_properties['decision'] = false"><img class="Garrow" src="images/Garrow.png">Negative Feedback</button>
+        <button ng-click="searchText.personal_properties['decision'] != false"><img class="Garrow" src="images/Garrow.png">Not Selected</button>
+    </div>
     <article class="hiredCandWrap">
-        <section ng-repeat="hireCandidate in hireCandidates">
+        <section ng-repeat="hireCandidate in hireCandidates | filter:searchText " id="hire-cand{{hireCandidate._id}}">
             <div class="hireCandidate animated fadeInUp" id="indx-{{$index}}">
                 <div class="fired" ng-click="fired($index,hireCandidate.personal_properties['_id'])"
                      ng-class="{on:hireCandidate.personal_properties['decision'] == false}">
                 </div>
 
                 <section>
-                    <h3>{{hireCandidate.user['first_name']}} {{hireCandidate.user['last_name']}}</h3>
+                    <h3
+                        ng-bind-html="hireCandidate.user['first_name'] | highlight:search">
+                        {{hireCandidate.user['first_name']}} {{hireCandidate.user['last_name']}}</h3>
                     <h4>ID: {{hireCandidate.user['personal_id']}}</h4>
                 </section>
 
@@ -28,6 +44,28 @@
 
 
 <style>
+
+    <!-- TODO -->
+    @media (max-width: 767px){
+        .hiredWrapper{    padding: 10px 10px 0px;
+            width: 100%;}
+    }
+
+
+
+    .hiredWrapper{width: 75%;
+        margin: 0 auto;    margin-top: 200px;
+    }
+    .filterHired {
+        position: absolute;
+        top: 100px;
+    }
+
+    .filterHired button {
+        background: transparent;
+        margin-right: 20px;
+        color: #fff;
+    }
     .hireCandidate {
         position: relative;
         border-bottom: 1px solid #fff;
@@ -54,15 +92,10 @@
     }
 
     .hiredCandidatesLength {
-        margin-bottom: 100px;
         color: #fff;
         margin-top: 10px;
         position: absolute;
         top: 16px;
-    }
-
-    .hiredCandWrap {
-        margin-top: 100px;
     }
 
     .fired, .hiredImg {
@@ -79,7 +112,7 @@
         left: 0;
     }
 
-    .fired:hover ,.fired.on{
+    .fired:hover, .fired.on {
         background: url("images/fired1.png");
 
     }
@@ -89,8 +122,14 @@
         right: 0;
     }
 
-    .hiredImg:hover ,.hiredImg.on{
+    .hiredImg:hover, .hiredImg.on {
         background: url("images/hired1.png");
     }
 
+
+    #searchHire {
+        position: absolute;
+        width: 50%;
+        top: 60px;
+    }
 </style>

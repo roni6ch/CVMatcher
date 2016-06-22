@@ -12,14 +12,14 @@
 @font-face {
     font-family: 'alefBold';
     font-weight: 300; (bold)
-font-style: normal;
+    font-style: normal;
     src: url('../fonts/Alef-bold.ttf');
 }
 
 @font-face {
     font-family: 'alefregular';
     font-weight: 300; (regular)
-font-style: normal;
+    font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
 }
 
@@ -29,8 +29,6 @@ font-style: normal;
     width:100%;
     padding-top: 12px;
 }
-
-h6.requiredError {}
 
 @font-face {
     font-family: 'almoni-dl-aaa-bold';
@@ -63,9 +61,11 @@ html {
 body {
     height: 83%;
     width: 100%;
-    margin: 0 auto !important;
-    font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
+    margin: 0 auto;
+      font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
     "sans-serif";
+    background-color: transparent;
+    background: #231f20;
 }
 
 ol, ul {
@@ -96,8 +96,6 @@ table {
 input, textarea, select, option {
     resize: none;
     outline: none;
-    /* margin-right: -40px; */
-    /* margin-left: 0; */
     -webkit-border-radius: 0px;
     border: 0;
 }
@@ -180,17 +178,6 @@ footer div a {
     margin-left: 10px;
 }
 
-.coverBackground {
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
-    -o-background-size: cover;
-    background-size: cover !important;
-    width: 580px;
-    height: 430px;
-    left: 0px;
-    float: left;
-}
-
 .flc {
     clear: both;
 }
@@ -208,12 +195,12 @@ footer div a {
 }
 
 .wrapper {
-
     background-color: #231f20;
     position: relative;
     text-align: center;
     float: left;
     width: 100%;
+    /* z-index: 2; */
     min-height: 100vh;
     margin-bottom: -10px;
 }
@@ -260,7 +247,6 @@ footer div a {
     left: -18px;
     text-align: left;
     width: 110px;
-    /* font-weight: bold; */
     font-size: 22px;
     color: #ccc;
     border-top-left-radius: 3px;
@@ -332,8 +318,8 @@ footer {
 }
 
 .redGrade{
-    font-size: 24px;
-    color: red;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .navBarImg li a:hover{
@@ -419,8 +405,8 @@ footer {
     width: 100%;
     height: 100vh;
     padding: 4px;
-    padding-top: 70px;
-    padding-left: 0px;
+/*    padding-top: 70px;
+*/    padding-left: 0px;
     border-radius: 0;
     float: right;
 }
@@ -444,12 +430,9 @@ footer {
 .mobileMenu i {
     margin-right: 20px;
 }
-
 /*  HAMBURGER END HERE  */
-/****************************************************** GOOGLE SIGN-IN HTML **********************************************/
 
 /****************************************************** INDEX - NAV BAR **********************************************/
-
 #profilePicture {
     position: absolute;
     top: 20px;
@@ -461,17 +444,11 @@ footer {
 }
 
 .profilePictureHam {
-    position: fixed;
-    top: 10%;
-    left: 45%;
+    margin: 0 auto 10px;
     z-index: 100;
     border-radius: 100px;
     border: 2px solid #fff;
     cursor: pointer;
-}
-
-
-.parseExperience {
 }
 
 .GarrowCV {
@@ -483,7 +460,6 @@ footer {
 
 .sendButtonP .Garrow {
     margin-top: 4px;
-    /* margin-left: 10px; */
 }
 
 .userIcon {
@@ -496,8 +472,7 @@ footer {
 /*NAV*/
 .navbar {
     height: 0px;
-    min-height: inherit !important;
-
+    min-height: inherit;
 }
 
 .navBar > div:nth-child(1) {
@@ -530,10 +505,11 @@ footer {
 }
 
 .navBarImg {
-    height: 60px;
+    height: 0;
     width: 100%;
     position: relative;
     margin: 0 auto;
+    z-index: 2;
     z-index: 1;
 }
 
@@ -551,13 +527,19 @@ footer {
     float: right;
 }
 
-
 .navBarImg ul {
     width: 100%;
     padding: 17px 12% 0px;
     font-size: 78%;
     min-height: 90px;
     float: left;
+    z-index: 2;
+    opacity: 1;
+    margin-bottom: 0;
+    background: transparent !important;
+    background-color: transparent;
+    padding-bottom: 33px;
+    /* opacity: 0.8; */
 }
 
 .navBarImg ul li {
@@ -569,10 +551,6 @@ footer {
 .container-fluid {
     padding-right: 0px;
 }
-
-
-
-/****************************************************** CV PREVIEW ***************************************************/
 
 /****************************************************** MY JOBS - HTML **********************************************/
 /*liked*/
@@ -594,13 +572,12 @@ img.ng-scope {
 
 .myjobsWrapper button:hover, .searchJobsWrapper button:hover, .yourJobsWrapper button:hover {
     background-color: transparent;
-    color: #fff !important;
+    color: #fff;
 }
 
 .title {
     font-size: 22px;
 }
-
 
 .selected{
     border-top: 1px solid #33B778;
@@ -611,7 +588,6 @@ img.ng-scope {
 .line {
     position: absolute;
 }
-
 
 .newJob {
     position: absolute;
@@ -636,12 +612,20 @@ img.ng-scope {
 }
 
 .myJobsImgCover {
-    background-image: url("../images/myjobscover22.png");
-    height: 100%;
-    width: 100%;
+    /* background-image: url("../images/myjobscover22.png"); */
+    /* height: 100%; */
+    /* width: 100%; */
+    /* position: fixed; */
+    /* top: 0; */
+    background-size: cover;
+    /* z-index: 1; */
+    background: url("../images/jobseekerCover.png");
+    /* background-image: url("../../images/myjobscover22.png"); */
+    height: 745px;
+    width: 651px;
     position: fixed;
     top: 0;
-    background-size: cover;
+    right: 0;
 }
 
 .engineering {
@@ -682,7 +666,8 @@ a:focus, a:hover {
 
 .yourJobsWrapper button:hover,.yourJobsWrapper button:active:hover,.yourJobsWrapper button:focus {
     outline:none;
-    opacity: 0.6;    background-color: transparent;
+    opacity: 0.6;    
+    background-color: transparent;
     color:#fff;
 }
 
@@ -759,9 +744,6 @@ a:focus, a:hover {
     font-family: almoni-dl-aaa-regular;
 }
 
-.jobs > div:nth-child(2) span {
-}
-
 .jobs > div:nth-child(2) article {
     float: left;
     width: 100%;
@@ -771,9 +753,6 @@ a:focus, a:hover {
 .jobs h5 {
     padding-top: 6px;
     font-size: 16px;
-}
-
-.tabsWrapper {
 }
 
 .tabsWrapper > h3 {
@@ -821,10 +800,6 @@ a:focus, a:hover {
     padding-right: 12%;
 }
 
-.tab-content a {
-    text-decoration: none !important;
-}
-
 .tabsContent > article > section {
     margin-bottom: 10px;
     position: relative;
@@ -837,18 +812,6 @@ a:focus, a:hover {
     height: 66px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-}
-
-.nav-tabs li a {
-    color: #1b75bb;
-    margin-right: 0px !important;
-    padding: 21px 0px !important;
-    height: 100%;
-    font-size: 18px;
-}
-
-.nav-tabs .active a {
-    background: #e6e6e6 !important;
 }
 
 .tabsContent div h3 {
@@ -869,23 +832,9 @@ a:focus, a:hover {
 }
 
 /****************************************************** Candidtaes - HTML **********************************************/
-
-
 /****************************************************** RESUME - HTML **********************************************/
 #previewCV > div {
     width: 80%;
-}
-
-.bubbleChart {
-    min-width: 100px;
-    max-width: 700px;
-    margin: 0 auto;
-    margin-top: 22px;
-}
-
-.bubbleChart svg {
-    background: #000;
-    margin-top: 0;
 }
 
 .timeline-heading {border-top: 1px solid #fff;border-left: 1px solid #fff;border-right: 1px solid #fff;}
@@ -923,11 +872,6 @@ a:focus, a:hover {
     margin-bottom: 20px;
 }
 
-.resumeDetailsBox a {
-    text-decoration: none !important;
-    margin-bottom: 10px;
-}
-
 .resumeDetailsBox h3 {
     margin-bottom: 20px;
 }
@@ -962,20 +906,6 @@ a:focus, a:hover {
 
 .resumeYears {
     margin-top: 58px;
-}
-
-.resumeYears input, .resumeYears textarea {
-    background: none;
-    width: 100% !important;
-    overflow: hidden;
-    min-height: 50px;
-    resize: both;
-    background: #fff;
-}
-
-.resumeYears > div {
-    width: 127px;
-    margin: -2px auto;
 }
 
 .resumeYears > div h3:nth-child(1) {
@@ -1085,9 +1015,8 @@ a:focus, a:hover {
 }
 
 /****************************************************** JOB - HTML **********************************************/
-
 .contentWrapper .thumbnails .thumbnail {
-    min-height: 100px !important;
+    min-height: 100px;
     width: 100%;
 }
 
@@ -1106,18 +1035,11 @@ a:focus, a:hover {
 }
 
 .thumbnail {
-    min-height: 100px !important;
     width: 210px;
 }
 
 .thumbnail .caption {
     padding: 0px;
-}
-
-.btn-droppable {
-    width: 180px;
-    padding-left: 4px;
-    margin-right: 5px !important;
 }
 
 .contentWrapper article {
@@ -1135,8 +1057,8 @@ a:focus, a:hover {
     font-size: 26px;
     margin-bottom: 10px;
     text-align: center;
-    background: none !important;
-    border: 0 !important;
+    background: none;
+    border: 0;
     display: block;
 }
 
@@ -1190,7 +1112,7 @@ a:focus, a:hover {
 
 .jobP {
 
-    margin-top: 0 !important;
+    margin-top: 0;
     color: #fff;
 }
 
@@ -1221,13 +1143,6 @@ a:focus, a:hover {
     padding: 15px 0px 15px 0px;
     text-align: left;
     border-radius: 10px;
-}
-
-.jobEdit > div {
-    width: 100% !important;
-    padding: 6px 15px;
-    margin-bottom: 0px !important;
-    /* float: left; */
 }
 
 .editLogo {
@@ -1286,37 +1201,6 @@ a:focus, a:hover {
     top: 39%;
     font-size: 30px;
     left: 32%;
-}
-
-.paginationSelected {
-    z-index: 2;
-    color: #23527c !important;
-    background-color: #eee !important;
-    border-color: #ddd !important;
-}
-
-.operators {
-    width: 100%;
-    float: left;
-}
-
-.operators input {
-
-    color: #23527c;
-    background: none;
-    border: 0;
-    text-align: center;
-    font-size: 21px;
-    width: 100%;
-    float: left;
-    position: inherit !important;
-    margin-left: 0px !important;
-}
-
-.operators > h3 {
-    float: left;
-    padding: 10px 10px;
-    display: none;
 }
 
 .Item > label {
@@ -1383,71 +1267,6 @@ a:focus, a:hover {
 
 .toggleAdv {
     right: 0px;
-}
-
-.operators select {
-    width: 11%;
-    float: left;
-    margin-top: 3px;
-}
-
-.operators .Page {
-    float: left;
-    display: table-cell;
-    padding: 0px;
-    width: 100%;
-    margin: auto;
-    background-color: #FFF;
-    border: 1px solid #999;
-}
-
-.operators .Container {
-    margin: 10px;
-    border: 1px dashed #CCC;
-}
-
-.operators .NewItem {
-    display: block;
-    margin: 5px;
-    background-color: #FFF;
-    text-align: center;
-    padding: 25px;
-    color: #AAA;
-    cursor: pointer;
-}
-
-.operators .NewItem:hover {
-    background-color: #E6FFE6;
-    color: #555;
-}
-
-.operators .CopyItem {
-    display: none;
-    margin: 5px;
-    background-color: #FFF;
-    text-align: center;
-    padding: 25px;
-    color: #AAA;
-    cursor: pointer;
-}
-
-.operators .CopyItemActive {
-    background-color: #CCF8FF;
-    color: #555;
-}
-
-.operators .Item {
-    margin: 5px;
-    cursor: pointer;
-    height: 80px;
-    padding: 5px 10px;
-    border: 1px solid #CCC;
-}
-
-.operators .ItemPlaceHolder {
-    margin: 5px;
-    height: 80px;
-    background-color: #FFF4D9;
 }
 
 .langs {
@@ -1528,9 +1347,7 @@ a:focus, a:hover {
     background: #258759;
 }
 
-/************************************************************************************************************************************/
 /****************************************************** SEARCH JOB - JOB SEEKER - HTML **********************************************/
-/************************************************************************************************************************************/
 .arrow-down, .arrow-up {
     margin: 0 auto;
     position: absolute;
@@ -1579,16 +1396,9 @@ a:focus, a:hover {
     z-index: 11;
 }
 
-.checkMyCVButton {
-    width: 25% !important;
-    text-align: center;
-    margin: 14px;
-    margin-left: 0px;
-}
-
 .visibleText {
     float: left;
-    margin-top: 0px !important;
+    margin-top: 0px;
     padding-top: 10px;
 }
 
@@ -1668,7 +1478,6 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     width: 72px;
     position: absolute;
     top: 22px;
-
 }
 
 .jobListLi a {
@@ -1690,7 +1499,7 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     position: absolute;
     top: 46px;
     to; */
-text-align: center;
+    text-align: center;
     left: 42%;
 }
 
@@ -1806,10 +1615,10 @@ text-align: center;
 }
 
 /****************************************************** MATCH  - JOBSEEKER - HTML **********************************************/
-
 .jobDetailsLS{
     margin:10px 0px;
 }
+
 .jobDetailsLS > h3{
     text-align: left;
     color: #fff;
@@ -1912,16 +1721,14 @@ text-align: center;
 }
 
 /****************************************************** ABOUT - HTML ********************************************************/
-
 /****************************************************** CONTACT - HTML ********************************************************/
-
 /****************************************************** PROFILE - HTML ********************************************************/
-
 .parseButton{
     float: none;
 }
 
 .parserExperienceLanguage,.parserExperienceYearsLabel{width:50%;}
+
 .parser {
     margin-bottom: 2%;
 }
@@ -1950,15 +1757,6 @@ text-align: center;
     float: left;
     margin-right: 2px;
     margin-top: 11px;
-}
-
-.profileTitle {
-    color: #fff;
-    margin-bottom: 0 !important;
-    padding-left: 0;
-    padding-top: 18px;
-    font-size: 40px;
-    font-family: almoni-dl-aaa-regular;
 }
 
 .sendB {
@@ -2018,12 +1816,20 @@ div#popover924921 {
 }
 
 .profileCover {
-    background-image: url("../images/myjobscover22.png");
-    height: 100%;
-    width: 100%;
+    /* background-image: url("../images/myjobscover22.png"); */
+    /* height: 100%; */
+    /* width: 100%; */
+    /* position: fixed; */
+    /* top: 0; */
+    /* background-size: cover; */
+    background: url("../images/jobseekerCover.png");
+    /* background-image: url("../../images/myjobscover22.png"); */
+    height: 745px;
+    width: 651px;
     position: fixed;
     top: 0;
-    background-size: cover;
+    right: 0;
+    background-repeat: no-repeat;
 }
 
 .buttonBorder {
@@ -2059,10 +1865,9 @@ div#popover924921 {
 }
 
 .userProfile .btn.btn-warning {
-    float: left;
+    float: right;
     border-radius: 0;
     margin: 2px;
-    padding-left: 0;
 }
 
 .userProfile div button {
@@ -2143,26 +1948,7 @@ div#popover924921 {
     float: left
 }
 
-/****************************************************************************************************************************/
 /****************************************************** MY CV - HTML ********************************************************/
-/****************************************************************************************************************************/
-.mycv {
-    margin-bottom: 47px;
-    border: 2px solid #ebebeb;
-    float: left;
-    overflow: hidden;
-    padding: 15px 0px 15px 0px;
-    text-align: left;
-    border-radius: 10px;
-}
-
-.mycv > div {
-    width: 100% !important;
-    padding: 6px 15px;
-    margin-bottom: 0px !important;
-    float: left;
-}
-
 .experience > section > label:first-child {
     float: left;
     width: 100%;
@@ -2185,9 +1971,7 @@ div#popover924921 {
 }
 
 /*------------------company profile HTML------------------------------------*/
-
 .signExistingCompany{float:left;     width: 100%;}
-
 
 .GarrowInput {
     position: relative;
@@ -2200,7 +1984,6 @@ div#popover924921 {
 }
 
 /****************************************************** TIMELINE ***************************************************/
-
 .timelineForPreview {
     position: relative;
 }
@@ -2299,7 +2082,7 @@ div#popover924921 {
 }
 
 .container {
-    width: 100% !important;
+    width: 100%;
 }
 
 .timeline {
@@ -2537,3 +2320,6 @@ div#popover924921 {
 .cvPreview{background: transparent;color:#fff;border:0;outline:0;float:left;}
 #predictAppend h2 {color: #fff;margin-top: 200px;margin-bottom: 30px;border: 1px solid #57b7ee;padding: 12px;}
 
+.yearsProfile{
+    width: 100% !important;
+}

@@ -8,12 +8,18 @@
 }
 
 .googleSignInImg {
-    background-image: url("../images/myjobscover22.png");
-    height: 100%;
-    width: 100%;
+    background: url("../../images/jobseekerCover.png") right bottom no-repeat;
+    /*background-image: url("../../images/myjobscover22.png");*/
+    /* height: 100%; */
+    height: 745px;
+    width: 651px;
     position: fixed;
-    top: 0;
-    background-size: cover;
+    top: 0px;
+    right: 0;
+    width: 100%;
+    /* position: fixed; */
+    /* top: 0; */
+    /* background-size: cover; */
 }
 
 .googleSignInBox > div > a:hover {
@@ -111,9 +117,9 @@
     text-align: center;
 }
 
-.geocomplete {
+/*.geocomplete {
     width: 50% !important;
-}
+}*/
 
 .geocomplete input {
     margin-bottom: 10px;

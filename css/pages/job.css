@@ -56,13 +56,13 @@
     margin-bottom: 0px !important;
 }
 
-.jobWrapper .buttonBorder {
+/*.jobWrapper .buttonBorder {
     height: 46px;
     width: 70px !important;
     margin: 0 auto;
     margin-top: 22px;
     float: none;
-}
+}*/
 
 /*languges after parsing*/
 .jobWrapper .btn-info {
@@ -111,12 +111,6 @@
     background-color: transparent;
     border-color: transparent;
 }
-
-.jobWrapper .btn.active.focus, .jobWrapper .btn.active:focus, .jobWrapper .btn.focus, .jobWrapper .btn:active.focus, .jobWrapper .btn:active:focus, .jobWrapper .btn:focus {
-    outline: 0;
-    outline-offset: 0;
-}
-
 
 .jobWrapper .btn-group {
     background-color: transparent;
@@ -229,7 +223,7 @@
 .jobWrapper .buttonBorder button {
     pointer-events: auto;
     color: #fff;
-    margin-left: 50%;
+    padding-left: 0;
     background-color: transparent;
     border-color: transparent;
     border-radius: 0;
@@ -247,3 +241,33 @@
     margin-bottom: 16%;
 }
 
+.jobWrapper .ui-slider-range.ui-widget-header.ui-corner-all.ui-slider-range-min {
+    margin-left: -1.5%;
+}
+
+.jobWrapper .thumbnail .form-control {
+    width: 100%;
+}
+
+.jobWrapper p.combinations.ng-binding {
+    color: #fff;
+}
+
+.jobWrapper .btn-default.disabled.focus, .jobWrapper .btn-default.disabled:focus, .jobWrapper .btn-default.disabled:hover, .jobWrapper .btn-default[disabled].focus, .jobWrapper .btn-default[disabled]:focus, .jobWrapper .btn-default[disabled]:hover, .jobWrapper fieldset[disabled] .btn-default.focus, .jobWrapper fieldset[disabled] .btn-default:focus, .jobWrapper fieldset[disabled] .btn-default:hover {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.jobWrapper .paginationSelected {
+    z-index: 2;
+    color: #23527c !important;
+    background-color: #eee !important;
+    border-color: #ddd !important;
+}
+
+.jobWrapper .btn.active.focus, .jobWrapper .btn.active:focus, .jobWrapper .btn.focus, .jobWrapper .btn:active.focus, .jobWrapper .btn:active:focus, .jobWrapper .btn:focus {
+    outline: 0;
+    outline-offset: 0;
+    background: transparent;
+    border: 0;
+}

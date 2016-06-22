@@ -129,7 +129,7 @@ app.config(function ($routeProvider) {
                 }
             }
         }).when('/company-profile', {
-            templateUrl: 'employer/companyProfile.html',
+            templateUrl: 'employer/company_profile.html',
             controller: 'companyProfileController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
@@ -288,6 +288,7 @@ function checkProfile($rootScope, str) {
         $rootScope.imgProfile = $.parseJSON(localStorage.getItem("user")).image;
         $rootScope.Profile = localStorage.getItem("profile").split("/")[1];
         var location = $rootScope.Profile;
+        console.log(location);
         if ($rootScope.Profile == 'company-profile')
             location = 'company-profile';
         else
@@ -328,7 +329,7 @@ $(document).ready(function () {
     });
 
 
-    $("#logo").click(function(){
+    $("#logo").click(function () {
         console.log("A");
         $(".navbar-collapse").collapse('hide');
     });
@@ -359,7 +360,7 @@ function connectToChat(url) {
 }
 
 //send notification
-function sendNotification(notificationType, userId, jobId, other, jobName,companyName) {
+function sendNotification(notificationType, userId, jobId, other, jobName, companyName) {
     console.log(companyName);
     var message = {};
     message.notificationType = notificationType;
@@ -372,7 +373,7 @@ function sendNotification(notificationType, userId, jobId, other, jobName,compan
 }
 
 //notifications for sockets
-function notifyMe(type, jobName,companyName) {
+function notifyMe(type, jobName, companyName) {
 
     var body;
     body = '';
@@ -385,19 +386,20 @@ function notifyMe(type, jobName,companyName) {
     if (Notification.permission === "granted") {
 
         if (type == 'seen') {
-            body = 'The employer from company '+ companyName +' viewed your cv for job: '+ jobName;
+            body = 'The employer from company ' + companyName + ' viewed your cv for job: ' + jobName;
         }
         else if (type == 'like') {
-            body = "The employer from company "+ companyName +" liked your cv for job " + jobName;;
+            body = "The employer from company " + companyName + " liked your cv for job " + jobName;
+            ;
 
         }
         else if (type == 'unlike') {
-            body = "The employer from company "+ companyName +"  didn't liked your cv for job: "+ jobName;
+            body = "The employer from company " + companyName + "  didn't liked your cv for job: " + jobName;
 
 
         }
         else if (type == 'hire') {
-            body = "Congratulations!! you have been hired by company "+ companyName + " for  job: " + jobName;
+            body = "Congratulations!! you have been hired by company " + companyName + " for  job: " + jobName;
 
 
         }

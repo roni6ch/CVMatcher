@@ -116,7 +116,7 @@
                         </div>
 
 
-                        <div class="form-group password">
+                        <div class="form-group password newPassword">
                             <label>Change to New Password:</label> <input type="password" maxlength="5"
                                                                           class="form-control newPasswordCompany"
                                                                           value="">
@@ -164,6 +164,9 @@
                                             <input type="radio" name="companies">
                                             <span class="glyphicon glyphicon-ok"></span>
                                             <img ng-src={{c.logo}}>
+                                            <hr>
+                                            <h3 style="color:#000">{{c.name}}</h3>
+
                                         </label>
                                     </div>
                                 </div>
@@ -191,7 +194,7 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" >&times;</button>
                     <h4 class="modal-title">{{status}}</h4>
                     <input ng-show="chooseCompanyModal == true" type="text" placeholder="Please write password: "
                            ng-model="passForCompany"/>
@@ -217,7 +220,7 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{status}}</h4>
                 </div>
                 <div class="modal-footer">

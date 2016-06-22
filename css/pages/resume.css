@@ -71,3 +71,8 @@
 .resumeWrapper > div h3, .resumeWrapper > div h4 {
     color: #ebebeb;
 }
+
+.resumeWrapper .resumeYears > div {
+    /* width: 127px; */
+    margin: -2px auto;
+}

@@ -20,8 +20,6 @@ app.controller('companyProfileController',
 
         //company profile details
         $scope.init = function () {
-
-            angular.element(".password").hide();
             angular.element(".existingCompanis").hide();
             $rootScope.userSignInType = 'employer';
             $http({
@@ -36,6 +34,7 @@ app.controller('companyProfileController',
                             $scope.employerProfile = data.data[0];
                             console.log(data.data[0]);
                             if (data.data[0].company) {
+                                angular.element(".password").hide();
                                 company = true;
                                 companyId = data.data[0].company;
                                 if (companyId) {
@@ -65,7 +64,7 @@ app.controller('companyProfileController',
 
                             }
                             else {
-
+                                $(".newPassword").hide();
                                 $scope.password = true;
                                 angular.element(".fa-pulse").hide();
                             }
@@ -75,7 +74,7 @@ app.controller('companyProfileController',
                         angular.element(".fa-pulse").hide();
                         console.log("companyProfileController AJAX failed!");
                     });
-        }
+        };
         //select specific logo for company - and remove all other selected
         $scope.newLogo = function () {
             console.log($(this).find("img").prevObject[0].logo);
@@ -168,6 +167,13 @@ app.controller('companyProfileController',
                         $scope.status = messageResource.get("modal.company", 'resources');
 
                         tabType = 'company';
+
+                        $scope.chooseCompanyModal = false;
+                        $timeout(function () {
+                            $('#update').modal('hide');
+                            if (tabType == 'company')
+                                location.replace("#/myjobs");
+                        }, 3000);
                     },
                     function (response) { // optional
                         $scope.status = messageResource.get("modal.company.error", 'resources');
@@ -198,6 +204,13 @@ app.controller('companyProfileController',
                         tabType = 'company';
                         $('#update').modal('show');
                         $scope.status = messageResource.get("modal.company.update", 'resources');
+
+                        $scope.chooseCompanyModal = false;
+                        $timeout(function () {
+                            $('#update').modal('hide');
+                            if (tabType == 'company')
+                                location.replace("#/myjobs");
+                        }, 3000);
 
                     },
                     function (response) { // optional
@@ -281,16 +294,8 @@ app.controller('companyProfileController',
                     console.log(response);
                 });
         };
-        //close window modal.
-        $scope.closeModal = function () {
-            $scope.chooseCompanyModal = false;
-            $timeout(function () {
-                if (tabType == 'company')
-                    location.replace("#/myjobs");
-            }, 500);
-        }
 
         $scope.signExistingCompany = function () {
             angular.element(".existingCompanis").toggle();
-        }
+        };
     });

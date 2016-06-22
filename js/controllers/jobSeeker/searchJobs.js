@@ -6,9 +6,10 @@
  * ********************* jobSeeker Search Jobs Controller ****************
  */
 app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $sce, $http, $location) {
-
+    var jobTitles;
     //initialize parameters for controller
     $scope.init = function () {
+        jobTitles = [];
         localStorage.removeItem('fixCV');
         $scope.getTopTenJobs = false;
         $rootScope.userSignInType = 'jobSeeker';
@@ -24,10 +25,12 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             notifyMe(message.notificationType, message.jobName,message.companyName);
         }
 
+
         angular.element(".sort_compability").hide();
         angular.element(".sort_date").hide();
     };
     //get jobs that didnot send cv to them
+
     $scope.getMainJson = function () {
 
         $scope.getTopTenJobs = false;
@@ -49,7 +52,6 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
         });
 
-
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getJobsBySector',
             method: "POST",
@@ -64,8 +66,13 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     angular.element(".fa-pulse").hide();
 
                     angular.forEach(data.data, function (value, key) {
+                        jobTitles.push(value.original_text.title);
                         data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
                     });
+               // $scope.names = jobTitles;
+
+                    console.log(jobTitles);
+                    $(".searchText").autocomplete({ source: jobTitles});
 
                 },
                 function (response) { // optional
@@ -75,6 +82,11 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
                 });
     };
+    $('.searchText select').click(function() {
+        console.log("a");
+        $('.searchText').trigger("focus"); //or "click", at least one should work
+    });
+
     $scope.showSortOptions = function(){
         angular.element(".sort_compability").show();
         angular.element(".sort_date").show();

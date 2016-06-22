@@ -3,6 +3,7 @@
     padding-top: 0px;
     font-size: 40px;
     color: white;
+    margin-bottom: 20px;
     font-family: almoni-dl-aaa-regular;
 }
 
@@ -31,4 +32,11 @@
     margin-top: 20px;
     margin-left: 0%;
     width: 60%;
+}
+
+.searchJobsWrapper .checkMyCVButton {
+    width: 25%;
+    text-align: center;
+    margin: 14px;
+    margin-left: 0px;
 }

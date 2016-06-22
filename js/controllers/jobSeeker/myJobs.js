@@ -11,55 +11,66 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
     var path = $location.path().split('/')[1];
     var navigation;
     var data;
+    var jobTitles;
 
 
     //initialize parameter in the controller
     $scope.init = function () {
-
-
+        jobTitles = [];
+        $scope.descriptionFromMessage = '';
         console.log($rootScope.userSignInType);
         localStorage.removeItem('fixCV');
         //TODO: OPEN SOCKET!
         console.log(path);
 
+
         socket.onmessage = function (msg) {
-
-
             var message = JSON.parse(msg.data);
             console.log(message);
             console.log(path);
             var jobId = message.jobId;
             console.log(jobId);
             if (path == 'yourjobs') {
+
+                notifyMe(message.notificationType, message.jobName, message.companyName);
                 console.log(message.notificationType);
                 $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
 
                 console.log($scope);
+                console.log($scope.jobSJ);
+                console.log($scope.jobSJ.cv);
+                console.log($scope.jobSJ.cv.status);
+                console.log($scope.jobSJ.cv.status.status_id);
                 if (message.notificationType == 'seen') {
                     console.log("seen");
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.jobSJ.cv.status.current_status = 'seen';
                     });
                 }
                 else if (message.notificationType == 'like') {
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.jobSJ.cv.status.current_status = 'liked';
-                        $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
+                        if ($scope.jobSJ.cv.status.status_id !== 'undefined') {
+                            $scope.jobSJ.cv.status.status_id.rate.stars = message.other;
+                        }
                     });
 
                 }
                 else if (message.notificationType == 'unlike') {
 
-                    $timeout(function() {
+                    $timeout(function () {
                         $scope.jobSJ.cv.status.current_status = 'unliked';
-                        $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+                        if ($scope.jobSJ.cv.status.status_id !== 'undefined') {
+                            $scope.jobSJ.cv.status.status_id.rate.description = message.other;
+                        }
                     });
                 }
             }
-            notifyMe(message.notificationType, message.jobName, message.companyName);
         }
-
     }
+
+
+
     //check what page im located and bring the right json
     $scope.getMainJson = function () {
         if (path == 'favorites') {
@@ -101,18 +112,20 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
                     //navigation in site
                     $(".navigation")[0].innerHTML = navigation;
                     console.log(data.data);
+
                     if (data.data.length > 0) {
-
+                        $scope.jobSeekerJobs = data.data[0].jobs;
                         angular.element(".fa-pulse").hide();
-
 
                         //fix date string
                         if (data.data[0].jobs.length > 0) {
                             angular.forEach(data.data[0].jobs, function (value, key) {
+                                jobTitles.push(data.data[0].jobs[key].job.original_text.title);
                                 data.data[0].jobs[key].job.date = value.job.date.split("T")[0] + ' | ' + value.job.date.split("T")[1].split(".")[0];
                             });
-                            $scope.jobSeekerJobs = data.data[0].jobs;
-                            console.log($scope.jobSeekerJobs);
+                            console.log(jobTitles);
+                            // $(".searchText").autocomplete({source:jobTitles});
+
                         }
 
                     } else {
@@ -199,5 +212,4 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
             $("#collepse-" + id).parent().find(".arrow-down").hide();
         }
     }
-
 });
