@@ -310,6 +310,11 @@
         margin-top: 38px;
     }
 
+    .matchpageWrapper .redGrade {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
     .matchpageWrapper .formula-result p {
         color: #FFFFFF;
         font-size: 3vh;
@@ -510,7 +515,7 @@
 
     .myjobsWrapper header h2 {
         top: 9%;
-        left: 10%;
+        left: 2%;
         font-size: 26px;
         color: white;
         font-family: almoni-dl-aaa-regular;
@@ -620,6 +625,11 @@
     /*resume*/
     .resumeWrapper .userDetailsBox {
         margin-top: 64px;
+    }
+
+    .resumeWrapper .redGrade {
+        font-size: 15px;
+        font-weight: bold;
     }
 
     .resumeYears {

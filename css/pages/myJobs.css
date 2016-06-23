@@ -102,3 +102,9 @@
     border-bottom: 1px solid #fff;
     border-radius: 0;
 }
+
+.myjobsWrapper .jobTitles{
+    font-weight: bold;
+    font-size: 21px;
+    display: block;
+}

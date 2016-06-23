@@ -58,21 +58,23 @@
 
                     </div>
                     <div data-toggle="collapse" data-target="#collepse-{{$index}}">
-                        <p>Address: </p>
+                        <p class="jobTitles">Address: </p>
                         <h5 ng-repeat="j in job.locations track by $index" ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 
                         <h5 ng-model="searchText.date" ng-bind-html="job.date | highlight:searchText">Date: {{job.date}}</h5>
                         <article id="collepse-{{$index}}" class="collapse">
-                        <h5>Requirements:</h5>
+                            <h5 class="jobTitles">Requirements:</h5>
 
                         <p ng-model="searchText.original_text['requirements'].split('|||')[0]"
                            ng-bind-html="job.original_text['requirements'].split('|||')[0] | highlight:searchText">
-                            {{job.original_text["requirements"].split("|||")[0]}}</p>
+                            {{job.original_text["requirements"].split("|||")[0]}}
+                        </p>
+                            <span class="jobTitles">Advanteges: </span>
 
                         <p>{{job.original_text["requirements"].split("|||")[1]}}</p>
 
-                            <span>Inforamtion: </span>{{job.original_text["description"]}}
+                            <span class="jobTitles">Inforamtion: </span>{{job.original_text["description"]}}
                         </article>
 
                         <span class="compabilityM">Compatibility:</span>

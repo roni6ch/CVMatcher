@@ -70,7 +70,7 @@
                                  ng-src="images/diploma_grade.png">
                             <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade!</span>
 
-                            <p>Address: </p>
+                            <p class"searchTitles">Address: </p>
                             <h5 ng-repeat="j in job.locations  track by $index"
                                 ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
@@ -86,13 +86,10 @@
                         <h5 class="compatibilityText">Compatibility Level</h5>
                     </a>
                     <article id="collepse-{{$index}}" class="collapse ">
-                        <p>Description: {{job["original_text"].description}}</p>
-
+                        <p><span class"searchTitles">Description:</span> {{job["original_text"].description}}</p>
                         <div class="skills">
-                            <p>Requirements Must:{{job.original_text["requirements"].split("|||")[0]}}</p>
-
-                            <p>Advantage: {{job.original_text["requirements"].split("|||")[1]}}</p>
-                        </div>
+                            <p><span class"searchTitles">Requirements Must:</span> {{job.original_text["requirements"].split("|||")[0]}}</p>
+                            <p><span class"searchTitles">Advantage:</span> {{job.original_text["requirements"].split("|||")[1]}}</p> </div>
                         <section>
 
                         </section>

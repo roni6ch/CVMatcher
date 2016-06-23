@@ -56,14 +56,6 @@
     margin-bottom: 0px !important;
 }
 
-/*.jobWrapper .buttonBorder {
-    height: 46px;
-    width: 70px !important;
-    margin: 0 auto;
-    margin-top: 22px;
-    float: none;
-}*/
-
 /*languges after parsing*/
 .jobWrapper .btn-info {
     color: #fff;
@@ -270,4 +262,8 @@
     outline-offset: 0;
     background: transparent;
     border: 0;
+}
+
+ .jobModal{
+     margin-top: 100px;
 }

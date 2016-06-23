@@ -47,12 +47,12 @@
 }
 
 .candidatesImgCover {
-    background-image: url('../../images/myjobscover22.png');
-    height: 100%;
-    width: 100%;
+    background: url("../../images/jobseekerCover.png") right bottom no-repeat;
+    height: 120%;
+    width: 651px;
     position: fixed;
-    top: 0;
-    background-size: cover;
+    top: 0px;
+    right: 0;
 }
 
 .candidates h3 {

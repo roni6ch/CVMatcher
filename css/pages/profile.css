@@ -1,4 +1,16 @@
 
+
+.profileCoverJ{
+    background: url("../../images/employerCover.png") right bottom no-repeat;
+    height: 100%;
+    width: 644px;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    background-repeat: no-repeat;
+
+}
+
 .profileWrapper .btn-group label{color:#000;}
 
 .profileWrapper .engineering li {
