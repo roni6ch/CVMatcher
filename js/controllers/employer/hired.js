@@ -48,7 +48,8 @@ var names =[];
             method: "POST",
             data: {
                 "personal_properties_id": id,
-                "decision": false
+                "decision": false,
+                "user_id": localStorage.getItem("user_id")
             }
         }).then(function (data) {
             console.log(data.data._id);
@@ -68,7 +69,8 @@ var names =[];
             method: "POST",
             data: {
                 "personal_properties_id": id,
-                "decision": true
+                "decision": true,
+                "user_id": localStorage.getItem("user_id")
             }
         }).then(function (data) {
 
