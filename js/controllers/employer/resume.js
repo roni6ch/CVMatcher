@@ -327,8 +327,7 @@ app.controller('resumeController',
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer didn't like your cv and entered the feedback: "
-                                            + description + " for job " + localStorage.getItem("jobTitle")
+                                            "message": "The employer from company " + companyName + "  didn't liked your cv for job: " + localStorage.getItem("jobTitle") + "with the reason of: " + description
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);
@@ -348,8 +347,7 @@ app.controller('resumeController',
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer like your cv and rated it with a number of "
-                                            + rateStars + " stars for job " + localStorage.getItem("jobTitle")
+                                            "message": "The employer from company " + companyName + " liked your cv for job " + localStorage.getItem("jobTitle") + " with the amount of " + rateStars + " stars."
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);

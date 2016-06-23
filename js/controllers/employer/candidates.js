@@ -217,7 +217,8 @@ app.controller('candidatesController',
                                             method: "POST",
                                             data: {
                                                 "user_id": $scope.user_id,
-                                                "message": "congratulations!! you're hired for job: " + localStorage.getItem("jobTitle")
+                                                "message": "Congratulations!! you have been hired by company " + companyName + " for  job: " + localStorage.getItem("jobTitle")
+
                                             }
                                         }).then(function (data) {
                                                 console.log(data.data);
@@ -290,8 +291,7 @@ console.log(description);
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer unlike your cv and entered the feedback: "
-                                            + description + "for job " + localStorage.getItem("jobTitle")
+                                            "message": "The employer from company " + companyName + "  didn't liked your cv for job: " + localStorage.getItem("jobTitle") + "with the reason of: " + description
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);
@@ -310,7 +310,7 @@ console.log(description);
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer like your cv and rated it with a number of " + stars + " stars for job " + localStorage.getItem("jobTitle")
+                                            "message": "The employer from company " + companyName + " liked your cv for job " + localStorage.getItem("jobTitle") + " with the amount of " + stars + " stars."
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);

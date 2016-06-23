@@ -20,6 +20,8 @@ app
             //initialize parameters for controller
             $scope.init = function () {
 
+                angular
+                    .element(".parserAfterText").hide();
                 $rootScope.userSignInType = 'jobSeeker';
                 $("#geocomplete").geocomplete();
                 $("[rel='popover']").popover({trigger: "hover", container: "body"});
@@ -218,6 +220,8 @@ app
                                             angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage"><input type="text" required class="form-control " id="experience" name="experience"' +
                                                 ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
                                         });
+
+                                        angular.element(".parserAfterText").show();
                                         angular.element(".fa-spin").hide();
                                         angular.element(".cvPreview").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -235,6 +239,9 @@ app
 
                 angular
                     .element(".parseExperienceButton").hide();
+                angular
+                    .element(".parseB > .Garrow").hide();
+
                 angular
                     .element(".parseExperiencePlusButton").removeClass("hidden");
 
