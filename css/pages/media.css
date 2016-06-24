@@ -1237,5 +1237,9 @@
     .jobWrapper .form-control {
     width: 100%;
 }
+
+    .fa-pulse {
+        left:40%;
+    }
 }
 
