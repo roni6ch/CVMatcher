@@ -66,3 +66,11 @@
     font-size: 16px;
 }
 
+.matchpageWrapper .jobDetailsLS{
+    margin:10px 0px;
+}
+
+.matchpageWrapper .jobDetailsLS > h3{
+    text-align: left;
+    color: #fff;
+}

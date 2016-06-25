@@ -17,6 +17,7 @@
     position: relative;
     border-bottom: 1px solid #fff;
     height: 100px;
+    top: 28px;
 }
 
 .hiredWrapper .hireCandidate > img:nth-child(3) {
@@ -32,10 +33,12 @@
 .hiredWrapper .hireCandidate > section > h3, .hireCandidate > section > h4 {
     margin: 0 auto;
     color: #fff;
+    text-align: center;
 }
 
 .hiredWrapper .hireCandidate > section > h3 {
     line-height: 50px;
+    text-align: center;
 }
 
 .hiredWrapper .hiredCandidatesLength {
@@ -55,22 +58,22 @@
 }
 
 .hiredWrapper .fired {
-    background: url("images/fired2.png");
+    background: url("../../images/fired2.png");
     left: 0;
 }
 
 .hiredWrapper .fired:hover, .fired.on {
-    background: url("images/fired1.png");
+    background: url("../../images/fired1.png");
 
 }
 
 .hiredWrapper .hiredImg {
-    background: url("images/hired2.png");
+    background: url("../../images/hired2.png");
     right: 0;
 }
 
 .hiredWrapper .hiredImg:hover, .hiredImg.on {
-    background: url("images/hired1.png");
+    background: url("../../images/hired1.png");
 }
 
 

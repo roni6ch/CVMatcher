@@ -120,3 +120,12 @@
     padding-top: 0px;
     padding-bottom: 0px;
 }
+
+.companyprofileWrapper .modal-footer > button {
+    border: 1px solid #000;
+    color: #000;
+}
+
+.companyprofileWrapper .modal-footer > button:hover {
+    color: #6E6E6E;
+}

@@ -23,6 +23,10 @@ font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
 }
 
+.ui-icon, .ui-widget-content .ui-icon {
+    background-image: url("../../images/ui-icons_222222_256x240.png");
+}
+
 .requiredError {
     color: #f36f6f;
     float: left;
@@ -269,7 +273,7 @@ footer div a {
     position: absolute;
     left: 3px;
     top: 0;
-    font-size: 11px;
+    font-size: 16px;
     height: 35px;
     line-height: 35px;
     color: #000000;
@@ -696,7 +700,7 @@ a:focus, a:hover {
 .jobs > div:nth-child(1) a {
     float: right;
     margin-left: 2%;
-    margin-right: 12px;
+    margin-right: 10px;
     font-size: 11px;
 }
 
@@ -715,6 +719,7 @@ a:focus, a:hover {
     float: left;
     position: relative;
     width: 100%;
+    cursor: pointer;
 }
 
 .jobs > div:nth-child(2) a {
@@ -809,6 +814,7 @@ a:focus, a:hover {
 .tabsContent div h3 {
     padding-bottom: 20px;
     overflow: hidden;
+    font-size: 18px;
 }
 
 .tabsContent div h5 {
@@ -1381,8 +1387,8 @@ a:focus, a:hover {
 
 .compatibilityText{
     position: absolute;
-    top: 32px;
-    right: 5%;
+    top: 36px;
+    right: 4%;
     z-index: 11;
 }
 
@@ -1504,7 +1510,7 @@ text-align: center;
 .readUnread {
     position: absolute;
     right: 100px;
-    top: 12px;
+    top: -8px;
 }
 
 .jobListLi .rating {
@@ -1518,7 +1524,7 @@ text-align: center;
     right: 67px;
     z-index: 2;
     cursor: pointer;
-    top: 26px;
+    top: 4px;
     font-size: x-large;
 }
 
@@ -2306,11 +2312,19 @@ div#popover924921 {
     border-left-width: 0;
 }
 
-.existingCompany{background: transparent;padding-left: 0;color:#fff;border:0;outline:0; float:left; clear:both;}
+.existingCompany{background: transparent;padding-left: 0;color:#fff;border:0;outline:0;float: left;clear: both;}
 .existingCompany:hover{opacity:0.8;background: transparent; color:#fff; border:0; outline:0;}
 .cvPreview{background: transparent;color:#fff;border:0;outline:0;float:left;}
 #predictAppend h2 {font-size: 20px;color: #fff;margin-top: 200px;margin-bottom: 30px;border: 1px solid #57b7ee;padding: 12px;}
 
 .yearsProfile{
     width: 100% !important;
+}
+
+.googleSignInWrapper{
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 34px;
+    position: relative;
+    margin-bottom: 16%;
 }

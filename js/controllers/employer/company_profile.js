@@ -35,6 +35,7 @@ app.controller('companyProfileController',
                         if (data) {
                             $scope.employerProfile = data.data[0];
                             console.log(data.data[0]);
+
                             if (data.data[0].company) {
                                 angular.element(".password").hide();
                                 company = true;
@@ -98,6 +99,9 @@ app.controller('companyProfileController',
                 angular.element(".fa-pulse").hide();
             })
         };
+        $(function() {
+            $( "#datepicker" ).datepicker();
+        });
         //submit the first form - user details
         $scope.submitUserDetails = function () {
 

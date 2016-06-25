@@ -46,3 +46,9 @@
     font-size: 21px;
     display: block;
 }
+
+.searchJobsWrapper .jobListLi span {
+    font-size: 21px;
+    font-weight: bold;
+}
+

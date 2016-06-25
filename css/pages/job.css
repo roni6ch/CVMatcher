@@ -243,6 +243,9 @@
 
 .jobWrapper p.combinations.ng-binding {
     color: #fff;
+    float: left;
+    clear: both;
+    font-size: 20px;
 }
 
 .jobWrapper .btn-default.disabled.focus, .jobWrapper .btn-default.disabled:focus, .jobWrapper .btn-default.disabled:hover, .jobWrapper .btn-default[disabled].focus, .jobWrapper .btn-default[disabled]:focus, .jobWrapper .btn-default[disabled]:hover, .jobWrapper fieldset[disabled] .btn-default.focus, .jobWrapper fieldset[disabled] .btn-default:focus, .jobWrapper fieldset[disabled] .btn-default:hover {
@@ -264,6 +267,6 @@
     border: 0;
 }
 
- .jobModal{
-     margin-top: 100px;
+.jobModal{
+    margin-top: 100px;
 }
