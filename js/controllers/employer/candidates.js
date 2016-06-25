@@ -7,6 +7,8 @@
  */
 app.controller('candidatesController',
     function ($scope, $http, $location, $sce, $rootScope) {
+
+        loadCSS('candidates');
         var stars = 0;
         $id = $location.path().split('/');
         $scope.jobPage = '';

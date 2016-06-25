@@ -27,6 +27,7 @@ app.controller('resumeController',
 
         //initialize parameters for this controller
         $scope.init = function () {
+            loadCSS('resume');
             $scope.hiredPage = false;
             $("#predictAppend").hide();
             $("#users").hide();

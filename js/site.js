@@ -428,3 +428,11 @@ function skillsBar() {
         decimals: 0,
     });
 }
+function loadCSS(str){
+
+    $("<link/>", {
+        rel: "stylesheet",
+        type: "text/css",
+        href: "css/pages/"+str+".css"
+    }).appendTo("head");
+}

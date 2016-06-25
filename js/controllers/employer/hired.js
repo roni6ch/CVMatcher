@@ -10,6 +10,7 @@ app.controller('hiredController', function ($rootScope, $location, $scope, $http
 
 
     $scope.init = function () {
+        loadCSS('hired');
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/hired'>Hired</a>";
         angular.element(".fa-pulse").show();
 var names =[];

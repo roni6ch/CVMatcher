@@ -9,6 +9,10 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     var jobTitles;
     //initialize parameters for controller
     $scope.init = function () {
+
+        //load CSS for this current page
+        loadCSS('searchJobs');
+
         jobTitles = [];
         localStorage.removeItem('fixCV');
         $scope.getTopTenJobs = false;

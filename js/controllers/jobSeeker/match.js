@@ -21,7 +21,7 @@ app
 
             //initialize parameter in the controller
             $scope.init = function () {
-
+                loadCSS('match');
                 $(".matchResult").hide();
                 $(".fixCV").hide();
                 $http({

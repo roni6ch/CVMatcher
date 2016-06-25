@@ -7,6 +7,7 @@
  */
 
 
+loadCSS('googleSignIn');
 var helper;
 var auth2;
 var profile = '';
