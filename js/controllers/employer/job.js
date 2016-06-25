@@ -31,7 +31,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.init = function () {
 
 
-            $scope.combinationIndx = 1;
+            $scope.combinationIndx = 0;
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
                 method: "POST",
@@ -650,6 +650,8 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         //ADD COMBINATION
         $scope.addDynamicCombination = function () {
             combinationLengthAfterEdit++;
+            console.log(nextCombinationKey);
+            $scope.combinationIndx =  nextCombinationKey+1;
             $(".fa-arrow-right").hide();
             if ($rootScope.list3.length != 1 && $rootScope.list1.length > 0 && totalPriorotySum == 100 || $rootScope.list3.length != 1 && $rootScope.list1.length == 0) {
                 nextCombinationKey++;

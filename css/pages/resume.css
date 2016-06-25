@@ -73,6 +73,9 @@
 }
 
 .resumeWrapper .resumeYears > div {
-    /* width: 127px; */
     margin: -2px auto;
+}
+
+.modal-content {
+    margin-top: 64px;
 }

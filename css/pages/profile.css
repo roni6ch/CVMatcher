@@ -166,7 +166,7 @@
     width: 100%;
     color: #fff;
     border: 0;
-}    
+}
 
 .profileWrapper .profileTitle {
     color: #fff;
@@ -180,4 +180,9 @@
 
 .profileWrapper select.form-control.ng-pristine.ng-untouched.ng-valid, select.form-control.ng-valid.ng-dirty.ng-valid-parse.ng-touched {
     width: 98%;
+}
+
+.profileWrapper .parserAfterText {
+    color: antiquewhite;
+    font-size: 18px;
 }

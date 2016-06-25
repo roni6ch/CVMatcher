@@ -4,12 +4,15 @@
 
 
     <i class="fa fa-spinner fa-pulse fa-5x"></i>
-    <h4 class="hiredCandidatesLength">{{hireCandidates.length}} Candidates has been Hired!</h4>
+    <header>
+        <h2 class="hiredTitle">Hired</h2>
+    </header>
 
     <div class="searchHiredCndidate">
-            <input type="text" id='searchHire'  placeholder="Find Hired Candidate" ng-model="search"
-                   class="form-control">
+        <input type="text" id='searchHire'  placeholder="Find Hired Candidate" ng-model="search"
+               class="form-control">
     </div>
+    <h4 class="hiredCandidatesLength">{{hireCandidates.length}} Candidates has been Hired!</h4>
 
     <!-- candidates sections -->
     <div class="filterHired">
@@ -18,6 +21,8 @@
         <button ng-click="searchText.personal_properties['decision'] = false"><img class="Garrow" src="images/Garrow.png">Negative Feedback</button>
         <button ng-click="searchText.personal_properties['decision'] != false"><img class="Garrow" src="images/Garrow.png">Not Selected</button>
     </div>
+
+
     <article class="hiredCandWrap">
         <section ng-repeat="hireCandidate in hireCandidates | filter:searchText " id="hire-cand{{hireCandidate._id}}">
             <div class="hireCandidate animated fadeInUp" id="indx-{{$index}}">
@@ -27,7 +32,7 @@
 
                 <section>
                     <h3
-                        ng-bind-html="hireCandidate.user['first_name'] | highlight:search">
+                            ng-bind-html="hireCandidate.user['first_name'] | highlight:search">
                         {{hireCandidate.user['first_name']}} {{hireCandidate.user['last_name']}}</h3>
                     <h4>ID: {{hireCandidate.user['personal_id']}}</h4>
                 </section>
@@ -42,94 +47,3 @@
     </article>
 </div>
 
-
-<style>
-
-    <!-- TODO -->
-    @media (max-width: 767px){
-        .hiredWrapper{    padding: 10px 10px 0px;
-            width: 100%;}
-    }
-
-
-
-    .hiredWrapper{width: 75%;
-        margin: 0 auto;    margin-top: 200px;
-    }
-    .filterHired {
-        position: absolute;
-        top: 100px;
-    }
-
-    .filterHired button {
-        background: transparent;
-        margin-right: 20px;
-        color: #fff;
-    }
-    .hireCandidate {
-        position: relative;
-        border-bottom: 1px solid #fff;
-        height: 100px;
-    }
-
-    .hireCandidate > img:nth-child(3) {
-        right: 0px;
-        top: 0;
-    }
-
-    .hireCandidate > img {
-        width: 100px;
-        position: absolute
-    }
-
-    .hireCandidate > section > h3, .hireCandidate > section > h4 {
-        margin: 0 auto;
-        color: #fff;
-    }
-
-    .hireCandidate > section > h3 {
-        line-height: 50px;
-    }
-
-    .hiredCandidatesLength {
-        color: #fff;
-        margin-top: 10px;
-        position: absolute;
-        top: 16px;
-    }
-
-    .fired, .hiredImg {
-        top: 0;
-        width: 120px;
-        height: 60px;
-        position: absolute;
-        background-repeat: no-repeat;
-        cursor: pointer;
-    }
-
-    .fired {
-        background: url("images/fired2.png");
-        left: 0;
-    }
-
-    .fired:hover, .fired.on {
-        background: url("images/fired1.png");
-
-    }
-
-    .hiredImg {
-        background: url("images/hired2.png");
-        right: 0;
-    }
-
-    .hiredImg:hover, .hiredImg.on {
-        background: url("images/hired1.png");
-    }
-
-
-    #searchHire {
-        position: absolute;
-        width: 50%;
-        top: 60px;
-    }
-</style>

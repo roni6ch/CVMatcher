@@ -71,8 +71,17 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     });
                // $scope.names = jobTitles;
 
-                    console.log(jobTitles);
-                    $(".searchText").autocomplete({ source: jobTitles});
+                    $( ".searchText" ).autocomplete({
+                        source: jobTitles,
+                        select: function(e, ui) {
+                            setTimeout(function () {
+                                $scope.$apply(function () {
+                                    $scope.searchText = ui.item.label;
+                                    $(".searchText").val( ui.item.label);
+                                });
+                            }, 100);
+                        }
+                    });
 
                 },
                 function (response) { // optional

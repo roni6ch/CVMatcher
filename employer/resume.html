@@ -64,6 +64,8 @@
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
+                                <h2 class='timelineTitle' ng-if="timeline['type'] == 'experience'">Experience</h2>
+                                <h2 class='timelineTitle' ng-if="timeline['type'] == 'education'">Education</h2>
                                 <p>
                                     <small class="text-muted">{{timeline['start_year']}} - {{timeline['end_year']}}
                                     </small>

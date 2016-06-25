@@ -1,3 +1,6 @@
+<script>
+
+</script>
 <div class="myJobsImgCover"></div>
 <div class="myjobsWrapper" ng-init="init();getMainJson();sort('-date');">
     <h3 class="navigation"></h3>
@@ -7,8 +10,9 @@
             <h2>{{pageTitle}}</h2>
         </header>
         <form >
-            <input type="text" placeholder="Find Job" ng-model="searchText" highlighted data-search="searchText"
+            <input id='jobTitles' type="text" placeholder="Find Job" ng-model="searchText" highlighted data-search="searchText"
                    class="form-control">
+
         </form>
         <button type="button" class="btn btn-default"
                 ng-click="sort('-compatibility_level')">Sort By Compatibility

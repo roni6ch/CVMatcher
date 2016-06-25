@@ -124,7 +124,18 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
                                 data.data[0].jobs[key].job.date = value.job.date.split("T")[0] + ' | ' + value.job.date.split("T")[1].split(".")[0];
                             });
                             console.log(jobTitles);
-                            // $(".searchText").autocomplete({source:jobTitles});
+
+                            $( ".searchText" ).autocomplete({
+                                source: jobTitles,
+                                select: function(e, ui) {
+                                    setTimeout(function () {
+                                        $scope.$apply(function () {
+                                            $scope.searchText = ui.item.label;
+                                            $(".searchText").val( ui.item.label);
+                                        });
+                                    }, 100);
+                                }
+                            });
 
                         }
 

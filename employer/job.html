@@ -245,8 +245,8 @@
             </div>
             <div class="form-group requirements">
                 <label for="requirementsAdvantage">Requirements - Advantage:</label>
-        <textarea class="form-control" rows="5" id="requirementsAdvantage"
-                  placeholder="Please write your Advantage Requirements"
+        <textarea class="form-control" rows="5" id="requirementsAdvantage" ng-model="AdvReqiurment"
+                  placeholder="Please write your Advantage Requirements"  ng-change="changeContent()"
                   name="requirements">{{jobDetails.original_text['requirements'].split("|||")[1]}}</textarea>
             </div>
 

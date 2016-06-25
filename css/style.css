@@ -12,14 +12,14 @@
 @font-face {
     font-family: 'alefBold';
     font-weight: 300; (bold)
-    font-style: normal;
+font-style: normal;
     src: url('../fonts/Alef-bold.ttf');
 }
 
 @font-face {
     font-family: 'alefregular';
     font-weight: 300; (regular)
-    font-style: normal;
+font-style: normal;
     src: url('../fonts/Alef-regular.ttf');
 }
 
@@ -62,7 +62,7 @@ body {
     height: 83%;
     width: 100%;
     margin: 0 auto;
-      font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
+    font-family: "Alef Hebrew", "Helvetica Neue", "Helvetica", "Arial",
     "sans-serif";
     background-color: transparent;
     background: #231f20;
@@ -405,8 +405,8 @@ footer {
     width: 100%;
     height: 100vh;
     padding: 4px;
-/*    padding-top: 70px;
-*/    padding-left: 0px;
+    /*    padding-top: 70px;
+    */    padding-left: 0px;
     border-radius: 0;
     float: right;
 }
@@ -658,7 +658,7 @@ a:focus, a:hover {
 
 .yourJobsWrapper button:hover,.yourJobsWrapper button:active:hover,.yourJobsWrapper button:focus {
     outline:none;
-    opacity: 0.6;    
+    opacity: 0.6;
     background-color: transparent;
     color:#fff;
 }
@@ -1381,8 +1381,8 @@ a:focus, a:hover {
 
 .compatibilityText{
     position: absolute;
-    top: 149px;
-    right: 7%;
+    top: 32px;
+    right: 5%;
     z-index: 11;
 }
 
@@ -1489,7 +1489,7 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     position: absolute;
     top: 46px;
     to; */
-    text-align: center;
+text-align: center;
     left: 42%;
 }
 
@@ -1727,6 +1727,7 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
 
 .timelineTitle{
     color: #fff;
+    display: none;
 }
 
 .sendButtonP {
@@ -2305,7 +2306,7 @@ div#popover924921 {
     border-left-width: 0;
 }
 
-.existingCompany{background: transparent;padding-left: 0;color:#fff;border:0;outline:0;}
+.existingCompany{background: transparent;padding-left: 0;color:#fff;border:0;outline:0; float:left; clear:both;}
 .existingCompany:hover{opacity:0.8;background: transparent; color:#fff; border:0; outline:0;}
 .cvPreview{background: transparent;color:#fff;border:0;outline:0;float:left;}
 #predictAppend h2 {font-size: 20px;color: #fff;margin-top: 200px;margin-bottom: 30px;border: 1px solid #57b7ee;padding: 12px;}

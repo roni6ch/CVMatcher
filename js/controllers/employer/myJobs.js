@@ -5,16 +5,13 @@
 /*
  * ********************* myjobs controller ****************
  */
-
 app.controller('myjobsController', function ($rootScope, $location, $scope, $http) {
-
     var archive;
     var jobsArr = [];
     $id = $location.path().split('/');
-
+var names = [];
     //initialize parameters for this controller
     $scope.init = function(){
-
         $rootScope.userSignInType = 'employer';
         angular.element("#logo").attr("href", '#/login');
         $scope.company = company;
@@ -54,8 +51,25 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
                     angular.element(".fa-pulse").hide();
                     //fix date string
                     angular.forEach(data.data, function (value, key) {
+                            names.push(value.original_text.title);
                         data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
                     });
+
+                    $( "#jobTitles" ).autocomplete({
+                        source: names,
+                        select: function(e, ui) {
+                            setTimeout(function () {
+                                $scope.$apply(function () {
+                                    $scope.searchText = ui.item.label;
+                                    $("#jobTitles").val( ui.item.label);
+                                });
+                            }, 100);
+                        }
+                    });
+
+
+
+
 
 
                 },
@@ -67,6 +81,10 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 
 
     }
+
+
+
+
     //sort by user preference
     $rootScope.sort = function (sort) {
         $scope.sortby = sort;

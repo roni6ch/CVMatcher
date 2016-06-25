@@ -249,8 +249,11 @@ app.config(function ($routeProvider) {
     })
     .filter('highlight', function ($sce) {
         return function (text, phrase) {
-            if (phrase) text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
-                '<span class="highlighted">$1</span>');
+            if (phrase){
+                phrase = phrase.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+                text = text.replace(new RegExp('(' + phrase + ')', 'gi'),
+                    '<span class="highlighted">$1</span>');
+            }
             //noinspection JSUnresolvedFunction
             return $sce.trustAsHtml(text)
         }

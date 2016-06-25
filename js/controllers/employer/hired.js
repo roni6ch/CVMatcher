@@ -27,8 +27,19 @@ var names =[];
                     angular.forEach(data.data, function (value, key) {
                         names.push(value.user.first_name);
                     });
-                console.log(names);
-                $scope.names = names;
+
+                    $( "#searchHire" ).autocomplete({
+                        source: names,
+                        select: function(e, ui) {
+                            setTimeout(function () {
+                                $scope.$apply(function () {
+                                    $scope.search = ui.item.label;
+                                    $("#searchHire").val( ui.item.label);
+                                });
+                            }, 100);
+                        }
+                    });
+
                 /*
                     $("#searchHire").autocomplete({source:names});*/
                 },

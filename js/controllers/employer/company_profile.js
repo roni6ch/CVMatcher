@@ -169,11 +169,6 @@ app.controller('companyProfileController',
                         tabType = 'company';
 
                         $scope.chooseCompanyModal = false;
-                        $timeout(function () {
-                            $('#update').modal('hide');
-                            if (tabType == 'company')
-                                location.replace("#/myjobs");
-                        }, 3000);
                     },
                     function (response) { // optional
                         $scope.status = messageResource.get("modal.company.error", 'resources');
@@ -206,11 +201,6 @@ app.controller('companyProfileController',
                         $scope.status = messageResource.get("modal.company.update", 'resources');
 
                         $scope.chooseCompanyModal = false;
-                        $timeout(function () {
-                            $('#update').modal('hide');
-                            if (tabType == 'company')
-                                location.replace("#/myjobs");
-                        }, 3000);
 
                     },
                     function (response) { // optional

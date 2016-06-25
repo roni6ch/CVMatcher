@@ -262,11 +262,10 @@
     }
 
     .yourJobsWrapper .companyLogoN {
-        float: left;
-        width: 54px;
-        position: absolute;
-        left: 39%;
-        top: -50px;
+        width: 44px;
+        position: relative;
+        left: 13px;
+        top: 9px;
         border-radius: 8px;
     }
 
@@ -274,6 +273,7 @@
         padding-left: 14px;
         padding-right: 70px;
         margin-left: 0px;
+        margin-top: 4px;
     }
 
     .yourJobsWrapper .fa-heart-o, .fa-heart {
@@ -666,7 +666,7 @@
     }
 
     .resumeWrapper #candidateLike {
-        padding: 0px 8px;
+        padding-top: 10px;
     }
 
     .resumeWrapper .timeline > li > .timeline-badge {
@@ -877,7 +877,7 @@
         line-height: 21px;
         float: left;
         overflow: hidden;
-         font-size: 19px !important; 
+        font-size: 19px !important;
     }
 
     .candidates {
@@ -1183,7 +1183,7 @@
     .googleSignInWrapper .employer {
         margin-top: 38px;
     }
-  
+
     /*job page*/
     .jobWrapper .btn-group {
         background-color: #231f20;
@@ -1235,7 +1235,12 @@
     }
 
     .jobWrapper .form-control {
-    width: 100%;
-}
+        width: 100%;
+    }
+
+    .timelineTitle{
+        color: #fff;
+        display: block;
+    }
 }
 
