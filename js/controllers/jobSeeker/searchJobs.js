@@ -26,7 +26,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
             console.log(message);
-            notifyMe(message.notificationType, message.jobName,message.companyName);
+            notifyMe(message.notificationType, message.jobName,message.companyName,message.other);
         }
 
 

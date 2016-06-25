@@ -142,7 +142,7 @@ app
                 socket.onmessage = function (msg) {
                     var message = JSON.parse(msg.data);
                     console.log(message);
-                    notifyMe(message.notificationType, message.jobName,message.companyName);
+                    notifyMe(message.notificationType, message.jobName,message.companyName,message.other);
                 }
             };
             //fix cv - go to profile and come back!

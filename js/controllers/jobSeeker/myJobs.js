@@ -34,7 +34,7 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
             console.log(jobId);
             if (path == 'yourjobs') {
 
-                notifyMe(message.notificationType, message.jobName, message.companyName);
+                notifyMe(message.notificationType, message.jobName, message.companyName,message.other);
                 console.log(message.notificationType);
                 $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
 

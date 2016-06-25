@@ -376,7 +376,7 @@ function sendNotification(notificationType, userId, jobId, other, jobName, compa
 }
 
 //notifications for sockets
-function notifyMe(type, jobName, companyName) {
+function notifyMe(type, jobName, companyName,other) {
 
     var body;
     body = '';
@@ -392,21 +392,14 @@ function notifyMe(type, jobName, companyName) {
             body = 'The employer from company ' + companyName + ' viewed your cv for job: ' + jobName;
         }
         else if (type == 'like') {
-            body = "The employer from company " + companyName + " liked your cv for job " + jobName;
-            ;
-
+            body = "The employer from company "+ companyName +"  liked your cv and rated it with a number of "+ other + " stars for job " + jobName;
         }
         else if (type == 'unlike') {
-            body = "The employer from company " + companyName + "  didn't liked your cv for job: " + jobName;
-
-
+            body = "The employer from company "+ companyName +"  didn't liked your cv for job: " + jobName + "and entered the feedback "+ other;
         }
         else if (type == 'hire') {
             body = "Congratulations!! you have been hired by company " + companyName + " for  job: " + jobName;
-
-
         }
-
         var notification = new Notification('CVMatcher Notification!', {
             icon: 'http://cvmatcher.esy.es/images/logo.png',
             body: body
