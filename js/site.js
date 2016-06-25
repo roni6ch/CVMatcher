@@ -423,9 +423,11 @@ function skillsBar() {
 }
 function loadCSS(str){
 
-    $("<link/>", {
-        rel: "stylesheet",
-        type: "text/css",
-        href: "css/pages/"+str+".css"
-    }).appendTo("head");
+    if($('link[rel*=style][href="css/pages/'+str+'.css"]').length==0) {
+        $("<link/>", {
+            rel: "stylesheet",
+            type: "text/css",
+            href: "css/pages/" + str + ".css"
+        }).appendTo("head");
+    }
 }
