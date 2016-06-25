@@ -347,7 +347,7 @@ app.controller('resumeController',
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer from company " + companyName + " liked your cv for job " + localStorage.getItem("jobTitle") + " with the amount of " + rateStars + " stars."
+                                            "message": "The employer from company " + companyName + " liked your cv for job " + localStorage.getItem("jobTitle") + " with the amount of " + rateStars + " stars"
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);

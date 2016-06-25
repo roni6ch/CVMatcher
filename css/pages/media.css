@@ -1241,6 +1241,11 @@
     .timelineTitle{
         color: #fff;
         display: block;
+    width: 100%;
+}
+
+    .fa-pulse {
+        left:40%;
     }
 }
 

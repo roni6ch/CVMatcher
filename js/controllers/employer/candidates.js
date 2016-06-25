@@ -291,7 +291,7 @@ console.log(description);
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer from company " + companyName + "  didn't liked your cv for job: " + localStorage.getItem("jobTitle") + "with the reason of: " + description
+                                            "message": "The employer from company " + companyName + " didn't liked your cv for job: " + localStorage.getItem("jobTitle") + " with the reason of: " + description
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);
@@ -310,7 +310,7 @@ console.log(description);
                                         method: "POST",
                                         data: {
                                             "user_id": $scope.user_id,
-                                            "message": "The employer from company " + companyName + " liked your cv for job " + localStorage.getItem("jobTitle") + " with the amount of " + stars + " stars."
+                                            "message": "The employer from company " + companyName + " liked your cv for job " + localStorage.getItem("jobTitle") + " with the amount of " + stars + " stars"
                                         }
                                     }).then(function (data) {
                                             console.log(data.data);
