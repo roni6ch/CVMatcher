@@ -40,6 +40,9 @@ app.controller('candidatesController',
                         localStorage.setItem("candidates", candidates);
                         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/myjobs'>My Jobs</a><span> > </span><a href='#/candidates/" + $id[2] + "'>Candidates of " + localStorage.getItem("jobTitle") + "</a>";
                         $scope.candidates = data.data;
+                        $scope.candidatesLength = $scope.candidates.length+ " CV's";
+                        if (data.data.length == 0)
+                            $scope.candidatesLength = "There is No CV's to show";
                         $rootScope.unreadCandidates = data.data;
                         console.log(data.data);
                         angular.element(".fa-pulse").hide();
@@ -77,6 +80,11 @@ app.controller('candidatesController',
                         $scope.likeCandidates = data.data;
                         console.log(data.data);
                         angular.element(".fa-pulse").hide();
+
+                        $scope.candidatesLength = $scope.likeCandidates.length + " Like CV's";
+                        if (data.data.length == 0)
+                            $scope.candidatesLength = "There is No CV's to show";
+
                         $.each(data.data, function (k, v) {
                             candidates.push(v._id);
                             localStorage.setItem("candidates", candidates);
@@ -114,6 +122,10 @@ app.controller('candidatesController',
                             localStorage.setItem("candidates", candidates);
 
                         });
+
+                        $scope.candidatesLength = $scope.unlikeCandidates.length + " Unlike CV's";
+                        if (data.data.length == 0)
+                            $scope.candidatesLength = "There is No CV's to show";
                     },
                     function (response) { // optional
                         console.log("unlikeCvs AJAX failed!");
@@ -141,6 +153,13 @@ app.controller('candidatesController',
                         candidates.push(v._id);
                         localStorage.setItem("candidates", candidates);
                     });
+
+
+                    $scope.candidatesLength = $scope.hiredCandidates.length + "  Hired CV's";
+                    if (data.data.length == 0)
+                        $scope.candidatesLength = "There is No CV's to show";
+
+
                 },
                 function (response) { // optional
                     console.log("Hired AJAX failed!");

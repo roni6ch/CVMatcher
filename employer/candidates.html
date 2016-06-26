@@ -31,7 +31,7 @@
 
     <div class="tabsWrapper">
         <div ng-show="tab == 0" class="fade in active">
-            <h3>{{candidates.length}} Resume</h3>
+            <h3>{{candidatesLength}}</h3>
             <!-- jobs sections -->
             <section
                     ng-repeat="candidate in candidates | filter:searchText | orderBy:sortby">
@@ -61,7 +61,7 @@
         </div>
 
         <div ng-show="tab == 1" class="fade in active">
-            <h3>{{likeCandidates.length}} Like Resume's</h3>
+            <h3>{{candidatesLength}}</h3>
             <!-- jobs sections -->
             <section
                     ng-repeat="candidate in likeCandidates | filter:searchText | orderBy:sortby">
@@ -98,7 +98,7 @@
             </section>
         </div>
         <div ng-show="tab == 2" class="fade in active">
-            <h3>{{unlikeCandidates.length}} Unlike Resume's</h3>
+            <h3>{{candidatesLength}}</h3>
             <!-- jobs sections -->
             <section
                     ng-repeat="candidate in unlikeCandidates | filter:searchText | orderBy:sortby">
@@ -133,7 +133,7 @@
             </section>
         </div>
         <div ng-show="tab == 3" class="fade in active">
-            <h3>{{hiredCandidates.length}} Hired Resume's</h3>
+            <h3>{{candidatesLength}}</h3>
             <!-- jobs sections -->
             <section
                     ng-repeat="candidate in hiredCandidates | filter:searchText | orderBy:sortby">
