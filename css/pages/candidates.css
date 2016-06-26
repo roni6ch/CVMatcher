@@ -113,7 +113,7 @@
     float: left;
     width: 100%;
     margin-left: 2%;
-    margin-top: 5%;
+    /*margin-top: 5%;*/
 }
 
 .candidates > div:nth-child(2) section {

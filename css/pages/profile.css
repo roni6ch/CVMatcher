@@ -187,3 +187,10 @@
     color: antiquewhite;
     font-size: 18px;
 }
+
+.profileWrapper .fa-spin {
+    position: absolute;
+    left: 40%;
+    bottom: 4%;
+    color: #fff;
+}

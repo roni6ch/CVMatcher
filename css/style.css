@@ -113,6 +113,10 @@ a {
     text-decoration: none;
 }
 
+button,input{
+    outline: 0;
+}
+
 .hidden {
     display: none;
 }
@@ -209,13 +213,13 @@ footer div a {
     margin-bottom: -10px;
 }
 
-.fa-pulse {
+/*.fa-pulse {
     position: absolute;
     left: 50%;
     top: 50%;
     color: #fff;
     z-index: 1;
-}
+}*/
 
 .fa-spin {
     display: none;
@@ -1865,6 +1869,7 @@ div#popover924921 {
     float: right;
     border-radius: 0;
     margin: 2px;
+    outline: 0;
 }
 
 .userProfile div button {

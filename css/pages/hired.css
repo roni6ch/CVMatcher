@@ -104,23 +104,3 @@
     text-align: left;
     font-family: almoni-dl-aaa-regular;
 }
-
-@media (max-width: 767px){
-    .hiredWrapper{    padding: 10px 10px 0px;
-        padding: 10px 10px 0px;
-        width: 100%;
-        margin-top: 28px;
-    }
-
-    .hiredWrapper .filterHired button {
-        margin-right: 20px;
-        position: relative;
-        top: 36px;
-        margin-top: 6px;
-    }
-
-    .hiredWrapper .hiredCandidatesLength {
-        margin-top: 74px;
-    }
-
-}

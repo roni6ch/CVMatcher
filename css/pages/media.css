@@ -154,7 +154,9 @@
     }
 
     .compatibilityText{
-        display: none;
+        /* display: none; */
+        right: 2%;
+        /* top: 10px; */
     }
 
     .jobListLi section h5 {
@@ -259,7 +261,7 @@
 
     .yourJobsWrapper .jobListLi section {
         right: 2%;
-        top: 36px;
+        top: 60px;
     }
 
     .yourJobsWrapper .companyLogoN {
@@ -630,6 +632,11 @@
     }
 
     /*resume*/
+
+    .skillbar {
+        width: 100%;
+    }
+
     .resumeWrapper .userDetailsBox {
         margin-top: 64px;
     }
@@ -1265,5 +1272,24 @@
     .fa-pulse{
         left: 40%;
     }
+
+    /*hired*/
+        .hiredWrapper{    padding: 10px 10px 0px;
+            padding: 10px 10px 0px;
+            width: 100%;
+            margin-top: 28px;
+        }
+
+        .hiredWrapper .filterHired button {
+            margin-right: 20px;
+            position: relative;
+            top: 36px;
+            margin-top: 6px;
+        }
+
+        .hiredWrapper .hiredCandidatesLength {
+            margin-top: 74px;
+        }
+
 }
 

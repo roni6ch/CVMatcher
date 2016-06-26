@@ -10,8 +10,9 @@
 .jobWrapper .combArrow{
     font-size: 3em;
     color: #fff;
-    margin-top: 0px;
+    margin-top: 12px;
     font-size: x-large;
+    clear: both;
 }
 .jobWrapper .thumbnails h1 {
     font-weight: normal;
@@ -270,3 +271,13 @@
 .jobModal{
     margin-top: 100px;
 }
+
+.jobWrapper .fa-pulse {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    color: #000;
+    z-index: 1;
+}
+
+
