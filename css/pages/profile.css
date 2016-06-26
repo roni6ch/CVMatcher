@@ -186,6 +186,7 @@
 .profileWrapper .parserAfterText {
     color: antiquewhite;
     font-size: 18px;
+    float:left;
 }
 
 .profileWrapper .fa-spin {

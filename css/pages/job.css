@@ -273,10 +273,10 @@
 }
 
 .jobWrapper .fa-pulse {
-    position: absolute;
-    left: 0%;
-    top: 0%;
-    color: #000;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    color: #fff;
     z-index: 1;
 }
 
