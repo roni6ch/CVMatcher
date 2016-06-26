@@ -244,6 +244,7 @@ app.config(function ($routeProvider) {
         });
 
         if (localStorage.getItem("user_id")) {
+            console.log("a");
             sockets();
             user_id = localStorage.getItem("user_id");
             //set the header navigation

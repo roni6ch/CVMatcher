@@ -22,6 +22,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/search-jobs'>Find Jobs</a>";
 
         //TODO: OPEN SOCKET!
+        sockets();
         socket.onmessage = function (msg) {
             var message = JSON.parse(msg.data);
             console.log(message);
@@ -53,6 +54,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
             }
             else {
                 $scope.cv_exist = true;
+                localStorage.setItem("current_cv",data.data[0].current_cv);
             }
 
         });
