@@ -57,20 +57,20 @@
                             <p>
                                <span ng-repeat="scope_of_position in job['scope_of_position']">
                                     <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"
-                                          ng-bind-html="'Full Time Job |' | highlight:searchText">Full Time Job |</span>
+                                          ng-bind-html="'Full Time Job' | highlight:searchText">Full Time Job </span>
                                    <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"
-                                         ng-bind-html="'Part Time Job |' | highlight:searchText">Part Time Job |</span>
+                                         ng-bind-html="'| Part Time Job ' | highlight:searchText">Part Time Job </span>
                                    <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"
-                                         ng-bind-html="'Job by Hours |' | highlight:searchText">Job by Hours |</span>
+                                         ng-bind-html="'| Job by Hours ' | highlight:searchText">Job by Hours </span>
                                 </span>
                             </p>
 
 
                             <img class="diploma" ng-if="getTopTenJobs == true"
                                  ng-src="images/diploma_grade.png">
-                            <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade!</span>
+                            <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade</span>
 
-                            <p class"searchTitles">Address: </p>
+                            <p class="searchTitles">Address: </p>
                             <h5 ng-repeat="j in job.locations  track by $index"
                                 ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 

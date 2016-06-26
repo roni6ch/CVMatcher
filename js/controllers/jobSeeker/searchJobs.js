@@ -36,7 +36,9 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
 
     $scope.getMainJson = function () {
 
+        angular.element(".fa-spinner").show();
         $scope.getTopTenJobs = false;
+        $scope.jobSeekerJobs = '';
 
         $http({
             url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -67,6 +69,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                     $scope.jobSeekerJobs = data.data;
                     console.log(data.data);
                     angular.element(".fa-pulse").hide();
+                    angular.element(".fa-spinner").hide();
 
                     angular.forEach(data.data, function (value, key) {
                         jobTitles.push(value.original_text.title);
