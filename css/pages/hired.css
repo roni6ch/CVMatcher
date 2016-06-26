@@ -60,20 +60,32 @@
 .hiredWrapper .fired {
     background: url("../../images/fired2.png");
     left: 0;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 75px;
 }
 
 .hiredWrapper .fired:hover, .fired.on {
     background: url("../../images/fired1.png");
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 75px;
 
 }
 
 .hiredWrapper .hiredImg {
     background: url("../../images/hired2.png");
     right: 0;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 75px;
 }
 
 .hiredWrapper .hiredImg:hover, .hiredImg.on {
     background: url("../../images/hired1.png");
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 75px;
 }
 
 
