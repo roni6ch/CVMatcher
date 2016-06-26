@@ -213,13 +213,13 @@ footer div a {
     margin-bottom: -10px;
 }
 
-/*.fa-pulse {
+.fa-pulse {
     position: absolute;
     left: 50%;
     top: 50%;
     color: #fff;
     z-index: 1;
-}*/
+}
 
 .fa-spin {
     display: none;

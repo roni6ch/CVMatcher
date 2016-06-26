@@ -19,8 +19,6 @@ app
             };
             //initialize parameters for controller
             $scope.init = function () {
-                loadCSS('profile');
-                loadCSS('cvPreview');
                 angular
                     .element(".parserAfterText").hide();
                 $rootScope.userSignInType = 'jobSeeker';

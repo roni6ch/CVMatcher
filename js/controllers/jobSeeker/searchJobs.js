@@ -11,7 +11,6 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     $scope.init = function () {
 
         //load CSS for this current page
-        loadCSS('searchJobs');
 
         jobTitles = [];
         localStorage.removeItem('fixCV');

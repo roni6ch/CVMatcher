@@ -16,8 +16,6 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
 
     //initialize parameter in the controller
     $scope.init = function () {
-        loadCSS('searchJobs');
-        loadCSS('yourJobs');
         jobTitles = [];
         $scope.descriptionFromMessage = '';
         console.log($rootScope.userSignInType);

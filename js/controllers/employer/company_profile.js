@@ -21,7 +21,6 @@ app.controller('companyProfileController',
         //company profile details
         $scope.init = function () {
 
-            loadCSS('companyProfile');
             angular.element(".existingCompanis").hide();
             $rootScope.userSignInType = 'employer';
             $http({

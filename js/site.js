@@ -43,6 +43,7 @@ app.config(function ($routeProvider) {
             controller: 'myjobsController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('myJobs');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -52,6 +53,7 @@ app.config(function ($routeProvider) {
             controller: 'candidatesController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('candidates');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -61,6 +63,7 @@ app.config(function ($routeProvider) {
             controller: 'candidatesController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('candidates');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -70,6 +73,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('resume');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -79,6 +83,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('resume');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -88,6 +93,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('resume');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -97,6 +103,7 @@ app.config(function ($routeProvider) {
             controller: 'resumeController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('resume');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -106,6 +113,7 @@ app.config(function ($routeProvider) {
             controller: 'myjobsController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('myJobs');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -115,6 +123,7 @@ app.config(function ($routeProvider) {
             controller: 'hiredController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('hired');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -124,6 +133,7 @@ app.config(function ($routeProvider) {
             controller: 'jobController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('job');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -133,6 +143,7 @@ app.config(function ($routeProvider) {
             controller: 'companyProfileController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('companyProfile');
                     checkProfile($rootScope, 'Company Profile');
                     return changeLocation($location, '#/company-profile', "employer");
                 }
@@ -142,6 +153,7 @@ app.config(function ($routeProvider) {
                 controller: 'jobController',
                 resolve: {
                     resolvedVal: function ($location, $rootScope) {
+                        loadCSS('job');
                         checkProfile($rootScope, 'Company Profile');
                         return changeLocation($location, '#/company-profile', "employer");
                     }
@@ -155,6 +167,7 @@ app.config(function ($routeProvider) {
                 controller: 'jobSeekerSearchJobsController',
                 resolve: {
                     resolvedVal: function ($location, $rootScope) {
+                        loadCSS('searchJobs');
                         checkProfile($rootScope, 'Profile');
                         return changeLocation($location, '#/profile', 'jobSeeker');
                     }
@@ -164,6 +177,8 @@ app.config(function ($routeProvider) {
             controller: 'yourjobSeekerController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('searchJobs');
+                    loadCSS('yourJobs');
                     checkProfile($rootScope, 'Profile');
                     return changeLocation($location, '#/profile', 'jobSeeker');
                 }
@@ -173,6 +188,8 @@ app.config(function ($routeProvider) {
             controller: 'yourjobSeekerController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('searchJobs');
+                    loadCSS('yourJobs');
                     checkProfile($rootScope, 'Profile');
                     return changeLocation($location, '#/profile', 'jobSeeker');
                 }
@@ -182,6 +199,7 @@ app.config(function ($routeProvider) {
             controller: 'matchpageController',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('match');
                     checkProfile($rootScope, 'Profile');
                     return changeLocation($location, '#/profile', 'jobSeeker');
                 }
@@ -191,6 +209,8 @@ app.config(function ($routeProvider) {
             controller: 'seekerProfileControler',
             resolve: {
                 resolvedVal: function ($location, $rootScope) {
+                    loadCSS('profile');
+                    loadCSS('cvPreview');
                     checkProfile($rootScope, 'Profile');
                     return changeLocation($location, '#/profile', 'jobSeeker');
                 }
@@ -201,29 +221,13 @@ app.config(function ($routeProvider) {
                 resolve: {
                     resolvedVal: function ($location, $rootScope) {
 
+                        loadCSS('searchJobs');
+                        loadCSS('yourJobs');
                         checkProfile($rootScope, 'Profile');
                         return changeLocation($location, '#/profile', 'jobSeeker');
                     }
                 }
             })
-
-
-            // Other
-            .when('/about', {
-                templateUrl: 'about.html',
-                resolve: {
-                    resolvedVal: function ($location) {
-                        return changeLocation($location, null, null);
-                    }
-                }
-            }).when('/contact', {
-            templateUrl: 'contact.html',
-            resolve: {
-                resolvedVal: function ($location) {
-                    return changeLocation($location, null, null);
-                }
-            }
-        })
     })
     .run(function ($rootScope) {
 

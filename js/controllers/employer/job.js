@@ -29,7 +29,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         newLangClicked = false
         //initialize parameters for this controller
         $scope.init = function () {
-            loadCSS('job');
 
             $scope.combinationIndx = 0;
             $http({
