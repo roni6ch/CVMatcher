@@ -47,7 +47,7 @@
 
 .modal-content .timeline-body > p,.modal-content .timeline-body > ul {
     margin-bottom: 0;
-    text-align: justify;
+    text-align: left;
     width: 100%;
     font-size: 20px;
     color: #000;

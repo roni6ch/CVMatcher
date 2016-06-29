@@ -71,6 +71,8 @@ app
                                                 var skillsFromJson = data.data.formula.requirements.details;
 
                                                 $.each(skillsFromJson, function (key, value) {
+                                                    if (value.grade == 0)
+                                                        return;
                                                     var color = colorsArr[colorIndex];
                                                     $(".matchpageWrapper .requirements-skills-bar").append('<div class="skillbar" data-percent=' + value.grade + ' >' +
                                                         '<span class="skillbar-title">' + value.name + '' +
