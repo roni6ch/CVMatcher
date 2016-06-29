@@ -81,6 +81,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         console.log(data.data[0]);
                         $scope.jobDetails = data.data[0];
                         $scope.mustReqiurment = data.data[0].original_text['requirements'].split('|||')[0];
+                        $scope.AdvReqiurment = data.data[0].original_text['requirements'].split('|||')[1];
 
                         editJob = true;
 
@@ -154,7 +155,13 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
                             });
-                            $scope.parseExperience();
+                           // $scope.parseExperience();
+                            totalPriorotySum = 100;
+                            angular.element(".removeCombination").show();
+                            angular.element(".buttonsAfterParse").show();
+                            $(".requirementsWrapper").show();
+                            angular.element(".fa-spin").hide();
+                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
 
                         }
                         angular.element(".fa-pulse").hide();
@@ -291,12 +298,6 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         $scope.changeContent = function () {
             angular.element(".experienceBeforeParse").show();
         };
-        // Limit items to be dropped in list1
-        /*$scope.optionsList3 = {
-         accept: function () {
-         return $scope.list3.length < 2;
-         }
-         };*/
         //EXIT MODAL BUTTON
         $scope.exitStatus = function () {
             //if user clickd ok then move to search jobs page - need to wait to close modal
@@ -326,6 +327,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 data: {"sector": "software engineering"}
             })
                 .then(function (data) {
+                    console.log( $.trim($("#requirementsMust").val()));
                         angular.element(".spin").hide();
                         parseExpereince = {
                             "text": $.trim($("#requirementsMust").val()),
@@ -339,13 +341,96 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                         //Requerments Must
                         if ($id == 'job') {
-                            totalPriorotySum = 100;
+                            $rootScope.list1 = [];
+                            $rootScope.list2 = [];
+                            $rootScope.list3 = [];
+                            $rootScope.langs = [];
 
-                            angular.element(".removeCombination").show();
-                            angular.element(".buttonsAfterParse").show();
-                            $(".requirementsWrapper").show();
-                            angular.element(".fa-spin").hide();
-                            angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                            $http({
+                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                method: "POST",
+                                data: parseExpereince
+                            })
+                                .then(function (data1) {
+                                    console.log(parseExpereince);
+                                    console.log(data1);
+                                        requirements = [];
+                                        combination = [];
+                                        angular.element(".removeCombination").show();
+                                        angular.element(".fa-spin").hide();
+                                        $(".requirementsWrapper").show();
+                                        angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                        tempMustLangs = [];
+                                        $.each(data1.data, function (key, val) {
+                                            console.log(val);
+                                            tempMust = {
+                                                'langId': langId++,
+                                                'name': val,
+                                                'percentage': 0,
+                                                'mode': "must",
+                                                'years': 0,
+                                                'drag': true
+                                            };
+                                            tempMustLangs.push(tempMust);
+                                            combination.push(tempMust);
+                                        });
+                                        $rootScope.list1 = tempMustLangs;
+
+
+                                        //adv
+                                        $http({
+                                            url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                            method: "POST",
+                                            data: parseExpereinceAdv
+                                        })
+                                            .then(function (data1) {
+
+                                                    angular.element(".buttonsAfterParse").show();
+                                                    angular.element(".fa-spin").hide();
+                                                    $(".requirementsWrapper").show();
+                                                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
+                                                    tempAdvLangs = [];
+                                                    $.each(data1.data, function (key, val) {
+                                                        tempAdv = {
+                                                            'langId': langId++,
+                                                            'name': val,
+                                                            'percentage': 0,
+                                                            'mode': "adv",
+                                                            'years': 0,
+                                                            'drag': true
+                                                        };
+
+                                                        tempAdvLangs.push(tempAdv);
+                                                        combination.push(tempAdv);
+                                                    });
+
+                                                    $rootScope.list2 = tempAdvLangs;
+
+                                                },
+                                                function (response) {
+                                                    console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                                    console.log(response);
+                                                });
+
+
+                                        requirements.push({'combination': combination});
+                                        console.log(requirements);
+
+
+                                    },
+                                    function (response) {
+                                        angular.element(".fa-spin").hide();
+                                        console.log("findIfKeyWordsExistsJOB AJAX failed!");
+                                        console.log(response);
+                                    });
+
+
+
+
+
+
+
+
                         }
                         else {
                             $http({
@@ -434,8 +519,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
 
             angular.element(".operators").removeClass("hidden");
-            angular.element(".experienceBeforeParse").addClass(
-                "hidden");
+          //  angular.element(".experienceBeforeParse").addClass( "hidden");
 
         };
         //send form
