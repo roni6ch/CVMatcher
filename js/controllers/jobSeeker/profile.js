@@ -72,10 +72,11 @@ app
                                     }
                                 })
                                     .then(function (data) {
-                                            angular.element(".fa-pulse").hide();
+                                        console.log(data);
+                                            angular.element(".fa-pulse").hide();/*
                                             $.each(data.data[0].personal_properties, function (i, post) {
                                                 console.log(i + " : " + post);
-                                            });
+                                            });*/
                                             myKeyWords = [];
                                             $scope.jobSeekerCV = data.data[0];
                                             if ($scope.jobSeekerCV.original_text.history_timeline.length == 0) {
@@ -85,7 +86,7 @@ app
                                             if (cvJson) {
                                                 if ($scope.jobSeekerCV.requirements[0].combination.length > 0)
                                                     angular.forEach($scope.jobSeekerCV.requirements[0].combination, function (value) {
-
+console.log(  value   );
                                                         myKeyWords.push({
                                                             "name": value.name,
                                                             "years": value.years
@@ -188,7 +189,6 @@ app
                         "enddate": enddate
                     });
                 });
-
                 $http({
                     url: "https://cvmatcher.herokuapp.com/getKeyWordsBySector",
                     method: "POST",
@@ -199,7 +199,7 @@ app
                             console.log(parseExpereince);
                             myKeyWords = [];
                             $http({
-                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsCV",
+                                url: "https://cvmatcherbuilders.herokuapp.com/findIfKeyWordsExistsCV",
                                 method: "POST",
                                 data: parseExpereince
                             })
@@ -323,11 +323,8 @@ app
                 })
                     .then(function (data) {
                             console.log(data.data[0]);
-                            $scope.status = messageResource.get("modal.seeker.preview", 'resources');
-                            $('#previewCV').modal('show');
-
                             $scope.user = data.data[0];
-
+                            var user_timeline = [];
                             $.each($(".profileWrapper .timeline li "), function (key, val) {
                                 var text = $(this).find('.timeline-body textarea').val();
                                 var startdate = $(this).find('.timeline-heading label:nth-child(3) select').val();
@@ -351,9 +348,15 @@ app
                                     "end_year": parseInt(enddate),
                                     "type": type
                                 };
+                                user_timeline.push(newLi);
                                 if (key >= $scope.user.original_text['history_timeline'].length)
                                     $scope.user.original_text['history_timeline'].push(newLi);
                             });
+
+$scope.user_timeline = user_timeline;
+                            $scope.status = messageResource.get("modal.seeker.preview", 'resources');
+                            $('#previewCV').modal('show');
+
 
 
                         },
@@ -399,7 +402,7 @@ app
                     }
                 })
                     .then(function (data) {
-                            console.log(data);
+                            //console.log(data);
                         },
                         function (response) { // optional
                             console.log("addKeyWords send form AJAX failed!");
@@ -453,7 +456,7 @@ app
                         return;
                     }
 
-
+console.log(text);
                     if ($(this).hasClass("timeline-inverted"))
                         type = 'experience';
                     else

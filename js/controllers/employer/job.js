@@ -347,7 +347,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                             $rootScope.langs = [];
 
                             $http({
-                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                url: "https://cvmatcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
                                 method: "POST",
                                 data: parseExpereince
                             })
@@ -379,7 +379,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                                         //adv
                                         $http({
-                                            url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                            url: "https://cvmatcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
                                             method: "POST",
                                             data: parseExpereinceAdv
                                         })
@@ -434,7 +434,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                         }
                         else {
                             $http({
-                                url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                url: "https://cvmatcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
                                 method: "POST",
                                 data: parseExpereince
                             })
@@ -462,7 +462,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
 
                                         //adv
                                         $http({
-                                            url: "https://matcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
+                                            url: "https://cvmatcherbuilders.herokuapp.com/findIfKeyWordsExistsJOB",
                                             method: "POST",
                                             data: parseExpereinceAdv
                                         })
