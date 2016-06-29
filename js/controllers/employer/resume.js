@@ -203,6 +203,8 @@ app.controller('resumeController',
                                 var skillsFromJson = data.data[0].formula.matching_requirements.details;
 
                                 $.each(skillsFromJson, function (key, value) {
+                                    if (value.grade == 0)
+                                        return;
                                     var color = colorsArr[colorIndex];
                                     $(".resumeWrapper .requirements-skills-bar").append('<div class="skillbar" data-percent=' + value.grade + ' >' +
                                         '<span class="skillbar-title">' + value.name + '' +

@@ -148,10 +148,10 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
                 "cv": localStorage.getItem('current_cv')
             }
         }).then(function (data) {
+            console.log(data);
             $scope.getTopTenJobs = true;
             angular.element(".fa-spinner").hide();
             $scope.jobSeekerJobs = data.data;
-            console.log(data.data);
             angular.forEach(data.data, function (value, key) {
                 data.data[key].date = value.date.split("T")[0] + ' | ' + value.date.split("T")[1].split(".")[0];
             });
