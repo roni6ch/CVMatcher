@@ -16,6 +16,18 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
 
     //initialize parameter in the controller
     $scope.init = function () {
+        $(".navBarImg ul li").removeClass("selected");
+        console.log($location.path().split('/')[1]);
+        if ($location.path().split('/')[1] == 'yourjobs') {
+            $(".navBarImg ul li:nth-child(2)").addClass("selected");
+        }
+        else if ($location.path().split('/')[1] == 'favorites') {
+            $(".navBarImg ul li:nth-child(3)").addClass("selected");
+        }
+        else if ($location.path().split('/')[1] == 'deleted') {
+            $(".navBarImg ul li:nth-child(4)").addClass("selected");
+        }
+
         jobTitles = [];
         $scope.descriptionFromMessage = '';
         console.log($rootScope.userSignInType);

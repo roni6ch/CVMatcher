@@ -10,6 +10,14 @@ app.controller('hiredController', function ($rootScope, $location, $scope, $http
 
 
     $scope.init = function () {
+
+        $(".navBarImg ul li").removeClass("selected");
+        console.log($location.path().split('/')[1]);
+        if ($location.path().split('/')[1] == 'hired') {
+            $(".navBarImg ul li:nth-child(3)").addClass("selected");
+        }
+
+
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/hired'>Hired</a>";
         angular.element(".fa-pulse").show();
 var names =[];

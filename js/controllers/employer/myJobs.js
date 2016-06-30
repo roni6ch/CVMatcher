@@ -12,6 +12,15 @@ app.controller('myjobsController', function ($rootScope, $location, $scope, $htt
 var names = [];
     //initialize parameters for this controller
     $scope.init = function(){
+        $(".navBarImg ul li").removeClass("selected");
+        if ($id[1] == 'myjobs') {
+            $(".navBarImg ul li:nth-child(1)").addClass("selected");
+        }
+        else if ($id[1] == 'archive'){
+            $(".navBarImg ul li:nth-child(2)").addClass("selected");
+        }
+
+
         $rootScope.userSignInType = 'employer';
         angular.element("#logo").attr("href", '#/login');
         $scope.company = company;

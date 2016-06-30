@@ -9,7 +9,11 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     var jobTitles;
     //initialize parameters for controller
     $scope.init = function () {
-
+        $(".navBarImg ul li").removeClass("selected");
+        console.log($location.path().split('/')[1]);
+        if ($location.path().split('/')[1] == 'search-jobs') {
+            $(".navBarImg ul li:nth-child(1)").addClass("selected");
+        }
         //load CSS for this current page
 
         jobTitles = [];

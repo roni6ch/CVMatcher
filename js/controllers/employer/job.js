@@ -30,6 +30,11 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
         //initialize parameters for this controller
         $scope.init = function () {
 
+            $(".navBarImg ul li").removeClass("selected");
+            if ($id == 'new-job') {
+                $(".navBarImg ul li:nth-child(4)").addClass("selected");
+            }
+
             $scope.combinationIndx = 0;
             $http({
                 url: 'https://cvmatcher.herokuapp.com/getUser',
@@ -328,7 +333,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
             })
                 .then(function (data) {
                     console.log( $.trim($("#requirementsMust").val()));
-                        angular.element(".spin").hide();
+
                         parseExpereince = {
                             "text": $.trim($("#requirementsMust").val()),
                             "words": data.data
@@ -357,6 +362,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                         requirements = [];
                                         combination = [];
                                         angular.element(".removeCombination").show();
+                                        angular.element(".spin").hide();
                                         angular.element(".fa-spin").hide();
                                         $(".requirementsWrapper").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
@@ -384,7 +390,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                             data: parseExpereinceAdv
                                         })
                                             .then(function (data1) {
-
+                                                    angular.element(".spin").hide();
                                                     angular.element(".buttonsAfterParse").show();
                                                     angular.element(".fa-spin").hide();
                                                     $(".requirementsWrapper").show();
@@ -439,6 +445,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                 data: parseExpereince
                             })
                                 .then(function (data1) {
+                                        requirements = [];
                                         combination = [];
                                         angular.element(".removeCombination").show();
                                         angular.element(".fa-spin").hide();

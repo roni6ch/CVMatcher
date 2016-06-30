@@ -314,6 +314,7 @@
                                         <label>From
                                             <select ng-model="selectedFrom" ng-change="selectFromYear(selectedFrom)"
                                                     class="form-control yearsProfile">
+                                                <option> </option>
                                                 <option value="2004" ng-selected="experience['start_year'] == '2004'">
                                                     2004
                                                 </option>
@@ -358,6 +359,7 @@
                                         <label>To
                                             <select ng-model="selectedTo" ng-change="selectToYear(selectedTo)"
                                                     class="form-control yearsProfile">
+                                                <option> </option>
                                                 <option value="2004" ng-selected="experience['end_year'] == '2004'"
                                                         ng-show="selectFrom == 2004">
                                                     2004
@@ -465,7 +467,7 @@
                     <span>CV Preview</span>
                 </section>
 
-                <button class="sendButtonP" type="submit" id="submitAfterParse" class="btn btn-default disabled">
+                <button class="sendButtonP" type="submit" id="submitAfterParse" class="btn btn-default">
                     <img class="Garrow" src="images/Garrow.png">
                     <span>Save</span>
                 </button>

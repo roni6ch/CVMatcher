@@ -19,6 +19,7 @@ app
             };
             //initialize parameters for controller
             $scope.init = function () {
+                $(".navBarImg ul li").removeClass("selected");
                 angular
                     .element(".parserAfterText").hide();
                 $rootScope.userSignInType = 'jobSeeker';
@@ -33,7 +34,7 @@ app
                 socket.onmessage = function (msg) {
                     var message = JSON.parse(msg.data);
                     console.log(message);
-                    notifyMe(message.notificationType, message.jobName, message.companyName,message.other);
+                    notifyMe(message.notificationType, message.jobName, message.companyName, message.other);
                 }
 
             }
@@ -73,11 +74,12 @@ app
                                     }
                                 })
                                     .then(function (data) {
-                                        console.log(data);
-                                            angular.element(".fa-pulse").hide();/*
-                                            $.each(data.data[0].personal_properties, function (i, post) {
-                                                console.log(i + " : " + post);
-                                            });*/
+                                            console.log(data);
+                                            angular.element(".fa-pulse").hide();
+                                            /*
+                                             $.each(data.data[0].personal_properties, function (i, post) {
+                                             console.log(i + " : " + post);
+                                             });*/
                                             myKeyWords = [];
                                             $scope.jobSeekerCV = data.data[0];
                                             if ($scope.jobSeekerCV.original_text.history_timeline.length == 0) {
@@ -87,7 +89,7 @@ app
                                             if (cvJson) {
                                                 if ($scope.jobSeekerCV.requirements[0].combination.length > 0)
                                                     angular.forEach($scope.jobSeekerCV.requirements[0].combination, function (value) {
-console.log(  value   );
+                                                        console.log(value);
                                                         myKeyWords.push({
                                                             "name": value.name,
                                                             "years": value.years
@@ -129,6 +131,7 @@ console.log(  value   );
             $scope.removeContentCV = function (index) {
                 $scope.changeContent();
                 indx++;
+                console.log(indx);
                 angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
                 $("#cvLi" + index).remove();
             };
@@ -256,8 +259,8 @@ console.log(  value   );
             };
             //add more education to the timeline by selecting Plus button
             $scope.addEducation = function (type) {
-                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')" class="form-control"><option ng-selected="true" value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
-                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '" class="form-control" ><option value="2004" ng-selected="true"  ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
+                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')" class="form-control"><option ng-selected="true" value=""></option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '" class="form-control" ><option ng-selected="true" value=""></option><option value="2004"   ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
 
                 indx++;
                 var divTemplate;
@@ -315,11 +318,10 @@ console.log(  value   );
             $scope.cvPreview = function () {
 
                 $http({
-                    url: 'https://cvmatcher.herokuapp.com/getMatchingObject',
+                    url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
                     data: {
-                        "matching_object_id": localStorage.getItem('current_cv'),
-                        "matching_object_type": "cv"
+                        "user_id": $rootScope.user_id
                     }
                 })
                     .then(function (data) {
@@ -350,14 +352,11 @@ console.log(  value   );
                                     "type": type
                                 };
                                 user_timeline.push(newLi);
-                                if (key >= $scope.user.original_text['history_timeline'].length)
-                                    $scope.user.original_text['history_timeline'].push(newLi);
                             });
 
-$scope.user_timeline = user_timeline;
+                            $scope.user_timeline = user_timeline;
                             $scope.status = messageResource.get("modal.seeker.preview", 'resources');
                             $('#previewCV').modal('show');
-
 
 
                         },
@@ -457,7 +456,7 @@ $scope.user_timeline = user_timeline;
                         return;
                     }
 
-console.log(text);
+                    console.log(text);
                     if ($(this).hasClass("timeline-inverted"))
                         type = 'experience';
                     else

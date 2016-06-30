@@ -8,7 +8,6 @@
 var company = false;
 app.controller('companyProfileController',
     function ($scope, $http, $location, $sce, $rootScope, $timeout) {
-
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/company-profile'>Company Profile</a>";
         var companyId, tabType = '';
         $("#geocomplete").geocomplete();
@@ -20,7 +19,7 @@ app.controller('companyProfileController',
 
         //company profile details
         $scope.init = function () {
-
+            $(".navBarImg ul li").removeClass("selected");
             angular.element(".existingCompanis").hide();
             $rootScope.userSignInType = 'employer';
             $http({
@@ -66,6 +65,8 @@ app.controller('companyProfileController',
 
                             }
                             else {
+
+                                angular.element(".GarrowInput").hide();
                                 $(".newPassword").hide();
                                 $scope.password = true;
                                 angular.element(".fa-pulse").hide();
