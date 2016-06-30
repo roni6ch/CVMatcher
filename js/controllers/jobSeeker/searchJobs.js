@@ -139,6 +139,7 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
         angular.element(".sort_compability").hide();
         angular.element(".sort_date").hide();
         angular.element(".fa-spinner").show();
+        $scope.sortby = -'matcher_grade';
         $http({
             url: 'https://cvmatcher.herokuapp.com/jobSeeker/getBestMatchJobs',
             method: "POST",

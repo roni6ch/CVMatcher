@@ -531,6 +531,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                 $.each(value, function (ke, va) {
                     repeatedLangs = [];
                     $.each(va, function (k, v) {
+                        console.log(v);
                         languagesNames.push(v.name);
                         if ($.inArray(v.name, repeatedLangs) == -1)
                             repeatedLangs.push(v.name);

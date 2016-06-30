@@ -41,6 +41,7 @@ app
             $scope.getMainJson = function () {
 //http://stackoverflow.com/questions/22447374/how-to-trigger-ng-click-angularjs-programmatically
                 if (localStorage.getItem('fixCV') !== null) {
+                    angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
                     $timeout(function () {
                         angular.element("#tab1").trigger('click');
                     }, 100);
