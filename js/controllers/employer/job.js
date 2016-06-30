@@ -448,7 +448,7 @@ app.controller('jobController', function ($scope, $http, $location, $timeout, $c
                                         requirements = [];
                                         combination = [];
                                         angular.element(".removeCombination").show();
-                                        angular.element(".fa-spin").hide();
+                                        angular.element(".fa-pulse").hide();
                                         $(".requirementsWrapper").show();
                                         angular.element("#submitAfterParse").removeClass("disabled").css("pointer-events", "auto");
                                         tempMustLangs = [];

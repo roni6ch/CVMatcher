@@ -98,7 +98,6 @@ table {
 }
 
 input, textarea, select, option {
-    resize: none;
     outline: none;
     -webkit-border-radius: 0px;
     border: 0;
@@ -113,7 +112,7 @@ a {
     text-decoration: none;
 }
 
-button,input{
+button,input[button],span{
     outline: 0;
 }
 
@@ -184,6 +183,13 @@ footer div {
 
 footer div a {
     margin-left: 10px;
+}
+
+.userLogo {
+    width: 32px;
+    position: absolute;
+    top: 44px;
+    right: 72px;
 }
 
 .flc {
@@ -1727,7 +1733,6 @@ text-align: center;
     float: none;
 }
 
-.parserExperienceLanguage,.parserExperienceYearsLabel{width:50%;}
 
 .parser {
     margin-bottom: 2%;
@@ -1791,8 +1796,9 @@ text-align: center;
 
 .userProfile .parseExperience label {
     margin: 0 auto;
-    width: 50%;
+    width: 38%;
     color: #fff;
+    margin-right: 11%;
 }
 
 div#popover924921 {
@@ -1891,23 +1897,14 @@ div#popover924921 {
     color:#fff;
 }
 
-.parserExperienceYearsLabelAdded {
-    width: 30%;
-}
-
 .parserExperienceYears {
     float: right;
-}
-
-.parserExperienceLanguageAdded {
-    float: left;
-    padding-right: 2%;
-    width: 30%;
 }
 
 .parserExperienceLanguage {
     float: left;
     padding-right: 2%;
+    font-size: 20px;
 }
 
 .removeContentCV {
@@ -1982,7 +1979,7 @@ div#popover924921 {
     width: 20px;
     float: left;
     margin-right: 4px;
-    margin-top: 1px;
+    margin-bottom: 10px;
 }
 
 /****************************************************** TIMELINE ***************************************************/
@@ -2322,9 +2319,6 @@ div#popover924921 {
 .cvPreview{background: transparent;color:#fff;border:0;outline:0;float:left;}
 #predictAppend h2 {font-size: 20px;color: #fff;margin-top: 200px;margin-bottom: 30px;border: 1px solid #57b7ee;padding: 12px;}
 
-.yearsProfile{
-    width: 100% !important;
-}
 
 .googleSignInWrapper{
     width: 75%;

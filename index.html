@@ -138,6 +138,8 @@
     <img id='profilePicture' profileimg src="" data-html="true" data-container="body" data-toggle="popover"
          data-placement="bottom"
          data-content="{{content}}">
+    <img class="userLogo" ng-if="userSignInType == 'employer'" src="images/emp.png">
+    <img class="userLogo" ng-if="userSignInType == 'jobSeeker'" src="images/jobsee.png">
 
     <!-- Img -->
     <div class="navBarImg hidden">

@@ -21,7 +21,7 @@
             <form ng-submit="submitUserDetails()"><!--
                 <h4>Personal Information</h4>-->
 
-                <h6 class="requiredError"> *All the fields are Required! ( except LinkedIn )</h6>
+                <h6 class="requiredError"> *All the fields are required! ( except LinkedIn )</h6>
                 <label>ID:</label> <input type="text" ng-model="jobSeeker['personal_id']"
                                           class="form-control" name="name" required
                                           value="{{jobSeeker['personal_id']}}">
@@ -31,7 +31,7 @@
                 >Family:</label> <input type="text" required ng-model="jobSeeker['last_name']"
                                         class="form-control" name="family"
                                         value="{{jobSeeker['last_name']}}"> <label
-                >Date of birth:</label> <input type="date" required
+                >Date of birth:</label> <input  required id="datepickerProfile"
                                                class="form-control birthDay" name="birth"
                                                value="{{jobSeeker['birth_date']}}">
 
@@ -64,7 +64,7 @@
                 <!--
                                 <h4>Professional Experience</h4>-->
 
-                <h6 class="requiredError"> *All the fields are Required!</h6>
+                <h6 class="requiredError"> *All the fields are required!</h6>
                 <label>Sector:</label> <select name="sector" required
                                                class="form-control jobSeekerCVsector">
                 <option ng-selected="jobSeekerCV.sector == ''" value="">
@@ -311,7 +311,7 @@
                                         <h2 class='timelineTitle' ng-if="experience['type'] == 'education'">Education</h2>
                                         <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true"
                                            ng-click="removeContentCV($index)"></i>
-                                        <label>From
+                                        <label class="yearsProfile">From
                                             <select ng-model="selectedFrom" ng-change="selectFromYear(selectedFrom)"
                                                     class="form-control yearsProfile">
                                                 <option> </option>
@@ -356,7 +356,7 @@
                                                 </option>
                                             </select>
                                         </label>
-                                        <label>To
+                                        <label class="yearsProfile">To
                                             <select ng-model="selectedTo" ng-change="selectToYear(selectedTo)"
                                                     class="form-control yearsProfile">
                                                 <option> </option>
@@ -420,7 +420,7 @@
 
                                         <div class="form-group">
                                             <label for="content">Content:</label>
-                                            <textarea class="form-control" rows="3" name="content" id="content"
+                                            <textarea class="form-control profileExpEdu" rows="3" name="content" id="content"
                                                       ng-model="experience.text" ng-change="changeContent(content)"
                                                       required>{{experience.text}}</textarea>
                                         </div>

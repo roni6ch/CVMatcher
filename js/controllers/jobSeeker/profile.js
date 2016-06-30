@@ -19,6 +19,8 @@ app
             };
             //initialize parameters for controller
             $scope.init = function () {
+                $(".parserExperienceLanguage").hide();
+                $(".parserExperienceYearsLabel").hide();
                 $(".navBarImg ul li").removeClass("selected");
                 angular
                     .element(".parserAfterText").hide();
@@ -127,18 +129,20 @@ app
 
                         });
             };
+            $(function() {
+                $( "#datepickerProfile" ).datepicker();
+            });
             //remove 1 section from timeline
             $scope.removeContentCV = function (index) {
                 $scope.changeContent();
                 indx++;
                 console.log(indx);
-                angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
+                angular.element("#submitAfterParse").css("pointer-events", "auto");
                 $("#cvLi" + index).remove();
             };
             //change content in textarea of the timeline - open parsing option
             $scope.changeContent = function () {
 
-                angular.element("#submitAfterParse").addClass("disabled").css("pointer-events", "none");
                 angular
                     .element(".parseExperienceButton").show();
                 angular
@@ -151,6 +155,9 @@ app
             };
             //parse the experience and bring corrent languages that been found
             $scope.parseMyExperience = function () {
+
+                $(".parserExperienceLanguage").show();
+                $(".parserExperienceYearsLabel").show();
 
                 parseExpereince = {
                     "expereince": []
@@ -211,14 +218,10 @@ app
                                         console.log(data);
                                         angular.element(".parseExperience").html('');
                                         angular.forEach(data.data, function (value) {
-
-
                                             myKeyWords.push({
                                                 "name": value.name,
                                                 "years": value.years
                                             });
-
-
                                             var yearsExperience = '<label class="parserExperienceYearsLabel"><input type="text" class="form-control" class="parserExperienceYears"  value="' + value.years + '"></label>';
                                             angular.element(".parseExperience").append('<div class="parser"><label class="parserExperienceLanguage"><input type="text" required class="form-control " id="experience" name="experience"' +
                                                 ' value="' + value.name + '"  /></label>' + yearsExperience) + '</div>';
@@ -259,17 +262,17 @@ app
             };
             //add more education to the timeline by selecting Plus button
             $scope.addEducation = function (type) {
-                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')" class="form-control"><option ng-selected="true" value=""></option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
-                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '" class="form-control" ><option ng-selected="true" value=""></option><option value="2004"   ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
+                var fromExperience = '<label>From<select  ng-model="selectedFrom' + indx + '"  ng-change="selectFromYear(selectedFrom' + indx + ')" class="form-control yearsProfile"><option ng-selected="true" value=""></option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option></select></label>';
+                var toExperience = '<label>To<select  ng-model="selectedTo' + indx + '" class="form-control yearsProfile" ><option ng-selected="true" value=""></option><option value="2004"   ng-show="selectFrom == 2004">2004</option><option value="2005" ng-show="selectFrom <= 2005">2005</option><option value="2006" ng-show="selectFrom <= 2006">2006</option><option value="2007" ng-show="selectFrom <= 2007">2007</option><option value="2008" ng-show="selectFrom <= 2008">2008</option><option value="2009" ng-show="selectFrom <= 2009">2009</option><option value="2010" ng-show="selectFrom <= 2010">2010</option><option value="2011" ng-show="selectFrom <= 2011">2011</option><option value="2012" ng-show="selectFrom <= 2012">2012</option><option value="2013" ng-show="selectFrom <= 2013">2013</option><option value="2014" ng-show="selectFrom <= 2014">2014</option><option value="2015" ng-show="selectFrom <= 2015">2015</option><option value="2016" ng-show="selectFrom <= 2016">2016</option></select></label>';
 
                 indx++;
                 var divTemplate;
                 if (type == 'education') {
-                    divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"><h2 class="timelineTitle">Education</h2> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control" rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
+                    divTemplate = '<li id="cvLi' + indx + '"><div class="timeline-badge"  ng-click="addEducation(' + "'education'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"><h2 class="timelineTitle">Education</h2> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control profileExpEdu " rows="3" name="content"   ng-model="content' + indx + '" ng-change="changeContent(content' + indx + ')" id="content" required></textarea></div></p></div></div></li>';
 
                 }
                 else {
-                    divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"><h2 class="timelineTitle">Experience</h2> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control"   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
+                    divTemplate = '<li class="timeline-inverted" id="cvLi' + indx + '"><div class="timeline-badge" ng-click="addEducation(' + "'employment'" + ')"><i class="fa fa-plus"></i></div><div class="timeline-panel"><div class="timeline-heading"><h2 class="timelineTitle">Experience</h2> <i class="fa fa-times fa-2x removeContentCV" aria-hidden="true" ng-click="removeContentCV(' + indx + ')"></i>' + fromExperience + toExperience + '</div><div class="timeline-body"><p><div class="form-group"><label for="content">Content:</label><textarea class="form-control profileExpEdu "   ng-model="content' + indx + '"  ng-change="changeContent(content' + indx + ')"  rows="3" name="content" id="content" required></textarea></div></p></div></div></li>';
                 }
                 var temp = $compile(divTemplate)($scope);
                 angular.element(".timeline").append(temp);

@@ -75,10 +75,16 @@
     color: #fff;
 }
 
-.matchpageWrapperi.fa.fa-spinner.fa-pulse.fa-5x.ng-scope {
+.matchpageWrapper i.fa.fa-spinner.fa-pulse.fa-5x.ng-scope {
     color: #fff;
     position: absolute;
     top: 100px;
+}
+
+.matchpageWrapper .jobDetailsLS img {
+    width: 100px;
+    border-radius: 10px;
+    margin-bottom: 24px;
 }
 
 

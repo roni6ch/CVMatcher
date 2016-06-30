@@ -129,3 +129,7 @@
 .companyprofileWrapper .modal-footer > button:hover {
     color: #6E6E6E;
 }
+
+.modal .modal-content {
+    margin-top: 50px;
+}

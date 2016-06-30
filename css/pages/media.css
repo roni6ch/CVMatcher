@@ -309,6 +309,11 @@
     }
 
     /*match*/
+    .matchpageWrapper .jobDetailsLS img {
+        width: 66px;
+        border-radius: 10px;
+        margin-bottom: 24px;
+    }
     .matchpageWrapper {
         margin-top: 38px;
     }
@@ -508,7 +513,6 @@
 
     .jobs > div:nth-child(1) a {
         float: right;
-        margin-right: 6%;
         font-size: 10px;
     }
 
@@ -1163,11 +1167,14 @@
     }
 
     /*first page - google sign in*/
+
     .googleSignInImg {
-        position: absolute;
-        top: 4%;
-        height: 96%;
-        width: 100%;
+        background: url("../../images/jobseekerCover.png") right bottom no-repeat;
+        height: 100%;
+        width: 420px;
+        position: fixed;
+        top: 0px;
+        right: 0;
     }
 
     .googleSignInBox {
