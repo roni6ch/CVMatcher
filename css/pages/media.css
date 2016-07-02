@@ -152,8 +152,9 @@
     }
 
     /*searcj job html*/
+
     .jobsList article p {
-        width: 100%;
+        width: 74%;
     }
 
     #sendCVstatus .modal-content {
@@ -205,8 +206,8 @@
     }
 
     .searchJobsWrapper .logoInJobBox {
+        width: 44px;
         position: relative;
-        min-height: 68px;
         left: 13px;
         top: 9px;
         border-radius: 8px;
@@ -220,7 +221,7 @@
 
     .searchJobsWrapper .jobListLi section {
         right: 12px;
-        top: 25px;
+        top: 30px;
     }
 
     .searchJobsWrapper .jobsList ul li {
@@ -234,7 +235,13 @@
     }
 
     .searchJobsWrapper .checkMyCVButton {margin-bottom: 34px;font-size: 20px;}
+    .skills p{
+    width: 100%;
+}
 
+    .searchTitles p{
+    width: 100% !important;
+}
     /*your jobs*/
 
     .yourJobsWrapper .compatibilityText {
@@ -979,7 +986,7 @@
     }
 
     .jobListLi a i {
-        display: none;
+        /*display: none;*/
     }
 
     .jobsTools {

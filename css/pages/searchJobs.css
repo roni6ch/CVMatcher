@@ -62,3 +62,8 @@
     margin-right: 10px;
     margin-top: 4px;
 }
+
+.visibleText>span{
+    font-size: 24px;
+}
+

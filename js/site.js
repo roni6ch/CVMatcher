@@ -436,3 +436,4 @@ function loadCSS(str){
         }).appendTo("head");
     }
 }
+
