@@ -41,3 +41,14 @@
     margin-left: 120px;
     padding-right: 206px;
 }
+
+.yourJobsWrapper .LTitle{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.yourJobsWrapper .LTitle p span{
+    font-size: 21px;
+    font-weight: bold;
+    display: block;
+}

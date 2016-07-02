@@ -89,7 +89,7 @@
 
 .candidates > div:nth-child(1) a {
     float: right;
-    margin-left: 5px;
+    margin-left: 21px;
     width: 25px;
     font-size: 11px;
 }
@@ -154,6 +154,7 @@
     width: 128%;
     float: right;
     margin-top: -14px;
+    /* margin-right: 10px; */
 }
 
 .candidates span {

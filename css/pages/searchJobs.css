@@ -22,10 +22,11 @@
     margin-left: -1%;
 }
 
-.searchJobsWrapper button:hover,.searchJobsWrapper button:active:hover,.searchJobsWrapper button:focus {
-    outline:none;
-    opacity: 0.6;    background-color: transparent;
-    color:#fff;
+.searchJobsWrapper button:hover, .searchJobsWrapper button:active:hover, .searchJobsWrapper button:focus {
+    outline: none;
+    opacity: 0.6;
+    background-color: transparent;
+    color: #fff;
 }
 
 .searchJobsWrapper form input, .yourJobsWrapper form input {
@@ -41,14 +42,21 @@
     margin-left: 0px;
 }
 
-.searchJobsWrapper .searchTitles{
-    font-weight: bold;
-    font-size: 21px;
+.searchTitles span {
+
     display: block;
 }
 
-.searchJobsWrapper .jobListLi span {
+.searchJobsWrapper .jobListLi p span {
     font-size: 21px;
     font-weight: bold;
+    float: left;
+    margin-right: 5px;
+    /*display: block;*/
 }
 
+.searchJobsWrapper .fa-clock-o {
+    float: left;
+    margin-right: 10px;
+    margin-top: 4px;
+}

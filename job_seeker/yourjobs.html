@@ -121,13 +121,13 @@
                                  data-compability="{{jobSJ.job.compatibility_level}}">
                             <h5>{{jobSJ.job.compatibility_level}}%</h5>
                         </section>
-                        <h5 class="compatibilityText">Compatibility Level</h5>
+                        <h5 class="compatibilityText">Compatibility</h5>
 
-                        <article id="collepse-{{$index}}" class="collapse ">
-                            <p>Description: {{jobSJ.job["original_text"].description}}</p>
+                        <article id="collepse-{{$index}}" class="collapse LTitle">
+                            <p><span>Description:</span> {{jobSJ.job["original_text"].description}}</p>
 
                             <div class="skills">
-                                <p>Requirements {{jobSJ.job.original_text["requirements"].split("|||")[0]}}</p>
+                                <p><span>Requirements:</span> {{jobSJ.job.original_text["requirements"].split("|||")[0]}}</p>
 
                                 <p>{{jobSJ.job.original_text["requirements"].split("|||")[1]}}</p>
                             </div>

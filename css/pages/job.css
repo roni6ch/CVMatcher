@@ -38,18 +38,7 @@
     border-color: #254117;
 }
 
-.jobWrapper .btn-danger {
-    color: #fff;
-    background-color: #800517;
-    border-color: #800517;
-}
 
-.jobWrapper .btn-danger:hover {
-    color: #fff;
-    background-color: #800517;
-    border-color: #800517;
-    opacity: 0.6;
-}
 
 .jobWrapper .jobEdit > div {
     width: 100% !important;
@@ -173,7 +162,7 @@
 
 .jobWrapper .pagination + section {
     float: none;
-    width: 20%;
+    width: 144px;
     position: relative;
     margin: 0 auto;
     margin-top: 86px;
@@ -181,9 +170,9 @@
 
 .jobWrapper .pagination + section h5 {
     position: absolute;
-    top: 44%;
+    top: 39%;
     font-size: 30px;
-    left: 38%;
+    left: 36%;
     color: #fff;
     font-weight: bold;
 }
@@ -220,6 +209,7 @@
     background-color: transparent;
     border-color: transparent;
     border-radius: 0;
+    font-size: 18px;
 }
 
 .jobWrapper .jobTitle {
@@ -264,7 +254,7 @@
 .jobWrapper .btn.active.focus, .jobWrapper .btn.active:focus, .jobWrapper .btn.focus, .jobWrapper .btn:active.focus, .jobWrapper .btn:active:focus, .jobWrapper .btn:focus {
     outline: 0;
     outline-offset: 0;
-    background: transparent;
+    /*background: transparent;*/
     border: 0;
 }
 
@@ -280,4 +270,25 @@
     z-index: 1;
 }
 
+.jobWrapper .PButton:focus,.jobWrapper .PButton:active:focus{
+    background-color: #254117;
+    border-color: #25411D;
+}
 
+.jobWrapper .MButton {
+    color: #fff;
+    background-color: #800517;
+    border-color: #800517;
+}
+
+.jobWrapper .MButton:hover {
+    color: #fff;
+    background-color: #800517;
+    border-color: #800517;
+    opacity: 0.6;
+}
+
+.jobWrapper .MButton:focus,.jobWrapper .MButton:active:focus,.jobWrapper .MButton:active{
+    background-color: #800517 !important;
+    border-color: #800517 !important;
+}

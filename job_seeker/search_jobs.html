@@ -1,9 +1,8 @@
-
 <div class="searchJobsImgCover1"></div>
 
 
 <div class="searchJobsWrapper" ng-init="init();getMainJson();sort('-date');">
-   <!-- <img class="jobSeekerLogo" src="images/jobsee.png">-->
+    <!-- <img class="jobSeekerLogo" src="images/jobsee.png">-->
 
 
     <h3 class="navigation"></h3>
@@ -14,7 +13,7 @@
             <h2>Find your next job</h2>
         </header>
 
-        <input type="text" placeholder="Find Job" ng-model="searchText" 
+        <input type="text" placeholder="Find Job" ng-model="searchText"
                class="form-control searchText">
         <button type="button" class="btn btn-default" ng-click="getMainJson(); showSortOptions()">All Jobs
             <img class="Garrow" src="images/Garrow.png">
@@ -56,19 +55,15 @@
 
                             <p>
                                <span ng-repeat="scope_of_position in job['scope_of_position']">
-                                    <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"
-                                          ng-bind-html="'Full Time Job' | highlight:searchText">Full Time Job </span>
-                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"
-                                         ng-bind-html="'| Part Time Job ' | highlight:searchText">Part Time Job </span>
-                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"
-                                         ng-bind-html="'| Job by Hours ' | highlight:searchText">Job by Hours </span>
+                                   <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"><i class='fa fa-clock-o'></i> Full Time Job </span>
+                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"><i class='fa fa-clock-o'></i> Part Time Job </span>
+                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"><i class='fa fa-clock-o'></i> Job by Hours </span>
                                 </span>
                             </p>
 
-
+                            <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade</span>
                             <img class="diploma" ng-if="getTopTenJobs == true"
                                  ng-src="images/diploma_grade.png">
-                            <span ng-if="getTopTenJobs == true">{{job.matcher_grade}} CVMatcher Grade</span>
 
                             <p class="searchTitles">Address: </p>
                             <h5 ng-repeat="j in job.locations  track by $index"
@@ -83,13 +78,15 @@
                                  data-compability="{{job.compatibility_level}}">
                             <h5>{{job.compatibility_level}}%</h5>
                         </section>
-                        <h5 class="compatibilityText">Compatibility Level</h5>
+                        <h5 class="compatibilityText">Compatibility</h5>
                     </a>
-                    <article id="collepse-{{$index}}" class="collapse ">
-                        <p><span class"searchTitles">Description:</span> {{job["original_text"].description}}</p>
+                    <article id="collepse-{{$index}}" class="collapse searchTitles">
+                        <p><span>Description:</span> {{job["original_text"].description}}</p>
+
                         <div class="skills">
-                            <p><span class"searchTitles">Requirements Must:</span> {{job.original_text["requirements"].split("|||")[0]}}</p>
-                            <p><span class"searchTitles">Advantage:</span> {{job.original_text["requirements"].split("|||")[1]}}</p> </div>
+                            <p><span>Requirements Must:</span> {{job.original_text["requirements"].split("|||")[0]}}</p>
+
+                            <p><span>Advantage:</span> {{job.original_text["requirements"].split("|||")[1]}}</p></div>
                         <section>
 
                         </section>

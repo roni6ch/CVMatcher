@@ -21,6 +21,7 @@
     color: #fff;
     background-color: transparent;
     border-color: transparent;
+    font-size: 18px;
 }
 
 .companyprofileWrapper .btn-default.active, .btn-default:active, .companyprofileWrapper .open > .dropdown-toggle.btn-default {
@@ -70,6 +71,10 @@
     border: 0;
     margin-left: 0%;
     padding-left: 0;
+    outline: 0;
+}
+html .companyprofileWrapper input[type=button]:focus{
+    outline: 0;
 }
 
 .companyprofileWrapper .newJob button:hover, .companyprofileWrapper input[type=button]:hover {

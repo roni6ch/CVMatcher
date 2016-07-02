@@ -112,8 +112,9 @@ a {
     text-decoration: none;
 }
 
-button,input[button],span{
+button,button:focus,button:active:focus,button:active:hover,input[type=button],span{
     outline: 0;
+    background:transparent;
 }
 
 .hidden {
@@ -188,8 +189,8 @@ footer div a {
 .userLogo {
     width: 32px;
     position: absolute;
-    top: 44px;
-    right: 72px;
+    top: 43px;
+    right: 92px;
 }
 
 .flc {
@@ -332,8 +333,8 @@ footer {
 }
 
 .redGrade{
-    font-size: 20px;
-    font-weight: bold;
+    /* font-size: 20px; */
+    /* font-weight: bold; */
 }
 
 .navBarImg li:not(.selected) a:hover{
@@ -347,7 +348,7 @@ footer {
     float: left;
     margin-left: 0px;
     margin-right: 4px;
-    margin-top: 0px;
+    margin-top: 2px;
 }
 
 .highlighted {
@@ -569,7 +570,7 @@ footer {
 /****************************************************** MY JOBS - HTML **********************************************/
 /*liked*/
 img.ng-scope {
-    margin-right: 16px;
+    margin-right: 0px;
 }
 
 #popoverData {
@@ -619,7 +620,7 @@ img.ng-scope {
 }
 
 .myJobsBox {
-    height: 200px;
+    height: 150px;
     width: 100%;
     position: relative;
     margin-top: 18px;
@@ -739,7 +740,7 @@ a:focus, a:hover {
 .jobs > div:nth-child(2) section {
     position: absolute;
     width: 96px;
-    right: 16px;
+    right: 12px;
     top: 24px;
 }
 
@@ -1387,18 +1388,18 @@ a:focus, a:hover {
 }
 
 .jobListLi section:hover {
-    color: #254117;
+    /* color: #254117; */
 }
 
 .diploma{
     width: 50px;
-    float: left;
+    /*float: left;*/
 }
 
 .compatibilityText{
     position: absolute;
     top: 36px;
-    right: 4%;
+    right: 40px;
     z-index: 11;
 }
 
@@ -1429,6 +1430,7 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     padding-bottom: 36px;
     font-family: almoni-dl-aaa-regular;
     border-bottom: 1px solid #fff;
+    margin-top: 18px;
     color: white;
 }
 
@@ -1467,7 +1469,7 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     position: absolute;
     width: 86px;
     top: 60px;
-    right: 7%;
+    right: 28px;
     z-index: 11;
 }
 
@@ -1767,6 +1769,7 @@ text-align: center;
 
 .sendB {
     color: #fff;
+    font-size: 18px;
 }
 
 .page-header {
@@ -2326,4 +2329,18 @@ div#popover924921 {
     margin-top: 34px;
     position: relative;
     margin-bottom: 16%;
+}
+
+.sendCV:focus,.sendCV:hover,.sendCV:active:focus,.sendCV:active{
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+    color: #fff;
+}
+
+.fixCV:focus,.fixCV:hover,.fixCV:active:focus,.fixCV:active{
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+    color: #fff;
 }

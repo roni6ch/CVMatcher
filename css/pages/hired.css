@@ -66,7 +66,7 @@
 }
 
 .hiredWrapper .fired:hover, .fired.on {
-    background: url("../../images/fired1.png");
+    background: url("../../images/fired1.png") !important;
     background-repeat: no-repeat;
     width: 60px;
     height: 75px;
@@ -82,7 +82,7 @@
 }
 
 .hiredWrapper .hiredImg:hover, .hiredImg.on {
-    background: url("../../images/hired1.png");
+    background: url("../../images/hired1.png")  !important;
     background-repeat: no-repeat;
     width: 60px;
     height: 75px;

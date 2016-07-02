@@ -1,11 +1,13 @@
 
 .matchpageWrapper .fixCV{
     padding: 0;
+    font-size: 18px;
 }
 
 .matchpageWrapper .sendCV{
     padding: 0;
     margin-left: 22px;
+    font-size: 18px;
 }
 
 .matchpageWrapper .requirements-skills-bar {

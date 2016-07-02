@@ -21,6 +21,7 @@ app
 
             //initialize parameter in the controller
             $scope.init = function () {
+                $(".sendCV").removeClass("disabled");
                 $(".matchResult").hide();
                 $(".fixCV").hide();
                 $http({
@@ -152,6 +153,7 @@ app
             }
             //send cv to employer
             $scope.sendCV = function () {
+                $(".sendCV").addClass("disabled");
                 console.log($jobId);
                 console.log(localStorage.getItem("current_cv"));
                 $(".fa-spinner").show();
