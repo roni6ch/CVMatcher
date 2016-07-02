@@ -99,7 +99,7 @@ app
                                                 {
                                                     color: '#ee5785',
                                                     strokeWidth: 5,
-                                                    fill: '#aaa'
+                                                    fill: '#000'
                                                 });
                                             angular
                                                 .element(

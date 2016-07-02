@@ -49,7 +49,7 @@ app.directive('circle', function ($timeout) {
                 circle = new ProgressBar.Circle("#" + attr.id, {
                     color: '#2196F3',
                     strokeWidth: 10,
-                    fill: '#aaa'
+                    fill: '#000'
                 });
 
                 scope.$watch('compability', function (newValue) {
