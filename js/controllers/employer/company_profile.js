@@ -35,6 +35,7 @@ app.controller('companyProfileController',
                             console.log(data.data[0]);
 
                             if (data.data[0].company) {
+                                console.log('company exist!!!!!!!!!!!!!');
                                 angular.element(".password").hide();
                                 company = true;
                                 companyId = data.data[0].company;
@@ -65,6 +66,7 @@ app.controller('companyProfileController',
 
                             }
                             else {
+                                console.log('company NOTTTTTT exist!!!!!!!!!!!!!');
 
                                 angular.element(".GarrowInput").hide();
                                 $(".newPassword").hide();
@@ -167,6 +169,7 @@ app.controller('companyProfileController',
                     method: "POST",
                     data: companyJson
                 }).then(function () {
+                        company = true;
                         localStorage.setItem("company", true);
                         localStorage.setItem("employerFirstSignIn", true);
                         $('#update').modal('show');
@@ -182,58 +185,77 @@ app.controller('companyProfileController',
                     });
             }
             else {
-                //push to json new key value
-                companyJson = {
-                    "_id": $scope.employerProfile['company'],
-                    "name": $(".companyName").val(),
-                    "logo": logo,
-                    "p_c": $(".companyPC").val(),
-                    "address": $("#geocomplete2").val(),
-                    "phone_number": $(".companyPhoneNumber").val()
-                };
 
-                console.log("send form: ", companyJson);
+
+
+
+
                 $http({
-                    url: 'https://cvmatcher.herokuapp.com/employer/updateCompany',
+                    url: 'https://cvmatcher.herokuapp.com/getUser',
                     method: "POST",
-                    data: companyJson
-                }).then(function () {
-                        localStorage.setItem("company", true);
+                    data: {
+                        "user_id": localStorage.getItem("user_id")
+                    }
+                })
+                    .then(function (data) {
+                        if (data.data[0].company){
+                            //push to json new key value
+                            companyJson = {
+                                "_id": data.data[0].company,
+                                "name": $(".companyName").val(),
+                                "logo": logo,
+                                "p_c": $(".companyPC").val(),
+                                "address": $("#geocomplete2").val(),
+                                "phone_number": $(".companyPhoneNumber").val()
+                            };
 
-                        localStorage.setItem("employerFirstSignIn", true);
+                            console.log("send form: ", companyJson);
+                            $http({
+                                url: 'https://cvmatcher.herokuapp.com/employer/updateCompany',
+                                method: "POST",
+                                data: companyJson
+                            }).then(function () {
+                                    localStorage.setItem("company", true);
 
-                        tabType = 'company';
-                        $('#update').modal('show');
-                        $scope.status = messageResource.get("modal.company.update", 'resources');
+                                    localStorage.setItem("employerFirstSignIn", true);
 
-                        $scope.chooseCompanyModal = false;
+                                    tabType = 'company';
+                                    $('#update').modal('show');
+                                    $scope.status = messageResource.get("modal.company.update", 'resources');
 
-                    },
-                    function (response) { // optional
-                        $scope.status = messageResource.get("modal.company.error", 'resources');
-                        console.log(response);
-                    });
+                                    $scope.chooseCompanyModal = false;
 
-                //send new password
-                if ($scope.changePassword == true) {
-                    $http({
-                        url: 'https://cvmatcher.herokuapp.com/employer/changeCompanyPassword',
-                        method: "POST",
-                        data: {
-                            "company_id": $scope.employerProfile['company'],
-                            "old_password": $(".passwordCompany").val(),
-                            "new_password": $(".newPasswordCompany").val()
+                                },
+                                function (response) { // optional
+                                    $scope.status = messageResource.get("modal.company.error", 'resources');
+                                    console.log(response);
+                                });
+
+                            //send new password
+                            if ($scope.changePassword == true) {
+                                $http({
+                                    url: 'https://cvmatcher.herokuapp.com/employer/changeCompanyPassword',
+                                    method: "POST",
+                                    data: {
+                                        "company_id": $scope.employerProfile['company'],
+                                        "old_password": $(".passwordCompany").val(),
+                                        "new_password": $(".newPasswordCompany").val()
+                                    }
+                                }).then(function () {
+                                        $('#update').modal('show');
+                                        $scope.status = messageResource.get("modal.company", 'resources');
+                                    },
+                                    function (response) { // optional
+                                        $scope.status = messageResource.get("modal.password.wrong", 'resources');
+                                        console.log(response);
+                                    });
+                            }
                         }
-                    }).then(function () {
+                        else{
                             $('#update').modal('show');
-                            $scope.status = messageResource.get("modal.company", 'resources');
-                        },
-                        function (response) { // optional
-                            $scope.status = messageResource.get("modal.password.wrong", 'resources');
-                            console.log(response);
-                        });
-                }
-
+                            $scope.status = messageResource.get("modal.refresh", 'resources');
+                        }
+                            })
             }
 
         };
