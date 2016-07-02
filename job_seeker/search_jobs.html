@@ -54,10 +54,12 @@
                                 {{job['original_text']['title']}}</p>
 
                             <p>
-                               <span ng-repeat="scope_of_position in job['scope_of_position']">
-                                   <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"><i class='fa fa-clock-o'></i> Full Time Job </span>
-                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"><i class='fa fa-clock-o'></i> Part Time Job </span>
-                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"><i class='fa fa-clock-o'></i> Job by Hours </span>
+                                <i class='fa fa-clock-o'></i>
+                               <span ng-repeat="scope_of_position in job['scope_of_position'] track by $index">
+                                   <span ng-if="$index !== 0"> | </span>
+                                   <span ng-if="scope_of_position == 'full'" ng-model="searchText.scope_of_position"> Full Time Job </span>
+                                   <span ng-if="scope_of_position == 'part'" ng-model="searchText.scope_of_position"> Part Time Job </span>
+                                   <span ng-if="scope_of_position == 'hours'" ng-model="searchText.scope_of_position"> Job by Hours </span>
                                 </span>
                             </p>
 
