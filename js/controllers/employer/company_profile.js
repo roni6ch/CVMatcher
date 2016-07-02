@@ -251,10 +251,6 @@ app.controller('companyProfileController',
                                     });
                             }
                         }
-                        else{
-                            $('#update').modal('show');
-                            $scope.status = messageResource.get("modal.refresh", 'resources');
-                        }
                             })
             }
 
