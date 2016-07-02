@@ -49,7 +49,7 @@
 }
 
 .hiredWrapper .fired, .hiredImg {
-    top: 0;
+    top: 20px;
     width: 120px;
     height: 60px;
     position: absolute;
@@ -58,34 +58,34 @@
 }
 
 .hiredWrapper .fired {
-    background: url("../../images/fired2.png");
+    background: url("../../images/fired22.png");
     left: 0;
     background-repeat: no-repeat;
-    width: 60px;
-    height: 75px;
+    width: 40px;
+    height: 50px;
 }
 
 .hiredWrapper .fired:hover, .fired.on {
-    background: url("../../images/fired1.png") !important;
+    background: url("../../images/fired11.png") !important;
     background-repeat: no-repeat;
-    width: 60px;
-    height: 75px;
+    width: 40px;
+    height: 50px;
 
 }
 
 .hiredWrapper .hiredImg {
-    background: url("../../images/hired2.png");
+    background: url("../../images/hired22.png");
     right: 0;
     background-repeat: no-repeat;
-    width: 60px;
-    height: 75px;
+    width: 40px;
+    height: 50px;
 }
 
 .hiredWrapper .hiredImg:hover, .hiredImg.on {
-    background: url("../../images/hired1.png")  !important;
+    background: url("../../images/hired11.png")  !important;
     background-repeat: no-repeat;
-    width: 60px;
-    height: 75px;
+    width: 40px;
+    height: 50px;
 }
 
 

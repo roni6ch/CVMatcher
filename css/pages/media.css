@@ -24,6 +24,10 @@
     }
 
     /*preview cv*/
+    .modal{
+        z-index: 10000;
+    }
+
     .timeline-heading .mobileTitle{
         display: block;
         font-size: 22px;
@@ -148,6 +152,9 @@
     }
 
     /*searcj job html*/
+    .jobsList article p {
+        width: 100%;
+    }
 
     #sendCVstatus .modal-content {
         margin-top: 50px;
@@ -198,8 +205,8 @@
     }
 
     .searchJobsWrapper .logoInJobBox {
-        width: 44px;
         position: relative;
+        min-height: 68px;
         left: 13px;
         top: 9px;
         border-radius: 8px;
@@ -213,7 +220,7 @@
 
     .searchJobsWrapper .jobListLi section {
         right: 12px;
-        top: 30px;
+        top: 25px;
     }
 
     .searchJobsWrapper .jobsList ul li {
@@ -393,6 +400,11 @@
     }
 
     /*profile*/
+
+    .profileWrapper .engineering li {
+        margin-right: 6px;
+    }
+
     .parseButton{
         float: none;
     }
@@ -591,6 +603,11 @@
     }
 
     /*candidates*/
+
+    .candidates > div:nth-child(2) {
+        height: 86px;
+        margin-top: 16px;    
+    }
 
     .candidates > div:nth-child(2) a {
         margin-top: 5%;

@@ -43,17 +43,19 @@
 }
 
 .searchTitles span {
-
-    display: block;
-}
-
-.searchJobsWrapper .jobListLi p span {
     font-size: 21px;
     font-weight: bold;
     float: left;
     margin-right: 5px;
-    /*display: block;*/
+    width: 100%;
 }
+
+/*.searchJobsWrapper .jobListLi p span {
+    font-size: 21px;
+    font-weight: bold;
+    float: left;
+    margin-right: 5px;
+}*/
 
 .searchJobsWrapper .fa-clock-o {
     float: left;

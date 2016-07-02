@@ -20,7 +20,7 @@ app.controller('hiredController', function ($rootScope, $location, $scope, $http
 
         $(".navigation")[0].innerHTML = "<a href='#/login'>Homepage</a><span> > </span><a href='#/hired'>Hired</a>";
         angular.element(".fa-pulse").show();
-var names =[];
+        var names =[];
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/getEmployees',
             method: "POST",
@@ -48,8 +48,8 @@ var names =[];
                         }
                     });
 
-                /*
-                    $("#searchHire").autocomplete({source:names});*/
+                    /*
+                     $("#searchHire").autocomplete({source:names});*/
                 },
                 function (response) { // optional
                     console.log("getEmployees AJAX failed!");
@@ -59,8 +59,8 @@ var names =[];
 
 
     $scope.fired = function (indx, id) {
-        $("#indx-" + indx + ">.fired").css("background", "url('images/fired1.png')");
-        $("#indx-" + indx + ">.hiredImg").css("background", "url('images/hired2.png')");
+        $("#indx-" + indx + ">.fired").css("background", "url('images/fired11.png')");
+        $("#indx-" + indx + ">.hiredImg").css("background", "url('images/hired22.png')");
         this.hireCandidate.personal_properties['decision'] = false;
         $http({
             url: 'https://cvmatcher.herokuapp.com/employer/setDecision',
@@ -79,8 +79,8 @@ var names =[];
         });
     }
     $scope.hired = function (indx, id) {
-        $("#indx-" + indx + ">.hiredImg").css("background", "url('images/hired1.png')");
-        $("#indx-" + indx + ">.fired").css("background", "url('images/fired2.png')");
+        $("#indx-" + indx + ">.hiredImg").css("background", "url('images/hired11.png')");
+        $("#indx-" + indx + ">.fired").css("background", "url('images/fired22.png')");
 
         this.hireCandidate.personal_properties['decision'] = true;
         $http({
