@@ -31,9 +31,9 @@
                 >Family:</label> <input type="text" required ng-model="jobSeeker['last_name']"
                                         class="form-control" name="family"
                                         value="{{jobSeeker['last_name']}}"> <label
-                >Date of birth:</label> <input  required id="datepickerProfile"
-                                               class="form-control birthDay" name="birth"
-                                               value="{{jobSeeker['birth_date']}}">
+                >Date of birth:</label>
+                <input placeholder="Date" class="form-control birthDay" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" value="{{dateBirth}} ">
+
 
                 <label>Address:</label> <input class="form-control" ng-model="jobSeeker['address']" id="geocomplete"
                                                type="text"

@@ -62,6 +62,8 @@ app
                     .then(function (data) {
 
                             $scope.jobSeeker = data.data[0];
+                            var date = data.data[0].birth_date.split("T")[0].split("-");
+                            $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
                             console.log(data.data[0]);
                             if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                                 var currentId = data.data[0].current_cv;

@@ -94,7 +94,8 @@
         </div>
 
         <div id="predictAppend">
-            <h2>{{user['predict_result'] == true ? predictTrue : predictFalse}}</h2>
+
+            <h2><img ng-src="{{user['predict_result'] == true && 'images/v.png' || 'images/x.png'}}">{{user['predict_result'] == true ? predictTrue : predictFalse}}</h2>
         </div>
 
     </article>

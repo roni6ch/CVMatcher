@@ -31,8 +31,8 @@ app.controller('companyProfileController',
             })
                 .then(function (data) {
                         if (data) {
-                            var date = data.data[0].birth_date.split("-");
-                            $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
+                            var date = data.data[0].birth_date.split("T")[0].split("-");
+                           $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
                             $scope.employerProfile = data.data[0];
                             console.log(data.data[0]);
 

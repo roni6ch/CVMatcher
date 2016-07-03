@@ -261,7 +261,6 @@ footer div a {
     top: -34px;
     left: -18px;
     text-align: left;
-    width: 110px;
     font-size: 22px;
     color: #ccc;
     border-top-left-radius: 3px;
@@ -2320,7 +2319,12 @@ div#popover924921 {
 .existingCompany{background: transparent;padding-left: 0;color:#fff;border:0;outline:0;float: left;clear: both;}
 .existingCompany:hover{opacity:0.8;background: transparent; color:#fff; border:0; outline:0;}
 .cvPreview{background: transparent;color:#fff;border:0;outline:0;float:left;}
-#predictAppend h2 {font-size: 20px;color: #fff;margin-top: 200px;margin-bottom: 30px;border: 1px solid #57b7ee;padding: 12px;}
+#predictAppend h2 {    font-size: 20px;
+    color: #fff;
+    float: left;
+    margin-bottom: 30px;
+    border: 1px solid #57b7ee;
+    padding: 12px;}
 
 
 .googleSignInWrapper{

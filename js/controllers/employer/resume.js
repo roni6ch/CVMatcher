@@ -136,40 +136,40 @@ app.controller('resumeController',
                                 }
                             }).then(function () {
 
-                                $http({
-                                    url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
-                                    method: "POST",
-                                    data: {
-                                        "user_id": localStorage.getItem("user_id")
-                                    }
-                                })
-                                    .then(function (data) {
-                                        if (data) {
-                                            console.log('getCompany', data);
-                                            var companyName = data.data[0].name;
-                                            $http({
-                                                url: 'https://cvmatcher.herokuapp.com/sendNotification',
-                                                method: "POST",
-                                                data: {
-                                                    "user_id": $scope.user_id,
-                                                    "message": "The employer viewed your cv for job " + localStorage.getItem("jobTitle")
-                                                }
-                                            }).then(function () {
-
-                                                    console.log($scope.user_id);
-                                                    console.log($id[2]);
-                                                    sendNotification('seen', $scope.user_id, $id[2], '', localStorage.getItem("jobTitle"), companyName);
-
-                                                },
-                                                function (response) { // optional
-                                                    console.log("sendNotification notification AJAX failed!");
-                                                    console.log(response);
-                                                });
+                                    $http({
+                                        url: 'https://cvmatcher.herokuapp.com/employer/getCompany',
+                                        method: "POST",
+                                        data: {
+                                            "user_id": localStorage.getItem("user_id")
                                         }
                                     })
+                                        .then(function (data) {
+                                            if (data) {
+                                                console.log('getCompany', data);
+                                                var companyName = data.data[0].name;
+                                                $http({
+                                                    url: 'https://cvmatcher.herokuapp.com/sendNotification',
+                                                    method: "POST",
+                                                    data: {
+                                                        "user_id": $scope.user_id,
+                                                        "message": "The employer viewed your cv for job " + localStorage.getItem("jobTitle")
+                                                    }
+                                                }).then(function () {
+
+                                                        console.log($scope.user_id);
+                                                        console.log($id[2]);
+                                                        sendNotification('seen', $scope.user_id, $id[2], '', localStorage.getItem("jobTitle"), companyName);
+
+                                                    },
+                                                    function (response) { // optional
+                                                        console.log("sendNotification notification AJAX failed!");
+                                                        console.log(response);
+                                                    });
+                                            }
+                                        })
 
 
-                            },
+                                },
                                 function (response) { // optional
                                     console.log("rateCV notification AJAX failed!");
                                     console.log(response);
@@ -267,7 +267,9 @@ app.controller('resumeController',
         };
         //bring next candidate by swipe left\right or click on hands icon
         $scope.bringNextCandidate = function (type, description) {
-
+            if (description == undefined)
+                description = ' - not typed';
+            console.log(description);
             var url;
             if ($id[1] == 'like') {
                 //  candidates = $rootScope.likeCandidates;

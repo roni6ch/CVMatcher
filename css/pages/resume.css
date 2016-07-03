@@ -79,3 +79,8 @@
 .modal-content {
     margin-top: 64px;
 }
+
+.resumeWrapper #predictAppend img{
+    float: left;
+    width: 30px;
+}
