@@ -23,8 +23,8 @@
 
 .matchpageWrapper .btn-default {
     color: #fff;
-    background-color: transparent;
-    border-color: transparent;
+    background-color: transparent  !important;
+    border-color: transparent  !important;
     margin-bottom: 28px;
     margin-top: 20px;
     float: left;

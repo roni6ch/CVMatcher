@@ -62,8 +62,12 @@ app
                     .then(function (data) {
 
                             $scope.jobSeeker = data.data[0];
-                            var date = data.data[0].birth_date.split("T")[0].split("-");
-                            $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
+
+                            if (data.data[0].birth_date){
+                                var date = data.data[0].birth_date.split("T")[0].split("-");
+                                $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
+                            }
+
                             console.log(data.data[0]);
                             if (typeof data.data[0].current_cv !== 'undefined' && data.data[0].current_cv != null) {
                                 var currentId = data.data[0].current_cv;
@@ -566,7 +570,7 @@ app
                     .then(function (data) {
 
                             localStorage.setItem("jobSeekerFirstSignIn", true);
-                            $scope.status = messageResource.get("modal.seeker.resume.sent", 'resources');
+                            $scope.status = messageResource.get("modal.seeker.resume_sent", 'resources');
                             $('#myModal ').modal('show');
                             closeModal = true;
                             if (cvJson == false) {

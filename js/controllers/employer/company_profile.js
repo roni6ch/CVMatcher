@@ -31,11 +31,14 @@ app.controller('companyProfileController',
             })
                 .then(function (data) {
                         if (data) {
-                            var date = data.data[0].birth_date.split("T")[0].split("-");
-                           $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
+
                             $scope.employerProfile = data.data[0];
                             console.log(data.data[0]);
 
+                            if (data.data[0].birth_date){
+                                var date = data.data[0].birth_date.split("T")[0].split("-");
+                                $scope.dateBirth = date[0] + "-" + date[1] + "-" + date[2];
+                            }
                             if (data.data[0].company) {
                                 console.log('company exist!!!!!!!!!!!!!');
                                 angular.element(".password").hide();
