@@ -153,10 +153,6 @@
 
     /*searcj job html*/
 
-    .jobsList article p {
-        width: 74%;
-    }
-
     #sendCVstatus .modal-content {
         margin-top: 50px;
     }
@@ -254,8 +250,8 @@
 
     .yourJobsWrapper .hired {
         position: absolute;
-        top: -17px;
-        left: 35%;
+        top: -21px;
+        left: 22%;
         width: 106px;
         background: #C11B17;
     }
@@ -300,7 +296,7 @@
 
     .yourJobsWrapper .jobsList article {
         padding-left: 14px;
-        padding-right: 70px;
+        padding-right: 20px;
         margin-left: 0px;
         margin-top: 4px;
     }
@@ -407,6 +403,15 @@
     }
 
     /*profile*/
+    .parserExperienceYearsLabel {
+        width: 30%;
+    }
+    .parserExperienceLanguage {
+        width: 70%;
+    }
+    .userProfile .parseExperience label {
+        margin-right: 0;
+    }
 
     .profileWrapper .engineering li {
         margin-right: 6px;

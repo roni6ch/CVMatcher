@@ -9,7 +9,7 @@
 
 .searchJobsWrapper .form-control {
     display: block;
-    width: 54%;
+    width: 100%;
 }
 
 .searchJobsWrapper button, .yourJobsWrapper button {

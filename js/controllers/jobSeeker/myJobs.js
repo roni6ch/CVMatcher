@@ -45,14 +45,8 @@ app.controller('yourjobSeekerController', function ($rootScope, $scope, $http, $
             if (path == 'yourjobs') {
 
                 notifyMe(message.notificationType, message.jobName, message.companyName,message.other);
-                console.log(message.notificationType);
                 $scope = angular.element('.classForNotifications[value=' + jobId + ']').parent().parent().scope();
 
-                console.log($scope);
-                console.log($scope.jobSJ);
-                console.log($scope.jobSJ.cv);
-                console.log($scope.jobSJ.cv.status);
-                console.log($scope.jobSJ.cv.status.status_id);
                 if (message.notificationType == 'seen') {
                     console.log("seen");
                     $timeout(function () {

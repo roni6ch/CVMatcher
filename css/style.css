@@ -1798,9 +1798,9 @@ text-align: center;
 
 .userProfile .parseExperience label {
     margin: 0 auto;
-    width: 38%;
+    /*width: 38%;*/
     color: #fff;
-    margin-right: 11%;
+    /*margin-right: 9%;*/
 }
 
 div#popover924921 {
