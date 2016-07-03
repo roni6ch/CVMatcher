@@ -545,7 +545,7 @@ footer {
     width: 100%;
     padding: 17px 12% 0px;
     font-size: 78%;
-    min-height: 90px;
+    min-height: 100px;
     float: left;
     z-index: 2;
     opacity: 1;
@@ -1452,6 +1452,7 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     text-align: left;
     margin-bottom: 4px;
     clear: both;
+    width: 80%;
 }
 
 .jobListLi {
