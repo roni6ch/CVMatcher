@@ -40,7 +40,8 @@ app.controller('jobSeekerSearchJobsController', function ($rootScope, $scope, $s
     //get jobs that didnot send cv to them
 
     $scope.getMainJson = function () {
-
+        angular.element(".sort_compability").show();
+        angular.element(".sort_date").show();
         angular.element(".fa-spinner").show();
         $scope.getTopTenJobs = false;
         $scope.jobSeekerJobs = '';
