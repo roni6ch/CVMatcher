@@ -83,4 +83,9 @@
 .resumeWrapper #predictAppend img{
     float: left;
     width: 30px;
+    margin-right: 14px;
+}
+
+.resumeWrapper .predictAppendP{
+    width: 100%;
 }

@@ -681,6 +681,24 @@
 
     /*resume*/
 
+    .resumeWrapper #predictAppend img {
+        width: 30px;
+        float: right;
+        margin-right: 14px;
+    }
+
+    #predictAppend h2 {
+        font-size: 20px;
+        color: #fff;
+        float: left;
+        text-align: left;
+        margin-bottom: 30px;
+        width: 100%;
+        margin-top: 10px;
+        border: 1px solid #57b7ee;
+        padding: 12px;
+    }
+
     .skillbar {
         width: 100%;
     }
@@ -710,7 +728,7 @@
 
     .resumeWrapper .skillbar-title {
         left: -16px;
-        width: 100px;
+        width: 100%;
         font-size: 16px;
     }
 

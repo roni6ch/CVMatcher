@@ -68,7 +68,7 @@
                                  ng-src="images/diploma_grade.png">
 
                             <p class="searchTitles">Address: </p>
-                            <h5 class="loc" ng-repeat="j in job.locations  track by $index"
+                            <h5  ng-repeat="j in job.locations  track by $index"
                                 ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 

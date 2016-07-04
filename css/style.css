@@ -34,6 +34,7 @@ font-style: normal;
     padding-top: 12px;
 }
 
+
 @font-face {
     font-family: 'almoni-dl-aaa-bold';
     src: url('../fonts/almoni-dl-aaa-bold.otf');
@@ -351,8 +352,8 @@ footer {
 }
 
 .highlighted {
-    background: #fffc00;
-}
+    background: #FFF8C6;
+    color: #000;}
 
 .mobile {
     display: none;
@@ -1048,6 +1049,7 @@ a:focus, a:hover {
 
 .thumbnail .caption {
     padding: 0px;
+    width: 100%;
 }
 
 .contentWrapper article {
@@ -1452,7 +1454,11 @@ input.form-control.ng-pristine.ng-untouched.ng-valid {}
     text-align: left;
     margin-bottom: 4px;
     clear: both;
-    width: 80%;
+    width: 100%;
+}
+
+.jobsList .visibleText p{
+    width: 76%;
 }
 
 .jobListLi {

@@ -50,20 +50,20 @@
                                  ng-src="{{jobSJ.job.user.company.logo}}">
                             <article>
 
-                                <p ng-model="searchText.name"
+                                <p class="titleYour" ng-model="searchText.name"
                                    ng-bind-html="jobSJ.job.original_text['title'] | highlight:searchText">
                                     {{jobSJ.job.original_text["title"]}}</p>
 
-                                <p ng-model="searchText.job_name"
+                                <p class="titleYour" ng-model="searchText.job_name"
                                    ng-bind-html="jobSJ.job.academy['degree_name'] | highlight:searchText">
                                     {{jobSJ.job.academy["degree_name"]}}</p>
 
 
-                                <p> {{jobSJ.job.date}}</p>
+                                <p class="titleYour"> {{jobSJ.job.date}}</p>
 
 
                                 <p>Address: </p>
-                                <h5 ng-repeat="j in jobSJ.job.locations  track by $index"
+                                <h5 class="titleYour" ng-repeat="j in jobSJ.job.locations  track by $index"
                                     ng-bind-html="($index+1) +'. ' + j | highlight:searchText"></h5>
 
 
